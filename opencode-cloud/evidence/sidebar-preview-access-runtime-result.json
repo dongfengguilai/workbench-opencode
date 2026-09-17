@@ -1,0 +1,30 @@
+{
+  "nativeContainers": [
+    {
+      "name": "opencode-cloud-v0-native-guard-1",
+      "id": "b08cd4bb06499d80055196e8cac15a37de898c0828797ccf103f4268a3e8527d",
+      "image": "sha256:4c8c616b353679b174f7ef538a74b4143c78a7315b4370576319d3890d7abaff",
+      "startedAt": "2026-09-17T16:32:05.893964302Z"
+    },
+    {
+      "name": "opencode-cloud-v0-admin-native-guard-1",
+      "id": "cbc10d8dcdf8a5e128c115abfea5d0f69a92d6870b7250525f74a46cc265a94d",
+      "image": "sha256:4c8c616b353679b174f7ef538a74b4143c78a7315b4370576319d3890d7abaff",
+      "startedAt": "2026-09-17T16:32:05.948048516Z"
+    },
+    {
+      "name": "opencode-cloud-v0-native-1",
+      "id": "fad137e3b8b1f6e60e1f7e8d2dfde7cb2f317999fab014194f8f010375032b53",
+      "image": "sha256:264c89bb377c3fdd2d6c88ba857c3abe6ff20864314f31bc8e3717f42cb3fcd3",
+      "startedAt": "2026-09-17T14:53:44.389222584Z"
+    },
+    {
+      "name": "opencode-cloud-v0-admin-native-1",
+      "id": "0ac4166c34fcd21d6025b60be435e071874f4607466caf6bf46ddb66749fe7e7",
+      "image": "sha256:264c89bb377c3fdd2d6c88ba857c3abe6ff20864314f31bc8e3717f42cb3fcd3",
+      "startedAt": "2026-09-17T14:53:44.384240524Z"
+    }
+  ],
+  "scope": "only shared loopback preview proxy reloaded; no native rebuild, session/source initialization or model tasks",
+  "backup": "runtime/backups/preview-access-*/local-browser.mjs (protected, ignored)"
+}

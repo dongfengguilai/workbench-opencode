@@ -1,0 +1,15 @@
+{
+  "status": "FAIL_BEFORE_FIX",
+  "source": "runtime/local-preview.log actual browser request",
+  "request": {
+    "method": "GET",
+    "host": "u-8c6976e5b5410415bde908bd4dee15dfb167a9c8.localhost:8445",
+    "site": "cross-site",
+    "mode": "navigate",
+    "dest": "iframe",
+    "path": "/"
+  },
+  "response": 403,
+  "body": "Local browser origin required",
+  "cause": "Redirected authenticated iframe GET rejected by Fetch Metadata filter; previous automated browser path did not cover user metadata"
+}

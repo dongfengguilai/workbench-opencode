@@ -23,11 +23,21 @@ export function createLocalBrowser({origin, cert, fingerprint, port=8444, previe
   const requestOrigin=req=>{const incoming='http://'+req.headers.host;return origins().has(incoming)?incoming:undefined;};
   function permitted(req) {
     const own=requestOrigin(req);
+    const navigation=req.method==='GET' && req.headers['sec-fetch-mode']==='navigate';
+    // Redirected iframe navigations can retain cross-site Fetch Metadata even
+    // between our paired localhost hosts. Only authenticated preview documents
+    // on the fixed allowlist are eligible; the upstream enforces owner-bound CSP.
+    const previewNavigation=previewKey && (req.url?.startsWith('/__workbench/claim?') ||
+      (navigation && (req.headers['sec-fetch-dest']==='document' ||
+        (req.headers['sec-fetch-dest']==='iframe' && previewOrigins.includes(own)))));
+    const browserNavigation=!previewKey && browserKey && (req.url?.startsWith('/__platform/workbench/claim?') ||
+      (navigation && req.headers['sec-fetch-dest']==='document' &&
+        (req.url==='/__platform/login' || (browserOrigins.includes(own) && uiPage(new URL(req.url,target).pathname)))));
     return !!own &&
       req.url?.startsWith('/') && !req.url.startsWith('//') &&
-      (!req.headers.origin || req.headers.origin === own) &&
-      (req.headers['sec-fetch-site'] !== 'cross-site' || (req.method==='GET'&&((previewKey&&(req.url.startsWith('/__workbench/claim?')||(req.headers['sec-fetch-mode']==='navigate'&&req.headers['sec-fetch-dest']==='document')))||(!previewKey&&browserKey&&(req.url.startsWith('/__platform/workbench/claim?')||((req.url==='/__platform/login'||(browserOrigins.includes(requestOrigin(req))&&uiPage(new URL(req.url,target).pathname)))&&req.headers['sec-fetch-mode']==='navigate'&&req.headers['sec-fetch-dest']==='document')))))) &&
-      (['GET','HEAD'].includes(req.method) || req.headers.origin === own) &&
+      (!req.headers.origin || req.headers.origin===own) &&
+      (req.headers['sec-fetch-site']!=='cross-site' || (req.method==='GET' && (previewNavigation || browserNavigation))) &&
+      (['GET','HEAD'].includes(req.method) || req.headers.origin===own) &&
       !['CONNECT','TRACE'].includes(req.method);
   }
   function options(req, websocket=false) {
@@ -62,7 +72,7 @@ export function createLocalBrowser({origin, cert, fingerprint, port=8444, previe
   }
   server.on('request',(req,res)=>{
     if(process.env.LOCAL_BROWSER_TRACE==='1')console.log('incoming',req.method,new URL(req.url,target).pathname);
-    if (!permitted(req)) {res.writeHead(403,{'Content-Type':'text/plain','Cache-Control':'no-store'});res.end('Local browser origin required');req.resume();return;}
+    if (!permitted(req)) {if(process.env.LOCAL_BROWSER_TRACE==='1')console.log('denied',JSON.stringify({host:req.headers.host,origin:req.headers.origin,site:req.headers['sec-fetch-site'],mode:req.headers['sec-fetch-mode'],dest:req.headers['sec-fetch-dest'],path:new URL(req.url,target).pathname}));res.writeHead(403,{'Content-Type':'text/plain','Cache-Control':'no-store'});res.end('Local browser origin required');req.resume();return;}
     const upstream=https.request(options(req),reply=>{
       if(process.env.LOCAL_BROWSER_TRACE==='1')console.log(req.method,new URL(req.url,target).pathname,reply.statusCode);
       try {res.writeHead(reply.statusCode,responseHeaders(reply.headers,req));}

@@ -1,4 +1,11 @@
-# 当前交付状态：READY_FOR_USER_ACCEPTANCE
+# 当前交付状态：IN_PROGRESS
+
+2026-09-18 用户试用回归：已捕获用户 iframe 跳转的实际 `Sec-Fetch-Site: cross-site`、`navigate`、`iframe` 请求，原代理误返回403。已修复并重载本机预览代理：仅固定本人预览地址的 GET 文档导航可经过认证与本人 CSP 检查，普通跨站资源、写入、外部 Origin、错误 Host 仍拒绝。原生容器、源码、索引和会话不重建或初始化。
+
+- 现在可做：已在可见内置浏览器重新登录、进入同一原生会话、点击预览，真实应用加载；正式本人预览根地址新标签直接打开、用户已有标签22重新加载也成功。新实证 `sidebar-preview-access-fixed.png`、`direct.png`、`browser-result.json`。
+- 仍未确认：用户原“problem loading page”所用完整网址与浏览器尚待回复；不能根据另一条可用打开路径宣告该报错已修复。新标签按钮点击未在 CUA 标签列表观察到新增标签，具体弹窗行为也保留未确认。
+- 拒绝与认证实证：`sidebar-preview-access-reported-failure.json`、`access-live-result.json`、`access-live.log`、`access-transport.log`；测试首次误带 Cookie 的失败另保留 `access-test-first-failure.log`，修正测试输入后实连通过，不作为安全缺陷通过证据。
+- 下一步只定位：用户报错的实际复制链接／浏览器路径，补齐用户普通操作的打开证据。A10仍待用户签收。以下历史 READY 记录不代替本次用户回归验收。
 
 2026-09-18：已实际实现、发布并通过本轮右侧预览与按任务展示成果维护者验收。A10仍等待用户签收，不能称 DELIVERED。总表：`opencode-cloud/evidence/sidebar-preview-result.json`。
 

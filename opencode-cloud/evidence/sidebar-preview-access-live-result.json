@@ -1,0 +1,19 @@
+{
+  "status": "PASS",
+  "kind": "real_running_platform_requests_with_reported_browser_fetch_metadata",
+  "time": "2026-09-17T17:48:49.074Z",
+  "checks": [
+    "real cross-site redirected iframe claim303 and authenticated document200; exact owned ancestor CSP",
+    "anonymous iframe rejected 401",
+    "wrong user host rejected 401",
+    "foreign Origin rejected 403",
+    "cross-site subresource rejected 403",
+    "cross-site write rejected 403",
+    "unapproved Host rejected 403",
+    "root legacy iframe rejected 403",
+    "platform route rejected 403",
+    "copied canonical preview root real top-level document200",
+    "consumed ticket still401",
+    "own parent logout revokes preview credential401"
+  ]
+}

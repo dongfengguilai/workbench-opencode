@@ -1,0 +1,17 @@
+{
+  "time": "2026-09-17T17:48:33.186Z",
+  "status": "PARTIAL_PASS",
+  "checks": [
+    "real administrator login via native CUA fields, original native session restored",
+    "preview button iframe actual application heading and released text loaded",
+    "canonical preview URL pasted into new IAB tab and original user tab22 reloaded both show actual current application"
+  ],
+  "notConfirmed": [
+    "original problem loading page URL/browser requested from user",
+    "new-label click produced no additional tab in CUA inventory; visible IAB popup behavior unconfirmed"
+  ],
+  "files": [
+    "sidebar-preview-access-fixed.png",
+    "sidebar-preview-access-direct.png"
+  ]
+}
