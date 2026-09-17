@@ -58,6 +58,8 @@
     "web-egress-native-messages.json",
     "web-egress-platform.patch",
     "web-egress-pre-relogin.json",
+    "web-egress-publication.json",
+    "web-egress-push.log",
     "web-egress-real-upstream-fault.json",
     "web-egress-regression-initial-failure.json",
     "web-egress-regression-initial-failure.log",
@@ -70,5 +72,7 @@
     "web-egress-unit-before.log",
     "web-egress-unit-family-failure.log",
     "web-egress-unit.log"
-  ]
+  ],
+  "publication": "web-egress-publication.json",
+  "implementationCommit": "ddd7bd2770b4ed790011bfe499dbd90eed50a069"
 }

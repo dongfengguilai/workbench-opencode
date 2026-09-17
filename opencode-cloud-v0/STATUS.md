@@ -6,7 +6,7 @@
 - 入口：https://192.168.142.130:8443（真实 HTTPS、自签试用证书）。
 - Codex 内置浏览器本机验证入口：http://127.0.0.1:8444，已实际打开、登录并完成原生模型示例；只监听当前宿主机回环，免浏览器证书配置。
 - 按用户明确决定使用真实本地管理员认证；账号 admin，密码仅在未入库保护文件 opencode-cloud/runtime/ADMIN_LOGIN.txt。第二个真实身份 trial-b 使用独立环境。
-- 指定仓库：git@github.com:dongfengguilai/workbench-opencode.git；此前发布证据见 opencode-cloud/evidence/publication.json、git-push.log。本次公开 HTTPS 修复结果见 web-egress-result.json，提交与推送结果见 web-egress-publication.json。
+- 指定仓库：git@github.com:dongfengguilai/workbench-opencode.git；此前发布证据见 opencode-cloud/evidence/publication.json、git-push.log。本次公开 HTTPS 修复实现 commit ddd7bd2 已推送 main 并核对远端；结果见 web-egress-result.json，提交与推送结果见 web-egress-publication.json。
 
 ## 实际版本与基线
 
