@@ -82,9 +82,21 @@
       "status": "PASS_REAL_GUI_COMMAND_OUTPUT",
       "evidence": "sidebar-preview-terminal-result.json",
       "exitStatus": "unconfirmed; UI/transport proof only"
+    },
+    "unhealthy-stop": {
+      "status": "PASS",
+      "evidence": "sidebar-preview-unhealthy-stop-result.json"
+    },
+    "stop-gui": {
+      "status": "PASS",
+      "evidence": "sidebar-preview-stop-gui-result.json"
+    },
+    "stop-recovery-persistence": {
+      "status": "PASS",
+      "evidence": "sidebar-preview-stop-recovery-persistence-result.json"
     }
   },
-  "fixedUI": "sidebar-preview-delivery-ui-build.json",
+  "fixedUI": "sidebar-preview-stop-recovery-ui-build.json",
   "actualModel": "approved/Qwen3.6-35B-A3B",
   "initialFailuresRetained": [
     "sidebar-preview-iframe-initial-result.json",
@@ -105,5 +117,6 @@
     "Browser downloads emitted real events; tool does not expose local save path",
     "Compatible React Fast Refresh retains interaction state; static or structural updates may reload"
   ],
-  "onlyNextBlocker": "User A10 trial and explicit acceptance, including actual downloaded file save confirmation"
+  "onlyNextBlocker": "User A10 trial and explicit acceptance, including actual downloaded file save confirmation",
+  "finalUIChangeScope": "sidebar-preview-stop-recovery-provenance.json: only Stop eligibility changed after real Qwen auto/HMR tests; final GUI recovery verified."
 }

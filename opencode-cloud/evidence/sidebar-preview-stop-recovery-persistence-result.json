@@ -1,0 +1,7 @@
+{
+  "status": "PASS",
+  "bothUserSourceIndexMessagesAndGitStatusExactlyUnchanged": true,
+  "before": "sidebar-preview-stop-recovery-before.json",
+  "after": "sidebar-preview-stop-recovery-after.json",
+  "nativeWorkersNotRebuilt": true
+}

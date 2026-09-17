@@ -1,0 +1,9 @@
+{
+  "status": "PASS",
+  "previousRealQwenAutoBrowserBuild": "sidebar-preview-delivery-ui-build.json",
+  "finalBuild": "sidebar-preview-stop-recovery-ui-build.json",
+  "overlayFilesChanged": [
+    "preview-panel.tsx"
+  ],
+  "change": "Stop button eligibility uses owned native PTY presence, not application health; task trigger, authentication, source digest and providers unchanged."
+}

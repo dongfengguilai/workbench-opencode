@@ -1,0 +1,31 @@
+{
+  "status": "PASS",
+  "realSourceFaultInOwnNewWebpage": true,
+  "controlsWhileUnhealthy": [
+    {
+      "disabled": false,
+      "name": "刷新"
+    },
+    {
+      "disabled": true,
+      "name": "新标签 ↗"
+    },
+    {
+      "disabled": false,
+      "name": "停止"
+    },
+    {
+      "disabled": false,
+      "name": "×"
+    },
+    {
+      "disabled": false,
+      "name": "启动预览"
+    }
+  ],
+  "realUIStopClicked": true,
+  "nativeOwnedPtyAbsentAfterClick": true,
+  "sourceBytesRestored": true,
+  "realStopFeedback": "- button \"打开导航\": ☷\n- generic: workbench-opencode\n- button \"终端\"\n- button \"文件\"\n- button \"检查变更\"\n- button \"预览\"\n- button \"项目成果\"\n- navigation \"工作区切换\":\n  - button \"会话\"\n  - button \"预览\" [pressed]\n  - button \"变更\"\n- complementary \"网页预览\":\n  - strong: 网页预览\n  - button \"刷新\"\n  - button \"新标签 ↗\" [disabled]\n  - button \"停止\" [disabled]\n  - button \"关闭预览\": ×\n  - alert:\n    - text: 预览已停止，点击启动预览恢复。\n    - button \"启动预览\"\n  - generic: 本人项目 · 实时更新 · 与 OpenCode 验证浏览器独立\n- region \"Notifications alt+T\"",
+  "build": "sidebar-preview-stop-recovery-ui-build.json"
+}

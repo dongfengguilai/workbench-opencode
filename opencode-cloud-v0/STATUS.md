@@ -25,13 +25,14 @@
 | 内容 | 本轮独立证据 |
 |---|---|
 | 保护备份／原数据前后 | sidebar-preview-backup-result.json、before.json、prepublish.json、after.json、persistence-result.json |
-| 固定源码、Bun1.3.14、原锁文件及UI构建 | sidebar-preview-delivery-ui-build.json、delivery-ui-typecheck.log、ui/upstream.patch |
+| 固定源码、Bun1.3.14、原锁文件及UI构建 | sidebar-preview-stop-recovery-ui-build.json、stop-recovery-ui-typecheck.log、ui/upstream.patch |
 | 本人iframe登录、实际资源／交互／WS | sidebar-preview-iframe-checkpoint-result.json、auth-live-result.json、navigation-boundary-result.json |
 | 真实Qwen任务结束后自动展开 | sidebar-preview-release-native-messages.json、release-browser-result.json、release-browser.png；first-native-messages.json、first-browser-result.json |
 | 热更新状态、纯代码不展开、关闭偏好 | sidebar-preview-hmr-fixed-browser-result.json、hmr-fixed.png、code-result.json、closed-result.json |
 | 桌面调宽／492窄屏原生Diff／终端 | sidebar-preview-layout-result.json、resize.png、narrow-diff.png、terminal-result.json、terminal.png |
 | 原生CLI真实断言／本人截图 | sidebar-preview-first-cli-native-messages.json、first-artifact-native-messages.json、first-artifact-result.json、first-native.png |
 | ZIP／补丁字节、摘要及独立复现 | sidebar-preview-final-export-result.json、final-source.zip、final.patch、clean-result.json；download-browser-result.json |
+| 实际故障页面／UI停止恢复／原文件不变 | sidebar-preview-stop-gui-result.json、unhealthy-stop-result.json、stop-recovery-persistence-result.json |
 | 双用户同浏览器、边界／故障、实际过期 | sidebar-preview-second-login-result.json、boundary-result.json、handoff-expiry-live-result.json |
 | 出口／直接外连拒绝／重登／新标签 | sidebar-preview-egress-recheck-result.json、reentry-result.json、new-tab-result.json |
 
@@ -39,7 +40,7 @@
 
 ## 下一步只修哪个阻塞
 
-唯一下一步：用户A10实际试用并签收，确认右侧交互与下载文件实际保存。不代签、不扩大新业务。本轮发布提交与远端核对记录待本轮推送完成后填写。
+唯一下一步：用户A10实际试用并签收，确认右侧交互与下载文件实际保存。不代签、不扩大新业务。本轮主实现 `4326bf3558a7ae8a7d24dc9d05e8e082da892b8a` 已推送并核对远端。最终故障恢复修正和发布记录见本轮 publication.json。
 
 ---
 

@@ -1,0 +1,9 @@
+{
+  "status": "PASS",
+  "realNativeOwnedPtyExistedWhileUnhealthy": true,
+  "unhealthyRunning": false,
+  "startRefused": 409,
+  "stopStatus": 200,
+  "stoppedPtyAbsent": true,
+  "restoredStatus": 200
+}
