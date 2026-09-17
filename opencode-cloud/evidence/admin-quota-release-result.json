@@ -1,0 +1,29 @@
+{
+  "status": "PASS",
+  "sessionsSourceStatusIndexIdentical": true,
+  "workers": [
+    {
+      "service": "native",
+      "image": "sha256:264c89bb377c3fdd2d6c88ba857c3abe6ff20864314f31bc8e3717f42cb3fcd3",
+      "defaults": [
+        "NPM_CONFIG_CACHE=/state/npm-cache",
+        "NPM_CONFIG_MAXSOCKETS=2",
+        "NPM_CONFIG_FETCH_RETRIES=0",
+        "NPM_CONFIG_FETCH_TIMEOUT=60000"
+      ],
+      "started": "2026-09-17T14:53:44.389222584Z"
+    },
+    {
+      "service": "admin-native",
+      "image": "sha256:264c89bb377c3fdd2d6c88ba857c3abe6ff20864314f31bc8e3717f42cb3fcd3",
+      "defaults": [
+        "NPM_CONFIG_CACHE=/state/npm-cache",
+        "NPM_CONFIG_MAXSOCKETS=2",
+        "NPM_CONFIG_FETCH_RETRIES=0",
+        "NPM_CONFIG_FETCH_TIMEOUT=60000"
+      ],
+      "started": "2026-09-17T14:53:44.384240524Z"
+    }
+  ],
+  "platformRestarted": false
+}

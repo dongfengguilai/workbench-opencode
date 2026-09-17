@@ -1,0 +1,12 @@
+{
+  "status": "PASS_CONFIGURATION_AND_DATA_UNCHANGED",
+  "at": "2026-09-17T14:18:33.030Z",
+  "limits": {
+    "admin": 100000,
+    "trial-b": 250
+  },
+  "budget": {
+    "day": "2026-09-17",
+    "count": 250
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "status": "PASS",
+  "checks": [
+    "two-hop one-use tickets, fixed distinct owned origins, host-only cookie, forged host/origin and cross-user credential/session/screenshot/source routing denied",
+    "actual 30-second entry ticket expired",
+    "actual foreign port refused without replacing process; missing index and wrong dev script fail; start restored and repeated start reuses native PTY",
+    "actual identity disable revokes preview and platform session; original config restored",
+    "parent logout revokes own preview"
+  ]
+}

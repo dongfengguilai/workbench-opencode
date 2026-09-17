@@ -1,0 +1,13 @@
+{
+  "at": "2026-09-17T15:04:53.439Z",
+  "before": 250,
+  "budget": {
+    "day": "2026-09-17",
+    "count": 297
+  },
+  "limits": {
+    "admin-model-gateway": 100000,
+    "model-gateway": 250
+  },
+  "reset": false
+}

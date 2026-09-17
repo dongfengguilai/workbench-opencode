@@ -1,0 +1,9 @@
+{
+  "status": "PASS",
+  "nativeFiles": 23,
+  "sourceFile": "web/src/App.jsx",
+  "patch": "diff --git a/web/src/App.jsx b/web/src/App.jsx\nnew file mode 100644\nindex 0000000..10178ad\n--- /dev/null\n+++ b/web/src/App.jsx\n@@ -0,0 +1,52 @@\n+import { useState } from 'react';\n+import { countCharacters, countWords } from '../stats.mjs';\n+\n+export default function App() {\n+  const [text, setText] = useState('');\n+  const [charCount, setCharCount] = useState(0);\n+  const [wordCount, setWordCount] = useState(0);\n+  const [showResult, setShowResult] = useState(false);\n+\n+  const handleStat = () => {\n+    setCharCount(countCharacters(text));\n+    setWordCount(countWords(text));\n+    setShowResult(true);\n+  };\n+\n+  const handleClear = () => {\n+    setText('');\n+    setCharCount(0);\n+    setWordCount(0);\n+    setShowResult(false);\n+  };\n+\n+  const handleExample = () => {\n+    setText('你好 😀\\n世界\\t!');\n+    setShowResult(false);\n+  };\n+\n+  return (\n+    <div className=\"container\">\n+      <h1>文本统计器 · React</h1>\n+      <label htmlFor=\"inputText\">输入文本</label>\n+      <textarea\n+        id=\"inputText\"\n+        value={text}\n+        onChange={(e) => setText(e.target.value)}\n+        placeholder=\"在此输入或粘贴文本...\"\n+        rows={8}\n+      />\n+      <div className=\"btn-row\">\n+        <button onClick={handleStat}>统 计</button>\n+        <button onClick={handleClear}>清 空</button>\n+      </div>\n+      <button className=\"example-btn\" onClick={handleExample}>示例文本</button>\n+      {showResult && (\n+        <div className=\"result\">\n+          <p>字符数：<span className=\"num\">{charCount}</span></p>\n+          <p>单词数：<span className=\"num\">{wordCount}</span></p>\n+        </div>\n+      )}\n+    </div>\n+  );\n+}\n",
+  "actualSourceHunks": true,
+  "subdirectoryAccessStillForbidden": 403,
+  "originalBinaryUnchanged": true
+}

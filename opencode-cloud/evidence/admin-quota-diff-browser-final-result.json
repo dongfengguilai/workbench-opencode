@@ -1,0 +1,14 @@
+{
+  "status": "PASS",
+  "desktopSource": "App.jsx actual52line React diff",
+  "desktopScreenshot": "admin-quota-native-diff-final.png",
+  "narrowViewport": {
+    "height": 760,
+    "width": 492
+  },
+  "narrowSourceRendered": true,
+  "narrowFiles": 23,
+  "narrowScreenshot": "admin-quota-native-diff-narrow.png",
+  "nativeSDKAndComponents": true,
+  "subdirectoryAllowanceReverted": true
+}

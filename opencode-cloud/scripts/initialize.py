@@ -23,11 +23,14 @@ users={}
 for name,prefix,folder,native,gateway in [('admin','admin-','admin-project','admin-native','admin-model-gateway'),('trial-b','','project','native','model-gateway')]:
  clone=runtime/folder;subprocess.run(['git','clone','--no-hardlinks','--no-checkout',str(project),str(clone)],check=True,stdout=subprocess.DEVNULL)
  subprocess.run(['git','-C',str(clone),'checkout','--detach',a.baseline],check=True,stdout=subprocess.DEVNULL);subprocess.run(['git','-C',str(clone),'remote','remove','origin'],check=True)
+ exclude=clone/'.git/info/exclude'
+ exclude.write_text(exclude.read_text()+'\n# WorkBench generated dependencies, build output and browser evidence\n/web/node_modules/\n/web/dist/\n/web/.vite/\n/.workbench-artifacts/\n')
  for f in [clone,*clone.rglob('*')]:
   if not f.is_symlink():f.chmod(0o755 if f.is_dir() else stat.S_IMODE(f.stat().st_mode)|0o044)
  scope=secrets.token_urlsafe(32);nativepw=secrets.token_urlsafe(32);password=secrets.token_urlsafe(24)
  (runtime/(prefix+'gateway-state')).mkdir(mode=0o700)
- protected(prefix+'gateway.env',f'MODEL_UPSTREAM=http://192.168.142.130:8317\nMODEL_MASTER_KEY={key}\nENV_MODEL_TOKEN={scope}\n')
+ daily_limit=100000 if name=='admin' else 250
+ protected(prefix+'gateway.env',f'MODEL_UPSTREAM=http://192.168.142.130:8317\nMODEL_MASTER_KEY={key}\nENV_MODEL_TOKEN={scope}\nMODEL_DAILY_REQUEST_LIMIT={daily_limit}\n')
  protected(prefix+'native.env',f'OPENCODE_SERVER_PASSWORD={nativepw}\nENV_MODEL_TOKEN={scope}\nPROJECT_BASELINE={a.baseline}\nOPENCODE_CLIENT=app\n')
  c={'$schema':'https://opencode.ai/config.json','model':'approved/gpt-5.6-luna','small_model':'approved/gpt-5.6-luna','enabled_providers':['approved'],'autoupdate':False,'share':'disabled','provider':{'approved':{'npm':'@ai-sdk/openai-compatible','name':'Approved Luna','options':{'baseURL':f'http://{gateway}:8318/v1','apiKey':scope},'models':{'gpt-5.6-luna':{'name':'Luna','limit':{'context':196000,'output':16000}}}}},'permission':{'*':'allow','external_directory':'deny'}}
  protected(prefix+'opencode.json',json.dumps(c,indent=2)+'\n');(runtime/(prefix+'state')).mkdir(mode=0o700)

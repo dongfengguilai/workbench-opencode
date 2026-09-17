@@ -1,0 +1,11 @@
+{
+  "at": "2026-09-17T14:40:49.145Z",
+  "status": "PASS",
+  "scenario": "same actual IAB tab: A writes own-origin local/session/cookie/cache, A logout, B login, same tab navigates to B own origin",
+  "adminOrigin": "http://u-8c6976e5b5410415bde908bd4dee15dfb167a9c8.localhost:8445",
+  "trialBOrigin": "http://u-d912dec0719aa33bf016321df8792b445c059485.localhost:8445",
+  "adminDOM": "- heading \"admin\" [level=1]\n- button \"写入验收标记\" [active]\n- button \"读取验收标记\"\n- generic: \"{\\\"local\\\":\\\"admin-acceptance-marker\\\",\\\"session\\\":\\\"admin-acceptance-marker\\\",\\\"domainCookie\\\":null,\\\"cookie\\\":\\\"wb_isolation_acceptance=admin-acceptance-marker\\\",\\\"cache\\\":\\\"admin-acceptance-marker\\\"}\"",
+  "trialBDOM": "- heading \"trial-b\" [level=1]\n- button \"写入验收标记\"\n- button \"读取验收标记\" [active]\n- generic: \"{\\\"local\\\":null,\\\"session\\\":null,\\\"domainCookie\\\":null,\\\"cookie\\\":null,\\\"cache\\\":null}\"",
+  "parentDomainCookieAccepted": false,
+  "fixture": "disposable maintenance fixture; not native Agent proof"
+}

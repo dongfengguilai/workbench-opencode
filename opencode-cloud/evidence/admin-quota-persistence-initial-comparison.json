@@ -1,0 +1,5 @@
+{
+  "status": "FAIL_COMPARISON",
+  "reason": "Raw source walker included newly generated trial-b web/.vite cache metadata. No source or index changes. Corrected comparison excludes derived .vite paths only; raw snapshots retained.",
+  "actualFollowup": "admin-quota-persistence-result.json"
+}

@@ -1,0 +1,15 @@
+{
+  "status": "PASS_UNMODIFIED_NATIVE",
+  "workers": [
+    {
+      "service": "admin-native",
+      "binarySha256": "f9dab32248695e9ebd56b16a1921798fd85112cf5a69c7dfd0cabc1e17be4a11",
+      "version": "1.18.31"
+    },
+    {
+      "service": "native",
+      "binarySha256": "f9dab32248695e9ebd56b16a1921798fd85112cf5a69c7dfd0cabc1e17be4a11",
+      "version": "1.18.31"
+    }
+  ]
+}

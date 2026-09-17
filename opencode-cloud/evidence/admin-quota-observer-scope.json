@@ -1,0 +1,34 @@
+[
+  {
+    "file": "delivery-admin-quota-react-resumed-messages.json",
+    "captureScope": "explicit request and all following original native messages/tools including failures",
+    "firstMessage": "msg_1a0afbc0d758dc834eb463e64fa",
+    "originalBytes": 26376201,
+    "bytes": 91402,
+    "earlierHistory": "preserved historical delivery-platform-react-browser-messages.json; private full observer backup retained"
+  },
+  {
+    "file": "delivery-admin-quota-react-ui-messages.json",
+    "captureScope": "explicit request and all following original native messages/tools including failures",
+    "firstMessage": "msg_1a0afbe0d1404a3911937111ff1",
+    "originalBytes": 26468566,
+    "bytes": 92368,
+    "earlierHistory": "preserved historical delivery-platform-react-browser-messages.json; private full observer backup retained"
+  },
+  {
+    "file": "delivery-admin-quota-network-messages.json",
+    "captureScope": "explicit request and all following original native messages/tools including failures",
+    "firstMessage": "msg_1a0afde70470c12d5f9f71b",
+    "originalBytes": 26529941,
+    "bytes": 61378,
+    "earlierHistory": "preserved historical delivery-platform-react-browser-messages.json; private full observer backup retained"
+  },
+  {
+    "file": "delivery-admin-quota-react-messages.json",
+    "captureScope": "original final APIError403 only; 13MB historical request remains in historical delivery-platform-react-browser-messages.json and private full observer backup",
+    "firstMessage": "msg_0af98e9c50010hDYoZLs49v1TV",
+    "originalBytes": 26284802,
+    "bytes": 1483,
+    "earlierHistory": "preserved historical delivery-platform-react-browser-messages.json; private full observer backup retained"
+  }
+]

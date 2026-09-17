@@ -34,7 +34,7 @@ function json(res:any,status:number,body:any){res.writeHead(status,{'Content-Typ
 const loginHtml=readFileSync('/public/login.html');
 const hostedUi=process.env.PLATFORM_UI==='workbench'?loadUi('/public/workbench-ui'):undefined;
 const anonymousAssets:Record<string,string>={'login.css':'text/css','login.js':'application/javascript','theme.js':'application/javascript','logo.svg':'image/svg+xml','logo-dark.svg':'image/svg+xml','favicon.svg':'image/svg+xml'};
-const previews=previewPlatform({parent:hash=>{const s=sessions[hash];const user=s&&config().users[s.user];return s&&s.expires>Date.now()&&user?.enabled?{hash,user}:undefined;},register,closeSession,relayKey:()=>config().previewRelayKey||''});
+const previews=previewPlatform({parent:hash=>{const s=sessions[hash];const user=s&&config().users[s.user];return s&&s.expires>Date.now()&&user?.enabled?{hash,user,username:s.user}:undefined;},register,closeSession,relayKey:()=>config().previewRelayKey||''});
 const server=https.createServer({key:readFileSync('/trusted/tls.key'),cert:readFileSync('/trusted/tls.crt')},async(req,res)=>{
  res.setHeader('Cache-Control','no-store');res.setHeader('X-Content-Type-Options','nosniff');res.setHeader('Referrer-Policy','same-origin');
  if(req.headers.host!==origin.host){error(res,400,'Unrecognized platform origin');return;}

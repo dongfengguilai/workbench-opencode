@@ -1,0 +1,28 @@
+{
+  "status": "PASS",
+  "kind": "visible_codex_iab_owned_origin_actual_page_interaction",
+  "afterNativeImageRelease": true,
+  "react": {
+    "input": "你好 😀 世界 !",
+    "characterCount": 9,
+    "wordCount": 4,
+    "screenshot": "admin-quota-release-react-preview.png"
+  },
+  "static": {
+    "input": "你好 😀 世界 !",
+    "characterCount": 9,
+    "wordCount": 4,
+    "screenshot": "admin-quota-release-static-preview.png"
+  },
+  "recordsReentered": "admin-quota-results-reentered.png",
+  "terminalScreenshot": "admin-quota-terminal-tests.png",
+  "terminal": {
+    "actualTests": 29,
+    "passed": 29,
+    "failed": 0
+  },
+  "nativeDiffBrowserCheck": {
+    "status": "PASS",
+    "evidence": "admin-quota-diff-browser-final-result.json"
+  }
+}

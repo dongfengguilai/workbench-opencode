@@ -1,0 +1,8 @@
+{
+  "at": "2026-09-17T14:53:42.377115+00:00",
+  "coldBackupProtected": "runtime/admin-quota-release-cold.tar.gz",
+  "bytes": 102747938,
+  "oldImage": "sha256:12d9d47ee7b22a2a5548e5b138d0d2a0978bf630693f59b11ce55e923d31a854",
+  "newImage": "sha256:264c89bb377c3fdd2d6c88ba857c3abe6ff20864314f31bc8e3717f42cb3fcd3",
+  "platformNotRestarted": true
+}

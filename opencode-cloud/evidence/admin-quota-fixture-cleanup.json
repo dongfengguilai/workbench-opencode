@@ -1,0 +1,19 @@
+{
+  "status": "PASS",
+  "removedOnlyFilesAbsentFromOriginalSnapshot": [
+    {
+      "name": "admin",
+      "file": "web/test-results/workbench-isolation.html"
+    },
+    {
+      "name": "trial-b",
+      "file": "web/test-results/workbench-isolation.html"
+    },
+    {
+      "name": "trial-b",
+      "file": "web/index.html"
+    }
+  ],
+  "privateBackupRetained": true,
+  "userBPreviewStopped": true
+}

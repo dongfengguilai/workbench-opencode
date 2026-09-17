@@ -1,0 +1,9 @@
+{
+  "status": "PASS",
+  "checks": [
+    "anonymous export/control denied; management/routing arguments denied; B cannot access A session or screenshot; B ZIP independently exported",
+    "one-use ticket; separate-origin cookie; anonymous/agent-cookie preview denied; top-level claim navigation works; bad Host/Origin/cross-site write denied; platform namespace and out-of-web Vite filesystem denied; direct HTTPS app namespace denied",
+    "logout immediately revokes linked preview credential",
+    "real 30-second preview ticket expiry"
+  ]
+}

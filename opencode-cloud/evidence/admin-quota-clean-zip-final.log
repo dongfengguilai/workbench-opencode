@@ -1,0 +1,330 @@
+TAP version 13
+# Subtest: folds mixed whitespace and trims the result
+ok 1 - folds mixed whitespace and trims the result
+  ---
+  duration_ms: 0.641089
+  type: 'test'
+  ...
+# Subtest: returns an empty string for empty input
+ok 2 - returns an empty string for empty input
+  ---
+  duration_ms: 2.963224
+  type: 'test'
+  ...
+# Subtest: preserves Chinese text while normalizing whitespace
+ok 3 - preserves Chinese text while normalizing whitespace
+  ---
+  duration_ms: 0.222807
+  type: 'test'
+  ...
+# Subtest: rejects non-string input
+ok 4 - rejects non-string input
+  ---
+  duration_ms: 0.328182
+  type: 'test'
+  ...
+# From /tmp/cloud-export-OSxhCv
+#  * branch            ce7c30c20ced722f0fb22bdff881309d0d50b298 -> FETCH_HEAD
+# Subtest: complete binary patch applies staged, unstaged, new and deleted files without changing index
+ok 5 - complete binary patch applies staged, unstaged, new and deleted files without changing index
+  ---
+  duration_ms: 241.686874
+  type: 'test'
+  ...
+# Subtest: tracked secret paths are excluded and baseline mismatch fails explicitly
+ok 6 - tracked secret paths are excluded and baseline mismatch fails explicitly
+  ---
+  duration_ms: 138.694772
+  type: 'test'
+  ...
+# Subtest: untracked external symlink is rejected without modifying the index
+ok 7 - untracked external symlink is rejected without modifying the index
+  ---
+  duration_ms: 63.570859
+  type: 'test'
+  ...
+# Subtest: Ada Lovelace → AL
+ok 8 - Ada Lovelace → AL
+  ---
+  duration_ms: 2.373305
+  type: 'test'
+  ...
+# Subtest: workbench → W
+ok 9 - workbench → W
+  ---
+  duration_ms: 0.265885
+  type: 'test'
+  ...
+# Subtest: 张 三 → 张三
+ok 10 - 张 三 → 张三
+  ---
+  duration_ms: 1.157298
+  type: 'test'
+  ...
+# Subtest: empty string → empty string
+ok 11 - empty string → empty string
+  ---
+  duration_ms: 0.191425
+  type: 'test'
+  ...
+# Subtest: whitespace only → empty string
+ok 12 - whitespace only → empty string
+  ---
+  duration_ms: 0.186902
+  type: 'test'
+  ...
+# Subtest: mixed whitespace splits and trims correctly
+ok 13 - mixed whitespace splits and trims correctly
+  ---
+  duration_ms: 0.159376
+  type: 'test'
+  ...
+# Subtest: 𐐨 luna → 𐐀L
+ok 14 - 𐐨 luna → 𐐀L
+  ---
+  duration_ms: 0.353045
+  type: 'test'
+  ...
+# Subtest: non-string throws TypeError
+ok 15 - non-string throws TypeError
+  ---
+  duration_ms: 0.84052
+  type: 'test'
+  ...
+1..15
+# tests 15
+# suites 0
+# pass 15
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 899.967021
+
+added 66 packages, and audited 67 packages in 7s
+
+9 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+
+> text-stats-react@1.0.0 test
+> node --test stats.test.mjs src/__tests__/App.test.mjs
+
+TAP version 13
+# Subtest: 中文字符数
+ok 1 - 中文字符数
+  ---
+  duration_ms: 1.866106
+  type: 'test'
+  ...
+# Subtest: 中文词数
+ok 2 - 中文词数
+  ---
+  duration_ms: 0.254468
+  type: 'test'
+  ...
+# Subtest: 非BMP emoji 字符数
+ok 3 - 非BMP emoji 字符数
+  ---
+  duration_ms: 0.108549
+  type: 'test'
+  ...
+# Subtest: 非BMP emoji 词数
+ok 4 - 非BMP emoji 词数
+  ---
+  duration_ms: 0.090319
+  type: 'test'
+  ...
+# Subtest: 混合字符数
+ok 5 - 混合字符数
+  ---
+  duration_ms: 0.082212
+  type: 'test'
+  ...
+# Subtest: Tab 和换行分隔词数
+ok 6 - Tab 和换行分隔词数
+  ---
+  duration_ms: 0.107523
+  type: 'test'
+  ...
+# Subtest: Tab 和换行计字符
+ok 7 - Tab 和换行计字符
+  ---
+  duration_ms: 0.071076
+  type: 'test'
+  ...
+# Subtest: 纯空白词数
+ok 8 - 纯空白词数
+  ---
+  duration_ms: 0.070647
+  type: 'test'
+  ...
+# Subtest: 空字符串词数
+ok 9 - 空字符串词数
+  ---
+  duration_ms: 0.194472
+  type: 'test'
+  ...
+# Subtest: 普通多词词数
+ok 10 - 普通多词词数
+  ---
+  duration_ms: 0.315578
+  type: 'test'
+  ...
+# Subtest: 普通多词字符数
+ok 11 - 普通多词字符数
+  ---
+  duration_ms: 0.11127
+  type: 'test'
+  ...
+# Subtest: 单字词数
+ok 12 - 单字词数
+  ---
+  duration_ms: 0.069759
+  type: 'test'
+  ...
+# Subtest: 混合中文 emoji 空白 字符数
+ok 13 - 混合中文 emoji 空白 字符数
+  ---
+  duration_ms: 0.056781
+  type: 'test'
+  ...
+# Subtest: 混合中文 emoji 空白 词数
+ok 14 - 混合中文 emoji 空白 词数
+  ---
+  duration_ms: 0.055156
+  type: 'test'
+  ...
+# Subtest: 示例文本：你好 😀世界\\t!
+ok 15 - 示例文本：你好 😀世界\\t!
+  ---
+  duration_ms: 0.061417
+  type: 'test'
+  ...
+# Subtest: 中文字符数
+ok 16 - 中文字符数
+  ---
+  duration_ms: 3.123703
+  type: 'test'
+  ...
+# Subtest: 中文词数
+ok 17 - 中文词数
+  ---
+  duration_ms: 0.278826
+  type: 'test'
+  ...
+# Subtest: 非BMP emoji 字符数
+ok 18 - 非BMP emoji 字符数
+  ---
+  duration_ms: 0.204198
+  type: 'test'
+  ...
+# Subtest: 非BMP emoji 词数
+ok 19 - 非BMP emoji 词数
+  ---
+  duration_ms: 0.224375
+  type: 'test'
+  ...
+# Subtest: 混合字符数
+ok 20 - 混合字符数
+  ---
+  duration_ms: 0.237731
+  type: 'test'
+  ...
+# Subtest: Tab 和换行分隔词数
+ok 21 - Tab 和换行分隔词数
+  ---
+  duration_ms: 0.127013
+  type: 'test'
+  ...
+# Subtest: Tab 和换行计字符
+ok 22 - Tab 和换行计字符
+  ---
+  duration_ms: 0.080908
+  type: 'test'
+  ...
+# Subtest: 纯空白词数
+ok 23 - 纯空白词数
+  ---
+  duration_ms: 0.066204
+  type: 'test'
+  ...
+# Subtest: 空字符串词数
+ok 24 - 空字符串词数
+  ---
+  duration_ms: 0.181663
+  type: 'test'
+  ...
+# Subtest: 普通多词词数
+ok 25 - 普通多词词数
+  ---
+  duration_ms: 0.35986
+  type: 'test'
+  ...
+# Subtest: 普通多词字符数
+ok 26 - 普通多词字符数
+  ---
+  duration_ms: 0.148305
+  type: 'test'
+  ...
+# Subtest: 单字词数
+ok 27 - 单字词数
+  ---
+  duration_ms: 0.082218
+  type: 'test'
+  ...
+# Subtest: 混合中文 emoji 空白 字符数
+ok 28 - 混合中文 emoji 空白 字符数
+  ---
+  duration_ms: 0.056298
+  type: 'test'
+  ...
+# Subtest: 混合中文 emoji 空白 词数
+ok 29 - 混合中文 emoji 空白 词数
+  ---
+  duration_ms: 0.078084
+  type: 'test'
+  ...
+1..29
+# tests 29
+# suites 0
+# pass 29
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 161.180856
+
+> text-stats-react@1.0.0 build
+> vite build
+
+vite v7.3.6 building client environment for production...
+transforming...
+✓ 27 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                  0.32 kB │ gzip:  0.27 kB
+dist/assets/index-BdEYhJ0Z.js  143.71 kB │ gzip: 46.49 kB
+✓ built in 2.11s
+CLEAN_STATIC_HTTP_PASS
+### Browser `clean` opened with pid 206.
+### Ran Playwright code
+```js
+await page.goto('http://127.0.0.1:5173');
+```
+### Page
+- Page URL: http://127.0.0.1:5173/
+- Page Title: 文本统计器 · React
+### Snapshot
+- [Snapshot](.workbench-artifacts/page-2026-09-17T14-33-54-083Z.yml)
+### Events
+- New console entries: .workbench-artifacts/console-2026-09-17T14-33-53-828Z.log#L1
+### Result
+"CLEAN_REACT_DOM_PASS"
+### Ran Playwright code
+```js
+await (async (page) => { await page.getByRole('button',{name:'示例文本',exact:true}).click(); await page.getByRole('button',{name:'统 计',exact:true}).click(); const t=await page.locator('.result').innerText(); if(!t.includes('字符数：9')||!t.includes('单词数：4'))throw Error(t); await page.getByRole('textbox',{name:'输入文本'}).fill('   '); await page.getByRole('button',{name:'统 计',exact:true}).click(); if(!(await page.locator('.result').innerText()).includes('单词数：0'))throw Error('Whitespace result'); await page.getByRole('button',{name:'清 空',exact:true}).click(); if((await page.locator('textarea').inputValue())!==''||await page.locator('.result').count()!==0)throw Error('Clear result'); return 'CLEAN_REACT_DOM_PASS'; })(page);
+```
+Browser 'clean' closed
+

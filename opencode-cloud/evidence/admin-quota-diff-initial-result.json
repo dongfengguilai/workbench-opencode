@@ -1,0 +1,11 @@
+{
+  "status": "FAIL_BROWSER_RENDER",
+  "upstreamStatus": 200,
+  "actualNativeFiles": 2341,
+  "bytes": 11040500,
+  "elapsedMs": 26068,
+  "observed": "Git Diff remained loading; later CDP Runtime.evaluate timed out; screenshot/terminal worked before review switch",
+  "cause": "2341 entries including installed dependencies and verification artifacts",
+  "sourceChanged": false,
+  "originalProbe": "admin-quota-diff-probe.json"
+}

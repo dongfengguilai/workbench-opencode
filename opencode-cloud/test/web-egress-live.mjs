@@ -55,5 +55,5 @@ try{
   results.push({service:name,hostPorts:cfg.HostConfig.PortBindings,networks:Object.keys(cfg.NetworkSettings.Networks),health:cfg.State.Health.Status});
   assert.equal(cfg.State.Health.Status,'healthy');
  }
- writeFileSync('evidence/web-egress-live-result.json',JSON.stringify({kind:'actual_containers_and_public_https_verified_tls',status:'PASS',results},null,2)+'\n');console.log('PASS both environments: real HTTPS, TLS, protected destinations, direct IPv4/IPv6 denial, no gateway published port');
-}catch(e){writeFileSync('evidence/web-egress-live-result.json',JSON.stringify({status:'FAIL',error:e.message,results},null,2)+'\n');throw e;}
+ writeFileSync(process.argv[2]||'evidence/web-egress-live-result.json',JSON.stringify({kind:'actual_containers_and_public_https_verified_tls',status:'PASS',results},null,2)+'\n');console.log('PASS both environments: real HTTPS, TLS, protected destinations, direct IPv4/IPv6 denial, no gateway published port');
+}catch(e){writeFileSync(process.argv[2]||'evidence/web-egress-live-result.json',JSON.stringify({status:'FAIL',error:e.message,results},null,2)+'\n');throw e;}

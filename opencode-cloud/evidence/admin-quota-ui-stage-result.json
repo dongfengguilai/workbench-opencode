@@ -1,0 +1,7 @@
+{
+  "status": "PASS_PREVIOUS_UI_RETAINED_UNTIL_ACTIVATION",
+  "previousHTMLMatchesRecordedBuildSHA": true,
+  "allPrevious951ArtifactsUnchanged": true,
+  "candidateHTMLAndManifestPrivateBackup": "runtime/backups/admin-quota-diff-ui-candidate",
+  "platformRestarted": false
+}

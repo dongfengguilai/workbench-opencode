@@ -1,0 +1,26 @@
+{
+  "status": "ACTUAL_NATIVE_RESPONSE",
+  "files": [
+    {
+      "file": "web/src/App.jsx",
+      "additions": 52,
+      "patchBytes": 133,
+      "containsHunks": false,
+      "patch": "Index: web/src/App.jsx\n===================================================================\n--- web/src/App.jsx\t\n+++ web/src/App.jsx\t\n"
+    },
+    {
+      "file": "web/static.html",
+      "additions": 145,
+      "patchBytes": 133,
+      "containsHunks": false,
+      "patch": "Index: web/static.html\n===================================================================\n--- web/static.html\t\n+++ web/static.html\t\n"
+    },
+    {
+      "file": "web/stats.mjs",
+      "additions": 9,
+      "patchBytes": 127,
+      "containsHunks": false,
+      "patch": "Index: web/stats.mjs\n===================================================================\n--- web/stats.mjs\t\n+++ web/stats.mjs\t\n"
+    }
+  ]
+}

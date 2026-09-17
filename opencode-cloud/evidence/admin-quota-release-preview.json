@@ -1,0 +1,24 @@
+[
+  {
+    "name": "admin",
+    "status": 200,
+    "preview": {
+      "running": true,
+      "pty": "pty_0afdde7160017gUAlZmPJ9ki4t",
+      "port": 5173,
+      "directory": "/workspace/project/web",
+      "processState": "running"
+    }
+  },
+  {
+    "name": "trial-b",
+    "status": 200,
+    "preview": {
+      "running": true,
+      "pty": "pty_0afddf080001p4hu9jT0WnWpPQ",
+      "port": 5173,
+      "directory": "/workspace/project/web",
+      "processState": "running"
+    }
+  }
+]

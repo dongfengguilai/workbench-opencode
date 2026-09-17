@@ -1,0 +1,21 @@
+{
+  "status": "PASS",
+  "at": "2026-09-17T14:24:19.032Z",
+  "session": "ses_f507ead15ffeUbQJZrsiTj0FYz",
+  "model": "Qwen3.6-35B-A3B",
+  "budget": {
+    "day": "2026-09-17",
+    "count": 291
+  },
+  "tests": 29,
+  "nativeUIAssertions": [
+    "display9/4",
+    "displayWhitespaceWords0",
+    "clearInputEmpty"
+  ],
+  "clearResultRemovedActualSnapshot": true,
+  "sourceAndIndexUnchanged": true,
+  "newUntrackedBrowserArtifactsExpected": true,
+  "screenshot": "admin-quota-react-native.png",
+  "intermediateCLISyntaxAndDOMFailuresRetained": true
+}

@@ -1,0 +1,8 @@
+{
+  "status": "PASS",
+  "checks": [
+    "24 actual verified TLS aborts do not terminate platform",
+    "admin actual owned Vite WS101; logout closes established WS and rejects HTTP401",
+    "trial-b actual owned Vite WS101; disable closes established WS and rejects HTTP401"
+  ]
+}

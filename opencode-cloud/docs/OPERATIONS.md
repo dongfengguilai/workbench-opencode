@@ -22,7 +22,7 @@ python3 scripts/configure-qwen.py --key-file /ABS/PROTECTED/QWEN_KEY
 
 initialize 拒绝非空 runtime。clone 为新副本，不重置用户目录，移除 remote，不注入 SSH 或仓库凭据。真实 local-admin 分支复用旧登录代码；NetID 客户端保留但没有正式配置/验证，不能声称 NetID 已验收。生成两个真实本地试用账号，不使用 Mock。证书为 30 天自签试用证书；受信任 HTTPS 应由维护者替换 runtime/tls.key、tls.crt，并匹配 origin。密钥文件 0600，runtime 不入 Git。
 
-固定 OpenCode v1.18.31，commit 014614d35b397775e5d397a490fc72368c894ec2，制品 SHA256 b283e8dbe9e6fc224bb4b79992ce3bd2174b8b7b0c3e7d1b4e6024a1d11edc84。官方原生二进制不变；WorkBench 前端从同一固定源码构建，只修改品牌、布局和必要导航。原内嵌 UI 保留作维护者回滚。资源受控：CPU2、内存2GiB、PID256、临时目录256MiB；每身份项目和完整原生状态共享独立 1GiB ext4 文件系统。scope 模型凭据只访问固定路由，最多并发2、输出16000 Token、UTC 日250次上游请求（包括失败），计数在各自 gateway-state 持久化；主 Key 仅在可信网关。
+固定 OpenCode v1.18.31，commit 014614d35b397775e5d397a490fc72368c894ec2，制品 SHA256 b283e8dbe9e6fc224bb4b79992ce3bd2174b8b7b0c3e7d1b4e6024a1d11edc84。官方原生二进制不变；WorkBench 前端从同一固定源码构建，只修改品牌、布局和必要导航。原内嵌 UI 保留作维护者回滚。资源受控：CPU2、内存2GiB、PID256、临时目录256MiB；每身份项目和完整原生状态共享独立 1GiB ext4 文件系统。scope 模型凭据只访问固定路由，最多并发2、输出16000 Token、UTC 日管理员100,000次／普通用户250次上游请求（包括失败），计数在各自 gateway-state 持久化；主 Key 仅在可信网关。
 
 quota.py 的短暂维护容器仅用于新 loop 文件系统：SYS_ADMIN/DAC_OVERRIDE/CHOWN/MKNOD、AppArmor unconfined、无网络，不是工作容器。工作容器始终非 root、所有能力删除、只读系统、内部独立网络。脚本验证实际 bounded ext4 挂载，条件不满足则退出，不能退回宿主无限磁盘。迁移要求停机及冷备，原项目/状态目录保留 .prequota-*；不删除。宿主重启后运行 start.sh 会恢复 loop 挂载；不可绕过脚本启动到未挂载目录。
 
@@ -91,11 +91,11 @@ python3 scripts/local-browser.py stop
 
 完整启动时可用 `sh scripts/start.sh --local-browser`；完整 stop 同时停止代理。代理 PID/starttime 与日志在忽略的 runtime 内，仅停止核对为本脚本的进程，遇到他人占用 8444 拒绝启动。`LOCAL_BROWSER_TRACE=1 python3 scripts/local-browser.py start` 可临时记录方法、无查询字符串的路径和状态，不记录 Header、Cookie、密码、请求内容或模型 Key。默认不启用逐请求日志。
 
-## 原生浏览器、源码与独立预览（当前新闭环阻塞）
+## 原生浏览器、源码与独立预览
 
 固定工具在 `Dockerfile.browser`、`browser-tools/package-lock.json`：Microsoft `@playwright/cli@0.1.20`，Playwright/core `1.64.0-alpha-2026-09-14`，Chromium revision1244／154.0.8037.0，Vite7.3.6。构建时安装全部浏览器和依赖，不在任务中下载安装 latest。原生 OpenCode 二进制 SHA256 不变。版本、实际镜像和两种 Chromium 可执行文件摘要在 `evidence/delivery-browser-image.json`。
 
-原固定 managed 镜像作为基础，`python3 scripts/build-browser.py` 使用小型无密钥构建上下文。构建前按现有部署条件设置维护者代理环境变量。Debian 构建依赖使用带签名验证的 TUNA 镜像；该构建网络不是用户工作容器网络。当前已部署 headless-shell 镜像；新增 npm 最大2连接／不重试的镜像仅为候选 `opencode-cloud/native:1.18.31-browser-npm2-candidate`，未做发布回归。不要把候选构建成功写成运行环境验收成功。
+原固定 managed 镜像作为基础，`python3 scripts/build-browser.py` 使用小型无密钥构建上下文。构建前按现有部署条件设置维护者代理环境变量。Debian 构建依赖使用带签名验证的 TUNA 镜像；该构建网络不是用户工作容器网络。已冷备并部署 npm 最大2连接／不重试镜像 sha256:264c89bb377c3fdd2d6c88ba857c3abe6ff20864314f31bc8e3717f42cb3fcd3，运行标签为 browser-v1。原镜像保留为 opencode-cloud/native:1.18.31-browser-rollback-before-npm2。真实Qwen、29测试、公开HTTPS／重定向／原生Webfetch与预览WS回归证据分别见 admin-quota-network-native-result.json、admin-quota-release-transport-result.json。两身份会话、源码、Git状态和索引维护前后完全一致，见 admin-quota-release-result.json。回滚时先确认idle并冷备，将回滚镜像重标 browser-v1，只协调重建 native/admin-native、对应guard和防火墙，保留所有持久数据；不要初始化。
 
 `prepare-browser.py` 只针对存在的项目和原生状态，缺原数据即拒绝，不初始化。本人浏览器配置、代理和浏览器专用 XDG 目录由维护者固定；`/trusted/BROWSER_USAGE.md` 只读，追加到原生 instructions。CLI 打开时必须显式 `--config /trusted/browser.json`，避免项目配置优先级覆盖。采用同一官方 bundle 的 headless shell，避免完整 Chrome 的 Google 后台连接占满本人4隧道。网关 FIN 清理释放断开连接，仍保留4连接／10秒连接／120秒空闲边界。浏览器非 root、本人容器内，无 Docker socket 或宿主浏览器连接。
 
@@ -107,7 +107,7 @@ python3 scripts/local-preview.py status
 python3 scripts/local-preview.py stop
 ```
 
-预览入口仅127.0.0.1:8445监听，浏览器使用 `http://localhost:8445`，与工作台 `http://127.0.0.1:8444` 分开。Cookie不按端口隔离，必须使用不同回环主机名。完整 `start.sh --local-browser` 同时检查并启动两入口；只启动 relay 不重建原生服务。独立预览 relay 固定转发HTTPS平台 `/__preview`，验证CA、地址、有效期、准确指纹；额外使用保护配置中的 relayKey，拒绝直接在工作台同源进入预览。普通用户无该配置入口。
+预览入口仅127.0.0.1:8445监听，浏览器通过 `http://localhost:8445` 一次性入口跳到固定本人 u-摘要.localhost:8445 子来源，有限清单由保护身份配置生成，不接受任意主机。应用存储与host-only预览Cookie按身份来源隔离。同一标签页A→B的local/sessionStorage、Cookie、CacheStorage实测无串用；与工作台 `http://127.0.0.1:8444` 分开。Cookie不按端口隔离，必须使用不同回环主机名。完整 `start.sh --local-browser` 同时检查并启动两入口；只启动 relay 不重建原生服务。独立预览 relay 固定转发HTTPS平台 `/__preview`，验证CA、地址、有效期、准确指纹；额外使用保护配置中的 relayKey，拒绝直接在工作台同源进入预览。普通用户无该配置入口。
 
 平台会话签发30秒一次性票据，换取预览专用30分钟HttpOnly/SameSite=Lax Cookie；原HTTPS保持Secure，只在本机预览响应移除预览Cookie的Secure。票据／凭据仅在内存中，重启平台后重新打开预览。凭据绑定原平台会话及启用身份；每请求检查，扫除失效连接间隔1秒，注销调用原连接撤销流程。平台Cookie、Authorization与内部凭据不送应用；预览不能进入平台管理 namespace。页面、资源和Vite WebSocket经本人guard固定5173转发，不接受任意上游。
 
@@ -115,7 +115,7 @@ python3 scripts/local-preview.py stop
 
 验证接口从本人原生session读取Bash输入、状态、metadata.exit及原始输出；不维护第二份业务验证状态，也不根据模型总结给PASS。PNG限本人有效session、固定持久目录、真实路径和8MiB。新版本实际测试命令见 `test/source-export.test.mjs`、`test/preview-sessions.test.mjs`、`test/delivery-boundary-live.mjs`、`test/delivery-transport-live.mjs`；后两者必须运行真实平台。测试使用支持原生TypeScript的Node22.19+构建或已验证的bundled Node24，不能用缺该功能的宿主Node宣布成功。
 
-当前唯一先处理的阻塞：管理员2026-09-17 UTC额度250耗尽，原生APIError403 `Environment daily request budget exhausted; no automatic retry`。次日UTC首次请求恢复（上海2026-09-18 08:00），不能清空budget.json或改限额冒充续验通过。保留会话 `ses_f507ead15ffeUbQJZrsiTj0FYz`，恢复后显式继续React浏览器断言和PNG，再完成干净ZIP／补丁复现及剩余边界。当前不是新闭环READY或DELIVERED。
+2026-09-17 用户明确批准管理员日额度提高为100,000次；普通用户250次、并发2、输出16000保持。仅更新保护文件 runtime/admin-gateway.env 的 MODEL_DAILY_REQUEST_LIMIT，再执行 docker compose up -d --no-deps --force-recreate admin-model-gateway；restart 不重新加载 env_file。保留 gateway-state/budget.json 日计数，不清零、不换身份。新环境由 initialize.py 写入分别默认值；现有环境禁止重新初始化。配置备份仅在owner-only runtime/backups，不能提交或输出密钥。真实调整与会话／文件／索引不变证据见admin-quota-result.json；原250次403失败仍保留，额度配置通过不等于新增闭环通过。
 
 发布前保存双用户idle会话／文件／索引摘要并冷备；用固定镜像或 `WORKBENCH_NATIVE_IMAGE` 明确指定已验证镜像，协调原生、guard与UID防火墙重建，保留持久卷。当前发布停止点的保护冷备及摘要在 `delivery-blocked-backup.json`，前后持久化比较在 `delivery-blocked-persistence.json`。只读核对不替代完整恢复演练。
 
@@ -130,8 +130,14 @@ python3 scripts/local-preview.py stop
 
 仅更新 UI 时确认两个原生环境空闲，按既有流程冷备并保存 test/ui-snapshot.mjs 输出；构建通过后只执行 `docker compose up -d --no-deps --no-build --force-recreate platform`。不要使用会重建原生的 start.sh 发布 UI。维护者回滚：`PLATFORM_UI=embedded docker compose up -d --no-deps --no-build --force-recreate platform`；恢复新 UI 用 PLATFORM_UI=workbench 的同一命令。均不改持久卷。主题 Cookie 只含 light/dark，无认证数据。
 
-新增 Qwen 由用户于2026-09-17明确批准。固定上游 http://10.243.117.57:4003/v1，精确模型 Qwen3.6-35B-A3B，context131072/output16000，使用原生 OpenAI-compatible chat completions；不模拟 Responses。configure-qwen.py 保存 owner-only 原配置冷备，原位更新受控配置，不初始化项目；Qwen主Key只在两个可信模型网关，原生容器仍只持本人scope Key。网关仅允许Qwen及此前Luna，按模型精确路由，不接受请求选择URL；共享原每日250次/并发2限额，不自动回退或重试。
+新增 Qwen 由用户于2026-09-17明确批准。固定上游 http://10.243.117.57:4003/v1，精确模型 Qwen3.6-35B-A3B，context131072/output16000，使用原生 OpenAI-compatible chat completions；不模拟 Responses。configure-qwen.py 保存 owner-only 原配置冷备，原位更新受控配置，不初始化项目；Qwen主Key只在两个可信模型网关，原生容器仍只持本人scope Key。网关仅允许Qwen及此前Luna，按模型精确路由，不接受请求选择URL；各环境共享其Qwen/Luna日额度：管理员100,000次、普通用户250次，UTC日结；并发2，不自动回退或重试。
 
 现有运行实例增加模型时，确认两环境 idle 后仅重建两个 model-gateway、重启两个 native-guard。维护者在 guard 的 UID1001 通过原始4030 Basic认证调用原生 POST /global/dispose 使配置重新读取；不重建 native、不重置数据库或持久卷。该管理操作不在平台用户路由清单中。记录真实模型、会话和文件摘要；浏览器中确认输入区模型标签与实际消息 modelID 为Qwen。原生 /config 的 model 与 small_model 已设Qwen，历史会话可能保留先前选择，需明确切换。
 
 真实回归：`node test/ui-regression-live.mjs`（使用现有 admin/trial-b、验证平台TLS，检查原生Qwen工具结果和授权审批，真实下载后在新的干净基线副本应用，使用同部署镜像无网络运行15测试）。不替代可见Codex浏览器的交互证据或A10用户签收。
+
+### 本轮下载与 Diff 修正
+
+下载先查真实接口错误，再使用同源服务器附件链接触发浏览器标准下载；不使用Blob临时URL。补丁临时索引中被排除的依赖／制品每100个路径批处理，不写用户索引。托管UI的Git Diff列表过滤node_modules、dist、coverage、测试与浏览器制品目录；保留原生SDK返回的源码Diff及其组件。原生Bash工具和会话中的原始记录仍保留。固定构建证据为admin-quota-diff-ui-build.json／build.log／typecheck.log，旧构建证据没有覆盖；旧UI冷备在runtime/backups/admin-quota-ui-before/ui.tar.gz，仅维护者可回滚，切换UI不重建原生环境。
+
+原生总Diff上限可能被无.gitignore项目内生成的依赖占满。本轮管理员仅在.git/info/exclude追加/web/node_modules/、/web/dist/、/web/.vite/、/.workbench-artifacts/，保留原内容。回滚元数据可从owner-only runtime/backups/admin-quota-git-exclude-before恢复原文件；不触碰源码／索引／持久数据，但大量依赖Diff可能再次占满上限。最终未开放项目子目录API或改原生Vcs实现，根目录Diff原生源码与双布局均实测通过。默认30分钟授权已实际等待1,801秒验证，见admin-quota-expiry-live-result.json。

@@ -1,0 +1,14 @@
+{
+  "at": "2026-09-17T14:26:18.391Z",
+  "blobDownload": {
+    "event": false,
+    "waitMs": 30000,
+    "localSavePathConfirmed": false
+  },
+  "directServerAttachment": {
+    "event": true,
+    "url": "http://127.0.0.1:8444/__platform/source.zip",
+    "navigation": "net::ERR_ABORTED is attachment navigation",
+    "localSavePathConfirmed": false
+  }
+}

@@ -1,0 +1,53 @@
+[
+  {
+    "info": {
+      "id": "msg_0af9dbb8b0011cdrX85YFwsiXa",
+      "sessionID": "ses_f507ead15ffeUbQJZrsiTj0FYz",
+      "role": "assistant",
+      "time": {
+        "created": 1789652745099,
+        "completed": 1789652750952
+      },
+      "error": {
+        "name": "APIError",
+        "data": {
+          "message": "Environment daily request budget exhausted; no automatic retry",
+          "statusCode": 403,
+          "isRetryable": false,
+          "responseHeaders": {
+            "cache-control": "no-store",
+            "connection": "keep-alive",
+            "content-type": "application/json",
+            "date": "Thu, 17 Sep 2026 13:45:46 GMT",
+            "keep-alive": "timeout=5",
+            "transfer-encoding": "chunked"
+          },
+          "responseBody": "{\"error\":{\"message\":\"Environment daily request budget exhausted; no automatic retry\"}}",
+          "metadata": {
+            "url": "http://admin-model-gateway:8318/v1/chat/completions"
+          }
+        }
+      },
+      "parentID": "msg_0af98e9c50010hDYoZLs49v1TV",
+      "modelID": "Qwen3.6-35B-A3B",
+      "providerID": "approved",
+      "mode": "build",
+      "agent": "build",
+      "path": {
+        "cwd": "/workspace/project",
+        "root": "/workspace/project"
+      },
+      "cost": 0,
+      "tokens": {
+        "input": 0,
+        "output": 0,
+        "reasoning": 0,
+        "cache": {
+          "read": 0,
+          "write": 0
+        }
+      }
+    },
+    "parts": []
+  }
+]

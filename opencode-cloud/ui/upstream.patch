@@ -218,6 +218,15 @@
    const desktopInlineTerminalOnlyOpen = createMemo(
      () => newSessionDesign() && desktopTerminalOpen() && !desktopV2ReviewOpen(),
    )
+@@ -691,7 +691,7 @@
+         ? () =>
+             sdk()
+               .api.vcs.diff({ location: { directory: sdk().directory }, mode: mode === "git" ? "working" : mode })
+-              .then((result) => result.data)
++              .then((result) => result.data?.filter(file => !file.file.split("/").some(part => /^(?:node_modules|dist|coverage|test-results|playwright-report|[.]workbench-artifacts|[.]playwright|[.]playwright-cli|[.]vite|[.]cache)$/.test(part))))
+               .catch((error) => {
+                 console.debug("[session-review] failed to load vcs diff", { mode, error })
+                 return []
 @@ -2320,7 +2320,7 @@
            </Suspense>
          </Show>

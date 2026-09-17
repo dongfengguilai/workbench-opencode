@@ -1,4 +1,4 @@
-import {mkdtemp,readFile,rm} from 'node:fs/promises';
+import {mkdtemp,readFile,writeFile,rm} from 'node:fs/promises';
 import {tmpdir} from 'node:os';
 import path from 'node:path';
 import { spawn } from 'node:child_process';
@@ -37,4 +37,29 @@ test('single model boundary rejects unauthorized, management and model override 
     assert.equal(over.status,403);assert.match(await over.text(),/budget/i);
     assert.equal(JSON.parse(await readFile(path.join(budgetDir,'budget.json'),'utf8')).count,2);
   } finally { if (proc.exitCode === null) { proc.kill(); await once(proc, 'exit'); } await rm(budgetDir,{recursive:true,force:true}); }
+});
+
+test('raising a gateway limit preserves its already consumed daily budget', async () => {
+  const dir=await mkdtemp(path.join(tmpdir(),'gateway-limit-'));
+  const budgetFile=path.join(dir,'budget.json');
+  const day=new Date().toISOString().slice(0,10);
+  await writeFile(budgetFile,JSON.stringify({day,count:250}));
+  try {
+    for(const [limit,status,count] of [[100000,424,251],[250,403,251]]) {
+      const proc=spawn(process.execPath,['--experimental-strip-types','src/model-gateway.ts'],{
+        env:{...process.env,PORT:'18320',MODEL_BUDGET_FILE:budgetFile,MODEL_DAILY_REQUEST_LIMIT:String(limit),MODEL_UPSTREAM:'http://127.0.0.1:1',MODEL_MASTER_KEY:'unit-only',ENV_MODEL_TOKEN:'unit-token',QWEN_UPSTREAM:'',QWEN_MASTER_KEY:''},
+        stdio:['ignore','pipe','pipe'],
+      });
+      try {
+        await new Promise((resolve,reject)=>{
+          proc.stdout.on('data',b=>{if(b.toString().includes('listening'))resolve();});
+          proc.once('exit',()=>reject(Error('Gateway exited before ready')));
+          setTimeout(()=>reject(Error('Gateway readiness timeout')),5000).unref();
+        });
+        const response=await fetch('http://127.0.0.1:18320/v1/chat/completions',{method:'POST',headers:{Authorization:'Bearer unit-token','Content-Type':'application/json'},body:JSON.stringify({model:'gpt-5.6-luna',messages:[]})});
+        assert.equal(response.status,status);
+        assert.deepEqual(JSON.parse(await readFile(budgetFile,'utf8')),{day,count});
+      } finally {if(proc.exitCode===null){proc.kill();await once(proc,'exit');}}
+    }
+  } finally {await rm(dir,{recursive:true,force:true});}
 });

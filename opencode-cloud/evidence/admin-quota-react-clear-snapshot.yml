@@ -1,0 +1,9 @@
+- generic [ref=e3]:
+  - heading "文本统计器 · React" [level=1] [ref=e4]
+  - text: 输入文本
+  - textbox "输入文本" [ref=e5]:
+    - /placeholder: 在此输入或粘贴文本...
+  - generic [ref=e6]:
+    - button "统 计" [ref=e7]
+    - button "清 空" [active] [ref=e8]
+  - button "示例文本" [ref=e9]

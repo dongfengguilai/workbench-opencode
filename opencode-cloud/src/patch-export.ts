@@ -91,9 +91,9 @@ export async function exportPatch({ directory, baseline }: { directory: string; 
     const excluded = [...new Set([...baselineFiles, ...indexedFiles].filter(isExcluded))];
     if (excluded.length > 0) {
       const excludedBaseline = excluded.filter(file => baselineFiles.includes(file));
-      for (const file of excludedBaseline) await git(repository, index, ['reset', baseline, '--', file]);
+      for (let i=0;i<excludedBaseline.length;i+=100) await git(repository, index, ['reset', baseline, '--', ...excludedBaseline.slice(i,i+100)]);
       const excludedAdditions = excluded.filter(file => !baselineFiles.includes(file));
-      for (const file of excludedAdditions) await git(repository, index, ['update-index', '--force-remove', '--', file]);
+      for (let i=0;i<excludedAdditions.length;i+=100) await git(repository, index, ['update-index', '--force-remove', '--', ...excludedAdditions.slice(i,i+100)]);
     }
 
     const files = nulSeparated(await git(repository, index, ['diff', '--cached', '--name-only', '-z', baseline, '--']));

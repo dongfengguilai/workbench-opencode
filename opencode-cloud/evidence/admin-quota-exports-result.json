@@ -1,0 +1,27 @@
+{
+  "status": "PASS_REAL_ENDPOINTS",
+  "checks": [
+    {
+      "path": "/__platform/source.zip",
+      "status": 200,
+      "bytes": 61769,
+      "elapsedMs": 383,
+      "sha256": "a76d1994ace64781086d975d48fbd498d23571ddb19d0251e999de58174874b1"
+    },
+    {
+      "path": "/__platform/download",
+      "status": 200,
+      "bytes": 98686,
+      "elapsedMs": 1170,
+      "sha256": "58b2b6c532111964a820f2bd2ba5628a13bc78015ab6615a93437bdb2e8ff324"
+    },
+    {
+      "path": "/__platform/changes",
+      "status": 200,
+      "bytes": 647,
+      "elapsedMs": 2393,
+      "sha256": "139458a4c3b52d0630500ae733e9049a345378cb8b52a9f22c35b014557cd5e5"
+    }
+  ],
+  "originalIndexUnchanged": true
+}

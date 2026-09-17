@@ -1,0 +1,60 @@
+{
+  "status": "READY_FOR_USER_ACCEPTANCE",
+  "at": "2026-09-17T15:26:14.829556+00:00",
+  "checks": {
+    "admin-quota-react-checkpoint-result.json": "PASS",
+    "admin-quota-clean-result.json": "PASS",
+    "admin-quota-isolation-fixed-result.json": "PASS",
+    "admin-quota-expiry-live-result.json": "PASS",
+    "admin-quota-transport-result.json": "PASS",
+    "admin-quota-final-transport-result.json": "PASS",
+    "admin-quota-web-egress-live-result.json": "PASS",
+    "admin-quota-network-native-result.json": "PASS",
+    "admin-quota-diff-native-final-result.json": "PASS",
+    "admin-quota-diff-browser-final-result.json": "PASS",
+    "admin-quota-browser-relogin-result.json": "PASS",
+    "admin-quota-persistence-result.json": "PASS",
+    "admin-quota-release-result.json": "PASS",
+    "admin-quota-exports-result.json": "PASS_REAL_ENDPOINTS",
+    "admin-quota-b-native-result.json": "PASS",
+    "admin-quota-download-browser-result.json": "PASS_REAL_DOWNLOAD_EVENTS_LOCAL_PATH_UNCONFIRMED"
+  },
+  "budget": {
+    "at": "2026-09-17T15:04:53.439Z",
+    "before": 250,
+    "budget": {
+      "day": "2026-09-17",
+      "count": 297
+    },
+    "limits": {
+      "admin-model-gateway": 100000,
+      "model-gateway": 250
+    },
+    "reset": false
+  },
+  "nativeBinary": {
+    "status": "PASS_UNMODIFIED_NATIVE",
+    "workers": [
+      {
+        "service": "admin-native",
+        "binarySha256": "f9dab32248695e9ebd56b16a1921798fd85112cf5a69c7dfd0cabc1e17be4a11",
+        "version": "1.18.31"
+      },
+      {
+        "service": "native",
+        "binarySha256": "f9dab32248695e9ebd56b16a1921798fd85112cf5a69c7dfd0cabc1e17be4a11",
+        "version": "1.18.31"
+      }
+    ]
+  },
+  "evidenceBoundaries": {
+    "A10": "NOT_RUN_REQUIRES_USER_SIGNOFF",
+    "browserDownloadEvents": "CONFIRMED",
+    "browserLocalSavePath": "NOT_EXPOSED_REQUIRES_USER_CONFIRMATION",
+    "productionTrustedHTTPSAndNetID": "NOT_ACCEPTED_BY_LOCAL_ENTRY",
+    "trialBMaintenanceShell": "REAL_NATIVE_TOOL_NOT_MODEL_TASK",
+    "historicalFailures": "RETAINED",
+    "sourceAndIndex": "UNCHANGED",
+    "gitInfoExclude": "REVERSIBLE_METADATA_ONLY_FOUR_GENERATED_DIRECTORY_RULES"
+  }
+}

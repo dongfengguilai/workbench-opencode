@@ -58,6 +58,7 @@ def home_index(s):
 edit('packages/app/src/pages/home/home-sessions-controller.tsx',home_index)
 edit('packages/app/src/context/global-sync/home-session-index.ts',lambda s: replace(s,'return {\n    indexKey,','return {\n    queryClient, // Reuse the same native cache client in the hosted sidebar.\n    indexKey,'))
 def session_layout(s):
+    s = replace(s, '.then((result) => result.data)\n              .catch((error) => {', '.then((result) => result.data?.filter(file => !file.file.split("/").some(part => /^(?:node_modules|dist|coverage|test-results|playwright-report|[.]workbench-artifacts|[.]playwright|[.]playwright-cli|[.]vite|[.]cache)$/.test(part))))\n              .catch((error) => {')
     s = replace(s,'const desktopTerminalOpen = createMemo(() => isDesktop() && terminalOpen())','const desktopTerminalOpen = createMemo(() => false) // Hosted terminal occupies the bottom, not the review column.')
     s = replace(s,'isDesktop() ? desktopV2PanelLayout().visible : terminalOpen()','isDesktop() && desktopV2PanelLayout().visible')
     start=s.index('              <Show when={desktopV2PanelLayout().stacked}>')

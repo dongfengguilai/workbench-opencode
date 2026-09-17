@@ -1,0 +1,122 @@
+{
+  "kind": "recorded_real_native_response_filtered_not_browser_acceptance",
+  "nativeFiles": 2341,
+  "visibleFiles": 23,
+  "files": [
+    {
+      "file": ".env.a05-acceptance",
+      "additions": 1,
+      "deletions": 0
+    },
+    {
+      "file": "acceptance-a05.bin",
+      "additions": 0,
+      "deletions": 0
+    },
+    {
+      "file": "acceptance-a05.txt",
+      "additions": 1,
+      "deletions": 0
+    },
+    {
+      "file": "acceptance-a06.txt",
+      "additions": 1,
+      "deletions": 0
+    },
+    {
+      "file": "opencode-cloud-v0/README.md",
+      "additions": 4,
+      "deletions": 0
+    },
+    {
+      "file": "opencode-cloud/evidence/smoke-task.txt",
+      "additions": 0,
+      "deletions": 2
+    },
+    {
+      "file": "opencode-cloud/src/demo-text.mjs",
+      "additions": 7,
+      "deletions": 0
+    },
+    {
+      "file": "opencode-cloud/src/file-manager.html",
+      "additions": 488,
+      "deletions": 0
+    },
+    {
+      "file": "opencode-cloud/src/patch-export.ts",
+      "additions": 87,
+      "deletions": 0
+    },
+    {
+      "file": "opencode-cloud/src/ui-demo-initials.mjs",
+      "additions": 13,
+      "deletions": 0
+    },
+    {
+      "file": "opencode-cloud/test/demo-text.test.mjs",
+      "additions": 19,
+      "deletions": 0
+    },
+    {
+      "file": "opencode-cloud/test/ui-demo-initials.test.mjs",
+      "additions": 39,
+      "deletions": 0
+    },
+    {
+      "file": "runtime/a05-state.json",
+      "additions": 1,
+      "deletions": 0
+    },
+    {
+      "file": "web/index.html",
+      "additions": 12,
+      "deletions": 0
+    },
+    {
+      "file": "web/package-lock.json",
+      "additions": 1815,
+      "deletions": 0
+    },
+    {
+      "file": "web/package.json",
+      "additions": 19,
+      "deletions": 0
+    },
+    {
+      "file": "web/src/__tests__/App.test.mjs",
+      "additions": 65,
+      "deletions": 0
+    },
+    {
+      "file": "web/src/App.jsx",
+      "additions": 52,
+      "deletions": 0
+    },
+    {
+      "file": "web/src/main.jsx",
+      "additions": 9,
+      "deletions": 0
+    },
+    {
+      "file": "web/static.html",
+      "additions": 145,
+      "deletions": 0
+    },
+    {
+      "file": "web/stats.mjs",
+      "additions": 9,
+      "deletions": 0
+    },
+    {
+      "file": "web/stats.test.mjs",
+      "additions": 59,
+      "deletions": 0
+    },
+    {
+      "file": "web/vite.config.js",
+      "additions": 6,
+      "deletions": 0
+    }
+  ]
+}

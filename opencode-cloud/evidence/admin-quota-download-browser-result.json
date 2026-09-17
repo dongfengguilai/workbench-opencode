@@ -1,0 +1,13 @@
+{
+  "at": "2026-09-17T14:31:47.579Z",
+  "sourceZipButton": {
+    "downloadEvent": true
+  },
+  "patchButton": {
+    "downloadEvent": true
+  },
+  "method": "server attachment; no Blob URL",
+  "localSavePathConfirmed": false,
+  "toolLimitation": "PlaywrightDownload exposes no path/saveAs API",
+  "patchExportOptimization": "batch excluded paths; same patch/index"
+}

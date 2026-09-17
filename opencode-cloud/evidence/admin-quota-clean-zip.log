@@ -1,0 +1,111 @@
+TAP version 13
+# Subtest: folds mixed whitespace and trims the result
+ok 1 - folds mixed whitespace and trims the result
+  ---
+  duration_ms: 0.760601
+  type: 'test'
+  ...
+# Subtest: returns an empty string for empty input
+ok 2 - returns an empty string for empty input
+  ---
+  duration_ms: 0.121665
+  type: 'test'
+  ...
+# Subtest: preserves Chinese text while normalizing whitespace
+ok 3 - preserves Chinese text while normalizing whitespace
+  ---
+  duration_ms: 0.151553
+  type: 'test'
+  ...
+# Subtest: rejects non-string input
+ok 4 - rejects non-string input
+  ---
+  duration_ms: 0.469961
+  type: 'test'
+  ...
+# From /tmp/cloud-export-Fuoywv
+#  * branch            8fe7ffe429cba12374af60cb1c38928126acdedd -> FETCH_HEAD
+# Subtest: complete binary patch applies staged, unstaged, new and deleted files without changing index
+ok 5 - complete binary patch applies staged, unstaged, new and deleted files without changing index
+  ---
+  duration_ms: 192.558391
+  type: 'test'
+  ...
+# Subtest: tracked secret paths are excluded and baseline mismatch fails explicitly
+ok 6 - tracked secret paths are excluded and baseline mismatch fails explicitly
+  ---
+  duration_ms: 69.443408
+  type: 'test'
+  ...
+# Subtest: untracked external symlink is rejected without modifying the index
+ok 7 - untracked external symlink is rejected without modifying the index
+  ---
+  duration_ms: 38.01813
+  type: 'test'
+  ...
+# Subtest: Ada Lovelace → AL
+ok 8 - Ada Lovelace → AL
+  ---
+  duration_ms: 5.31949
+  type: 'test'
+  ...
+# Subtest: workbench → W
+ok 9 - workbench → W
+  ---
+  duration_ms: 0.129785
+  type: 'test'
+  ...
+# Subtest: 张 三 → 张三
+ok 10 - 张 三 → 张三
+  ---
+  duration_ms: 3.676991
+  type: 'test'
+  ...
+# Subtest: empty string → empty string
+ok 11 - empty string → empty string
+  ---
+  duration_ms: 0.143658
+  type: 'test'
+  ...
+# Subtest: whitespace only → empty string
+ok 12 - whitespace only → empty string
+  ---
+  duration_ms: 0.10674
+  type: 'test'
+  ...
+# Subtest: mixed whitespace splits and trims correctly
+ok 13 - mixed whitespace splits and trims correctly
+  ---
+  duration_ms: 0.091034
+  type: 'test'
+  ...
+# Subtest: 𐐨 luna → 𐐀L
+ok 14 - 𐐨 luna → 𐐀L
+  ---
+  duration_ms: 0.194079
+  type: 'test'
+  ...
+# Subtest: non-string throws TypeError
+ok 15 - non-string throws TypeError
+  ---
+  duration_ms: 2.792753
+  type: 'test'
+  ...
+1..15
+# tests 15
+# suites 0
+# pass 15
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 721.60252
+npm error code EROFS
+npm error syscall open
+npm error path /state/npm-cache/_cacache/tmp/db4cf73a
+npm error errno -30
+npm error rofs EROFS: read-only file system, open '/state/npm-cache/_cacache/tmp/db4cf73a'
+npm error rofs Often virtualized file systems, or other file systems
+npm error rofs that don't support symlinks, give this error.
+npm error Log files were not written due to an error writing to the directory: /state/npm-cache/_logs
+npm error You can rerun the command with `--loglevel=verbose` to see the logs in your terminal

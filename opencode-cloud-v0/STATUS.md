@@ -1,24 +1,30 @@
-# 当前交付状态：新增源码／预览闭环阻塞
+# 当前交付状态：READY_FOR_USER_ACCEPTANCE
 
-- 日期：2026-09-17。当前新增闭环为 `BLOCKED_EXTERNAL`，不是 READY_FOR_USER_ACCEPTANCE 或 DELIVERED。先前 A01–A09 历史证据保留，但不作为新增闭环通过依据；A10 仍未签收。
-- 真实当前阻塞：管理员模型网关 UTC 日额度已用满 250，原生 Qwen 请求返回 HTTP403 `Environment daily request budget exhausted; no automatic retry`。未提高额度、清空计数、换身份替本人调用或自动重发。按现有实现下一 UTC 日首次请求恢复（上海2026-09-18 08:00）。
-- 工作台本机入口 `http://127.0.0.1:8444` 已恢复并运行；独立预览 `http://localhost:8445` 仅绑定回环，必须从工作台“项目成果→打开预览”授权进入。仍为本机受控试用，不代表生产 HTTPS／NetID 通过。
-
-- 本次实现提交 `2e7b868be3b74d76e55f9e77b6af702b2229959f` 已推送指定仓库 main 并核对远端；真实推送记录见delivery-publication.json、delivery-git-push.log。代码推送不代表新增闭环验收通过。
+- 2026-09-17 本轮已实际实施并通过新增闭环维护者验收；A10仍未签收，不能称DELIVERED。
+- 管理员日上限100,000次，普通用户250次。仅重建管理员模型网关加载额度，保留原250计数；真实Qwen任务后计数297。并发2／输出16000保持，新部署默认同步；现有环境未初始化。
+- 同一Qwen React会话完成原生Bash＋固定Playwright CLI输入／点击／实际DOM断言及PNG、29测试和构建。最新ZIP和补丁在各自干净副本按锁文件安装、15＋29测试、构建、运行和浏览器断言通过。
+- 工作台 http://127.0.0.1:8444；http://localhost:8445只为一次性授权入口，应用跳到本人固定u-摘要.localhost:8445来源。同一浏览器标签切A→B的存储／Cookie／缓存无串用，平台凭据不转给应用。
+- 两跳票据一次性、各30秒真实过期；默认预览凭据实际1,801秒后HTTP401，父会话仍200，已建立WS关闭。跨用户预览／截图／源码拒绝、注销／停用及WS撤销、端口冲突／启动失败／重复启动通过。
+- npm限2连接／不重试镜像已冷备部署并回归真实Qwen、原生终端29通过、公开HTTPS／重定向／私网元数据拒绝／Webfetch、直接外连拒绝与预览WS。两身份会话／源码／Git状态／索引在维护重建前后完全一致；最终原源码、索引与旧消息前缀仍完全保留。
+- 真实Diff依赖过多造成的加载失败已修复并复验桌面及492像素窄栏App.jsx实际52行差异。原生二进制不变。仅在管理员.git/info/exclude追加四个生成目录规则，原文件保护备份保留，源码与索引不改；原始Git状态保存，隐藏的是依赖／缓存／构建／浏览器制品。尝试的只读目录放行未解决固定原生空补丁问题，已全部撤回，最终子目录请求仍403。新部署同步这四个Git metadata默认规则，现有部署未初始化。
+- 实际内置浏览器静态及React网页操作均9／4，日志、原生验证记录和PNG可见；注销重登同一会话仍在。两个下载按钮触发真实下载事件，独立保存的接口字节已核验并复现；自动化工具不提供本地保存路径，需用户确认实际文件保存。
+- 本机入口只供受控试用，不代表生产HTTPS／NetID通过；旧历史失败及验收保留。
 
 ## 用户现在能做什么
 
 - 使用真实管理员登录，进入本人原生环境／已有会话；既有源码、未提交修改、暂存索引、原生会话与用户参考图均保留，未初始化或覆盖原系统。
 - “项目成果”已接入预览启动／停止／打开、运行日志、完整源码 ZIP、原补丁下载、本人原生 Bash 命令／退出码／输出和会话截图。固定 web/、127.0.0.1:5173、一个原生 PTY；重复启动已实测同PTY，不发布任意端口。
 - 管理员示例会话 `ses_f507ead15ffeUbQJZrsiTj0FYz` 保存真实 Qwen 编写的文本统计器：静态版本 web/static.html，React版本web/。原生 npm构建退出0，标准库29测试通过。React预览配置修正为automatic JSX后，在可见内置浏览器实点示例／统计得到字符9、单词4；空白词数0、清空正常。平台配置修正为维护者介入，不冒充原生 Agent 完成浏览器断言。
-- 源码 ZIP 接口真实 HTTP200，此前记录包61,719字节；快照链接校验后的包见delivery-snapshot-export-result.json，原索引摘要不变。包保留源码而排除密钥、原生状态、缓存、依赖、构建、浏览器资料及验证制品；附基线／摘要／导出时间／运行说明。内置浏览器已点击下载，但3000ms下载事件等待超时，未确认其本地保存路径。
+- 最新源码ZIP真实HTTP200、61,769字节，见admin-quota-source.zip及admin-quota-exports-result.json；原索引不变。ZIP与补丁分别在干净副本通过锁定安装、15＋29测试、构建及网页断言。包排除密钥、原生状态、缓存、依赖、构建和浏览器制品，附基线／摘要／时间／运行说明。内置浏览器两个下载事件已确认；工具不提供本地保存路径，仍需用户确认。此前等待超时作为历史失败保留。
 - 原生固定 OpenCode1.18.31 二进制未改。CLI0.1.20、固定Playwright/core及Chromium1244在本人非root容器内通过原生Bash调用，不连接宿主浏览器。独立验收副本已由真实Qwen完成网页输入／点击／增删断言／PNG，生产静态页面亦有真实原生CLI断言和截图。
 
 ## 用户现在还不能做什么
 
-- 管理员在当前UTC日不能继续模型任务，切换Luna或重登不重置本人额度。React原生浏览器任务因403中断，尚无修正后React原生断言和react-result.png，不能将29测试／可见预览当作整个新闭环通过。
-- 新ZIP在干净副本安装／构建／运行、最新补丁在独立基线应用／测试尚未完成；浏览器下载本地文件未确认。剩余双用户各自预览、完整停用／凭据到期／端口冲突故障矩阵、最新出口完整回归等亦未完成，不用旧证据替代。
-- npm默认限2连接／不重试的补充镜像只构建为候选，未部署回归。实际运行仍为已验证headless-shell镜像，必须在命令中显式使用 npm --maxsockets=2 --fetch-retries=0。只支持静态与Vite/React试用；不加载项目自己的Vite插件配置，不承诺Next、数据库、任意端口／运行时、浏览器实时共享或自动部署。
+- 原250次403与所有历史失败保留；本轮已解除额度阻塞，当前限制见顶部真实检查点。
+- 内置浏览器下载事件已确认，工具不提供本地保存路径；实际保存位置需用户确认。远程受信任生产HTTPS／NetID仍未作为本机闭环验收。
+- npm默认限2连接／不重试镜像已部署并实际回归。只支持静态与Vite/React试用；不加载项目自己的Vite插件配置，不承诺Next、数据库、任意端口／运行时、浏览器实时共享或自动部署。
+
+本轮新增闭环总表：opencode-cloud/evidence/admin-quota-acceptance-result.json。
 
 ## 真实证据（相对 opencode-cloud/evidence）
 
@@ -29,16 +35,16 @@
 | 固定镜像／工具出处 | delivery-browser-image.json、delivery-browser-tools.json、delivery-browser-production-image-build.log、delivery-running-release.json | 原二进制、锁文件和Chromium摘要；当前及候选镜像分别记录 |
 | 首检查点原生浏览器 | delivery-browser-native-result.json、delivery-browser-native-messages.json、delivery-browser-native-added.png、delivery-browser-native-deleted.png | 独立验收副本真实Qwen+Bash+CLI断言与PNG通过；初始失败保留 |
 | 平台静态／真实停止／继续 | delivery-platform-static-browser-messages.json、delivery-platform-static-native.png、delivery-stop-native-result.json、delivery-browser-native-question.png | 真实原生任务、提问、停止及继续；静态CLI操作可查 |
-| 当前React／额度阻塞 | delivery-platform-react-browser-messages.json、delivery-platform-react-browser-live.log、delivery-current-result.json | 原生29测试和构建退出0；最后HTTP403，不是完成 |
+| 历史React／额度失败 | delivery-platform-react-browser-messages.json、delivery-platform-react-browser-live.log、delivery-current-result.json | 原生29测试和构建退出0；最后HTTP403，不是完成；本轮后续通过见下方新证据 |
 | 内置浏览器独立预览 | delivery-browser-static-preview.png、delivery-browser-react-initial-blank.png、delivery-browser-react-preview.png、delivery-browser-react-reentered.png、delivery-react-jsx-preview-start.json | 原始空白失败保留，平台JSX配置修正后真实示例9／4；非Agent续验通过 |
-| 当前源码与验证记录 | delivery-current-source.zip、delivery-current-export-result.json、delivery-snapshot-source.zip、delivery-snapshot-export-result.json、delivery-current-verification.json | 真实接口下载／原索引不变；干净包复现未验 |
+| 历史源码与验证记录 | delivery-current-source.zip、delivery-current-export-result.json、delivery-snapshot-source.zip、delivery-snapshot-export-result.json、delivery-current-verification.json | 当时真实接口下载／原索引不变；当时干净包未验，本轮新包通过见下 |
 | 预览授权／隔离／拒绝 | delivery-boundary-live-result.json、delivery-preview-lifecycle.json | 真实一次性／30秒过期、注销、跨用户截图／导出限制、固定目录／端口／Host／Origin；不是全部边界完成 |
 | TLS断开／实际Vite WS | delivery-platform-tls-reset-initial-failure.log、delivery-transport-live-result.json | 真实崩溃保留；修正后24次TLS断开不崩、WS101、注销关闭WS |
 | 单元与固定UI构建 | delivery-export-unit-safe.log、delivery-export-unit-snapshot.log、delivery-boundary-unit-final.log、delivery-egress-unit.log、delivery-ui-typecheck.log、delivery-ui-build.json | 本地Git导出／链接／恶意filters／时钟／FIN测试与类型构建；不冒充真实模型／外站证据 |
 
 ## 下一步只修哪个阻塞
 
-先等待本人日额度按既有规则恢复，显式继续原会话的 React 浏览器断言和截图，使用只读浏览器说明与已经修正的受控Vite配置。不清空额度、自动重发或扩其他业务。该检查点真实通过后才继续新ZIP／补丁独立复现及剩余边界矩阵，最后由用户A10实际试用签收。
+唯一下一步：用户A10实际试用签收，确认需求→代码→预览→验证记录→源码保存→重登持久化。无已知维护者验收阻塞；不得代签或扩新业务。
 
 # 先前登录／工作台验收历史（不代表新增网页闭环通过）
 
@@ -104,7 +110,7 @@ WorkBench 新项目首页和“新建会话”已修复此前缓存依赖；旧�
 
 本机 HTTP 验证入口仅当前运行 Codex 的宿主机可访问，不用于远程生产登录。代理后端继续校验 HTTPS 链/地址/有效期及准确叶证书指纹；错误 CA/指纹拒绝，5 项真实平台连接测试 PASS。仅本机响应的登录 Cookie 移除 Secure，HttpOnly/SameSite/有效期/注销保持，原 HTTPS Cookie Secure 实测保持。Codex 全局证书校验与证书数据库未改动。外部设备仍需私网可达并使用 HTTPS；本机入口不代表生产 HTTPS 验收通过。重新进入本次示例可使用 USER_GUIDE 中保存的会话地址。
 
-每身份项目+完整原生状态共享独立 1GiB 有界文件系统，内存/CPU/PID/临时空间受限；模型 UTC 日250次请求、输出16000、并发2。工作容器非 root/只读系统/cap_drop ALL，无 Docker Socket 或宿主 namespace。资源准备与防火墙能力仅在短暂维护 helper。
+每身份项目+完整原生状态共享独立 1GiB 有界文件系统，内存/CPU/PID/临时空间受限；模型 UTC 日管理员100,000次／普通用户250次请求、输出16000、并发2。工作容器非 root/只读系统/cap_drop ALL，无 Docker Socket 或宿主 namespace。资源准备与防火墙能力仅在短暂维护 helper。
 
 进程中断后原生工具可能保留未完成记录，平台基于原生 idle+未完成记录显示结果待确认，不改 DB、不重发。无任意命令无损续跑或外部副作用 exactly-once 承诺。未承诺所有语言/子模块项目或任意恶意多租户安全证明。原生循环、上下文、会话和工具执行均未重写。
 
@@ -119,7 +125,7 @@ WorkBench 新项目首页和“新建会话”已修复此前缓存依赖；旧�
 
 ## 当前下一步（覆盖先前 A10 等待结论）
 
-先解决管理员日额度阻塞，在保留的原生会话中完成 React 浏览器续验。然后按新增闭环完成尚未执行的独立源码复现和边界；尚不能进入新增闭环的用户签收。不要扩业务线、改额度或重置项目。
+当前以顶部与“下一步只修哪个阻塞”为准；历史失败结论保留在历史证据中。
 
 ## 先前范围的签收记录
 
@@ -128,3 +134,19 @@ WorkBench 新项目首页和“新建会话”已修复此前缓存依赖；旧�
 - 实际用户试用/日期：2026-09-17 已收到试用反馈；完整代码闭环与明确签收尚未记录。
 - A10：NOT_RUN。
 - 是否允许称为 DELIVERED：否。
+
+## 本轮独立真实证据（opencode-cloud/evidence）
+
+- 额度：admin-quota-result.json；原计数保留与模型继续增长：admin-quota-react-checkpoint-result.json。
+- Qwen React原生工具与全部失败尝试：delivery-admin-quota-react-resumed-messages.json、delivery-admin-quota-react-ui-messages.json；裁剪范围：admin-quota-observer-scope.json。原始历史未删除。
+- 实际ZIP／补丁及摘要：admin-quota-source.zip、admin-quota.patch、admin-quota-exports-result.json；独立副本：admin-quota-clean-result.json及clean-zip/patch-final.log。
+- 浏览器真实下载事件：admin-quota-download-browser-result.json；本地保存路径未确认。真实可见预览／结果／终端：admin-quota-react-visible.png、static-visible.png、results-panel.png、terminal-tests.png。
+- 隔离真实初始失败与修正：admin-quota-isolation-initial-result.json、isolation-fixed-result.json、isolation-same-tab-fixed.png。故障矩阵：admin-quota-preview-boundary-result.json、transport-result.json、child-ticket-expiry.json。
+- 维护冷备／双用户完整摘要：admin-quota-release-backup.json、release-before/after.json、release-result.json；运行后边界与WS：admin-quota-release-boundary/transport-result.json。
+- 双工作容器网络：admin-quota-web-egress-live-result.json；新镜像真实Qwen工具／浏览器／Webfetch：admin-quota-network-native-result.json、delivery-admin-quota-network-messages.json。
+- 普通用户原生CLI截图与本人下载边界：admin-quota-b-native-result.json。该项是维护者原生Shell测试，未冒充模型任务，Shell接口不记录退出码。
+- 默认30分钟凭据实际到期：admin-quota-expiry-live-result.json（真实1,801秒，PASS；父会话未到期）。
+
+- 最终原生与可见源码Diff：admin-quota-diff-native-final-result.json、diff-browser-final-result.json、native-diff-final.png、native-diff-narrow.png；Git metadata规则与回滚：admin-quota-git-exclude-result.json。
+- 新UI固定构建：admin-quota-diff-ui-build.json／build.log／typecheck.log；原UI保留：admin-quota-ui-stage-result.json。最初Diff失败、原生子目录空补丁及撤回规则：admin-quota-diff-initial-result.json、diff-scope-initial-result.json。
+- 最终持久化与真实重登：admin-quota-persistence-result.json、browser-relogin-result.json／png；原生工具完整范围：admin-quota-observer-scope.json。实际运行后二类预览：admin-quota-release-visible-result.json及release-react/static-preview.png。

@@ -1,0 +1,22 @@
+Actual 1800-second credential issued; wait for native release signal before opening WS
+Actual expiry waiting elapsedSeconds=603
+Actual expiry waiting elapsedSeconds=663
+Actual expiry waiting elapsedSeconds=723
+Actual expiry waiting elapsedSeconds=783
+Actual expiry waiting elapsedSeconds=843
+Actual expiry waiting elapsedSeconds=903
+Actual expiry waiting elapsedSeconds=963
+Actual expiry waiting elapsedSeconds=1023
+Actual expiry waiting elapsedSeconds=1083
+Actual expiry waiting elapsedSeconds=1143
+Actual expiry waiting elapsedSeconds=1203
+Actual expiry waiting elapsedSeconds=1263
+Actual expiry waiting elapsedSeconds=1324
+Actual expiry waiting elapsedSeconds=1384
+Actual expiry waiting elapsedSeconds=1444
+Actual expiry waiting elapsedSeconds=1504
+Actual expiry waiting elapsedSeconds=1564
+Actual expiry waiting elapsedSeconds=1624
+Actual expiry waiting elapsedSeconds=1684
+Actual expiry waiting elapsedSeconds=1744
+PASS actual default 30-minute credential HTTP and established WS expiry
