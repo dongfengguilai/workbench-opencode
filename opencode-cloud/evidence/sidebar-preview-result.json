@@ -1,0 +1,109 @@
+{
+  "status": "READY_FOR_USER_ACCEPTANCE",
+  "at": "2026-09-17T16:39:03.223003+00:00",
+  "checks": {
+    "iframe-checkpoint": {
+      "status": "PASS",
+      "evidence": "sidebar-preview-iframe-checkpoint-result.json"
+    },
+    "release-browser": {
+      "status": "PASS",
+      "evidence": "sidebar-preview-release-browser-result.json"
+    },
+    "hmr-fixed-browser": {
+      "status": "PASS",
+      "evidence": "sidebar-preview-hmr-fixed-browser-result.json"
+    },
+    "code": {
+      "status": "PASS",
+      "evidence": "sidebar-preview-code-result.json"
+    },
+    "closed": {
+      "status": "PASS",
+      "evidence": "sidebar-preview-closed-result.json"
+    },
+    "first-browser": {
+      "status": "PASS",
+      "evidence": "sidebar-preview-first-browser-result.json"
+    },
+    "first-blank": {
+      "status": "PASS",
+      "evidence": "sidebar-preview-first-blank-result.json"
+    },
+    "first-artifact": {
+      "status": "PASS",
+      "evidence": "sidebar-preview-first-artifact-result.json"
+    },
+    "second-login": {
+      "status": "PASS",
+      "evidence": "sidebar-preview-second-login-result.json"
+    },
+    "auth-live": {
+      "status": "PASS",
+      "evidence": "sidebar-preview-auth-live-result.json"
+    },
+    "handoff-expiry-live": {
+      "status": "PASS",
+      "evidence": "sidebar-preview-handoff-expiry-live-result.json"
+    },
+    "navigation-boundary": {
+      "status": "PASS",
+      "evidence": "sidebar-preview-navigation-boundary-result.json"
+    },
+    "boundary": {
+      "status": "PASS",
+      "evidence": "sidebar-preview-boundary-result.json"
+    },
+    "egress-recheck": {
+      "status": "PASS",
+      "evidence": "sidebar-preview-egress-recheck-result.json"
+    },
+    "clean": {
+      "status": "PASS",
+      "evidence": "sidebar-preview-clean-result.json"
+    },
+    "persistence": {
+      "status": "PASS",
+      "evidence": "sidebar-preview-persistence-result.json"
+    },
+    "reentry": {
+      "status": "PASS",
+      "evidence": "sidebar-preview-reentry-result.json"
+    },
+    "new-tab": {
+      "status": "PASS",
+      "evidence": "sidebar-preview-new-tab-result.json"
+    },
+    "layout": {
+      "status": "PASS_REAL_BROWSER",
+      "evidence": "sidebar-preview-layout-result.json"
+    },
+    "terminal": {
+      "status": "PASS_REAL_GUI_COMMAND_OUTPUT",
+      "evidence": "sidebar-preview-terminal-result.json",
+      "exitStatus": "unconfirmed; UI/transport proof only"
+    }
+  },
+  "fixedUI": "sidebar-preview-delivery-ui-build.json",
+  "actualModel": "approved/Qwen3.6-35B-A3B",
+  "initialFailuresRetained": [
+    "sidebar-preview-iframe-initial-result.json",
+    "sidebar-preview-hmr-initial-result.json",
+    "sidebar-preview-login-initial-result.json",
+    "sidebar-preview-egress-result.json",
+    "sidebar-preview-first-cli-native-messages.json"
+  ],
+  "localUnitsSeparate": [
+    "sidebar-preview-handoff-unit.log",
+    "sidebar-preview-web-project-unit.log",
+    "sidebar-preview-trigger-unit.log",
+    "sidebar-preview-local-browser-unit.log"
+  ],
+  "limits": [
+    "A10 unsigned by user",
+    "Local embedded origin is not production HTTPS acceptance",
+    "Browser downloads emitted real events; tool does not expose local save path",
+    "Compatible React Fast Refresh retains interaction state; static or structural updates may reload"
+  ],
+  "onlyNextBlocker": "User A10 trial and explicit acceptance, including actual downloaded file save confirmation"
+}

@@ -1,0 +1,6 @@
+{
+  "status": "PASS",
+  "ownPreviewOrigin": "http://u-8c6976e5b5410415bde908bd4dee15dfb167a9c8.localhost:8445",
+  "openedFromPreviewToolbar": true,
+  "realDOM": "- banner:\n  - heading \"📁 文件上传下载\" [level=1]\n  - paragraph: 拖拽文件到下方区域，或点击选择文件\n  - paragraph: WorkBench：实时预览验收完成\n- generic: 📂\n- paragraph: 拖拽文件到此处 或 点击选择\n- paragraph: 支持多文件同时上传\n- paragraph: 暂无文件，请添加文件开始"
+}

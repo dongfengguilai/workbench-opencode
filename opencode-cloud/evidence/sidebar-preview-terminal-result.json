@@ -1,0 +1,8 @@
+{
+  "status": "PASS_REAL_GUI_COMMAND_OUTPUT",
+  "command": "printf 'WB_SIDEBAR_TERMINAL_PASS\\n'",
+  "visibleOutput": "WB_SIDEBAR_TERMINAL_PASS",
+  "nativeTerminalScreenshot": "sidebar-preview-terminal.png",
+  "exitStatus": null,
+  "note": "Native GUI terminal output observed in screenshot. This is transport/UI proof, not an attested exit status."
+}

@@ -1,0 +1,7 @@
+{
+  "status": "PASS_REAL_DOWNLOAD_EVENTS",
+  "sourceZipEvent": true,
+  "patchEvent": true,
+  "localSavePathConfirmed": false,
+  "actualBytesEvidence": "sidebar-preview-export-result.json"
+}

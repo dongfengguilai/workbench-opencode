@@ -1,0 +1,11 @@
+{
+  "status": "PASS",
+  "kind": "real_running_platform_and_owned_application",
+  "checks": [
+    "real existing parent credential transferred via one-use30s ticket; host-only HttpOnly unchanged",
+    "owned workbench host identity and exact own frame-src enforced",
+    "direct owned embedded claim, actual application200, exact own ancestor, app management and parent writes denied",
+    "real Vite WebSocket upgrade101 through embedded owned credential",
+    "parent logout revokes real embedded preview credential"
+  ]
+}

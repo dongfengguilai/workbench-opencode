@@ -1,0 +1,10 @@
+{
+  "status": "PASS",
+  "statuses": {
+    "ownedTopDocument": 200,
+    "crossSiteIframe": 403,
+    "wrongOrigin": 403,
+    "wrongHost": 403
+  },
+  "scope": "finite owned top document navigation only, not frame or cross-origin application requests"
+}

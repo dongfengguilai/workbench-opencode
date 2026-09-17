@@ -141,3 +141,15 @@ python3 scripts/local-preview.py stop
 下载先查真实接口错误，再使用同源服务器附件链接触发浏览器标准下载；不使用Blob临时URL。补丁临时索引中被排除的依赖／制品每100个路径批处理，不写用户索引。托管UI的Git Diff列表过滤node_modules、dist、coverage、测试与浏览器制品目录；保留原生SDK返回的源码Diff及其组件。原生Bash工具和会话中的原始记录仍保留。固定构建证据为admin-quota-diff-ui-build.json／build.log／typecheck.log，旧构建证据没有覆盖；旧UI冷备在runtime/backups/admin-quota-ui-before/ui.tar.gz，仅维护者可回滚，切换UI不重建原生环境。
 
 原生总Diff上限可能被无.gitignore项目内生成的依赖占满。本轮管理员仅在.git/info/exclude追加/web/node_modules/、/web/dist/、/web/.vite/、/.workbench-artifacts/，保留原内容。回滚元数据可从owner-only runtime/backups/admin-quota-git-exclude-before恢复原文件；不触碰源码／索引／持久数据，但大量依赖Diff可能再次占满上限。最终未开放项目子目录API或改原生Vcs实现，根目录Diff原生源码与双布局均实测通过。默认30分钟授权已实际等待1,801秒验证，见admin-quota-expiry-live-result.json。
+
+## 本人工作台地址与右侧预览
+
+本机代理只允许保护配置中两个身份的固定 `workbench.u-摘要.localhost:8444` 地址和原 127.0.0.1 入口；仍只绑定回环并验证固定 HTTPS 上游证书。身份与 Host 必须一致。旧入口用30秒一次性交接票据复制同一现有 host-only HttpOnly 认证 Cookie，长期凭据不进 URL。代理签名标记来源并覆盖客户端伪造标记；平台验证后仅签发本人直接预览 claim。
+
+允许跨站 GET 的新增例外仅为有限本人工作台地址上的顶层 document/navigate 页面和授权 claim，以兼容完整登录重定向；iframe 嵌入平台、外部 Origin、跨来源写入和任意 Host 仍拒绝。工作台 frame-src 只含本人预览，应用 frame-ancestors 只含本人工作台；iframe sandbox 仅允许脚本、表单及自身存储。
+
+任务触发使用原生当前会话 busy→idle、网页真实摘要变化以及后端原生环境空闲确认。初次进入／刷新／旧会话切换不触发。关闭偏好是本人工作台 host-only 的显示 Cookie，不授予权限；手动预览清除偏好。网页根目录、链接、文件类型、锁文件、dev 脚本与摘要检查由本人 guard 执行。
+
+本轮发布仅重新加载 platform、两个 guard 与本机代理；Native 环境及卷不重建。UI 构建采用 WORKBENCH_BUILD_EVIDENCE=独立前缀 python3 scripts/build-ui.py 保存独立记录。回滚：停止本人本机代理，将 runtime/backups/sidebar-preview-* 保护快照中的 src/ui/public 与 platform.json 按需恢复，重新加载 platform/guard 并启动代理；不要执行初始化或重建 Native。同一持久项目数据不回滚。维护者也可 PLATFORM_UI=upstream 切回原固定原生 UI，不重置会话和文件。保护快照含密钥与会话，仅600权限本地保存，不能入库。
+
+React 配置仅从本人项目锁定依赖加载官方 @vitejs/plugin-react 4.7.0，校验声明、安装版本和锁文件一致。无需更新工作镜像或下载运行时；失败如实显示启动日志，不允许项目提供任意插件配置。

@@ -218,7 +218,23 @@
    const desktopInlineTerminalOnlyOpen = createMemo(
      () => newSessionDesign() && desktopTerminalOpen() && !desktopV2ReviewOpen(),
    )
-@@ -691,7 +691,7 @@
+@@ -603,6 +603,15 @@
+     deferRender: false,
+   })
+ 
++
++  onMount(() => {
++    const switchView = (event: Event) => {
++      const detail = (event as CustomEvent).detail
++      if (detail === "session" || detail === "changes") setStore("mobileTab", detail)
++    }
++    window.addEventListener("workbench-mobile-view", switchView)
++    onCleanup(() => window.removeEventListener("workbench-mobile-view", switchView))
++  })
+   const [followup, setFollowup] = persisted(
+     Persist.serverWorkspace(serverSDK().scope, sdk().directory, "followup", ["followup.v1"]),
+     createStore<{
+@@ -691,7 +700,7 @@
          ? () =>
              sdk()
                .api.vcs.diff({ location: { directory: sdk().directory }, mode: mode === "git" ? "working" : mode })
@@ -227,7 +243,7 @@
                .catch((error) => {
                  console.debug("[session-review] failed to load vcs diff", { mode, error })
                  return []
-@@ -2320,7 +2320,7 @@
+@@ -2320,7 +2329,7 @@
            </Suspense>
          </Show>
          <Show when={newSessionDesign()}>
@@ -236,7 +252,7 @@
              <div class="min-w-0 h-full flex flex-1 flex-col">
                <Show when={isDesktop() && (desktopV2ReviewOpen() || desktopFileTreeOpen())}>
                  <div class="min-h-0 flex-1">
-@@ -2351,38 +2351,25 @@
+@@ -2351,38 +2360,25 @@
                    </Suspense>
                  </div>
                </Show>

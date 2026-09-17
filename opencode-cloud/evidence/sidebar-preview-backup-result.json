@@ -1,0 +1,10 @@
+{
+  "status": "SAVED_PROTECTED_SOURCE_CONFIG_UI_SNAPSHOT",
+  "path": "runtime/backups/sidebar-preview-20260918T000505/platform-ui-source.tar.gz",
+  "bytes": 34708316,
+  "sha256": "2b281830709082df51a174811a8e1e0a2ed791856855f2c96fefbc7ad7969a04",
+  "mode": "0o600",
+  "nativeWorkersStopped": false,
+  "nativeDataSnapshot": "sidebar-preview-before.json",
+  "note": "Trusted source/UI/config backup, existing persistent Native environments retained. Not a new full cold restore exercise."
+}

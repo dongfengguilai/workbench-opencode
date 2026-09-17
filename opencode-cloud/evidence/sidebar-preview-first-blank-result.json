@@ -1,0 +1,6 @@
+{
+  "status": "PASS",
+  "user": "trial-b",
+  "realIframeBlankGreeting": true,
+  "nativeFailureAndCorrectionRetained": "sidebar-preview-first-cli-native-messages.json"
+}

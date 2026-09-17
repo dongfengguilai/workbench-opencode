@@ -1,0 +1,22 @@
+TAP version 13
+# Subtest: web changes only trigger after observed current native task, never entry/refresh/old-session switch
+ok 1 - web changes only trigger after observed current native task, never entry/refresh/old-session switch
+  ---
+  duration_ms: 0.80324
+  type: 'test'
+  ...
+# Subtest: first web project triggers from absent baseline; missing, unknown baseline and busy environment do not
+ok 2 - first web project triggers from absent baseline; missing, unknown baseline and busy environment do not
+  ---
+  duration_ms: 0.24434
+  type: 'test'
+  ...
+1..2
+# tests 2
+# suites 0
+# pass 2
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 139.449713

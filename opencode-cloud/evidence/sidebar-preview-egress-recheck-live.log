@@ -1,0 +1,1 @@
+PASS both environments: real HTTPS, TLS, protected destinations, direct IPv4/IPv6 denial, no gateway published port

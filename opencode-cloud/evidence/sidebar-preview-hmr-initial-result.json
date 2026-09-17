@@ -1,0 +1,6 @@
+{
+  "status": "FAIL",
+  "actual": "new text rendered but selected42byte file state lost",
+  "cause": "controlled Vite config only transforms JSX; React Fast Refresh plugin absent",
+  "nativeTask": "sidebar-preview-hmr-native-messages.json"
+}

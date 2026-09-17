@@ -1,0 +1,27 @@
+{
+  "status": "PASS",
+  "kind": "real_downloads_clean_copies",
+  "image": "sha256:264c89bb377c3fdd2d6c88ba857c3abe6ff20864314f31bc8e3717f42cb3fcd3",
+  "checks": [
+    {
+      "kind": "zip",
+      "status": "PASS",
+      "originalTests": 15,
+      "webTests": 29,
+      "buildExit": 0,
+      "reactDOM": "latest file-upload application and release hint present",
+      "staticDOM": "4 words and clear empty",
+      "staticHTTP": 200
+    },
+    {
+      "kind": "patch",
+      "status": "PASS",
+      "originalTests": 15,
+      "webTests": 29,
+      "buildExit": 0,
+      "reactDOM": "latest file-upload application and release hint present",
+      "staticDOM": "4 words and clear empty",
+      "staticHTTP": 200
+    }
+  ]
+}

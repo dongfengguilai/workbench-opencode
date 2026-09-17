@@ -1,0 +1,12 @@
+{
+  "native": {
+    "id": "fad137e3b8b1f6e60e1f7e8d2dfde7cb2f317999fab014194f8f010375032b53",
+    "started": "2026-09-17T14:53:44.389222584Z",
+    "image": "sha256:264c89bb377c3fdd2d6c88ba857c3abe6ff20864314f31bc8e3717f42cb3fcd3"
+  },
+  "admin-native": {
+    "id": "0ac4166c34fcd21d6025b60be435e071874f4607466caf6bf46ddb66749fe7e7",
+    "started": "2026-09-17T14:53:44.384240524Z",
+    "image": "sha256:264c89bb377c3fdd2d6c88ba857c3abe6ff20864314f31bc8e3717f42cb3fcd3"
+  }
+}

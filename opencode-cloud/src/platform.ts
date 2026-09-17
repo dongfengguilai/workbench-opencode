@@ -6,6 +6,9 @@ import {forward,upgrade,error,readBody} from './native-proxy.ts';
 import {loadUi,uiPage} from './ui-assets.mjs';
 import {checkRequest} from './access-policy.ts';
 import {previewPlatform} from './preview-platform.ts';
+import {workbenchOrigin,previewOrigin} from './preview-origin.mjs';
+import {WorkbenchHandoff} from './workbench-handoff.mjs';
+import {sameSecret} from './preview-sessions.mjs';
 type User={password:string,displayName:string,enabled:boolean,environment:string,nativePassword:string};
 type Config={origin:string,sessionTtl:number,previewRelayKey?:string,users:Record<string,User>};
 type Session={user:string,expires:number};
@@ -35,6 +38,9 @@ const loginHtml=readFileSync('/public/login.html');
 const hostedUi=process.env.PLATFORM_UI==='workbench'?loadUi('/public/workbench-ui'):undefined;
 const anonymousAssets:Record<string,string>={'login.css':'text/css','login.js':'application/javascript','theme.js':'application/javascript','logo.svg':'image/svg+xml','logo-dark.svg':'image/svg+xml','favicon.svg':'image/svg+xml'};
 const previews=previewPlatform({parent:hash=>{const s=sessions[hash];const user=s&&config().users[s.user];return s&&s.expires>Date.now()&&user?.enabled?{hash,user,username:s.user}:undefined;},register,closeSession,relayKey:()=>config().previewRelayKey||''});
+const handoff=new WorkbenchHandoff({current:hash=>{const s=sessions[hash];return s&&s.expires>Date.now()&&config().users[s.user]?.enabled?s:undefined;}});
+function browserOrigin(req:any){return sameSecret(req.headers['x-workbench-browser-relay'],config().previewRelayKey||'')?req.headers['x-workbench-browser-origin']:undefined;}
+function ownedBrowser(req:any,username:string){const b=browserOrigin(req);return !b||b==='http://127.0.0.1:8444'||b===workbenchOrigin(username);}
 const server=https.createServer({key:readFileSync('/trusted/tls.key'),cert:readFileSync('/trusted/tls.crt')},async(req,res)=>{
  res.setHeader('Cache-Control','no-store');res.setHeader('X-Content-Type-Options','nosniff');res.setHeader('Referrer-Policy','same-origin');
  if(req.headers.host!==origin.host){error(res,400,'Unrecognized platform origin');return;}
@@ -42,6 +48,12 @@ const server=https.createServer({key:readFileSync('/trusted/tls.key'),cert:readF
  if(p.startsWith('/__preview/')){previews.handle(req,res);return;}
  if(!['GET','HEAD'].includes(req.method!)&&req.headers.origin!==origin.origin){error(res,403,'Same-origin request required');return;}
  try{
+  if(p==='/__platform/workbench/claim'&&req.method==='GET'){
+   const b=browserOrigin(req);const entry=b&&handoff.take(new URL(req.url!,origin).searchParams.get('ticket'),b);
+   if(!entry){error(res,401,'Workbench authorization expired or belongs to another origin');return;}
+   const session=sessions[entry.hash];const ttl=Math.max(0,Math.floor((session.expires-Date.now())/1000));
+   res.writeHead(303,{'Location':entry.path,'Referrer-Policy':'no-referrer','Set-Cookie':`agent_session=${entry.token}; Path=/; Max-Age=${ttl}; HttpOnly; Secure; SameSite=Lax`});res.end();return;
+  }
   const publicName=p.startsWith('/__platform/')?p.slice('/__platform/'.length):'';
   if(Object.hasOwn(anonymousAssets,publicName)&&req.method==='GET'){
    res.setHeader('Content-Type',anonymousAssets[publicName]);res.end(readFileSync('/public/'+publicName));return;
@@ -52,6 +64,7 @@ const server=https.createServer({key:readFileSync('/trusted/tls.key'),cert:readF
   if(p==='/api/auth/login'&&req.method==='POST'){
    const body=await readBody(req);const cfg=config();const name=typeof body?.username==='string'?body.username.trim():'';const user=cfg.users[name];
    if(!user?.enabled){error(res,401,'Invalid credentials');return;}
+   if(!ownedBrowser(req,name)){error(res,403,'Identity belongs to another workbench origin');return;}
    const auth=new IntranetAuthClient({intranetBaseUrl:'',intranetTimeoutSeconds:5,intranetVerifyTls:true,localAdminEnabled:true,localAdminUsername:name,localAdminPassword:user.password,localAdminDisplayName:user.displayName});
    try{await auth.authenticate(name,body.password);}catch(e){error(res,e instanceof InvalidCredentialsError?401:503,'Authentication failed');return;}
    const previous=current(req);if(previous){delete sessions[previous.hash];closeSession(previous.hash);}
@@ -65,8 +78,14 @@ const server=https.createServer({key:readFileSync('/trusted/tls.key'),cert:readF
   }
   const identity=current(req);
   if(!identity){if(req.method==='GET'&&req.headers.accept?.includes('text/html')){res.writeHead(302,{Location:'/__platform/login'});res.end();}else error(res,401,'Authentication required');return;}
+  if(!ownedBrowser(req,identity.username)){error(res,403,'Identity belongs to another workbench origin');return;}
+  if(browserOrigin(req)==='http://127.0.0.1:8444'&&req.method==='GET'&&req.headers.accept?.includes('text/html')&&uiPage(p)){
+   const b=workbenchOrigin(identity.username);const path=req.url!.replace(/^\/server\/[A-Za-z0-9_-]+\/session\//,'/server/'+Buffer.from(b).toString('base64url')+'/session/');res.writeHead(303,{'Location':handoff.issue({token:readCookie(req.headers.cookie,'agent_session'),origin:workbenchOrigin(identity.username),path}),'Referrer-Policy':'no-referrer'});res.end();return;
+  }
+  const browser=browserOrigin(req);const route=p.match(/^\/server\/([A-Za-z0-9_-]+)\/session\/(ses_[\w-]+)$/);
+  if(browser===workbenchOrigin(identity.username)&&req.method==='GET'&&route&&route[1]!==Buffer.from(browser).toString('base64url')){res.writeHead(303,{'Location':'/server/'+Buffer.from(browser).toString('base64url')+'/session/'+route[2]});res.end();return;}
   const opts={target:identity.user.environment,password:identity.user.nativePassword,register:register(identity.hash)};
-  if(p==='/__platform/preview/ticket'&&req.method==='POST'){if(new URL(req.url!,origin).search||Object.keys(await readBody(req)||{}).length){error(res,403,'Preview takes no routing arguments');return;}json(res,200,previews.ticket(identity.hash));return;}
+  if(p==='/__platform/preview/ticket'&&req.method==='POST'){if(new URL(req.url!,origin).search||Object.keys(await readBody(req)||{}).length){error(res,403,'Preview takes no routing arguments');return;}json(res,200,previews.ticket(identity.hash,browserOrigin(req)===workbenchOrigin(identity.username)));return;}
   if(/^\/__platform\/preview\/(status|start|stop|log|verification|screenshot)$/.test(p)){
    const action=p.split('/').pop()!;if(!((['start','stop'].includes(action)&&req.method==='POST')||(!['start','stop'].includes(action)&&req.method==='GET'))){error(res,403,'Fixed preview method required');return;}
    const u=new URL(req.url!,origin);if([...u.searchParams.keys()].some(k=>!['session','name'].includes(k))){error(res,403,'Fixed preview arguments required');return;}
@@ -91,7 +110,7 @@ const server=https.createServer({key:readFileSync('/trusted/tls.key'),cert:readF
     if(p==='/index.html'){error(res,403,'Use authorized UI routes');return;}
     if(page){try{checkRequest('GET',new URL(req.url!,origin));}catch{error(res,403,'UI route forbidden');return;}}
     res.setHeader('Content-Type',asset.type);
-    res.setHeader('Content-Security-Policy',"default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; style-src 'self' 'unsafe-inline'; connect-src 'self' data: blob:; img-src 'self' data: blob:; font-src 'self' data:; worker-src 'self' blob:; object-src 'none'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'");
+    res.setHeader('Content-Security-Policy',`default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; style-src 'self' 'unsafe-inline'; connect-src 'self' data: blob:; img-src 'self' data: blob:; font-src 'self' data:; worker-src 'self' blob:; frame-src ${browserOrigin(req)===workbenchOrigin(identity.username)?previewOrigin(identity.username):"'none'"}; object-src 'none'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'`);
     res.end(asset.body);return;
    }
    if(p.startsWith('/assets/')||p==='/manifest.json'||p==='/oc-theme-preload.js'){error(res,404,'Build resource not listed');return;}
@@ -113,7 +132,7 @@ const server=https.createServer({key:readFileSync('/trusted/tls.key'),cert:readF
 });
 server.on('upgrade',(req,socket,head)=>{
  if(req.headers.host===origin.host&&req.url?.startsWith('/__preview/')){previews.upgrade(req,socket,head);return;}
- try{const identity=current(req);if(!identity||req.headers.origin!==origin.origin||req.headers.host!==origin.host){socket.end('HTTP/1.1 401 Unauthorized\r\n\r\n');return;}
+ try{const identity=current(req);if(!identity||!ownedBrowser(req,identity.username)||req.headers.origin!==origin.origin||req.headers.host!==origin.host){socket.end('HTTP/1.1 401 Unauthorized\r\n\r\n');return;}
  upgrade(req,socket,head,{target:identity.user.environment,password:identity.user.nativePassword,register:register(identity.hash)});
  }catch{socket.destroy();}
 });

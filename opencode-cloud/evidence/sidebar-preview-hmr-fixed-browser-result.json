@@ -1,0 +1,7 @@
+{
+  "status": "PASS",
+  "actualNewText": true,
+  "selectedFilePreserved": true,
+  "sameIframe": true,
+  "nativeTask": "sidebar-preview-hmr-fixed-native-messages.json"
+}

@@ -1,0 +1,20 @@
+HTTP/1.1 200 Connection established
+
+HTTP/2 200 
+date: Thu, 17 Sep 2026 16:31:38 GMT
+content-type: text/html; charset=utf-8
+access-control-allow-origin: *
+age: 48759
+cache-control: public, max-age=0, must-revalidate
+content-disposition: inline; filename="fetch"
+etag: W/"bfd63e474bfa874a60bb544edb16eca3"
+last-modified: Thu, 17 Sep 2026 02:58:59 GMT
+server: cloudflare
+strict-transport-security: max-age=63072000
+x-vercel-cache: HIT
+x-vercel-id: sin1::w9vbh-1789662698716-144f1f1c6d24
+cf-cache-status: DYNAMIC
+report-to: {"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=R8Gjr62LcaRiLhpyece6I95QLknmbDFrV%2FsVa2p3I%2Bwt01eoinCbb00dTmk7zErwaPSe17a8y6p%2FVTbdx13ku1CcWHi2PH%2BZt5zxxuCGtB%2FE73jaLYakFw%3D%3D"}]}
+nel: {"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}
+cf-ray: a3c9809ae9550bfb-SIN
+

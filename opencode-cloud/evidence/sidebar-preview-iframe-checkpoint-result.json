@@ -1,0 +1,9 @@
+{
+  "status": "PASS",
+  "kind": "actual_visible_codex_iab_iframe",
+  "parentOrigin": "http://workbench.u-8c6976e5b5410415bde908bd4dee15dfb167a9c8.localhost:8444",
+  "iframeInteraction": "selected42byte disposable fixture and clicked all-upload; actual React UI displays 已上传",
+  "frameCredential": "existing Lax policy; different-origin same-site host pair",
+  "websocketEvidence": "sidebar-preview-auth-live-result.json",
+  "nativeEnvironmentRebuilt": false
+}

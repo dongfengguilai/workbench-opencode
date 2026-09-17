@@ -1,0 +1,9 @@
+{
+  "status": "PASS",
+  "firstSupportedWebAutomaticallyStarted": true,
+  "panelAutomaticallyExpanded": true,
+  "actualInput": "  小王  ",
+  "actualGreeting": true,
+  "nativeTask": "sidebar-preview-first-native-messages.json",
+  "inputAutomation": "pressSequentially; fill clipboard limitation retained"
+}

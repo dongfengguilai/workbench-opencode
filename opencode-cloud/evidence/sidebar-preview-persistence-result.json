@@ -1,0 +1,39 @@
+{
+  "status": "PASS",
+  "changes": {
+    "admin": {
+      "existingSourceChanged": [
+        "web/src/App.jsx",
+        "web/static.html"
+      ],
+      "newFiles": [],
+      "originalSessionCount": 23,
+      "originalSessionHashesUnchanged": true,
+      "originalIndexUnchanged": true
+    },
+    "trial-b": {
+      "existingSourceChanged": [],
+      "newFiles": [
+        "web/greeting.mjs",
+        "web/greeting.test.mjs",
+        "web/index.html"
+      ],
+      "originalSessionCount": 7,
+      "originalSessionHashesUnchanged": true,
+      "originalIndexUnchanged": true
+    }
+  },
+  "containers": {
+    "native": {
+      "id": "fad137e3b8b1f6e60e1f7e8d2dfde7cb2f317999fab014194f8f010375032b53",
+      "started": "2026-09-17T14:53:44.389222584Z",
+      "image": "sha256:264c89bb377c3fdd2d6c88ba857c3abe6ff20864314f31bc8e3717f42cb3fcd3"
+    },
+    "admin-native": {
+      "id": "0ac4166c34fcd21d6025b60be435e071874f4607466caf6bf46ddb66749fe7e7",
+      "started": "2026-09-17T14:53:44.384240524Z",
+      "image": "sha256:264c89bb377c3fdd2d6c88ba857c3abe6ff20864314f31bc8e3717f42cb3fcd3"
+    }
+  },
+  "scope": "All preexisting Native messages and original Git indices unchanged. Only authorized actual Qwen hints changed preexisting web sources. New task sources are separately listed. Native workers not restarted or recreated."
+}

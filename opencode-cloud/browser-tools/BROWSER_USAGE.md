@@ -14,3 +14,6 @@ playwright-cli -s=wb screenshot --filename=/workspace/project/.workbench-artifac
 playwright-cli -s=wb close
 
 e1/e2 只是示意，必须先读真实 snapshot 的引用。screenshot 路径从 /workspace/project 开始，先建当前 ses_... 的目录；截图要放在 .workbench-artifacts/本人真实会话ID/ 下，平台按本人会话鉴权读取。CLI 遇到 ### Error 可能仍返回退出码0，必须检查输出；断言 throw 和页面证据才用于验收。不要安装 latest、另下载浏览器、注入项目 MCP/插件或修改工具实现。浏览器自己的状态和用户预览独立，不共享登录资料。
+
+只有网页任务需要浏览器。普通函数、脚本或服务代码任务交付文件、真实测试与下载，不要求用户打开网页。
+React 预览要求 package.json、package-lock.json 和安装结果均固定官方 @vitejs/plugin-react 4.7.0；受控配置仅加载此固定插件，不加载项目 vite.config 或任意插件。兼容组件更新使用 Fast Refresh，静态页面或不兼容结构变化可能整页刷新。

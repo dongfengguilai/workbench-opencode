@@ -1,0 +1,13 @@
+{
+  "status": "PASS_REAL_ENDPOINTS",
+  "sidebar-preview-final-source.zip": {
+    "status": 200,
+    "bytes": 64620,
+    "sha256": "3a5fd48d4aa53004a7955b9341a06f39ce5f6f9bbd04fe8fa313eae1a3a85611"
+  },
+  "sidebar-preview-final.patch": {
+    "status": 200,
+    "bytes": 108306,
+    "sha256": "1a31d36ea993506bda77497e26bb961643db3ed5fb77d0f835ed74f9d177c68b"
+  }
+}

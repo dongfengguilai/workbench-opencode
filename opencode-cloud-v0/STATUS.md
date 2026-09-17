@@ -1,5 +1,50 @@
 # 当前交付状态：READY_FOR_USER_ACCEPTANCE
 
+2026-09-18：已实际实现、发布并通过本轮右侧预览与按任务展示成果维护者验收。A10仍等待用户签收，不能称 DELIVERED。总表：`opencode-cloud/evidence/sidebar-preview-result.json`。
+
+## 用户现在能做什么
+
+- 本机旧入口 `http://127.0.0.1:8444` 登录后自动进入本人固定 `workbench.u-身份摘要.localhost:8444` 工作台。旧会话链接仍兼容；30秒一次性交接复制现有 host-only HttpOnly 认证凭据，不创建第二套身份或会话。
+- 桌面聊天＋右侧本人网页默认各半，支持拖动、方向键调宽、刷新、关闭、停止、新标签打开；窄屏使用“会话／预览／变更”，复用原生 Diff 和终端。右侧 iframe 与本人预览为同站、不同来源，CSP只允许本人配对，sandbox禁止顶层跳转和默认弹窗；应用不能读平台 DOM 或凭据。
+- 当前会话实际原生任务 busy→idle、本人环境空闲且真实网页摘要变化后，服务健康通过才自动启动／首次展开。真实Qwen的React修改和第二用户首次静态网页均实测；普通代码任务、刷新、搜索和旧会话切换不触发。关闭后后续网页任务不强制弹出，手动预览恢复；显示偏好为本人 host-only Cookie，不授予权限。
+- 兼容React文字更新实测保留已选文件状态，采用项目已锁定官方 @vitejs/plugin-react 4.7.0；服务与 iframe授权复用。首次整页刷新失败保留，未改原生Agent或二进制，也未共享Playwright浏览器状态。
+- 继续查看文件、真实测试／工具输出、Diff、源码ZIP、补丁和本人会话截图。普通代码成果无需浏览器。真实原生Playwright断言与截图通过；最新ZIP和补丁分别在干净副本安装、15＋29测试、构建、React与静态DOM断言通过。
+- 原有23＋7会话的消息摘要和两项目Git索引完全不变；只改批准的两处旧网页提示、为第二用户新增三个网页文件。原有未提交修改和参考图片保留。两Native工作容器ID、启动时间与镜像完全不变；只重载平台／guard／代理，持久卷不重建。
+- 管理员日上限100,000次、普通用户250次保持，计数未清零；公开HTTPS经原受控网关，私网、元数据、其他环境及直接外连仍拒绝。天气实连通过，Bun站点当次IPv6连接复位保留；定位后两环境实际复验通过，不增加请求自动重试。
+
+## 用户现在还不能做什么
+
+- 仅支持固定 web/ 与5173的静态HTML/CSS/JS和锁定Vite/React；不支持任意地址栏、网站、端口、Next、数据库、插件或共享远程桌面。静态页面或不兼容结构变化可能整页刷新，不承诺任意源码变动都保留应用状态。
+- 受信任远程生产HTTPS／NetID尚不由本机iframe验收证明。维护者原HTTPS入口保留新标签预览方式；本机入口只绑定回环。
+- 浏览器ZIP／补丁按钮已有真实下载事件，接口实际字节及独立复现另有证据；自动化工具不提供本地保存路径，A10需用户确认真实保存。无可信退出状态的终端命令仍不标记测试通过。
+
+## 真实证据在哪里
+
+均在 `opencode-cloud/evidence/`，历史失败记录原样保留。
+
+| 内容 | 本轮独立证据 |
+|---|---|
+| 保护备份／原数据前后 | sidebar-preview-backup-result.json、before.json、prepublish.json、after.json、persistence-result.json |
+| 固定源码、Bun1.3.14、原锁文件及UI构建 | sidebar-preview-delivery-ui-build.json、delivery-ui-typecheck.log、ui/upstream.patch |
+| 本人iframe登录、实际资源／交互／WS | sidebar-preview-iframe-checkpoint-result.json、auth-live-result.json、navigation-boundary-result.json |
+| 真实Qwen任务结束后自动展开 | sidebar-preview-release-native-messages.json、release-browser-result.json、release-browser.png；first-native-messages.json、first-browser-result.json |
+| 热更新状态、纯代码不展开、关闭偏好 | sidebar-preview-hmr-fixed-browser-result.json、hmr-fixed.png、code-result.json、closed-result.json |
+| 桌面调宽／492窄屏原生Diff／终端 | sidebar-preview-layout-result.json、resize.png、narrow-diff.png、terminal-result.json、terminal.png |
+| 原生CLI真实断言／本人截图 | sidebar-preview-first-cli-native-messages.json、first-artifact-native-messages.json、first-artifact-result.json、first-native.png |
+| ZIP／补丁字节、摘要及独立复现 | sidebar-preview-final-export-result.json、final-source.zip、final.patch、clean-result.json；download-browser-result.json |
+| 双用户同浏览器、边界／故障、实际过期 | sidebar-preview-second-login-result.json、boundary-result.json、handoff-expiry-live-result.json |
+| 出口／直接外连拒绝／重登／新标签 | sidebar-preview-egress-recheck-result.json、reentry-result.json、new-tab-result.json |
+
+上表文件前缀均为 sidebar-preview-；完整实际文件名以总表为准。UI补丁实际位置 `opencode-cloud/ui/upstream.patch`。原源码、构建／代理保护回滚方式见 OPERATIONS；回滚不重置用户文件或会话。
+
+## 下一步只修哪个阻塞
+
+唯一下一步：用户A10实际试用并签收，确认右侧交互与下载文件实际保存。不代签、不扩大新业务。本轮发布提交与远端核对记录待本轮推送完成后填写。
+
+---
+
+# 先前源码交付／额度验收历史：READY_FOR_USER_ACCEPTANCE
+
 - 2026-09-17 本轮已实际实施并通过新增闭环维护者验收；A10仍未签收，不能称DELIVERED。
 - 管理员日上限100,000次，普通用户250次。仅重建管理员模型网关加载额度，保留原250计数；真实Qwen任务后计数297。并发2／输出16000保持，新部署默认同步；现有环境未初始化。
 - 同一Qwen React会话完成原生Bash＋固定Playwright CLI输入／点击／实际DOM断言及PNG、29测试和构建。最新ZIP和补丁在各自干净副本按锁文件安装、15＋29测试、构建、运行和浏览器断言通过。

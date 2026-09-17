@@ -1,0 +1,20 @@
+{
+  "status": "PASS_REAL_BROWSER",
+  "desktop": {
+    "defaultPreviewWidthPercent": 50,
+    "pointerAfterDragPercent": 58.1213,
+    "keyboardAfterArrowRightPercent": 53.1213,
+    "screenshot": "sidebar-preview-resize.png"
+  },
+  "narrow": {
+    "viewportWidth": 492,
+    "viewportHeight": 760,
+    "previewSwitchRendered": true,
+    "nativeChangesSwitchRendered": true,
+    "screenshots": [
+      "sidebar-preview-narrow.png",
+      "sidebar-preview-narrow-diff.png"
+    ]
+  },
+  "scope": "Actual observations from Codex in-app-browser DOM and screenshots; not a simulated viewport."
+}

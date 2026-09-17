@@ -1,0 +1,10 @@
+{
+  "status": "FAIL_INITIAL_FIXED",
+  "cause": "Original local relay rejected final finite-owned top-document navigation because Sec-Fetch-Site remained cross-site throughout successful auth and handoff redirects. Login POST 200, claim 303; final UI GET 403. No authentication or storage bypass was applied.",
+  "fix": "Allow only finite owned workbench uiPage top document/navigate; still reject iframe and cross-origin writes. Return explicit text MIME for errors.",
+  "proof": [
+    "sidebar-preview-login-initial.png",
+    "sidebar-preview-second-login-result.json",
+    "sidebar-preview-navigation-boundary-result.json"
+  ]
+}

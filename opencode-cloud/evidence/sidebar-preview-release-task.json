@@ -1,0 +1,12 @@
+{
+  "session": "ses_f4fc99629ffeTjNcKiT3xvb5Mx",
+  "messageID": "msg_1a0b03669e3efe28e737028fe82",
+  "user": "admin",
+  "model": {
+    "providerID": "approved",
+    "modelID": "Qwen3.6-35B-A3B"
+  },
+  "prompt": "这是已批准的最终真实 UI 发布验收。先读取现有 web/src/App.jsx，保留用户所有原有文件上传下载行为与未提交修改，仅把先前验收提示“WorkBench：热更新状态已保留”改成“WorkBench：实时预览验收完成”。不要修改其他已有源码，不要启动/停止预览。执行现有 npm test 与 npm run build，报告真实结果，不打印配置或凭据。",
+  "status": "ACCEPTED_NATIVE_204",
+  "at": "2026-09-17T16:32:58.835Z"
+}

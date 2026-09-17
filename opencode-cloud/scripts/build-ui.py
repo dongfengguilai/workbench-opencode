@@ -35,7 +35,7 @@ def replace(text, old, new):
     return text.replace(old,new,1)
 for name, overlay in [('packages/app/src/pages/layout-new.tsx','layout-new.tsx'),('packages/app/src/pages/home.tsx','home.tsx')]:
     edit(name, lambda _, overlay=overlay: (root/'ui'/overlay).read_text())
-for name in ['workbench.tsx','workbench.css','deliverables.tsx']:
+for name in ['workbench.tsx','workbench.css','deliverables.tsx','preview-panel.tsx','preview-policy.ts']:
     shutil.copyfile(root/'ui'/name, source/'packages/app/src'/name)
 edit('packages/app/src/context/settings.tsx', lambda s: replace(s,'const newLayoutDesigns = createMemo(() => {','const newLayoutDesigns = createMemo(() => {\n      return true // Fixed hosted WorkBench layout; no user runtime configuration.'))
 def entry(s):
@@ -58,6 +58,16 @@ def home_index(s):
 edit('packages/app/src/pages/home/home-sessions-controller.tsx',home_index)
 edit('packages/app/src/context/global-sync/home-session-index.ts',lambda s: replace(s,'return {\n    indexKey,','return {\n    queryClient, // Reuse the same native cache client in the hosted sidebar.\n    indexKey,'))
 def session_layout(s):
+    marker='  const [followup, setFollowup] = persisted('
+    s = replace(s,marker,'''
+  onMount(() => {
+    const switchView = (event: Event) => {
+      const detail = (event as CustomEvent).detail
+      if (detail === "session" || detail === "changes") setStore("mobileTab", detail)
+    }
+    window.addEventListener("workbench-mobile-view", switchView)
+    onCleanup(() => window.removeEventListener("workbench-mobile-view", switchView))
+  })'''+'\n'+marker)
     s = replace(s, '.then((result) => result.data)\n              .catch((error) => {', '.then((result) => result.data?.filter(file => !file.file.split("/").some(part => /^(?:node_modules|dist|coverage|test-results|playwright-report|[.]workbench-artifacts|[.]playwright|[.]playwright-cli|[.]vite|[.]cache)$/.test(part))))\n              .catch((error) => {')
     s = replace(s,'const desktopTerminalOpen = createMemo(() => isDesktop() && terminalOpen())','const desktopTerminalOpen = createMemo(() => false) // Hosted terminal occupies the bottom, not the review column.')
     s = replace(s,'isDesktop() ? desktopV2PanelLayout().visible : terminalOpen()','isDesktop() && desktopV2PanelLayout().visible')
@@ -91,12 +101,14 @@ edit('packages/app/index.html',index)
 edit('packages/app/public/oc-theme-preload.js',lambda s: replace(s,'var scheme = localStorage.getItem("opencode-color-scheme") || "system"','var scheme = document.cookie.match(/(?:^|;\\s*)workbench_theme=(light|dark)(?:;|$)/)?.[1] || "system"'))
 patch = ''.join(''.join(difflib.unified_diff(a.splitlines(True),b.splitlines(True),fromfile='a/'+name,tofile='b/'+name)) for name,(a,b) in changes.items())
 (root/'ui/upstream.patch').write_text(patch)
+evidence_prefix=os.environ.get('WORKBENCH_BUILD_EVIDENCE','workbench-ui')
+assert evidence_prefix.replace('-','').isalnum()
 env = dict(os.environ, PATH=str(bun.parent)+os.pathsep+os.environ['PATH'], OPENCODE_CHANNEL='prod')
-with (root/'evidence/workbench-ui-install-final.log').open('w') as log:
+with (root/('evidence/'+evidence_prefix+'-install-final.log')).open('w') as log:
     subprocess.run([bun,'install','--frozen-lockfile'],cwd=source,env=env,stdout=log,stderr=subprocess.STDOUT,check=True)
-with (root/'evidence/workbench-ui-typecheck.log').open('w') as log:
+with (root/('evidence/'+evidence_prefix+'-typecheck.log')).open('w') as log:
     subprocess.run([bun,'run','--cwd','packages/app','typecheck'],cwd=source,env=env,stdout=log,stderr=subprocess.STDOUT,check=True)
-with (root/'evidence/workbench-ui-build.log').open('w') as log:
+with (root/('evidence/'+evidence_prefix+'-build.log')).open('w') as log:
     subprocess.run([bun,'run','--cwd','packages/app','build'],cwd=source,env=env,stdout=log,stderr=subprocess.STDOUT,check=True)
 dist = source/'packages/app/dist'
 files = { '/'+p.relative_to(dist).as_posix(): digest(p) for p in sorted(dist.rglob('*')) if p.is_file() and not p.name.endswith('.map') and p.name != '_headers' }
@@ -105,5 +117,5 @@ out.mkdir(exist_ok=True)
 for path in files:
     target = out/path[1:]; target.parent.mkdir(parents=True,exist_ok=True); shutil.copyfile(dist/path[1:],target)
 (out/'manifest.json').write_text(json.dumps(files,indent=2)+'\n')
-(root/'evidence/workbench-ui-build.json').write_text(json.dumps({'tag':provenance['tag'],'commit':provenance['commit'],'sourceSha256':provenance['source_archive_sha256'],'bun':'1.3.14','bunArchiveSha256':digest(bun.parent.parent/'bun.zip'),'lockSha256':digest(source/'bun.lock'),'patchSha256':digest(root/'ui/upstream.patch'),'overlaySha256':{p.name:digest(p) for p in (root/'ui').glob('*') if p.is_file()},'command':'bun run --cwd packages/app build','files':files},indent=2)+'\n')
+(root/('evidence/'+evidence_prefix+'-build.json')).write_text(json.dumps({'tag':provenance['tag'],'commit':provenance['commit'],'sourceSha256':provenance['source_archive_sha256'],'bun':'1.3.14','bunArchiveSha256':digest(bun.parent.parent/'bun.zip'),'lockSha256':digest(source/'bun.lock'),'patchSha256':digest(root/'ui/upstream.patch'),'overlaySha256':{p.name:digest(p) for p in (root/'ui').glob('*') if p.is_file()},'command':'bun run --cwd packages/app build','files':files},indent=2)+'\n')
 print('Built pinned WorkBench UI:',len(files),'allowlisted files; native/data unchanged')

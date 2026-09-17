@@ -8,6 +8,7 @@ import { createHomeController } from "@/pages/home/home-controller"
 import { createHomeSessionsController } from "@/pages/home/home-sessions-controller"
 import "./workbench.css"
 import {Deliverables} from "./deliverables"
+import {createPreview,PreviewPanel,PreviewResize} from "./preview-panel"
 
 type Identity = { user_id: string; display_name: string; project: string; directory: string; ready: boolean }
 async function identity(): Promise<Identity> {
@@ -44,7 +45,7 @@ function createWorkbench() {
     } catch (cause) { setError(cause instanceof Error ? cause.message : String(cause)) }
     finally { setBusy(false) }
   }
-  return { me, busy, error, newSession, sessions, reload: actions.refetch }
+  return { me, busy, error, newSession, sessions, reload: actions.refetch, nativeStatus:()=>home.server.focusedSync().session.data.session_status }
 }
 const WorkbenchContext = createContext<ReturnType<typeof createWorkbench>>()
 function useWorkbench() { const value = useContext(WorkbenchContext); if (!value) throw new Error('WorkBench context missing'); return value }
@@ -71,6 +72,7 @@ export function WorkBenchShell(props: ParentProps) {
   const [changes, setChanges] = createSignal<{ baseline: string; files: string[] }>()
   const [changesLoading, setChangesLoading] = createSignal(false)
   const [actionError, setActionError] = createSignal('')
+  const preview=createPreview({session:()=>route.pathname.match(/\/session\/(ses_[\w-]+)/)?.[1],nativeStatus:wb.nativeStatus})
   const [deliverables, setDeliverables] = createSignal(false)
   const records = createMemo(() => wb.sessions.data.records().filter(r => r.session.title.toLowerCase().includes(query().toLowerCase())))
   createEffect(() => { route.pathname; route.search; setDrawer(false) })
@@ -94,7 +96,7 @@ export function WorkBenchShell(props: ParentProps) {
     try { const r = await fetch('/__platform/changes'); if (!r.ok) throw new Error('检查变更失败，请确认环境状态。'); setChanges(await r.json()) }
     catch (e) { setActionError(String(e)) } finally { setChangesLoading(false) }
   }
-  async function logout() { const r = await fetch('/api/auth/logout', { method: 'POST' }); if (r.ok) location.replace('/__platform/login'); else setActionError('注销失败，请重试。') }
+  async function logout() { const r = await fetch('/api/auth/logout', { method: 'POST' }); if (r.ok) location.replace(location.hostname.startsWith('workbench.u-')?'http://127.0.0.1:8444/__platform/login':'/__platform/login'); else setActionError('注销失败，请重试。') }
   return <WorkbenchContext.Provider value={wb}>
     <div class="wb-shell" classList={{ 'wb-collapsed': collapsed(), 'wb-drawer-open': drawer() }}>
       <Show when={drawer()}><button class="wb-backdrop" aria-label="关闭导航" onClick={() => setDrawer(false)} /></Show>
@@ -106,11 +108,11 @@ export function WorkBenchShell(props: ParentProps) {
         <div class="wb-account"><div class="wb-avatar">{wb.me()?.display_name?.slice(0,1) || 'W'}</div><div class="wb-user"><strong>{wb.me()?.display_name || '正在加载'}</strong><span>独立云端空间</span></div><ThemeSwitch/><button class="wb-icon" aria-label="退出登录" title="退出登录" onClick={logout}>↪</button></div>
       </aside>
       <section class="wb-content">
-        <header class="wb-toolbar"><div class="wb-toolbar-title"><button class="wb-icon wb-menu" aria-label="打开导航" onClick={() => { setCollapsed(false); setDrawer(true) }}>☷</button><span>{route.pathname === '/' ? '项目' : 'workbench-opencode'}</span><span class="wb-state" classList={{ ready: wb.me()?.ready }}>● {wb.me.loading ? '连接中' : wb.me()?.ready ? '环境就绪' : '环境未就绪'}</span></div><div id="opencode-titlebar-center" class="wb-native-search"/><div class="wb-actions"><div id="opencode-titlebar-right" class="wb-native-controls"/><Show when={route.pathname !== "/"}><button onClick={() => command.trigger("terminal.toggle")}>终端</button><button onClick={() => command.trigger("fileTree.toggle")}>文件</button></Show><button onClick={inspect} disabled={changesLoading()}>{changesLoading() ? '检查中…' : '检查变更'}</button><button onClick={() => setDeliverables(true)}>项目成果</button></div></header>
+        <header class="wb-toolbar"><div class="wb-toolbar-title"><button class="wb-icon wb-menu" aria-label="打开导航" onClick={() => { setCollapsed(false); setDrawer(true) }}>☷</button><span>{route.pathname === '/' ? '项目' : 'workbench-opencode'}</span><span class="wb-state" classList={{ ready: wb.me()?.ready }}>● {wb.me.loading ? '连接中' : wb.me()?.ready ? '环境就绪' : '环境未就绪'}</span></div><div id="opencode-titlebar-center" class="wb-native-search"/><div class="wb-actions"><div id="opencode-titlebar-right" class="wb-native-controls"/><Show when={route.pathname !== "/"}><button onClick={() => command.trigger("terminal.toggle")}>终端</button><button onClick={() => command.trigger("fileTree.toggle")}>文件</button></Show><button onClick={inspect} disabled={changesLoading()}>{changesLoading() ? '检查中…' : '检查变更'}</button><Show when={preview.status()?.web?.available}><button onClick={()=>preview.show()}>预览</button></Show><button onClick={() => setDeliverables(true)}>项目成果</button></div></header>
         <Show when={wb.error() || wb.me.error || actionError()}><div class="wb-error" role="alert">{wb.error() || wb.me.error?.message || actionError()}<button onClick={() => wb.reload()}>重试连接</button></div></Show>
-        <main class="wb-native">{props.children}</main>
+        <Show when={preview.error()&&!preview.open()}><div class="wb-error" role="alert">{preview.error()}<Show when={preview.log()}><details><summary>运行日志</summary><pre class="wb-result-output">{preview.log()}</pre></details></Show></div></Show><Show when={preview.mobile()&&route.pathname!=='/'}><nav class="wb-workspace-tabs" aria-label="工作区切换"><button aria-pressed={preview.tab()==='session'} onClick={()=>{preview.setTab('session');window.dispatchEvent(new CustomEvent('workbench-mobile-view',{detail:'session'}))}}>会话</button><Show when={preview.status()?.web?.available||preview.open()}><button aria-pressed={preview.tab()==='preview'} onClick={()=>{if(!preview.open())void preview.show();else preview.setTab('preview')}}>预览</button></Show><button aria-pressed={preview.tab()==='changes'} onClick={()=>{preview.setTab('changes');window.dispatchEvent(new CustomEvent('workbench-mobile-view',{detail:'changes'}))}}>变更</button></nav></Show><div class="wb-workspace" classList={{'wb-preview-open':preview.open(),'wb-mobile-preview':preview.mobile()&&preview.tab()==='preview'}}><main class="wb-native">{props.children}</main><Show when={preview.open()}><PreviewResize preview={preview}/><PreviewPanel preview={preview}/></Show></div>
       </section>
-      <Show when={deliverables()}><div class="wb-modal-layer" onClick={e => { if (e.target === e.currentTarget) setDeliverables(false) }}><Deliverables session={route.pathname.match(/\/session\/(ses_[\w-]+)/)?.[1]} close={() => setDeliverables(false)}/></div></Show>
+      <Show when={deliverables()}><div class="wb-modal-layer" onClick={e => { if (e.target === e.currentTarget) setDeliverables(false) }}><Deliverables preview={preview} session={route.pathname.match(/\/session\/(ses_[\w-]+)/)?.[1]} close={() => setDeliverables(false)}/></div></Show>
       <Show when={changes()}>{data => <div class="wb-modal-layer" onClick={e => { if (e.target === e.currentTarget) setChanges(undefined) }}><section class="wb-dialog" role="dialog" aria-modal="true" aria-label="检查变更"><header><h2>检查变更</h2><button autofocus={true} class="wb-icon" aria-label="关闭变更" onClick={() => setChanges(undefined)}>×</button></header><p class="wb-muted">相对固定基线 {data().baseline.slice(0,12)}</p><div class="wb-change-list"><For each={data().files}>{file => <div><code>{file}</code></div>}</For><Show when={!data().files.length}><p>当前没有变更</p></Show></div><p class="wb-muted">代码内容与 Diff 请在原生会话的变更区域查看。</p><a class="wb-primary" href="/__platform/download" download="workbench-opencode.patch" rel="external" onClick={e => { e.preventDefault(); location.assign('/__platform/download') }}>下载完整补丁 ↓</a></section></div>}</Show>
     </div>
   </WorkbenchContext.Provider>

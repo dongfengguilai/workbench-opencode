@@ -1,0 +1,4 @@
+{
+  "status": "FAIL",
+  "cause": "iframe ticket initially targets localhost entry excluded by own-origin frame-src; preserve narrow CSP and issue direct owned-origin embedded claim"
+}

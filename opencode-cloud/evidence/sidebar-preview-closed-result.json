@@ -1,0 +1,6 @@
+{
+  "status": "PASS",
+  "actualNativeWebTask": "sidebar-preview-static-native-messages.json",
+  "webChanged": true,
+  "noPanelAfterUserClose": true
+}

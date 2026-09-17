@@ -1,0 +1,9 @@
+{
+  "status": "PASS",
+  "sameBrowserTabSwitch": true,
+  "ownedOrigin": "http://workbench.u-d912dec0719aa33bf016321df8792b445c059485.localhost:8444",
+  "noAdminSessionVisible": true,
+  "noPreviewButtonBeforeWeb": true,
+  "initialFailure": "sidebar-preview-login-initial.png",
+  "fix": "allow finite owned top-level UI navigation across authorization redirect; writes and platform framing remain denied"
+}
