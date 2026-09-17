@@ -1,0 +1,10 @@
+{
+  "status": "PASS",
+  "date": "2026-09-17T07:54:30.181407+00:00",
+  "implementationCommit": "0d318da25a1c873cb952072843510adcb2446d97",
+  "remote": "git@github.com:dongfengguilai/workbench-opencode.git",
+  "branch": "main",
+  "verifiedRemoteSourceHead": "0d318da25a1c873cb952072843510adcb2446d97",
+  "sourcePush": "To github.com:dongfengguilai/workbench-opencode.git\n   73bcc26..0d318da  main -> main\n",
+  "note": "This publication record is a following metadata commit; implementation is verified on remote main."
+}
