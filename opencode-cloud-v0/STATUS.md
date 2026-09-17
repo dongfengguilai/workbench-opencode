@@ -26,6 +26,8 @@
 
 本轮新增闭环总表：opencode-cloud/evidence/admin-quota-acceptance-result.json。
 
+本轮实现及真实证据提交 `54a70e6a457f4f53dc667ddf3fa4de9c09685262` 已推送指定仓库main并核对远端一致；发布记录见opencode-cloud/evidence/admin-quota-publication.json。用户参考图未提交，原样保留。
+
 ## 真实证据（相对 opencode-cloud/evidence）
 
 | 内容 | 证据 | 实际结论 |
