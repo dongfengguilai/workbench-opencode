@@ -1,0 +1,10 @@
+file:///home/vmware/Workspace/projects/experiments/Workbench_space/workbench-opencode/opencode-cloud/test/delivery-client.mjs:4
+export async function login(name='admin'){const r=await request('/api/auth/login',{method:'POST',body:{username:name,password:config.users[name].password}});if(r.status!==200)throw Error('Real login failed '+r.status);return r.headers['set-cookie'][0].split(';')[0];}
+                                                                                                                                                                                     ^
+
+Error: Real login failed 503
+    at login (file:///home/vmware/Workspace/projects/experiments/Workbench_space/workbench-opencode/opencode-cloud/test/delivery-client.mjs:4:182)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async file:///home/vmware/Workspace/projects/experiments/Workbench_space/workbench-opencode/opencode-cloud/test/delivery-observe.mjs:3:14
+
+Node.js v24.19.0

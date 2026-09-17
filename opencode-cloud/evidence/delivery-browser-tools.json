@@ -1,0 +1,27 @@
+{
+  "package_lock_sha256": "85ae427bfaf5debe50d995c5a678457175298d7b36e9266b5a29128e50c1f452",
+  "packages": {
+    "node_modules/@playwright/cli": {
+      "version": "0.1.20",
+      "integrity": "sha512-kEL+73IwNVFmUjGn0rmpBStZ8jju8MmmWBMXmVMesBzoZ8YW2b/Nv7aCOYLBrCbYzc7RvWZCbVj88+wOCg8yyw=="
+    },
+    "node_modules/playwright": {
+      "version": "1.64.0-alpha-2026-09-14",
+      "integrity": "sha512-CdpbZ03/Iq4HMth9RP2NHBv/gv9exDLkR3eJEDvS2fKdAjZSNYvL2PrJum3wHe8qOSFR8KzWuyKUx3AZ5vZc4w=="
+    },
+    "node_modules/playwright-core": {
+      "version": "1.64.0-alpha-2026-09-14",
+      "integrity": "sha512-VCqlQ8lEKS8NAfEU/sWx3KP7gL2oCWd/DAGzPDZncGV7dUNNHpaVxHd2LWe2pc5y53h0Hqu3SWzRiPqKqkrYQA=="
+    },
+    "node_modules/vite": {
+      "version": "7.3.6",
+      "integrity": "sha512-4XP60spRGjSZFf1qYH+dJIkK2znL3zQfl9KkOV9MkkRR/3Dls0dxaBsQPTloEc5BLXWPL9vsOxopxyKoMmDueg=="
+    }
+  },
+  "build_network": {
+    "slow_proxy_debian_bytes_in_25s": 857289,
+    "direct_tuna_bytes": 1048576,
+    "direct_tuna_ms": 795,
+    "tls_and_debian_signature_validation": true
+  }
+}

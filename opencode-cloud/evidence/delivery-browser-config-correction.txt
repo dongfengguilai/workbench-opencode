@@ -1,0 +1,1 @@
+维护者已定位并修复浏览器配置：Chromium 的配置目录现在独立可写，OpenCode 配置仍只读。你生成的 .playwright/cli.config.json 会覆盖默认配置；不要改只读浏览器二进制，不要安装下载浏览器。后续每次新开浏览器必须显式使用 playwright-cli --config /trusted/browser.json -s=delivery open http://127.0.0.1:5173。CLI 内部可以读取该受控配置，不需要你用 cat 或 read 工具访问 /trusted。然后完成原任务的真实添加、空白、删除断言和两张截图。

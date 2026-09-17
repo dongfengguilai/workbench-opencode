@@ -1,0 +1,6 @@
+{
+  "status": "PASS",
+  "sessionsFilesIndexIdentical": true,
+  "before": "delivery-headless-before.json",
+  "after": "delivery-headless-after.json"
+}

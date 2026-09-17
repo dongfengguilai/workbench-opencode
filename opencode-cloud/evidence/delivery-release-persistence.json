@@ -1,0 +1,19 @@
+{
+  "status": "PASS",
+  "before": "delivery-maintenance-before.json",
+  "after": "delivery-maintenance-after.json",
+  "users": {
+    "admin": {
+      "sessions": 21,
+      "files": 36,
+      "indexIdentical": true,
+      "messagesIdentical": true
+    },
+    "trial-b": {
+      "sessions": 6,
+      "files": 34,
+      "indexIdentical": true,
+      "messagesIdentical": true
+    }
+  }
+}

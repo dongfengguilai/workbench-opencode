@@ -1,0 +1,21 @@
+{
+  "time": "2026-09-17T12:46:06.760650+00:00",
+  "state": "stopped_existing_deployment",
+  "recovered_existing_loop_mounts": true,
+  "initialized": false,
+  "backup": "/home/vmware/Workspace/projects/experiments/Workbench_space/workbench-opencode/opencode-cloud/runtime/delivery-before.tar.gz",
+  "sha256": "321b96a6313a9e8d06d28b1e55eb63b9b8b797ac51289cdf920c72f9d2ffa3bf",
+  "initial_backup_attempt": "relative path error; no backup produced; quota only remounted existing disks; consistent stopped backup now completed",
+  "projects": {
+    "admin": {
+      "head": "9320d7bdc9f2f1e87c865646952c86f239a57d9b",
+      "git_status": "MM opencode-cloud-v0/README.md\n D opencode-cloud/evidence/smoke-task.txt\n?? .env.a05-acceptance\n?? acceptance-a05.bin\n?? acceptance-a05.txt\n?? acceptance-a06.txt\n?? opencode-cloud/src/demo-text.mjs\n?? opencode-cloud/src/file-manager.html\n?? opencode-cloud/src/patch-export.ts\n?? opencode-cloud/src/ui-demo-initials.mjs\n?? opencode-cloud/test/demo-text.test.mjs\n?? opencode-cloud/test/ui-demo-initials.test.mjs\n?? runtime/\n",
+      "index_sha256": "9bc5893272eda78bf9734fad51e68957da6d383ecd69a0f1045b74d10642e5df"
+    },
+    "native": {
+      "head": "9320d7bdc9f2f1e87c865646952c86f239a57d9b",
+      "git_status": "?? .opencode/\n?? acceptance-a06.txt\n?? opencode-cloud/src/patch-export.ts\n?? opencode-cloud/test/patch-export-extra.test.mjs\n?? opencode.json\n",
+      "index_sha256": "6b6d1d10ab65ced262bda158b6c695bb5085e30c99edd111cadc55c964d145ef"
+    }
+  }
+}

@@ -5,8 +5,9 @@ import { IntranetAuthClient,sessionDigest,readCookie,InvalidCredentialsError } f
 import {forward,upgrade,error,readBody} from './native-proxy.ts';
 import {loadUi,uiPage} from './ui-assets.mjs';
 import {checkRequest} from './access-policy.ts';
+import {previewPlatform} from './preview-platform.ts';
 type User={password:string,displayName:string,enabled:boolean,environment:string,nativePassword:string};
-type Config={origin:string,sessionTtl:number,users:Record<string,User>};
+type Config={origin:string,sessionTtl:number,previewRelayKey?:string,users:Record<string,User>};
 type Session={user:string,expires:number};
 const configPath=process.env.PLATFORM_CONFIG||'/trusted/platform.json';
 function config():Config{return JSON.parse(readFileSync(configPath,'utf8'));}
@@ -33,10 +34,12 @@ function json(res:any,status:number,body:any){res.writeHead(status,{'Content-Typ
 const loginHtml=readFileSync('/public/login.html');
 const hostedUi=process.env.PLATFORM_UI==='workbench'?loadUi('/public/workbench-ui'):undefined;
 const anonymousAssets:Record<string,string>={'login.css':'text/css','login.js':'application/javascript','theme.js':'application/javascript','logo.svg':'image/svg+xml','logo-dark.svg':'image/svg+xml','favicon.svg':'image/svg+xml'};
+const previews=previewPlatform({parent:hash=>{const s=sessions[hash];const user=s&&config().users[s.user];return s&&s.expires>Date.now()&&user?.enabled?{hash,user}:undefined;},register,closeSession,relayKey:()=>config().previewRelayKey||''});
 const server=https.createServer({key:readFileSync('/trusted/tls.key'),cert:readFileSync('/trusted/tls.crt')},async(req,res)=>{
  res.setHeader('Cache-Control','no-store');res.setHeader('X-Content-Type-Options','nosniff');res.setHeader('Referrer-Policy','same-origin');
  if(req.headers.host!==origin.host){error(res,400,'Unrecognized platform origin');return;}
  const p=new URL(req.url!,origin).pathname;
+ if(p.startsWith('/__preview/')){previews.handle(req,res);return;}
  if(!['GET','HEAD'].includes(req.method!)&&req.headers.origin!==origin.origin){error(res,403,'Same-origin request required');return;}
  try{
   const publicName=p.startsWith('/__platform/')?p.slice('/__platform/'.length):'';
@@ -63,6 +66,19 @@ const server=https.createServer({key:readFileSync('/trusted/tls.key'),cert:readF
   const identity=current(req);
   if(!identity){if(req.method==='GET'&&req.headers.accept?.includes('text/html')){res.writeHead(302,{Location:'/__platform/login'});res.end();}else error(res,401,'Authentication required');return;}
   const opts={target:identity.user.environment,password:identity.user.nativePassword,register:register(identity.hash)};
+  if(p==='/__platform/preview/ticket'&&req.method==='POST'){if(new URL(req.url!,origin).search||Object.keys(await readBody(req)||{}).length){error(res,403,'Preview takes no routing arguments');return;}json(res,200,previews.ticket(identity.hash));return;}
+  if(/^\/__platform\/preview\/(status|start|stop|log|verification|screenshot)$/.test(p)){
+   const action=p.split('/').pop()!;if(!((['start','stop'].includes(action)&&req.method==='POST')||(!['start','stop'].includes(action)&&req.method==='GET'))){error(res,403,'Fixed preview method required');return;}
+   const u=new URL(req.url!,origin);if([...u.searchParams.keys()].some(k=>!['session','name'].includes(k))){error(res,403,'Fixed preview arguments required');return;}
+   if(req.method==='POST'&&Object.keys(await readBody(req)||{}).length){error(res,403,'Preview takes no routing arguments');return;}
+   const response=await fetch(new URL('/__preview-control/'+action+u.search,opts.target),{method:req.method,headers:{Authorization:'Basic '+Buffer.from('opencode:'+opts.password).toString('base64')},signal:AbortSignal.timeout(20000)});
+   const body=Buffer.from(await response.arrayBuffer());res.writeHead(response.status,{'Content-Type':response.headers.get('content-type')||'application/json','Cache-Control':'no-store'});res.end(body);return;
+  }
+  if(p==='/__platform/source.zip'&&req.method==='GET'){
+   if(new URL(req.url!,origin).search){error(res,403,'Source export takes no routing arguments');return;}
+   const response=await fetch(new URL('/__source',opts.target),{headers:{Authorization:'Basic '+Buffer.from('opencode:'+opts.password).toString('base64')},signal:AbortSignal.timeout(60000)});
+   res.writeHead(response.status,{'Content-Type':response.headers.get('content-type')||'application/json','Cache-Control':'no-store',...(response.ok?{'Content-Disposition':'attachment; filename="WorkBench-source.zip"'}:{})});res.end(Buffer.from(await response.arrayBuffer()));return;
+  }
   if(['/__platform/style.css','/__platform/shell.js','/__platform/workbench-guard.js'].includes(p)&&req.method==='GET'){
    const name=p.split('/').pop()!;res.setHeader('Content-Type',name.endsWith('.css')?'text/css':'application/javascript');res.end(readFileSync('/public/'+name));return;
   }
@@ -96,8 +112,12 @@ const server=https.createServer({key:readFileSync('/trusted/tls.key'),cert:readF
  }catch{error(res,503,'Platform or environment unavailable; task outcome must be checked before resubmission');}
 });
 server.on('upgrade',(req,socket,head)=>{
+ if(req.headers.host===origin.host&&req.url?.startsWith('/__preview/')){previews.upgrade(req,socket,head);return;}
  try{const identity=current(req);if(!identity||req.headers.origin!==origin.origin||req.headers.host!==origin.host){socket.end('HTTP/1.1 401 Unauthorized\r\n\r\n');return;}
  upgrade(req,socket,head,{target:identity.user.environment,password:identity.user.nativePassword,register:register(identity.hash)});
  }catch{socket.destroy();}
 });
+// Upgraded/rejected WebSocket clients may reset TLS before proxy setup finishes.
+// A transport reset closes that connection, never the shared platform process.
+server.on('secureConnection',socket=>socket.on('error',()=>socket.destroy()));
 server.listen(8443,'0.0.0.0',()=>console.log('OpenCode Cloud HTTPS platform listening'));

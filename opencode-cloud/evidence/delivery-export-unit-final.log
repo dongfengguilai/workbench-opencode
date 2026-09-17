@@ -1,0 +1,37 @@
+✔ untracked credentials and state are excluded even without gitignore rules (363.353482ms)
+✔ deleted tracked secrets are restored to baseline in temporary index (184.864656ms)
+From /tmp/cloud-export-dyhdAQ
+ * branch            8825fdfa1b65e1fc5c8ba874f6019d5e66d8b84c -> FETCH_HEAD
+✔ complete binary patch applies staged, unstaged, new and deleted files without changing index (282.054739ms)
+✔ tracked secret paths are excluded and baseline mismatch fails explicitly (304.392346ms)
+✔ untracked external symlink is rejected without modifying the index (80.501662ms)
+✔ immutable ZIP contains current source, binary additions and metadata; excludes every credential/cache; keeps original index (440.146422ms)
+✔ source export refuses outward links without reading target content (55.593854ms)
+✖ source snapshot includes ignored source and ignores project Git execution/configuration and archive exclusions (418.309844ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 7
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2671.823282
+
+✖ failing tests:
+
+test at opencode-cloud/test/source-export.test.mjs:38:1
+✖ source snapshot includes ignored source and ignores project Git execution/configuration and archive exclusions (418.309844ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(names.includes('source/file.txt'))
+  
+      at TestContext.<anonymous> (file:///home/vmware/Workspace/projects/experiments/Workbench_space/workbench-opencode/opencode-cloud/test/source-export.test.mjs:46:250)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

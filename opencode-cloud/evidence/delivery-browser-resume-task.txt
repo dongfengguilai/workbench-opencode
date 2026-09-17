@@ -1,0 +1,3 @@
+维护者已修复镜像的 CLI 默认配置，并保留原会话及你创建的文件。现在直接使用 playwright-cli；固定浏览器路径及代理已由镜像配置，不需要读取 /trusted，也禁止安装或下载浏览器。请继续同一个任务，实际完成全部断言和截图。
+在这个独立验收副本里完成一个真实网页任务。只在 /workspace/project/web 新建文件，不改其他项目文件，不读取环境变量或 /trusted 的内容。用中文做一个待办网页：输入框（标签“待办事项”）、“添加”按钮、任务列表和数量。空白内容不能添加，添加后输入框清空，提供删除任务功能。无需外部依赖。已有原生 PTY 正在用 Vite 将该目录发布到 http://127.0.0.1:5173。
+你必须通过原生 Bash 实际调用固定的 Microsoft Playwright CLI 验证网页，不使用 webfetch 代替：先读 playwright-cli --help，需要配置时使用 --config /trusted/browser.json。用命名浏览器 -s=delivery（隔离、headless），打开预览、取得 snapshot，填入“真实浏览器验收任务”并点击添加，检查任务可见且数量为1；测试空白添加不增数，删除后数量为0。可以使用 CLI 的 eval 或 run-code 做真实 DOM 断言，断言失败必须 throw，成功返回字符串 WB_BROWSER_ASSERTIONS_PASS。保留添加成功和删除后的 PNG 截图到 /workspace/project/.workbench-artifacts，最后关闭浏览器。所有代码与测试都要你自己实际完成，不仅给出建议。最终报告实际命令及结果。

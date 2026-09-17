@@ -1,0 +1,31 @@
+### Browser `network-fixed` opened with pid 1458.
+### Error
+Error: net::ERR_TUNNEL_CONNECTION_FAILED at https://example.com/
+Call log:
+  - navigating to "https://example.com/", waiting until "domcontentloaded"
+
+### Error
+Error: Public HTTPS page missing
+    at eval (eval at <anonymous> (eval at evaluate (:311:30)), <anonymous>:1:57)
+    at eval (eval at evaluate (:311:30), <anonymous>:4:50)
+    at UtilityScript.evaluate (<anonymous>:313:16)
+    at UtilityScript.<anonymous> (<anonymous>:1:44)
+### Page
+- Page URL: chrome-error://chromewebdata/
+- Page Title: example.com
+### Error
+Error: net::ERR_TUNNEL_CONNECTION_FAILED at https://httpbin.org/redirect-to?url=https%3A%2F%2Fexample.com%2F
+Call log:
+  - navigating to "https://httpbin.org/redirect-to?url=https%3A%2F%2Fexample.com%2F", waiting until "domcontentloaded"
+
+### Error
+Error: Public redirect failed
+    at eval (eval at <anonymous> (eval at evaluate (:311:30)), <anonymous>:1:63)
+    at eval (eval at evaluate (:311:30), <anonymous>:4:50)
+    at UtilityScript.evaluate (<anonymous>:313:16)
+    at UtilityScript.<anonymous> (<anonymous>:1:44)
+### Page
+- Page URL: chrome-error://chromewebdata/
+- Page Title: httpbin.org
+Browser 'network-fixed' closed
+

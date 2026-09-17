@@ -1,0 +1,18 @@
+### Browser `network-shell-redirect` opened with pid 1931.
+### Ran Playwright code
+```js
+await page.goto('https://httpbin.org/redirect-to?url=https%3A%2F%2Fexample.com%2F');
+```
+### Page
+- Page URL: https://example.com/
+- Page Title: Example Domain
+### Snapshot
+- [Snapshot](.workbench-artifacts/page-2026-09-17T13-28-25-338Z.yml)
+### Result
+"WB_PUBLIC_REDIRECT_PASS"
+### Ran Playwright code
+```js
+await page.evaluate('() => { if (location.origin !== "https://example.com" || !document.title.includes("Example")) throw Error("Public redirect failed"); return "WB_PUBLIC_REDIRECT_PASS" }');
+```
+Browser 'network-shell-redirect' closed
+

@@ -15,8 +15,9 @@ if [ "${PLATFORM_UI:-workbench}" = workbench ]; then
  test -s public/workbench-ui/manifest.json || { echo 'Missing fixed WorkBench UI build; run scripts/build-ui.py before starting, or PLATFORM_UI=embedded for maintainer rollback' >&2; exit 1; }
 fi
 python3 scripts/quota.py --migrate-stopped
+python3 scripts/prepare-browser.py
 # Always recreate the guards and their UID firewall with native network namespaces.
 # Work and original native state are bind mounts; initialization is a separate command.
 docker compose --profile model-repair up -d --no-build --force-recreate
 ./scripts/status.sh
-if "$local_browser"; then python3 scripts/local-browser.py start; fi
+if "$local_browser"; then python3 scripts/local-browser.py start; python3 scripts/local-preview.py start; fi

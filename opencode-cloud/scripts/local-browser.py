@@ -16,7 +16,7 @@ def healthy():
     try:
         opener=urllib.request.build_opener(urllib.request.ProxyHandler({}))
         with opener.open('http://127.0.0.1:8444/__platform/login',timeout=2) as response:
-            return response.status==200 and b'OpenCode Cloud' in response.read(65536)
+            return response.status==200 and b'id="login"' in response.read(65536)
     except OSError:return False
 action=sys.argv[1] if len(sys.argv)==2 else ''
 if action not in ('start','stop','status'):sys.exit('Usage: local-browser.py start|stop|status')

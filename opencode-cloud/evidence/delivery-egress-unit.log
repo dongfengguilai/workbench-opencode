@@ -1,0 +1,17 @@
+✔ private, reserved, multicast and IPv6 transition addresses fail closed (9.784993ms)
+✔ authority accepts only canonical host/IP and port 443 (2.642466ms)
+✔ all DNS answers checked; fresh resolution prevents cached rebinding; selects IPv4 (0.764645ms)
+✔ connects pinned literal IP, streams tunnel bytes, and cleans client disconnect (27.364593ms)
+✔ denies private DNS, HTTP, non443, proxy authentication and excessive concurrency (18.407598ms)
+✔ rejected clients release slots without client cooperation; IPv6 pinned in brackets (22.845471ms)
+✔ large streamed tunnel survives a paused reader without losing bytes (134.083504ms)
+✔ upstream failure is returned once; pending connection and slow headers bounded (64.043867ms)
+✔ client FIN frees an established CONNECT slot without waiting for an upstream FIN or idle timeout (163.592225ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1006.828686

@@ -1,0 +1,15 @@
+### Browser `maintenance-fixed` opened with pid 3596.
+### Ran Playwright code
+```js
+await page.goto('http://127.0.0.1:5173');
+```
+### Page
+- Page URL: http://127.0.0.1:5173/
+- HTTP status: 403 Forbidden
+- Console: 2 errors, 0 warnings
+### Snapshot
+- [Snapshot](.workbench-artifacts/page-2026-09-17T13-02-17-348Z.yml)
+### Events
+- New console entries: .workbench-artifacts/console-2026-09-17T13-02-17-084Z.log#L1-L2
+Browser 'maintenance-fixed' closed
+

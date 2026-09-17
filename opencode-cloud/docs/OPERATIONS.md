@@ -9,7 +9,8 @@
 ```sh
 python3 scripts/fetch-upstream.py
 # 仅构建时使用已有网络代理；没有代理则去掉 build-arg。
-docker compose build --build-arg http_proxy --build-arg https_proxy --build-arg no_proxy native
+docker build --build-arg http_proxy --build-arg https_proxy --build-arg no_proxy -t opencode-cloud/native:1.18.31-managed-v0 .
+python3 scripts/build-browser.py
 python3 scripts/initialize.py --project /ABS/AUTHORIZED/PROJECT --baseline FULL_COMMIT_SHA --origin https://TRIAL_HOST:8443 --model-key-file /ABS/PROTECTED/MODEL_KEY
 python3 scripts/quota.py --migrate-stopped
 python3 scripts/build-ui.py
@@ -89,6 +90,36 @@ python3 scripts/local-browser.py stop
 只启动本机代理，复用运行中的平台与原生环境，不重启容器、不重发任务。浏览器打开 `http://127.0.0.1:8444`；该端口只绑定宿主机回环，不提供远程 HTTP 登录。代理固定连接当前批准的 HTTPS 平台，使用 runtime/tls.crt 校验地址、证书链、有效期及准确叶证书 SHA256，不使用 rejectUnauthorized=false。证书更换后需重启本机代理。HTTP/SSE/原生终端 WebSocket/下载均直接转发；仅本机响应中的 agent_session 移除 Secure，HttpOnly/SameSite/注销保持，原 HTTPS 入口不变。
 
 完整启动时可用 `sh scripts/start.sh --local-browser`；完整 stop 同时停止代理。代理 PID/starttime 与日志在忽略的 runtime 内，仅停止核对为本脚本的进程，遇到他人占用 8444 拒绝启动。`LOCAL_BROWSER_TRACE=1 python3 scripts/local-browser.py start` 可临时记录方法、无查询字符串的路径和状态，不记录 Header、Cookie、密码、请求内容或模型 Key。默认不启用逐请求日志。
+
+## 原生浏览器、源码与独立预览（当前新闭环阻塞）
+
+固定工具在 `Dockerfile.browser`、`browser-tools/package-lock.json`：Microsoft `@playwright/cli@0.1.20`，Playwright/core `1.64.0-alpha-2026-09-14`，Chromium revision1244／154.0.8037.0，Vite7.3.6。构建时安装全部浏览器和依赖，不在任务中下载安装 latest。原生 OpenCode 二进制 SHA256 不变。版本、实际镜像和两种 Chromium 可执行文件摘要在 `evidence/delivery-browser-image.json`。
+
+原固定 managed 镜像作为基础，`python3 scripts/build-browser.py` 使用小型无密钥构建上下文。构建前按现有部署条件设置维护者代理环境变量。Debian 构建依赖使用带签名验证的 TUNA 镜像；该构建网络不是用户工作容器网络。当前已部署 headless-shell 镜像；新增 npm 最大2连接／不重试的镜像仅为候选 `opencode-cloud/native:1.18.31-browser-npm2-candidate`，未做发布回归。不要把候选构建成功写成运行环境验收成功。
+
+`prepare-browser.py` 只针对存在的项目和原生状态，缺原数据即拒绝，不初始化。本人浏览器配置、代理和浏览器专用 XDG 目录由维护者固定；`/trusted/BROWSER_USAGE.md` 只读，追加到原生 instructions。CLI 打开时必须显式 `--config /trusted/browser.json`，避免项目配置优先级覆盖。采用同一官方 bundle 的 headless shell，避免完整 Chrome 的 Google 后台连接占满本人4隧道。网关 FIN 清理释放断开连接，仍保留4连接／10秒连接／120秒空闲边界。浏览器非 root、本人容器内，无 Docker socket 或宿主浏览器连接。
+
+原生 PTY 承载唯一预览，固定 `web/` 与127.0.0.1:5173。静态网页用镜像固定 Vite；React 用锁文件安装的 Vite及 `dev: vite`，受控配置采用 automatic JSX，不加载项目 Vite 插件配置。守护程序不接受命令／URL／目录／端口参数；端口占用拒绝，删除的只是本人明确标题的预览 PTY，不杀任意进程。Native PTY 生命周期不持久化，环境重启后需点启动，源码／会话／PNG仍持久化。
+
+```sh
+python3 scripts/local-preview.py start
+python3 scripts/local-preview.py status
+python3 scripts/local-preview.py stop
+```
+
+预览入口仅127.0.0.1:8445监听，浏览器使用 `http://localhost:8445`，与工作台 `http://127.0.0.1:8444` 分开。Cookie不按端口隔离，必须使用不同回环主机名。完整 `start.sh --local-browser` 同时检查并启动两入口；只启动 relay 不重建原生服务。独立预览 relay 固定转发HTTPS平台 `/__preview`，验证CA、地址、有效期、准确指纹；额外使用保护配置中的 relayKey，拒绝直接在工作台同源进入预览。普通用户无该配置入口。
+
+平台会话签发30秒一次性票据，换取预览专用30分钟HttpOnly/SameSite=Lax Cookie；原HTTPS保持Secure，只在本机预览响应移除预览Cookie的Secure。票据／凭据仅在内存中，重启平台后重新打开预览。凭据绑定原平台会话及启用身份；每请求检查，扫除失效连接间隔1秒，注销调用原连接撤销流程。平台Cookie、Authorization与内部凭据不送应用；预览不能进入平台管理 namespace。页面、资源和Vite WebSocket经本人guard固定5173转发，不接受任意上游。
+
+`/__platform/source.zip` 使用隔离的临时 Git 元数据、原对象只读alternate和临时索引，捕获全部选定当前源码写入不可变tree后生成ZIP，保留原索引。禁用原项目Git filters/hooks/配置与export-ignore/subst规则；除忽略清单外的合法源码即使被.gitignore忽略也导出。已捕获Git tree中的链接再次按目录链接解析检查，拒绝越界／绝对／缺失目标／循环；子模块、越界/绝对链接、特殊文件、超过4096文件／32MiB明确拒绝。凭据文件、已知工作凭据内容、原生数据、浏览器资料、缓存、依赖、构建、验证制品排除；不是任意秘密识别系统。
+
+验证接口从本人原生session读取Bash输入、状态、metadata.exit及原始输出；不维护第二份业务验证状态，也不根据模型总结给PASS。PNG限本人有效session、固定持久目录、真实路径和8MiB。新版本实际测试命令见 `test/source-export.test.mjs`、`test/preview-sessions.test.mjs`、`test/delivery-boundary-live.mjs`、`test/delivery-transport-live.mjs`；后两者必须运行真实平台。测试使用支持原生TypeScript的Node22.19+构建或已验证的bundled Node24，不能用缺该功能的宿主Node宣布成功。
+
+当前唯一先处理的阻塞：管理员2026-09-17 UTC额度250耗尽，原生APIError403 `Environment daily request budget exhausted; no automatic retry`。次日UTC首次请求恢复（上海2026-09-18 08:00），不能清空budget.json或改限额冒充续验通过。保留会话 `ses_f507ead15ffeUbQJZrsiTj0FYz`，恢复后显式继续React浏览器断言和PNG，再完成干净ZIP／补丁复现及剩余边界。当前不是新闭环READY或DELIVERED。
+
+发布前保存双用户idle会话／文件／索引摘要并冷备；用固定镜像或 `WORKBENCH_NATIVE_IMAGE` 明确指定已验证镜像，协调原生、guard与UID防火墙重建，保留持久卷。当前发布停止点的保护冷备及摘要在 `delivery-blocked-backup.json`，前后持久化比较在 `delivery-blocked-persistence.json`。只读核对不替代完整恢复演练。
+
+回滚原生入口：`WORKBENCH_NATIVE_IMAGE=opencode-cloud/native:1.18.31-managed-v0 sh scripts/start.sh --local-browser`，保留卷，不运行initialize；该镜像没有CLI/Vite，新增浏览器／预览能力不可用。UI回滚使用下面 `PLATFORM_UI=embedded` 方式；发布前UI归档 `runtime/workbench-ui-before-delivery.tar.gz` 亦保留。不要为了回滚还原用户源码目录、删卷或清空原生状态。
 
 `node --test test/local-browser.test.mjs` 使用实际正在运行的平台检查本机绑定、认证、Origin/Host/CONNECT/WS 与错误证书拒绝；缺少真实平台时失败，不启动替代服务器。可见内置浏览器示例证据见 evidence/local-browser-demo-result.json。这是维护者本机验证入口，不代表远程生产证书验收通过。
 

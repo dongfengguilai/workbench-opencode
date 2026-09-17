@@ -1,0 +1,62 @@
+node:internal/deps/undici/undici:13510
+      Error.captureStackTrace(err);
+            ^
+
+TypeError: fetch failed
+    at node:internal/deps/undici/undici:13510:13
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///workspace/project/[eval1]:1:9 {
+  [cause]: Error: connect ECONNREFUSED 127.0.0.1:4030
+      at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1637:16) {
+    errno: -111,
+    code: 'ECONNREFUSED',
+    syscall: 'connect',
+    address: '127.0.0.1',
+    port: 4030
+  }
+}
+
+Node.js v22.19.0
+node:internal/deps/undici/undici:13510
+      Error.captureStackTrace(err);
+            ^
+
+TypeError: fetch failed
+    at node:internal/deps/undici/undici:13510:13
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///workspace/project/[eval1]:1:9 {
+  [cause]: Error: connect ECONNREFUSED 127.0.0.1:4030
+      at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1637:16) {
+    errno: -111,
+    code: 'ECONNREFUSED',
+    syscall: 'connect',
+    address: '127.0.0.1',
+    port: 4030
+  }
+}
+
+Node.js v22.19.0
+
+node:internal/deps/undici/undici:13510
+      Error.captureStackTrace(err);
+            ^
+DOMException [TimeoutError]: The operation was aborted due to timeout
+    at node:internal/deps/undici/undici:13510:13
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///workspace/project/[eval1]:1:9
+
+Node.js v22.19.0
+{"session":"ses_f508f4cc1ffeyoh346yw9cBbQy","elapsedSeconds":2,"tools":[]}
+{"session":"ses_f508f4cc1ffeyoh346yw9cBbQy","elapsedSeconds":22,"tools":[{"tool":"bash","status":"completed"},{"tool":"read","status":"completed"},{"tool":"todowrite","status":"completed"},{"tool":"write","status":"completed"}]}
+{"session":"ses_f508f4cc1ffeyoh346yw9cBbQy","elapsedSeconds":42,"tools":[{"tool":"bash","status":"completed"},{"tool":"read","status":"completed"},{"tool":"todowrite","status":"completed"},{"tool":"write","status":"completed"},{"tool":"todowrite","status":"completed"},{"tool":"bash","status":"completed"},{"tool":"bash","status":"error"},{"tool":"bash","status":"running"}]}
+{"session":"ses_f508f4cc1ffeyoh346yw9cBbQy","elapsedSeconds":62,"tools":[{"tool":"bash","status":"completed"},{"tool":"read","status":"completed"},{"tool":"todowrite","status":"completed"},{"tool":"write","status":"completed"},{"tool":"todowrite","status":"completed"},{"tool":"bash","status":"completed"},{"tool":"bash","status":"error"},{"tool":"bash","status":"completed"},{"tool":"bash","status":"completed"},{"tool":"bash","status":"completed"},{"tool":"bash","status":"running"}]}
+{"session":"ses_f508f4cc1ffeyoh346yw9cBbQy","elapsedSeconds":82,"tools":[{"tool":"bash","status":"completed"},{"tool":"read","status":"completed"},{"tool":"todowrite","status":"completed"},{"tool":"write","status":"completed"},{"tool":"todowrite","status":"completed"},{"tool":"bash","status":"completed"},{"tool":"bash","status":"error"},{"tool":"bash","status":"completed"},{"tool":"bash","status":"completed"},{"tool":"bash","status":"completed"},{"tool":"bash","status":"completed"},{"tool":"bash","status":"completed"},{"tool":"bash","status":"completed"},{"tool":"bash","status":"completed"},{"tool":"bash","status":"pending"}]}
+{"session":"ses_f508f4cc1ffeyoh346yw9cBbQy","elapsedSeconds":102,"tools":[{"tool":"bash","status":"completed"},{"tool":"read","status":"completed"},{"tool":"todowrite","status":"completed"},{"tool":"write","status":"completed"},{"tool":"todowrite","status":"completed"},{"tool":"bash","status":"completed"},{"tool":"bash","status":"error"},{"tool":"bash","status":"completed"},{"tool":"bash","status":"completed"},{"tool":"bash","status":"completed"},{"tool":"bash","status":"completed"},{"tool":"bash","status":"completed"},{"tool":"bash","status":"completed"},{"tool":"bash","status":"completed"},{"tool":"bash","status":"completed"},{"tool":"bash","status":"error"},{"tool":"bash","status":"error"},{"tool":"glob","status":"error"},{"tool":"glob","status":"error"},{"tool":"bash","status":"completed"},{"tool":"bash","status":"error"},{"tool":"bash","status":"completed"},{"tool":"bash","status":"completed"},{"tool":"bash","status":"pending"}]}
+file:///home/vmware/Workspace/projects/experiments/Workbench_space/workbench-opencode/opencode-cloud/test/delivery-native-browser-live.mjs:52
+  if(assistants.some(m=>m.info.error))throw Error('Real native model returned an error: '+JSON.stringify(assistants.find(m=>m.info.error).info.error));
+                                            ^
+
+Error: Real native model returned an error: {"name":"MessageAbortedError","data":{"message":"Aborted"}}
+    at file:///home/vmware/Workspace/projects/experiments/Workbench_space/workbench-opencode/opencode-cloud/test/delivery-native-browser-live.mjs:52:45
+
+Node.js v22.22.1

@@ -1,0 +1,55 @@
+### Browser `network-b` opened with pid 41.
+### Ran Playwright code
+```js
+await page.goto('https://example.com');
+```
+### Page
+- Page URL: https://example.com/
+- Page Title: Example Domain
+### Snapshot
+- [Snapshot](.workbench-artifacts/page-2026-09-17T13-30-56-156Z.yml)
+### Result
+"WB_PUBLIC_HTTPS_PASS"
+### Ran Playwright code
+```js
+await page.evaluate('() => { if (!document.title.includes("Example")) throw Error("Public HTTPS missing"); return "WB_PUBLIC_HTTPS_PASS" }');
+```
+### Ran Playwright code
+```js
+await page.goto('https://httpbin.org/redirect-to?url=https%3A%2F%2Fexample.com%2F');
+```
+### Page
+- Page URL: https://example.com/
+- Page Title: Example Domain
+### Snapshot
+- [Snapshot](.workbench-artifacts/page-2026-09-17T13-30-59-964Z.yml)
+### Result
+"WB_PUBLIC_REDIRECT_PASS"
+### Ran Playwright code
+```js
+await page.evaluate('() => { if (location.origin !== "https://example.com") throw Error("Public redirect missing"); return "WB_PUBLIC_REDIRECT_PASS" }');
+```
+### Error
+Error: net::ERR_TUNNEL_CONNECTION_FAILED at https://169.254.169.254/
+Call log:
+  - navigating to "https://169.254.169.254/", waiting until "domcontentloaded"
+
+### Error
+Error: net::ERR_TUNNEL_CONNECTION_FAILED at https://127.0.0.1/
+Call log:
+  - navigating to "https://127.0.0.1/", waiting until "domcontentloaded"
+
+### Ran Playwright code
+```js
+await page.goto('http://example.com');
+```
+### Page
+- Page URL: http://example.com/
+- HTTP status: 403 Forbidden
+- Console: 1 errors, 0 warnings
+### Snapshot
+- [Snapshot](.workbench-artifacts/page-2026-09-17T13-31-03-030Z.yml)
+### Events
+- New console entries: .workbench-artifacts/console-2026-09-17T13-31-02-926Z.log#L1
+Browser 'network-b' closed
+

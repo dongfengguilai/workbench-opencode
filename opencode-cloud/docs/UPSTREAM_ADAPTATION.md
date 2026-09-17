@@ -28,3 +28,9 @@ WorkBench 外壳 isolation:isolate 使输入区的原生z70不再遮挡body Port
 平台PLATFORM_UI=workbench按启动时校验摘要的构建清单托管固定951资源，并沿用身份与请求路径限制；登录资源明确匿名清单。PLATFORM_UI=embedded保留旧制品回滚，不改原生环境或卷。所有前端构建出处、锁文件、补丁和制品SHA见 workbench-ui-build.json。
 
 Qwen 固定路由：用户最新明确批准 http://10.243.117.57:4003/v1 和 Qwen3.6-35B-A3B。只给trusted model-gateway增加精确模型路由并设置原生管理员配置默认值；原生用既有@ai-sdk/openai-compatible执行真实工具调用，无Responses兼容模拟、Agent重写或用户Key/URL配置入口。Luna仍保留批准的原路由，不自动回退。真实8项Agent测试与干净补丁15项回归见 workbench-ui-regression-result.json。
+
+2026-09-17 源码／预览／浏览器试用：官方固定CLI通过原生Bash调用，使用本人受控网络及只读说明，不安装Skill、不新增Agent或浏览器工具执行层；未启用备用MCP，因为CLI首检查点实际完成。原生PTY只启动固定web/及5173的Vite；平台guard做固定转发，新增独立来源授权，不改变原生PTY实现。Git源码ZIP与补丁采用隔离临时元数据，防止项目Git filters在可信guard UID执行；保持用户索引与原对象不变。
+
+UI增加ui/deliverables.tsx和原WorkBench覆盖文件中的紧凑成果面板，沿用原生providers、路由、审批、消息、终端和会话，不额外重建原生项目上下文。相同固定源码／Bun1.3.14／原bun.lock类型与构建通过，951制品实际摘要见delivery-ui-build.json，当前部署manifest摘要见delivery-running-release.json。旧UI及镜像回滚保留，原生二进制SHA仍一致。
+
+React真实预览暴露trusted Vite配置缺automatic JSX；维护者只修平台配置，不手写用户功能或伪造Agent断言。修正依据：[Vite7共享配置](https://v7.vite.dev/config/shared-options)、[esbuild JSX automatic](https://esbuild.github.io/api/#jsx)。实际内置浏览器9／4结果有截图，原生Agent修正后续验仍因本人UTC额度250耗尽403阻塞；当前新增闭环不能标记PASS。当前CLI、浏览器、网络、初始空白及额度失败记录均保留。

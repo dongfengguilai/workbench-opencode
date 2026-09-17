@@ -1,0 +1,53 @@
+/opt/workbench-browser/node_modules/playwright-core/lib/tools/cli-client/session.js:172
+    const rejectWithPid = (reject, message) => reject(Object.assign(new Error(`Daemon pid=${child.pid}: ${message}`), { daemonPid: child.pid }));
+                                                                    ^
+
+Error: Daemon pid=1193: Daemon process exited with code 1
+[TargetClosedError2: Target page, context or browser has been closed
+Browser logs:
+
+<launching> /opt/workbench-browsers/chromium-1244/chrome-linux64/chrome --disable-field-trial-config --disable-background-networking --disable-background-timer-throttling --disable-backgrounding-occluded-windows --disable-back-forward-cache --disable-breakpad --disable-client-side-phishing-detection --disable-component-extensions-with-background-pages --disable-component-update --no-default-browser-check --disable-default-apps --disable-dev-shm-usage --disable-edgeupdater --disable-extensions --disable-features=AvoidUnnecessaryBeforeUnloadCheckSync,DestroyProfileOnBrowserClose,DialMediaRouteProvider,GlobalMediaControls,HttpsUpgrades,LensOverlay,MediaRouter,PaintHolding,ThirdPartyStoragePartitioning,BlockOriginHeaderModificationOnRedirect,Translate,AutoDeElevate,OptimizationHints,msForceBrowserSignIn,msEdgeUpdateLaunchServicesPreferredVersion --enable-features=CDPScreenshotNewSurface --allow-pre-commit-input --disable-hang-monitor --disable-ipc-flooding-protection --disable-popup-blocking --disable-prompt-on-repost --disable-renderer-backgrounding --disable-updater-scheduler --force-color-profile=srgb --metrics-recording-only --no-first-run --password-store=basic --use-mock-keychain --no-service-autorun --export-tagged-pdf --disable-search-engine-choice-screen --unsafely-disable-devtools-self-xss-warnings --edge-skip-compat-layer-relaunch --disable-infobars --disable-search-engine-choice-screen --disable-sync --enable-unsafe-swiftshader --headless --hide-scrollbars --mute-audio --blink-settings=primaryHoverType=2,availableHoverTypes=2,primaryPointerType=4,availablePointerTypes=4 --disable-blink-features=AutomationControlled --user-data-dir=/tmp/playwright_chromiumdev_profile-Efwsjp --remote-debugging-pipe --no-startup-window
+<launched> pid=1232
+[pid=1232][err] chrome_crashpad_handler: --database is required
+[pid=1232][err] Try 'chrome_crashpad_handler --help' for more information.
+[pid=1232][err] [1232:1232:0917/130012.087693:ERROR:third_party/crashpad/crashpad/util/linux/socket.cc:120] recvmsg: Connection reset by peer (104)
+Call log:
+  - <launching> /opt/workbench-browsers/chromium-1244/chrome-linux64/chrome --disable-field-trial-config --disable-background-networking --disable-background-timer-throttling --disable-backgrounding-occluded-windows --disable-back-forward-cache --disable-breakpad --disable-client-side-phishing-detection --disable-component-extensions-with-background-pages --disable-component-update --no-default-browser-check --disable-default-apps --disable-dev-shm-usage --disable-edgeupdater --disable-extensions --disable-features=AvoidUnnecessaryBeforeUnloadCheckSync,DestroyProfileOnBrowserClose,DialMediaRouteProvider,GlobalMediaControls,HttpsUpgrades,LensOverlay,MediaRouter,PaintHolding,ThirdPartyStoragePartitioning,BlockOriginHeaderModificationOnRedirect,Translate,AutoDeElevate,OptimizationHints,msForceBrowserSignIn,msEdgeUpdateLaunchServicesPreferredVersion --enable-features=CDPScreenshotNewSurface --allow-pre-commit-input --disable-hang-monitor --disable-ipc-flooding-protection --disable-popup-blocking --disable-prompt-on-repost --disable-renderer-backgrounding --disable-updater-scheduler --force-color-profile=srgb --metrics-recording-only --no-first-run --password-store=basic --use-mock-keychain --no-service-autorun --export-tagged-pdf --disable-search-engine-choice-screen --unsafely-disable-devtools-self-xss-warnings --edge-skip-compat-layer-relaunch --disable-infobars --disable-search-engine-choice-screen --disable-sync --enable-unsafe-swiftshader --headless --hide-scrollbars --mute-audio --blink-settings=primaryHoverType=2,availableHoverTypes=2,primaryPointerType=4,availablePointerTypes=4 --disable-blink-features=AutomationControlled --user-data-dir=/tmp/playwright_chromiumdev_profile-Efwsjp --remote-debugging-pipe --no-startup-window
+  - <launched> pid=1232
+  - [pid=1232][err] chrome_crashpad_handler: --database is required
+  - [pid=1232][err] Try 'chrome_crashpad_handler --help' for more information.
+  - [pid=1232][err] [1232:1232:0917/130012.087693:ERROR:third_party/crashpad/crashpad/util/linux/socket.cc:120] recvmsg: Connection reset by peer (104)
+  - [pid=1232] <gracefully close start>
+  - [pid=1232] <kill>
+  - [pid=1232] <will force kill>
+  - [pid=1232] <process did exit: exitCode=null, signal=SIGTRAP>
+  - [pid=1232] starting temporary directories cleanup
+  - [pid=1232] finished temporary directories cleanup
+  - [pid=1232] <gracefully close end>
+] {
+  log: [
+    '  - <launching> /opt/workbench-browsers/chromium-1244/chrome-linux64/chrome --disable-field-trial-config --disable-background-networking --disable-background-timer-throttling --disable-backgrounding-occluded-windows --disable-back-forward-cache --disable-breakpad --disable-client-side-phishing-detection --disable-component-extensions-with-background-pages --disable-component-update --no-default-browser-check --disable-default-apps --disable-dev-shm-usage --disable-edgeupdater --disable-extensions --disable-features=AvoidUnnecessaryBeforeUnloadCheckSync,DestroyProfileOnBrowserClose,DialMediaRouteProvider,GlobalMediaControls,HttpsUpgrades,LensOverlay,MediaRouter,PaintHolding,ThirdPartyStoragePartitioning,BlockOriginHeaderModificationOnRedirect,Translate,AutoDeElevate,OptimizationHints,msForceBrowserSignIn,msEdgeUpdateLaunchServicesPreferredVersion --enable-features=CDPScreenshotNewSurface --allow-pre-commit-input --disable-hang-monitor --disable-ipc-flooding-protection --disable-popup-blocking --disable-prompt-on-repost --disable-renderer-backgrounding --disable-updater-scheduler --force-color-profile=srgb --metrics-recording-only --no-first-run --password-store=basic --use-mock-keychain --no-service-autorun --export-tagged-pdf --disable-search-engine-choice-screen --unsafely-disable-devtools-self-xss-warnings --edge-skip-compat-layer-relaunch --disable-infobars --disable-search-engine-choice-screen --disable-sync --enable-unsafe-swiftshader --headless --hide-scrollbars --mute-audio --blink-settings=primaryHoverType=2,availableHoverTypes=2,primaryPointerType=4,availablePointerTypes=4 --disable-blink-features=AutomationControlled --user-data-dir=/tmp/playwright_chromiumdev_profile-Efwsjp --remote-debugging-pipe --no-startup-window',
+    '  - <launched> pid=1232',
+    '  - [pid=1232][err] chrome_crashpad_handler: --database is required',
+    "  - [pid=1232][err] Try 'chrome_crashpad_handler --help' for more information.",
+    '  - [pid=1232][err] [1232:1232:0917/130012.087693:ERROR:third_party/crashpad/crashpad/util/linux/socket.cc:120] recvmsg: Connection reset by peer (104)',
+    '  - [pid=1232] <gracefully close start>',
+    '  - [pid=1232] <kill>',
+    '  - [pid=1232] <will force kill>',
+    '  - [pid=1232] <process did exit: exitCode=null, signal=SIGTRAP>',
+    '  - [pid=1232] starting temporary directories cleanup',
+    '  - [pid=1232] finished temporary directories cleanup',
+    '  - [pid=1232] <gracefully close end>'
+  ]
+}
+
+    at rejectWithPid (/opt/workbench-browser/node_modules/playwright-core/lib/tools/cli-client/session.js:172:69)
+    at ChildProcess.<anonymous> (/opt/workbench-browser/node_modules/playwright-core/lib/tools/cli-client/session.js:182:11)
+    at ChildProcess.emit (node:events:519:28)
+    at maybeClose (node:internal/child_process:1101:16)
+    at ChildProcess._handle.onexit (node:internal/child_process:304:5) {
+  daemonPid: 1193
+}
+
+Node.js v22.19.0
+Browser 'maintenance-smoke' is not open.

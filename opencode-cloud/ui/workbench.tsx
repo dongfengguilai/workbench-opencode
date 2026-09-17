@@ -7,6 +7,7 @@ import { ServerConnection } from "@/context/server"
 import { createHomeController } from "@/pages/home/home-controller"
 import { createHomeSessionsController } from "@/pages/home/home-sessions-controller"
 import "./workbench.css"
+import {Deliverables} from "./deliverables"
 
 type Identity = { user_id: string; display_name: string; project: string; directory: string; ready: boolean }
 async function identity(): Promise<Identity> {
@@ -70,12 +71,13 @@ export function WorkBenchShell(props: ParentProps) {
   const [changes, setChanges] = createSignal<{ baseline: string; files: string[] }>()
   const [changesLoading, setChangesLoading] = createSignal(false)
   const [actionError, setActionError] = createSignal('')
+  const [deliverables, setDeliverables] = createSignal(false)
   const records = createMemo(() => wb.sessions.data.records().filter(r => r.session.title.toLowerCase().includes(query().toLowerCase())))
   createEffect(() => { route.pathname; route.search; setDrawer(false) })
   const escape = (e: KeyboardEvent) => {
-    if (e.key === 'Escape') { setDrawer(false); setChanges(undefined) }
-    if (e.key === 'Tab' && (changes() || drawer())) {
-      const scope = document.querySelector(changes() ? '.wb-dialog' : '.wb-sidebar')
+    if (e.key === 'Escape') { setDrawer(false); setChanges(undefined); setDeliverables(false) }
+    if (e.key === 'Tab' && (changes() || deliverables() || drawer())) {
+      const scope = document.querySelector(changes() || deliverables() ? '.wb-dialog' : '.wb-sidebar')
       const controls = Array.from(scope?.querySelectorAll<HTMLElement>('button:not(:disabled),a[href],input') ?? [])
       const first = controls[0], last = controls.at(-1)
       if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last?.focus() }
@@ -85,6 +87,7 @@ export function WorkBenchShell(props: ParentProps) {
   createEffect(() => { if (changes()) queueMicrotask(() => document.querySelector<HTMLElement>('.wb-dialog button')?.focus()) })
   createEffect(() => { if (drawer()) queueMicrotask(() => document.querySelector<HTMLElement>('.wb-sidebar .wb-brand')?.focus()) })
   document.addEventListener('keydown', escape); onCleanup(() => document.removeEventListener('keydown', escape))
+  createEffect(() => { if (deliverables()) queueMicrotask(() => document.querySelector<HTMLElement>('.wb-deliverables button')?.focus()) })
   async function inspect() {
     if (changesLoading()) return
     setChangesLoading(true); setActionError('')
@@ -103,10 +106,11 @@ export function WorkBenchShell(props: ParentProps) {
         <div class="wb-account"><div class="wb-avatar">{wb.me()?.display_name?.slice(0,1) || 'W'}</div><div class="wb-user"><strong>{wb.me()?.display_name || '正在加载'}</strong><span>独立云端空间</span></div><ThemeSwitch/><button class="wb-icon" aria-label="退出登录" title="退出登录" onClick={logout}>↪</button></div>
       </aside>
       <section class="wb-content">
-        <header class="wb-toolbar"><div class="wb-toolbar-title"><button class="wb-icon wb-menu" aria-label="打开导航" onClick={() => { setCollapsed(false); setDrawer(true) }}>☷</button><span>{route.pathname === '/' ? '项目' : 'workbench-opencode'}</span><span class="wb-state" classList={{ ready: wb.me()?.ready }}>● {wb.me.loading ? '连接中' : wb.me()?.ready ? '环境就绪' : '环境未就绪'}</span></div><div id="opencode-titlebar-center" class="wb-native-search"/><div class="wb-actions"><div id="opencode-titlebar-right" class="wb-native-controls"/><Show when={route.pathname !== "/"}><button onClick={() => command.trigger("terminal.toggle")}>终端</button><button onClick={() => command.trigger("fileTree.toggle")}>文件</button></Show><button onClick={inspect} disabled={changesLoading()}>{changesLoading() ? '检查中…' : '检查变更'}</button><a href="/__platform/download" download="workbench-opencode.patch" rel="external" onClick={e => { e.preventDefault(); location.assign('/__platform/download') }}>下载补丁 ↓</a></div></header>
+        <header class="wb-toolbar"><div class="wb-toolbar-title"><button class="wb-icon wb-menu" aria-label="打开导航" onClick={() => { setCollapsed(false); setDrawer(true) }}>☷</button><span>{route.pathname === '/' ? '项目' : 'workbench-opencode'}</span><span class="wb-state" classList={{ ready: wb.me()?.ready }}>● {wb.me.loading ? '连接中' : wb.me()?.ready ? '环境就绪' : '环境未就绪'}</span></div><div id="opencode-titlebar-center" class="wb-native-search"/><div class="wb-actions"><div id="opencode-titlebar-right" class="wb-native-controls"/><Show when={route.pathname !== "/"}><button onClick={() => command.trigger("terminal.toggle")}>终端</button><button onClick={() => command.trigger("fileTree.toggle")}>文件</button></Show><button onClick={inspect} disabled={changesLoading()}>{changesLoading() ? '检查中…' : '检查变更'}</button><button onClick={() => setDeliverables(true)}>项目成果</button></div></header>
         <Show when={wb.error() || wb.me.error || actionError()}><div class="wb-error" role="alert">{wb.error() || wb.me.error?.message || actionError()}<button onClick={() => wb.reload()}>重试连接</button></div></Show>
         <main class="wb-native">{props.children}</main>
       </section>
+      <Show when={deliverables()}><div class="wb-modal-layer" onClick={e => { if (e.target === e.currentTarget) setDeliverables(false) }}><Deliverables session={route.pathname.match(/\/session\/(ses_[\w-]+)/)?.[1]} close={() => setDeliverables(false)}/></div></Show>
       <Show when={changes()}>{data => <div class="wb-modal-layer" onClick={e => { if (e.target === e.currentTarget) setChanges(undefined) }}><section class="wb-dialog" role="dialog" aria-modal="true" aria-label="检查变更"><header><h2>检查变更</h2><button autofocus={true} class="wb-icon" aria-label="关闭变更" onClick={() => setChanges(undefined)}>×</button></header><p class="wb-muted">相对固定基线 {data().baseline.slice(0,12)}</p><div class="wb-change-list"><For each={data().files}>{file => <div><code>{file}</code></div>}</For><Show when={!data().files.length}><p>当前没有变更</p></Show></div><p class="wb-muted">代码内容与 Diff 请在原生会话的变更区域查看。</p><a class="wb-primary" href="/__platform/download" download="workbench-opencode.patch" rel="external" onClick={e => { e.preventDefault(); location.assign('/__platform/download') }}>下载完整补丁 ↓</a></section></div>}</Show>
     </div>
   </WorkbenchContext.Provider>

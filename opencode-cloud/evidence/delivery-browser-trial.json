@@ -1,0 +1,8 @@
+{
+  "container": "workbench-delivery-browser-trial",
+  "image": "opencode-cloud/native:1.18.31-browser-v1",
+  "session": "ses_f508f4cc1ffeyoh346yw9cBbQy",
+  "pty": "pty_0af72fd7f001X7b4xCQb1VkaUt",
+  "project": "/home/vmware/Workspace/projects/experiments/Workbench_space/workbench-opencode/opencode-cloud/runtime/delivery-trial/project",
+  "network": "opencode-cloud-v0_native-admin"
+}

@@ -22,7 +22,7 @@ async function request(server,{method='GET',path='/__platform/login',headers={}}
 test('real verified platform loads; anonymous project stays protected',async()=>{
  const server=await relay();try {
   assert.equal(server.address().address,'127.0.0.1');
-  const result=await request(server);assert.equal(result.status,200);assert.match(result.body,/OpenCode Cloud/);
+  const result=await request(server);assert.equal(result.status,200);assert.match(result.body,/WorkBench/);
   assert.equal((await request(server,{path:'/__platform/me'})).status,401);
  }finally{server.shutdown();}
 });

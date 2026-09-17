@@ -1,0 +1,9 @@
+{
+  "status": "PASS",
+  "session": "ses_f508f4cc1ffeyoh346yw9cBbQy",
+  "pty": "pty_0af72fd7f001X7b4xCQb1VkaUt",
+  "realModel": "Qwen3.6-35B-A3B",
+  "nativeVersion": "1.18.31",
+  "browser": "Microsoft Playwright CLI 0.1.20",
+  "tools": 92
+}

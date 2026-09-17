@@ -1,0 +1,6 @@
+{
+  "path": "runtime/delivery-release-cold-backup.tar.gz",
+  "sha256": "1710d4dd4efe4f06465d49acf23ecda91d1e140711577d213c6a9b1542e06f41",
+  "stopped": true,
+  "nativeImageBefore": "sha256:4c8c616b353679b174f7ef538a74b4143c78a7315b4370576319d3890d7abaff"
+}

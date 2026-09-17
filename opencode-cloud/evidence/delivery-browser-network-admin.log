@@ -1,0 +1,53 @@
+### Browser `network` opened with pid 1136.
+### Error
+Error: net::ERR_TUNNEL_CONNECTION_FAILED at https://example.com/
+Call log:
+  - navigating to "https://example.com/", waiting until "domcontentloaded"
+
+### Error
+Error: Public HTTPS page missing
+    at eval (eval at <anonymous> (eval at evaluate (:311:30)), <anonymous>:1:57)
+    at eval (eval at evaluate (:311:30), <anonymous>:4:50)
+    at UtilityScript.evaluate (<anonymous>:313:16)
+    at UtilityScript.<anonymous> (<anonymous>:1:44)
+### Page
+- Page URL: chrome-error://chromewebdata/
+- Page Title: example.com
+### Error
+Error: net::ERR_TUNNEL_CONNECTION_FAILED at https://httpbin.org/redirect-to?url=https%3A%2F%2Fexample.com%2F
+Call log:
+  - navigating to "https://httpbin.org/redirect-to?url=https%3A%2F%2Fexample.com%2F", waiting until "domcontentloaded"
+
+### Error
+Error: Public redirect failed
+    at eval (eval at <anonymous> (eval at evaluate (:311:30)), <anonymous>:1:63)
+    at eval (eval at evaluate (:311:30), <anonymous>:4:50)
+    at UtilityScript.evaluate (<anonymous>:313:16)
+    at UtilityScript.<anonymous> (<anonymous>:1:44)
+### Page
+- Page URL: chrome-error://chromewebdata/
+- Page Title: httpbin.org
+### Error
+Error: net::ERR_TUNNEL_CONNECTION_FAILED at https://169.254.169.254/
+Call log:
+  - navigating to "https://169.254.169.254/", waiting until "domcontentloaded"
+
+### Error
+Error: net::ERR_TUNNEL_CONNECTION_FAILED at https://127.0.0.1/
+Call log:
+  - navigating to "https://127.0.0.1/", waiting until "domcontentloaded"
+
+### Ran Playwright code
+```js
+await page.goto('http://example.com');
+```
+### Page
+- Page URL: http://example.com/
+- HTTP status: 403 Forbidden
+- Console: 2 errors, 0 warnings
+### Snapshot
+- [Snapshot](.workbench-artifacts/page-2026-09-17T13-23-38-979Z.yml)
+### Events
+- New console entries: .workbench-artifacts/console-2026-09-17T13-23-38-839Z.log#L1-L2
+Browser 'network' closed
+

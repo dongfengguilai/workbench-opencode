@@ -50,8 +50,7 @@ services:
       timeout: 3s
       retries: 10
   native:
-    build: .
-    image: opencode-cloud/native:1.18.31-managed-v0
+    image: ${WORKBENCH_NATIVE_IMAGE:-opencode-cloud/native:1.18.31-browser-v1}
     command: [opencode, serve, --hostname, 127.0.0.1, --port, '4030']
     init: true
     env_file: ./runtime/native.env
@@ -68,6 +67,10 @@ services:
       - ./runtime/project:/workspace/project
       - ./runtime/state:/state
       - ./runtime/opencode.json:/trusted/opencode.json:ro
+      - ./runtime/browser.json:/trusted/browser.json:ro
+      - ./browser-tools/vite.config.mjs:/trusted/vite.config.mjs:ro
+      - ./browser-tools/start-preview.sh:/trusted/start-preview.sh:ro
+      - ./browser-tools/BROWSER_USAGE.md:/trusted/BROWSER_USAGE.md:ro
     networks: [native]
     depends_on:
       model-gateway: {condition: service_healthy}
@@ -134,6 +137,10 @@ services:
       - ./runtime/admin-project:/workspace/project
       - ./runtime/admin-state:/state
       - ./runtime/admin-opencode.json:/trusted/opencode.json:ro
+      - ./runtime/admin-browser.json:/trusted/browser.json:ro
+      - ./browser-tools/vite.config.mjs:/trusted/vite.config.mjs:ro
+      - ./browser-tools/start-preview.sh:/trusted/start-preview.sh:ro
+      - ./browser-tools/BROWSER_USAGE.md:/trusted/BROWSER_USAGE.md:ro
     networks: !override [native-admin]
     depends_on: !override
       admin-model-gateway: {condition: service_healthy}

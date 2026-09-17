@@ -82,3 +82,7 @@ test('upstream failure is returned once; pending connection and slow headers bou
  const slow=await setup(()=>{},{connectTimeout:50});
  try{const r=await connect(slow.server);assert.match(r.text,/504/);r.socket.destroy();}finally{await slow.close();}
 });
+test('client FIN frees an established CONNECT slot without waiting for an upstream FIN or idle timeout',async()=>{
+ const env=await setup(s=>s.once('data',()=>s.write('HTTP/1.1 200 OK\r\n\r\n')),{maxConcurrent:1,idleTimeout:120000});
+ try{const a=await connect(env.server);assert.match(a.text,/200/);const closed=once(a.socket,'close');a.socket.end();await closed;const b=await connect(env.server);assert.match(b.text,/200/);b.socket.destroy();}finally{await env.close();}
+});

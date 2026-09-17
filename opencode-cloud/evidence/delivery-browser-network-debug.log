@@ -1,0 +1,11 @@
+### Browser `network-debug` opened with pid 1656.
+### Ran Playwright code
+```js
+await page.goto('about:blank');
+```
+### Page
+- Page URL: about:blank
+### Snapshot
+- [Snapshot](.workbench-artifacts/page-2026-09-17T13-26-47-753Z.yml)
+Browser 'network-debug' closed
+

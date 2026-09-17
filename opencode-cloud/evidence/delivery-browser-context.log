@@ -1,0 +1,6 @@
+DEPRECATED: The legacy builder is deprecated and will be removed in a future release.
+            Install the buildx component to build images with BuildKit:
+            https://docs.docker.com/go/buildx/
+
+time="2026-09-17T20:47:58+08:00" level=error msg="Can't add file /home/vmware/Workspace/projects/experiments/Workbench_space/workbench-opencode/opencode-cloud/vendor/workbench-ui-source/node_modules/.bun/@azure+core-http@3.0.5+790ea5f46940ef6d/node_modules/@azure/core-http/dist-esm/src/policies/disableResponseDecompressionPolicy.browser.js to tar: io: read/write on closed pipe"
+time="2026-09-17T20:47:58+08:00" level=error msg="Can't close tar writer: io: read/write on closed pipe"

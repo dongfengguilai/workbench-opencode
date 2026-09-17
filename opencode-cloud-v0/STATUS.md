@@ -1,4 +1,44 @@
-# 当前交付状态
+# 当前交付状态：新增源码／预览闭环阻塞
+
+- 日期：2026-09-17。当前新增闭环为 `BLOCKED_EXTERNAL`，不是 READY_FOR_USER_ACCEPTANCE 或 DELIVERED。先前 A01–A09 历史证据保留，但不作为新增闭环通过依据；A10 仍未签收。
+- 真实当前阻塞：管理员模型网关 UTC 日额度已用满 250，原生 Qwen 请求返回 HTTP403 `Environment daily request budget exhausted; no automatic retry`。未提高额度、清空计数、换身份替本人调用或自动重发。按现有实现下一 UTC 日首次请求恢复（上海2026-09-18 08:00）。
+- 工作台本机入口 `http://127.0.0.1:8444` 已恢复并运行；独立预览 `http://localhost:8445` 仅绑定回环，必须从工作台“项目成果→打开预览”授权进入。仍为本机受控试用，不代表生产 HTTPS／NetID 通过。
+
+## 用户现在能做什么
+
+- 使用真实管理员登录，进入本人原生环境／已有会话；既有源码、未提交修改、暂存索引、原生会话与用户参考图均保留，未初始化或覆盖原系统。
+- “项目成果”已接入预览启动／停止／打开、运行日志、完整源码 ZIP、原补丁下载、本人原生 Bash 命令／退出码／输出和会话截图。固定 web/、127.0.0.1:5173、一个原生 PTY；重复启动已实测同PTY，不发布任意端口。
+- 管理员示例会话 `ses_f507ead15ffeUbQJZrsiTj0FYz` 保存真实 Qwen 编写的文本统计器：静态版本 web/static.html，React版本web/。原生 npm构建退出0，标准库29测试通过。React预览配置修正为automatic JSX后，在可见内置浏览器实点示例／统计得到字符9、单词4；空白词数0、清空正常。平台配置修正为维护者介入，不冒充原生 Agent 完成浏览器断言。
+- 源码 ZIP 接口真实 HTTP200，此前记录包61,719字节；快照链接校验后的包见delivery-snapshot-export-result.json，原索引摘要不变。包保留源码而排除密钥、原生状态、缓存、依赖、构建、浏览器资料及验证制品；附基线／摘要／导出时间／运行说明。内置浏览器已点击下载，但3000ms下载事件等待超时，未确认其本地保存路径。
+- 原生固定 OpenCode1.18.31 二进制未改。CLI0.1.20、固定Playwright/core及Chromium1244在本人非root容器内通过原生Bash调用，不连接宿主浏览器。独立验收副本已由真实Qwen完成网页输入／点击／增删断言／PNG，生产静态页面亦有真实原生CLI断言和截图。
+
+## 用户现在还不能做什么
+
+- 管理员在当前UTC日不能继续模型任务，切换Luna或重登不重置本人额度。React原生浏览器任务因403中断，尚无修正后React原生断言和react-result.png，不能将29测试／可见预览当作整个新闭环通过。
+- 新ZIP在干净副本安装／构建／运行、最新补丁在独立基线应用／测试尚未完成；浏览器下载本地文件未确认。剩余双用户各自预览、完整停用／凭据到期／端口冲突故障矩阵、最新出口完整回归等亦未完成，不用旧证据替代。
+- npm默认限2连接／不重试的补充镜像只构建为候选，未部署回归。实际运行仍为已验证headless-shell镜像，必须在命令中显式使用 npm --maxsockets=2 --fetch-retries=0。只支持静态与Vite/React试用；不加载项目自己的Vite插件配置，不承诺Next、数据库、任意端口／运行时、浏览器实时共享或自动部署。
+
+## 真实证据（相对 opencode-cloud/evidence）
+
+| 内容 | 证据 | 实际结论 |
+|---|---|---|
+| 原数据恢复／预检／冷备 | delivery-preflight.json、delivery-baseline.json、delivery-release-backup.json、delivery-headless-backup.json、delivery-blocked-backup.json | 原卷恢复；保护冷备不入库 |
+| 双用户重建持久化 | delivery-release-persistence.json、delivery-headless-persistence.json、delivery-blocked-persistence.json | 会话／源码／Git索引前后比较，不是新完整闭环恢复演练 |
+| 固定镜像／工具出处 | delivery-browser-image.json、delivery-browser-tools.json、delivery-browser-production-image-build.log、delivery-running-release.json | 原二进制、锁文件和Chromium摘要；当前及候选镜像分别记录 |
+| 首检查点原生浏览器 | delivery-browser-native-result.json、delivery-browser-native-messages.json、delivery-browser-native-added.png、delivery-browser-native-deleted.png | 独立验收副本真实Qwen+Bash+CLI断言与PNG通过；初始失败保留 |
+| 平台静态／真实停止／继续 | delivery-platform-static-browser-messages.json、delivery-platform-static-native.png、delivery-stop-native-result.json、delivery-browser-native-question.png | 真实原生任务、提问、停止及继续；静态CLI操作可查 |
+| 当前React／额度阻塞 | delivery-platform-react-browser-messages.json、delivery-platform-react-browser-live.log、delivery-current-result.json | 原生29测试和构建退出0；最后HTTP403，不是完成 |
+| 内置浏览器独立预览 | delivery-browser-static-preview.png、delivery-browser-react-initial-blank.png、delivery-browser-react-preview.png、delivery-browser-react-reentered.png、delivery-react-jsx-preview-start.json | 原始空白失败保留，平台JSX配置修正后真实示例9／4；非Agent续验通过 |
+| 当前源码与验证记录 | delivery-current-source.zip、delivery-current-export-result.json、delivery-snapshot-source.zip、delivery-snapshot-export-result.json、delivery-current-verification.json | 真实接口下载／原索引不变；干净包复现未验 |
+| 预览授权／隔离／拒绝 | delivery-boundary-live-result.json、delivery-preview-lifecycle.json | 真实一次性／30秒过期、注销、跨用户截图／导出限制、固定目录／端口／Host／Origin；不是全部边界完成 |
+| TLS断开／实际Vite WS | delivery-platform-tls-reset-initial-failure.log、delivery-transport-live-result.json | 真实崩溃保留；修正后24次TLS断开不崩、WS101、注销关闭WS |
+| 单元与固定UI构建 | delivery-export-unit-safe.log、delivery-export-unit-snapshot.log、delivery-boundary-unit-final.log、delivery-egress-unit.log、delivery-ui-typecheck.log、delivery-ui-build.json | 本地Git导出／链接／恶意filters／时钟／FIN测试与类型构建；不冒充真实模型／外站证据 |
+
+## 下一步只修哪个阻塞
+
+先等待本人日额度按既有规则恢复，显式继续原会话的 React 浏览器断言和截图，使用只读浏览器说明与已经修正的受控Vite配置。不清空额度、自动重发或扩其他业务。该检查点真实通过后才继续新ZIP／补丁独立复现及剩余边界矩阵，最后由用户A10实际试用签收。
+
+# 先前登录／工作台验收历史（不代表新增网页闭环通过）
 
 - 日期：2026-09-17。状态：`READY_FOR_USER_ACCEPTANCE`，不是 DELIVERED。
 - A01–A09 已实际通过；A10 等待用户真实试用和明确签收，Agent 不代签。
@@ -75,11 +115,11 @@ WorkBench 新项目首页和“新建会话”已修复此前缓存依赖；旧�
 
 本次保留首次依赖安装PATH缺Bun、类型构建失败、首页错误V2路由/查询缓存空历史、单元运行器只读tmp和验证脚本302/403预期误判/平台启动未就绪等真实失败日志。前端输入区z70挡住body菜单z60使鼠标选择无效，最终用外壳isolation修正并恢复原生模型选择代码，不改Agent或模型存储。Luna上游500实际内容为访问chatgpt.com的TLS handshake EOF，见 workbench-ui-model-probe-body.json；不删除失败会话、不冒充稳定。用户随后提供并批准Qwen，默认模型切换后真实修改、测试及继续成功。
 
-## 下一步只修哪个阻塞
+## 当前下一步（覆盖先前 A10 等待结论）
 
-WorkBench登录／工作台及Qwen切换已实施并真实验证，当前没有未解决的本次交互阻塞。唯一下一步是A10：用户在已启动的 http://127.0.0.1:8444 用自己的代码需求完成一次闭环并明确签收。维护者不能代签。若用户发现新问题，只处理该反馈阻塞，不扩展业务线。Luna仍存在真实外部TLS故障，默认Qwen已完成代码闭环，不自动回退或重试。
+先解决管理员日额度阻塞，在保留的原生会话中完成 React 浏览器续验。然后按新增闭环完成尚未执行的独立源码复现和边界；尚不能进入新增闭环的用户签收。不要扩业务线、改额度或重置项目。
 
-## 最终签收
+## 先前范围的签收记录
 
 - 实际入口：已运行，见上。
 - A01–A09：PASS，自动化与维护者实际操作证据完整。

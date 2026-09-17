@@ -1,0 +1,24 @@
+{
+  "path": "runtime/delivery-blocked-cold-backup.tar.gz",
+  "sha256": "4f4d4f2a3b910cbb900d6f7790a61cad0087a4e21af33a30d93ca48bb788898f",
+  "stopped": true,
+  "includes": [
+    "runtime/admin-project",
+    "runtime/project",
+    "runtime/admin-state",
+    "runtime/state",
+    "runtime/platform.json",
+    "runtime/native.env",
+    "runtime/admin-native.env",
+    "runtime/gateway.env",
+    "runtime/admin-gateway.env",
+    "runtime/opencode.json",
+    "runtime/admin-opencode.json",
+    "runtime/browser.json",
+    "runtime/admin-browser.json",
+    "runtime/gateway-state",
+    "runtime/admin-gateway-state",
+    "runtime/tls.crt",
+    "runtime/tls.key"
+  ]
+}

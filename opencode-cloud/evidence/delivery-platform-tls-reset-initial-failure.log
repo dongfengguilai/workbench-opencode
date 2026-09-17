@@ -1,0 +1,19 @@
+platform-1  | (node:1) ExperimentalWarning: Transform Types is an experimental feature and might change at any time
+platform-1  | (Use `node --trace-warnings ...` to show where the warning was created)
+platform-1  | OpenCode Cloud HTTPS platform listening
+platform-1  | node:events:497
+platform-1  |       throw er; // Unhandled 'error' event
+platform-1  |       ^
+platform-1  | 
+platform-1  | Error: read ECONNRESET
+platform-1  |     at TLSWrap.onStreamRead (node:internal/stream_base_commons:216:20)
+platform-1  | Emitted 'error' event on TLSSocket instance at:
+platform-1  |     at emitErrorNT (node:internal/streams/destroy:170:8)
+platform-1  |     at emitErrorCloseNT (node:internal/streams/destroy:129:3)
+platform-1  |     at process.processTicksAndRejections (node:internal/process/task_queues:90:21) {
+platform-1  |   errno: -104,
+platform-1  |   code: 'ECONNRESET',
+platform-1  |   syscall: 'read'
+platform-1  | }
+platform-1  | 
+platform-1  | Node.js v22.19.0

@@ -35,7 +35,7 @@ def replace(text, old, new):
     return text.replace(old,new,1)
 for name, overlay in [('packages/app/src/pages/layout-new.tsx','layout-new.tsx'),('packages/app/src/pages/home.tsx','home.tsx')]:
     edit(name, lambda _, overlay=overlay: (root/'ui'/overlay).read_text())
-for name in ['workbench.tsx','workbench.css']:
+for name in ['workbench.tsx','workbench.css','deliverables.tsx']:
     shutil.copyfile(root/'ui'/name, source/'packages/app/src'/name)
 edit('packages/app/src/context/settings.tsx', lambda s: replace(s,'const newLayoutDesigns = createMemo(() => {','const newLayoutDesigns = createMemo(() => {\n      return true // Fixed hosted WorkBench layout; no user runtime configuration.'))
 def entry(s):

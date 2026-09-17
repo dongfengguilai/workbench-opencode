@@ -1,0 +1,1 @@
+维护者已确定刚才 npm 429 是本人网关最多4隧道的并发限制，不是版本缺失。我已实际停止该轮任务，原会话与文件保留。现在只修当前阻塞并继续：把 package.json 的 React/ReactDOM/Vite 改为确切版本18.3.1/18.3.1/7.3.6（不用^），test 脚本必须包含 stats.test.mjs 的全部14项已有标准库测试以及你新增的测试。只执行一次 npm install --ignore-scripts --maxsockets=2 --fetch-retries=0，失败就报告原始失败，不换工具、不再次安装、不清空文件反复重试。成功后分别实际执行 npm run build 与 npm test，不附 echo 或伪造退出码。只修改本轮生成的 web 文件，不碰原用户文件，不读取环境变量。不要自行启动预览。

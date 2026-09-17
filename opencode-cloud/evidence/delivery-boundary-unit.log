@@ -1,0 +1,87 @@
+TAP version 13
+# Subtest: fixed-version routes and prompt overrides are enforced
+ok 1 - fixed-version routes and prompt overrides are enforced
+  ---
+  duration_ms: 4.033956
+  type: 'test'
+  ...
+# Subtest: real verified platform loads; anonymous project stays protected
+not ok 2 - real verified platform loads; anonymous project stays protected
+  ---
+  duration_ms: 42.653267
+  type: 'test'
+  location: '/app/test/local-browser.test.mjs:22:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    503 !== 200
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 200
+  actual: 503
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///app/test/local-browser.test.mjs:25:45)
+    process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:296:3)
+  ...
+# Subtest: wrong Host, external Origin, cross-site, missing write Origin and absolute target refused
+ok 3 - wrong Host, external Origin, cross-site, missing write Origin and absolute target refused
+  ---
+  duration_ms: 10.757132
+  type: 'test'
+  ...
+# Subtest: CONNECT and forged WebSocket origin refused
+ok 4 - CONNECT and forged WebSocket origin refused
+  ---
+  duration_ms: 3.847577
+  type: 'test'
+  ...
+# Subtest: wrong fingerprint cannot connect to real platform
+ok 5 - wrong fingerprint cannot connect to real platform
+  ---
+  duration_ms: 4.681385
+  type: 'test'
+  ...
+# Subtest: untrusted CA cannot connect to real platform
+ok 6 - untrusted CA cannot connect to real platform
+  ---
+  duration_ms: 3.926976
+  type: 'test'
+  ...
+# Subtest: preview tickets are one-use, expire, remain bound to the parent and revoke credentials
+ok 7 - preview tickets are one-use, expire, remain bound to the parent and revoke credentials
+  ---
+  duration_ms: 3.576964
+  type: 'test'
+  ...
+# Subtest: relay credentials require exact nonempty values
+ok 8 - relay credentials require exact nonempty values
+  ---
+  duration_ms: 0.183921
+  type: 'test'
+  ...
+# Subtest: immutable ZIP contains current source, binary additions and metadata; excludes every credential/cache; keeps original index
+ok 9 - immutable ZIP contains current source, binary additions and metadata; excludes every credential/cache; keeps original index
+  ---
+  duration_ms: 226.769547
+  type: 'test'
+  ...
+# Subtest: source export refuses outward links without reading target content
+ok 10 - source export refuses outward links without reading target content
+  ---
+  duration_ms: 36.317037
+  type: 'test'
+  ...
+1..10
+# tests 10
+# suites 0
+# pass 9
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 994.714502

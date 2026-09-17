@@ -1,0 +1,15 @@
+### Browser `maintenance-preview` opened with pid 4171.
+### Ran Playwright code
+```js
+await page.goto('http://127.0.0.1:5173');
+```
+### Page
+- Page URL: http://127.0.0.1:5173/
+- Page Title: 待办事项
+- Console: 1 errors, 0 warnings
+### Snapshot
+- [Snapshot](.workbench-artifacts/page-2026-09-17T13-02-48-694Z.yml)
+### Events
+- New console entries: .workbench-artifacts/console-2026-09-17T13-02-48-137Z.log#L1
+Browser 'maintenance-preview' closed
+

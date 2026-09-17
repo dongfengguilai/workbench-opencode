@@ -3,12 +3,13 @@ import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { promisify } from 'node:util';
 import { execFile } from 'node:child_process';
+import {snapshotGit} from './snapshot-git.ts';
 
 const execFileAsync = promisify(execFile);
 const fullSha = /^(?:[0-9a-f]{40}|[0-9a-f]{64})$/i;
 
 // These are data, dependency, or credential locations rather than source.
-const excludedDirectory = /^(?:\.cache|\.git|\.opencode|\.state|cache|caches|database|databases|db|deps|dependencies|node_modules|runtime|state|vendor)$/i;
+const excludedDirectory = /^(?:\.cache|\.git|\.opencode|\.state|\.playwright|\.playwright-cli|\.workbench-artifacts|\.vite|cache|caches|database|databases|db|deps|dependencies|node_modules|runtime|state|vendor|test-results|playwright-report|dist|coverage)$/i;
 const secretFile = /^(?:\.env(?:\..*)?|.*(?:credential|credentials|secret|secrets|private[-_.]?key|access[-_.]?key|api[-_.]?key).*)$/i;
 const secretExtension = /\.(?:key|pem|p12|pfx|jks|keystore)$/i;
 
@@ -25,6 +26,7 @@ async function assertSafeSymlinks(directory: string): Promise<void> {
     for (const entry of entries) {
       if (entry.name === '.git' && current === directory) continue;
       const entryPath = path.join(current, entry.name);
+      if(isExcluded(path.relative(root,entryPath).split(path.sep).join('/')))continue;
       if (entry.isSymbolicLink()) {
         let target: string;
         try {
@@ -79,6 +81,8 @@ export async function exportPatch({ directory, baseline }: { directory: string; 
   const temporaryDirectory = await mkdtemp(path.join(tmpdir(), 'opencode-patch-index-'));
   const index = path.join(temporaryDirectory, 'index');
   try {
+    const snapshot=await snapshotGit(repository,temporaryDirectory);
+    const git=(_directory:string,_index:string,args:string[])=>snapshot.git(args);
     await git(repository, index, ['read-tree', baseline]);
     await git(repository, index, ['add', '-A', '--', '.']);
 

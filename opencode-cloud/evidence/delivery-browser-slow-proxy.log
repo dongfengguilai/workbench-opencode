@@ -1,0 +1,37 @@
+DEPRECATED: The legacy builder is deprecated and will be removed in a future release.
+            Install the buildx component to build images with BuildKit:
+            https://docs.docker.com/go/buildx/
+
+Sending build context to Docker daemon   38.4kB
+Step 1/8 : FROM opencode-cloud/native:1.18.31-managed-v0
+ ---> 4c8c616b3536
+Step 2/8 : USER root
+ ---> Running in 40e64165194e
+ ---> Removed intermediate container 40e64165194e
+ ---> 87e12545b34a
+Step 3/8 : COPY browser-tools/package.json browser-tools/package-lock.json /opt/workbench-browser/
+ ---> 576b32cd2318
+Step 4/8 : WORKDIR /opt/workbench-browser
+ ---> Running in cc87ddbb95ca
+ ---> Removed intermediate container cc87ddbb95ca
+ ---> 5b30c0643e9c
+Step 5/8 : RUN npm ci --ignore-scripts && ./node_modules/.bin/playwright install-deps chromium && PLAYWRIGHT_BROWSERS_PATH=/opt/workbench-browsers ./node_modules/.bin/playwright install chromium && ln -s /opt/workbench-browser/node_modules/.bin/playwright-cli /usr/local/bin/playwright-cli && ln -s /opt/workbench-browser/node_modules/.bin/vite /usr/local/bin/vite
+ ---> Running in 2c1a2d118bb1
+
+added 17 packages, and audited 18 packages in 12s
+
+5 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+[91mnpm notice
+npm notice New major version of npm available! 10.9.3 -> 12.0.2
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.0.2
+npm notice To update run: npm install -g npm@12.0.2
+npm notice
+[0mInstalling dependencies...
+Get:1 https://deb.debian.org/debian bookworm InRelease [151 kB]
+Get:2 https://deb.debian.org/debian bookworm-updates InRelease [55.4 kB]
+Get:3 https://deb.debian.org/debian-security bookworm-security InRelease [34.8 kB]
+Get:4 https://deb.debian.org/debian bookworm/main amd64 Packages [8790 kB]
+The command '/bin/sh -c npm ci --ignore-scripts && ./node_modules/.bin/playwright install-deps chromium && PLAYWRIGHT_BROWSERS_PATH=/opt/workbench-browsers ./node_modules/.bin/playwright install chromium && ln -s /opt/workbench-browser/node_modules/.bin/playwright-cli /usr/local/bin/playwright-cli && ln -s /opt/workbench-browser/node_modules/.bin/vite /usr/local/bin/vite' returned a non-zero code: 137

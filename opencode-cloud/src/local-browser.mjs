@@ -11,29 +11,30 @@ function filtered(headers) {
   const blocked = new Set([...hop, ...String(headers.connection || '').toLowerCase().split(',').map(x=>x.trim())]);
   return Object.fromEntries(Object.entries(headers).filter(([k])=>!blocked.has(k)));
 }
-export function createLocalBrowser({origin, cert, fingerprint, port=8444}) {
+export function createLocalBrowser({origin, cert, fingerprint, port=8444, previewKey}) {
   const target = new URL(origin);
   if (target.origin !== 'https://192.168.142.130:8443') throw new Error('Unapproved upstream');
   const expected = fingerprint || createHash('sha256').update(new X509Certificate(cert).raw).digest('hex');
   const sockets = new Set();
   const server = http.createServer();
-  const localOrigin = ()=>`http://127.0.0.1:${server.address().port}`;
+  const localOrigin = ()=>`http://${previewKey?'localhost':'127.0.0.1'}:${server.address().port}`;
   function permitted(req) {
     return req.headers.host === new URL(localOrigin()).host &&
       req.url?.startsWith('/') && !req.url.startsWith('//') &&
       (!req.headers.origin || req.headers.origin === localOrigin()) &&
-      req.headers['sec-fetch-site'] !== 'cross-site' &&
+      (req.headers['sec-fetch-site'] !== 'cross-site' || (previewKey&&req.method==='GET'&&(req.url.startsWith('/__workbench/claim?')||(req.headers['sec-fetch-mode']==='navigate'&&req.headers['sec-fetch-dest']==='document')))) &&
       (['GET','HEAD'].includes(req.method) || req.headers.origin === localOrigin()) &&
       !['CONNECT','TRACE'].includes(req.method);
   }
   function options(req, websocket=false) {
     const headers = filtered(req.headers);
     delete headers.authorization;
+    if(previewKey){headers.cookie=String(headers.cookie||'').split(';').filter(s=>!/^\s*agent_session=/i.test(s)).join(';');headers['x-workbench-preview-relay']=previewKey;headers['x-workbench-preview-origin']=localOrigin();}
     for (const k of Object.keys(headers)) if (k.startsWith('x-forwarded-') || k === 'forwarded') delete headers[k];
     headers.host = target.host;
     if (req.headers.origin) headers.origin = target.origin;
     if (websocket) {headers.connection='Upgrade'; headers.upgrade='websocket';}
-    return {hostname:target.hostname, port:target.port, path:req.url, method:req.method,
+    return {hostname:target.hostname, port:target.port, path:(previewKey?'/__preview':'')+req.url, method:req.method,
       headers, ca:cert, rejectUnauthorized:true, agent:false,
       checkServerIdentity(host, peer) {
         const error = checkServerIdentity(host,peer);
@@ -44,7 +45,7 @@ export function createLocalBrowser({origin, cert, fingerprint, port=8444}) {
   function responseHeaders(headers) {
     const out = filtered(headers);
     if (out['set-cookie']) out['set-cookie']=out['set-cookie'].map(value=>
-      /^agent_session=/.test(value) ? value.replace(/;\s*Secure(?=;|$)/ig,'') : value);
+      (previewKey?/^workbench_preview=/:/^agent_session=/).test(value) ? value.replace(/;\s*Secure(?=;|$)/ig,'') : value);
     if (out.location) {
       const location = new URL(out.location,target);
       if (location.origin !== target.origin) throw new Error('External redirect refused');

@@ -1,0 +1,16 @@
+{
+  "nativeBinarySha256": "f9dab32248695e9ebd56b16a1921798fd85112cf5a69c7dfd0cabc1e17be4a11",
+  "chromiumBinarySha256": "1e0652a37f41d22ca22066c40896398cb7acce71f2746028061064369b299ab9",
+  "chromiumRevision": "1244",
+  "chromiumVersion": "154.0.8037.0",
+  "cliPackage": "0.1.20",
+  "image": "sha256:12d9d47ee7b22a2a5548e5b138d0d2a0978bf630693f59b11ce55e923d31a854",
+  "baseImage": "sha256:4c8c616b353679b174f7ef538a74b4143c78a7315b4370576319d3890d7abaff",
+  "officialSources": [
+    "https://github.com/microsoft/playwright-cli/releases/tag/v0.1.20",
+    "https://playwright.dev/docs/getting-started-cli"
+  ],
+  "initialImage": "sha256:030d3b8600c0857b35e816cdde674d97a8c42350bfff215ce222ba3c365058e7",
+  "headlessShellBinarySha256": "c827efcc904e8df79d38b8258ec7e2b7485eac4ae9cf5a5e39543fe08f5d6190",
+  "executable": "/opt/workbench-browsers/chromium_headless_shell-1244/chrome-headless-shell-linux64/chrome-headless-shell"
+}

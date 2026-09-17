@@ -1,0 +1,18 @@
+### Browser `network-shell` opened with pid 1828.
+### Ran Playwright code
+```js
+await page.goto('https://example.com');
+```
+### Page
+- Page URL: https://example.com/
+- Page Title: Example Domain
+### Snapshot
+- [Snapshot](.workbench-artifacts/page-2026-09-17T13-27-32-556Z.yml)
+### Result
+"WB_PUBLIC_HTTPS_PASS"
+### Ran Playwright code
+```js
+await page.evaluate('() => { if (!document.title.includes("Example")) throw Error("Public HTTPS missing"); return "WB_PUBLIC_HTTPS_PASS" }');
+```
+Browser 'network-shell' closed
+

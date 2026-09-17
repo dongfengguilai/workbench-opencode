@@ -1,0 +1,8 @@
+{
+  "status": "PASS",
+  "checks": [
+    "24 real verified TLS upgrade/disconnects do not terminate platform",
+    "actual authenticated Vite WebSocket 101 through separate origin and own guard",
+    "logout closes established preview WS and revokes subsequent HTTP"
+  ]
+}

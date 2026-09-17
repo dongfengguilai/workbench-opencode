@@ -73,6 +73,9 @@ export function createEgressGateway({proxyHost,proxyPort=7890,lookup,maxConcurre
    client.end(`HTTP/1.1 ${status} ${message}\r\nContent-Type: text/plain\r\nConnection: close\r\nContent-Length: ${Buffer.byteLength(body)}\r\n\r\n${body}`,()=>client.destroy());
   };
   client.once('close',()=>{finished=true;clearTimeout(timer);upstream?.destroy();if(admitted)active--;});
+  // HTTP CONNECT hands over a half-open socket. A browser FIN must release
+  // the tunnel immediately instead of retaining a slot until idle timeout.
+  client.once('end',()=>{upstream?.destroy();client.destroy();});
   try{
    ({host}=parseAuthority(req.url));
    if(req.headers['proxy-authorization'] || req.headers['transfer-encoding'] || (req.headers['content-length']&&req.headers['content-length']!=='0')) throw Error('invalid_connect_headers');
@@ -83,6 +86,7 @@ export function createEgressGateway({proxyHost,proxyPort=7890,lookup,maxConcurre
    if(finished||client.destroyed) return;
    const authority=(net.isIP(address)===6?`[${address}]`:address)+':443';
    upstream=net.connect({host:proxyHost,port:proxyPort});
+   upstream.once('end',()=>client.end());
    upstream.on('error',()=>fail(502,'upstream_connection_error'));
    upstream.once('close',()=>{if(!finished&&(!established||!upstream.readableEnded))fail(502,'upstream_closed');});
    upstream.once('connect',()=>upstream.write(`CONNECT ${authority} HTTP/1.1\r\nHost: ${authority}\r\n\r\n`));

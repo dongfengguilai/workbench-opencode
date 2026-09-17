@@ -1,0 +1,48 @@
+{
+  "status": "PASS",
+  "results": [
+    {
+      "action": "status",
+      "status": 200,
+      "body": {
+        "running": true,
+        "pty": "pty_0af83f25c001HpfLCZC23qwSW0",
+        "port": 5173,
+        "directory": "/workspace/project/web",
+        "processState": "running"
+      }
+    },
+    {
+      "action": "stop",
+      "status": 200,
+      "body": {
+        "running": false,
+        "port": 5173,
+        "directory": "/workspace/project/web",
+        "processState": "stopped"
+      }
+    },
+    {
+      "action": "start",
+      "status": 200,
+      "body": {
+        "running": true,
+        "pty": "pty_0af8e25a9001snCdggXt6tKnYL",
+        "port": 5173,
+        "directory": "/workspace/project/web",
+        "processState": "running"
+      }
+    },
+    {
+      "action": "start",
+      "status": 200,
+      "body": {
+        "running": true,
+        "pty": "pty_0af8e25a9001snCdggXt6tKnYL",
+        "port": 5173,
+        "directory": "/workspace/project/web",
+        "processState": "running"
+      }
+    }
+  ]
+}

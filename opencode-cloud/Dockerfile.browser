@@ -1,0 +1,13 @@
+FROM opencode-cloud/native:1.18.31-managed-v0
+USER root
+COPY browser-tools/package.json browser-tools/package-lock.json /opt/workbench-browser/
+WORKDIR /opt/workbench-browser
+RUN npm ci --ignore-scripts
+# Build-only mirror route. Debian's repository signature verification is retained.
+RUN sed -i 's|https://deb.debian.org/debian-security|https://mirrors.tuna.tsinghua.edu.cn/debian-security|g; s|https://deb.debian.org/debian|https://mirrors.tuna.tsinghua.edu.cn/debian|g' /etc/apt/sources.list.d/debian.sources && printf '%s\n' 'Acquire::https::Proxy::mirrors.tuna.tsinghua.edu.cn "DIRECT";' 'Acquire::https::Timeout "30";' 'Acquire::Retries "1";' > /etc/apt/apt.conf.d/80workbench-build && ./node_modules/.bin/playwright install-deps chromium
+RUN PLAYWRIGHT_BROWSERS_PATH=/opt/workbench-browsers ./node_modules/.bin/playwright install chromium && ln -s /opt/workbench-browser/node_modules/.bin/playwright-cli /usr/local/bin/playwright-cli && ln -s /opt/workbench-browser/node_modules/.bin/vite /usr/local/bin/vite
+ENV PLAYWRIGHT_BROWSERS_PATH=/opt/workbench-browsers
+ENV PLAYWRIGHT_MCP_EXECUTABLE_PATH=/opt/workbench-browsers/chromium_headless_shell-1244/chrome-headless-shell-linux64/chrome-headless-shell PLAYWRIGHT_MCP_CONFIG=/trusted/browser.json
+ENV NPM_CONFIG_MAXSOCKETS=2 NPM_CONFIG_FETCH_RETRIES=0 NPM_CONFIG_FETCH_TIMEOUT=60000
+USER node
+WORKDIR /workspace/project

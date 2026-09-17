@@ -1,0 +1,16 @@
+{
+  "status": "PASS_REENTERED_EXISTING_DATA_NOT_FULL_SLICE",
+  "session": "ses_f507ead15ffeUbQJZrsiTj0FYz",
+  "commands": 58,
+  "screenshotHttp": 200,
+  "screenshotBytes": 18841,
+  "preview": {
+    "running": true,
+    "pty": "pty_0afa403a70016K7BYObAnknmsp",
+    "port": 5173,
+    "directory": "/workspace/project/web",
+    "processState": "running"
+  },
+  "visibleIabScreenshot": "delivery-browser-react-reentered.png",
+  "nativeModelContinuation": "BLOCKED_DAILY_BUDGET"
+}

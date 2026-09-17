@@ -1,0 +1,8 @@
+{
+  "status": "API_DOWNLOAD_PASS_CLEAN_REPRODUCTION_PENDING",
+  "http": 200,
+  "bytes": 61719,
+  "sha256": "c7f07dfb397cbb3b31d855aac2f7c3c9aff6b3370339bbe1a250b45279d53a03",
+  "indexUnchanged": true,
+  "browserDownloadEvent": "3000ms event wait timed out; no browser download path confirmed"
+}

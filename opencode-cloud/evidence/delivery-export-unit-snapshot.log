@@ -1,0 +1,19 @@
+✔ untracked credentials and state are excluded even without gitignore rules (167.318913ms)
+✔ deleted tracked secrets are restored to baseline in temporary index (118.941337ms)
+From /tmp/cloud-export-0bHueW
+ * branch            00d206b8612dacf1b2c2897013d53547495e0894 -> FETCH_HEAD
+✔ complete binary patch applies staged, unstaged, new and deleted files without changing index (556.124025ms)
+✔ tracked secret paths are excluded and baseline mismatch fails explicitly (524.78707ms)
+✔ untracked external symlink is rejected without modifying the index (67.406779ms)
+✔ captured links stay within the exported tree even after directory-link resolution (2.123924ms)
+✔ immutable ZIP contains current source, binary additions and metadata; excludes every credential/cache; keeps original index (265.019821ms)
+✔ source export refuses outward links without reading target content (33.741928ms)
+✔ source snapshot includes ignored source and ignores project Git execution/configuration and archive exclusions (469.868447ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2893.989417

@@ -1,0 +1,18 @@
+✔ fixed-version routes and prompt overrides are enforced (23.606274ms)
+✔ real verified platform loads; anonymous project stays protected (101.920531ms)
+✔ wrong Host, external Origin, cross-site, missing write Origin and absolute target refused (78.950599ms)
+✔ CONNECT and forged WebSocket origin refused (17.88208ms)
+✔ wrong fingerprint cannot connect to real platform (41.8449ms)
+✔ untrusted CA cannot connect to real platform (19.209236ms)
+✔ preview tickets are one-use, expire, remain bound to the parent and revoke credentials (1.855715ms)
+✔ relay credentials require exact nonempty values (0.593814ms)
+✔ immutable ZIP contains current source, binary additions and metadata; excludes every credential/cache; keeps original index (661.883326ms)
+✔ source export refuses outward links without reading target content (50.8879ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 10
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2410.430761

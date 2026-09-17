@@ -1,0 +1,6 @@
+{
+  "status": "FAIL",
+  "session": "ses_f508f4cc1ffeyoh346yw9cBbQy",
+  "reason": "CLI default chrome channel did not use installed pinned Chromium; runtime install attempts timed out; maintenance abort before fixed-image continuation",
+  "platform_preview_published": false
+}

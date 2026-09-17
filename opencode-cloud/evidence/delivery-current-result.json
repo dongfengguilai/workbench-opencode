@@ -1,0 +1,54 @@
+{
+  "status": "BLOCKED_EXTERNAL",
+  "session": "ses_f507ead15ffeUbQJZrsiTj0FYz",
+  "nativeError": {
+    "name": "APIError",
+    "data": {
+      "message": "Environment daily request budget exhausted; no automatic retry",
+      "statusCode": 403,
+      "isRetryable": false,
+      "responseHeaders": {
+        "cache-control": "no-store",
+        "connection": "keep-alive",
+        "content-type": "application/json",
+        "date": "Thu, 17 Sep 2026 13:45:46 GMT",
+        "keep-alive": "timeout=5",
+        "transfer-encoding": "chunked"
+      },
+      "responseBody": "{\"error\":{\"message\":\"Environment daily request budget exhausted; no automatic retry\"}}",
+      "metadata": {
+        "url": "http://admin-model-gateway:8318/v1/chat/completions"
+      }
+    }
+  },
+  "actualBudget": {
+    "day": "2026-09-17",
+    "count": 250
+  },
+  "nativeTest29": {
+    "confirmed": true,
+    "partIds": [
+      "prt_0af9c8b7b001QeIKB7bH5N4xWc"
+    ]
+  },
+  "nativeBuild": {
+    "confirmed": true,
+    "partIds": [
+      "prt_0af94d0ab001eGER7gaiJOKlqo",
+      "prt_0af9c671e001UOcZOKVVfjMnzT"
+    ]
+  },
+  "reactBrowserAgentAssertions": "NOT_COMPLETED_AFTER_JSX_PLATFORM_FIX",
+  "visibleIabReact": {
+    "actualSample": {
+      "characters": 9,
+      "words": 4
+    },
+    "whitespaceWords": 0,
+    "clear": "empty input and hidden result",
+    "screenshot": "delivery-browser-react-preview.png"
+  },
+  "browserDownloadEvent": "3000ms timed out, local save path not confirmed",
+  "cleanZipAndLatestPatchReproduction": "NOT_RUN",
+  "nextBlocker": "existing admin UTC daily budget; do not clear or increase, explicitly continue native session after reset"
+}

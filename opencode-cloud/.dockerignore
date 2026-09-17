@@ -4,3 +4,7 @@
 !vendor/build-ca.crt
 !Dockerfile
 !vendor/librust_pty.so
+!Dockerfile.browser
+!browser-tools/
+!browser-tools/package.json
+!browser-tools/package-lock.json

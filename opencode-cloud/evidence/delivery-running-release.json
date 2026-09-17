@@ -1,0 +1,17 @@
+{
+  "status": "PARTIAL_TRIAL_BLOCKED_NOT_ACCEPTED",
+  "runningImage": "sha256:12d9d47ee7b22a2a5548e5b138d0d2a0978bf630693f59b11ce55e923d31a854",
+  "candidateImage": "sha256:264c89bb377c3fdd2d6c88ba857c3abe6ff20864314f31bc8e3717f42cb3fcd3",
+  "candidateNotDeployed": true,
+  "nativeBinarySha256": "f9dab32248695e9ebd56b16a1921798fd85112cf5a69c7dfd0cabc1e17be4a11",
+  "manifestSha256": "de0ec2f6f5efdb85464715e2beba81b74761d464e44953696444bec480faf468",
+  "browserLockSha256": "85ae427bfaf5debe50d995c5a678457175298d7b36e9266b5a29128e50c1f452",
+  "trustedViteConfigSha256": "2233fe7100983884e53fd822a01e2641683aa0bb69c90085327bceab97990222",
+  "loopbackEntries": [
+    "http://127.0.0.1:8444",
+    "http://localhost:8445"
+  ],
+  "rollbackNative": "opencode-cloud/native:1.18.31-managed-v0",
+  "rollbackUi": "PLATFORM_UI=embedded",
+  "dataBackupEvidence": "delivery-blocked-backup.json"
+}

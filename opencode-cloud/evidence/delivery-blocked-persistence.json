@@ -1,0 +1,18 @@
+{
+  "status": "PASS",
+  "checks": {
+    "admin": {
+      "sessions": true,
+      "files": true,
+      "status": true,
+      "index": true
+    },
+    "trial-b": {
+      "sessions": true,
+      "files": true,
+      "status": true,
+      "index": true
+    }
+  },
+  "scope": "actual stopped cold backup and restart, both original native volumes unchanged; preview PTY process requires explicit start"
+}

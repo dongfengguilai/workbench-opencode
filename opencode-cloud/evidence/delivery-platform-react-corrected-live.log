@@ -1,0 +1,13 @@
+Native state busy elapsed 0
+Native state busy elapsed 20
+Native state busy elapsed 40
+Native state busy elapsed 60
+file:///home/vmware/Workspace/projects/experiments/Workbench_space/workbench-opencode/opencode-cloud/test/delivery-observe.mjs:3
+const cookie=await login();try{for(let i=0;i<120;i++){const r=await request('/session/'+sid+'/message',{cookie});if(r.status!==200)throw Error('Native observation failed '+r.status);const m=r.json();writeFileSync('evidence/'+name+'-messages.json',JSON.stringify(m,null,2)+'\n');const last=m.findLastIndex(x=>x.info.role==='user'),tail=m.slice(last+1);const error=tail.find(x=>x.info.error);if(error)throw Error('Native model error: '+JSON.stringify(error.info.error));const s=(await request('/session/status',{cookie})).json();if(tail.some(x=>x.info.finish==='stop')&&!s[sid]){console.log('Real native completion',sid,'tools',m.flatMap(x=>x.parts).filter(p=>p.type==='tool').length);break;}if(i%4===0)console.log('Native state',s[sid]?.type||'settling','elapsed',i*5);if(i===119)throw Error('Native outcome timeout; do not resubmit automatically');await new Promise(r=>setTimeout(r,5000));}}finally{await request('/api/auth/logout',{method:'POST',cookie})}
+                                                                                                                                         ^
+
+Error: Native observation failed 503
+    at file:///home/vmware/Workspace/projects/experiments/Workbench_space/workbench-opencode/opencode-cloud/test/delivery-observe.mjs:3:138
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+
+Node.js v24.19.0
