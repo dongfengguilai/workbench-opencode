@@ -40,7 +40,7 @@
 
 ## 下一步只修哪个阻塞
 
-唯一下一步：用户A10实际试用并签收，确认右侧交互与下载文件实际保存。不代签、不扩大新业务。本轮主实现 `4326bf3558a7ae8a7d24dc9d05e8e082da892b8a` 已推送并核对远端。最终故障恢复修正和发布记录见本轮 publication.json。
+唯一下一步：用户A10实际试用并签收，确认右侧交互与下载文件实际保存。不代签、不扩大新业务。本轮主实现 `4326bf3558a7ae8a7d24dc9d05e8e082da892b8a` 已推送并核对远端。最终实现 `94862fc0875955f87033c05770caa2627077a24c` 已推送并核对远端；发布记录 `opencode-cloud/evidence/sidebar-preview-publication.json`。最终可见交付截图为 sidebar-preview-final-visible.png。
 
 ---
 

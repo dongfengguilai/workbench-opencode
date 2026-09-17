@@ -94,6 +94,10 @@
     "stop-recovery-persistence": {
       "status": "PASS",
       "evidence": "sidebar-preview-stop-recovery-persistence-result.json"
+    },
+    "final-visible": {
+      "status": "PASS",
+      "evidence": "sidebar-preview-final-visible-result.json"
     }
   },
   "fixedUI": "sidebar-preview-stop-recovery-ui-build.json",
@@ -118,5 +122,6 @@
     "Compatible React Fast Refresh retains interaction state; static or structural updates may reload"
   ],
   "onlyNextBlocker": "User A10 trial and explicit acceptance, including actual downloaded file save confirmation",
-  "finalUIChangeScope": "sidebar-preview-stop-recovery-provenance.json: only Stop eligibility changed after real Qwen auto/HMR tests; final GUI recovery verified."
+  "finalUIChangeScope": "sidebar-preview-stop-recovery-provenance.json: only Stop eligibility changed after real Qwen auto/HMR tests; final GUI recovery verified.",
+  "publication": "sidebar-preview-publication.json"
 }

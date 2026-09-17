@@ -1,0 +1,13 @@
+{
+  "status": "IMPLEMENTATION_PUSHED_REMOTE_VERIFIED",
+  "repository": "git@github.com:dongfengguilai/workbench-opencode.git",
+  "branch": "main",
+  "initialImplementation": "4326bf3558a7ae8a7d24dc9d05e8e082da892b8a",
+  "finalImplementation": "94862fc0875955f87033c05770caa2627077a24c",
+  "verifiedRemoteImplementation": "94862fc0875955f87033c05770caa2627077a24c",
+  "at": "2026-09-17T16:51:01.190079+00:00",
+  "nativeWorkersRebuilt": false,
+  "referenceImagesPreservedUntracked": true,
+  "actualNativeBashOutputAssertions": "release 29 tests and first-artifact CLI PASS, exit0 and no ### Error checked on raw scoped tool output",
+  "finalVisible": "sidebar-preview-final-visible-result.json"
+}

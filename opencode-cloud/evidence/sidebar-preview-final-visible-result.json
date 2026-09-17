@@ -1,0 +1,8 @@
+{
+  "status": "PASS",
+  "user": "admin",
+  "session": "ses_f4fc99629ffeTjNcKiT3xvb5Mx",
+  "ownApplicationText": "📁 文件上传下载\n\n拖拽文件到下方区域，或点击选择文件\n\nWorkBench：实时预览验收完成\n\n📂\n\n拖拽文件到此处 或 点击选择\n\n支持多文件同时上传\n\n暂无文件，请添加文件开始",
+  "build": "sidebar-preview-stop-recovery-ui-build.json",
+  "viewportOverrideReset": true
+}
