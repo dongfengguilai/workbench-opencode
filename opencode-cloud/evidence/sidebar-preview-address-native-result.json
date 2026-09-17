@@ -1,0 +1,7 @@
+{
+  "status": "PASS",
+  "session": "ses_f4f7f5e9cffenLwb78evd1kZOQ",
+  "kind": "real_Qwen_native_instruction_response_not_code_task",
+  "nativeReply": "`http://127.0.0.1:5173/` **不能**从你自己的电脑浏览器打开。它是工作容器内部的地址，只供容器内的 Playwright 和健康检查使用。\n\n查看方式：点击 WorkBench 界面顶部的**\"预览\"**按钮即可查看效果。如果需要独立窗口查看，可点击预览栏中的**\"新标签 ↗\"**。实际入口和授权由 WorkBench 提供。",
+  "tools": 0
+}

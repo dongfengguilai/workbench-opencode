@@ -1,0 +1,31 @@
+{
+  "status": "PASS",
+  "checks": [
+    {
+      "user": "admin",
+      "sourceFilesUnchanged": true,
+      "indexUnchanged": true,
+      "gitStatusUnchanged": true,
+      "existingSessionMessagesUnchanged": true,
+      "newReadOnlySessions": [
+        "ses_f4f7f5e9cffenLwb78evd1kZOQ"
+      ]
+    },
+    {
+      "user": "trial-b",
+      "sourceFilesUnchanged": true,
+      "indexUnchanged": true,
+      "gitStatusUnchanged": true,
+      "existingSessionMessagesUnchanged": true,
+      "newReadOnlySessions": []
+    }
+  ],
+  "nativeContainersUnchanged": [
+    "opencode-cloud-v0-native-guard-1",
+    "opencode-cloud-v0-admin-native-guard-1",
+    "opencode-cloud-v0-native-1",
+    "opencode-cloud-v0-admin-native-1"
+  ],
+  "trustedInstructionsSha256": "9fcd55d3f722d1d00043e112d8a03034b234ff8161f08745323c3e9e31663d10",
+  "scope": "only platform restarted after successful UI build; no native or persistent-volume reconstruction"
+}

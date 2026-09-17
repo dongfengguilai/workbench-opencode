@@ -1,0 +1,5 @@
+{
+  "status": "REJECTED_BEFORE_MODEL",
+  "httpStatus": 400,
+  "reason": "maintainer submission omitted required native messageID; no native model request accepted; same new session reused with complete native schema"
+}

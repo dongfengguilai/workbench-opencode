@@ -1,0 +1,21 @@
+{
+  "status": "PASS",
+  "time": "2026-09-17T17:55:20.117Z",
+  "kind": "real_visible_Codex_IAB_and_readonly_DOM",
+  "facts": {
+    "copyFeedback": "已复制：请在当前浏览器打开。",
+    "documentWidth": 319,
+    "hasQuery": false,
+    "readOnly": true,
+    "value": "http://u-8c6976e5b5410415bde908bd4dee15dfb167a9c8.localhost:8445/",
+    "width": 319
+  },
+  "checks": [
+    "visible persistent explanation that port5173 is container-only",
+    "expanded user address input readonly, no ticket or query",
+    "actual native click copy shows Clipboard API success feedback; clipboard contents not separately read",
+    "canonical displayed root reloaded in existing user tab25, actual released application loaded",
+    "319px narrow viewport document width319 no horizontal overflow"
+  ],
+  "screenshot": "sidebar-preview-address-narrow.png"
+}

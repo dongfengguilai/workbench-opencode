@@ -1,0 +1,5 @@
+{
+  "session": "ses_f4f7f5e9cffenLwb78evd1kZOQ",
+  "model": "approved/Qwen3.6-35B-A3B",
+  "prompt": "只回答当前云端网页写好后我该如何打开查看，http://127.0.0.1:5173/ 能从我电脑浏览器打开吗？不要修改文件，不运行命令，不启动或停止服务，不读取配置或凭据。"
+}

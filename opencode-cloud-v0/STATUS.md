@@ -1,5 +1,14 @@
 # 当前交付状态：IN_PROGRESS
 
+2026-09-18 预览地址交付改善已实施并发布：预览栏持续说明“5173 是容器内部地址”，展开“预览地址与访问说明”可查看并复制本人正式根地址；地址只读且不含一次性票据，复制失败提供手动选中提示。明确仅当前电脑、已授权浏览器可用，另一浏览器先登录工作台再点击预览。
+
+- 用户现在能做：点击顶部“预览”，在说明中复制实际用户入口；实际复制按钮反馈成功，正式地址在用户已有标签25重载后真实应用正常。319像素窄栏无横向溢出。原生只读说明已同步到两个现存容器；真实Qwen回答明确指出不能从用户电脑访问容器5173，转而引导点击工作台预览。
+- 仍不能做：直接从宿主机或其他设备访问容器127.0.0.1:5173；未放开端口。此前用户“problem loading page”原网址／浏览器仍未收到，不能把当前正式地址成功作为该未知链接已修复证明。复制按钮的 Clipboard API 成功已观察，剪贴板内容未另行读取。
+- 真实证据：`sidebar-preview-address-browser-result.json`、`address-narrow.png`、`address-native-task.json`、`address-native-messages.json`、`address-native-result.json`、`address-ui-build.json`及build/typecheck日志。第一次维护者漏传原生messageID被400拒绝，保留`address-native-first-failure.json`；更正完整原生schema后同一新会话真实模型通过。
+- 保护验证：`sidebar-preview-address-before.json`、`prepublish.json`、`after.json`、`persistence-result.json`。两个项目文件／索引／Git状态及全部已有会话消息完全不变；仅新增一个只读提示验证会话。Native及guard容器ID／镜像／启动时间不变，只重启平台载入已构建UI。旧UI与说明保护备份在`runtime/backups/preview-address-*/ui-instructions.tar.gz`，不入Git。
+- 下一步唯一阻塞仍是原复制链接报错的具体用户路径核验；其余本轮提示改善通过。A10由用户实际试用签收，本机结果不等于远程生产HTTPS验收。
+
+
 2026-09-18 用户试用回归：已捕获用户 iframe 跳转的实际 `Sec-Fetch-Site: cross-site`、`navigate`、`iframe` 请求，原代理误返回403。已修复并重载本机预览代理：仅固定本人预览地址的 GET 文档导航可经过认证与本人 CSP 检查，普通跨站资源、写入、外部 Origin、错误 Host 仍拒绝。原生容器、源码、索引和会话不重建或初始化。
 
 - 现在可做：已在可见内置浏览器重新登录、进入同一原生会话、点击预览，真实应用加载；正式本人预览根地址新标签直接打开、用户已有标签22重新加载也成功。新实证 `sidebar-preview-access-fixed.png`、`direct.png`、`browser-result.json`。
