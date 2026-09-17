@@ -1,0 +1,2 @@
+# Preserve raw execution logs and Git patch context bytes without normalization.
+opencode-cloud/evidence/** -whitespace
