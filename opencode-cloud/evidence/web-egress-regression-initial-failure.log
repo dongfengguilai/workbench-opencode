@@ -1,0 +1,148 @@
+node:internal/errors:983
+  const err = new Error(message);
+              ^
+
+Error: Command failed: /usr/bin/node --experimental-strip-types --test opencode-cloud/test/patch-export.test.mjs opencode-cloud/test/demo-text.test.mjs
+    at genericNodeError (node:internal/errors:983:15)
+    at wrappedFn (node:internal/errors:537:14)
+    at checkExecSyncError (node:child_process:916:11)
+    at execFileSync (node:child_process:952:15)
+    at file:///home/vmware/Workspace/projects/experiments/Workbench_space/workbench-opencode/opencode-cloud/test/web-egress-regression.mjs:39:14
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5) {
+  status: 1,
+  signal: null,
+  output: [
+    null,
+    'TAP version 13\n' +
+      '# Subtest: folds mixed whitespace and trims the result\n' +
+      'ok 1 - folds mixed whitespace and trims the result\n' +
+      '  ---\n' +
+      '  duration_ms: 1.48809\n' +
+      "  type: 'test'\n" +
+      '  ...\n' +
+      '# Subtest: returns an empty string for empty input\n' +
+      'ok 2 - returns an empty string for empty input\n' +
+      '  ---\n' +
+      '  duration_ms: 0.139614\n' +
+      "  type: 'test'\n" +
+      '  ...\n' +
+      '# Subtest: preserves Chinese text while normalizing whitespace\n' +
+      'ok 3 - preserves Chinese text while normalizing whitespace\n' +
+      '  ---\n' +
+      '  duration_ms: 0.130695\n' +
+      "  type: 'test'\n" +
+      '  ...\n' +
+      '# Subtest: rejects non-string input\n' +
+      'ok 4 - rejects non-string input\n' +
+      '  ---\n' +
+      '  duration_ms: 0.410924\n' +
+      "  type: 'test'\n" +
+      '  ...\n' +
+      '# node:internal/util:226\n' +
+      '#     throw new ERR_NO_TYPESCRIPT();\n' +
+      '#           ^\n' +
+      '# Error [ERR_NO_TYPESCRIPT]: Node.js is not compiled with TypeScript support\n' +
+      '#     at assertTypeScript (node:internal/util:226:11)\n' +
+      '#     at node:internal/modules/typescript:41:3\n' +
+      '#     at node:internal/util:785:15\n' +
+      '#     at parseTypeScript (node:internal/modules/typescript:53:17)\n' +
+      '#     at processTypeScriptCode (node:internal/modules/typescript:133:42)\n' +
+      '#     at stripTypeScriptModuleTypes (node:internal/modules/typescript:163:10)\n' +
+      '#     at ModuleLoader.<anonymous> (node:internal/modules/esm/translators:605:16)\n' +
+      '#     at \\#translate (node:internal/modules/esm/loader:546:20)\n' +
+      '#     at afterLoad (node:internal/modules/esm/loader:596:29)\n' +
+      '#     at ModuleLoader.loadAndTranslate (node:internal/modules/esm/loader:601:12) {\n' +
+      "#   code: 'ERR_NO_TYPESCRIPT'\n" +
+      '# }\n' +
+      '# Node.js v22.22.1\n' +
+      '# Subtest: opencode-cloud/test/patch-export.test.mjs\n' +
+      'not ok 2 - opencode-cloud/test/patch-export.test.mjs\n' +
+      '  ---\n' +
+      '  duration_ms: 747.331637\n' +
+      "  type: 'test'\n" +
+      "  location: '/home/vmware/Workspace/projects/experiments/Workbench_space/workbench-opencode/opencode-cloud/runtime/web-egress-applied-UrBpPW/opencode-cloud/test/patch-export.test.mjs:1:1'\n" +
+      "  failureType: 'testCodeFailure'\n" +
+      '  exitCode: 1\n' +
+      '  signal: ~\n' +
+      "  error: 'test failed'\n" +
+      "  code: 'ERR_TEST_FAILURE'\n" +
+      '  ...\n' +
+      '1..5\n' +
+      '# tests 5\n' +
+      '# suites 0\n' +
+      '# pass 4\n' +
+      '# fail 1\n' +
+      '# cancelled 0\n' +
+      '# skipped 0\n' +
+      '# todo 0\n' +
+      '# duration_ms 1324.275427\n',
+    ''
+  ],
+  pid: 403927,
+  stdout: 'TAP version 13\n' +
+    '# Subtest: folds mixed whitespace and trims the result\n' +
+    'ok 1 - folds mixed whitespace and trims the result\n' +
+    '  ---\n' +
+    '  duration_ms: 1.48809\n' +
+    "  type: 'test'\n" +
+    '  ...\n' +
+    '# Subtest: returns an empty string for empty input\n' +
+    'ok 2 - returns an empty string for empty input\n' +
+    '  ---\n' +
+    '  duration_ms: 0.139614\n' +
+    "  type: 'test'\n" +
+    '  ...\n' +
+    '# Subtest: preserves Chinese text while normalizing whitespace\n' +
+    'ok 3 - preserves Chinese text while normalizing whitespace\n' +
+    '  ---\n' +
+    '  duration_ms: 0.130695\n' +
+    "  type: 'test'\n" +
+    '  ...\n' +
+    '# Subtest: rejects non-string input\n' +
+    'ok 4 - rejects non-string input\n' +
+    '  ---\n' +
+    '  duration_ms: 0.410924\n' +
+    "  type: 'test'\n" +
+    '  ...\n' +
+    '# node:internal/util:226\n' +
+    '#     throw new ERR_NO_TYPESCRIPT();\n' +
+    '#           ^\n' +
+    '# Error [ERR_NO_TYPESCRIPT]: Node.js is not compiled with TypeScript support\n' +
+    '#     at assertTypeScript (node:internal/util:226:11)\n' +
+    '#     at node:internal/modules/typescript:41:3\n' +
+    '#     at node:internal/util:785:15\n' +
+    '#     at parseTypeScript (node:internal/modules/typescript:53:17)\n' +
+    '#     at processTypeScriptCode (node:internal/modules/typescript:133:42)\n' +
+    '#     at stripTypeScriptModuleTypes (node:internal/modules/typescript:163:10)\n' +
+    '#     at ModuleLoader.<anonymous> (node:internal/modules/esm/translators:605:16)\n' +
+    '#     at \\#translate (node:internal/modules/esm/loader:546:20)\n' +
+    '#     at afterLoad (node:internal/modules/esm/loader:596:29)\n' +
+    '#     at ModuleLoader.loadAndTranslate (node:internal/modules/esm/loader:601:12) {\n' +
+    "#   code: 'ERR_NO_TYPESCRIPT'\n" +
+    '# }\n' +
+    '# Node.js v22.22.1\n' +
+    '# Subtest: opencode-cloud/test/patch-export.test.mjs\n' +
+    'not ok 2 - opencode-cloud/test/patch-export.test.mjs\n' +
+    '  ---\n' +
+    '  duration_ms: 747.331637\n' +
+    "  type: 'test'\n" +
+    "  location: '/home/vmware/Workspace/projects/experiments/Workbench_space/workbench-opencode/opencode-cloud/runtime/web-egress-applied-UrBpPW/opencode-cloud/test/patch-export.test.mjs:1:1'\n" +
+    "  failureType: 'testCodeFailure'\n" +
+    '  exitCode: 1\n' +
+    '  signal: ~\n' +
+    "  error: 'test failed'\n" +
+    "  code: 'ERR_TEST_FAILURE'\n" +
+    '  ...\n' +
+    '1..5\n' +
+    '# tests 5\n' +
+    '# suites 0\n' +
+    '# pass 4\n' +
+    '# fail 1\n' +
+    '# cancelled 0\n' +
+    '# skipped 0\n' +
+    '# todo 0\n' +
+    '# duration_ms 1324.275427\n',
+  stderr: ''
+}
+
+Node.js v22.22.1

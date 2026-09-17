@@ -1,0 +1,7 @@
+{
+  "status": "PASS",
+  "httpStatus": 200,
+  "contentType": "text/event-stream",
+  "firstEvent": "data: {\"payload\":{\"id\":\"evt_0ade3c512001iijOvmm4CxFCmM\",\"type\":\"server.connected\",\"properties\":{}}}",
+  "nativeResponseStillStreaming": true
+}

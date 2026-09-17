@@ -1,0 +1,2 @@
+# Exact downloaded IANA bytes are integrity-pinned; retain their publisher CRLF.
+src/egress-policy/iana-ipv*.csv -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol

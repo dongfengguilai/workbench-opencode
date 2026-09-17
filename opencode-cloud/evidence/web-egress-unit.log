@@ -1,0 +1,58 @@
+TAP version 13
+# Subtest: private, reserved, multicast and IPv6 transition addresses fail closed
+ok 1 - private, reserved, multicast and IPv6 transition addresses fail closed
+  ---
+  duration_ms: 6.667512
+  type: 'test'
+  ...
+# Subtest: authority accepts only canonical host/IP and port 443
+ok 2 - authority accepts only canonical host/IP and port 443
+  ---
+  duration_ms: 2.485707
+  type: 'test'
+  ...
+# Subtest: all DNS answers checked; fresh resolution prevents cached rebinding; selects IPv4
+ok 3 - all DNS answers checked; fresh resolution prevents cached rebinding; selects IPv4
+  ---
+  duration_ms: 0.70692
+  type: 'test'
+  ...
+# Subtest: connects pinned literal IP, streams tunnel bytes, and cleans client disconnect
+ok 4 - connects pinned literal IP, streams tunnel bytes, and cleans client disconnect
+  ---
+  duration_ms: 31.80852
+  type: 'test'
+  ...
+# Subtest: denies private DNS, HTTP, non443, proxy authentication and excessive concurrency
+ok 5 - denies private DNS, HTTP, non443, proxy authentication and excessive concurrency
+  ---
+  duration_ms: 33.010057
+  type: 'test'
+  ...
+# Subtest: rejected clients release slots without client cooperation; IPv6 pinned in brackets
+ok 6 - rejected clients release slots without client cooperation; IPv6 pinned in brackets
+  ---
+  duration_ms: 10.759523
+  type: 'test'
+  ...
+# Subtest: large streamed tunnel survives a paused reader without losing bytes
+ok 7 - large streamed tunnel survives a paused reader without losing bytes
+  ---
+  duration_ms: 83.835689
+  type: 'test'
+  ...
+# Subtest: upstream failure is returned once; pending connection and slow headers bounded
+ok 8 - upstream failure is returned once; pending connection and slow headers bounded
+  ---
+  duration_ms: 101.135629
+  type: 'test'
+  ...
+1..8
+# tests 8
+# suites 0
+# pass 8
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 838.079971

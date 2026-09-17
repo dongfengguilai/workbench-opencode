@@ -1,0 +1,8 @@
+{
+  "status": "PASS",
+  "kind": "real_browser_download_event",
+  "eventReturned": {},
+  "artifactPathAvailable": false,
+  "apiBytes": "web-egress-platform.patch",
+  "independentApplication": "web-egress-applied-tests.log"
+}

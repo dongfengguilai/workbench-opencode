@@ -1,0 +1,83 @@
+- navigation:
+  - generic: Administrator · workbench-opencode · 云端环境就绪
+  - link "授权项目":
+    - /url: /L3dvcmtzcGFjZS9wcm9qZWN0/session
+  - link "变更清单":
+    - /url: /__platform/changes
+  - link "下载变更":
+    - /url: /__platform/download
+  - button "退出登录"
+- banner:
+  - button "Home":
+  - link "New session":
+    - /url: /new-session?draftId=fc7862b9-29bd-4bba-9288-1d96eae60843
+    - generic: New session
+  - button "Close tab":
+  - link "p Greeting Close tab":
+    - link "p Greeting":
+      - /url: /server/aHR0cDovLzEyNy4wLjAuMTo4NDQ0/session/ses_f5236b382ffeAgB48sLtafH7Qy
+      - generic: p
+      - generic: Greeting
+    - button "Close tab":
+  - button "New session":
+- main:
+  - tablist:
+    - tab "Session" [selected]
+    - tab "Changes"
+  - button "Jump to latest":
+  - region "scrollable content":
+    - heading "Greeting" [level=1]
+    - button "View context usage":
+    - button "More options":
+    - paragraph: 你想查询哪个城市的天气？
+    - button "Copy response":
+    - generic: Build · Luna · 3s
+    - generic: 上海的
+    - generic: Build · Luna
+    - generic: ·
+    - generic: 1:14 PM
+    - button "Revert message":
+    - button "Copy message":
+    - button "Webfetch Failed":
+      - generic: Webfetch
+      - generic: Failed
+    - paragraph: 暂时无法获取上海的实时天气数据。你可以稍后重试，或使用天气 App 查看今天上海的天气。
+    - button "Copy response":
+    - generic: Build · Luna · 8s
+    - generic: 请重新使用原生 webfetch 获取 https://wttr.in/Shanghai?format=3 ，按真实返回报告上海当前天气。不要猜测、不要修改任何文件；若失败请保留原始错误。然后用原生 webfetch 读取 https://bun.sh/docs/runtime/networking/fetch ，只确认是否成功取得公开 HTTPS 文档及其标题。
+    - generic: Build · Luna
+    - generic: ·
+    - generic: 1:35 PM
+    - button "Revert message":
+    - button "Copy message":
+    - button "Webfetch https://wttr.in/Shanghai?format=3":
+      - generic "Webfetch":
+        - generic: Webfetch
+        - generic: Webfetch
+      - link "https://wttr.in/Shanghai?format=3":
+        - /url: https://wttr.in/Shanghai?format=3
+    - button "Webfetch https://bun.sh/docs/runtime/networking/fetch":
+      - generic "Webfetch":
+        - generic: Webfetch
+        - generic: Webfetch
+      - link "https://bun.sh/docs/runtime/networking/fetch":
+        - /url: https://bun.sh/docs/runtime/networking/fetch
+    - paragraph:
+      - text: 上海当前天气：多云，
+      - code: 82°F
+      - text: （约
+      - code: 27.8°C
+      - text: ）。
+    - paragraph:
+      - text: 已成功通过公开 HTTPS 获取 Bun 文档，标题为：
+      - code: Fetch
+      - text: 。未修改任何文件。
+    - button "Copy response":
+    - generic: Build · Luna · 13s
+  - textbox "Prompt"
+  - generic: Ask anything, / for commands, @ for context...
+  - button "Add images and files":
+  - button "Luna":
+    - generic: Luna
+  - button "Send" [disabled]:
+- region "Notifications alt+T"

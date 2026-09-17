@@ -1,0 +1,19 @@
+{
+  "retrieved": "2026-09-17",
+  "policy": "Conservatively reject every listed special-purpose block, including globally reachable exceptions.",
+  "sources": [
+    {
+      "family": 4,
+      "url": "https://www.iana.org/assignments/iana-ipv4-special-registry/iana-ipv4-special-registry-1.csv",
+      "sha256": "e3e39e76d00b1677335db8e9a805c7b9480ea2f4dc9e33f0b93cd3a905128d73",
+      "rows": 25
+    },
+    {
+      "family": 6,
+      "url": "https://www.iana.org/assignments/iana-ipv6-special-registry/iana-ipv6-special-registry-1.csv",
+      "sha256": "775feea0621dec8735a44fbf30f762e721e8f0a1b3ab7eb341961a88cfce2139",
+      "rows": 25
+    }
+  ],
+  "derivedSha256": "f4415713d741186d7a11c21c54b0bed5a61747b5b92a0ac97d6bf67d98fa082d"
+}

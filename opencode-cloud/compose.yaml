@@ -31,12 +31,39 @@ services:
       interval: 5s
       timeout: 3s
       retries: 10
+  web-egress:
+    image: node:22.19.0-bookworm-slim@sha256:4a4884e8a44826194dff92ba316264f392056cbe243dcc9fd3551e71cea02b90
+    user: '1000:1000'
+    command: [node, /app/web-egress.mjs]
+    environment: {UPSTREAM_PROXY_HOST: '192.168.56.1', UPSTREAM_PROXY_PORT: '7890'}
+    volumes: [./src/web-egress.mjs:/app/web-egress.mjs:ro, ./src/egress-policy:/app/egress-policy:ro]
+    networks: [native, model-egress]
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    mem_limit: 128m
+    cpus: 0.5
+    pids_limit: 32
+    healthcheck:
+      test: [CMD, node, -e, "fetch('http://127.0.0.1:8320/health').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
   native:
     build: .
     image: opencode-cloud/native:1.18.31-managed-v0
     command: [opencode, serve, --hostname, 127.0.0.1, --port, '4030']
     init: true
     env_file: ./runtime/native.env
+    environment:
+      HTTPS_PROXY: http://web-egress:8320
+      https_proxy: http://web-egress:8320
+      HTTP_PROXY: http://web-egress:8320
+      http_proxy: http://web-egress:8320
+      ALL_PROXY: ''
+      all_proxy: ''
+      NO_PROXY: localhost,127.0.0.1,::1,model-gateway
+      no_proxy: localhost,127.0.0.1,::1,model-gateway
     volumes:
       - ./runtime/project:/workspace/project
       - ./runtime/state:/state
@@ -44,6 +71,7 @@ services:
     networks: [native]
     depends_on:
       model-gateway: {condition: service_healthy}
+      web-egress: {condition: service_healthy}
     read_only: true
     tmpfs: ['/tmp:rw,nosuid,nodev,size=256m']
     cap_drop: [ALL]
@@ -87,9 +115,21 @@ services:
     env_file: !override ./runtime/admin-gateway.env
     volumes: !override [./src/model-gateway.ts:/app/model-gateway.ts:ro, ./runtime/admin-gateway-state:/gateway-state]
     networks: !override [native-admin, model-egress]
+  admin-web-egress:
+    extends: {service: web-egress}
+    networks: !override [native-admin, model-egress]
   admin-native:
     extends: {service: native}
     env_file: !override ./runtime/admin-native.env
+    environment: !override
+      HTTPS_PROXY: http://admin-web-egress:8320
+      https_proxy: http://admin-web-egress:8320
+      HTTP_PROXY: http://admin-web-egress:8320
+      http_proxy: http://admin-web-egress:8320
+      ALL_PROXY: ''
+      all_proxy: ''
+      NO_PROXY: localhost,127.0.0.1,::1,admin-model-gateway
+      no_proxy: localhost,127.0.0.1,::1,admin-model-gateway
     volumes: !override
       - ./runtime/admin-project:/workspace/project
       - ./runtime/admin-state:/state
@@ -97,6 +137,7 @@ services:
     networks: !override [native-admin]
     depends_on: !override
       admin-model-gateway: {condition: service_healthy}
+      admin-web-egress: {condition: service_healthy}
   admin-native-firewall:
     extends: {service: native-firewall}
     network_mode: service:admin-native

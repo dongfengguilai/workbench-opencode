@@ -1,0 +1,15 @@
+NAME                                        IMAGE                                                                                                COMMAND                  SERVICE                 CREATED         STATUS                   PORTS
+opencode-cloud-v0-admin-model-gateway-1     node:22.19.0-bookworm-slim@sha256:4a4884e8a44826194dff92ba316264f392056cbe243dcc9fd3551e71cea02b90   "docker-entrypoint.s…"   admin-model-gateway     6 minutes ago   Up 6 minutes (healthy)   
+opencode-cloud-v0-admin-native-1            opencode-cloud/native:1.18.31-managed-v0                                                             "docker-entrypoint.s…"   admin-native            6 minutes ago   Up 6 minutes             
+opencode-cloud-v0-admin-native-guard-1      opencode-cloud/native:1.18.31-managed-v0                                                             "docker-entrypoint.s…"   admin-native-guard      6 minutes ago   Up 6 minutes (healthy)   
+opencode-cloud-v0-admin-web-egress-1        node:22.19.0-bookworm-slim@sha256:4a4884e8a44826194dff92ba316264f392056cbe243dcc9fd3551e71cea02b90   "docker-entrypoint.s…"   admin-web-egress        6 minutes ago   Up 3 minutes (healthy)   
+opencode-cloud-v0-model-gateway-1           node:22.19.0-bookworm-slim@sha256:4a4884e8a44826194dff92ba316264f392056cbe243dcc9fd3551e71cea02b90   "docker-entrypoint.s…"   model-gateway           6 minutes ago   Up 6 minutes (healthy)   
+opencode-cloud-v0-native-1                  opencode-cloud/native:1.18.31-managed-v0                                                             "docker-entrypoint.s…"   native                  6 minutes ago   Up 6 minutes             
+opencode-cloud-v0-native-guard-1            opencode-cloud/native:1.18.31-managed-v0                                                             "docker-entrypoint.s…"   native-guard            6 minutes ago   Up 6 minutes (healthy)   
+opencode-cloud-v0-platform-1                opencode-cloud/native:1.18.31-managed-v0                                                             "docker-entrypoint.s…"   platform                6 minutes ago   Up 5 minutes             0.0.0.0:8443->8443/tcp, [::]:8443->8443/tcp
+opencode-cloud-v0-upstream-proxy-bridge-1   node:22.19.0-bookworm-slim@sha256:4a4884e8a44826194dff92ba316264f392056cbe243dcc9fd3551e71cea02b90   "docker-entrypoint.s…"   upstream-proxy-bridge   6 minutes ago   Up 6 minutes             127.0.0.1:7890->7890/tcp
+opencode-cloud-v0-web-egress-1              node:22.19.0-bookworm-slim@sha256:4a4884e8a44826194dff92ba316264f392056cbe243dcc9fd3551e71cea02b90   "docker-entrypoint.s…"   web-egress              6 minutes ago   Up 3 minutes (healthy)   
+web-egress 200 {"ready":true,"active":1,"maxConcurrent":4,"policySha256":"f4415713d741186d7a11c21c54b0bed5a61747b5b92a0ac97d6bf67d98fa082d"}
+admin-web-egress 200 {"ready":true,"active":0,"maxConcurrent":4,"policySha256":"f4415713d741186d7a11c21c54b0bed5a61747b5b92a0ac97d6bf67d98fa082d"}
+200 {"healthy":true,"version":"1.18.31"}
+200 {"healthy":true,"version":"1.18.31"}

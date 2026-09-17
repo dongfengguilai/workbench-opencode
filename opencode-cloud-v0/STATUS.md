@@ -6,7 +6,7 @@
 - 入口：https://192.168.142.130:8443（真实 HTTPS、自签试用证书）。
 - Codex 内置浏览器本机验证入口：http://127.0.0.1:8444，已实际打开、登录并完成原生模型示例；只监听当前宿主机回环，免浏览器证书配置。
 - 按用户明确决定使用真实本地管理员认证；账号 admin，密码仅在未入库保护文件 opencode-cloud/runtime/ADMIN_LOGIN.txt。第二个真实身份 trial-b 使用独立环境。
-- 已提交并推送指定仓库：git@github.com:dongfengguilai/workbench-opencode.git；实现 commit 03d034c，远端核对与推送证据见 opencode-cloud/evidence/publication.json、git-push.log。
+- 指定仓库：git@github.com:dongfengguilai/workbench-opencode.git；此前发布证据见 opencode-cloud/evidence/publication.json、git-push.log。本次公开 HTTPS 修复结果见 web-egress-result.json，提交与推送结果见 web-egress-publication.json。
 
 ## 实际版本与基线
 
@@ -25,11 +25,11 @@
 | A03 浏览器完整交互 | PASS | browser-flow-result.json、platform-native-messages.json、a03-final-result.json、a03-native-terminal-ui-result.json、final-ui-result.json | 另一干净副本同任务；真实提问 Yes、需求补充、执行中 Bash 停止、恢复编码、独立 5 PASS；原生 UI 终端创建/票据/WS/Bash 实跑通过 |
 | A04 重进与持久化 | PASS | a04-result.json、browser-active-refresh.json、a08-faults-result.json、final-ui-result.json | 空闲与执行中刷新/关闭重进、注销重登、正常重启，同会话/文件/消息；没有自动重发 |
 | A05 成果可复用 | PASS | a05-download-result.json、a05-platform.patch、a05-manifest.json、a05-applied-independent-tests.log、a05-post-quota-final.log | 实际下载，在独立 clean baseline 应用；包含新增/删除/暂存/未暂存/二进制；索引不变，独立 5 PASS，无密钥/状态数据 |
-| A06 双用户隔离 | PASS | a06-result.json、a06-container-boundary.json、a06-network-denials.jsonl、a06-browser-B.png、final-runtime-disk-ipv6-boundary.log | B 伪造 Session/路由/目录/Header/下载标识不越权；不能访问 A、宿主管理、主模型端点、元数据及公网 IP；同浏览器切换无 A 缓存 |
+| A06 双用户隔离 | PASS | a06-result.json、a06-container-boundary.json、a06-network-denials.jsonl、a06-browser-B.png、final-runtime-disk-ipv6-boundary.log；新增 web-egress-live-result.json、web-egress-regression-result.json | B 不越权；2026-09-17 用户批准公开 HTTPS 443 经本人受控网关访问；直接公网 IPv4/IPv6、外部代理、A/B/平台实际私网 IP、宿主管理、主模型端点、元数据、HTTP 与非443目标仍拒绝；历史全公网拒绝证据保留 |
 | A07 平台配置约束 | PASS | a07-result.json、a07-effective-config.json、a07-native-regression.json、a07-management-ui-result.json、bun-pty-provenance.json | 项目 config/MCP/plugin/agent 注入在重载后不生效；管理 API/body/loopback 绕过拒绝；管理快捷入口隐藏，正常原生测试回归通过 |
 | A08 故障与不盲重试 | PASS | a08-admission-result.json、a08-faults-result.json、a08-outcome-warning-result.json、a08-interrupted-native.json | 真实不可用模型与未就绪环境明确报错；丢弃真实回执按原生 ID 查证；重复/并发拒绝；硬中断未当成功，待确认提示可见、不重放 |
 | A09 部署/备份/恢复 | PASS | initialize-real-fresh.log、initialize-refusal.log、start-missing-config.log、native-pty-start.log、a09-cold-backup-first.log、a09-restore-result.json、restore-existing-refusal.log、quota-migration.log、quota-enforcement-after.log | 真实部署与停启、冷备恢复到独立 Compose 环境，同会话与代码摘要，真实续聊测试 3 PASS；原目录保留、磁盘边界 ENOSPC 验证 |
-| A10 实际用户签收 | NOT_RUN | — | 尚无人记录完整真实试用并明确签收，不能标为 DELIVERED |
+| A10 实际用户签收 | NOT_RUN | 用户已开始试用并反馈会话入口及 Webfetch 问题；web-egress-result.json 为维护者修复验证 | 用户接受先点击授权项目；天气阻塞已实际修复。尚无完整闭环的明确签收，不能标为 DELIVERED |
 
 ## 用户现在能做什么
 
@@ -37,11 +37,17 @@
 
 2026-09-17 新增本机入口并在可见 Codex 内置浏览器完整演示：真实 Luna 为 normalizeWhitespace 新增实现与标准库测试，原生工具与页面终端均 4 PASS；查看 Last turn changes 的两个文件、实际清单并触发浏览器补丁下载，注销/重登后重新打开同一会话，原生消息 ID 和两个文件 SHA256 完全一致。导出补丁实际应用到新的干净基线副本，独立 4 PASS。既有 Git 状态保留，本次仅增加两个目标文件。未重启原生环境、未重发代码任务。证据总表 opencode-cloud/evidence/local-browser-demo-result.json，含终端/Diff/重进截图、原生完整消息、实际补丁与独立测试日志。浏览器下载事件成功，支持 API 不提供下载文件路径；保存的补丁字节另由真实平台 API 核对，不冒称浏览器文件路径。
 
+2026-09-17 按用户明确批准增加每环境受控公开 HTTPS 出口，解决原生天气 Webfetch Transport error。保持原 v1.18.31 二进制 SHA256 f9dab32248695e9ebd56b16a1921798fd85112cf5a69c7dfd0cabc1e17be4a11，与 source-provenance 完全一致；没有改工具、循环、会话或 TLS 校验。真实 Luna 在用户原会话 ses_f5236b382ffeAgB48sLtafH7Qy 使用原生 Webfetch 取得 wttr.in 上海天气及 Bun Fetch 文档，两个工具均 completed；历史 Failed 保留。浏览器注销重登后同一结果仍在。可通过 USER_GUIDE 中原会话地址查看后面的成功结果，直接提出新的天气或公开文档查询。
+
+本次冷备后协调重建 native/guard/UID 防火墙，重启前后24个已有会话的完整消息摘要、两个项目67个文件、Git状态和索引完全一致。天气验证不改项目文件；原生页面终端现有测试7 PASS，真实补丁下载并应用到新的干净基线副本后7 PASS。网关安全单元测试8 PASS（混合DNS/重绑定等仅局部测试）；两个真实容器访问两个公开 HTTPS 站点200且 TLS验证正常，受保护地址及直接/绕代理IPv4/IPv6拒绝。真实 SSE 200且首事件在流关闭前到达；真实不可用TCP上游返回502，不用响应Mock替代外站。总表 web-egress-result.json，细项 web-egress-live-result.json、web-egress-native-messages.json、web-egress-restart-persistence.json、web-egress-regression-result.json、web-egress-relogin-result.json、web-egress-real-upstream-fault.json，浏览器截图 web-egress-browser-weather.png、web-egress-browser-terminal.png、web-egress-browser-reentered.png。
+
 使用说明：opencode-cloud/docs/USER_GUIDE.md；构建/启动/状态/原生 smoke/浏览器/冷备/恢复命令：opencode-cloud/docs/OPERATIONS.md。补丁要在 manifest 记录的固定基线上应用。A05 的维护者边界测试数据（README 暂存/未暂存、删除旧 smoke 说明、新文本/二进制、排除标记）仅覆盖导出行为，不冒充 Agent 完成的产品核心修改。
 
 ## 用户还不能做什么与残余限制
 
-仅供受控试用：真实本地管理员分支是用户选择，未宣称 NetID 或受信任生产 HTTPS 已通过。证书为自签 30 天，生产证书仍需真实提供。一类 Node 标准库/Git 项目、一个模型、预分配一项目一环境；无批准外部依赖源，默认禁止外连。无本地连接器、用户环境配置、插件平台、任意预览、仓库写凭据、push/自动 PR 或部署。
+仅供受控试用：真实本地管理员分支是用户选择，未宣称 NetID 或受信任生产 HTTPS 已通过。证书为自签 30 天，生产证书仍需真实提供。一类 Node 标准库/Git 项目、一个模型、预分配一项目一环境；已批准公开 HTTPS 443 经受控网关外连，额外依赖及语言栈未单独验收。普通 HTTP、其他公网端口、私网和 IANA 特殊地址（含少量全球可达例外）不开放；每次检查全部 DNS 结果并以字面IP连接现有外部代理，外部代理/DNS/站点不可用仍会真实失败。IPv6仅允许非特殊全球单播，可达性取决于外部代理，不以直接IPv6拒绝测试冒称全部IPv6站点可用。CONNECT是环境级HTTPS通道，不限制加密隧道内的方法。无本地连接器、用户环境配置、插件平台、任意预览、仓库写凭据、push/自动 PR 或部署。
+
+首页未打开项目时 New session 仍依赖原生项目列表，需先点击“授权项目”；用户明确选择本次只修网络阻塞，没有修改首页行为。
 
 本机 HTTP 验证入口仅当前运行 Codex 的宿主机可访问，不用于远程生产登录。代理后端继续校验 HTTPS 链/地址/有效期及准确叶证书指纹；错误 CA/指纹拒绝，5 项真实平台连接测试 PASS。仅本机响应的登录 Cookie 移除 Secure，HttpOnly/SameSite/有效期/注销保持，原 HTTPS Cookie Secure 实测保持。Codex 全局证书校验与证书数据库未改动。外部设备仍需私网可达并使用 HTTPS；本机入口不代表生产 HTTPS 验收通过。重新进入本次示例可使用 USER_GUIDE 中保存的会话地址。
 
@@ -53,14 +59,16 @@
 
 完整保留早期模型代理缺失、构建网络失败、浏览器等待条件误判、只读导出临时对象写失败、双击重复、异步回执先于 busy、管理快捷键和 PTY noexec 等失败记录。修正限于当前验收：受限模型代理、临时 Git 对象目录、入口 admission 与原生状态查证、托管 UI、相同固定原生 FFI 库在只读镜像加载；没有用 Mock 替代模型或正式身份。
 
+本次保留初始缺网关的失败断言、BlockList跨地址族误拒绝公网的单元测试失败、宿主Node未编译TypeScript导致独立补丁回归失败。分别修正为独立地址族规则和使用同部署镜像ID的无网络只读新副本运行测试；没有删测试或改既有项目。见 web-egress-unit-before.log、web-egress-unit-family-failure.log、web-egress-regression-initial-failure.log。
+
 ## 下一步只修哪个阻塞
 
-只做 A10：用户通过已启动的 http://127.0.0.1:8444 入口实际试用自己的需求、检查/下载变更并重新进入，然后明确反馈能否用于试用。内置浏览器证书阻塞已由用户批准的回环 HTTP 验证入口解除；真实演示 PASS，但不替用户签收。早期 ERR_CERT_AUTHORITY_INVALID 与导航拦截失败仍保留为历史证据，见 user-demo-browser-blocker.json、local-browser-navigation-before-fix.txt；当前成功证据见 local-browser-demo-result.json。若用户发现问题，下一步仅修该反馈阻塞，不开启其他业务线。
+天气 Webfetch 阻塞已真实修复，当前没有未解决的本次网络修复阻塞。下一步只做 A10：用户通过已启动的 http://127.0.0.1:8444 实际试用自己的代码需求、检查/下载变更并重新进入，然后明确反馈能否用于试用。内置浏览器证书阻塞由已批准的回环HTTP入口解除；维护者真实演示及本次修复均PASS，但不替用户签收。早期失败保留为历史证据。若用户发现新问题，下一步仅修该反馈阻塞，不开启其他业务线。
 
 ## 最终签收
 
 - 实际入口：已运行，见上。
 - A01–A09：PASS，自动化与维护者实际操作证据完整。
-- 实际用户试用/日期：尚未记录。
+- 实际用户试用/日期：2026-09-17 已收到试用反馈；完整代码闭环与明确签收尚未记录。
 - A10：NOT_RUN。
 - 是否允许称为 DELIVERED：否。

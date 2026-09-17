@@ -1,0 +1,21 @@
+{
+  "status": "PASS",
+  "checks": [
+    {
+      "environment": "admin-",
+      "status": "PASS",
+      "sessions": 18,
+      "files": 33,
+      "gitAndIndexUnchanged": true,
+      "nativeCheck": "PASS 18 sessions unchanged"
+    },
+    {
+      "environment": "trial-b",
+      "status": "PASS",
+      "sessions": 6,
+      "files": 34,
+      "gitAndIndexUnchanged": true,
+      "nativeCheck": "PASS 6 sessions unchanged"
+    }
+  ]
+}

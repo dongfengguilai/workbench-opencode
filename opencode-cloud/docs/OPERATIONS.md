@@ -24,6 +24,14 @@ quota.py 的短暂维护容器仅用于新 loop 文件系统：SYS_ADMIN/DAC_OVE
 
 固定模型上游当前自身依赖 localhost:7890。model-repair profile 的真实 TCP bridge 只绑定宿主 127.0.0.1:7890，转发到已有 192.168.56.1:7890；并非模拟模型。若外部代理变更，需要维护者更新固定配置并重新做真实模型验收。不能静默切换模型。
 
+用户于 2026-09-17 批准公开 HTTPS 访问。每环境独立 web-egress/admin-web-egress，只有本人内部网络与可信 model-egress 外连网络，无宿主发布端口、无模型密钥。工作容器依然只有 internal 网络，不能直接访问公网或现有外部代理。Compose 固定设置两种大小写 HTTP(S)_PROXY；ALL_PROXY 为空，NO_PROXY 只有回环及本人模型网关，不对用户开放配置。Bun 内嵌在原 v1.18.31 中，已以真实 Luna/原生 Webfetch 查询 wttr.in 并读取 Bun 文档证明环境变量生效，不修改工具或二进制。
+
+网关仅接受公开目标 443 的 CONNECT，每次检查全部解析地址、优先 IPv4，再通过现有 192.168.56.1:7890 代理 CONNECT 已验证字面 IP；不把域名交给上游重新解析。IPv6 必须属于 2000::/3 且不在特殊地址清单，实际可达性取决于外部代理。IANA 全部特殊地址块保守拒绝（包括少量全球可达例外），另拒绝 IPv4 多播。来源 CSV、派生清单和 SHA256 在 src/egress-policy；启动校验摘要，更新时必须维护者复核来源、重生成清单并重新做网络验收，不自动下载更新。原生自己验证目标 TLS；网关不解密、不改证书校验、不重试。每环境 4 隧道、连接10秒、空闲120秒，日志仅目标/结果/拒绝原因，不含 URL 查询、Header 或内容。普通 HTTP 与非 443 不支持。
+
+新增网关健康是原生服务启动前置条件，status.sh 检查两者。只修改网关源码时可在任务空闲后 `docker compose restart web-egress admin-web-egress`；更改原生代理配置必须用完整 start.sh 同时重建 native/guard/UID 防火墙。缺少真实外部代理时如实报告上游连接错误，不改用模拟响应或开放直连。
+
+当前网络修复验证：`node --test test/web-egress.test.mjs`（局部安全测试）；`node test/web-egress-live.mjs`（真实两个容器、TLS 网站和直接/代理拒绝）；`node test/web-egress-regression.mjs`（真实账号、原生工具记录、下载及新副本应用）。最后一个依赖已完成的浏览器天气会话，会创建新独立验证目录，不改现有项目。宿主 /usr/bin/node 虽为22.22.1但无 TypeScript 支持，补丁回归因此在实际部署的相同镜像 ID 中以无网络、只读新副本运行，不降低断言。可见浏览器操作必须使用当前 Codex 的浏览器控制工具；下方历史 Playwright 脚本不能代替这次内置浏览器证据。
+
 ## 启停、身份与配置
 
 ```sh

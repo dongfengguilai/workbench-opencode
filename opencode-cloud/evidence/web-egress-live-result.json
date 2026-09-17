@@ -1,0 +1,312 @@
+{
+  "kind": "actual_containers_and_public_https_verified_tls",
+  "status": "PASS",
+  "results": [
+    {
+      "service": "admin-native",
+      "proxy": "admin-web-egress",
+      "denials": [
+        {
+          "target": "127.0.0.1:443",
+          "status": 403
+        },
+        {
+          "target": "10.0.0.1:443",
+          "status": 403
+        },
+        {
+          "target": "192.168.142.130:443",
+          "status": 403
+        },
+        {
+          "target": "169.254.169.254:443",
+          "status": 403
+        },
+        {
+          "target": "192.168.56.1:443",
+          "status": 403
+        },
+        {
+          "target": "[::1]:443",
+          "status": 403
+        },
+        {
+          "target": "[::ffff:8.8.8.8]:443",
+          "status": 403
+        },
+        {
+          "target": "[2001:db8::1]:443",
+          "status": 403
+        },
+        {
+          "target": "2130706433:443",
+          "status": 403
+        },
+        {
+          "target": "wttr.in:80",
+          "status": 403
+        },
+        {
+          "target": "wttr.in:8317",
+          "status": 403
+        },
+        {
+          "target": "admin-model-gateway:443",
+          "status": 403
+        },
+        {
+          "target": "model-gateway:443",
+          "status": 403
+        },
+        {
+          "target": "172.21.0.4:443",
+          "status": 403
+        },
+        {
+          "target": "172.22.0.4:443",
+          "status": 403
+        },
+        {
+          "target": "172.20.0.6:443",
+          "status": 403
+        },
+        {
+          "target": "172.21.0.2:443",
+          "status": 403
+        },
+        {
+          "target": "172.20.0.2:443",
+          "status": 403
+        },
+        {
+          "target": "172.22.0.3:443",
+          "status": 403
+        },
+        {
+          "target": "172.23.0.2:443",
+          "status": 403
+        },
+        {
+          "target": "172.21.0.5:443",
+          "status": 403
+        },
+        {
+          "target": "172.22.0.5:443",
+          "status": 403
+        },
+        {
+          "target": "172.20.0.3:443",
+          "status": 403
+        },
+        {
+          "target": "http://wttr.in/Shanghai?format=3",
+          "status": 403
+        }
+      ],
+      "direct": [
+        {
+          "host": "5.9.243.187",
+          "port": 443,
+          "outcome": "ENETUNREACH"
+        },
+        {
+          "host": "192.168.56.1",
+          "port": 7890,
+          "outcome": "ENETUNREACH"
+        },
+        {
+          "host": "192.168.142.130",
+          "port": 8317,
+          "outcome": "ENETUNREACH"
+        },
+        {
+          "host": "169.254.169.254",
+          "port": 80,
+          "outcome": "ENETUNREACH"
+        },
+        {
+          "host": "2606:4700:4700::1111",
+          "port": 443,
+          "outcome": "ENETUNREACH"
+        },
+        {
+          "host": "172.21.0.4",
+          "port": 4096,
+          "outcome": "ENETUNREACH"
+        }
+      ],
+      "weather": {
+        "status": 200,
+        "body": "Shanghai: ☁️  +82°F\n",
+        "tlsVerified": true
+      },
+      "docs": {
+        "status": 200,
+        "body": "<!DOCTYPE html><html lang=\"en\"><head><meta charSet=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"/><title>Fetch | Bun Do",
+        "tlsVerified": true
+      }
+    },
+    {
+      "service": "native",
+      "proxy": "web-egress",
+      "denials": [
+        {
+          "target": "127.0.0.1:443",
+          "status": 403
+        },
+        {
+          "target": "10.0.0.1:443",
+          "status": 403
+        },
+        {
+          "target": "192.168.142.130:443",
+          "status": 403
+        },
+        {
+          "target": "169.254.169.254:443",
+          "status": 403
+        },
+        {
+          "target": "192.168.56.1:443",
+          "status": 403
+        },
+        {
+          "target": "[::1]:443",
+          "status": 403
+        },
+        {
+          "target": "[::ffff:8.8.8.8]:443",
+          "status": 403
+        },
+        {
+          "target": "[2001:db8::1]:443",
+          "status": 403
+        },
+        {
+          "target": "2130706433:443",
+          "status": 403
+        },
+        {
+          "target": "wttr.in:80",
+          "status": 403
+        },
+        {
+          "target": "wttr.in:8317",
+          "status": 403
+        },
+        {
+          "target": "admin-model-gateway:443",
+          "status": 403
+        },
+        {
+          "target": "model-gateway:443",
+          "status": 403
+        },
+        {
+          "target": "172.21.0.4:443",
+          "status": 403
+        },
+        {
+          "target": "172.22.0.4:443",
+          "status": 403
+        },
+        {
+          "target": "172.20.0.6:443",
+          "status": 403
+        },
+        {
+          "target": "172.21.0.2:443",
+          "status": 403
+        },
+        {
+          "target": "172.20.0.2:443",
+          "status": 403
+        },
+        {
+          "target": "172.22.0.3:443",
+          "status": 403
+        },
+        {
+          "target": "172.23.0.2:443",
+          "status": 403
+        },
+        {
+          "target": "172.21.0.5:443",
+          "status": 403
+        },
+        {
+          "target": "172.22.0.5:443",
+          "status": 403
+        },
+        {
+          "target": "172.20.0.3:443",
+          "status": 403
+        },
+        {
+          "target": "http://wttr.in/Shanghai?format=3",
+          "status": 403
+        }
+      ],
+      "direct": [
+        {
+          "host": "5.9.243.187",
+          "port": 443,
+          "outcome": "ENETUNREACH"
+        },
+        {
+          "host": "192.168.56.1",
+          "port": 7890,
+          "outcome": "ENETUNREACH"
+        },
+        {
+          "host": "192.168.142.130",
+          "port": 8317,
+          "outcome": "ENETUNREACH"
+        },
+        {
+          "host": "169.254.169.254",
+          "port": 80,
+          "outcome": "ENETUNREACH"
+        },
+        {
+          "host": "2606:4700:4700::1111",
+          "port": 443,
+          "outcome": "ENETUNREACH"
+        },
+        {
+          "host": "172.22.0.4",
+          "port": 4096,
+          "outcome": "ENETUNREACH"
+        }
+      ],
+      "weather": {
+        "status": 200,
+        "body": "Shanghai: ☁️  +82°F\n",
+        "tlsVerified": true
+      },
+      "docs": {
+        "status": 200,
+        "body": "<!DOCTYPE html><html lang=\"en\"><head><meta charSet=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"/><title>Fetch | Bun Do",
+        "tlsVerified": true
+      }
+    },
+    {
+      "service": "web-egress",
+      "hostPorts": {},
+      "networks": [
+        "opencode-cloud-v0_model-egress",
+        "opencode-cloud-v0_native"
+      ],
+      "health": "healthy"
+    },
+    {
+      "service": "admin-web-egress",
+      "hostPorts": {},
+      "networks": [
+        "opencode-cloud-v0_model-egress",
+        "opencode-cloud-v0_native-admin"
+      ],
+      "health": "healthy"
+    }
+  ]
+}

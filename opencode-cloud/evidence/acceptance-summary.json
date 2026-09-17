@@ -26,7 +26,10 @@
         "a03-final-result.json",
         "a03-native-terminal-ui-result.json",
         "a03-terminal-result.json",
-        "final-ui-result.json"
+        "final-ui-result.json",
+        "web-egress-result.json",
+        "web-egress-native-messages.json",
+        "web-egress-sse-result.json"
       ]
     },
     {
@@ -34,14 +37,18 @@
       "status": "PASS",
       "evidence": [
         "a04-result.json",
-        "a08-faults-result.json"
+        "a08-faults-result.json",
+        "web-egress-restart-persistence.json",
+        "web-egress-relogin-result.json"
       ]
     },
     {
       "acceptance": "A05",
       "status": "PASS",
       "evidence": [
-        "a05-download-result.json"
+        "a05-download-result.json",
+        "web-egress-regression-result.json",
+        "web-egress-applied-tests.log"
       ]
     },
     {
@@ -49,7 +56,9 @@
       "status": "PASS",
       "evidence": [
         "a06-result.json",
-        "a03-terminal-result.json"
+        "a03-terminal-result.json",
+        "web-egress-live-result.json",
+        "web-egress-regression-result.json"
       ]
     },
     {
@@ -57,7 +66,8 @@
       "status": "PASS",
       "evidence": [
         "a07-result.json",
-        "a07-management-ui-result.json"
+        "a07-management-ui-result.json",
+        "web-egress-regression-result.json"
       ]
     },
     {
@@ -66,20 +76,25 @@
       "evidence": [
         "a08-admission-result.json",
         "a08-faults-result.json",
-        "a08-outcome-warning-result.json"
+        "a08-outcome-warning-result.json",
+        "web-egress-real-upstream-fault.json"
       ]
     },
     {
       "acceptance": "A09",
       "status": "PASS",
       "evidence": [
-        "a09-restore-result.json"
+        "a09-restore-result.json",
+        "web-egress-cold-backup.log",
+        "web-egress-restart-persistence.json"
       ]
     },
     {
       "acceptance": "A10",
       "status": "NOT_RUN",
-      "reason": "Actual user trial and explicit signoff required; agent cannot sign"
+      "reason": "User has started trial and reported issues; full coding loop and explicit signoff still required; agent cannot sign"
     }
-  ]
+  ],
+  "network_scope": "2026-09-17 user approved public HTTPS 443 via per-environment controlled gateway; direct/public other ports and protected addresses remain denied",
+  "user_trial": "Started; reported current problems; no full-loop explicit signoff"
 }

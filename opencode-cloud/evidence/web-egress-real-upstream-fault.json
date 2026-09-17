@@ -1,0 +1,17 @@
+{
+  "status": "PASS",
+  "kind": "actual_gateway_real_DNS_real_unavailable_TCP_upstream_no_response_stub",
+  "testOnlyUpstream": "127.0.0.1:1",
+  "elapsedMs": 19,
+  "httpStatus": 502,
+  "body": "upstream_connection_error\n",
+  "logs": [
+    {
+      "host": "wttr.in",
+      "address": "5.9.243.187",
+      "port": 443,
+      "result": "error",
+      "reason": "upstream_connection_error"
+    }
+  ]
+}

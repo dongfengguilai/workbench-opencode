@@ -15,3 +15,5 @@ busy 提交检查和短暂内存 admission 防重只处理 HTTP 入口，不控�
 实际内嵌 UI 的 Settings 页面显示 Desktop v1.18.30；资源仍是已校验的官方 v1.18.31 二进制自带同一份固定制品，并非滚动网站或另选 UI。该显示值如实保留在 a07-management-ui-before.json，不修改版本文字。
 
 原生 PTY 在只读/noexec 临时目录中的额外适配：Bun 把内嵌 bun-pty FFI 库解包到 /tmp，Docker tmpfs noexec 导致 dlopen 失败。锁定原生 bun.lock 的 bun-pty 0.4.8，核对包 SHA512 及解包库 SHA256（a135c3d9...），与二进制实际内嵌解包文件相同；镜像只读目录复制相同库并设置依赖原生支持的 BUN_PTY_LIB。保持 /tmp noexec、native 非 root/cap_drop 不变，未替换或重写 PTY 实现。
+
+2026-09-17 用户批准公开 HTTPS 443 后的网络适配：每环境增加独立只读 CONNECT 网关，原生仅设置其 Bun 已支持的 HTTP(S)_PROXY/NO_PROXY；原工作网络继续 internal。网关固定现有外部代理，解析并验证所有目标地址后只转发字面公网 IP，不解密 TLS、不重试、不替换原生 Webfetch。对应当前天气 Transport error 阻塞及 A03/A06/A08；真实 Luna/原生 Webfetch 两站 completed 的证据见 web-egress-native-messages.json，原二进制摘要复核及全流程结果见 web-egress-result.json。该批准变更不是普通用户修改平台配置的入口。

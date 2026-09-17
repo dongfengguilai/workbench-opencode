@@ -1,0 +1,20 @@
+{
+  "status": "PASS",
+  "session": "ses_f5236b382ffeAgB48sLtafH7Qy",
+  "messageIds": [
+    "msg_0adc94e0400104XUWGozp4FkLe",
+    "msg_0adc94f84001zlzi1vgQUZisKg",
+    "msg_0adc9951b001qUhxAxFM17RgZB",
+    "msg_0adc995ba001gF9EHiu1u6FJFS",
+    "msg_0adc9b29b0018AlhRTIjRiJNXw",
+    "msg_0adc9b3e4001EdFiV76a6NBCgn",
+    "msg_0adc9c206001H27B4na0uGZM9Q",
+    "msg_0addcfc22001TCyXM7h0tGAAHr",
+    "msg_0addcfcf0001dTXmkM0w96w05v",
+    "msg_0addd1b68001sGoZx8vlyQZzO7"
+  ],
+  "messagesSha256": "24b910424ad6b3d6cbcdcda558fec92f5121b3b45d63fc363104a4870f4a742f",
+  "filesChecked": 67,
+  "visibleBrowserEvidence": "web-egress-browser-reentered.txt",
+  "outcome": "Same native messages including completed real webfetch and same project files; no task resubmission"
+}

@@ -1,0 +1,10 @@
+{
+  "status": "FAIL",
+  "results": [
+    "real admin login, original HTTPS Cookie Secure, ready",
+    "fixed native v1.18.31 Webfetch completed both websites; historical error preserved",
+    "management and cross-origin boundaries retained",
+    "second real user cannot read admin session"
+  ],
+  "error": "Command failed: /usr/bin/node --experimental-strip-types --test opencode-cloud/test/patch-export.test.mjs opencode-cloud/test/demo-text.test.mjs"
+}

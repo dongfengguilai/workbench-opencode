@@ -1,0 +1,8 @@
+{
+  "status": "PASS",
+  "knownCredentialValuesAbsentFromChangedFiles": true,
+  "changedFilesChecked": 46,
+  "allRealDenialsStrict403": true,
+  "oldSystemGitClean": true,
+  "oldSystemCommit": "7832582"
+}
