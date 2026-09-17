@@ -1,0 +1,1 @@
+{"name":"opencode-cloud-v0","private":true,"type":"module","scripts":{"gateway":"node --experimental-strip-types src/model-gateway.ts","test:gateway":"node --test test/model-gateway.test.mjs"},"engines":{"node":">=22.19"}}

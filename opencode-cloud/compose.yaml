@@ -1,0 +1,41 @@
+name: opencode-cloud-v0
+services:
+  model-gateway:
+    image: node:22.19.0-bookworm-slim@sha256:4a4884e8a44826194dff92ba316264f392056cbe243dcc9fd3551e71cea02b90
+    user: '1000:1000'
+    command: [node, --experimental-strip-types, /app/model-gateway.ts]
+    env_file: ./runtime/gateway.env
+    volumes: [./src/model-gateway.ts:/app/model-gateway.ts:ro]
+    networks: [native, model-egress]
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    mem_limit: 256m
+    pids_limit: 64
+    healthcheck:
+      test: [CMD, node, -e, "fetch('http://localhost:8318/health').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+  native:
+    build: .
+    image: opencode-cloud/native:1.18.31
+    init: true
+    env_file: ./runtime/native.env
+    volumes:
+      - ./runtime/project:/workspace/project
+      - ./runtime/state:/state
+      - ./runtime/opencode.json:/trusted/opencode.json:ro
+    networks: [native]
+    depends_on:
+      model-gateway: {condition: service_healthy}
+    read_only: true
+    tmpfs: [/tmp:rw,nosuid,nodev,size=256m]
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    cpus: 2
+    mem_limit: 2g
+    pids_limit: 256
+networks:
+  native: {internal: true}
+  model-egress: {}

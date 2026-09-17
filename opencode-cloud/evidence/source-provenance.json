@@ -1,0 +1,9 @@
+{
+  "repository": "https://github.com/anomalyco/opencode",
+  "tag": "v1.18.31",
+  "commit": "014614d35b397775e5d397a490fc72368c894ec2",
+  "source_archive_sha256": "76f69fe27ec2b44e23fa1749029e7c012eb7e975a0f0c7819e9458198dfd3896",
+  "binary_sha256": "f9dab32248695e9ebd56b16a1921798fd85112cf5a69c7dfd0cabc1e17be4a11",
+  "ui": "Release can serve embedded UI; actual runtime check pending",
+  "patches": []
+}

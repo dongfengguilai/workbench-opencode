@@ -1,0 +1,20 @@
+
+> test:gateway
+> node --test test/model-gateway.test.mjs
+
+TAP version 13
+# Subtest: single model boundary rejects unauthorized, management and model override requests
+ok 1 - single model boundary rejects unauthorized, management and model override requests
+  ---
+  duration_ms: 223.583516
+  type: 'test'
+  ...
+1..1
+# tests 1
+# suites 0
+# pass 1
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 329.77395
