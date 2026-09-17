@@ -5,7 +5,7 @@
 - 独立新工程 opencode-cloud；旧 agent_platform 未改动或启动，未执行旧三阶段包。
 - 入口：https://192.168.142.130:8443（真实 HTTPS、自签试用证书）。
 - 按用户明确决定使用真实本地管理员认证；账号 admin，密码仅在未入库保护文件 opencode-cloud/runtime/ADMIN_LOGIN.txt。第二个真实身份 trial-b 使用独立环境。
-- 指定提交仓库：git@github.com:dongfengguilai/workbench-opencode.git。
+- 已提交并推送指定仓库：git@github.com:dongfengguilai/workbench-opencode.git；实现 commit 03d034c，远端核对与推送证据见 opencode-cloud/evidence/publication.json、git-push.log。
 
 ## 实际版本与基线
 

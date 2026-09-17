@@ -1,0 +1,9 @@
+{
+  "status": "PASS",
+  "repository": "git@github.com:dongfengguilai/workbench-opencode.git",
+  "branch": "main",
+  "implementation_commit": "03d034c",
+  "published_commit": "e65b439556c857a931890873a529c539f8204b45",
+  "verified_remote_head": "e65b439556c857a931890873a529c539f8204b45",
+  "secrets": "runtime/vendor not committed; actual-value scan PASS"
+}
