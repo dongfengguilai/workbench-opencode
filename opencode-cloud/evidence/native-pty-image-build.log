@@ -1,0 +1,54 @@
+time="2026-09-17T12:30:17+08:00" level=warning msg="Docker Compose is configured to build using Bake, but buildx isn't installed"
+#0 building with "default" instance using docker driver
+
+#1 [native internal] load build definition from Dockerfile
+#1 transferring dockerfile: 1.43kB done
+#1 DONE 0.0s
+
+#2 [native internal] load metadata for docker.io/library/node:22.19.0-bookworm-slim@sha256:4a4884e8a44826194dff92ba316264f392056cbe243dcc9fd3551e71cea02b90
+#2 DONE 0.0s
+
+#3 [native internal] load .dockerignore
+#3 transferring context: 124B done
+#3 DONE 0.0s
+
+#4 [native 1/7] FROM docker.io/library/node:22.19.0-bookworm-slim@sha256:4a4884e8a44826194dff92ba316264f392056cbe243dcc9fd3551e71cea02b90
+#4 resolve docker.io/library/node:22.19.0-bookworm-slim@sha256:4a4884e8a44826194dff92ba316264f392056cbe243dcc9fd3551e71cea02b90 0.0s done
+#4 DONE 0.0s
+
+#5 [native internal] load build context
+#5 transferring context: 610.33kB 0.0s done
+#5 DONE 0.0s
+
+#6 [native 3/7] RUN sed -i 's|http://deb.debian.org|https://deb.debian.org|g' /etc/apt/sources.list.d/debian.sources && apt-get -o Acquire::https::Timeout=30 -o Acquire::Retries=1 update && apt-get -o Acquire::https::Timeout=30 -o Acquire::Retries=1 install -y --no-install-recommends git python3 ca-certificates ripgrep iptables && rm -rf /var/lib/apt/lists/*
+#6 CACHED
+
+#7 [native 2/7] COPY vendor/build-ca.crt /etc/ssl/certs/ca-certificates.crt
+#7 CACHED
+
+#8 [native 4/7] COPY vendor/opencode /usr/local/bin/opencode
+#8 CACHED
+
+#9 [native 5/7] COPY vendor/librust_pty.so /usr/local/lib/librust_pty.so
+#9 DONE 0.1s
+
+#10 [native 6/7] RUN test "$(opencode --version)" = "1.18.31" && mkdir -p /workspace/project /state /trusted/user-config/opencode && touch /trusted/user-config/opencode/.gitignore && chown -R node:node /workspace /state
+#10 DONE 2.9s
+
+#11 [native 7/7] WORKDIR /workspace/project
+#11 DONE 0.3s
+
+#12 [native] exporting to image
+#12 exporting layers
+#12 exporting layers 0.2s done
+#12 exporting manifest sha256:330210d1b0079eb4e03c052f7fba1d12454977c3a6d619a9a7959d2a45e1d105 done
+#12 exporting config sha256:9884ebc46edbb651d91ceffab2ddfbfdc94010811a61d35bc1763ac73674df2f done
+#12 exporting attestation manifest sha256:e9d3c2e57e3d48bd88a45418a11f387235c8a933802d50e16be619891860467e 0.0s done
+#12 exporting manifest list sha256:4c8c616b353679b174f7ef538a74b4143c78a7315b4370576319d3890d7abaff done
+#12 naming to docker.io/opencode-cloud/native:1.18.31-managed-v0 done
+#12 unpacking to docker.io/opencode-cloud/native:1.18.31-managed-v0 0.0s done
+#12 DONE 0.3s
+
+#13 [native] resolving provenance for metadata file
+#13 DONE 0.0s
+ native  Built

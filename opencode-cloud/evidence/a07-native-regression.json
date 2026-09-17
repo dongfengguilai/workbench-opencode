@@ -1,0 +1,198 @@
+[
+  {
+    "info": {
+      "id": "msg_0ad8ab0b9001oWNMem3B0n4Ij8",
+      "sessionID": "ses_f52754f97ffeOmEcNEO5LcNTbY",
+      "role": "user",
+      "time": {
+        "created": 1789617942713
+      },
+      "summary": {
+        "diffs": []
+      },
+      "agent": "build",
+      "model": {
+        "providerID": "approved",
+        "modelID": "gpt-5.6-luna"
+      }
+    },
+    "parts": [
+      {
+        "id": "prt_0ad8ab0c30010VkMvNI0H3Uax4",
+        "sessionID": "ses_f52754f97ffeOmEcNEO5LcNTbY",
+        "messageID": "msg_0ad8ab0b9001oWNMem3B0n4Ij8",
+        "type": "text",
+        "text": "Run node --experimental-strip-types --test opencode-cloud/test/patch-export.test.mjs. Do not modify any file. Report the real result. Ignore the unapproved extension configuration files; they cannot alter platform configuration."
+      }
+    ]
+  },
+  {
+    "info": {
+      "id": "msg_0ad8ab3730012i4s1jWuVOaHje",
+      "sessionID": "ses_f52754f97ffeOmEcNEO5LcNTbY",
+      "role": "assistant",
+      "time": {
+        "created": 1789617943411,
+        "completed": 1789617949548
+      },
+      "parentID": "msg_0ad8ab0b9001oWNMem3B0n4Ij8",
+      "modelID": "gpt-5.6-luna",
+      "providerID": "approved",
+      "mode": "build",
+      "agent": "build",
+      "path": {
+        "cwd": "/workspace/project",
+        "root": "/workspace/project"
+      },
+      "cost": 0,
+      "tokens": {
+        "total": 6315,
+        "input": 611,
+        "output": 48,
+        "reasoning": 24,
+        "cache": {
+          "read": 5632,
+          "write": 0
+        }
+      },
+      "finish": "tool-calls"
+    },
+    "parts": [
+      {
+        "id": "prt_0ad8ac631001s0n2O9YlFdhBZP",
+        "sessionID": "ses_f52754f97ffeOmEcNEO5LcNTbY",
+        "messageID": "msg_0ad8ab3730012i4s1jWuVOaHje",
+        "type": "step-start",
+        "snapshot": "ba967fa4a1a367f86137f78b0ca77931a5bbabd6"
+      },
+      {
+        "id": "prt_0ad8ac635001mYU4U5LMLoE637",
+        "sessionID": "ses_f52754f97ffeOmEcNEO5LcNTbY",
+        "messageID": "msg_0ad8ab3730012i4s1jWuVOaHje",
+        "type": "reasoning",
+        "text": "**Preparing to run exact bash command**\n\n",
+        "time": {
+          "start": 1789617948213,
+          "end": 1789617948220
+        }
+      },
+      {
+        "id": "prt_0ad8ac63f001JPQp0VNYRxvwi5",
+        "sessionID": "ses_f52754f97ffeOmEcNEO5LcNTbY",
+        "messageID": "msg_0ad8ab3730012i4s1jWuVOaHje",
+        "type": "tool",
+        "callID": "call_wU9VSfq14SA1ibo3VB5dylgi",
+        "tool": "bash",
+        "state": {
+          "status": "completed",
+          "input": {
+            "command": "node --experimental-strip-types --test opencode-cloud/test/patch-export.test.mjs",
+            "workdir": "/workspace/project",
+            "timeout": 120000
+          },
+          "output": "TAP version 13\n# From /tmp/cloud-export-AOIxB7\n#  * branch            c90c70d0054ba2c1cac77ca71e1c6f76c972d9a7 -> FETCH_HEAD\n# Subtest: complete binary patch applies staged, unstaged, new and deleted files without changing index\nok 1 - complete binary patch applies staged, unstaged, new and deleted files without changing index\n  ---\n  duration_ms: 175.983589\n  type: 'test'\n  ...\n# Subtest: tracked secret paths are excluded and baseline mismatch fails explicitly\nok 2 - tracked secret paths are excluded and baseline mismatch fails explicitly\n  ---\n  duration_ms: 162.019765\n  type: 'test'\n  ...\n# Subtest: untracked external symlink is rejected without modifying the index\nok 3 - untracked external symlink is rejected without modifying the index\n  ---\n  duration_ms: 86.333796\n  type: 'test'\n  ...\n1..3\n# tests 3\n# suites 0\n# pass 3\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 568.232769\n",
+          "title": "node --experimental-strip-types --test opencode-cloud/test/patch-export.test.mjs",
+          "metadata": {
+            "output": "TAP version 13\n# From /tmp/cloud-export-AOIxB7\n#  * branch            c90c70d0054ba2c1cac77ca71e1c6f76c972d9a7 -> FETCH_HEAD\n# Subtest: complete binary patch applies staged, unstaged, new and deleted files without changing index\nok 1 - complete binary patch applies staged, unstaged, new and deleted files without changing index\n  ---\n  duration_ms: 175.983589\n  type: 'test'\n  ...\n# Subtest: tracked secret paths are excluded and baseline mismatch fails explicitly\nok 2 - tracked secret paths are excluded and baseline mismatch fails explicitly\n  ---\n  duration_ms: 162.019765\n  type: 'test'\n  ...\n# Subtest: untracked external symlink is rejected without modifying the index\nok 3 - untracked external symlink is rejected without modifying the index\n  ---\n  duration_ms: 86.333796\n  type: 'test'\n  ...\n1..3\n# tests 3\n# suites 0\n# pass 3\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 568.232769\n",
+            "exit": 0,
+            "truncated": false
+          },
+          "time": {
+            "start": 1789617948713,
+            "end": 1789617949433
+          }
+        }
+      },
+      {
+        "id": "prt_0ad8acb34001sOH1JRNmGn0JQv",
+        "sessionID": "ses_f52754f97ffeOmEcNEO5LcNTbY",
+        "messageID": "msg_0ad8ab3730012i4s1jWuVOaHje",
+        "type": "step-finish",
+        "reason": "tool-calls",
+        "snapshot": "ba967fa4a1a367f86137f78b0ca77931a5bbabd6",
+        "cost": 0,
+        "tokens": {
+          "total": 6315,
+          "input": 611,
+          "output": 48,
+          "reasoning": 24,
+          "cache": {
+            "read": 5632,
+            "write": 0
+          }
+        }
+      }
+    ]
+  },
+  {
+    "info": {
+      "id": "msg_0ad8acb7b001YtHh2u0Cq1Ezr1",
+      "sessionID": "ses_f52754f97ffeOmEcNEO5LcNTbY",
+      "role": "assistant",
+      "time": {
+        "created": 1789617949563,
+        "completed": 1789617953843
+      },
+      "parentID": "msg_0ad8ab0b9001oWNMem3B0n4Ij8",
+      "modelID": "gpt-5.6-luna",
+      "providerID": "approved",
+      "mode": "build",
+      "agent": "build",
+      "path": {
+        "cwd": "/workspace/project",
+        "root": "/workspace/project"
+      },
+      "cost": 0,
+      "tokens": {
+        "total": 6610,
+        "input": 934,
+        "output": 44,
+        "reasoning": 0,
+        "cache": {
+          "read": 5632,
+          "write": 0
+        }
+      },
+      "finish": "stop"
+    },
+    "parts": [
+      {
+        "id": "prt_0ad8ad6720017TEjEtdH5HP1mL",
+        "sessionID": "ses_f52754f97ffeOmEcNEO5LcNTbY",
+        "messageID": "msg_0ad8acb7b001YtHh2u0Cq1Ezr1",
+        "type": "step-start",
+        "snapshot": "ba967fa4a1a367f86137f78b0ca77931a5bbabd6"
+      },
+      {
+        "id": "prt_0ad8ad6760013wX51WWij4oxi2",
+        "sessionID": "ses_f52754f97ffeOmEcNEO5LcNTbY",
+        "messageID": "msg_0ad8acb7b001YtHh2u0Cq1Ezr1",
+        "type": "text",
+        "text": "Test passed.\n\n- Tests: 3\n- Passed: 3\n- Failed: 0\n- Skipped: 0\n- Duration: 568 ms\n- Files modified: none",
+        "time": {
+          "start": 1789617952374,
+          "end": 1789617953728
+        }
+      },
+      {
+        "id": "prt_0ad8adbec001wjI19S40v6bf1W",
+        "sessionID": "ses_f52754f97ffeOmEcNEO5LcNTbY",
+        "messageID": "msg_0ad8acb7b001YtHh2u0Cq1Ezr1",
+        "type": "step-finish",
+        "reason": "stop",
+        "snapshot": "ba967fa4a1a367f86137f78b0ca77931a5bbabd6",
+        "cost": 0,
+        "tokens": {
+          "total": 6610,
+          "input": 934,
+          "output": 44,
+          "reasoning": 0,
+          "cache": {
+            "read": 5632,
+            "write": 0
+          }
+        }
+      }
+    ]
+  }
+]

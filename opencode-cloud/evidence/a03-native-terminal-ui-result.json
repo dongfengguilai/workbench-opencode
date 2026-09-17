@@ -1,0 +1,26 @@
+{
+  "status": "PASS",
+  "network": [
+    {
+      "method": "POST",
+      "path": "/pty",
+      "status": 200
+    },
+    {
+      "method": "PUT",
+      "path": "/pty/pty_0ada40add0018EQh7DGV7s710g",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/pty/pty_0ada40add0018EQh7DGV7s710g/connect-token",
+      "status": 200
+    },
+    {
+      "method": "PUT",
+      "path": "/pty/pty_0ada40add0018EQh7DGV7s710g",
+      "status": 200
+    }
+  ],
+  "output": "\u001b[?2004h\u001b]0;node@7b044d902e90: /workspace/project\u0007\u001b[01;32mnode@7b044d902e90\u001b[00m:\u001b[01;34m/workspace/project\u001b[00m$ \r\u001b[K\r\u001b]0;node@7b044d902e90: /workspace/project\u0007\u001b[01;32mnode@7b044d902e90\u001b[00m:\u001b[01;34m/workspace/project\u001b[00m$ \u0000{\"cursor\":225}printf '\r\u001b[K\r\u001b]0;node@7b044d902e90: /workspace/project\u0007\u001b[01;32mnode@7b044d902e90\u001b[00m:\u001b[01;34m/workspace/project\u001b[00m$ printf 'A03_NATIVE_UI_TERMINAL_OK\\n'\r\n\u001b[?2004l\rA03_NATIVE_UI_TERMINAL_OK\r\n\u001b[?2004h\u001b]0;node@7b044d902e90: /workspace/project\u0007\u001b[01;32mnode@7b044d902e90\u001b[00m:\u001b[01;34m/workspace/project\u001b[00m$ "
+}

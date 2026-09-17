@@ -1,0 +1,45 @@
+timestamp=2026-09-17T03:25:04.605Z level=INFO run=1eb9a8cc message=loading path=/state/config/opencode/config.json
+timestamp=2026-09-17T03:25:04.619Z level=INFO run=1eb9a8cc message=loading path=/state/config/opencode/opencode.json
+timestamp=2026-09-17T03:25:04.622Z level=INFO run=1eb9a8cc message=loading path=/state/config/opencode/opencode.jsonc
+timestamp=2026-09-17T03:25:05.783Z level=ERROR run=1eb9a8cc message="Failed to fetch models.dev" cause="Cause([Fail(HttpClientError: Transport error (GET https://models.opencode.ai/api.json) (cause: Error: Unable to connect. Is the computer able to access the url?))])"
+timestamp=2026-09-17T03:25:06.437Z level=ERROR run=1eb9a8cc message="Failed to fetch models.dev" cause="Cause([Fail(HttpClientError: Transport error (GET https://models.opencode.ai/api.json) (cause: Error: Was there a typo in the url or port?))])"
+timestamp=2026-09-17T03:25:24.767Z level=INFO run=1eb9a8cc message="creating instance" directory=/workspace/project
+timestamp=2026-09-17T03:25:24.771Z level=INFO run=1eb9a8cc message=fromDirectory directory=/workspace/project
+timestamp=2026-09-17T03:25:24.495Z level=ERROR run=e69da6dd message="Failed to fetch models.dev" cause="Cause([Fail(HttpClientError: Transport error (GET https://models.opencode.ai/api.json) (cause: Error: Unable to connect. Is the computer able to access the url?))])"
+timestamp=2026-09-17T03:25:24.966Z level=INFO run=1eb9a8cc message=bootstrapping directory=/workspace/project
+timestamp=2026-09-17T03:25:24.972Z level=INFO run=1eb9a8cc message=loading path=/state/config/opencode/config.json
+timestamp=2026-09-17T03:25:24.974Z level=INFO run=1eb9a8cc message=loading path=/state/config/opencode/opencode.json
+timestamp=2026-09-17T03:25:24.976Z level=INFO run=1eb9a8cc message=loading path=/state/config/opencode/opencode.jsonc
+timestamp=2026-09-17T03:25:24.983Z level=INFO run=1eb9a8cc message=loading path=/trusted/opencode.json
+timestamp=2026-09-17T03:25:25.241Z level=INFO run=1eb9a8cc message="all LSPs are disabled"
+timestamp=2026-09-17T03:25:25.244Z level=INFO run=1eb9a8cc message="all formatters are disabled"
+timestamp=2026-09-17T03:25:25.244Z level=INFO run=1eb9a8cc message=init
+timestamp=2026-09-17T03:25:25.250Z level=INFO run=1eb9a8cc message=created id=ses_f529a327dffe7ukTNnpHtemLWi slug=happy-rocket version=1.18.31 projectID=9320d7bdc9f2f1e87c865646952c86f239a57d9b directory=/workspace/project path="" workspaceID=undefined parentID=undefined title="New session - 2026-09-17T03:25:25.250Z" agent=undefined model=undefined metadata=undefined permission="[{\"permission\":\"question\",\"pattern\":\"*\",\"action\":\"deny\"},{\"permission\":\"plan_enter\",\"pattern\":\"*\",\"action\":\"deny\"},{\"permission\":\"plan_exit\",\"pattern\":\"*\",\"action\":\"deny\"}]" cost=0 tokens.input=0 tokens.output=0 tokens.reasoning=0 tokens.cache.read=0 tokens.cache.write=0 time.created=1789615525250 time.updated=1789615525250
+timestamp=2026-09-17T03:25:25.305Z level=INFO run=1eb9a8cc message="event connected"
+timestamp=2026-09-17T03:25:26.185Z level=INFO run=1eb9a8cc message=loop session.id=ses_f529a327dffe7ukTNnpHtemLWi step=0
+timestamp=2026-09-17T03:25:26.230Z level=INFO run=1eb9a8cc message=stream providerID=approved modelID=gpt-5.6-luna session.id=ses_f529a327dffe7ukTNnpHtemLWi small=true agent=title mode=primary
+timestamp=2026-09-17T03:25:26.280Z level=INFO run=1eb9a8cc message="llm runtime selected" llm.runtime=ai-sdk llm.provider=approved llm.model=gpt-5.6-luna
+timestamp=2026-09-17T03:25:26.531Z level=INFO run=1eb9a8cc message=initialized
+timestamp=2026-09-17T03:25:26.568Z level=INFO run=1eb9a8cc message=tracking hash=a423f6c3734d168ea70c60ea307bc8124366d844 cwd=/workspace/project git=/state/data/opencode/snapshot/9320d7bdc9f2f1e87c865646952c86f239a57d9b/febf025b8e6225581f96d1b3136feb81a1c8e597
+timestamp=2026-09-17T03:25:26.581Z level=INFO run=1eb9a8cc message="shell tool using shell" shell=/usr/bin/bash
+timestamp=2026-09-17T03:25:26.611Z level=INFO run=1eb9a8cc message=init count=1
+timestamp=2026-09-17T03:25:26.756Z level=INFO run=1eb9a8cc message="project copy refresh started" projectID=9320d7bdc9f2f1e87c865646952c86f239a57d9b
+timestamp=2026-09-17T03:25:27.282Z level=INFO run=1eb9a8cc message="booting location services" directory=/workspace/project workspaceID=undefined
+timestamp=2026-09-17T03:25:27.514Z level=INFO run=1eb9a8cc message=process session.id=ses_f529a327dffe7ukTNnpHtemLWi messageID=msg_0ad65d12f001czt1NLL7b9FMEZ
+timestamp=2026-09-17T03:25:27.516Z level=INFO run=1eb9a8cc message=stream providerID=approved modelID=gpt-5.6-luna session.id=ses_f529a327dffe7ukTNnpHtemLWi small=false agent=build mode=primary
+timestamp=2026-09-17T03:25:27.542Z level=INFO run=1eb9a8cc message="llm runtime selected" llm.runtime=ai-sdk llm.provider=approved llm.model=gpt-5.6-luna
+timestamp=2026-09-17T03:25:27.637Z level=ERROR run=1eb9a8cc message="stream error" providerID=approved modelID=gpt-5.6-luna session.id=ses_f529a327dffe7ukTNnpHtemLWi small=false agent=build mode=primary error.error="AI_APICallError: Post \"https://chatgpt.com/backend-api/codex/responses\": utls: dial upstream: dial HTTP proxy failed: dial tcp 127.0.0.1:7890: connect: connection refused"
+timestamp=2026-09-17T03:25:27.646Z level=INFO run=1eb9a8cc message="project copy refresh done" projectID=9320d7bdc9f2f1e87c865646952c86f239a57d9b updated=[] removed=[]
+timestamp=2026-09-17T03:25:29.797Z level=INFO run=1eb9a8cc message=stream providerID=approved modelID=gpt-5.6-luna session.id=ses_f529a327dffe7ukTNnpHtemLWi small=false agent=build mode=primary
+timestamp=2026-09-17T03:25:29.800Z level=INFO run=1eb9a8cc message="llm runtime selected" llm.runtime=ai-sdk llm.provider=approved llm.model=gpt-5.6-luna
+timestamp=2026-09-17T03:25:29.839Z level=ERROR run=1eb9a8cc message="stream error" providerID=approved modelID=gpt-5.6-luna session.id=ses_f529a327dffe7ukTNnpHtemLWi small=false agent=build mode=primary error.error="AI_APICallError: Post \"https://chatgpt.com/backend-api/codex/responses\": utls: dial upstream: dial HTTP proxy failed: dial tcp 127.0.0.1:7890: connect: connection refused"
+timestamp=2026-09-17T03:25:32.409Z level=ERROR run=1eb9a8cc message="stream error" providerID=approved modelID=gpt-5.6-luna session.id=ses_f529a327dffe7ukTNnpHtemLWi small=true agent=title mode=primary error.error="AI_RetryError: Failed after 3 attempts. Last error: Post \"https://chatgpt.com/backend-api/codex/responses\": utls: dial upstream: dial HTTP proxy failed: dial tcp 127.0.0.1:7890: connect: connection refused"
+timestamp=2026-09-17T03:25:34.757Z level=INFO run=1eb9a8cc message=stream providerID=approved modelID=gpt-5.6-luna session.id=ses_f529a327dffe7ukTNnpHtemLWi small=false agent=build mode=primary
+timestamp=2026-09-17T03:25:34.759Z level=INFO run=1eb9a8cc message="llm runtime selected" llm.runtime=ai-sdk llm.provider=approved llm.model=gpt-5.6-luna
+timestamp=2026-09-17T03:25:34.796Z level=ERROR run=1eb9a8cc message="stream error" providerID=approved modelID=gpt-5.6-luna session.id=ses_f529a327dffe7ukTNnpHtemLWi small=false agent=build mode=primary error.error="AI_APICallError: Post \"https://chatgpt.com/backend-api/codex/responses\": utls: dial upstream: dial HTTP proxy failed: dial tcp 127.0.0.1:7890: connect: connection refused"
+timestamp=2026-09-17T03:25:43.705Z level=INFO run=1eb9a8cc message=stream providerID=approved modelID=gpt-5.6-luna session.id=ses_f529a327dffe7ukTNnpHtemLWi small=false agent=build mode=primary
+timestamp=2026-09-17T03:25:43.707Z level=INFO run=1eb9a8cc message="llm runtime selected" llm.runtime=ai-sdk llm.provider=approved llm.model=gpt-5.6-luna
+timestamp=2026-09-17T03:25:43.745Z level=ERROR run=1eb9a8cc message="stream error" providerID=approved modelID=gpt-5.6-luna session.id=ses_f529a327dffe7ukTNnpHtemLWi small=false agent=build mode=primary error.error="AI_APICallError: Post \"https://chatgpt.com/backend-api/codex/responses\": utls: dial upstream: dial HTTP proxy failed: dial tcp 127.0.0.1:7890: connect: connection refused"
+timestamp=2026-09-17T03:26:02.588Z level=INFO run=1eb9a8cc message=stream providerID=approved modelID=gpt-5.6-luna session.id=ses_f529a327dffe7ukTNnpHtemLWi small=false agent=build mode=primary
+timestamp=2026-09-17T03:26:02.600Z level=INFO run=1eb9a8cc message="llm runtime selected" llm.runtime=ai-sdk llm.provider=approved llm.model=gpt-5.6-luna
+timestamp=2026-09-17T03:26:02.681Z level=ERROR run=1eb9a8cc message="stream error" providerID=approved modelID=gpt-5.6-luna session.id=ses_f529a327dffe7ukTNnpHtemLWi small=false agent=build mode=primary error.error="AI_APICallError: Post \"https://chatgpt.com/backend-api/codex/responses\": utls: dial upstream: dial HTTP proxy failed: dial tcp 127.0.0.1:7890: connect: connection refused"

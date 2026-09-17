@@ -1,4 +1,6 @@
 *
 !vendor/
 !vendor/opencode
+!vendor/build-ca.crt
 !Dockerfile
+!vendor/librust_pty.so

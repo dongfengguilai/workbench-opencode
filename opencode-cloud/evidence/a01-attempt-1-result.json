@@ -1,0 +1,14 @@
+{
+  "kind": "real_product_feature",
+  "attempt": 1,
+  "native_exit": 0,
+  "session_ids": [
+    "ses_f529a327dffe7ukTNnpHtemLWi"
+  ],
+  "tool_events": 0,
+  "tests_unchanged": true,
+  "implementation_exists": false,
+  "patch_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "outcome": "FAIL: real upstream model proxy connection refused; maintainer aborted retries before any code changes",
+  "intervention": "Started optional loopback TCP bridge to existing real proxy; did not modify target code or model service config"
+}

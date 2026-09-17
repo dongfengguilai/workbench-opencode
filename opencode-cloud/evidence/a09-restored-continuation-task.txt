@@ -1,0 +1,1 @@
+Continue this restored native session. Run node --experimental-strip-types --test opencode-cloud/test/patch-export.test.mjs without modifying files. Report the real result.

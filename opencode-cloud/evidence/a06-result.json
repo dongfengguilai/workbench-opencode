@@ -1,0 +1,14 @@
+{
+  "status": "PASS",
+  "checks": [
+    "B cannot read A native session ID",
+    "headers cannot change user binding",
+    "directory and file path override rejected; download remains B",
+    "B export contains only B work",
+    "logout closes existing actual SSE within 3 seconds",
+    "disable closes SSE within 4 seconds and revokes reads",
+    "B container cannot reach A, host management/model master, metadata or direct external IP",
+    "independent mount and nonprivileged boundaries",
+    "same browser A logout then B login shows only B native history"
+  ]
+}

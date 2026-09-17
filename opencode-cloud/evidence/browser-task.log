@@ -1,0 +1,9 @@
+Native question visible
+file:///home/vmware/Workspace/projects/experiments/Workbench_space/workbench-opencode/opencode-cloud/test/browser-task.mjs:21
+ else throw new Error('Native stop control missing while question is pending');
+            ^
+
+Error: Native stop control missing while question is pending
+    at file:///home/vmware/Workspace/projects/experiments/Workbench_space/workbench-opencode/opencode-cloud/test/browser-task.mjs:21:13
+
+Node.js v24.19.0

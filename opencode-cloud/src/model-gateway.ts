@@ -1,5 +1,7 @@
 import http from 'node:http';
 import { timingSafeEqual } from 'node:crypto';
+import {readFileSync,writeFileSync,renameSync,mkdirSync} from 'node:fs';
+import path from 'node:path';
 
 const upstream = new URL(process.env.MODEL_UPSTREAM || 'http://192.168.142.130:8317');
 const master = process.env.MODEL_MASTER_KEY;
@@ -9,6 +11,17 @@ if (upstream.protocol !== 'http:' || upstream.pathname !== '/' || upstream.searc
   throw new Error('This fixed gateway requires an administrator configured HTTP origin');
 }
 const model = 'gpt-5.6-luna';
+const budgetFile=process.env.MODEL_BUDGET_FILE||'/gateway-state/budget.json';
+const requestLimit=Number(process.env.MODEL_DAILY_REQUEST_LIMIT||250);
+if(!Number.isSafeInteger(requestLimit)||requestLimit<1)throw new Error('Invalid fixed request budget');
+mkdirSync(path.dirname(budgetFile),{recursive:true});
+function reserve(){
+ const day=new Date().toISOString().slice(0,10);let state={day,count:0};
+ try{const saved=JSON.parse(readFileSync(budgetFile,'utf8'));if(saved.day===day){if(!Number.isSafeInteger(saved.count)||saved.count<0)throw new Error('Invalid budget state');state=saved;}}
+ catch(e:any){if(e.code!=='ENOENT')throw e;}
+ if(state.count>=requestLimit)return false;
+ state.count++;writeFileSync(budgetFile+'.tmp',JSON.stringify(state),{mode:0o600});renameSync(budgetFile+'.tmp',budgetFile);return true;
+}
 let active = 0;
 function reply(res: http.ServerResponse, code: number, message: string) {
   res.writeHead(code, {'Content-Type':'application/json','Cache-Control':'no-store'});
@@ -24,7 +37,7 @@ const server = http.createServer(async (req, res) => {
     res.end(JSON.stringify({object:'list',data:[{id:model,object:'model',owned_by:'approved-gateway'}]})); return;
   }
   if (req.method !== 'POST' || !['/v1/chat/completions','/v1/responses'].includes(req.url || '')) { reply(res,404,'Unsupported route'); return; }
-  if (active >= 2) { reply(res,429,'Model gateway is busy'); return; }
+  if (active >= 2) { reply(res,409,'Model gateway is busy; no automatic retry'); return; }
   active++;
   let completed = false;
   const finish = () => { if (!completed) { completed=true; active--; } };
@@ -37,13 +50,20 @@ const server = http.createServer(async (req, res) => {
       if (size > 16*1024*1024) { reply(res,413,'Request too large'); return; }
       chunks.push(chunk);
     }
-    const body=Buffer.concat(chunks);
+    let body=Buffer.concat(chunks);
     let data:Record<string,unknown>;
     try { data=JSON.parse(body.toString()); } catch { reply(res,400,'Invalid JSON'); return; }
     if (!data || data.model !== model) { reply(res,403,'Only the approved model is allowed'); return; }
+    for(const name of ['max_tokens','max_completion_tokens','max_output_tokens'])if(data[name]!==undefined&&(!Number.isSafeInteger(data[name])||Number(data[name])<1||Number(data[name])>16000)){reply(res,403,'Output limit exceeds approved 16000 token cap');return;}
+    if(req.url==='/v1/responses')data.max_output_tokens=16000;
+    else if(data.max_completion_tokens===undefined)data.max_tokens=data.max_tokens||16000;
+    body=Buffer.from(JSON.stringify(data));
+    try{if(!reserve()){reply(res,403,'Environment daily request budget exhausted; no automatic retry');return;}}
+    catch{reply(res,424,'Model budget state unavailable; request not forwarded');return;}
     const request=http.request(new URL(req.url!,upstream), {
       method:'POST',headers:{'Authorization':'Bearer '+master,'Content-Type':'application/json','Content-Length':body.length},
     }, response => {
+      if((response.statusCode||502)>=500||response.statusCode===429){response.resume();reply(res,424,'Approved model unavailable; no automatic retry');return;}
       res.writeHead(response.statusCode || 502, {
         'Content-Type':response.headers['content-type'] || 'application/json',
         'Cache-Control':'no-store','X-Accel-Buffering':'no',
@@ -53,7 +73,7 @@ const server = http.createServer(async (req, res) => {
     });
     const deadline=setTimeout(()=>request.destroy(new Error('model deadline')),300000);
     res.once('close',()=>{clearTimeout(deadline);request.destroy();});
-    request.on('error',()=>{ if (!res.headersSent) reply(res,502,'Approved model unavailable; no automatic retry'); else res.destroy(); });
+    request.on('error',()=>{ if (!res.headersSent) reply(res,424,'Approved model unavailable; no automatic retry'); else res.destroy(); });
     request.end(body);
   } catch { if (!res.headersSent && !res.destroyed) reply(res,400,'Invalid request'); }
   finally { if (res.writableEnded || res.destroyed) finish(); }

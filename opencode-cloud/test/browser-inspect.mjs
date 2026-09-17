@@ -1,0 +1,18 @@
+import {readFileSync,writeFileSync} from 'node:fs';
+import {chromium} from '/home/vmware/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright/index.mjs';
+const cfg=JSON.parse(readFileSync('runtime/platform.json','utf8'));
+const browser=await chromium.launch({headless:true,executablePath:process.env.CHROMIUM_PATH||'/snap/bin/chromium',args:['--no-sandbox']});
+const context=await browser.newContext({ignoreHTTPSErrors:true,viewport:{width:1440,height:1000}});
+const page=await context.newPage();const network=[];const errors=[];
+page.on('response',r=>network.push({method:r.request().method(),path:new URL(r.url()).pathname,status:r.status()}));
+page.on('pageerror',e=>errors.push(e.message));
+await page.goto(cfg.origin+'/__platform/login');
+await page.locator('input[name=username]').fill('admin');await page.locator('input[name=password]').fill(cfg.users.admin.password);
+await page.locator('#login button').click();await page.waitForURL(cfg.origin+'/');
+await page.getByRole('link',{name:'授权项目',exact:true}).click();
+await page.locator('#root').waitFor();await page.waitForTimeout(5000);
+await page.screenshot({path:'evidence/browser-first.png',fullPage:true});
+const controls=await page.locator('textarea,input,[contenteditable=true],button').evaluateAll(els=>els.map(e=>({tag:e.tagName,role:e.getAttribute('role'),label:e.getAttribute('aria-label'),placeholder:e.getAttribute('placeholder'),text:e.tagName==='BUTTON'?e.textContent:''})).slice(0,70));
+const summary={url:page.url(),text:(await page.locator('body').innerText()).slice(0,12000),controls,errors,network};
+writeFileSync('evidence/browser-first.json',JSON.stringify(summary,null,2));console.log(JSON.stringify(summary));
+await browser.close();

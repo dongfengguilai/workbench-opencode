@@ -1,0 +1,7 @@
+{
+  "status": "PASS",
+  "session": "ses_f52688376ffeKA68tuvsQGyiNf",
+  "warning": "原生实例当前空闲，但此会话仍有未完成的工具记录：结果待确认。请检查文件与测试后再明确提交新任务；不会自动重发。",
+  "userMessageCount": 1,
+  "nativeState": {}
+}

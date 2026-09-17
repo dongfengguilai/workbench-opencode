@@ -1,0 +1,11 @@
+{
+  "status": "PASS",
+  "checks": [
+    "unavailable genuine model renders native error with one user message and no fallback",
+    "not-ready environment returns explicit 503 to browser",
+    "discarded real receipt checked through native message ID; resubmission rejected",
+    "active browser close and reenter queries same native busy session without resend",
+    "hard process interruption preserves one native task and does not mark command successful or replay it",
+    "actual browser displays result uncertain for idle native state plus unfinished tool; does not rewrite or replay"
+  ]
+}

@@ -1,0 +1,5 @@
+{"url":"http://172.22.0.3:4096/global/health","result":"network_denied"}
+{"url":"http://192.168.142.130:22","result":"network_denied"}
+{"url":"http://192.168.142.130:8317/v1/models","result":"network_denied"}
+{"url":"http://169.254.169.254/","result":"network_denied"}
+{"url":"https://1.1.1.1/","result":"network_denied"}

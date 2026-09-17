@@ -1,0 +1,30 @@
+{
+  "native_session": "ses_f5298a8dbffeKFpwTjYXgYE2F2",
+  "interventions": [
+    {
+      "action": "abort attempt 1",
+      "reason": "real gateway upstream loopback proxy missing; no code generated"
+    },
+    {
+      "action": "optional real TCP proxy bridge",
+      "target": "existing configured host proxy",
+      "model_service_config_changed": false
+    },
+    {
+      "action": "added independent regression tests",
+      "target": "patch-export-extra.test.mjs",
+      "original_tests_changed": false,
+      "target_implementation_written_by_maintainer": false
+    },
+    {
+      "action": "v2 native steer API attempt",
+      "result": "admitted; legacy native run did not execute added test or apply correction; evidence a01-correction-admission.json"
+    },
+    {
+      "action": "explicit official CLI continuation after native idle",
+      "task": "a01-correction-task-executed.txt",
+      "session": "same native session"
+    }
+  ],
+  "acceptance": "NOT YET PASS; independent export assertions remain required"
+}

@@ -1,0 +1,105 @@
+{
+  "session": "ses_f52688376ffeKA68tuvsQGyiNf",
+  "messageID": "msg_4dce82d0c96bba8fdd6a4021e8ae38af",
+  "messages": [
+    {
+      "info": {
+        "id": "msg_4dce82d0c96bba8fdd6a4021e8ae38af",
+        "sessionID": "ses_f52688376ffeKA68tuvsQGyiNf",
+        "role": "user",
+        "time": {
+          "created": 1789618781445
+        },
+        "summary": {
+          "diffs": []
+        },
+        "agent": "build",
+        "model": {
+          "providerID": "approved",
+          "modelID": "gpt-5.6-luna"
+        }
+      },
+      "parts": [
+        {
+          "id": "prt_0ad977d0e001g5ujpysZaltogr",
+          "sessionID": "ses_f52688376ffeKA68tuvsQGyiNf",
+          "messageID": "msg_4dce82d0c96bba8fdd6a4021e8ae38af",
+          "type": "text",
+          "text": "Run exactly sleep 120 using Bash. Do not write or read any files. This tests process interruption, not a successful result."
+        }
+      ]
+    },
+    {
+      "info": {
+        "id": "msg_0ad977fce001NBWzZ0lLQl5uqS",
+        "sessionID": "ses_f52688376ffeKA68tuvsQGyiNf",
+        "role": "assistant",
+        "time": {
+          "created": 1789618782158
+        },
+        "parentID": "msg_4dce82d0c96bba8fdd6a4021e8ae38af",
+        "modelID": "gpt-5.6-luna",
+        "providerID": "approved",
+        "mode": "build",
+        "agent": "build",
+        "path": {
+          "cwd": "/workspace/project",
+          "root": "/workspace/project"
+        },
+        "cost": 0,
+        "tokens": {
+          "input": 0,
+          "output": 0,
+          "reasoning": 0,
+          "cache": {
+            "read": 0,
+            "write": 0
+          }
+        }
+      },
+      "parts": [
+        {
+          "id": "prt_0ad978dcf001ZVLYnhMXpEiGYW",
+          "sessionID": "ses_f52688376ffeKA68tuvsQGyiNf",
+          "messageID": "msg_0ad977fce001NBWzZ0lLQl5uqS",
+          "type": "step-start",
+          "snapshot": "52be536cbffccf3e518a1dd9c20b3ed27a52ccb6"
+        },
+        {
+          "id": "prt_0ad978dd4001mKf3yg2y0BaDZD",
+          "sessionID": "ses_f52688376ffeKA68tuvsQGyiNf",
+          "messageID": "msg_0ad977fce001NBWzZ0lLQl5uqS",
+          "type": "reasoning",
+          "text": "**Specifying exact sleep command**\n\n",
+          "time": {
+            "start": 1789618785749,
+            "end": 1789618785759
+          }
+        },
+        {
+          "id": "prt_0ad978de3001LIo55i0lrOs9Ac",
+          "sessionID": "ses_f52688376ffeKA68tuvsQGyiNf",
+          "messageID": "msg_0ad977fce001NBWzZ0lLQl5uqS",
+          "type": "tool",
+          "callID": "call_ekHtroYwhHL4Vkg3ohbSaavO",
+          "tool": "bash",
+          "state": {
+            "status": "running",
+            "input": {
+              "command": "sleep 120",
+              "timeout": 125000
+            },
+            "metadata": {
+              "output": ""
+            },
+            "time": {
+              "start": 1789618785839
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "status": {},
+  "visibleText": "Administrator · workbench-opencode · 云端环境就绪\n授权项目\n变更清单\n下载变更\n退出登录\nP\nA08 actual approved model unavailable\nP\nA08 discarded receipt and interrupted harmless Bash\nA08 discarded receipt and interrupted harmless Bash\nRun exactly sleep 120 using Bash. Do not write or read any files. This tests process interruption, not a successful result.\nBuild · Luna\n · \n12:19 PM\nShell\nShell\nsleep 120\nAsk anything, / for commands, @ for context...\nLuna"
+}

@@ -1,0 +1,69 @@
+Verified bounded filesystem admin /dev/loop22
+Verified bounded filesystem native /dev/loop23
+ Container opencode-cloud-v0-model-gateway-1  Recreate
+ Container opencode-cloud-v0-upstream-proxy-bridge-1  Recreate
+ Container opencode-cloud-v0-admin-model-gateway-1  Recreate
+ Container opencode-cloud-v0-upstream-proxy-bridge-1  Recreated
+ Container opencode-cloud-v0-model-gateway-1  Recreated
+ Container opencode-cloud-v0-admin-model-gateway-1  Recreated
+ Container opencode-cloud-v0-native-guard-1  Stopping
+ Container opencode-cloud-v0-admin-native-guard-1  Stopping
+ Container opencode-cloud-v0-native-guard-1  Stopped
+ Container opencode-cloud-v0-admin-native-guard-1  Stopped
+ Container opencode-cloud-v0-native-1  Recreate
+ Container opencode-cloud-v0-admin-native-1  Recreate
+ Container opencode-cloud-v0-admin-native-1  Recreated
+ Container opencode-cloud-v0-admin-native-firewall-1  Recreate
+ Container opencode-cloud-v0-native-1  Recreated
+ Container opencode-cloud-v0-native-firewall-1  Recreate
+ Container opencode-cloud-v0-admin-native-firewall-1  Recreated
+ Container opencode-cloud-v0-admin-native-guard-1  Recreate
+ Container opencode-cloud-v0-native-firewall-1  Recreated
+ Container opencode-cloud-v0-native-guard-1  Recreate
+ Container opencode-cloud-v0-admin-native-guard-1  Recreated
+ Container opencode-cloud-v0-native-guard-1  Recreated
+ Container opencode-cloud-v0-platform-1  Recreate
+ Container opencode-cloud-v0-platform-1  Recreated
+ Container opencode-cloud-v0-upstream-proxy-bridge-1  Starting
+ Container opencode-cloud-v0-admin-model-gateway-1  Starting
+ Container opencode-cloud-v0-model-gateway-1  Starting
+ Container opencode-cloud-v0-model-gateway-1  Started
+ Container opencode-cloud-v0-model-gateway-1  Waiting
+ Container opencode-cloud-v0-upstream-proxy-bridge-1  Started
+ Container opencode-cloud-v0-admin-model-gateway-1  Started
+ Container opencode-cloud-v0-admin-model-gateway-1  Waiting
+ Container opencode-cloud-v0-model-gateway-1  Healthy
+ Container opencode-cloud-v0-native-1  Starting
+ Container opencode-cloud-v0-admin-model-gateway-1  Healthy
+ Container opencode-cloud-v0-admin-native-1  Starting
+ Container opencode-cloud-v0-native-1  Started
+ Container opencode-cloud-v0-native-firewall-1  Starting
+ Container opencode-cloud-v0-admin-native-1  Started
+ Container opencode-cloud-v0-admin-native-firewall-1  Starting
+ Container opencode-cloud-v0-native-firewall-1  Started
+ Container opencode-cloud-v0-native-firewall-1  Waiting
+ Container opencode-cloud-v0-admin-native-firewall-1  Started
+ Container opencode-cloud-v0-admin-native-firewall-1  Waiting
+ Container opencode-cloud-v0-native-firewall-1  Exited
+ Container opencode-cloud-v0-native-guard-1  Starting
+ Container opencode-cloud-v0-admin-native-firewall-1  Exited
+ Container opencode-cloud-v0-admin-native-guard-1  Starting
+ Container opencode-cloud-v0-admin-native-guard-1  Started
+ Container opencode-cloud-v0-native-guard-1  Started
+ Container opencode-cloud-v0-native-guard-1  Waiting
+ Container opencode-cloud-v0-admin-native-guard-1  Waiting
+ Container opencode-cloud-v0-native-guard-1  Healthy
+ Container opencode-cloud-v0-admin-native-guard-1  Healthy
+ Container opencode-cloud-v0-platform-1  Starting
+ Container opencode-cloud-v0-platform-1  Started
+NAME                                        IMAGE                                                                                                COMMAND                  SERVICE                 CREATED          STATUS                    PORTS
+opencode-cloud-v0-admin-model-gateway-1     node:22.19.0-bookworm-slim@sha256:4a4884e8a44826194dff92ba316264f392056cbe243dcc9fd3551e71cea02b90   "docker-entrypoint.s…"   admin-model-gateway     48 seconds ago   Up 14 seconds (healthy)   
+opencode-cloud-v0-admin-native-1            opencode-cloud/native:1.18.31-managed-v0                                                             "docker-entrypoint.s…"   admin-native            27 seconds ago   Up 8 seconds              
+opencode-cloud-v0-admin-native-guard-1      opencode-cloud/native:1.18.31-managed-v0                                                             "docker-entrypoint.s…"   admin-native-guard      26 seconds ago   Up 6 seconds (healthy)    
+opencode-cloud-v0-model-gateway-1           node:22.19.0-bookworm-slim@sha256:4a4884e8a44826194dff92ba316264f392056cbe243dcc9fd3551e71cea02b90   "docker-entrypoint.s…"   model-gateway           48 seconds ago   Up 14 seconds (healthy)   
+opencode-cloud-v0-native-1                  opencode-cloud/native:1.18.31-managed-v0                                                             "docker-entrypoint.s…"   native                  27 seconds ago   Up 8 seconds              
+opencode-cloud-v0-native-guard-1            opencode-cloud/native:1.18.31-managed-v0                                                             "docker-entrypoint.s…"   native-guard            26 seconds ago   Up 6 seconds (healthy)    
+opencode-cloud-v0-platform-1                opencode-cloud/native:1.18.31-managed-v0                                                             "docker-entrypoint.s…"   platform                25 seconds ago   Up Less than a second     0.0.0.0:8443->8443/tcp, [::]:8443->8443/tcp
+opencode-cloud-v0-upstream-proxy-bridge-1   node:22.19.0-bookworm-slim@sha256:4a4884e8a44826194dff92ba316264f392056cbe243dcc9fd3551e71cea02b90   "docker-entrypoint.s…"   upstream-proxy-bridge   48 seconds ago   Up 14 seconds             127.0.0.1:7890->7890/tcp
+200 {"healthy":true,"version":"1.18.31"}
+200 {"healthy":true,"version":"1.18.31"}

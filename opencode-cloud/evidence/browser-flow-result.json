@@ -1,0 +1,12 @@
+{
+  "status": "CODING_FINISHED_REQUIRES_INDEPENDENT_VERIFICATION",
+  "steps": [
+    "browser-question-answered",
+    "browser-bash-running",
+    "browser-stop-verified",
+    "browser-coding-start",
+    "browser-active-refresh",
+    "browser-coding-complete"
+  ],
+  "session": "ses_f52850e1affeIcfvPF0rynZtLI"
+}

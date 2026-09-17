@@ -1,0 +1,7 @@
+{
+  "repository": "git@github.com:dongfengguilai/workbench-opencode.git",
+  "baseline": "9320d7bdc9f2f1e87c865646952c86f239a57d9b",
+  "task": "a01-task.txt",
+  "validation": "node --experimental-strip-types --test opencode-cloud/test/patch-export.test.mjs",
+  "model": "approved/gpt-5.6-luna"
+}

@@ -1,0 +1,1 @@
+Run node --experimental-strip-types --test opencode-cloud/test/patch-export.test.mjs. Do not modify any file. Report the real result. Ignore the unapproved extension configuration files; they cannot alter platform configuration.

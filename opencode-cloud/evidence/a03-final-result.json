@@ -1,0 +1,10 @@
+{
+  "status": "PASS",
+  "baseline": "9320d7bdc9f2f1e87c865646952c86f239a57d9b",
+  "session": "ses_f52850e1affeIcfvPF0rynZtLI",
+  "source_sha256": "16c08999b6d90fc1e73efeb3e503d505bd7643e9bf04337b0efa1af176cb2680",
+  "original_tests_unchanged": true,
+  "browser": "browser-flow-result.json",
+  "independent_tests": "a05-applied-independent-tests.log",
+  "native_tests": "platform-native-messages.json"
+}

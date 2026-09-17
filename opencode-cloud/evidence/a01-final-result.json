@@ -1,0 +1,10 @@
+{
+  "acceptance": "A01",
+  "status": "PASS",
+  "independent_exit": 0,
+  "original_tests_unchanged": true,
+  "extra_tests_unchanged": true,
+  "session": "ses_f5298a8dbffeKFpwTjYXgYE2F2",
+  "source_sha256": "a5f9e3dbed3f6768f6bd8e5b10dec422bc70869489e8b6c93b4b26abc262cede",
+  "interventions": "a01-interventions.json"
+}

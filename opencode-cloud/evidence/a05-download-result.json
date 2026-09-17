@@ -1,0 +1,7 @@
+{
+  "status": 200,
+  "detail": "patch_received",
+  "baseline": "9320d7bdc9f2f1e87c865646952c86f239a57d9b",
+  "indexBefore": "a2dd5bbeda12028e5020f958e691b303cc0d0a9a3f8e9eaa82e0a359db0c908f",
+  "indexAfter": "a2dd5bbeda12028e5020f958e691b303cc0d0a9a3f8e9eaa82e0a359db0c908f"
+}

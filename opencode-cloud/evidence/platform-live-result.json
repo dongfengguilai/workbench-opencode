@@ -1,0 +1,42 @@
+{
+  "kind": "real_local_accounts_real_containers",
+  "tls": "self-signed trial certificate; verification disabled only in this test",
+  "results": [
+    {
+      "name": "anonymous native read denied",
+      "status": "PASS"
+    },
+    {
+      "name": "bad local password rejected",
+      "status": "PASS"
+    },
+    {
+      "name": "actual local admin login",
+      "status": "PASS"
+    },
+    {
+      "name": "identity bound ready environment",
+      "status": "PASS"
+    },
+    {
+      "name": "fixed model and management API boundaries",
+      "status": "PASS"
+    },
+    {
+      "name": "same-origin write boundary",
+      "status": "PASS"
+    },
+    {
+      "name": "native config does not reveal instance token",
+      "status": "PASS"
+    },
+    {
+      "name": "second actual local identity binds independently",
+      "status": "PASS"
+    },
+    {
+      "name": "logout revokes subsequent reads and download",
+      "status": "PASS"
+    }
+  ]
+}

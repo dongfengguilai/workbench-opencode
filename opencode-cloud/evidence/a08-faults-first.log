@@ -1,0 +1,50 @@
+node:internal/errors:985
+  const err = new Error(message);
+              ^
+
+Error: Command failed: docker compose up -d --no-build --force-recreate admin-model-gateway admin-native admin-native-firewall admin-native-guard
+ Container opencode-cloud-v0-admin-model-gateway-1  Recreate
+ Container opencode-cloud-v0-admin-model-gateway-1  Recreated
+ Container opencode-cloud-v0-admin-native-guard-1  Stopping
+ Container opencode-cloud-v0-admin-native-guard-1  Stopped
+ Container opencode-cloud-v0-admin-native-1  Recreate
+ Container opencode-cloud-v0-admin-native-1  Recreated
+ Container opencode-cloud-v0-admin-native-firewall-1  Recreate
+ Container opencode-cloud-v0-admin-native-firewall-1  Recreated
+ Container opencode-cloud-v0-admin-native-guard-1  Recreate
+ Container opencode-cloud-v0-admin-native-guard-1  Recreated
+ Container opencode-cloud-v0-admin-model-gateway-1  Starting
+ Container opencode-cloud-v0-admin-model-gateway-1  Started
+ Container opencode-cloud-v0-admin-model-gateway-1  Waiting
+ Container opencode-cloud-v0-admin-model-gateway-1  Error
+dependency failed to start: container opencode-cloud-v0-admin-model-gateway-1 exited (1)
+
+    at genericNodeError (node:internal/errors:985:15)
+    at wrappedFn (node:internal/errors:539:14)
+    at ChildProcess.exithandler (node:child_process:417:12)
+    at ChildProcess.emit (node:events:509:28)
+    at maybeClose (node:internal/child_process:1141:16)
+    at ChildProcess._handle.onexit (node:internal/child_process:306:5) {
+  code: 1,
+  killed: false,
+  signal: null,
+  cmd: 'docker compose up -d --no-build --force-recreate admin-model-gateway admin-native admin-native-firewall admin-native-guard',
+  stdout: '',
+  stderr: ' Container opencode-cloud-v0-admin-model-gateway-1  Recreate\n' +
+    ' Container opencode-cloud-v0-admin-model-gateway-1  Recreated\n' +
+    ' Container opencode-cloud-v0-admin-native-guard-1  Stopping\n' +
+    ' Container opencode-cloud-v0-admin-native-guard-1  Stopped\n' +
+    ' Container opencode-cloud-v0-admin-native-1  Recreate\n' +
+    ' Container opencode-cloud-v0-admin-native-1  Recreated\n' +
+    ' Container opencode-cloud-v0-admin-native-firewall-1  Recreate\n' +
+    ' Container opencode-cloud-v0-admin-native-firewall-1  Recreated\n' +
+    ' Container opencode-cloud-v0-admin-native-guard-1  Recreate\n' +
+    ' Container opencode-cloud-v0-admin-native-guard-1  Recreated\n' +
+    ' Container opencode-cloud-v0-admin-model-gateway-1  Starting\n' +
+    ' Container opencode-cloud-v0-admin-model-gateway-1  Started\n' +
+    ' Container opencode-cloud-v0-admin-model-gateway-1  Waiting\n' +
+    ' Container opencode-cloud-v0-admin-model-gateway-1  Error\n' +
+    'dependency failed to start: container opencode-cloud-v0-admin-model-gateway-1 exited (1)\n'
+}
+
+Node.js v24.19.0

@@ -1,0 +1,2 @@
+PASS cold restored SQLite has same native session/messages and identical product source
+PASS same restored native session continues with genuine Luna Bash and 3 original tests PASS

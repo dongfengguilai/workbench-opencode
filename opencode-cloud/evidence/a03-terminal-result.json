@@ -1,0 +1,6 @@
+{
+  "status": "PASS",
+  "pty": "pty_0ada33772001qIf5DbSM6mu4yB",
+  "logoutClosesNativeWebSocket": true,
+  "output": "\u001b[?2004h\u001b]0;node@7b044d902e90: /workspace/project\u0007\u001b[01;32mnode@7b044d902e90\u001b[00m:\u001b[01;34m/workspace/project\u001b[00m$ \u0000{\"cursor\":114}printf 'A03_NATIVE_PTY_OK\\n'\r\n\u001b[?2004l\rA03_NATIVE_PTY_OK\r\n\u001b[?2004h\u001b]0;node@7b044d902e90: /workspace/project\u0007\u001b[01;32mnode@7b044d902e90\u001b[00m:\u001b[01;34m/workspace/project\u001b[00m$ "
+}

@@ -1,0 +1,10 @@
+{
+  "status": "PASS",
+  "checks": [
+    "poison project config, MCP, plugin and agent not loaded after real recreation",
+    "management and body override rejected",
+    "native workload cannot write trusted config or bypass guard over raw loopback",
+    "normal genuine Luna native Bash tests pass with ignored poison files present"
+  ],
+  "session": "ses_f52754f97ffeOmEcNEO5LcNTbY"
+}

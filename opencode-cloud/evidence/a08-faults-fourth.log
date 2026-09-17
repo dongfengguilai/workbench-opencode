@@ -1,0 +1,5 @@
+PASS unavailable genuine model renders native error with one user message and no fallback
+PASS not-ready environment returns explicit 503 to browser
+PASS discarded real receipt checked through native message ID; resubmission rejected
+PASS active browser close and reenter queries same native busy session without resend
+PASS hard process interruption preserves one native task and does not mark command successful or replay it

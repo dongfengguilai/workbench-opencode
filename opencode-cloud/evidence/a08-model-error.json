@@ -1,0 +1,84 @@
+{
+  "session": "ses_f52693989ffe1RCcOCEctofdd0",
+  "native": [
+    {
+      "info": {
+        "id": "msg_0ad9701cb001x7Js2vsdkymgYS",
+        "sessionID": "ses_f52693989ffe1RCcOCEctofdd0",
+        "role": "user",
+        "time": {
+          "created": 1789618750292
+        },
+        "summary": {
+          "diffs": []
+        },
+        "agent": "build",
+        "model": {
+          "providerID": "approved",
+          "modelID": "gpt-5.6-luna"
+        }
+      },
+      "parts": [
+        {
+          "id": "prt_0ad9701ee001gI89Rulw1BQgAG",
+          "sessionID": "ses_f52693989ffe1RCcOCEctofdd0",
+          "messageID": "msg_0ad9701cb001x7Js2vsdkymgYS",
+          "type": "text",
+          "text": "Report model connectivity; do not execute commands or write files."
+        }
+      ]
+    },
+    {
+      "info": {
+        "id": "msg_0ad970381001CuuNi47MEMn5p8",
+        "sessionID": "ses_f52693989ffe1RCcOCEctofdd0",
+        "role": "assistant",
+        "time": {
+          "created": 1789618750337,
+          "completed": 1789618751180
+        },
+        "error": {
+          "name": "APIError",
+          "data": {
+            "message": "Approved model unavailable; no automatic retry",
+            "statusCode": 424,
+            "isRetryable": false,
+            "responseHeaders": {
+              "cache-control": "no-store",
+              "connection": "keep-alive",
+              "content-type": "application/json",
+              "date": "Thu, 17 Sep 2026 04:19:10 GMT",
+              "keep-alive": "timeout=5",
+              "transfer-encoding": "chunked"
+            },
+            "responseBody": "{\"error\":{\"message\":\"Approved model unavailable; no automatic retry\"}}",
+            "metadata": {
+              "url": "http://admin-model-gateway:8318/v1/chat/completions"
+            }
+          }
+        },
+        "parentID": "msg_0ad9701cb001x7Js2vsdkymgYS",
+        "modelID": "gpt-5.6-luna",
+        "providerID": "approved",
+        "mode": "build",
+        "agent": "build",
+        "path": {
+          "cwd": "/workspace/project",
+          "root": "/workspace/project"
+        },
+        "cost": 0,
+        "tokens": {
+          "input": 0,
+          "output": 0,
+          "reasoning": 0,
+          "cache": {
+            "read": 0,
+            "write": 0
+          }
+        }
+      },
+      "parts": []
+    }
+  ],
+  "visibleText": "Administrator · workbench-opencode · 云端环境就绪\n授权项目\n变更清单\n下载变更\n退出登录\nP\nA08 actual approved model unavailable\nA08 actual approved model unavailable\nReport model connectivity; do not execute commands or write files.\nBuild · Luna\n · \n12:19 PM\nApproved model unavailable; no automatic retry\nAsk anything, / for commands, @ for context...\nLuna"
+}

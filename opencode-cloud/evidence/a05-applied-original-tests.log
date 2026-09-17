@@ -1,0 +1,30 @@
+TAP version 13
+# From /tmp/cloud-export-jCmHlc
+#  * branch            9c43c21e1a06359d45e431650a61ab72048e02a0 -> FETCH_HEAD
+# Subtest: complete binary patch applies staged, unstaged, new and deleted files without changing index
+ok 1 - complete binary patch applies staged, unstaged, new and deleted files without changing index
+  ---
+  duration_ms: 168.261251
+  type: 'test'
+  ...
+# Subtest: tracked secret paths are excluded and baseline mismatch fails explicitly
+ok 2 - tracked secret paths are excluded and baseline mismatch fails explicitly
+  ---
+  duration_ms: 123.346291
+  type: 'test'
+  ...
+# Subtest: untracked external symlink is rejected without modifying the index
+ok 3 - untracked external symlink is rejected without modifying the index
+  ---
+  duration_ms: 49.190603
+  type: 'test'
+  ...
+1..3
+# tests 3
+# suites 0
+# pass 3
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 557.853816

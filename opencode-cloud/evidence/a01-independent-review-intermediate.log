@@ -1,0 +1,121 @@
+TAP version 13
+# Subtest: untracked credentials and state are excluded even without gitignore rules
+not ok 1 - untracked credentials and state are excluded even without gitignore rules
+  ---
+  duration_ms: 82.466461
+  type: 'test'
+  location: '/verification/test/extra.test.mjs:8:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Command failed: git update-index --remove --pathspec-from-file=/tmp/opencode-patch-index-egTFOa/excluded-paths --pathspec-file-nul
+    error: unknown option 'pathspec-from-file=/tmp/opencode-patch-index-egTFOa/excluded-paths'
+    usage: git update-index [<options>] [--] [<file>...]
+    
+        -q                    continue refresh even when index needs update
+        --ignore-submodules   refresh: ignore submodules
+        --add                 do not ignore new files
+        --replace             let files replace directories and vice-versa
+        --remove              notice files missing from worktree
+        --unmerged            refresh even if index contains unmerged entries
+        --refresh             refresh stat information
+        --really-refresh      like --refresh, but ignore assume-unchanged setting
+        --cacheinfo <mode>,<object>,<path>
+                              add the specified entry to the index
+        --chmod (+|-)x        override the executable bit of the listed files
+        --assume-unchanged    mark files as "not changing"
+        --no-assume-unchanged
+                              clear assumed-unchanged bit
+        --skip-worktree       mark files as "index-only"
+        --no-skip-worktree    clear skip-worktree bit
+        --ignore-skip-worktree-entries
+                              do not touch index-only entries
+        --info-only           add to index only; do not add content to object database
+        --force-remove        remove named paths even if present in worktree
+        -z                    with --stdin: input lines are terminated by null bytes
+        --stdin               read list of paths to be updated from standard input
+        --index-info          add entries from standard input to the index
+        --unresolve           repopulate stages #2 and #3 for the listed paths
+        -g, --again           only update entries that differ from HEAD
+        --ignore-missing      ignore files missing from worktree
+        --verbose             report actions to standard output
+        --clear-resolve-undo  (for porcelains) forget saved unresolved conflicts
+        --index-version <n>   write index in this format
+        --split-index         enable or disable split index
+        --untracked-cache     enable/disable untracked cache
+        --test-untracked-cache
+                              test if the filesystem supports untracked cache
+        --force-untracked-cache
+                              enable untracked cache without testing the filesystem
+        --force-write-index   write out the index even if is not flagged as changed
+        --fsmonitor           enable or disable file system monitor
+        --fsmonitor-valid     mark files as fsmonitor valid
+        --no-fsmonitor-valid  clear fsmonitor valid bit
+    
+    
+  code: 129
+  stack: |-
+    genericNodeError (node:internal/errors:983:15)
+    wrappedFn (node:internal/errors:537:14)
+    ChildProcess.exithandler (node:child_process:417:12)
+    ChildProcess.emit (node:events:519:28)
+    maybeClose (node:internal/child_process:1101:16)
+    ChildProcess._handle.onexit (node:internal/child_process:304:5)
+  ...
+# Subtest: deleted tracked secrets are restored to baseline in temporary index
+not ok 2 - deleted tracked secrets are restored to baseline in temporary index
+  ---
+  duration_ms: 81.647837
+  type: 'test'
+  location: '/verification/test/extra.test.mjs:24:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly deep-equal:
+    + actual - expected
+    
+      [
+    +   '.env',
+        'source.txt'
+      ]
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+    0: 'source.txt'
+  actual:
+    0: '.env'
+    1: 'source.txt'
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///verification/test/extra.test.mjs:34:10)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# From /tmp/cloud-export-ylfnGU
+#  * branch            1ed2a16ba0c3ef157300acb4d61ae46a6b77d0cd -> FETCH_HEAD
+# Subtest: complete binary patch applies staged, unstaged, new and deleted files without changing index
+ok 3 - complete binary patch applies staged, unstaged, new and deleted files without changing index
+  ---
+  duration_ms: 305.045407
+  type: 'test'
+  ...
+# Subtest: tracked secret paths are excluded and baseline mismatch fails explicitly
+ok 4 - tracked secret paths are excluded and baseline mismatch fails explicitly
+  ---
+  duration_ms: 387.982541
+  type: 'test'
+  ...
+# Subtest: untracked external symlink is rejected without modifying the index
+ok 5 - untracked external symlink is rejected without modifying the index
+  ---
+  duration_ms: 214.058643
+  type: 'test'
+  ...
+1..5
+# tests 5
+# suites 0
+# pass 3
+# fail 2
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1334.248907

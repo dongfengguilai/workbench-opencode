@@ -1,0 +1,3 @@
+READONLY_DENIED /trusted/opencode.json
+READONLY_DENIED /home/node/.config/opencode/opencode.json
+UID_LOOPBACK_DENIED

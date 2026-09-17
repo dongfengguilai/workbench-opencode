@@ -1,0 +1,117 @@
+diff --git a/opencode-cloud/src/patch-export.ts b/opencode-cloud/src/patch-export.ts
+new file mode 100644
+index 0000000..fa0ef9e
+--- /dev/null
++++ b/opencode-cloud/src/patch-export.ts
+@@ -0,0 +1,111 @@
++import { mkdtemp, readdir, realpath, rm, writeFile } from 'node:fs/promises';
++import { tmpdir } from 'node:os';
++import path from 'node:path';
++import { promisify } from 'node:util';
++import { execFile } from 'node:child_process';
++
++const execFileAsync = promisify(execFile);
++const fullSha = /^(?:[0-9a-f]{40}|[0-9a-f]{64})$/i;
++
++// These are data, dependency, or credential locations rather than source.
++const excludedDirectory = /^(?:\.cache|\.git|\.opencode|\.state|cache|caches|database|databases|db|deps|dependencies|node_modules|runtime|state|vendor)$/i;
++const secretFile = /^(?:\.env(?:\..*)?|.*(?:credential|credentials|secret|secrets|private[-_.]?key|access[-_.]?key|api[-_.]?key).*)$/i;
++const secretExtension = /\.(?:key|pem|p12|pfx|jks|keystore)$/i;
++
++function isExcluded(file: string): boolean {
++  const parts = file.split('/');
++  const name = parts[parts.length - 1];
++  return parts.some(part => excludedDirectory.test(part)) || secretFile.test(name) || secretExtension.test(name);
++}
++
++async function assertSafeSymlinks(directory: string): Promise<void> {
++  const root = await realpath(directory);
++  async function visit(current: string): Promise<void> {
++    const entries = await readdir(current, { withFileTypes: true });
++    for (const entry of entries) {
++      if (entry.name === '.git' && current === directory) continue;
++      const entryPath = path.join(current, entry.name);
++      if (entry.isSymbolicLink()) {
++        let target: string;
++        try {
++          target = await realpath(entryPath);
++        } catch {
++          throw new Error(`Unsafe symlink: ${path.relative(directory, entryPath)}`);
++        }
++        const relative = path.relative(root, target);
++        if (relative === '..' || relative.startsWith(`..${path.sep}`) || path.isAbsolute(relative)) {
++          throw new Error(`Unsafe symlink: ${path.relative(directory, entryPath)}`);
++        }
++      } else if (entry.isDirectory()) {
++        await visit(entryPath);
++      }
++    }
++  }
++  await visit(directory);
++}
++
++async function git(directory: string, index: string, args: string[]): Promise<Buffer> {
++  const result = await execFileAsync('git', args, {
++    cwd: directory,
++    env: { ...process.env, GIT_INDEX_FILE: index },
++    maxBuffer: Number.POSITIVE_INFINITY,
++    encoding: 'buffer',
++  });
++  return result.stdout as Buffer;
++}
++
++function nulSeparated(output: Buffer): string[] {
++  return output.toString('utf8').split('\0').filter(Boolean);
++}
++
++export async function exportPatch({ directory, baseline }: { directory: string; baseline: string }): Promise<{
++  baseline: string;
++  files: string[];
++  patch: string;
++}> {
++  if (!fullSha.test(baseline)) throw new Error('Invalid baseline: a full commit SHA is required');
++
++  const repository = path.resolve(directory);
++  let head: string;
++  try {
++    head = (await execFileAsync('git', ['rev-parse', '--verify', 'HEAD'], { cwd: repository })).stdout.trim();
++  } catch {
++    throw new Error('Invalid repository: unable to read HEAD');
++  }
++  if (head !== baseline) throw new Error(`Baseline mismatch: requested ${baseline}, repository HEAD is ${head}`);
++
++  await assertSafeSymlinks(repository);
++
++  const temporaryDirectory = await mkdtemp(path.join(tmpdir(), 'opencode-patch-index-'));
++  const index = path.join(temporaryDirectory, 'index');
++  const pathspecFile = path.join(temporaryDirectory, 'excluded-paths');
++  try {
++    await git(repository, index, ['read-tree', baseline]);
++    await git(repository, index, ['add', '-A', '--', '.']);
++
++    const baselineFiles = nulSeparated(await git(repository, index, ['ls-tree', '-r', '--name-only', '-z', baseline]));
++    const indexedFiles = nulSeparated(await git(repository, index, ['ls-files', '-z']));
++    const excluded = indexedFiles.filter(isExcluded);
++    if (excluded.length > 0) {
++      await writeFile(pathspecFile, excluded.join('\0') + '\0');
++      const excludedBaseline = excluded.filter(file => baselineFiles.includes(file));
++      if (excludedBaseline.length > 0) {
++        await writeFile(pathspecFile, excludedBaseline.join('\0') + '\0');
++        await git(repository, index, ['reset', baseline, '--pathspec-from-file=' + pathspecFile, '--pathspec-file-nul']);
++      }
++      const excludedAdditions = excluded.filter(file => !baselineFiles.includes(file));
++      if (excludedAdditions.length > 0) {
++        await writeFile(pathspecFile, excludedAdditions.join('\0') + '\0');
++        await git(repository, index, ['update-index', '--remove', '--pathspec-from-file=' + pathspecFile, '--pathspec-file-nul']);
++      }
++    }
++
++    const files = nulSeparated(await git(repository, index, ['diff', '--cached', '--name-only', '-z', baseline, '--']));
++    const patch = (await git(repository, index, ['diff', '--cached', '--binary', '--full-index', baseline, '--'])).toString('utf8');
++    return { baseline, files, patch };
++  } catch (error) {
++    throw error instanceof Error ? error : new Error(String(error));
++  } finally {
++    await rm(temporaryDirectory, { recursive: true, force: true });
++  }
++}

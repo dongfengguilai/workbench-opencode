@@ -1,0 +1,252 @@
+{
+  "url": "https://192.168.142.130:8443/server/aHR0cHM6Ly8xOTIuMTY4LjE0Mi4xMzA6ODQ0Mw/session/ses_f52850e1affeIcfvPF0rynZtLI",
+  "text": "Administrator · workbench-opencode · 云端环境就绪\n授权项目\n变更清单\n下载变更\n退出登录\nNew session - 2026-09-17T03:48:30.821Z\nNew session\nBefore changing any file, use the native question tool to ask me whether the patch exporter must exclude both newly created secret files and deleted tracked secret files. Provide choices Yes and No. Wait for my answer; do not edit yet.\nBuild · Luna\n · \n11:48 AM\nThinking\nThinking\n \n \nAsk anything, / for commands, @ for context...\nLuna",
+  "network": [
+    {
+      "method": "GET",
+      "path": "/__platform/login",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/__platform/style.css",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/__platform/login.js",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/auth/login",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/__platform/style.css",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/__platform/shell.js",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/assets/index-DLiUNAg_.css",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/assets/index-Kw4ozAkJ.js",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/global/health",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/health",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/__platform/me",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/global/config",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/global/event",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/path",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/session/status",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/project",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/favicon-v3.ico",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/provider",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/assets/Inter.ttf",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/lsp",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/path",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/provider",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/command",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/agent",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/provider",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/assets/new-session-D7WvoBRZ.js",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/provider",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/mcp",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/experimental/resource",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/config",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/permission",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/session/status",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/vcs",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/question",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/agent",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/assets/sprite-CMBzwCGs.svg",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/favicon-v3.ico",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/session/ses_f52850e1affeIcfvPF0rynZtLI/message",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/session/ses_f52850e1affeIcfvPF0rynZtLI",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/session/ses_f52850e1affeIcfvPF0rynZtLI/todo",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/favicon-v3.ico",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/assets/sprite-CMBzwCGs.svg",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/reference",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/session/ses_f52850e1affeIcfvPF0rynZtLI/prompt_async",
+      "status": 204
+    },
+    {
+      "method": "GET",
+      "path": "/api/reference",
+      "status": 200
+    }
+  ],
+  "errors": []
+}

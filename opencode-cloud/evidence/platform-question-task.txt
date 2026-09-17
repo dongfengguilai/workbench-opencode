@@ -1,0 +1,1 @@
+Before changing any file, use the native question tool to ask me whether the patch exporter must exclude both newly created secret files and deleted tracked secret files. Provide choices Yes and No. Wait for my answer; do not edit yet.

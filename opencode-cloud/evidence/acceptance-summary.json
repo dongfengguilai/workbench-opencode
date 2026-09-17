@@ -1,0 +1,85 @@
+{
+  "date": "2026-09-17",
+  "product_status": "READY_FOR_USER_ACCEPTANCE",
+  "scope": "local-admin trial explicitly chosen by user; self-signed real HTTPS; selected Node/Git project",
+  "results": [
+    {
+      "acceptance": "A01",
+      "status": "PASS",
+      "evidence": [
+        "a01-final-result.json"
+      ]
+    },
+    {
+      "acceptance": "A02",
+      "status": "PASS",
+      "evidence": [
+        "platform-live-result.json",
+        "a06-result.json",
+        "a03-terminal-result.json"
+      ]
+    },
+    {
+      "acceptance": "A03",
+      "status": "PASS",
+      "evidence": [
+        "a03-final-result.json",
+        "a03-native-terminal-ui-result.json",
+        "a03-terminal-result.json",
+        "final-ui-result.json"
+      ]
+    },
+    {
+      "acceptance": "A04",
+      "status": "PASS",
+      "evidence": [
+        "a04-result.json",
+        "a08-faults-result.json"
+      ]
+    },
+    {
+      "acceptance": "A05",
+      "status": "PASS",
+      "evidence": [
+        "a05-download-result.json"
+      ]
+    },
+    {
+      "acceptance": "A06",
+      "status": "PASS",
+      "evidence": [
+        "a06-result.json",
+        "a03-terminal-result.json"
+      ]
+    },
+    {
+      "acceptance": "A07",
+      "status": "PASS",
+      "evidence": [
+        "a07-result.json",
+        "a07-management-ui-result.json"
+      ]
+    },
+    {
+      "acceptance": "A08",
+      "status": "PASS",
+      "evidence": [
+        "a08-admission-result.json",
+        "a08-faults-result.json",
+        "a08-outcome-warning-result.json"
+      ]
+    },
+    {
+      "acceptance": "A09",
+      "status": "PASS",
+      "evidence": [
+        "a09-restore-result.json"
+      ]
+    },
+    {
+      "acceptance": "A10",
+      "status": "NOT_RUN",
+      "reason": "Actual user trial and explicit signoff required; agent cannot sign"
+    }
+  ]
+}

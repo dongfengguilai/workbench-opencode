@@ -1,0 +1,9 @@
+PASS B cannot read A native session ID
+PASS headers cannot change user binding
+PASS directory and file path override rejected; download remains B
+PASS B export contains only B work
+PASS logout closes existing actual SSE within 3 seconds
+PASS disable closes SSE within 4 seconds and revokes reads
+PASS B container cannot reach A, host management/model master, metadata or direct external IP
+PASS independent mount and nonprivileged boundaries
+PASS same browser A logout then B login shows only B native history

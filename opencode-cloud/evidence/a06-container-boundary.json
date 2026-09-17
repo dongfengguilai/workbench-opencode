@@ -1,0 +1,141 @@
+[
+  {
+    "name": "/opencode-cloud-v0-native-1",
+    "user": "node",
+    "ports": {},
+    "mounts": [
+      {
+        "destination": "/state",
+        "source": "/home/vmware/Workspace/projects/experiments/Workbench_space/workbench-opencode/opencode-cloud/runtime/state",
+        "rw": true
+      },
+      {
+        "destination": "/trusted/opencode.json",
+        "source": "/home/vmware/Workspace/projects/experiments/Workbench_space/workbench-opencode/opencode-cloud/runtime/opencode.json",
+        "rw": false
+      },
+      {
+        "destination": "/workspace/project",
+        "source": "/home/vmware/Workspace/projects/experiments/Workbench_space/workbench-opencode/opencode-cloud/runtime/project",
+        "rw": true
+      }
+    ],
+    "networks": {
+      "opencode-cloud-v0_native": {
+        "ip": "172.21.0.3",
+        "ipv6": ""
+      }
+    },
+    "privileged": false,
+    "readonly": true,
+    "capDrop": [
+      "ALL"
+    ],
+    "memory": 2147483648,
+    "pids": 256
+  },
+  {
+    "name": "/opencode-cloud-v0-admin-native-1",
+    "user": "node",
+    "ports": {},
+    "mounts": [
+      {
+        "destination": "/workspace/project",
+        "source": "/home/vmware/Workspace/projects/experiments/Workbench_space/workbench-opencode/opencode-cloud/runtime/admin-project",
+        "rw": true
+      },
+      {
+        "destination": "/state",
+        "source": "/home/vmware/Workspace/projects/experiments/Workbench_space/workbench-opencode/opencode-cloud/runtime/admin-state",
+        "rw": true
+      },
+      {
+        "destination": "/trusted/opencode.json",
+        "source": "/home/vmware/Workspace/projects/experiments/Workbench_space/workbench-opencode/opencode-cloud/runtime/admin-opencode.json",
+        "rw": false
+      }
+    ],
+    "networks": {
+      "opencode-cloud-v0_native-admin": {
+        "ip": "172.22.0.3",
+        "ipv6": ""
+      }
+    },
+    "privileged": false,
+    "readonly": true,
+    "capDrop": [
+      "ALL"
+    ],
+    "memory": 2147483648,
+    "pids": 256
+  },
+  {
+    "name": "/opencode-cloud-v0-platform-1",
+    "user": "1000:1000",
+    "ports": {
+      "8443/tcp": [
+        {
+          "HostIp": "0.0.0.0",
+          "HostPort": "8443"
+        },
+        {
+          "HostIp": "::",
+          "HostPort": "8443"
+        }
+      ]
+    },
+    "mounts": [
+      {
+        "destination": "/trusted/platform.json",
+        "source": "/home/vmware/Workspace/projects/experiments/Workbench_space/workbench-opencode/opencode-cloud/runtime/platform.json",
+        "rw": false
+      },
+      {
+        "destination": "/trusted/tls.key",
+        "source": "/home/vmware/Workspace/projects/experiments/Workbench_space/workbench-opencode/opencode-cloud/runtime/tls.key",
+        "rw": false
+      },
+      {
+        "destination": "/trusted/tls.crt",
+        "source": "/home/vmware/Workspace/projects/experiments/Workbench_space/workbench-opencode/opencode-cloud/runtime/tls.crt",
+        "rw": false
+      },
+      {
+        "destination": "/platform-state",
+        "source": "/home/vmware/Workspace/projects/experiments/Workbench_space/workbench-opencode/opencode-cloud/runtime/platform-state",
+        "rw": true
+      },
+      {
+        "destination": "/app",
+        "source": "/home/vmware/Workspace/projects/experiments/Workbench_space/workbench-opencode/opencode-cloud/src",
+        "rw": false
+      },
+      {
+        "destination": "/public",
+        "source": "/home/vmware/Workspace/projects/experiments/Workbench_space/workbench-opencode/opencode-cloud/public",
+        "rw": false
+      }
+    ],
+    "networks": {
+      "opencode-cloud-v0_frontend": {
+        "ip": "172.23.0.2",
+        "ipv6": ""
+      },
+      "opencode-cloud-v0_native": {
+        "ip": "172.21.0.4",
+        "ipv6": ""
+      },
+      "opencode-cloud-v0_native-admin": {
+        "ip": "172.22.0.4",
+        "ipv6": ""
+      }
+    },
+    "privileged": false,
+    "readonly": true,
+    "capDrop": [
+      "ALL"
+    ],
+    "memory": 268435456,
+    "pids": 64
+  }
+]

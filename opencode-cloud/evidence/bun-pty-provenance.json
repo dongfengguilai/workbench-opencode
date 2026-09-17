@@ -1,0 +1,10 @@
+{
+  "version": "0.4.8",
+  "npm_metadata": "https://registry.npmjs.org/bun-pty/0.4.8",
+  "tar_sha512": "rO70Mrbr13+jxHHHu2YBkk2pNqrJE5cJn29WE++PUr+GFA0hq/VgtQPZANJ8dJo6d7XImvBk37Innt8GM7O28w==",
+  "source": "exact native bun.lock dependency",
+  "library_sha256": "a135c3d9f41d09a555e3e4609e0c80fa0ba035736c56791b9df3b55e6376438d",
+  "embedded_extracted_library_sha256": "a135c3d9f41d09a555e3e4609e0c80fa0ba035736c56791b9df3b55e6376438d",
+  "cause": "Docker tmpfs /tmp noexec prevents dlopen map segment",
+  "repair": "Copy identical verified library to readonly image /usr/local/lib/librust_pty.so; native supported BUN_PTY_LIB; no source patch"
+}

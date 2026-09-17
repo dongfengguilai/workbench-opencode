@@ -1,0 +1,3 @@
+mount: /disks/admin: WARNING: source write-protected, mounted read-only.
+mkdir: cannot create directory '/disks/admin/project': Read-only file system
+mkdir: cannot create directory '/disks/admin/state': Read-only file system

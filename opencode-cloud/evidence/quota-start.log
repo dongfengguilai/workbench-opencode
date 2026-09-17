@@ -1,0 +1,83 @@
+Verified bounded filesystem admin /dev/loop22
+Verified bounded filesystem native /dev/loop23
+ Container opencode-cloud-v0-admin-model-gateway-1  Recreate
+ Container opencode-cloud-v0-upstream-proxy-bridge-1  Recreate
+ Container opencode-cloud-v0-model-gateway-1  Recreate
+ Container opencode-cloud-v0-upstream-proxy-bridge-1  Recreated
+ Container opencode-cloud-v0-admin-model-gateway-1  Recreated
+ Container opencode-cloud-v0-model-gateway-1  Recreated
+ Container opencode-cloud-v0-admin-native-guard-1  Stopping
+ Container opencode-cloud-v0-admin-native-guard-1  Stopped
+ Container opencode-cloud-v0-admin-native-1  Recreate
+ Container opencode-cloud-v0-native-guard-1  Stopping
+ Container opencode-cloud-v0-native-guard-1  Stopped
+ Container opencode-cloud-v0-native-1  Recreate
+ Container opencode-cloud-v0-native-1  Recreated
+ Container opencode-cloud-v0-native-firewall-1  Recreate
+ Container opencode-cloud-v0-admin-native-1  Recreated
+ Container opencode-cloud-v0-admin-native-firewall-1  Recreate
+ Container opencode-cloud-v0-native-firewall-1  Recreated
+ Container opencode-cloud-v0-native-guard-1  Recreate
+ Container opencode-cloud-v0-admin-native-firewall-1  Recreated
+ Container opencode-cloud-v0-admin-native-guard-1  Recreate
+ Container opencode-cloud-v0-native-guard-1  Recreated
+ Container opencode-cloud-v0-admin-native-guard-1  Recreated
+ Container opencode-cloud-v0-platform-1  Recreate
+ Container opencode-cloud-v0-platform-1  Recreated
+ Container opencode-cloud-v0-admin-model-gateway-1  Starting
+ Container opencode-cloud-v0-model-gateway-1  Starting
+ Container opencode-cloud-v0-upstream-proxy-bridge-1  Starting
+ Container opencode-cloud-v0-model-gateway-1  Started
+ Container opencode-cloud-v0-model-gateway-1  Waiting
+ Container opencode-cloud-v0-admin-model-gateway-1  Started
+ Container opencode-cloud-v0-upstream-proxy-bridge-1  Started
+ Container opencode-cloud-v0-admin-model-gateway-1  Waiting
+ Container opencode-cloud-v0-model-gateway-1  Healthy
+ Container opencode-cloud-v0-native-1  Starting
+ Container opencode-cloud-v0-native-1  Started
+ Container opencode-cloud-v0-native-firewall-1  Starting
+ Container opencode-cloud-v0-native-firewall-1  Started
+ Container opencode-cloud-v0-native-firewall-1  Waiting
+ Container opencode-cloud-v0-native-firewall-1  Exited
+ Container opencode-cloud-v0-native-guard-1  Starting
+ Container opencode-cloud-v0-admin-model-gateway-1  Healthy
+ Container opencode-cloud-v0-admin-native-1  Starting
+ Container opencode-cloud-v0-native-guard-1  Started
+ Container opencode-cloud-v0-admin-native-1  Started
+ Container opencode-cloud-v0-admin-native-firewall-1  Starting
+ Container opencode-cloud-v0-admin-native-firewall-1  Started
+ Container opencode-cloud-v0-admin-native-firewall-1  Waiting
+ Container opencode-cloud-v0-admin-native-firewall-1  Exited
+ Container opencode-cloud-v0-admin-native-guard-1  Starting
+ Container opencode-cloud-v0-admin-native-guard-1  Started
+ Container opencode-cloud-v0-platform-1  Starting
+ Container opencode-cloud-v0-platform-1  Started
+NAME                                        IMAGE                                                                                                COMMAND                  SERVICE                 CREATED          STATUS                   PORTS
+opencode-cloud-v0-admin-model-gateway-1     node:22.19.0-bookworm-slim@sha256:4a4884e8a44826194dff92ba316264f392056cbe243dcc9fd3551e71cea02b90   "docker-entrypoint.s…"   admin-model-gateway     12 seconds ago   Up 9 seconds (healthy)   
+opencode-cloud-v0-admin-native-1            opencode-cloud/native:1.18.31-managed-v0                                                             "docker-entrypoint.s…"   admin-native            11 seconds ago   Up 2 seconds             
+opencode-cloud-v0-admin-native-guard-1      opencode-cloud/native:1.18.31-managed-v0                                                             "docker-entrypoint.s…"   admin-native-guard      11 seconds ago   Up 1 second              
+opencode-cloud-v0-model-gateway-1           node:22.19.0-bookworm-slim@sha256:4a4884e8a44826194dff92ba316264f392056cbe243dcc9fd3551e71cea02b90   "docker-entrypoint.s…"   model-gateway           12 seconds ago   Up 9 seconds (healthy)   
+opencode-cloud-v0-native-1                  opencode-cloud/native:1.18.31-managed-v0                                                             "docker-entrypoint.s…"   native                  11 seconds ago   Up 3 seconds             
+opencode-cloud-v0-native-guard-1            opencode-cloud/native:1.18.31-managed-v0                                                             "docker-entrypoint.s…"   native-guard            11 seconds ago   Up 2 seconds             
+opencode-cloud-v0-platform-1                opencode-cloud/native:1.18.31-managed-v0                                                             "docker-entrypoint.s…"   platform                10 seconds ago   Up Less than a second    0.0.0.0:8443->8443/tcp, [::]:8443->8443/tcp
+opencode-cloud-v0-upstream-proxy-bridge-1   node:22.19.0-bookworm-slim@sha256:4a4884e8a44826194dff92ba316264f392056cbe243dcc9fd3551e71cea02b90   "docker-entrypoint.s…"   upstream-proxy-bridge   12 seconds ago   Up 9 seconds             127.0.0.1:7890->7890/tcp
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "/usr/lib/python3.11/urllib/request.py", line 216, in urlopen
+    return opener.open(url, data, timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/urllib/request.py", line 525, in open
+    response = meth(req, response)
+               ^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/urllib/request.py", line 634, in http_response
+    response = self.parent.error(
+               ^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/urllib/request.py", line 563, in error
+    return self._call_chain(*args)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/urllib/request.py", line 496, in _call_chain
+    result = func(*args)
+             ^^^^^^^^^^^
+  File "/usr/lib/python3.11/urllib/request.py", line 643, in http_error_default
+    raise HTTPError(req.full_url, code, msg, hdrs, fp)
+urllib.error.HTTPError: HTTP Error 503: Service Unavailable

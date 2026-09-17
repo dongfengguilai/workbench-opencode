@@ -1,0 +1,54 @@
+TAP version 13
+# Subtest: fixed-version routes and prompt overrides are enforced
+ok 1 - fixed-version routes and prompt overrides are enforced
+  ---
+  duration_ms: 6.495101
+  type: 'test'
+  ...
+# Subtest: single model boundary rejects unauthorized, management and model override requests
+ok 2 - single model boundary rejects unauthorized, management and model override requests
+  ---
+  duration_ms: 443.602456
+  type: 'test'
+  ...
+# Subtest: untracked credentials and state are excluded even without gitignore rules
+ok 3 - untracked credentials and state are excluded even without gitignore rules
+  ---
+  duration_ms: 230.812332
+  type: 'test'
+  ...
+# Subtest: deleted tracked secrets are restored to baseline in temporary index
+ok 4 - deleted tracked secrets are restored to baseline in temporary index
+  ---
+  duration_ms: 77.165263
+  type: 'test'
+  ...
+# From /tmp/cloud-export-zzagw8
+#  * branch            5d9ab8cbe5d690056aa99c3d082cde62eb8053a7 -> FETCH_HEAD
+# Subtest: complete binary patch applies staged, unstaged, new and deleted files without changing index
+ok 5 - complete binary patch applies staged, unstaged, new and deleted files without changing index
+  ---
+  duration_ms: 315.1369
+  type: 'test'
+  ...
+# Subtest: tracked secret paths are excluded and baseline mismatch fails explicitly
+ok 6 - tracked secret paths are excluded and baseline mismatch fails explicitly
+  ---
+  duration_ms: 120.014343
+  type: 'test'
+  ...
+# Subtest: untracked external symlink is rejected without modifying the index
+ok 7 - untracked external symlink is rejected without modifying the index
+  ---
+  duration_ms: 46.675818
+  type: 'test'
+  ...
+1..7
+# tests 7
+# suites 0
+# pass 7
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 2147.682364

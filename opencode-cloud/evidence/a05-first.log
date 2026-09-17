@@ -1,0 +1,19 @@
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: {"detail":"Command failed: git add -A -- .\nerror: unable to create temporary file: Read-only file system\nerror: opencode-cloud-v0/ACCEPTANCE.md: failed to insert into database\nerror: unable to index file 'opencode-cloud-v0/ACCEPTANCE.md'\nfatal: updating files failed\n"}
+
+409 !== 200
+
+    at file:///home/vmware/Workspace/projects/experiments/Workbench_space/workbench-opencode/opencode-cloud/test/export-live.mjs:18:8
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: 409,
+  expected: 200,
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v22.22.1

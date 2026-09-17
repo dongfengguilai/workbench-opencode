@@ -1,0 +1,9 @@
+ Network opencode-cloud-v0_model-egress  Creating
+ Network opencode-cloud-v0_model-egress  Created
+ Network opencode-cloud-v0_native  Creating
+ Network opencode-cloud-v0_native  Created
+ Container opencode-cloud-v0-model-gateway-1  Creating
+ Container opencode-cloud-v0-model-gateway-1  Created
+ Container opencode-cloud-v0-native-1  Creating
+ Container opencode-cloud-v0-native-1  Error response from daemon: invalid mount path: 'nodev' mount path must be absolute
+Error response from daemon: invalid mount path: 'nodev' mount path must be absolute

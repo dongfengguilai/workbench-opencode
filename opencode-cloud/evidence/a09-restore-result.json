@@ -1,0 +1,10 @@
+{
+  "status": "PASS",
+  "checks": [
+    "cold restored SQLite has same native session/messages and identical product source",
+    "same restored native session continues with genuine Luna Bash and 3 original tests PASS"
+  ],
+  "session": "ses_f52850e1affeIcfvPF0rynZtLI",
+  "fileHash": "16c08999b6d90fc1e73efeb3e503d505bd7643e9bf04337b0efa1af176cb2680",
+  "backupSha256": "3796e27a06b08ce8c24ba26de1a8be4962518050c1cca249b32f01c8ecbd8343"
+}

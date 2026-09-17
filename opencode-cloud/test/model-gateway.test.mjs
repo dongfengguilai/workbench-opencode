@@ -1,11 +1,15 @@
+import {mkdtemp,readFile,rm} from 'node:fs/promises';
+import {tmpdir} from 'node:os';
+import path from 'node:path';
 import { spawn } from 'node:child_process';
 import { once } from 'node:events';
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 
 test('single model boundary rejects unauthorized, management and model override requests', async () => {
+  const budgetDir=await mkdtemp(path.join(tmpdir(),'gateway-budget-'));
   const proc = spawn(process.execPath, ['--experimental-strip-types', 'src/model-gateway.ts'], {
-    env: { ...process.env, PORT: '18319', MODEL_UPSTREAM: 'http://127.0.0.1:1', MODEL_MASTER_KEY: 'unit-test-only', ENV_MODEL_TOKEN: 'unit-test-token' },
+    env: { ...process.env, PORT: '18319', MODEL_BUDGET_FILE:path.join(budgetDir,'budget.json'),MODEL_DAILY_REQUEST_LIMIT:'1', MODEL_UPSTREAM: 'http://127.0.0.1:1', MODEL_MASTER_KEY: 'unit-test-only', ENV_MODEL_TOKEN: 'unit-test-token' },
     stdio: ['ignore', 'pipe', 'pipe'],
   });
   try {
@@ -23,7 +27,10 @@ test('single model boundary rejects unauthorized, management and model override 
     assert.equal((await fetch(base + '/v1/chat/completions', { method:'POST', headers, body:JSON.stringify({model:'other-model', messages:[]}) })).status, 403);
     assert.equal((await fetch(base + '/v1/chat/completions', { method:'POST', headers, body:'{' })).status, 400);
     const unavailable = await fetch(base + '/v1/chat/completions', { method:'POST', headers, body:JSON.stringify({model:'gpt-5.6-luna', messages:[]}) });
-    assert.equal(unavailable.status, 502);
+    assert.equal(unavailable.status, 424);
     assert.ok(!(await unavailable.text()).includes('unit-test-only'));
-  } finally { if (proc.exitCode === null) { proc.kill(); await once(proc, 'exit'); } }
+    const over=await fetch(base+'/v1/chat/completions',{method:'POST',headers,body:JSON.stringify({model:'gpt-5.6-luna',messages:[]})});
+    assert.equal(over.status,403);assert.match(await over.text(),/budget/i);
+    assert.equal(JSON.parse(await readFile(path.join(budgetDir,'budget.json'),'utf8')).count,1);
+  } finally { if (proc.exitCode === null) { proc.kill(); await once(proc, 'exit'); } await rm(budgetDir,{recursive:true,force:true}); }
 });

@@ -1,0 +1,9 @@
+PASS anonymous native read denied
+PASS bad local password rejected
+PASS actual local admin login
+PASS identity bound ready environment
+PASS fixed model and management API boundaries
+PASS same-origin write boundary
+PASS native config does not reveal instance token
+PASS second actual local identity binds independently
+PASS logout revokes subsequent reads and download

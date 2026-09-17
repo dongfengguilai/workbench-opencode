@@ -1,0 +1,11 @@
+NAME                                        IMAGE                                                                                                COMMAND                  SERVICE                 CREATED          STATUS                    PORTS
+opencode-cloud-v0-admin-model-gateway-1     node:22.19.0-bookworm-slim@sha256:4a4884e8a44826194dff92ba316264f392056cbe243dcc9fd3551e71cea02b90   "docker-entrypoint.s…"   admin-model-gateway     31 seconds ago   Up 28 seconds (healthy)   
+opencode-cloud-v0-admin-native-1            opencode-cloud/native:1.18.31-managed-v0                                                             "docker-entrypoint.s…"   admin-native            30 seconds ago   Up 21 seconds             
+opencode-cloud-v0-admin-native-guard-1      opencode-cloud/native:1.18.31-managed-v0                                                             "docker-entrypoint.s…"   admin-native-guard      30 seconds ago   Up 20 seconds             
+opencode-cloud-v0-model-gateway-1           node:22.19.0-bookworm-slim@sha256:4a4884e8a44826194dff92ba316264f392056cbe243dcc9fd3551e71cea02b90   "docker-entrypoint.s…"   model-gateway           31 seconds ago   Up 28 seconds (healthy)   
+opencode-cloud-v0-native-1                  opencode-cloud/native:1.18.31-managed-v0                                                             "docker-entrypoint.s…"   native                  30 seconds ago   Up 22 seconds             
+opencode-cloud-v0-native-guard-1            opencode-cloud/native:1.18.31-managed-v0                                                             "docker-entrypoint.s…"   native-guard            30 seconds ago   Up 21 seconds             
+opencode-cloud-v0-platform-1                opencode-cloud/native:1.18.31-managed-v0                                                             "docker-entrypoint.s…"   platform                29 seconds ago   Up 19 seconds             0.0.0.0:8443->8443/tcp, [::]:8443->8443/tcp
+opencode-cloud-v0-upstream-proxy-bridge-1   node:22.19.0-bookworm-slim@sha256:4a4884e8a44826194dff92ba316264f392056cbe243dcc9fd3551e71cea02b90   "docker-entrypoint.s…"   upstream-proxy-bridge   31 seconds ago   Up 28 seconds             127.0.0.1:7890->7890/tcp
+200 {"healthy":true,"version":"1.18.31"}
+200 {"healthy":true,"version":"1.18.31"}

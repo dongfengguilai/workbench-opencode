@@ -1,0 +1,1 @@
+Verify this persistent authorized project after normal restart: run node --experimental-strip-types --test opencode-cloud/test/patch-export.test.mjs without modifying any files. Report actual test results.
