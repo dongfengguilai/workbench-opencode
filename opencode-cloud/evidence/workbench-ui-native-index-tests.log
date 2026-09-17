@@ -1,0 +1,17 @@
+bun test v1.3.14 (0d9b296a)
+
+src/context/global-sync/home-session-index.test.ts:
+(pass) Home V2 session index > loads the Home index with one global V2 request [4.37ms]
+(pass) Home V2 session index > loads subsequent pages until the session index is complete [14.12ms]
+(pass) Home V2 session index > maps visible roots to Home session summaries [3.45ms]
+(pass) Home V2 session index > preserves the per-directory Home retention limit [5.70ms]
+(pass) Home V2 session index > replays session events over the loaded index [0.15ms]
+(pass) Home V2 session index > applies only events newer than the index baseline [0.19ms]
+(pass) Home V2 session index > refetches after reconnect, disposal, and session moves [0.05ms]
+(pass) Home V2 session index > removes a session from the loaded Home index [6.17ms]
+(pass) Home V2 session index > keeps the session out of the Home list when the index is not mounted [1.46ms]
+
+ 9 pass
+ 0 fail
+ 16 expect() calls
+Ran 9 tests across 1 file. [2.49s]

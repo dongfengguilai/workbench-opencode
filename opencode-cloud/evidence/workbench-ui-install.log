@@ -1,0 +1,7 @@
+bun install v1.3.14 (0d9b296a)
+Resolving dependencies
+Resolved, downloaded and extracted [535]
+
+$ bun run --cwd packages/core fix-node-pty
+/usr/bin/bash: line 1: bun: command not found
+error: postinstall script from "opencode" exited with 127

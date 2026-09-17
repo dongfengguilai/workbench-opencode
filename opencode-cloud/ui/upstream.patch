@@ -1,0 +1,325 @@
+--- a/packages/app/src/pages/layout-new.tsx
++++ b/packages/app/src/pages/layout-new.tsx
+@@ -1,49 +1,7 @@
+-import { createEffect, Suspense, type ParentProps } from "solid-js"
+-import { createStore } from "solid-js/store"
+-import { DebugBar } from "@/components/debug-bar"
+-import { TabsInfoPopup } from "@/components/help-button"
+-import { Titlebar, type TitlebarUpdate } from "@/components/titlebar"
+-import { usePlatform } from "@/context/platform"
++import { Suspense, type ParentProps } from "solid-js"
++import { WorkBenchShell } from "@/workbench"
+ import { setV2Toast, ToastRegion } from "@/utils/toast"
+-
+ export default function NewLayout(props: ParentProps) {
+-  const platform = usePlatform()
+-  const [state, setState] = createStore({ debugTools: true })
+-
+-  createEffect(() => setV2Toast(true))
+-
+-  const update: TitlebarUpdate = {
+-    version: () => {
+-      const state = platform.updater?.state()
+-      if (state?.status !== "ready") return
+-      return state.version
+-    },
+-    installing: () => platform.updater?.state().status === "installing",
+-    install: () => void platform.updater?.install(),
+-  }
+-
+-  return (
+-    <div
+-      class="relative bg-v2-background-bg-deep flex-1 min-h-0 min-w-0 flex flex-col select-none [&_input]:select-text [&_textarea]:select-text [&_[contenteditable]]:select-text"
+-      style={{
+-        "padding-top": "env(safe-area-inset-top, 0px)",
+-        "padding-bottom": "env(safe-area-inset-bottom, 0px)",
+-      }}
+-    >
+-      <Titlebar
+-        update={update}
+-        debugTools={
+-          import.meta.env.DEV
+-            ? { visible: state.debugTools, toggle: () => setState("debugTools", (value) => !value) }
+-            : undefined
+-        }
+-      />
+-      <main class="flex-1 min-h-0 min-w-0 overflow-x-hidden flex flex-col items-start contain-strict">
+-        <Suspense>{props.children}</Suspense>
+-      </main>
+-      {import.meta.env.DEV && state.debugTools && <DebugBar inline />}
+-      <TabsInfoPopup />
+-      <ToastRegion v2 />
+-    </div>
+-  )
++  setV2Toast(true)
++  return <WorkBenchShell><Suspense>{props.children}</Suspense><ToastRegion v2 /></WorkBenchShell>
+ }
+--- a/packages/app/src/pages/home.tsx
++++ b/packages/app/src/pages/home.tsx
+@@ -1,50 +1 @@
+-import { ScrollView } from "@opencode-ai/ui/scroll-view"
+-import { createHomeController } from "./home/home-controller"
+-import { createHomeProjectsController } from "./home/home-projects-controller"
+-import { HomeUtilityNav } from "./home/home-projects-view"
+-import { HomeProjects } from "./home/home-projects"
+-import { createHomeScrollController } from "./home/home-scroll-controller"
+-import { createHomeSessionSearchController } from "./home/home-session-search-controller"
+-import { createHomeSessionsController } from "./home/home-sessions-controller"
+-import { HomeSessions } from "./home/home-sessions"
+-
+-export function NewHome() {
+-  const home = createHomeController()
+-  const projects = createHomeProjectsController(home)
+-  const sessions = createHomeSessionsController(home)
+-  const search = createHomeSessionSearchController(home, sessions)
+-  const scroll = createHomeScrollController(sessions.data.groups)
+-  return (
+-    <div
+-      class={`
+-        m-2 min-h-0 flex-1 self-stretch overflow-hidden rounded-[10px]
+-        bg-v2-background-bg-base shadow-[var(--v2-elevation-raised)]
+-      `}
+-    >
+-      <ScrollView
+-        class="h-full [container-type:size]"
+-        thumbContainer={scroll.viewport.thumbTrack}
+-        thumbHoverTarget={scroll.viewport.hoverTarget}
+-        viewportRef={scroll.viewport.setViewport}
+-        onScroll={(event) => scroll.viewport.update(event.currentTarget.scrollTop)}
+-        onWheel={scroll.viewport.containOuterWheel}
+-      >
+-        <div
+-          class={`
+-            mx-auto grid min-h-full w-full max-w-[1080px] grid-rows-[auto_minmax(0,1fr)_auto] gap-4 px-3
+-            lg:grid-cols-[280px_minmax(0,720px)] lg:grid-rows-1 lg:gap-8 lg:px-6
+-          `}
+-        >
+-          <HomeProjects projects={projects} scroll={scroll} />
+-          <HomeSessions sessions={sessions} search={search} scroll={scroll} />
+-          <HomeUtilityNav
+-            class="flex lg:hidden"
+-            onOpenSettings={projects.utility.settings}
+-            onOpenHelp={projects.utility.help}
+-            language={projects.copy.language}
+-          />
+-        </div>
+-      </ScrollView>
+-    </div>
+-  )
+-}
++export { WorkBenchProjects as NewHome } from "@/workbench"
+--- a/packages/app/src/context/settings.tsx
++++ b/packages/app/src/context/settings.tsx
+@@ -261,6 +261,7 @@
+       layoutTransitionState(!!sunset, layoutTransitionEligible(), oldInterfaceRetired(), newInterfaceNoticeDismissed()),
+     )
+     const newLayoutDesigns = createMemo(() => {
++      return true // Fixed hosted WorkBench layout; no user runtime configuration.
+       if (layoutUpgrade()) return true
+       if (!ready() && !oldInterfaceRetired()) return legacyNewLayoutDesignsDefault
+       if (!layoutTransitionClassified()) {
+--- a/packages/app/src/entry.tsx
++++ b/packages/app/src/entry.tsx
+@@ -104,7 +104,7 @@
+ }
+ 
+ const getDefaultUrl = () => {
+-  const lsDefault = readDefaultServerUrl()
++  const lsDefault = null // Hosted origin is fixed by the platform.
+   if (lsDefault) return lsDefault
+   return getCurrentUrl()
+ }
+@@ -124,7 +124,7 @@
+   restart,
+   notify,
+   getDefaultServer: async () => {
+-    const stored = readDefaultServerUrl()
++    const stored = null
+     return stored ? ServerConnection.Key.make(stored) : null
+   },
+   setDefaultServer: writeDefaultServerUrl,
+@@ -151,11 +151,11 @@
+ 
+ if (root instanceof HTMLElement) {
+   void loadInitialLocale().then((locale) => {
+-    const auth = authFromToken(new URLSearchParams(location.search).get("auth_token"))
++    const auth = {} // Browser-supplied native credentials are disabled.
+     clearAuthToken()
+     const server: ServerConnection.Http = {
+       type: "http",
+-      authToken: !!auth,
++      authToken: false,
+       http: {
+         url: getCurrentUrl(),
+         ...auth,
+@@ -164,7 +164,7 @@
+     render(
+       () => (
+         <PlatformProvider value={platform}>
+-          <AppBaseProviders locale={locale}>
++          <AppBaseProviders locale="zh">
+             <AppInterface
+               defaultServer={ServerConnection.Key.make(getDefaultUrl())}
+               canonicalLocalServer={ServerConnection.key(server)}
+--- a/packages/app/src/pages/home/home-sessions-controller.tsx
++++ b/packages/app/src/pages/home/home-sessions-controller.tsx
+@@ -57,7 +57,7 @@
+     queryFn: async (): Promise<HomeSessionEvents> => ({ sequence: 0, entries: [] }),
+     initialData: { sequence: 0, entries: [] } satisfies HomeSessionEvents,
+     enabled: false,
+-  }))
++  }), () => homeSessions().queryClient)
+   const sessionLoad = useQuery(() => ({
+     queryKey: homeSessions().indexKey,
+     enabled: !!home.server.focusedContext(),
+@@ -66,11 +66,11 @@
+       if (!ctx) return { sessions: [], eventSequence: 0 }
+       const cache = homeSessions()
+       const eventSequence = cache.eventSequence()
+-      const index = await loadHomeSessionIndex(
+-        (input, options) => ctx.sdk.client.v2.session.list(input, options),
++      const response = await ctx.sdk.client.session.list({ directory: "/workspace/project" }, { signal })
++      const index = {
++        sessions: (response.data ?? []).filter(session => !session.parentID && !session.time.archived),
+         eventSequence,
+-        signal,
+-      )
++      }
+       cache.complete(eventSequence)
+       return index
+     },
+@@ -78,7 +78,7 @@
+     staleTime: 30_000,
+     refetchOnMount: true,
+     refetchOnReconnect: true,
+-  }))
++  }), () => homeSessions().queryClient)
+   const indexedSessions = createMemo(() =>
+     retainHomeSessions(
+       homeSessions().sessions(sessionLoad.data, sessionEventLoad.data),
+--- a/packages/app/src/context/global-sync/home-session-index.ts
++++ b/packages/app/src/context/global-sync/home-session-index.ts
+@@ -88,6 +88,7 @@
+   const removed = new Set<string>()
+ 
+   return {
++    queryClient, // Reuse the same native cache client in the hosted sidebar.
+     indexKey,
+     eventsKey,
+     eventSequence() {
+--- a/packages/app/src/pages/session.tsx
++++ b/packages/app/src/pages/session.tsx
+@@ -450,7 +450,7 @@
+   const desktopReviewOpen = createMemo(() => isDesktop() && view().reviewPanel.opened())
+   const desktopV2ReviewOpen = createMemo(() => newSessionDesign() && desktopReviewOpen() && !!params.id)
+   const terminalOpen = createMemo(() => view().terminal.opened())
+-  const desktopTerminalOpen = createMemo(() => isDesktop() && terminalOpen())
++  const desktopTerminalOpen = createMemo(() => false) // Hosted terminal occupies the bottom, not the review column.
+   const desktopInlineTerminalOnlyOpen = createMemo(
+     () => newSessionDesign() && desktopTerminalOpen() && !desktopV2ReviewOpen(),
+   )
+@@ -2320,7 +2320,7 @@
+           </Suspense>
+         </Show>
+         <Show when={newSessionDesign()}>
+-          <Show when={isDesktop() ? desktopV2PanelLayout().visible : terminalOpen()}>
++          <Show when={isDesktop() && desktopV2PanelLayout().visible}>
+             <div class="min-w-0 h-full flex flex-1 flex-col">
+               <Show when={isDesktop() && (desktopV2ReviewOpen() || desktopFileTreeOpen())}>
+                 <div class="min-h-0 flex-1">
+@@ -2351,38 +2351,25 @@
+                   </Suspense>
+                 </div>
+               </Show>
+-              <Show when={desktopV2PanelLayout().stacked}>
+-                <div class="relative h-2 shrink-0" onPointerDown={() => size.start()}>
+-                  <ResizeHandle
+-                    class="!relative !inset-auto !h-full !w-full !transform-none"
+-                    direction="vertical"
+-                    size={layout.terminal.height()}
+-                    min={100}
+-                    max={typeof window === "undefined" ? 600 : window.innerHeight * 0.6}
+-                    collapseThreshold={50}
+-                    onResize={(height) => {
+-                      size.touch()
+-                      layout.terminal.resize(height)
+-                    }}
+-                    onCollapse={() => view().terminal.close()}
+-                  />
+-                </div>
+-              </Show>
+-              <Show when={terminalOpen()}>
+-                <div
+-                  classList={{
+-                    "min-h-0 shrink-0": desktopV2PanelLayout().stacked,
+-                    "min-h-0 flex-1": !desktopV2PanelLayout().stacked,
+-                  }}
+-                >
+-                  <TerminalPanelV2 stacked={desktopV2PanelLayout().stacked} />
+-                </div>
+-              </Show>
++
+             </div>
+           </Show>
+         </Show>
+       </div>
+ 
++      <Show when={newSessionDesign() && terminalOpen()}>
++        <div class="min-h-0 shrink-0 px-2 pb-2">
++          <Show when={isDesktop()}>
++            <div class="relative h-2 shrink-0" onPointerDown={() => size.start()}>
++              <ResizeHandle direction="vertical" size={layout.terminal.height()} min={100}
++                max={window.innerHeight * 0.6} collapseThreshold={50}
++                onResize={(height) => { size.touch(); layout.terminal.resize(height) }}
++                onCollapse={() => view().terminal.close()} />
++            </div>
++          </Show>
++          <TerminalPanelV2 stacked={true} />
++        </div>
++      </Show>
+       <Show when={!newSessionDesign()}>
+         <TerminalPanel />
+       </Show>
+--- a/packages/app/index.html
++++ b/packages/app/index.html
+@@ -1,24 +1,19 @@
+ <!doctype html>
+-<html lang="en" style="background-color: var(--v2-background-bg-deep, #fafafa)">
++<html lang="zh-CN" style="background-color: var(--v2-background-bg-deep, #fafafa)">
+   <head>
+     <meta charset="utf-8" />
+     <meta
+       name="viewport"
+       content="width=device-width, initial-scale=1, interactive-widget=resizes-content, viewport-fit=cover"
+     />
+-    <title>OpenCode</title>
+-    <link rel="icon" type="image/png" href="/favicon-96x96-v3.png" sizes="96x96" />
+-    <link rel="icon" type="image/svg+xml" href="/favicon-v3.svg" />
+-    <link rel="shortcut icon" href="/favicon-v3.ico" />
+-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-v3.png" />
+-    <link rel="manifest" href="/site.webmanifest" />
++    <title>WorkBench</title>
++    <link rel="icon" type="image/svg+xml" href="/__platform/favicon.svg" />
+     <meta name="theme-color" content="#fafafa" />
+     <meta name="mobile-web-app-capable" content="yes" />
+     <meta name="apple-mobile-web-app-capable" content="yes" />
+     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+-    <meta property="og:image" content="/social-share.png" />
+-    <meta property="twitter:image" content="/social-share.png" />
+-    <script id="oc-theme-preload-script" src="/oc-theme-preload.js"></script>
++    <script src="/oc-theme-preload.js"></script>
++    <script defer src="/__platform/workbench-guard.js"></script>
+   </head>
+   <body class="antialiased overscroll-none text-12-regular overflow-hidden bg-v2-background-bg-deep">
+     <noscript>You need to enable JavaScript to run this app.</noscript>
+--- a/packages/app/public/oc-theme-preload.js
++++ b/packages/app/public/oc-theme-preload.js
+@@ -9,7 +9,7 @@
+     localStorage.removeItem("opencode-theme-css-dark")
+   }
+ 
+-  var scheme = localStorage.getItem("opencode-color-scheme") || "system"
++  var scheme = document.cookie.match(/(?:^|;\s*)workbench_theme=(light|dark)(?:;|$)/)?.[1] || "system"
+   var isDark = scheme === "dark" || (scheme === "system" && matchMedia("(prefers-color-scheme: dark)").matches)
+   var mode = isDark ? "dark" : "light"
+ 

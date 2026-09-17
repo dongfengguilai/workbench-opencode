@@ -1,0 +1,6 @@
+PASS [
+  'verified upstream TLS, anonymous login asset allowlist, authenticated build manifest, unknown paths denied',
+  'real Qwen native edit/tool calls/8 passing tests, native question answered, fixed default, Luna retained, key redacted, dual user and management isolation',
+  'real patch downloaded/index preserved, clean fixed baseline applied and 15 tests passed in same image with no network',
+  'logout/relogin exact native messages and generated files persisted'
+]

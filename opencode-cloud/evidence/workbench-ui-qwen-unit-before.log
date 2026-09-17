@@ -1,0 +1,40 @@
+TAP version 13
+# Subtest: single model boundary rejects unauthorized, management and model override requests
+not ok 1 - single model boundary rejects unauthorized, management and model override requests
+  ---
+  duration_ms: 211.934226
+  type: 'test'
+  location: '/app/test/model-gateway.test.mjs:9:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly deep-equal:
+    + actual - expected
+    
+      [
+        'gpt-5.6-luna',
+    -   'Qwen3.6-35B-A3B'
+      ]
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+    0: 'gpt-5.6-luna'
+    1: 'Qwen3.6-35B-A3B'
+  actual:
+    0: 'gpt-5.6-luna'
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///app/test/model-gateway.test.mjs:25:12)
+    process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:296:3)
+  ...
+1..1
+# tests 1
+# suites 0
+# pass 0
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 301.666558

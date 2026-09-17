@@ -1,0 +1,16 @@
+{
+  "status": "PASS",
+  "kind": "real_containers_new_private_model_only_through_fixed_gateway",
+  "results": [
+    {
+      "service": "admin-native",
+      "privateConnect": 403,
+      "directBlocked": true
+    },
+    {
+      "service": "native",
+      "privateConnect": 403,
+      "directBlocked": true
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+Saved real snapshot: {
+  admin: {
+    sessions: 20,
+    files: 34,
+    idle: true,
+    containerId: '86e2b43b8a3372e6035811e0f8d00c722a7a2119f93e217c8b26d770c5623759'
+  },
+  'trial-b': {
+    sessions: 6,
+    files: 34,
+    idle: true,
+    containerId: '3841a86ddff8dce9dea371398fb163ccbf8e3bb93f541b8d7269e4c32eebd92b'
+  }
+}

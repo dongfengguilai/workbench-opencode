@@ -1,0 +1,11 @@
+{
+  "kind": "idle_native_processes_frozen_during_copy",
+  "path": "runtime/backups/pre-workbench-ui-20260917.tar.gz",
+  "sha256": "dcd1c54e0f02c1cda4550cc151ed1818a2c283f4060396573f97efd5f3dbaac8",
+  "bytes": 1990567,
+  "originalContainerIds": [
+    "86e2b43b8a3372e6035811e0f8d00c722a7a2119f93e217c8b26d770c5623759",
+    "3841a86ddff8dce9dea371398fb163ccbf8e3bb93f541b8d7269e4c32eebd92b"
+  ],
+  "noRecreate": true
+}

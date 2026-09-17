@@ -1,0 +1,180 @@
+- complementary "工作台导航":
+  - link "WorkBench":
+    - /url: /
+    - text: WorkBench
+  - button "折叠侧栏": ☷
+  - navigation:
+    - button "＋ 新建会话":
+      - generic: ＋
+      - text: 新建会话
+    - button "▦ 项目":
+      - generic: ▦
+      - text: 项目
+  - generic: ⌕
+  - textbox "搜索会话"
+  - paragraph: 最近会话
+  - button "New session - 2026-09-17T06:25:19.890Z"
+  - button "Greeting"
+  - button "上海今日天气查询"
+  - button "新增 normalizeWhitespace 示例及测试"
+  - button "Run patch-export tests with Node strip-types"
+  - button "A06_ADMIN_ONLY_93b81"
+  - button "A08 blocked second top task"
+  - button "A08 duplicate admission controlled test"
+  - button "A08 duplicate admission controlled test"
+  - button "A08 blocked second top task"
+  - button "A08 discarded receipt and interrupted harmless Bash"
+  - button "A08 actual approved model unavailable"
+  - button "A08 actual approved model unavailable"
+  - button "A08 actual approved model unavailable"
+  - button "A08 actual approved model unavailable"
+  - button "A08 blocked second top task"
+  - button "A08 duplicate admission controlled test"
+  - button "A08 blocked second top task"
+  - button "A08 duplicate admission controlled test"
+  - generic: A
+  - strong: Administrator
+  - generic: 独立云端空间
+  - button "切换主题": ◐
+  - button "退出登录": ↪
+- generic: workbench-opencode
+- generic: ● 环境就绪
+- button "检查变更"
+- link "下载补丁 ↓":
+  - /url: /__platform/download
+- main:
+  - button "跳转到最新":
+  - region "可滚动内容":
+    - heading "New session" [level=1]
+    - button "查看上下文用量":
+    - button "更多选项":
+    - generic: WorkBench UI 独立代码验收。先查看项目结构与 git status，保留所有已有未提交修改，不运行 reset、clean、checkout、git add 或提交。只允许新增 opencode-cloud/src/ui-demo-initials.mjs 与 opencode-cloud/test/ui-demo-initials.test.mjs；任一文件已存在则停止。请先使用原生 question 工具询问我是否创建这两个文件，得到确认后再实现。导出 initials(input)：仅接受字符串，否则抛 TypeError；按空白拆分去除空项，取前两个词的第一个 Unicode 字符，转换大写后拼接，空字符串返回空字符串。仅用 Node 标准库 node:test 与 assert，覆盖 Ada Lovelace→AL、workbench→W、张 三→张三、空白、混合空白和非字符串。实际执行 node --test opencode-cloud/test/ui-demo-initials.test.mjs，不安装依赖、不修改其他文件。
+    - generic: Build · Luna
+    - generic: ·
+    - generic: 14:31
+    - button "撤销此消息":
+    - button "复制消息":
+    - paragraph:
+      - text: 我先检查项目结构与当前
+      - code: git status
+      - text: ，不改动任何文件；随后会用原生问题工具请求创建两个文件的确认。
+    - button "复制回复":
+    - generic: Build · Luna · 22 秒
+    - button "已探索 , 0 次读取 , 2 次搜索 , 列出 0 次":
+      - generic "已探索":
+        - generic "已探索":
+          - generic: 已探索
+          - generic: 已探索
+      - generic: ","
+      - generic "0":
+        - generic: "0"
+        - generic: "1"
+        - generic: "2"
+        - generic: "3"
+        - generic: "4"
+        - generic: "5"
+        - generic: "6"
+        - generic: "7"
+        - generic: "8"
+        - generic: "9"
+        - generic: "0"
+        - generic: "1"
+        - generic: "2"
+        - generic: "3"
+        - generic: "4"
+        - generic: "5"
+        - generic: "6"
+        - generic: "7"
+        - generic: "8"
+        - generic: "9"
+        - generic: "0"
+        - generic: "1"
+        - generic: "2"
+        - generic: "3"
+        - generic: "4"
+        - generic: "5"
+        - generic: "6"
+        - generic: "7"
+        - generic: "8"
+        - generic: "9"
+      - generic: 次读取
+      - generic: ","
+      - generic "2":
+        - generic: "0"
+        - generic: "1"
+        - generic: "2"
+        - generic: "3"
+        - generic: "4"
+        - generic: "5"
+        - generic: "6"
+        - generic: "7"
+        - generic: "8"
+        - generic: "9"
+        - generic: "0"
+        - generic: "1"
+        - generic: "2"
+        - generic: "3"
+        - generic: "4"
+        - generic: "5"
+        - generic: "6"
+        - generic: "7"
+        - generic: "8"
+        - generic: "9"
+        - generic: "0"
+        - generic: "1"
+        - generic: "2"
+        - generic: "3"
+        - generic: "4"
+        - generic: "5"
+        - generic: "6"
+        - generic: "7"
+        - generic: "8"
+        - generic: "9"
+      - generic: 次搜索
+      - generic: ","
+      - generic: 列出
+      - generic "0":
+        - generic: "0"
+        - generic: "1"
+        - generic: "2"
+        - generic: "3"
+        - generic: "4"
+        - generic: "5"
+        - generic: "6"
+        - generic: "7"
+        - generic: "8"
+        - generic: "9"
+        - generic: "0"
+        - generic: "1"
+        - generic: "2"
+        - generic: "3"
+        - generic: "4"
+        - generic: "5"
+        - generic: "6"
+        - generic: "7"
+        - generic: "8"
+        - generic: "9"
+        - generic: "0"
+        - generic: "1"
+        - generic: "2"
+        - generic: "3"
+        - generic: "4"
+        - generic: "5"
+        - generic: "6"
+        - generic: "7"
+        - generic: "8"
+        - generic: "9"
+      - generic: 次
+    - button "Shell git status --short":
+      - generic "Shell":
+        - generic: Shell
+        - generic: Shell
+      - generic: git status --short
+    - generic: Approved model unavailable; no automatic retry
+  - textbox "提示词"
+  - generic: 随便问点什么， / 可查看命令， @ 可添加上下文...
+  - button "添加图片和文件":
+  - button "Luna":
+    - generic: Luna
+  - button "发送" [disabled]:
+- region "Notifications alt+T"

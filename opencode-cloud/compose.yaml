@@ -153,6 +153,7 @@ services:
     image: opencode-cloud/native:1.18.31-managed-v0
     command: [node, --experimental-transform-types, /app/platform.ts]
     user: '1000:1000'
+    environment: {PLATFORM_UI: '${PLATFORM_UI:-workbench}'}
     ports: ['8443:8443']
     networks: [frontend, native, native-admin]
     volumes:

@@ -18,7 +18,7 @@ function overrides(body:unknown) {
   if(['system','tools','permission','permissions','provider','server','baseURL','apiKey','workspace'].includes(k))throw new Error('Configuration override forbidden');
   if(k==='model'&&v!==undefined) {
    const m=v as Record<string,unknown>;
-   if(!m||m.providerID!=='approved'||m.modelID!=='gpt-5.6-luna')throw new Error('Unapproved model');
+   if(!m||m.providerID!=='approved'||!['gpt-5.6-luna','Qwen3.6-35B-A3B'].includes(m.modelID as string))throw new Error('Unapproved model');
   }
   if(k==='agent'&&typeof v==='string'&&!['build','plan','general','explore'].includes(v))throw new Error('Unapproved agent override');
   if(k==='variant'&&v&&v!=='default')throw new Error('Variant override forbidden');

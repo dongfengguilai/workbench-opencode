@@ -1,2 +1,5 @@
 # Preserve raw execution logs and Git patch context bytes without normalization.
 opencode-cloud/evidence/** -whitespace
+
+# Unified diff context uses a single space for empty lines.
+opencode-cloud/ui/upstream.patch whitespace=-blank-at-eol,-blank-at-eof

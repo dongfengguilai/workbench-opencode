@@ -103,3 +103,8 @@ Codex 要在实际可访问源码中定位认证实现与测试，记录所用 c
 - 真实认证与可独立操作的目标入口。
 
 这些是当前主线的验证，不是启动新一轮选型研究。已固定 OpenCode，不比较 OMP/Harness，不开发第二个 Runtime。
+
+
+## 2026-09-17 用户批准的固定前端与模型增量
+
+WorkBench UI 从同一 v1.18.31 固定源码构建，原 bun.lock + Bun1.3.14。精确改动见 opencode-cloud/ui/upstream.patch；覆盖文件及制品摘要见 opencode-cloud/evidence/workbench-ui-build.json，真实边界与原生代码任务见 workbench-ui-regression-result.json。官方二进制和原生 Agent/工具/会话未改。用户最新明确批准新增并默认使用 Qwen3.6-35B-A3B（http://10.243.117.57:4003/v1），Luna 原批准路由保留；不扩大到任意模型、URL或用户环境配置。

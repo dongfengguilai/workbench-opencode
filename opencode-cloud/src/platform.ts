@@ -3,6 +3,8 @@ import {readFileSync,writeFileSync,renameSync,mkdirSync} from 'node:fs';
 import {randomBytes} from 'node:crypto';
 import { IntranetAuthClient,sessionDigest,readCookie,InvalidCredentialsError } from './auth.ts';
 import {forward,upgrade,error,readBody} from './native-proxy.ts';
+import {loadUi,uiPage} from './ui-assets.mjs';
+import {checkRequest} from './access-policy.ts';
 type User={password:string,displayName:string,enabled:boolean,environment:string,nativePassword:string};
 type Config={origin:string,sessionTtl:number,users:Record<string,User>};
 type Session={user:string,expires:number};
@@ -28,15 +30,18 @@ function current(req:any){
 }
 setInterval(()=>{try{const cfg=config();for(const [h,s] of Object.entries(sessions))if(s.expires<=Date.now()||!cfg.users[s.user]?.enabled){closeSession(h);delete sessions[h];persist();}}catch{for(const h of connections.keys())closeSession(h);}},2000).unref();
 function json(res:any,status:number,body:any){res.writeHead(status,{'Content-Type':'application/json','Cache-Control':'no-store'});res.end(JSON.stringify(body));}
-const loginHtml=`<!doctype html><html lang="zh"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>OpenCode Cloud · 登录</title><link rel="stylesheet" href="/__platform/style.css"><main><h1>OpenCode Cloud</h1><p>登录后进入本人的独立云端项目。</p><form id="login"><label>账号<input name="username" autocomplete="username" required></label><label>密码<input name="password" type="password" autocomplete="current-password" required></label><button>进入工作台</button><p id="error" role="alert"></p></form><small>代码、提示词和工具输出会发送到批准的 luna 模型。项目与会话保存在本人的云端环境。</small></main><script src="/__platform/login.js"></script></html>`;
+const loginHtml=readFileSync('/public/login.html');
+const hostedUi=process.env.PLATFORM_UI==='workbench'?loadUi('/public/workbench-ui'):undefined;
+const anonymousAssets:Record<string,string>={'login.css':'text/css','login.js':'application/javascript','theme.js':'application/javascript','logo.svg':'image/svg+xml','logo-dark.svg':'image/svg+xml','favicon.svg':'image/svg+xml'};
 const server=https.createServer({key:readFileSync('/trusted/tls.key'),cert:readFileSync('/trusted/tls.crt')},async(req,res)=>{
  res.setHeader('Cache-Control','no-store');res.setHeader('X-Content-Type-Options','nosniff');res.setHeader('Referrer-Policy','same-origin');
  if(req.headers.host!==origin.host){error(res,400,'Unrecognized platform origin');return;}
  const p=new URL(req.url!,origin).pathname;
  if(!['GET','HEAD'].includes(req.method!)&&req.headers.origin!==origin.origin){error(res,403,'Same-origin request required');return;}
  try{
-  if(['/__platform/style.css','/__platform/login.js','/__platform/shell.js'].includes(p)&&req.method==='GET'){
-   const name=p.split('/').pop()!;res.setHeader('Content-Type',name.endsWith('.css')?'text/css':'application/javascript');res.end(readFileSync('/public/'+name));return;
+  const publicName=p.startsWith('/__platform/')?p.slice('/__platform/'.length):'';
+  if(Object.hasOwn(anonymousAssets,publicName)&&req.method==='GET'){
+   res.setHeader('Content-Type',anonymousAssets[publicName]);res.end(readFileSync('/public/'+publicName));return;
   }
   if((p==='/__platform/login'||p==='/api/auth/login')&&req.method==='GET'){
    res.setHeader('Content-Type','text/html');res.setHeader('Content-Security-Policy',"default-src 'self'; script-src 'self'; style-src 'self'; form-action 'self'; frame-ancestors 'none'");res.end(loginHtml);return;
@@ -58,6 +63,23 @@ const server=https.createServer({key:readFileSync('/trusted/tls.key'),cert:readF
   const identity=current(req);
   if(!identity){if(req.method==='GET'&&req.headers.accept?.includes('text/html')){res.writeHead(302,{Location:'/__platform/login'});res.end();}else error(res,401,'Authentication required');return;}
   const opts={target:identity.user.environment,password:identity.user.nativePassword,register:register(identity.hash)};
+  if(['/__platform/style.css','/__platform/shell.js','/__platform/workbench-guard.js'].includes(p)&&req.method==='GET'){
+   const name=p.split('/').pop()!;res.setHeader('Content-Type',name.endsWith('.css')?'text/css':'application/javascript');res.end(readFileSync('/public/'+name));return;
+  }
+  if(hostedUi&&req.method==='GET'){
+   // The verified fixed native binary implements V1. Unsupported V2 probes
+   // must be an actual 404, not its embedded frontend's HTML catch-all.
+   if(/^\/api\/(health|reference|session)$/.test(p)){error(res,404,'V2 API unavailable in fixed native server; use native V1 SDK');return;}
+   const page=uiPage(p);const asset=hostedUi.get(page?'/index.html':p);
+   if(asset){
+    if(p==='/index.html'){error(res,403,'Use authorized UI routes');return;}
+    if(page){try{checkRequest('GET',new URL(req.url!,origin));}catch{error(res,403,'UI route forbidden');return;}}
+    res.setHeader('Content-Type',asset.type);
+    res.setHeader('Content-Security-Policy',"default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; style-src 'self' 'unsafe-inline'; connect-src 'self' data: blob:; img-src 'self' data: blob:; font-src 'self' data:; worker-src 'self' blob:; object-src 'none'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'");
+    res.end(asset.body);return;
+   }
+   if(p.startsWith('/assets/')||p==='/manifest.json'||p==='/oc-theme-preload.js'){error(res,404,'Build resource not listed');return;}
+  }
   if(p==='/__platform/me'&&req.method==='GET'){
    const health=await fetch(new URL('/global/health',opts.target),{headers:{Authorization:'Basic '+Buffer.from('opencode:'+opts.password).toString('base64')},signal:AbortSignal.timeout(5000)});
    json(res,200,{user_id:identity.username,display_name:identity.user.displayName,project:'workbench-opencode',directory:'/workspace/project',ready:health.ok,project_url:'/L3dvcmtzcGFjZS9wcm9qZWN0/session'});return;

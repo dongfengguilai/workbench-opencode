@@ -10,7 +10,7 @@
 
 ## 实际版本与基线
 
-原生 OpenCode v1.18.31 / 014614d35b397775e5d397a490fc72368c894ec2。官方二进制与内嵌固定 UI 摘要见 source-provenance.json；Settings 的 Desktop 版本显示为官方制品实际值 v1.18.30，未篡改文字或取 rolling UI。批准模型为 gpt-5.6-luna，通过固定受限网关，主 Key 不在工作环境。
+原生 OpenCode v1.18.31 / 014614d35b397775e5d397a490fc72368c894ec2。官方二进制与内嵌固定 UI 摘要见 source-provenance.json；Settings 的 Desktop 版本显示为官方制品实际值 v1.18.30，未篡改文字或取 rolling UI。用户最新批准新增并默认使用 Qwen3.6-35B-A3B，保留原 gpt-5.6-luna 精确路由；通过本人固定受限网关，两个主 Key 均不在工作环境。当前 WorkBench UI 从同一 v1.18.31 固定源码、原始 bun.lock 和 Bun1.3.14构建，出处/补丁/951制品摘要见 workbench-ui-build.json。
 
 真实产品任务：实现完整 Git 补丁导出。两个独立未修复工作副本均从 9320d7bdc9f2f1e87c865646952c86f239a57d9b 开始。A01 的原生任务 Session 为 ses_f5298a8dbffeKFpwTjYXgYE2F2；平台重跑 Session 为 ses_f52850e1affeIcfvPF0rynZtLI。任务、尝试、补充、失败及独立验证完整保留。维护者未预写目标核心或降低测试。
 
@@ -43,11 +43,20 @@
 
 使用说明：opencode-cloud/docs/USER_GUIDE.md；构建/启动/状态/原生 smoke/浏览器/冷备/恢复命令：opencode-cloud/docs/OPERATIONS.md。补丁要在 manifest 记录的固定基线上应用。A05 的维护者边界测试数据（README 暂存/未暂存、删除旧 smoke 说明、新文本/二进制、排除标记）仅覆盖导出行为，不冒充 Agent 完成的产品核心修改。
 
+
+2026-09-17 WorkBench完整UI及最新Qwen实现：登录居中品牌/错误与加载、中文项目首页、侧栏会话搜索与历史、受控新草稿、双主题、窄栏抽屉及原生聊天／变更切换均可用；原生工具/输入/审批/Diff/文件/终端复用。可在输入区批准模型按钮选择Qwen或Luna，鼠标与键盘已实测；现有历史保留此前选择，必要时明确切Qwen。新的原生草稿默认Qwen（第二个真实用户也验证）。品牌SVG浅深色与favicon在public/。平台仅切换UI，没有重建原生环境或数据。
+
+真实Qwen Agent在 ses_f51f0193effe59hdD5mXjOT6EO 创建 initials 模块与标准库测试；原生question真实确认，首版7项通过后发现非BMP Unicode首字符缺陷，明确让同一原生Agent修正并补测试，最终8PASS；随后由Qwen把混合空白用例扩展到Tab/换行/回车/NBSP和第三词，再实际8PASS。原生终端旧+新测试15PASS；可见浏览器查看真实Diff、检查清单和下载事件，真实API字节另保存补丁（浏览器接口不返回下载路径）；新干净固定基线副本git apply检查/应用成功，无网络同镜像15PASS。原生停止点击实际中断Qwen请求（工具尚未执行），随后明确只读继续完成，不宣称中断Bash。注销后真实B身份只见本人6会话，回管理员搜索并重进原代码会话；相同会话、工具测试结果及文件保留。
+
+冷备先确认两环境idle、暂停并保存真实持久卷后原容器恢复；原有24会话完整消息与66文件摘要及Git索引完全一致，容器ID/启动时间不变，仅管理员新增两文件及两个连续创建会话。两个scope及原native受控HTTPS仍隔离；真实公开站点/TLS/受保护目标拒绝证据已重新回归。Qwen短探针128token耗尽思考，1024token得到真实标准tool_calls；随后完整原生Agent工具及测试成功。图片/多模态仅采用端点声明，本次未做独立图像验收。没有修改前的原生前端生产性能benchmark，不宣称性能基准回归PASS。
+
+证据总表：opencode-cloud/evidence/workbench-ui-result.json；原生完整任务/停止记录 workbench-ui-qwen-native-messages.json、workbench-ui-stop-native-messages.json；真实干净补丁回归 workbench-ui-regression-result.json、workbench-ui-applied-tests.log（15PASS）、workbench-ui-platform.patch；保留校验 workbench-ui-persistence.json（24会话/66文件）、真实网络 workbench-ui-network-live-result.json；固定前端类型/构建日志及摘要 workbench-ui-typecheck.log、workbench-ui-build.log、workbench-ui-build.json；边界单元12PASS、原生首页索引单元9PASS（与真实模型证据区分）。截图 workbench-ui-login-final-light/dark.png、workbench-ui-final-light/dark.png、workbench-ui-qwen-terminal-final-tests.png、workbench-ui-inspect.png、workbench-ui-native-diff.png、workbench-ui-reentered-codex-narrow.png、workbench-ui-trial-b-isolated.png。
+
 ## 用户还不能做什么与残余限制
 
-仅供受控试用：真实本地管理员分支是用户选择，未宣称 NetID 或受信任生产 HTTPS 已通过。证书为自签 30 天，生产证书仍需真实提供。一类 Node 标准库/Git 项目、一个模型、预分配一项目一环境；已批准公开 HTTPS 443 经受控网关外连，额外依赖及语言栈未单独验收。普通 HTTP、其他公网端口、私网和 IANA 特殊地址（含少量全球可达例外）不开放；每次检查全部 DNS 结果并以字面IP连接现有外部代理，外部代理/DNS/站点不可用仍会真实失败。IPv6仅允许非特殊全球单播，可达性取决于外部代理，不以直接IPv6拒绝测试冒称全部IPv6站点可用。CONNECT是环境级HTTPS通道，不限制加密隧道内的方法。无本地连接器、用户环境配置、插件平台、任意预览、仓库写凭据、push/自动 PR 或部署。
+仅供受控试用：真实本地管理员分支是用户选择，未宣称 NetID 或受信任生产 HTTPS 已通过。证书为自签 30 天，生产证书仍需真实提供。一类 Node 标准库/Git 项目、两个精确批准模型、预分配一项目一环境；已批准公开 HTTPS 443 经受控网关外连，额外依赖及语言栈未单独验收。普通 HTTP、其他公网端口、私网和 IANA 特殊地址（含少量全球可达例外）不开放；每次检查全部 DNS 结果并以字面IP连接现有外部代理，外部代理/DNS/站点不可用仍会真实失败。IPv6仅允许非特殊全球单播，可达性取决于外部代理，不以直接IPv6拒绝测试冒称全部IPv6站点可用。CONNECT是环境级HTTPS通道，不限制加密隧道内的方法。无本地连接器、用户环境配置、插件平台、任意预览、仓库写凭据、push/自动 PR 或部署。
 
-首页未打开项目时 New session 仍依赖原生项目列表，需先点击“授权项目”；用户明确选择本次只修网络阻塞，没有修改首页行为。
+WorkBench 新项目首页和“新建会话”已修复此前缓存依赖；旧会话地址兼容。没有用户Key、URL、模型提供商或环境配置入口。
 
 本机 HTTP 验证入口仅当前运行 Codex 的宿主机可访问，不用于远程生产登录。代理后端继续校验 HTTPS 链/地址/有效期及准确叶证书指纹；错误 CA/指纹拒绝，5 项真实平台连接测试 PASS。仅本机响应的登录 Cookie 移除 Secure，HttpOnly/SameSite/有效期/注销保持，原 HTTPS Cookie Secure 实测保持。Codex 全局证书校验与证书数据库未改动。外部设备仍需私网可达并使用 HTTPS；本机入口不代表生产 HTTPS 验收通过。重新进入本次示例可使用 USER_GUIDE 中保存的会话地址。
 
@@ -61,9 +70,12 @@
 
 本次保留初始缺网关的失败断言、BlockList跨地址族误拒绝公网的单元测试失败、宿主Node未编译TypeScript导致独立补丁回归失败。分别修正为独立地址族规则和使用同部署镜像ID的无网络只读新副本运行测试；没有删测试或改既有项目。见 web-egress-unit-before.log、web-egress-unit-family-failure.log、web-egress-regression-initial-failure.log。
 
+
+本次保留首次依赖安装PATH缺Bun、类型构建失败、首页错误V2路由/查询缓存空历史、单元运行器只读tmp和验证脚本302/403预期误判/平台启动未就绪等真实失败日志。前端输入区z70挡住body菜单z60使鼠标选择无效，最终用外壳isolation修正并恢复原生模型选择代码，不改Agent或模型存储。Luna上游500实际内容为访问chatgpt.com的TLS handshake EOF，见 workbench-ui-model-probe-body.json；不删除失败会话、不冒充稳定。用户随后提供并批准Qwen，默认模型切换后真实修改、测试及继续成功。
+
 ## 下一步只修哪个阻塞
 
-天气 Webfetch 阻塞已真实修复，当前没有未解决的本次网络修复阻塞。下一步只做 A10：用户通过已启动的 http://127.0.0.1:8444 实际试用自己的代码需求、检查/下载变更并重新进入，然后明确反馈能否用于试用。内置浏览器证书阻塞由已批准的回环HTTP入口解除；维护者真实演示及本次修复均PASS，但不替用户签收。早期失败保留为历史证据。若用户发现新问题，下一步仅修该反馈阻塞，不开启其他业务线。
+WorkBench登录／工作台及Qwen切换已实施并真实验证，当前没有未解决的本次交互阻塞。唯一下一步是A10：用户在已启动的 http://127.0.0.1:8444 用自己的代码需求完成一次闭环并明确签收。维护者不能代签。若用户发现新问题，只处理该反馈阻塞，不扩展业务线。Luna仍存在真实外部TLS故障，默认Qwen已完成代码闭环，不自动回退或重试。
 
 ## 最终签收
 

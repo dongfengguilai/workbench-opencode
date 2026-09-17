@@ -1,0 +1,8 @@
+{
+  "status": "PASS",
+  "kind": "real_browser_native_abort_explicit_continuation",
+  "session": "ses_f51f57bedffeEglfyohbAOhv4e",
+  "stopped": true,
+  "continued": true,
+  "scope": "abort clicked before any new tool; not a claim of interrupted Bash"
+}

@@ -1,6 +1,6 @@
-# Workbench OpenCode Cloud V0
+# WorkBench
 
-独立云端托管完整 OpenCode v1.18.31，固定批准的 Luna 模型。平台只提供真实登录、本人预分配环境、固定授权项目、受控代理和变更下载；原生 Agent、工具、SQLite 会话和 Web UI 保留。
+独立云端托管完整 OpenCode v1.18.31，默认使用用户批准的 Qwen3.6-35B-A3B，保留此前批准的 Luna。平台只提供真实登录、本人预分配环境、固定授权项目、受控代理和变更下载；原生 Agent、工具、SQLite 会话保持不变；固定原生前端经 WorkBench 品牌、双主题及布局适配。
 
 - 实际交付状态：[STATUS.md](opencode-cloud-v0/STATUS.md)
 - 用户使用：[USER_GUIDE.md](opencode-cloud/docs/USER_GUIDE.md)

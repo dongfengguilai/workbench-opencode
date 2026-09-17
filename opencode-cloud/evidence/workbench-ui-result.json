@@ -1,0 +1,56 @@
+{
+  "status": "PASS",
+  "date": "2026-09-17T07:41:14.027474+00:00",
+  "kind": "actual_pinned_native_UI_Qwen_platform_browser_clean_patch_verification",
+  "entry": "http://127.0.0.1:8444",
+  "model": "Qwen3.6-35B-A3B",
+  "modelEndpoint": "http://10.243.117.57:4003/v1",
+  "codingSession": "ses_f51f0193effe59hdD5mXjOT6EO",
+  "stopSession": "ses_f51f57bedffeEglfyohbAOhv4e",
+  "nativeBinarySha256": "f9dab32248695e9ebd56b16a1921798fd85112cf5a69c7dfd0cabc1e17be4a11",
+  "checks": {
+    "nativeAgentTests": 8,
+    "originalPlusNewTerminalTests": 15,
+    "cleanPatchTests": 15,
+    "securityUnits": 12,
+    "nativeHomeIndexUnits": 9,
+    "existingSessionsPreserved": 24,
+    "existingFilesUnchanged": 66,
+    "originalNativeContainersRecreated": false,
+    "twoConsecutiveNewNativeSessions": true,
+    "visibleCodexBrowser": true,
+    "themes": [
+      "light",
+      "dark"
+    ],
+    "viewports": [
+      "1440x900",
+      "390x844",
+      "304x687"
+    ],
+    "mouseModelSelection": "both approved models; current Qwen; original native selector unchanged",
+    "browserDownload": "event received; API exposes no download path, saved bytes independently via actual platform API",
+    "stopContinue": "real native abort before tool execution, then explicit successful read-only continuation",
+    "dualUserBrowser": "trial-b six own sessions only; new draft Qwen; administrator reentered same code session",
+    "authentication": "existing real local-admin credentials; production NetID not claimed",
+    "mixedWhitespaceAndThirdWord": "real Qwen updated native test; all 8 pass"
+  },
+  "evidence": [
+    "workbench-ui-build.json",
+    "workbench-ui-qwen-native-messages.json",
+    "workbench-ui-regression-result.json",
+    "workbench-ui-persistence.json",
+    "workbench-ui-network-live-result.json",
+    "workbench-ui-qwen-network-isolation.json",
+    "workbench-ui-stop-result.json",
+    "workbench-ui-final-boundaries.log",
+    "workbench-ui-native-index-tests.log"
+  ],
+  "remaining": "A10 requires actual user trial and explicit signoff; not DELIVERED",
+  "limitations": [
+    "selfsigned remote HTTPS remains controlled trial; loopback browser entrance not production proof",
+    "Luna external TLS EOF retained; no automatic fallback/retry",
+    "text and tools verified; multimodal not separately tested",
+    "no pre-change native frontend production performance benchmark recorded; no performance benchmark PASS claimed"
+  ]
+}

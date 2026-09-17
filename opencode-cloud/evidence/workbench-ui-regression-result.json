@@ -1,0 +1,12 @@
+{
+  "status": "PASS",
+  "kind": "real_TLS_platform_native_Qwen_patch_application",
+  "baseline": "9320d7bdc9f2f1e87c865646952c86f239a57d9b",
+  "image": "sha256:4c8c616b353679b174f7ef538a74b4143c78a7315b4370576319d3890d7abaff",
+  "results": [
+    "verified upstream TLS, anonymous login asset allowlist, authenticated build manifest, unknown paths denied",
+    "real Qwen native edit/tool calls/8 passing tests, native question answered, fixed default, Luna retained, key redacted, dual user and management isolation",
+    "real patch downloaded/index preserved, clean fixed baseline applied and 15 tests passed in same image with no network",
+    "logout/relogin exact native messages and generated files persisted"
+  ]
+}

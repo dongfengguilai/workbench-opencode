@@ -12,13 +12,16 @@ python3 scripts/fetch-upstream.py
 docker compose build --build-arg http_proxy --build-arg https_proxy --build-arg no_proxy native
 python3 scripts/initialize.py --project /ABS/AUTHORIZED/PROJECT --baseline FULL_COMMIT_SHA --origin https://TRIAL_HOST:8443 --model-key-file /ABS/PROTECTED/MODEL_KEY
 python3 scripts/quota.py --migrate-stopped
+python3 scripts/build-ui.py
+# 新批准的 Qwen Key 同样仅放入 owner-only 文件
+python3 scripts/configure-qwen.py --key-file /ABS/PROTECTED/QWEN_KEY
 ./scripts/start.sh
 ./scripts/status.sh
 ```
 
 initialize 拒绝非空 runtime。clone 为新副本，不重置用户目录，移除 remote，不注入 SSH 或仓库凭据。真实 local-admin 分支复用旧登录代码；NetID 客户端保留但没有正式配置/验证，不能声称 NetID 已验收。生成两个真实本地试用账号，不使用 Mock。证书为 30 天自签试用证书；受信任 HTTPS 应由维护者替换 runtime/tls.key、tls.crt，并匹配 origin。密钥文件 0600，runtime 不入 Git。
 
-固定 OpenCode v1.18.31，commit 014614d35b397775e5d397a490fc72368c894ec2，制品 SHA256 b283e8dbe9e6fc224bb4b79992ce3bd2174b8b7b0c3e7d1b4e6024a1d11edc84。官方二进制自带同版本 Web UI；未修改原生源码。资源受控：CPU2、内存2GiB、PID256、临时目录256MiB；每身份项目和完整原生状态共享独立 1GiB ext4 文件系统。scope 模型凭据只访问固定路由，最多并发2、输出16000 Token、UTC 日250次上游请求（包括失败），计数在各自 gateway-state 持久化；主 Key 仅在可信网关。
+固定 OpenCode v1.18.31，commit 014614d35b397775e5d397a490fc72368c894ec2，制品 SHA256 b283e8dbe9e6fc224bb4b79992ce3bd2174b8b7b0c3e7d1b4e6024a1d11edc84。官方原生二进制不变；WorkBench 前端从同一固定源码构建，只修改品牌、布局和必要导航。原内嵌 UI 保留作维护者回滚。资源受控：CPU2、内存2GiB、PID256、临时目录256MiB；每身份项目和完整原生状态共享独立 1GiB ext4 文件系统。scope 模型凭据只访问固定路由，最多并发2、输出16000 Token、UTC 日250次上游请求（包括失败），计数在各自 gateway-state 持久化；主 Key 仅在可信网关。
 
 quota.py 的短暂维护容器仅用于新 loop 文件系统：SYS_ADMIN/DAC_OVERRIDE/CHOWN/MKNOD、AppArmor unconfined、无网络，不是工作容器。工作容器始终非 root、所有能力删除、只读系统、内部独立网络。脚本验证实际 bounded ext4 挂载，条件不满足则退出，不能退回宿主无限磁盘。迁移要求停机及冷备，原项目/状态目录保留 .prequota-*；不删除。宿主重启后运行 start.sh 会恢复 loop 挂载；不可绕过脚本启动到未挂载目录。
 
@@ -88,3 +91,16 @@ python3 scripts/local-browser.py stop
 完整启动时可用 `sh scripts/start.sh --local-browser`；完整 stop 同时停止代理。代理 PID/starttime 与日志在忽略的 runtime 内，仅停止核对为本脚本的进程，遇到他人占用 8444 拒绝启动。`LOCAL_BROWSER_TRACE=1 python3 scripts/local-browser.py start` 可临时记录方法、无查询字符串的路径和状态，不记录 Header、Cookie、密码、请求内容或模型 Key。默认不启用逐请求日志。
 
 `node --test test/local-browser.test.mjs` 使用实际正在运行的平台检查本机绑定、认证、Origin/Host/CONNECT/WS 与错误证书拒绝；缺少真实平台时失败，不启动替代服务器。可见内置浏览器示例证据见 evidence/local-browser-demo-result.json。这是维护者本机验证入口，不代表远程生产证书验收通过。
+
+
+## WorkBench UI 与固定 Qwen 路由
+
+从原始 v1.18.31 源码及 bun.lock，用 Bun 1.3.14 执行 `python3 scripts/build-ui.py`；构建脚本校验源归档、Bun 归档及锁文件摘要。补丁与覆盖文件在 ui/，制品清单及 SHA256 在 evidence/workbench-ui-build.json。匿名资源仅登录明确清单；951个工作台资源按构建清单加载且要求身份，未知页面和资源拒绝。没有任意文件服务或宽泛 SPA 回退。
+
+仅更新 UI 时确认两个原生环境空闲，按既有流程冷备并保存 test/ui-snapshot.mjs 输出；构建通过后只执行 `docker compose up -d --no-deps --no-build --force-recreate platform`。不要使用会重建原生的 start.sh 发布 UI。维护者回滚：`PLATFORM_UI=embedded docker compose up -d --no-deps --no-build --force-recreate platform`；恢复新 UI 用 PLATFORM_UI=workbench 的同一命令。均不改持久卷。主题 Cookie 只含 light/dark，无认证数据。
+
+新增 Qwen 由用户于2026-09-17明确批准。固定上游 http://10.243.117.57:4003/v1，精确模型 Qwen3.6-35B-A3B，context131072/output16000，使用原生 OpenAI-compatible chat completions；不模拟 Responses。configure-qwen.py 保存 owner-only 原配置冷备，原位更新受控配置，不初始化项目；Qwen主Key只在两个可信模型网关，原生容器仍只持本人scope Key。网关仅允许Qwen及此前Luna，按模型精确路由，不接受请求选择URL；共享原每日250次/并发2限额，不自动回退或重试。
+
+现有运行实例增加模型时，确认两环境 idle 后仅重建两个 model-gateway、重启两个 native-guard。维护者在 guard 的 UID1001 通过原始4030 Basic认证调用原生 POST /global/dispose 使配置重新读取；不重建 native、不重置数据库或持久卷。该管理操作不在平台用户路由清单中。记录真实模型、会话和文件摘要；浏览器中确认输入区模型标签与实际消息 modelID 为Qwen。原生 /config 的 model 与 small_model 已设Qwen，历史会话可能保留先前选择，需明确切换。
+
+真实回归：`node test/ui-regression-live.mjs`（使用现有 admin/trial-b、验证平台TLS，检查原生Qwen工具结果和授权审批，真实下载后在新的干净基线副本应用，使用同部署镜像无网络运行15测试）。不替代可见Codex浏览器的交互证据或A10用户签收。

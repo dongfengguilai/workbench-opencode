@@ -2,3 +2,5 @@ runtime/
 vendor/
 .env
 node_modules/
+public/workbench-ui/
+__pycache__/

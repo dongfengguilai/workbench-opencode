@@ -1,0 +1,47 @@
+// Real platform/dual identity/model/file boundaries and independent patch tests.
+import assert from 'node:assert/strict';
+import https from 'node:https';
+import {readFileSync,writeFileSync,mkdtempSync} from 'node:fs';
+import {createHash} from 'node:crypto';
+import {execFileSync} from 'node:child_process';
+import path from 'node:path';
+const cfg=JSON.parse(readFileSync('runtime/platform.json'));const ca=readFileSync('runtime/tls.crt');
+const request=(route,{method='GET',body,cookie,origin=cfg.origin}={})=>new Promise((resolve,reject)=>{const req=https.request(cfg.origin+route,{method,ca,headers:{Origin:origin,...(cookie?{Cookie:cookie}:{}),...(body?{'Content-Type':'application/json'}:{})}},res=>{const parts=[];res.on('data',b=>parts.push(b));res.on('end',()=>resolve({status:res.statusCode,headers:res.headers,body:Buffer.concat(parts).toString()}));res.on('error',reject)});req.on('error',reject);req.setTimeout(30000,()=>req.destroy(Error('timeout')));req.end(body?JSON.stringify(body):undefined)});
+const login=async name=>{const r=await request('/api/auth/login',{method:'POST',body:{username:name,password:cfg.users[name].password}});assert.equal(r.status,200);assert.match(r.headers['set-cookie'][0],/Secure/);return r.headers['set-cookie'][0].split(';')[0]};
+const sid='ses_f51f0193effe59hdD5mXjOT6EO';const results=[];
+try{
+ assert.equal((await request('/')).status,401);
+ assert.equal((await request('/__platform/login.css')).status,200);
+ assert.equal((await request('/__platform/constructor')).status,401);
+ const a=await login('admin'),b=await login('trial-b');
+ const html=await request('/',{cookie:a});assert.equal(html.status,200);assert.match(html.body,/<title>WorkBench/);const js=html.body.match(/src="(\/assets\/index-[^"]+\.js)"/)[1];
+ assert.equal((await request(js)).status,401);assert.equal((await request(js,{cookie:a})).status,200);
+ for(const route of ['/assets/absent.js','/manifest.json'])assert.equal((await request(route,{cookie:a})).status,404);
+ assert.equal((await request('/index.html',{cookie:a})).status,403);
+ assert.equal((await request('/other-page',{cookie:a})).status,403);
+ results.push('verified upstream TLS, anonymous login asset allowlist, authenticated build manifest, unknown paths denied');
+ const messages=await request('/session/'+sid+'/message',{cookie:a});assert.equal(messages.status,200);writeFileSync('evidence/workbench-ui-qwen-native-messages.json',messages.body+'\n');
+ const parsed=JSON.parse(messages.body);const qwen=parsed.filter(m=>m.info.role==='assistant'&&m.info.modelID==='Qwen3.6-35B-A3B');assert.ok(qwen.some(m=>m.info.finish==='stop'&&!m.info.error));const tools=qwen.flatMap(m=>m.parts).filter(p=>p.type==='tool');assert.ok(tools.some(p=>['write','edit'].includes(p.tool)&&p.state.status==='completed'));
+ assert.ok(tools.some(p=>p.tool==='bash'&&p.state.status==='completed'&&p.state.output.includes('# pass 8')));
+ assert.ok(parsed.flatMap(m=>m.parts).some(p=>p.type==='tool'&&p.tool==='question'&&p.state.status==='completed'));
+ const config=JSON.parse((await request('/config',{cookie:a})).body);assert.equal(config.model,'approved/Qwen3.6-35B-A3B');
+ assert.ok(config.provider.approved.models['gpt-5.6-luna']);assert.ok(config.provider.approved.models['Qwen3.6-35B-A3B']);assert.equal(config.provider.approved.options.apiKey,undefined);
+ assert.equal((await request('/session/'+sid+'/message',{cookie:b})).status,404);
+ for(const [route,method,body] of [['/config','PATCH',{model:'other'}],['/mcp','POST',{}],['/global/dispose','POST',{}],['/session/'+sid+'/prompt_async','POST',{model:{providerID:'other',modelID:'Qwen3.6-35B-A3B'},parts:[]}]])assert.equal((await request(route,{method,body,cookie:a})).status,403);
+ assert.equal((await request('/session',{method:'POST',body:{},cookie:a,origin:'https://evil.example'})).status,403);
+ results.push('real Qwen native edit/tool calls/8 passing tests, native question answered, fixed default, Luna retained, key redacted, dual user and management isolation');
+ const project='runtime/admin-project';const hash=p=>createHash('sha256').update(readFileSync(p)).digest('hex');const index=hash(project+'/.git/index');
+ const manifest=await request('/__platform/changes',{cookie:a});assert.equal(manifest.status,200);writeFileSync('evidence/workbench-ui-manifest.json',manifest.body+'\n');
+ const patch=await request('/__platform/download',{cookie:a});assert.equal(patch.status,200);writeFileSync('evidence/workbench-ui-platform.patch',patch.body);assert.equal(hash(project+'/.git/index'),index);
+ const applied=mkdtempSync(path.resolve('runtime/workbench-ui-applied-'));execFileSync('git',['clone','--quiet','--no-hardlinks',path.resolve(project),applied]);
+ const baseline=JSON.parse(manifest.body).baseline;assert.equal(execFileSync('git',['rev-parse','HEAD'],{cwd:applied,encoding:'utf8'}).trim(),baseline);
+ execFileSync('git',['apply','--check',path.resolve('evidence/workbench-ui-platform.patch')],{cwd:applied});execFileSync('git',['apply',path.resolve('evidence/workbench-ui-platform.patch')],{cwd:applied});
+ const id=execFileSync('docker',['compose','ps','-q','admin-native'],{encoding:'utf8'}).trim();const image=JSON.parse(execFileSync('docker',['inspect',id],{encoding:'utf8'}))[0].Image;
+ const args=['run','--rm','--network','none','--read-only','--cap-drop','ALL','--security-opt','no-new-privileges:true','--user','1000:1000','--tmpfs','/tmp:rw,nosuid,nodev,size=256m','--mount',`type=bind,source=${applied},target=/workspace/project,readonly`,image,'node','--experimental-strip-types','--test','opencode-cloud/test/patch-export.test.mjs','opencode-cloud/test/demo-text.test.mjs','opencode-cloud/test/ui-demo-initials.test.mjs'];
+ let output;try{output=execFileSync('docker',args,{encoding:'utf8'})}catch(e){writeFileSync('evidence/workbench-ui-applied-tests.log',String(e.stdout||'')+String(e.stderr||''));throw e}writeFileSync('evidence/workbench-ui-applied-tests.log',output);assert.match(output,/# pass 15/);assert.match(output,/# fail 0/);
+ results.push('real patch downloaded/index preserved, clean fixed baseline applied and 15 tests passed in same image with no network');
+ const before=hash(project+'/opencode-cloud/src/ui-demo-initials.mjs');await request('/api/auth/logout',{method:'POST',cookie:a});assert.equal((await request('/session',{cookie:a})).status,401);
+ const again=await login('admin');assert.equal((await request('/session/'+sid+'/message',{cookie:again})).body,messages.body);assert.equal(hash(project+'/opencode-cloud/src/ui-demo-initials.mjs'),before);
+ await request('/api/auth/logout',{method:'POST',cookie:again});await request('/api/auth/logout',{method:'POST',cookie:b});results.push('logout/relogin exact native messages and generated files persisted');
+ writeFileSync('evidence/workbench-ui-regression-result.json',JSON.stringify({status:'PASS',kind:'real_TLS_platform_native_Qwen_patch_application',baseline,image,results},null,2)+'\n');console.log('PASS',results);
+}catch(e){writeFileSync('evidence/workbench-ui-regression-result.json',JSON.stringify({status:'FAIL',results,error:e.message},null,2)+'\n');throw e}

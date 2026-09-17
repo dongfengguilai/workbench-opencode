@@ -1,0 +1,29 @@
+{
+  "status": "PASS",
+  "environments": {
+    "admin": {
+      "sameNativeContainer": true,
+      "sameStartedAt": true,
+      "sameGitIndex": true,
+      "originalSessionsPreserved": 18,
+      "originalFilesUnchanged": 32,
+      "addedFiles": [
+        "opencode-cloud/src/ui-demo-initials.mjs",
+        "opencode-cloud/test/ui-demo-initials.test.mjs"
+      ],
+      "newSessions": [
+        "ses_f51f0193effe59hdD5mXjOT6EO",
+        "ses_f51f57bedffeEglfyohbAOhv4e"
+      ]
+    },
+    "trial-b": {
+      "sameNativeContainer": true,
+      "sameStartedAt": true,
+      "sameGitIndex": true,
+      "originalSessionsPreserved": 6,
+      "originalFilesUnchanged": 34,
+      "addedFiles": [],
+      "newSessions": []
+    }
+  }
+}

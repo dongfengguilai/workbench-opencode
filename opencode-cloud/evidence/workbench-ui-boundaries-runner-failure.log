@@ -1,0 +1,115 @@
+TAP version 13
+# Subtest: fixed-version routes and prompt overrides are enforced
+ok 1 - fixed-version routes and prompt overrides are enforced
+  ---
+  duration_ms: 2.289603
+  type: 'test'
+  ...
+# Subtest: single model boundary rejects unauthorized, management and model override requests
+not ok 2 - single model boundary rejects unauthorized, management and model override requests
+  ---
+  duration_ms: 4.459249
+  type: 'test'
+  location: '/app/test/model-gateway.test.mjs:9:1'
+  failureType: 'testCodeFailure'
+  error: "EROFS: read-only file system, mkdtemp '/tmp/gateway-budget-zSdPRm'"
+  code: 'EROFS'
+  stack: |-
+    async mkdtemp (node:internal/fs/promises:1185:10)
+    async TestContext.<anonymous> (file:///app/test/model-gateway.test.mjs:10:19)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:296:3)
+  ...
+# Subtest: only listed immutable build files and exact native page routes are hosted
+not ok 3 - only listed immutable build files and exact native page routes are hosted
+  ---
+  duration_ms: 2.138389
+  type: 'test'
+  location: '/app/test/ui-assets.test.mjs:7:1'
+  failureType: 'testCodeFailure'
+  error: "EROFS: read-only file system, mkdtemp '/tmp/workbench-ui-XXXXXX'"
+  code: 'EROFS'
+  stack: |-
+    mkdtempSync (node:fs:3049:18)
+    TestContext.<anonymous> (file:///app/test/ui-assets.test.mjs:8:13)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.start (node:internal/test_runner/test:944:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:296:17)
+  ...
+# Subtest: manifest path traversal and symlinks fail closed
+not ok 4 - manifest path traversal and symlinks fail closed
+  ---
+  duration_ms: 0.328953
+  type: 'test'
+  location: '/app/test/ui-assets.test.mjs:18:1'
+  failureType: 'testCodeFailure'
+  error: "EROFS: read-only file system, mkdtemp '/tmp/workbench-ui-XXXXXX'"
+  code: 'EROFS'
+  stack: |-
+    mkdtempSync (node:fs:3049:18)
+    TestContext.<anonymous> (file:///app/test/ui-assets.test.mjs:19:13)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:296:3)
+  ...
+# Subtest: private, reserved, multicast and IPv6 transition addresses fail closed
+ok 5 - private, reserved, multicast and IPv6 transition addresses fail closed
+  ---
+  duration_ms: 8.762755
+  type: 'test'
+  ...
+# Subtest: authority accepts only canonical host/IP and port 443
+ok 6 - authority accepts only canonical host/IP and port 443
+  ---
+  duration_ms: 1.115935
+  type: 'test'
+  ...
+# Subtest: all DNS answers checked; fresh resolution prevents cached rebinding; selects IPv4
+ok 7 - all DNS answers checked; fresh resolution prevents cached rebinding; selects IPv4
+  ---
+  duration_ms: 0.451693
+  type: 'test'
+  ...
+# Subtest: connects pinned literal IP, streams tunnel bytes, and cleans client disconnect
+ok 8 - connects pinned literal IP, streams tunnel bytes, and cleans client disconnect
+  ---
+  duration_ms: 13.076457
+  type: 'test'
+  ...
+# Subtest: denies private DNS, HTTP, non443, proxy authentication and excessive concurrency
+ok 9 - denies private DNS, HTTP, non443, proxy authentication and excessive concurrency
+  ---
+  duration_ms: 44.382901
+  type: 'test'
+  ...
+# Subtest: rejected clients release slots without client cooperation; IPv6 pinned in brackets
+ok 10 - rejected clients release slots without client cooperation; IPv6 pinned in brackets
+  ---
+  duration_ms: 11.644924
+  type: 'test'
+  ...
+# Subtest: large streamed tunnel survives a paused reader without losing bytes
+ok 11 - large streamed tunnel survives a paused reader without losing bytes
+  ---
+  duration_ms: 57.424694
+  type: 'test'
+  ...
+# Subtest: upstream failure is returned once; pending connection and slow headers bounded
+ok 12 - upstream failure is returned once; pending connection and slow headers bounded
+  ---
+  duration_ms: 55.801109
+  type: 'test'
+  ...
+1..12
+# tests 12
+# suites 0
+# pass 9
+# fail 3
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 683.283004
