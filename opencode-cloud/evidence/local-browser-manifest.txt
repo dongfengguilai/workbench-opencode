@@ -1,0 +1,7 @@
+Browser tab: 7, Title: "127.0.0.1:8444/__platform/changes", URL: "http://127.0.0.1:8444/__platform/changes".
+1 AXWebArea 127.0.0.1:8444/__platform/changes
+	2 text {"baseline":"9320d7bdc9f2f1e87c865646952c86f239a57d9b","files":["acceptance-a05.bin","acceptance-a05.txt","acceptance-a06.txt","opencode-cloud-v0/README.md","opencode-cloud/evidence/smoke-task.txt","opencode-cloud/src/demo-text.mjs","opencode-cloud/src/patch-export.ts","opencode-cloud/test/demo-text.test.mjs"]}
+	3 container
+		4 checkbox 0
+
+The focused UI element is 1 AXWebArea 127.0.0.1:8444/__platform/changes

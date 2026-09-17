@@ -1,0 +1,20 @@
+{
+  "session": "ses_f52403502ffeaGvtr8uvfQZ8W5",
+  "messageIDs": [
+    "msg_0adbfcc37001IXfqzRATxqTMpz",
+    "msg_0adbfce1e001C2616zwtLUB5lv",
+    "msg_0adbfe4460011CnCd5tLlLtm6u",
+    "msg_0adbff920001iHf0D5LRwWpxSC",
+    "msg_0adc00e59001H8aSd2NCrLScvs",
+    "msg_0adc022a90016pTCR8tiSlAJdq",
+    "msg_0adc038d40016IJqa4MgqO619J",
+    "msg_0adc05eda001PGzuvVA03lFZ4V",
+    "msg_0adc06eb2001Kxa5mPINGG77C7",
+    "msg_0adc084e4001VcWbkyVtrtAKCd",
+    "msg_0adc09d59001adMXYlDIwSjTcx"
+  ],
+  "hashes": {
+    "opencode-cloud/src/demo-text.mjs": "0a766a8145159ecca261cd9d8dae1139884d29e0cbe8b7b0dd2d0d88ca212e66",
+    "opencode-cloud/test/demo-text.test.mjs": "58e4d2644fc88375345ec379e254f27299ee0bcc746661f40948369a46fb04ca"
+  }
+}

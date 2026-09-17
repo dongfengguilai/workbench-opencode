@@ -4,6 +4,7 @@
 - A01–A09 已实际通过；A10 等待用户真实试用和明确签收，Agent 不代签。
 - 独立新工程 opencode-cloud；旧 agent_platform 未改动或启动，未执行旧三阶段包。
 - 入口：https://192.168.142.130:8443（真实 HTTPS、自签试用证书）。
+- Codex 内置浏览器本机验证入口：http://127.0.0.1:8444，已实际打开、登录并完成原生模型示例；只监听当前宿主机回环，免浏览器证书配置。
 - 按用户明确决定使用真实本地管理员认证；账号 admin，密码仅在未入库保护文件 opencode-cloud/runtime/ADMIN_LOGIN.txt。第二个真实身份 trial-b 使用独立环境。
 - 已提交并推送指定仓库：git@github.com:dongfengguilai/workbench-opencode.git；实现 commit 03d034c，远端核对与推送证据见 opencode-cloud/evidence/publication.json、git-push.log。
 
@@ -34,11 +35,15 @@
 
 登录 → 点击授权项目 → 在本人独立云端完整 OpenCode 中提出需求、查看流式工具与 Diff、回答提问、停止/继续、执行代码测试 → 检查并下载变更 → 刷新、重登及正常重启后继续同一原生会话和文件。用户不需要配置模型 Key、服务器或 Runtime。
 
+2026-09-17 新增本机入口并在可见 Codex 内置浏览器完整演示：真实 Luna 为 normalizeWhitespace 新增实现与标准库测试，原生工具与页面终端均 4 PASS；查看 Last turn changes 的两个文件、实际清单并触发浏览器补丁下载，注销/重登后重新打开同一会话，原生消息 ID 和两个文件 SHA256 完全一致。导出补丁实际应用到新的干净基线副本，独立 4 PASS。既有 Git 状态保留，本次仅增加两个目标文件。未重启原生环境、未重发代码任务。证据总表 opencode-cloud/evidence/local-browser-demo-result.json，含终端/Diff/重进截图、原生完整消息、实际补丁与独立测试日志。浏览器下载事件成功，支持 API 不提供下载文件路径；保存的补丁字节另由真实平台 API 核对，不冒称浏览器文件路径。
+
 使用说明：opencode-cloud/docs/USER_GUIDE.md；构建/启动/状态/原生 smoke/浏览器/冷备/恢复命令：opencode-cloud/docs/OPERATIONS.md。补丁要在 manifest 记录的固定基线上应用。A05 的维护者边界测试数据（README 暂存/未暂存、删除旧 smoke 说明、新文本/二进制、排除标记）仅覆盖导出行为，不冒充 Agent 完成的产品核心修改。
 
 ## 用户还不能做什么与残余限制
 
 仅供受控试用：真实本地管理员分支是用户选择，未宣称 NetID 或受信任生产 HTTPS 已通过。证书为自签 30 天，生产证书仍需真实提供。一类 Node 标准库/Git 项目、一个模型、预分配一项目一环境；无批准外部依赖源，默认禁止外连。无本地连接器、用户环境配置、插件平台、任意预览、仓库写凭据、push/自动 PR 或部署。
+
+本机 HTTP 验证入口仅当前运行 Codex 的宿主机可访问，不用于远程生产登录。代理后端继续校验 HTTPS 链/地址/有效期及准确叶证书指纹；错误 CA/指纹拒绝，5 项真实平台连接测试 PASS。仅本机响应的登录 Cookie 移除 Secure，HttpOnly/SameSite/有效期/注销保持，原 HTTPS Cookie Secure 实测保持。Codex 全局证书校验与证书数据库未改动。外部设备仍需私网可达并使用 HTTPS；本机入口不代表生产 HTTPS 验收通过。重新进入本次示例可使用 USER_GUIDE 中保存的会话地址。
 
 每身份项目+完整原生状态共享独立 1GiB 有界文件系统，内存/CPU/PID/临时空间受限；模型 UTC 日250次请求、输出16000、并发2。工作容器非 root/只读系统/cap_drop ALL，无 Docker Socket 或宿主 namespace。资源准备与防火墙能力仅在短暂维护 helper。
 
@@ -50,7 +55,7 @@
 
 ## 下一步只修哪个阻塞
 
-只做 A10：用户用上述管理员入口，按 USER_GUIDE 完成一次自己的真实任务、检查/下载变更并重新进入，再明确反馈能否用于试用。若发现问题，只处理该反馈阻塞，不开启其他业务线。当前不自动填写签收。
+只做 A10：用户通过已启动的 http://127.0.0.1:8444 入口实际试用自己的需求、检查/下载变更并重新进入，然后明确反馈能否用于试用。内置浏览器证书阻塞已由用户批准的回环 HTTP 验证入口解除；真实演示 PASS，但不替用户签收。早期 ERR_CERT_AUTHORITY_INVALID 与导航拦截失败仍保留为历史证据，见 user-demo-browser-blocker.json、local-browser-navigation-before-fix.txt；当前成功证据见 local-browser-demo-result.json。若用户发现问题，下一步仅修该反馈阻塞，不开启其他业务线。
 
 ## 最终签收
 

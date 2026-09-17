@@ -1,0 +1,18 @@
+Browser tab: 7, Title: "OpenCode", URL: "http://127.0.0.1:8444/__platform/changes".
+1 AXWebArea OpenCode, URL: 127.0.0.1:8444/__platform/changes
+	6 container platform-bar
+		7 text Administrator · workbench-opencode · 云端环境就绪
+		8 link Description: 授权项目, Value: 127.0.0.1:8444/L3dvcmtzcGFjZS9wcm9qZWN0/session
+		9 link Description: 变更清单, Value: 127.0.0.1:8444/__platform/changes
+		10 link Description: 下载变更, Value: 127.0.0.1:8444/__platform/download
+		11 button 退出登录
+	2 container
+		3 checkbox Description: Home, Value: 1
+		12 link P 新增 normalizeWhitespace 示例及测试 Close tab
+			13 container
+				14 link (collapsed) Description: P 新增 normalizeWhitespace 示例及测试, Value: 127.0.0.1:8444/server/aHR0cDovLzEyNy4wLjAuMTo4NDQ0/session/ses_f52403502ffeaGvtr8uvfQZ8W5, ID: contextmenu-cl-28-trigger, Secondary Actions: Expand
+				15 button Close tab
+		4 button New session
+	5 container Notifications alt+T
+
+The focused UI element is 9 link Description: 变更清单, URL: 127.0.0.1:8444/__platform/changes

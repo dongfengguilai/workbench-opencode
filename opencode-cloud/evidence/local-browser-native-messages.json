@@ -1,0 +1,1440 @@
+[
+  {
+    "info": {
+      "id": "msg_0adbfcc37001IXfqzRATxqTMpz",
+      "sessionID": "ses_f52403502ffeaGvtr8uvfQZ8W5",
+      "role": "user",
+      "time": {
+        "created": 1789621423384
+      },
+      "summary": {
+        "diffs": [
+          {
+            "file": "opencode-cloud/src/demo-text.mjs",
+            "patch": "Index: opencode-cloud/src/demo-text.mjs\n===================================================================\n--- opencode-cloud/src/demo-text.mjs\t\n+++ opencode-cloud/src/demo-text.mjs\t\n@@ -0,0 +1,7 @@\n+export function normalizeWhitespace(input) {\n+  if (typeof input !== 'string') {\n+    throw new TypeError('input must be a string');\n+  }\n+\n+  return input.trim().replace(/\\s+/gu, ' ');\n+}\n",
+            "additions": 7,
+            "deletions": 0,
+            "status": "added"
+          },
+          {
+            "file": "opencode-cloud/test/demo-text.test.mjs",
+            "patch": "Index: opencode-cloud/test/demo-text.test.mjs\n===================================================================\n--- opencode-cloud/test/demo-text.test.mjs\t\n+++ opencode-cloud/test/demo-text.test.mjs\t\n@@ -0,0 +1,19 @@\n+import assert from 'node:assert/strict';\n+import { test } from 'node:test';\n+import { normalizeWhitespace } from '../src/demo-text.mjs';\n+\n+test('folds mixed whitespace and trims the result', () => {\n+  assert.equal(normalizeWhitespace('  hello\\tworld\\nagain  '), 'hello world again');\n+});\n+\n+test('returns an empty string for empty input', () => {\n+  assert.equal(normalizeWhitespace(''), '');\n+});\n+\n+test('preserves Chinese text while normalizing whitespace', () => {\n+  assert.equal(normalizeWhitespace('\\n你好\\t世界 ！\\n'), '你好 世界 ！');\n+});\n+\n+test('rejects non-string input', () => {\n+  assert.throws(() => normalizeWhitespace(null), TypeError);\n+});\n",
+            "additions": 19,
+            "deletions": 0,
+            "status": "added"
+          }
+        ]
+      },
+      "agent": "build",
+      "model": {
+        "providerID": "approved",
+        "modelID": "gpt-5.6-luna"
+      }
+    },
+    "parts": [
+      {
+        "id": "prt_0adbfcc4e001l0weZTgN1ftZbr",
+        "sessionID": "ses_f52403502ffeaGvtr8uvfQZ8W5",
+        "messageID": "msg_0adbfcc37001IXfqzRATxqTMpz",
+        "type": "text",
+        "text": "请在当前授权项目里完成一个小型真实代码示例。先查看项目结构和 git status，保留所有已有未提交修改，不执行 reset、clean、checkout、git add 或提交。仅新增 opencode-cloud/src/demo-text.mjs 和 opencode-cloud/test/demo-text.test.mjs；如果任一目标文件已存在，请先停止并说明。实现导出 normalizeWhitespace(input)：只接受字符串，否则抛 TypeError；去除首尾空白并将连续空白（空格、Tab、换行）折叠为一个空格，保留中文。使用 Node 标准库 node:test 与 assert，覆盖混合空白、空字符串、中文和非字符串。实际运行 node --test opencode-cloud/test/demo-text.test.mjs，报告测试结果并说明两个新增文件的作用。不要安装依赖或修改其他文件。"
+      }
+    ]
+  },
+  {
+    "info": {
+      "id": "msg_0adbfce1e001C2616zwtLUB5lv",
+      "sessionID": "ses_f52403502ffeaGvtr8uvfQZ8W5",
+      "role": "assistant",
+      "time": {
+        "created": 1789621423646,
+        "completed": 1789621429311
+      },
+      "parentID": "msg_0adbfcc37001IXfqzRATxqTMpz",
+      "modelID": "gpt-5.6-luna",
+      "providerID": "approved",
+      "mode": "build",
+      "agent": "build",
+      "path": {
+        "cwd": "/workspace/project",
+        "root": "/workspace/project"
+      },
+      "cost": 0,
+      "tokens": {
+        "total": 6548,
+        "input": 751,
+        "output": 129,
+        "reasoning": 36,
+        "cache": {
+          "read": 5632,
+          "write": 0
+        }
+      },
+      "finish": "tool-calls"
+    },
+    "parts": [
+      {
+        "id": "prt_0adbfdb20001zlHz6Sp1v3aSfi",
+        "sessionID": "ses_f52403502ffeaGvtr8uvfQZ8W5",
+        "messageID": "msg_0adbfce1e001C2616zwtLUB5lv",
+        "type": "step-start",
+        "snapshot": "b2b9b6f1fc88cd9863fba7de5dd5ca2381fd2ede"
+      },
+      {
+        "id": "prt_0adbfdb3f001qeh6sfq5Feoln3",
+        "sessionID": "ses_f52403502ffeaGvtr8uvfQZ8W5",
+        "messageID": "msg_0adbfce1e001C2616zwtLUB5lv",
+        "type": "reasoning",
+        "text": "**Planning compliance inspection and patching**\n\n",
+        "time": {
+          "start": 1789621427007,
+          "end": 1789621427013
+        }
+      },
+      {
+        "id": "prt_0adbfdb480016dT5pnvzIPIB6T",
+        "sessionID": "ses_f52403502ffeaGvtr8uvfQZ8W5",
+        "messageID": "msg_0adbfce1e001C2616zwtLUB5lv",
+        "type": "text",
+        "text": "先检查项目结构、`git status` 以及两个目标文件是否已存在；确认不存在后只创建这两个文件，并运行指定测试命令。",
+        "time": {
+          "start": 1789621427016,
+          "end": 1789621429136
+        }
+      },
+      {
+        "id": "prt_0adbfdd93001JJy5FannsiHwVY",
+        "sessionID": "ses_f52403502ffeaGvtr8uvfQZ8W5",
+        "messageID": "msg_0adbfce1e001C2616zwtLUB5lv",
+        "type": "tool",
+        "callID": "call_zMTg3veqGzyRpNBNT93BnfdT",
+        "tool": "todowrite",
+        "state": {
+          "status": "completed",
+          "input": {
+            "todos": [
+              {
+                "content": "检查项目结构、git status 和目标文件是否存在",
+                "status": "in_progress",
+                "priority": "high"
+              },
+              {
+                "content": "新增 normalizeWhitespace 实现和 node:test 测试",
+                "status": "pending",
+                "priority": "high"
+              },
+              {
+                "content": "运行指定测试并核对仅有两个新增文件",
+                "status": "pending",
+                "priority": "high"
+              }
+            ]
+          },
+          "output": "[\n  {\n    \"content\": \"检查项目结构、git status 和目标文件是否存在\",\n    \"status\": \"in_progress\",\n    \"priority\": \"high\"\n  },\n  {\n    \"content\": \"新增 normalizeWhitespace 实现和 node:test 测试\",\n    \"status\": \"pending\",\n    \"priority\": \"high\"\n  },\n  {\n    \"content\": \"运行指定测试并核对仅有两个新增文件\",\n    \"status\": \"pending\",\n    \"priority\": \"high\"\n  }\n]",
+          "title": "3 todos",
+          "metadata": {
+            "todos": [
+              {
+                "content": "检查项目结构、git status 和目标文件是否存在",
+                "status": "in_progress",
+                "priority": "high"
+              },
+              {
+                "content": "新增 normalizeWhitespace 实现和 node:test 测试",
+                "status": "pending",
+                "priority": "high"
+              },
+              {
+                "content": "运行指定测试并核对仅有两个新增文件",
+                "status": "pending",
+                "priority": "high"
+              }
+            ],
+            "truncated": false
+          },
+          "time": {
+            "start": 1789621428985,
+            "end": 1789621428993
+          }
+        }
+      },
+      {
+        "id": "prt_0adbfe401001nIso6JDbuwHhTR",
+        "sessionID": "ses_f52403502ffeaGvtr8uvfQZ8W5",
+        "messageID": "msg_0adbfce1e001C2616zwtLUB5lv",
+        "type": "step-finish",
+        "reason": "tool-calls",
+        "snapshot": "b2b9b6f1fc88cd9863fba7de5dd5ca2381fd2ede",
+        "cost": 0,
+        "tokens": {
+          "total": 6548,
+          "input": 751,
+          "output": 129,
+          "reasoning": 36,
+          "cache": {
+            "read": 5632,
+            "write": 0
+          }
+        }
+      }
+    ]
+  },
+  {
+    "info": {
+      "id": "msg_0adbfe4460011CnCd5tLlLtm6u",
+      "sessionID": "ses_f52403502ffeaGvtr8uvfQZ8W5",
+      "role": "assistant",
+      "time": {
+        "created": 1789621429318,
+        "completed": 1789621434648
+      },
+      "parentID": "msg_0adbfcc37001IXfqzRATxqTMpz",
+      "modelID": "gpt-5.6-luna",
+      "providerID": "approved",
+      "mode": "build",
+      "agent": "build",
+      "path": {
+        "cwd": "/workspace/project",
+        "root": "/workspace/project"
+      },
+      "cost": 0,
+      "tokens": {
+        "total": 6750,
+        "input": 999,
+        "output": 119,
+        "reasoning": 0,
+        "cache": {
+          "read": 5632,
+          "write": 0
+        }
+      },
+      "finish": "tool-calls"
+    },
+    "parts": [
+      {
+        "id": "prt_0adbff6fa00187Tjgk0P0EZM7k",
+        "sessionID": "ses_f52403502ffeaGvtr8uvfQZ8W5",
+        "messageID": "msg_0adbfe4460011CnCd5tLlLtm6u",
+        "type": "step-start",
+        "snapshot": "b2b9b6f1fc88cd9863fba7de5dd5ca2381fd2ede"
+      },
+      {
+        "id": "prt_0adbff6fd001O1KS2hfc687Frc",
+        "sessionID": "ses_f52403502ffeaGvtr8uvfQZ8W5",
+        "messageID": "msg_0adbfe4460011CnCd5tLlLtm6u",
+        "type": "tool",
+        "callID": "call_Kjw4VttjhiBd0AaizfFc3iDc",
+        "tool": "bash",
+        "state": {
+          "status": "completed",
+          "input": {
+            "command": "pwd && git status --short",
+            "workdir": "/workspace/project"
+          },
+          "output": "/workspace/project\nMM opencode-cloud-v0/README.md\n D opencode-cloud/evidence/smoke-task.txt\n?? .env.a05-acceptance\n?? acceptance-a05.bin\n?? acceptance-a05.txt\n?? acceptance-a06.txt\n?? opencode-cloud/src/patch-export.ts\n?? runtime/\n",
+          "title": "pwd && git status --short",
+          "metadata": {
+            "output": "/workspace/project\nMM opencode-cloud-v0/README.md\n D opencode-cloud/evidence/smoke-task.txt\n?? .env.a05-acceptance\n?? acceptance-a05.bin\n?? acceptance-a05.txt\n?? acceptance-a06.txt\n?? opencode-cloud/src/patch-export.ts\n?? runtime/\n",
+            "exit": 0,
+            "truncated": false
+          },
+          "time": {
+            "start": 1789621434154,
+            "end": 1789621434486
+          }
+        }
+      },
+      {
+        "id": "prt_0adbff732001z4FrnBbeW4puzj",
+        "sessionID": "ses_f52403502ffeaGvtr8uvfQZ8W5",
+        "messageID": "msg_0adbfe4460011CnCd5tLlLtm6u",
+        "type": "tool",
+        "callID": "call_JO3sHP9SWcb40w1FXZi4KF9n",
+        "tool": "read",
+        "state": {
+          "status": "completed",
+          "input": {
+            "filePath": "/workspace/project",
+            "limit": 200
+          },
+          "output": "<path>/workspace/project</path>\n<type>directory</type>\n<entries>\n.env.a05-acceptance\n.git/\nacceptance-a05.bin\nacceptance-a05.txt\nacceptance-a06.txt\nopencode-cloud-v0/\nopencode-cloud/\nruntime/\n\n(8 entries)\n</entries>",
+          "title": "",
+          "metadata": {
+            "preview": ".env.a05-acceptance\n.git/\nacceptance-a05.bin\nacceptance-a05.txt\nacceptance-a06.txt\nopencode-cloud-v0/\nopencode-cloud/\nruntime/",
+            "truncated": false,
+            "loaded": [],
+            "display": {
+              "type": "directory",
+              "path": "/workspace/project",
+              "entries": [
+                ".env.a05-acceptance",
+                ".git/",
+                "acceptance-a05.bin",
+                "acceptance-a05.txt",
+                "acceptance-a06.txt",
+                "opencode-cloud-v0/",
+                "opencode-cloud/",
+                "runtime/"
+              ],
+              "offset": 1,
+              "totalEntries": 8,
+              "truncated": false
+            }
+          },
+          "time": {
+            "start": 1789621434169,
+            "end": 1789621434431
+          }
+        }
+      },
+      {
+        "id": "prt_0adbff73c0010CxookTOYHhUmb",
+        "sessionID": "ses_f52403502ffeaGvtr8uvfQZ8W5",
+        "messageID": "msg_0adbfe4460011CnCd5tLlLtm6u",
+        "type": "tool",
+        "callID": "call_TGKbe5LFUrE4LnTGXbwaE1Pc",
+        "tool": "glob",
+        "state": {
+          "status": "completed",
+          "input": {
+            "pattern": "opencode-cloud/src/demo-text.mjs",
+            "path": "/workspace/project"
+          },
+          "output": "No files found",
+          "title": "",
+          "metadata": {
+            "count": 0,
+            "truncated": false
+          },
+          "time": {
+            "start": 1789621434291,
+            "end": 1789621434456
+          }
+        }
+      },
+      {
+        "id": "prt_0adbff7c10013AEmesZqIeN9UB",
+        "sessionID": "ses_f52403502ffeaGvtr8uvfQZ8W5",
+        "messageID": "msg_0adbfe4460011CnCd5tLlLtm6u",
+        "type": "tool",
+        "callID": "call_G8KR2sryE4p5ojceZdZJ13SN",
+        "tool": "glob",
+        "state": {
+          "status": "completed",
+          "input": {
+            "pattern": "opencode-cloud/test/demo-text.test.mjs",
+            "path": "/workspace/project"
+          },
+          "output": "No files found",
+          "title": "",
+          "metadata": {
+            "count": 0,
+            "truncated": false
+          },
+          "time": {
+            "start": 1789621434322,
+            "end": 1789621434492
+          }
+        }
+      },
+      {
+        "id": "prt_0adbff8eb0011sMmVGbDwZ6Ku7",
+        "sessionID": "ses_f52403502ffeaGvtr8uvfQZ8W5",
+        "messageID": "msg_0adbfe4460011CnCd5tLlLtm6u",
+        "type": "step-finish",
+        "reason": "tool-calls",
+        "snapshot": "b2b9b6f1fc88cd9863fba7de5dd5ca2381fd2ede",
+        "cost": 0,
+        "tokens": {
+          "total": 6750,
+          "input": 999,
+          "output": 119,
+          "reasoning": 0,
+          "cache": {
+            "read": 5632,
+            "write": 0
+          }
+        }
+      }
+    ]
+  },
+  {
+    "info": {
+      "id": "msg_0adbff920001iHf0D5LRwWpxSC",
+      "sessionID": "ses_f52403502ffeaGvtr8uvfQZ8W5",
+      "role": "assistant",
+      "time": {
+        "created": 1789621434656,
+        "completed": 1789621440084
+      },
+      "parentID": "msg_0adbfcc37001IXfqzRATxqTMpz",
+      "modelID": "gpt-5.6-luna",
+      "providerID": "approved",
+      "mode": "build",
+      "agent": "build",
+      "path": {
+        "cwd": "/workspace/project",
+        "root": "/workspace/project"
+      },
+      "cost": 0,
+      "tokens": {
+        "total": 7074,
+        "input": 1289,
+        "output": 140,
+        "reasoning": 13,
+        "cache": {
+          "read": 5632,
+          "write": 0
+        }
+      },
+      "finish": "tool-calls"
+    },
+    "parts": [
+      {
+        "id": "prt_0adc00424001BERMVz2eRLr7b3",
+        "sessionID": "ses_f52403502ffeaGvtr8uvfQZ8W5",
+        "messageID": "msg_0adbff920001iHf0D5LRwWpxSC",
+        "type": "step-start",
+        "snapshot": "b2b9b6f1fc88cd9863fba7de5dd5ca2381fd2ede"
+      },
+      {
+        "id": "prt_0adc00427001kCfthYHtFp4Qai",
+        "sessionID": "ses_f52403502ffeaGvtr8uvfQZ8W5",
+        "messageID": "msg_0adbff920001iHf0D5LRwWpxSC",
+        "type": "reasoning",
+        "text": "**Inspecting target directories**\n\n",
+        "time": {
+          "start": 1789621437479,
+          "end": 1789621437484
+        }
+      },
+      {
+        "id": "prt_0adc0042f0014jzwy68kSV9UxQ",
+        "sessionID": "ses_f52403502ffeaGvtr8uvfQZ8W5",
+        "messageID": "msg_0adbff920001iHf0D5LRwWpxSC",
+        "type": "text",
+        "text": "目标文件均不存在；工作区已有多处未提交修改，我会完全保留它们。现在检查目标目录的现有模块风格，然后仅写入指定的两个文件。",
+        "time": {
+          "start": 1789621437488,
+          "end": 1789621439990
+        }
+      },
+      {
+        "id": "prt_0adc00db4001q00SweXcT0qJdR",
+        "sessionID": "ses_f52403502ffeaGvtr8uvfQZ8W5",
+        "messageID": "msg_0adbff920001iHf0D5LRwWpxSC",
+        "type": "tool",
+        "callID": "call_39zlAKDB21Cy6GqTDKmoiRLv",
+        "tool": "read",
+        "state": {
+          "status": "completed",
+          "input": {
+            "filePath": "/workspace/project/opencode-cloud",
+            "limit": 200
+          },
+          "output": "<path>/workspace/project/opencode-cloud</path>\n<type>directory</type>\n<entries>\n.dockerignore\n.gitignore\ncompose.yaml\nDockerfile\nevidence/\npackage.json\nscripts/\nsrc/\ntest/\n\n(9 entries)\n</entries>",
+          "title": "opencode-cloud",
+          "metadata": {
+            "preview": ".dockerignore\n.gitignore\ncompose.yaml\nDockerfile\nevidence/\npackage.json\nscripts/\nsrc/\ntest/",
+            "truncated": false,
+            "loaded": [],
+            "display": {
+              "type": "directory",
+              "path": "/workspace/project/opencode-cloud",
+              "entries": [
+                ".dockerignore",
+                ".gitignore",
+                "compose.yaml",
+                "Dockerfile",
+                "evidence/",
+                "package.json",
+                "scripts/",
+                "src/",
+                "test/"
+              ],
+              "offset": 1,
+              "totalEntries": 9,
+              "truncated": false
+            }
+          },
+          "time": {
+            "start": 1789621439938,
+            "end": 1789621439971
+          }
+        }
+      },
+      {
+        "id": "prt_0adc00dc8001tDugQoY9oSRtm6",
+        "sessionID": "ses_f52403502ffeaGvtr8uvfQZ8W5",
+        "messageID": "msg_0adbff920001iHf0D5LRwWpxSC",
+        "type": "tool",
+        "callID": "call_Uab2siCAgiJUOR7BXPXnNGGC",
+        "tool": "read",
+        "state": {
+          "status": "completed",
+          "input": {
+            "filePath": "/workspace/project/opencode-cloud/src",
+            "limit": 200
+          },
+          "output": "<path>/workspace/project/opencode-cloud/src</path>\n<type>directory</type>\n<entries>\nmodel-gateway.ts\npatch-export.ts\n\n(2 entries)\n</entries>",
+          "title": "opencode-cloud/src",
+          "metadata": {
+            "preview": "model-gateway.ts\npatch-export.ts",
+            "truncated": false,
+            "loaded": [],
+            "display": {
+              "type": "directory",
+              "path": "/workspace/project/opencode-cloud/src",
+              "entries": [
+                "model-gateway.ts",
+                "patch-export.ts"
+              ],
+              "offset": 1,
+              "totalEntries": 2,
+              "truncated": false
+            }
+          },
+          "time": {
+            "start": 1789621439951,
+            "end": 1789621439975
+          }
+        }
+      },
+      {
+        "id": "prt_0adc00dd3001yMA3i3Lo5j3U1V",
+        "sessionID": "ses_f52403502ffeaGvtr8uvfQZ8W5",
+        "messageID": "msg_0adbff920001iHf0D5LRwWpxSC",
+        "type": "tool",
+        "callID": "call_0H5CmxRUqb7MwRafxAv9gITP",
+        "tool": "read",
+        "state": {
+          "status": "completed",
+          "input": {
+            "filePath": "/workspace/project/opencode-cloud/test",
+            "limit": 200
+          },
+          "output": "<path>/workspace/project/opencode-cloud/test</path>\n<type>directory</type>\n<entries>\nmodel-gateway.test.mjs\npatch-export.test.mjs\n\n(2 entries)\n</entries>",
+          "title": "opencode-cloud/test",
+          "metadata": {
+            "preview": "model-gateway.test.mjs\npatch-export.test.mjs",
+            "truncated": false,
+            "loaded": [],
+            "display": {
+              "type": "directory",
+              "path": "/workspace/project/opencode-cloud/test",
+              "entries": [
+                "model-gateway.test.mjs",
+                "patch-export.test.mjs"
+              ],
+              "offset": 1,
+              "totalEntries": 2,
+              "truncated": false
+            }
+          },
+          "time": {
+            "start": 1789621439963,
+            "end": 1789621439978
+          }
+        }
+      },
+      {
+        "id": "prt_0adc00e1d001DY7whcm0d2uSQ2",
+        "sessionID": "ses_f52403502ffeaGvtr8uvfQZ8W5",
+        "messageID": "msg_0adbff920001iHf0D5LRwWpxSC",
+        "type": "step-finish",
+        "reason": "tool-calls",
+        "snapshot": "b2b9b6f1fc88cd9863fba7de5dd5ca2381fd2ede",
+        "cost": 0,
+        "tokens": {
+          "total": 7074,
+          "input": 1289,
+          "output": 140,
+          "reasoning": 13,
+          "cache": {
+            "read": 5632,
+            "write": 0
+          }
+        }
+      }
+    ]
+  },
+  {
+    "info": {
+      "id": "msg_0adc00e59001H8aSd2NCrLScvs",
+      "sessionID": "ses_f52403502ffeaGvtr8uvfQZ8W5",
+      "role": "assistant",
+      "time": {
+        "created": 1789621440089,
+        "completed": 1789621445283
+      },
+      "parentID": "msg_0adbfcc37001IXfqzRATxqTMpz",
+      "modelID": "gpt-5.6-luna",
+      "providerID": "approved",
+      "mode": "build",
+      "agent": "build",
+      "path": {
+        "cwd": "/workspace/project",
+        "root": "/workspace/project"
+      },
+      "cost": 0,
+      "tokens": {
+        "total": 7351,
+        "input": 562,
+        "output": 133,
+        "reasoning": 0,
+        "cache": {
+          "read": 6656,
+          "write": 0
+        }
+      },
+      "finish": "tool-calls"
+    },
+    "parts": [
+      {
+        "id": "prt_0adc0219a001AoxO733CbnQZf5",
+        "sessionID": "ses_f52403502ffeaGvtr8uvfQZ8W5",
+        "messageID": "msg_0adc00e59001H8aSd2NCrLScvs",
+        "type": "step-start",
+        "snapshot": "b2b9b6f1fc88cd9863fba7de5dd5ca2381fd2ede"
+      },
+      {
+        "id": "prt_0adc021a4001Q0ieT0ZnWfHUo5",
+        "sessionID": "ses_f52403502ffeaGvtr8uvfQZ8W5",
+        "messageID": "msg_0adc00e59001H8aSd2NCrLScvs",
+        "type": "tool",
+        "callID": "call_HOhrte36AjdmUvcFR6YD5BFg",
+        "tool": "read",
+        "state": {
+          "status": "completed",
+          "input": {
+            "filePath": "/workspace/project/opencode-cloud/test/model-gateway.test.mjs",
+            "limit": 200
+          },
+          "output": "<path>/workspace/project/opencode-cloud/test/model-gateway.test.mjs</path>\n<type>file</type>\n<content>\n1: import { spawn } from 'node:child_process';\n2: import { once } from 'node:events';\n3: import { test } from 'node:test';\n4: import assert from 'node:assert/strict';\n5: \n6: test('single model boundary rejects unauthorized, management and model override requests', async () => {\n7:   const proc = spawn(process.execPath, ['--experimental-strip-types', 'src/model-gateway.ts'], {\n8:     env: { ...process.env, PORT: '18319', MODEL_UPSTREAM: 'http://127.0.0.1:1', MODEL_MASTER_KEY: 'unit-test-only', ENV_MODEL_TOKEN: 'unit-test-token' },\n9:     stdio: ['ignore', 'pipe', 'pipe'],\n10:   });\n11:   try {\n12:     let output = '';\n13:     await new Promise((resolve, reject) => {\n14:       proc.stdout.on('data', b => { output += b; if (output.includes('listening')) resolve(); });\n15:       proc.once('exit', () => reject(new Error('gateway exited before listening')));\n16:       setTimeout(() => reject(new Error('gateway readiness timeout')), 5000).unref();\n17:     });\n18:     const base = 'http://127.0.0.1:18319';\n19:     assert.equal((await fetch(base + '/v1/models')).status, 401);\n20:     const headers = { Authorization: 'Bearer unit-test-token', 'Content-Type': 'application/json' };\n21:     assert.equal((await fetch(base + '/v1/config', { headers })).status, 404);\n22:     assert.equal((await fetch(base + '/v1/chat/completions?url=http://example.com', { method:'POST', headers, body:JSON.stringify({model:'gpt-5.6-luna'}) })).status, 404);\n23:     assert.equal((await fetch(base + '/v1/chat/completions', { method:'POST', headers, body:JSON.stringify({model:'other-model', messages:[]}) })).status, 403);\n24:     assert.equal((await fetch(base + '/v1/chat/completions', { method:'POST', headers, body:'{' })).status, 400);\n25:     const unavailable = await fetch(base + '/v1/chat/completions', { method:'POST', headers, body:JSON.stringify({model:'gpt-5.6-luna', messages:[]}) });\n26:     assert.equal(unavailable.status, 502);\n27:     assert.ok(!(await unavailable.text()).includes('unit-test-only'));\n28:   } finally { if (proc.exitCode === null) { proc.kill(); await once(proc, 'exit'); } }\n29: });\n\n(End of file - total 29 lines)\n</content>",
+          "title": "opencode-cloud/test/model-gateway.test.mjs",
+          "metadata": {
+            "preview": "import { spawn } from 'node:child_process';\nimport { once } from 'node:events';\nimport { test } from 'node:test';\nimport assert from 'node:assert/strict';\n\ntest('single model boundary rejects unauthorized, management and model override requests', async () => {\n  const proc = spawn(process.execPath, ['--experimental-strip-types', 'src/model-gateway.ts'], {\n    env: { ...process.env, PORT: '18319', MODEL_UPSTREAM: 'http://127.0.0.1:1', MODEL_MASTER_KEY: 'unit-test-only', ENV_MODEL_TOKEN: 'unit-test-token' },\n    stdio: ['ignore', 'pipe', 'pipe'],\n  });\n  try {\n    let output = '';\n    await new Promise((resolve, reject) => {\n      proc.stdout.on('data', b => { output += b; if (output.includes('listening')) resolve(); });\n      proc.once('exit', () => reject(new Error('gateway exited before listening')));\n      setTimeout(() => reject(new Error('gateway readiness timeout')), 5000).unref();\n    });\n    const base = 'http://127.0.0.1:18319';\n    assert.equal((await fetch(base + '/v1/models')).status, 401);\n    const headers = { Authorization: 'Bearer unit-test-token', 'Content-Type': 'application/json' };",
+            "truncated": false,
+            "loaded": [],
+            "display": {
+              "type": "file",
+              "path": "/workspace/project/opencode-cloud/test/model-gateway.test.mjs",
+              "text": "import { spawn } from 'node:child_process';\nimport { once } from 'node:events';\nimport { test } from 'node:test';\nimport assert from 'node:assert/strict';\n\ntest('single model boundary rejects unauthorized, management and model override requests', async () => {\n  const proc = spawn(process.execPath, ['--experimental-strip-types', 'src/model-gateway.ts'], {\n    env: { ...process.env, PORT: '18319', MODEL_UPSTREAM: 'http://127.0.0.1:1', MODEL_MASTER_KEY: 'unit-test-only', ENV_MODEL_TOKEN: 'unit-test-token' },\n    stdio: ['ignore', 'pipe', 'pipe'],\n  });\n  try {\n    let output = '';\n    await new Promise((resolve, reject) => {\n      proc.stdout.on('data', b => { output += b; if (output.includes('listening')) resolve(); });\n      proc.once('exit', () => reject(new Error('gateway exited before listening')));\n      setTimeout(() => reject(new Error('gateway readiness timeout')), 5000).unref();\n    });\n    const base = 'http://127.0.0.1:18319';\n    assert.equal((await fetch(base + '/v1/models')).status, 401);\n    const headers = { Authorization: 'Bearer unit-test-token', 'Content-Type': 'application/json' };\n    assert.equal((await fetch(base + '/v1/config', { headers })).status, 404);\n    assert.equal((await fetch(base + '/v1/chat/completions?url=http://example.com', { method:'POST', headers, body:JSON.stringify({model:'gpt-5.6-luna'}) })).status, 404);\n    assert.equal((await fetch(base + '/v1/chat/completions', { method:'POST', headers, body:JSON.stringify({model:'other-model', messages:[]}) })).status, 403);\n    assert.equal((await fetch(base + '/v1/chat/completions', { method:'POST', headers, body:'{' })).status, 400);\n    const unavailable = await fetch(base + '/v1/chat/completions', { method:'POST', headers, body:JSON.stringify({model:'gpt-5.6-luna', messages:[]}) });\n    assert.equal(unavailable.status, 502);\n    assert.ok(!(await unavailable.text()).includes('unit-test-only'));\n  } finally { if (proc.exitCode === null) { proc.kill(); await once(proc, 'exit'); } }\n});",
+              "lineStart": 1,
+              "lineEnd": 29,
+              "totalLines": 29,
+              "truncated": false
+            }
+          },
+          "time": {
+            "start": 1789621445073,
+            "end": 1789621445082
+          }
+        }
+      },
+      {
+        "id": "prt_0adc021eb00194GpBXPkeMW2cb",
+        "sessionID": "ses_f52403502ffeaGvtr8uvfQZ8W5",
+        "messageID": "msg_0adc00e59001H8aSd2NCrLScvs",
+        "type": "tool",
+        "callID": "call_R4juTYUv8AotUu5NsEK3lzh1",
+        "tool": "read",
+        "state": {
+          "status": "completed",
+          "input": {
+            "filePath": "/workspace/project/opencode-cloud/test/patch-export.test.mjs",
+            "limit": 200
+          },
+          "output": "<path>/workspace/project/opencode-cloud/test/patch-export.test.mjs</path>\n<type>file</type>\n<content>\n1: import { test } from 'node:test';\n2: import assert from 'node:assert/strict';\n3: import { mkdtemp, writeFile, readFile, mkdir, rm, symlink } from 'node:fs/promises';\n4: import { tmpdir } from 'node:os';\n5: import path from 'node:path';\n6: import { execFileSync } from 'node:child_process';\n7: import { exportPatch } from '../src/patch-export.ts';\n8: \n9: function git(dir, ...args) { return execFileSync('git',args,{cwd:dir}).toString(); }\n10: async function fixture() {\n11:  const dir=await mkdtemp(path.join(tmpdir(),'cloud-export-'));\n12:  git(dir,'init','-q');git(dir,'config','user.name','Test');git(dir,'config','user.email','test@invalid');\n13:  await mkdir(path.join(dir,'src'));\n14:  await writeFile(path.join(dir,'.gitignore'),'node_modules/\\n.env\\n');\n15:  await writeFile(path.join(dir,'src/changed.txt'),'original\\n');\n16:  await writeFile(path.join(dir,'src/deleted.txt'),'delete me\\n');\n17:  git(dir,'add','.');git(dir,'commit','-qm','baseline');\n18:  return {dir,baseline:git(dir,'rev-parse','HEAD').trim()};\n19: }\n20: test('complete binary patch applies staged, unstaged, new and deleted files without changing index',async()=>{\n21:  const {dir,baseline}=await fixture();const target=await mkdtemp(path.join(tmpdir(),'cloud-apply-'));\n22:  try {\n23:   await writeFile(path.join(dir,'src/changed.txt'),'staged\\n');git(dir,'add','src/changed.txt');\n24:   await writeFile(path.join(dir,'src/changed.txt'),'unstaged final\\n');\n25:   await rm(path.join(dir,'src/deleted.txt'));\n26:   await writeFile(path.join(dir,'src/new.txt'),'new source\\n');\n27:   const binary=Buffer.from([0,1,255,0,100]);await writeFile(path.join(dir,'src/new.bin'),binary);\n28:   await writeFile(path.join(dir,'.env'),'SECRET=do-not-export\\n');\n29:   await mkdir(path.join(dir,'node_modules'));await writeFile(path.join(dir,'node_modules/cache'),'do-not-export');\n30:   const index=await readFile(path.join(dir,'.git/index'));\n31:   const result=await exportPatch({directory:dir,baseline});\n32:   assert.equal(result.baseline,baseline);\n33:   assert.deepEqual(result.files.sort(),['src/changed.txt','src/deleted.txt','src/new.bin','src/new.txt']);\n34:   assert.deepEqual(await readFile(path.join(dir,'.git/index')),index);\n35:   assert.ok(!result.patch.includes('do-not-export'));\n36:   git(target,'init','-q');git(target,'fetch',dir,baseline);git(target,'checkout','-q','FETCH_HEAD');\n37:   execFileSync('git',['apply','--binary','-'],{cwd:target,input:result.patch});\n38:   assert.equal(await readFile(path.join(target,'src/changed.txt'),'utf8'),'unstaged final\\n');\n39:   assert.equal(await readFile(path.join(target,'src/new.txt'),'utf8'),'new source\\n');\n40:   assert.deepEqual(await readFile(path.join(target,'src/new.bin')),binary);\n41:   await assert.rejects(readFile(path.join(target,'src/deleted.txt')));\n42:  } finally {await rm(dir,{recursive:true,force:true});await rm(target,{recursive:true,force:true});}\n43: });\n44: test('tracked secret paths are excluded and baseline mismatch fails explicitly',async()=>{\n45:  const {dir,baseline}=await fixture();\n46:  try {\n47:   await writeFile(path.join(dir,'.env'),'old-secret');git(dir,'add','-f','.env');git(dir,'commit','-qm','tracked secret');\n48:   const head=git(dir,'rev-parse','HEAD').trim();await writeFile(path.join(dir,'.env'),'new-secret');\n49:   const result=await exportPatch({directory:dir,baseline:head});\n50:   assert.ok(!result.patch.includes('secret'));assert.ok(!result.files.includes('.env'));\n51:   await assert.rejects(exportPatch({directory:dir,baseline}),/baseline/i);\n52:   await assert.rejects(exportPatch({directory:dir,baseline:'HEAD;echo unsafe'}),/baseline/i);\n53:  } finally {await rm(dir,{recursive:true,force:true});}\n54: });\n55: test('untracked external symlink is rejected without modifying the index',async()=>{\n56:  const {dir,baseline}=await fixture();\n57:  try {\n58:   const index=await readFile(path.join(dir,'.git/index'));\n59:   await symlink('/etc/passwd',path.join(dir,'src/outside'));\n60:   await assert.rejects(exportPatch({directory:dir,baseline}),/symlink/i);\n61:   assert.deepEqual(await readFile(path.join(dir,'.git/index')),index);\n62:  } finally {await rm(dir,{recursive:true,force:true});}\n63: });\n\n(End of file - total 63 lines)\n</content>",
+          "title": "opencode-cloud/test/patch-export.test.mjs",
+          "metadata": {
+            "preview": "import { test } from 'node:test';\nimport assert from 'node:assert/strict';\nimport { mkdtemp, writeFile, readFile, mkdir, rm, symlink } from 'node:fs/promises';\nimport { tmpdir } from 'node:os';\nimport path from 'node:path';\nimport { execFileSync } from 'node:child_process';\nimport { exportPatch } from '../src/patch-export.ts';\n\nfunction git(dir, ...args) { return execFileSync('git',args,{cwd:dir}).toString(); }\nasync function fixture() {\n const dir=await mkdtemp(path.join(tmpdir(),'cloud-export-'));\n git(dir,'init','-q');git(dir,'config','user.name','Test');git(dir,'config','user.email','test@invalid');\n await mkdir(path.join(dir,'src'));\n await writeFile(path.join(dir,'.gitignore'),'node_modules/\\n.env\\n');\n await writeFile(path.join(dir,'src/changed.txt'),'original\\n');\n await writeFile(path.join(dir,'src/deleted.txt'),'delete me\\n');\n git(dir,'add','.');git(dir,'commit','-qm','baseline');\n return {dir,baseline:git(dir,'rev-parse','HEAD').trim()};\n}\ntest('complete binary patch applies staged, unstaged, new and deleted files without changing index',async()=>{",
+            "truncated": false,
+            "loaded": [],
+            "display": {
+              "type": "file",
+              "path": "/workspace/project/opencode-cloud/test/patch-export.test.mjs",
+              "text": "import { test } from 'node:test';\nimport assert from 'node:assert/strict';\nimport { mkdtemp, writeFile, readFile, mkdir, rm, symlink } from 'node:fs/promises';\nimport { tmpdir } from 'node:os';\nimport path from 'node:path';\nimport { execFileSync } from 'node:child_process';\nimport { exportPatch } from '../src/patch-export.ts';\n\nfunction git(dir, ...args) { return execFileSync('git',args,{cwd:dir}).toString(); }\nasync function fixture() {\n const dir=await mkdtemp(path.join(tmpdir(),'cloud-export-'));\n git(dir,'init','-q');git(dir,'config','user.name','Test');git(dir,'config','user.email','test@invalid');\n await mkdir(path.join(dir,'src'));\n await writeFile(path.join(dir,'.gitignore'),'node_modules/\\n.env\\n');\n await writeFile(path.join(dir,'src/changed.txt'),'original\\n');\n await writeFile(path.join(dir,'src/deleted.txt'),'delete me\\n');\n git(dir,'add','.');git(dir,'commit','-qm','baseline');\n return {dir,baseline:git(dir,'rev-parse','HEAD').trim()};\n}\ntest('complete binary patch applies staged, unstaged, new and deleted files without changing index',async()=>{\n const {dir,baseline}=await fixture();const target=await mkdtemp(path.join(tmpdir(),'cloud-apply-'));\n try {\n  await writeFile(path.join(dir,'src/changed.txt'),'staged\\n');git(dir,'add','src/changed.txt');\n  await writeFile(path.join(dir,'src/changed.txt'),'unstaged final\\n');\n  await rm(path.join(dir,'src/deleted.txt'));\n  await writeFile(path.join(dir,'src/new.txt'),'new source\\n');\n  const binary=Buffer.from([0,1,255,0,100]);await writeFile(path.join(dir,'src/new.bin'),binary);\n  await writeFile(path.join(dir,'.env'),'SECRET=do-not-export\\n');\n  await mkdir(path.join(dir,'node_modules'));await writeFile(path.join(dir,'node_modules/cache'),'do-not-export');\n  const index=await readFile(path.join(dir,'.git/index'));\n  const result=await exportPatch({directory:dir,baseline});\n  assert.equal(result.baseline,baseline);\n  assert.deepEqual(result.files.sort(),['src/changed.txt','src/deleted.txt','src/new.bin','src/new.txt']);\n  assert.deepEqual(await readFile(path.join(dir,'.git/index')),index);\n  assert.ok(!result.patch.includes('do-not-export'));\n  git(target,'init','-q');git(target,'fetch',dir,baseline);git(target,'checkout','-q','FETCH_HEAD');\n  execFileSync('git',['apply','--binary','-'],{cwd:target,input:result.patch});\n  assert.equal(await readFile(path.join(target,'src/changed.txt'),'utf8'),'unstaged final\\n');\n  assert.equal(await readFile(path.join(target,'src/new.txt'),'utf8'),'new source\\n');\n  assert.deepEqual(await readFile(path.join(target,'src/new.bin')),binary);\n  await assert.rejects(readFile(path.join(target,'src/deleted.txt')));\n } finally {await rm(dir,{recursive:true,force:true});await rm(target,{recursive:true,force:true});}\n});\ntest('tracked secret paths are excluded and baseline mismatch fails explicitly',async()=>{\n const {dir,baseline}=await fixture();\n try {\n  await writeFile(path.join(dir,'.env'),'old-secret');git(dir,'add','-f','.env');git(dir,'commit','-qm','tracked secret');\n  const head=git(dir,'rev-parse','HEAD').trim();await writeFile(path.join(dir,'.env'),'new-secret');\n  const result=await exportPatch({directory:dir,baseline:head});\n  assert.ok(!result.patch.includes('secret'));assert.ok(!result.files.includes('.env'));\n  await assert.rejects(exportPatch({directory:dir,baseline}),/baseline/i);\n  await assert.rejects(exportPatch({directory:dir,baseline:'HEAD;echo unsafe'}),/baseline/i);\n } finally {await rm(dir,{recursive:true,force:true});}\n});\ntest('untracked external symlink is rejected without modifying the index',async()=>{\n const {dir,baseline}=await fixture();\n try {\n  const index=await readFile(path.join(dir,'.git/index'));\n  await symlink('/etc/passwd',path.join(dir,'src/outside'));\n  await assert.rejects(exportPatch({directory:dir,baseline}),/symlink/i);\n  assert.deepEqual(await readFile(path.join(dir,'.git/index')),index);\n } finally {await rm(dir,{recursive:true,force:true});}\n});",
+              "lineStart": 1,
+              "lineEnd": 63,
+              "totalLines": 63,
+              "truncated": false
+            }
+          },
+          "time": {
+            "start": 1789621445106,
+            "end": 1789621445158
+          }
+        }
+      },
+      {
+        "id": "prt_0adc021f4001b6aWBNOnLnzrp0",
+        "sessionID": "ses_f52403502ffeaGvtr8uvfQZ8W5",
+        "messageID": "msg_0adc00e59001H8aSd2NCrLScvs",
+        "type": "tool",
+        "callID": "call_KnrJyp2BkHDVlK8uVjnzFUjW",
+        "tool": "read",
+        "state": {
+          "status": "completed",
+          "input": {
+            "filePath": "/workspace/project/opencode-cloud/package.json",
+            "limit": 200
+          },
+          "output": "<path>/workspace/project/opencode-cloud/package.json</path>\n<type>file</type>\n<content>\n1: {\"name\":\"opencode-cloud-v0\",\"private\":true,\"type\":\"module\",\"scripts\":{\"gateway\":\"node --experimental-strip-types src/model-gateway.ts\",\"test:gateway\":\"node --test test/model-gateway.test.mjs\"},\"engines\":{\"node\":\">=22.19\"}}\n\n(End of file - total 1 lines)\n</content>",
+          "title": "opencode-cloud/package.json",
+          "metadata": {
+            "preview": "{\"name\":\"opencode-cloud-v0\",\"private\":true,\"type\":\"module\",\"scripts\":{\"gateway\":\"node --experimental-strip-types src/model-gateway.ts\",\"test:gateway\":\"node --test test/model-gateway.test.mjs\"},\"engines\":{\"node\":\">=22.19\"}}",
+            "truncated": false,
+            "loaded": [],
+            "display": {
+              "type": "file",
+              "path": "/workspace/project/opencode-cloud/package.json",
+              "text": "{\"name\":\"opencode-cloud-v0\",\"private\":true,\"type\":\"module\",\"scripts\":{\"gateway\":\"node --experimental-strip-types src/model-gateway.ts\",\"test:gateway\":\"node --test test/model-gateway.test.mjs\"},\"engines\":{\"node\":\">=22.19\"}}",
+              "lineStart": 1,
+              "lineEnd": 1,
+              "totalLines": 1,
+              "truncated": false
+            }
+          },
+          "time": {
+            "start": 1789621445112,
+            "end": 1789621445152
+          }
+        }
+      },
+      {
+        "id": "prt_0adc021fc0016BGSmUq9uFZCEv",
+        "sessionID": "ses_f52403502ffeaGvtr8uvfQZ8W5",
+        "messageID": "msg_0adc00e59001H8aSd2NCrLScvs",
+        "type": "tool",
+        "callID": "call_YFNqUvNJKOeLLSFYF1FRU363",
+        "tool": "read",
+        "state": {
+          "status": "completed",
+          "input": {
+            "filePath": "/workspace/project/opencode-cloud/src/model-gateway.ts",
+            "limit": 120
+          },
+          "output": "<path>/workspace/project/opencode-cloud/src/model-gateway.ts</path>\n<type>file</type>\n<content>\n1: import http from 'node:http';\n2: import { timingSafeEqual } from 'node:crypto';\n3: \n4: const upstream = new URL(process.env.MODEL_UPSTREAM || 'http://192.168.142.130:8317');\n5: const master = process.env.MODEL_MASTER_KEY;\n6: const token = process.env.ENV_MODEL_TOKEN;\n7: if (!master || !token) throw new Error('Missing MODEL_MASTER_KEY or ENV_MODEL_TOKEN');\n8: if (upstream.protocol !== 'http:' || upstream.pathname !== '/' || upstream.search || upstream.username || upstream.password) {\n9:   throw new Error('This fixed gateway requires an administrator configured HTTP origin');\n10: }\n11: const model = 'gpt-5.6-luna';\n12: let active = 0;\n13: function reply(res: http.ServerResponse, code: number, message: string) {\n14:   res.writeHead(code, {'Content-Type':'application/json','Cache-Control':'no-store'});\n15:   res.end(JSON.stringify({error:{message}}));\n16: }\n17: const server = http.createServer(async (req, res) => {\n18:   if (req.url === '/health' && req.method === 'GET') { res.end('ok'); return; }\n19:   const received = Buffer.from(req.headers.authorization || '');\n20:   const expected = Buffer.from('Bearer ' + token);\n21:   if (received.length !== expected.length || !timingSafeEqual(received, expected)) { reply(res,401,'Unauthorized'); return; }\n22:   if (req.url === '/v1/models' && req.method === 'GET') {\n23:     res.setHeader('Content-Type','application/json');\n24:     res.end(JSON.stringify({object:'list',data:[{id:model,object:'model',owned_by:'approved-gateway'}]})); return;\n25:   }\n26:   if (req.method !== 'POST' || !['/v1/chat/completions','/v1/responses'].includes(req.url || '')) { reply(res,404,'Unsupported route'); return; }\n27:   if (active >= 2) { reply(res,429,'Model gateway is busy'); return; }\n28:   active++;\n29:   let completed = false;\n30:   const finish = () => { if (!completed) { completed=true; active--; } };\n31:   res.once('close', finish);\n32:   let size=0;\n33:   const chunks:Buffer[]=[];\n34:   try {\n35:     for await (const chunk of req) {\n36:       size += chunk.length;\n37:       if (size > 16*1024*1024) { reply(res,413,'Request too large'); return; }\n38:       chunks.push(chunk);\n39:     }\n40:     const body=Buffer.concat(chunks);\n41:     let data:Record<string,unknown>;\n42:     try { data=JSON.parse(body.toString()); } catch { reply(res,400,'Invalid JSON'); return; }\n43:     if (!data || data.model !== model) { reply(res,403,'Only the approved model is allowed'); return; }\n44:     const request=http.request(new URL(req.url!,upstream), {\n45:       method:'POST',headers:{'Authorization':'Bearer '+master,'Content-Type':'application/json','Content-Length':body.length},\n46:     }, response => {\n47:       res.writeHead(response.statusCode || 502, {\n48:         'Content-Type':response.headers['content-type'] || 'application/json',\n49:         'Cache-Control':'no-store','X-Accel-Buffering':'no',\n50:       });\n51:       response.pipe(res);\n52:       response.on('error',()=>res.destroy());\n53:     });\n54:     const deadline=setTimeout(()=>request.destroy(new Error('model deadline')),300000);\n55:     res.once('close',()=>{clearTimeout(deadline);request.destroy();});\n56:     request.on('error',()=>{ if (!res.headersSent) reply(res,502,'Approved model unavailable; no automatic retry'); else res.destroy(); });\n57:     request.end(body);\n58:   } catch { if (!res.headersSent && !res.destroyed) reply(res,400,'Invalid request'); }\n59:   finally { if (res.writableEnded || res.destroyed) finish(); }\n60: });\n61: server.requestTimeout=30000;\n62: server.listen(Number(process.env.PORT || 8318),'0.0.0.0',()=>console.log('single-model gateway listening'));\n\n(End of file - total 62 lines)\n</content>",
+          "title": "opencode-cloud/src/model-gateway.ts",
+          "metadata": {
+            "preview": "import http from 'node:http';\nimport { timingSafeEqual } from 'node:crypto';\n\nconst upstream = new URL(process.env.MODEL_UPSTREAM || 'http://192.168.142.130:8317');\nconst master = process.env.MODEL_MASTER_KEY;\nconst token = process.env.ENV_MODEL_TOKEN;\nif (!master || !token) throw new Error('Missing MODEL_MASTER_KEY or ENV_MODEL_TOKEN');\nif (upstream.protocol !== 'http:' || upstream.pathname !== '/' || upstream.search || upstream.username || upstream.password) {\n  throw new Error('This fixed gateway requires an administrator configured HTTP origin');\n}\nconst model = 'gpt-5.6-luna';\nlet active = 0;\nfunction reply(res: http.ServerResponse, code: number, message: string) {\n  res.writeHead(code, {'Content-Type':'application/json','Cache-Control':'no-store'});\n  res.end(JSON.stringify({error:{message}}));\n}\nconst server = http.createServer(async (req, res) => {\n  if (req.url === '/health' && req.method === 'GET') { res.end('ok'); return; }\n  const received = Buffer.from(req.headers.authorization || '');\n  const expected = Buffer.from('Bearer ' + token);",
+            "truncated": false,
+            "loaded": [],
+            "display": {
+              "type": "file",
+              "path": "/workspace/project/opencode-cloud/src/model-gateway.ts",
+              "text": "import http from 'node:http';\nimport { timingSafeEqual } from 'node:crypto';\n\nconst upstream = new URL(process.env.MODEL_UPSTREAM || 'http://192.168.142.130:8317');\nconst master = process.env.MODEL_MASTER_KEY;\nconst token = process.env.ENV_MODEL_TOKEN;\nif (!master || !token) throw new Error('Missing MODEL_MASTER_KEY or ENV_MODEL_TOKEN');\nif (upstream.protocol !== 'http:' || upstream.pathname !== '/' || upstream.search || upstream.username || upstream.password) {\n  throw new Error('This fixed gateway requires an administrator configured HTTP origin');\n}\nconst model = 'gpt-5.6-luna';\nlet active = 0;\nfunction reply(res: http.ServerResponse, code: number, message: string) {\n  res.writeHead(code, {'Content-Type':'application/json','Cache-Control':'no-store'});\n  res.end(JSON.stringify({error:{message}}));\n}\nconst server = http.createServer(async (req, res) => {\n  if (req.url === '/health' && req.method === 'GET') { res.end('ok'); return; }\n  const received = Buffer.from(req.headers.authorization || '');\n  const expected = Buffer.from('Bearer ' + token);\n  if (received.length !== expected.length || !timingSafeEqual(received, expected)) { reply(res,401,'Unauthorized'); return; }\n  if (req.url === '/v1/models' && req.method === 'GET') {\n    res.setHeader('Content-Type','application/json');\n    res.end(JSON.stringify({object:'list',data:[{id:model,object:'model',owned_by:'approved-gateway'}]})); return;\n  }\n  if (req.method !== 'POST' || !['/v1/chat/completions','/v1/responses'].includes(req.url || '')) { reply(res,404,'Unsupported route'); return; }\n  if (active >= 2) { reply(res,429,'Model gateway is busy'); return; }\n  active++;\n  let completed = false;\n  const finish = () => { if (!completed) { completed=true; active--; } };\n  res.once('close', finish);\n  let size=0;\n  const chunks:Buffer[]=[];\n  try {\n    for await (const chunk of req) {\n      size += chunk.length;\n      if (size > 16*1024*1024) { reply(res,413,'Request too large'); return; }\n      chunks.push(chunk);\n    }\n    const body=Buffer.concat(chunks);\n    let data:Record<string,unknown>;\n    try { data=JSON.parse(body.toString()); } catch { reply(res,400,'Invalid JSON'); return; }\n    if (!data || data.model !== model) { reply(res,403,'Only the approved model is allowed'); return; }\n    const request=http.request(new URL(req.url!,upstream), {\n      method:'POST',headers:{'Authorization':'Bearer '+master,'Content-Type':'application/json','Content-Length':body.length},\n    }, response => {\n      res.writeHead(response.statusCode || 502, {\n        'Content-Type':response.headers['content-type'] || 'application/json',\n        'Cache-Control':'no-store','X-Accel-Buffering':'no',\n      });\n      response.pipe(res);\n      response.on('error',()=>res.destroy());\n    });\n    const deadline=setTimeout(()=>request.destroy(new Error('model deadline')),300000);\n    res.once('close',()=>{clearTimeout(deadline);request.destroy();});\n    request.on('error',()=>{ if (!res.headersSent) reply(res,502,'Approved model unavailable; no automatic retry'); else res.destroy(); });\n    request.end(body);\n  } catch { if (!res.headersSent && !res.destroyed) reply(res,400,'Invalid request'); }\n  finally { if (res.writableEnded || res.destroyed) finish(); }\n});\nserver.requestTimeout=30000;\nserver.listen(Number(process.env.PORT || 8318),'0.0.0.0',()=>console.log('single-model gateway listening'));",
+              "lineStart": 1,
+              "lineEnd": 62,
+              "totalLines": 62,
+              "truncated": false
+            }
+          },
+          "time": {
+            "start": 1789621445121,
+            "end": 1789621445163
+          }
+        }
+      },
+      {
+        "id": "prt_0adc022650017T97u2BppqKLPY",
+        "sessionID": "ses_f52403502ffeaGvtr8uvfQZ8W5",
+        "messageID": "msg_0adc00e59001H8aSd2NCrLScvs",
+        "type": "step-finish",
+        "reason": "tool-calls",
+        "snapshot": "b2b9b6f1fc88cd9863fba7de5dd5ca2381fd2ede",
+        "cost": 0,
+        "tokens": {
+          "total": 7351,
+          "input": 562,
+          "output": 133,
+          "reasoning": 0,
+          "cache": {
+            "read": 6656,
+            "write": 0
+          }
+        }
+      }
+    ]
+  },
+  {
+    "info": {
+      "id": "msg_0adc022a90016pTCR8tiSlAJdq",
+      "sessionID": "ses_f52403502ffeaGvtr8uvfQZ8W5",
+      "role": "assistant",
+      "time": {
+        "created": 1789621445289,
+        "completed": 1789621450957
+      },
+      "parentID": "msg_0adbfcc37001IXfqzRATxqTMpz",
+      "modelID": "gpt-5.6-luna",
+      "providerID": "approved",
+      "mode": "build",
+      "agent": "build",
+      "path": {
+        "cwd": "/workspace/project",
+        "root": "/workspace/project"
+      },
+      "cost": 0,
+      "tokens": {
+        "total": 10439,
+        "input": 3629,
+        "output": 89,
+        "reasoning": 65,
+        "cache": {
+          "read": 6656,
+          "write": 0
+        }
+      },
+      "finish": "tool-calls"
+    },
+    "parts": [
+      {
+        "id": "prt_0adc0330e001BbIFJlUmZjbTGS",
+        "sessionID": "ses_f52403502ffeaGvtr8uvfQZ8W5",
+        "messageID": "msg_0adc022a90016pTCR8tiSlAJdq",
+        "type": "step-start",
+        "snapshot": "b2b9b6f1fc88cd9863fba7de5dd5ca2381fd2ede"
+      },
+      {
+        "id": "prt_0adc03312001oUfQZMYPXeuUoI",
+        "sessionID": "ses_f52403502ffeaGvtr8uvfQZ8W5",
+        "messageID": "msg_0adc022a90016pTCR8tiSlAJdq",
+        "type": "reasoning",
+        "text": "**Deciding regex for whitespace handling**\n\n",
+        "time": {
+          "start": 1789621449490,
+          "end": 1789621449550
+        }
+      },
+      {
+        "id": "prt_0adc03351001Mt6Pc1Urx1O0VZ",
+        "sessionID": "ses_f52403502ffeaGvtr8uvfQZ8W5",
+        "messageID": "msg_0adc022a90016pTCR8tiSlAJdq",
+        "type": "tool",
+        "callID": "call_p0NQ4Yu1TSQOSpPmea4bIzle",
+        "tool": "todowrite",
+        "state": {
+          "status": "completed",
+          "input": {
+            "todos": [
+              {
+                "content": "检查项目结构、git status 和目标文件是否存在",
+                "status": "completed",
+                "priority": "high"
+              },
+              {
+                "content": "新增 normalizeWhitespace 实现和 node:test 测试",
+                "status": "in_progress",
+                "priority": "high"
+              },
+              {
+                "content": "运行指定测试并核对仅有两个新增文件",
+                "status": "pending",
+                "priority": "high"
+              }
+            ]
+          },
+          "output": "[\n  {\n    \"content\": \"检查项目结构、git status 和目标文件是否存在\",\n    \"status\": \"completed\",\n    \"priority\": \"high\"\n  },\n  {\n    \"content\": \"新增 normalizeWhitespace 实现和 node:test 测试\",\n    \"status\": \"in_progress\",\n    \"priority\": \"high\"\n  },\n  {\n    \"content\": \"运行指定测试并核对仅有两个新增文件\",\n    \"status\": \"pending\",\n    \"priority\": \"high\"\n  }\n]",
+          "title": "2 todos",
+          "metadata": {
+            "todos": [
+              {
+                "content": "检查项目结构、git status 和目标文件是否存在",
+                "status": "completed",
+                "priority": "high"
+              },
+              {
+                "content": "新增 normalizeWhitespace 实现和 node:test 测试",
+                "status": "in_progress",
+                "priority": "high"
+              },
+              {
+                "content": "运行指定测试并核对仅有两个新增文件",
+                "status": "pending",
+                "priority": "high"
+              }
+            ],
+            "truncated": false
+          },
+          "time": {
+            "start": 1789621450522,
+            "end": 1789621450525
+          }
+        }
+      },
+      {
+        "id": "prt_0adc0388a001hODnyRf7UKKroW",
+        "sessionID": "ses_f52403502ffeaGvtr8uvfQZ8W5",
+        "messageID": "msg_0adc022a90016pTCR8tiSlAJdq",
+        "type": "step-finish",
+        "reason": "tool-calls",
+        "snapshot": "b2b9b6f1fc88cd9863fba7de5dd5ca2381fd2ede",
+        "cost": 0,
+        "tokens": {
+          "total": 10439,
+          "input": 3629,
+          "output": 89,
+          "reasoning": 65,
+          "cache": {
+            "read": 6656,
+            "write": 0
+          }
+        }
+      }
+    ]
+  },
+  {
+    "info": {
+      "id": "msg_0adc038d40016IJqa4MgqO619J",
+      "sessionID": "ses_f52403502ffeaGvtr8uvfQZ8W5",
+      "role": "assistant",
+      "time": {
+        "created": 1789621450964,
+        "completed": 1789621460692
+      },
+      "parentID": "msg_0adbfcc37001IXfqzRATxqTMpz",
+      "modelID": "gpt-5.6-luna",
+      "providerID": "approved",
+      "mode": "build",
+      "agent": "build",
+      "path": {
+        "cwd": "/workspace/project",
+        "root": "/workspace/project"
+      },
+      "cost": 0,
+      "tokens": {
+        "total": 10873,
+        "input": 765,
+        "output": 380,
+        "reasoning": 0,
+        "cache": {
+          "read": 9728,
+          "write": 0
+        }
+      },
+      "finish": "tool-calls"
+    },
+    "parts": [
+      {
+        "id": "prt_0adc04354001wyBUZflqL95Bas",
+        "sessionID": "ses_f52403502ffeaGvtr8uvfQZ8W5",
+        "messageID": "msg_0adc038d40016IJqa4MgqO619J",
+        "type": "step-start",
+        "snapshot": "b2b9b6f1fc88cd9863fba7de5dd5ca2381fd2ede"
+      },
+      {
+        "id": "prt_0adc0435a001pRC0tx66Eltosh",
+        "sessionID": "ses_f52403502ffeaGvtr8uvfQZ8W5",
+        "messageID": "msg_0adc038d40016IJqa4MgqO619J",
+        "type": "text",
+        "text": "实现将使用字符串类型检查和 Unicode 空白正则，测试覆盖混合空白折叠、空字符串、中文保留及非字符串抛出 `TypeError`。只新增用户指定的两个文件。",
+        "time": {
+          "start": 1789621453658,
+          "end": 1789621460592
+        }
+      },
+      {
+        "id": "prt_0adc04797001BEH60eTzmsEdrB",
+        "sessionID": "ses_f52403502ffeaGvtr8uvfQZ8W5",
+        "messageID": "msg_0adc038d40016IJqa4MgqO619J",
+        "type": "tool",
+        "callID": "call_vR8xCAPBzZK4PuqvfeaofXWL",
+        "tool": "apply_patch",
+        "state": {
+          "status": "completed",
+          "input": {
+            "patchText": "*** Begin Patch\n*** Add File: /workspace/project/opencode-cloud/src/demo-text.mjs\n+export function normalizeWhitespace(input) {\n+  if (typeof input !== 'string') {\n+    throw new TypeError('input must be a string');\n+  }\n+\n+  return input.trim().replace(/\\s+/gu, ' ');\n+}\n*** Add File: /workspace/project/opencode-cloud/test/demo-text.test.mjs\n+import assert from 'node:assert/strict';\n+import { test } from 'node:test';\n+import { normalizeWhitespace } from '../src/demo-text.mjs';\n+\n+test('folds mixed whitespace and trims the result', () => {\n+  assert.equal(normalizeWhitespace('  hello\\tworld\\nagain  '), 'hello world again');\n+});\n+\n+test('returns an empty string for empty input', () => {\n+  assert.equal(normalizeWhitespace(''), '');\n+});\n+\n+test('preserves Chinese text while normalizing whitespace', () => {\n+  assert.equal(normalizeWhitespace('\\n你好\\t世界 ！\\n'), '你好 世界 ！');\n+});\n+\n+test('rejects non-string input', () => {\n+  assert.throws(() => normalizeWhitespace(null), TypeError);\n+});\n*** End Patch"
+          },
+          "output": "Success. Updated the following files:\nA opencode-cloud/src/demo-text.mjs\nA opencode-cloud/test/demo-text.test.mjs",
+          "title": "Success. Updated the following files:\nA opencode-cloud/src/demo-text.mjs\nA opencode-cloud/test/demo-text.test.mjs",
+          "metadata": {
+            "diff": "Index: /workspace/project/opencode-cloud/src/demo-text.mjs\n===================================================================\n--- /workspace/project/opencode-cloud/src/demo-text.mjs\n+++ /workspace/project/opencode-cloud/src/demo-text.mjs\n@@ -0,0 +1,7 @@\n+export function normalizeWhitespace(input) {\n+  if (typeof input !== 'string') {\n+    throw new TypeError('input must be a string');\n+  }\n+\n+  return input.trim().replace(/\\s+/gu, ' ');\n+}\n\nIndex: /workspace/project/opencode-cloud/test/demo-text.test.mjs\n===================================================================\n--- /workspace/project/opencode-cloud/test/demo-text.test.mjs\n+++ /workspace/project/opencode-cloud/test/demo-text.test.mjs\n@@ -0,0 +1,19 @@\n+import assert from 'node:assert/strict';\n+import { test } from 'node:test';\n+import { normalizeWhitespace } from '../src/demo-text.mjs';\n+\n+test('folds mixed whitespace and trims the result', () => {\n+  assert.equal(normalizeWhitespace('  hello\\tworld\\nagain  '), 'hello world again');\n+});\n+\n+test('returns an empty string for empty input', () => {\n+  assert.equal(normalizeWhitespace(''), '');\n+});\n+\n+test('preserves Chinese text while normalizing whitespace', () => {\n+  assert.equal(normalizeWhitespace('\\n你好\\t世界 ！\\n'), '你好 世界 ！');\n+});\n+\n+test('rejects non-string input', () => {\n+  assert.throws(() => normalizeWhitespace(null), TypeError);\n+});\n\n",
+            "files": [
+              {
+                "filePath": "/workspace/project/opencode-cloud/src/demo-text.mjs",
+                "relativePath": "opencode-cloud/src/demo-text.mjs",
+                "type": "add",
+                "patch": "Index: /workspace/project/opencode-cloud/src/demo-text.mjs\n===================================================================\n--- /workspace/project/opencode-cloud/src/demo-text.mjs\n+++ /workspace/project/opencode-cloud/src/demo-text.mjs\n@@ -0,0 +1,7 @@\n+export function normalizeWhitespace(input) {\n+  if (typeof input !== 'string') {\n+    throw new TypeError('input must be a string');\n+  }\n+\n+  return input.trim().replace(/\\s+/gu, ' ');\n+}\n",
+                "additions": 7,
+                "deletions": 0
+              },
+              {
+                "filePath": "/workspace/project/opencode-cloud/test/demo-text.test.mjs",
+                "relativePath": "opencode-cloud/test/demo-text.test.mjs",
+                "type": "add",
+                "patch": "Index: /workspace/project/opencode-cloud/test/demo-text.test.mjs\n===================================================================\n--- /workspace/project/opencode-cloud/test/demo-text.test.mjs\n+++ /workspace/project/opencode-cloud/test/demo-text.test.mjs\n@@ -0,0 +1,19 @@\n+import assert from 'node:assert/strict';\n+import { test } from 'node:test';\n+import { normalizeWhitespace } from '../src/demo-text.mjs';\n+\n+test('folds mixed whitespace and trims the result', () => {\n+  assert.equal(normalizeWhitespace('  hello\\tworld\\nagain  '), 'hello world again');\n+});\n+\n+test('returns an empty string for empty input', () => {\n+  assert.equal(normalizeWhitespace(''), '');\n+});\n+\n+test('preserves Chinese text while normalizing whitespace', () => {\n+  assert.equal(normalizeWhitespace('\\n你好\\t世界 ！\\n'), '你好 世界 ！');\n+});\n+\n+test('rejects non-string input', () => {\n+  assert.throws(() => normalizeWhitespace(null), TypeError);\n+});\n",
+                "additions": 19,
+                "deletions": 0
+              }
+            ],
+            "diagnostics": {},
+            "truncated": false
+          },
+          "time": {
+            "start": 1789621460413,
+            "end": 1789621460437
+          }
+        }
+      },
+      {
+        "id": "prt_0adc05eaa001FZBApMCAjT70Ix",
+        "sessionID": "ses_f52403502ffeaGvtr8uvfQZ8W5",
+        "messageID": "msg_0adc038d40016IJqa4MgqO619J",
+        "type": "step-finish",
+        "reason": "tool-calls",
+        "snapshot": "0e805944a711940d941d8f8991fce53bb31fcdbd",
+        "cost": 0,
+        "tokens": {
+          "total": 10873,
+          "input": 765,
+          "output": 380,
+          "reasoning": 0,
+          "cache": {
+            "read": 9728,
+            "write": 0
+          }
+        }
+      },
+      {
+        "id": "prt_0adc05ed1001qJNmSrH6JlO9Qs",
+        "sessionID": "ses_f52403502ffeaGvtr8uvfQZ8W5",
+        "messageID": "msg_0adc038d40016IJqa4MgqO619J",
+        "type": "patch",
+        "hash": "b2b9b6f1fc88cd9863fba7de5dd5ca2381fd2ede",
+        "files": [
+          "/workspace/project/opencode-cloud/src/demo-text.mjs",
+          "/workspace/project/opencode-cloud/test/demo-text.test.mjs"
+        ]
+      }
+    ]
+  },
+  {
+    "info": {
+      "id": "msg_0adc05eda001PGzuvVA03lFZ4V",
+      "sessionID": "ses_f52403502ffeaGvtr8uvfQZ8W5",
+      "role": "assistant",
+      "time": {
+        "created": 1789621460698,
+        "completed": 1789621464747
+      },
+      "parentID": "msg_0adbfcc37001IXfqzRATxqTMpz",
+      "modelID": "gpt-5.6-luna",
+      "providerID": "approved",
+      "mode": "build",
+      "agent": "build",
+      "path": {
+        "cwd": "/workspace/project",
+        "root": "/workspace/project"
+      },
+      "cost": 0,
+      "tokens": {
+        "total": 10998,
+        "input": 1183,
+        "output": 87,
+        "reasoning": 0,
+        "cache": {
+          "read": 9728,
+          "write": 0
+        }
+      },
+      "finish": "tool-calls"
+    },
+    "parts": [
+      {
+        "id": "prt_0adc0683b001yJ7c2JoBIpuBtE",
+        "sessionID": "ses_f52403502ffeaGvtr8uvfQZ8W5",
+        "messageID": "msg_0adc05eda001PGzuvVA03lFZ4V",
+        "type": "step-start",
+        "snapshot": "0e805944a711940d941d8f8991fce53bb31fcdbd"
+      },
+      {
+        "id": "prt_0adc0683e001kcgmwLzTqBN6N9",
+        "sessionID": "ses_f52403502ffeaGvtr8uvfQZ8W5",
+        "messageID": "msg_0adc05eda001PGzuvVA03lFZ4V",
+        "type": "tool",
+        "callID": "call_9DJhP0qwDSfFFySYq5j817T0",
+        "tool": "todowrite",
+        "state": {
+          "status": "completed",
+          "input": {
+            "todos": [
+              {
+                "content": "检查项目结构、git status 和目标文件是否存在",
+                "status": "completed",
+                "priority": "high"
+              },
+              {
+                "content": "新增 normalizeWhitespace 实现和 node:test 测试",
+                "status": "completed",
+                "priority": "high"
+              },
+              {
+                "content": "运行指定测试并核对仅有两个新增文件",
+                "status": "in_progress",
+                "priority": "high"
+              }
+            ]
+          },
+          "output": "[\n  {\n    \"content\": \"检查项目结构、git status 和目标文件是否存在\",\n    \"status\": \"completed\",\n    \"priority\": \"high\"\n  },\n  {\n    \"content\": \"新增 normalizeWhitespace 实现和 node:test 测试\",\n    \"status\": \"completed\",\n    \"priority\": \"high\"\n  },\n  {\n    \"content\": \"运行指定测试并核对仅有两个新增文件\",\n    \"status\": \"in_progress\",\n    \"priority\": \"high\"\n  }\n]",
+          "title": "1 todos",
+          "metadata": {
+            "todos": [
+              {
+                "content": "检查项目结构、git status 和目标文件是否存在",
+                "status": "completed",
+                "priority": "high"
+              },
+              {
+                "content": "新增 normalizeWhitespace 实现和 node:test 测试",
+                "status": "completed",
+                "priority": "high"
+              },
+              {
+                "content": "运行指定测试并核对仅有两个新增文件",
+                "status": "in_progress",
+                "priority": "high"
+              }
+            ],
+            "truncated": false
+          },
+          "time": {
+            "start": 1789621464445,
+            "end": 1789621464456
+          }
+        }
+      },
+      {
+        "id": "prt_0adc06e30001gimQvbwYXOthH1",
+        "sessionID": "ses_f52403502ffeaGvtr8uvfQZ8W5",
+        "messageID": "msg_0adc05eda001PGzuvVA03lFZ4V",
+        "type": "step-finish",
+        "reason": "tool-calls",
+        "snapshot": "0e805944a711940d941d8f8991fce53bb31fcdbd",
+        "cost": 0,
+        "tokens": {
+          "total": 10998,
+          "input": 1183,
+          "output": 87,
+          "reasoning": 0,
+          "cache": {
+            "read": 9728,
+            "write": 0
+          }
+        }
+      }
+    ]
+  },
+  {
+    "info": {
+      "id": "msg_0adc06eb2001Kxa5mPINGG77C7",
+      "sessionID": "ses_f52403502ffeaGvtr8uvfQZ8W5",
+      "role": "assistant",
+      "time": {
+        "created": 1789621464754,
+        "completed": 1789621470429
+      },
+      "parentID": "msg_0adbfcc37001IXfqzRATxqTMpz",
+      "modelID": "gpt-5.6-luna",
+      "providerID": "approved",
+      "mode": "build",
+      "agent": "build",
+      "path": {
+        "cwd": "/workspace/project",
+        "root": "/workspace/project"
+      },
+      "cost": 0,
+      "tokens": {
+        "total": 11233,
+        "input": 367,
+        "output": 114,
+        "reasoning": 0,
+        "cache": {
+          "read": 10752,
+          "write": 0
+        }
+      },
+      "finish": "tool-calls"
+    },
+    "parts": [
+      {
+        "id": "prt_0adc07a910016EI4fFWXZ3l2xu",
+        "sessionID": "ses_f52403502ffeaGvtr8uvfQZ8W5",
+        "messageID": "msg_0adc06eb2001Kxa5mPINGG77C7",
+        "type": "step-start",
+        "snapshot": "0e805944a711940d941d8f8991fce53bb31fcdbd"
+      },
+      {
+        "id": "prt_0adc07a95001oZySKqLLRvZ7QN",
+        "sessionID": "ses_f52403502ffeaGvtr8uvfQZ8W5",
+        "messageID": "msg_0adc06eb2001Kxa5mPINGG77C7",
+        "type": "text",
+        "text": "两个文件已创建。现在运行用户指定的测试命令，并检查最终状态以确认没有修改或新增其他文件。",
+        "time": {
+          "start": 1789621467797,
+          "end": 1789621470027
+        }
+      },
+      {
+        "id": "prt_0adc082dc001uDRIj4L6A3bSvC",
+        "sessionID": "ses_f52403502ffeaGvtr8uvfQZ8W5",
+        "messageID": "msg_0adc06eb2001Kxa5mPINGG77C7",
+        "type": "tool",
+        "callID": "call_MdHxG8nS8ccoKxRANy0NEDvm",
+        "tool": "bash",
+        "state": {
+          "status": "completed",
+          "input": {
+            "command": "node --test opencode-cloud/test/demo-text.test.mjs",
+            "workdir": "/workspace/project",
+            "timeout": 120000
+          },
+          "output": "TAP version 13\n# Subtest: folds mixed whitespace and trims the result\nok 1 - folds mixed whitespace and trims the result\n  ---\n  duration_ms: 1.895785\n  type: 'test'\n  ...\n# Subtest: returns an empty string for empty input\nok 2 - returns an empty string for empty input\n  ---\n  duration_ms: 0.189256\n  type: 'test'\n  ...\n# Subtest: preserves Chinese text while normalizing whitespace\nok 3 - preserves Chinese text while normalizing whitespace\n  ---\n  duration_ms: 0.176231\n  type: 'test'\n  ...\n# Subtest: rejects non-string input\nok 4 - rejects non-string input\n  ---\n  duration_ms: 0.371192\n  type: 'test'\n  ...\n1..4\n# tests 4\n# suites 0\n# pass 4\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 225.157052\n",
+          "title": "node --test opencode-cloud/test/demo-text.test.mjs",
+          "metadata": {
+            "output": "TAP version 13\n# Subtest: folds mixed whitespace and trims the result\nok 1 - folds mixed whitespace and trims the result\n  ---\n  duration_ms: 1.895785\n  type: 'test'\n  ...\n# Subtest: returns an empty string for empty input\nok 2 - returns an empty string for empty input\n  ---\n  duration_ms: 0.189256\n  type: 'test'\n  ...\n# Subtest: preserves Chinese text while normalizing whitespace\nok 3 - preserves Chinese text while normalizing whitespace\n  ---\n  duration_ms: 0.176231\n  type: 'test'\n  ...\n# Subtest: rejects non-string input\nok 4 - rejects non-string input\n  ---\n  duration_ms: 0.371192\n  type: 'test'\n  ...\n1..4\n# tests 4\n# suites 0\n# pass 4\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 225.157052\n",
+            "exit": 0,
+            "truncated": false
+          },
+          "time": {
+            "start": 1789621469978,
+            "end": 1789621470340
+          }
+        }
+      },
+      {
+        "id": "prt_0adc0832a001VOgNOOtFs0oNdK",
+        "sessionID": "ses_f52403502ffeaGvtr8uvfQZ8W5",
+        "messageID": "msg_0adc06eb2001Kxa5mPINGG77C7",
+        "type": "tool",
+        "callID": "call_jHOnKBTUBQsnl8kGFRb5Rsvb",
+        "tool": "bash",
+        "state": {
+          "status": "completed",
+          "input": {
+            "command": "git status --short",
+            "workdir": "/workspace/project"
+          },
+          "output": "MM opencode-cloud-v0/README.md\n D opencode-cloud/evidence/smoke-task.txt\n?? .env.a05-acceptance\n?? acceptance-a05.bin\n?? acceptance-a05.txt\n?? acceptance-a06.txt\n?? opencode-cloud/src/demo-text.mjs\n?? opencode-cloud/src/patch-export.ts\n?? opencode-cloud/test/demo-text.test.mjs\n?? runtime/\n",
+          "title": "git status --short",
+          "metadata": {
+            "output": "MM opencode-cloud-v0/README.md\n D opencode-cloud/evidence/smoke-task.txt\n?? .env.a05-acceptance\n?? acceptance-a05.bin\n?? acceptance-a05.txt\n?? acceptance-a06.txt\n?? opencode-cloud/src/demo-text.mjs\n?? opencode-cloud/src/patch-export.ts\n?? opencode-cloud/test/demo-text.test.mjs\n?? runtime/\n",
+            "exit": 0,
+            "truncated": false
+          },
+          "time": {
+            "start": 1789621470006,
+            "end": 1789621470171
+          }
+        }
+      },
+      {
+        "id": "prt_0adc084ba001Vqfxou6Br19nTD",
+        "sessionID": "ses_f52403502ffeaGvtr8uvfQZ8W5",
+        "messageID": "msg_0adc06eb2001Kxa5mPINGG77C7",
+        "type": "step-finish",
+        "reason": "tool-calls",
+        "snapshot": "0e805944a711940d941d8f8991fce53bb31fcdbd",
+        "cost": 0,
+        "tokens": {
+          "total": 11233,
+          "input": 367,
+          "output": 114,
+          "reasoning": 0,
+          "cache": {
+            "read": 10752,
+            "write": 0
+          }
+        }
+      }
+    ]
+  },
+  {
+    "info": {
+      "id": "msg_0adc084e4001VcWbkyVtrtAKCd",
+      "sessionID": "ses_f52403502ffeaGvtr8uvfQZ8W5",
+      "role": "assistant",
+      "time": {
+        "created": 1789621470436,
+        "completed": 1789621476691
+      },
+      "parentID": "msg_0adbfcc37001IXfqzRATxqTMpz",
+      "modelID": "gpt-5.6-luna",
+      "providerID": "approved",
+      "mode": "build",
+      "agent": "build",
+      "path": {
+        "cwd": "/workspace/project",
+        "root": "/workspace/project"
+      },
+      "cost": 0,
+      "tokens": {
+        "total": 11646,
+        "input": 808,
+        "output": 86,
+        "reasoning": 0,
+        "cache": {
+          "read": 10752,
+          "write": 0
+        }
+      },
+      "finish": "tool-calls"
+    },
+    "parts": [
+      {
+        "id": "prt_0adc09844001zn8hl4pH7NdBrg",
+        "sessionID": "ses_f52403502ffeaGvtr8uvfQZ8W5",
+        "messageID": "msg_0adc084e4001VcWbkyVtrtAKCd",
+        "type": "step-start",
+        "snapshot": "0e805944a711940d941d8f8991fce53bb31fcdbd"
+      },
+      {
+        "id": "prt_0adc09848001rSjF1rmNXuhU2B",
+        "sessionID": "ses_f52403502ffeaGvtr8uvfQZ8W5",
+        "messageID": "msg_0adc084e4001VcWbkyVtrtAKCd",
+        "type": "tool",
+        "callID": "call_rrQoVEtkMZQIcaKPDNl2QoZn",
+        "tool": "todowrite",
+        "state": {
+          "status": "completed",
+          "input": {
+            "todos": [
+              {
+                "content": "检查项目结构、git status 和目标文件是否存在",
+                "status": "completed",
+                "priority": "high"
+              },
+              {
+                "content": "新增 normalizeWhitespace 实现和 node:test 测试",
+                "status": "completed",
+                "priority": "high"
+              },
+              {
+                "content": "运行指定测试并核对仅有两个新增文件",
+                "status": "completed",
+                "priority": "high"
+              }
+            ]
+          },
+          "output": "[\n  {\n    \"content\": \"检查项目结构、git status 和目标文件是否存在\",\n    \"status\": \"completed\",\n    \"priority\": \"high\"\n  },\n  {\n    \"content\": \"新增 normalizeWhitespace 实现和 node:test 测试\",\n    \"status\": \"completed\",\n    \"priority\": \"high\"\n  },\n  {\n    \"content\": \"运行指定测试并核对仅有两个新增文件\",\n    \"status\": \"completed\",\n    \"priority\": \"high\"\n  }\n]",
+          "title": "0 todos",
+          "metadata": {
+            "todos": [
+              {
+                "content": "检查项目结构、git status 和目标文件是否存在",
+                "status": "completed",
+                "priority": "high"
+              },
+              {
+                "content": "新增 normalizeWhitespace 实现和 node:test 测试",
+                "status": "completed",
+                "priority": "high"
+              },
+              {
+                "content": "运行指定测试并核对仅有两个新增文件",
+                "status": "completed",
+                "priority": "high"
+              }
+            ],
+            "truncated": false
+          },
+          "time": {
+            "start": 1789621476268,
+            "end": 1789621476271
+          }
+        }
+      },
+      {
+        "id": "prt_0adc09d15001bmpygJNTTX2sC1",
+        "sessionID": "ses_f52403502ffeaGvtr8uvfQZ8W5",
+        "messageID": "msg_0adc084e4001VcWbkyVtrtAKCd",
+        "type": "step-finish",
+        "reason": "tool-calls",
+        "snapshot": "0e805944a711940d941d8f8991fce53bb31fcdbd",
+        "cost": 0,
+        "tokens": {
+          "total": 11646,
+          "input": 808,
+          "output": 86,
+          "reasoning": 0,
+          "cache": {
+            "read": 10752,
+            "write": 0
+          }
+        }
+      }
+    ]
+  },
+  {
+    "info": {
+      "id": "msg_0adc09d59001adMXYlDIwSjTcx",
+      "sessionID": "ses_f52403502ffeaGvtr8uvfQZ8W5",
+      "role": "assistant",
+      "time": {
+        "created": 1789621476697,
+        "completed": 1789621482592
+      },
+      "parentID": "msg_0adbfcc37001IXfqzRATxqTMpz",
+      "modelID": "gpt-5.6-luna",
+      "providerID": "approved",
+      "mode": "build",
+      "agent": "build",
+      "path": {
+        "cwd": "/workspace/project",
+        "root": "/workspace/project"
+      },
+      "cost": 0,
+      "tokens": {
+        "total": 11953,
+        "input": 1014,
+        "output": 187,
+        "reasoning": 0,
+        "cache": {
+          "read": 10752,
+          "write": 0
+        }
+      },
+      "finish": "stop"
+    },
+    "parts": [
+      {
+        "id": "prt_0adc0a676001DOUOjETHyX6dJU",
+        "sessionID": "ses_f52403502ffeaGvtr8uvfQZ8W5",
+        "messageID": "msg_0adc09d59001adMXYlDIwSjTcx",
+        "type": "step-start",
+        "snapshot": "0e805944a711940d941d8f8991fce53bb31fcdbd"
+      },
+      {
+        "id": "prt_0adc0a678001wU7kmP4XF5JnWa",
+        "sessionID": "ses_f52403502ffeaGvtr8uvfQZ8W5",
+        "messageID": "msg_0adc09d59001adMXYlDIwSjTcx",
+        "type": "text",
+        "text": "已完成，仅新增以下两个文件，保留了所有原有未提交修改：\n\n- `opencode-cloud/src/demo-text.mjs`\n  - 导出 `normalizeWhitespace(input)`\n  - 非字符串输入抛出 `TypeError`\n  - 去除首尾空白\n  - 将连续空白折叠为一个空格\n  - 保留中文内容\n\n- `opencode-cloud/test/demo-text.test.mjs`\n  - 使用 Node 标准库 `node:test` 和 `node:assert/strict`\n  - 覆盖混合空白、空字符串、中文和非字符串输入\n\n测试命令：\n\n```text\nnode --test opencode-cloud/test/demo-text.test.mjs\n```\n\n结果：4 个测试全部通过，0 失败。未安装依赖、未执行 `git add` 或提交，也未修改其他文件。",
+        "time": {
+          "start": 1789621479032,
+          "end": 1789621482484
+        }
+      },
+      {
+        "id": "prt_0adc0b434001gV5poPY3j5R7jG",
+        "sessionID": "ses_f52403502ffeaGvtr8uvfQZ8W5",
+        "messageID": "msg_0adc09d59001adMXYlDIwSjTcx",
+        "type": "step-finish",
+        "reason": "stop",
+        "snapshot": "0e805944a711940d941d8f8991fce53bb31fcdbd",
+        "cost": 0,
+        "tokens": {
+          "total": 11953,
+          "input": 1014,
+          "output": 187,
+          "reasoning": 0,
+          "cache": {
+            "read": 10752,
+            "write": 0
+          }
+        }
+      }
+    ]
+  }
+]

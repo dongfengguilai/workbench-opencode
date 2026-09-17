@@ -1,0 +1,7 @@
+GET /__platform/download 200
+GET /__platform/changes 200
+GET /__platform/download 200
+GET /event 200
+POST /api/auth/logout 204
+POST /api/auth/logout 204
+POST /api/auth/logout 204

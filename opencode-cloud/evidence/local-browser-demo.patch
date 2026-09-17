@@ -1,0 +1,175 @@
+diff --git a/acceptance-a05.bin b/acceptance-a05.bin
+new file mode 100644
+index 0000000000000000000000000000000000000000..51b764220fab1154c698377b12b0d53e911a1dd4
+GIT binary patch
+literal 6
+NcmZQzZ1~S00ssXZ0hIs%
+
+literal 0
+HcmV?d00001
+
+diff --git a/acceptance-a05.txt b/acceptance-a05.txt
+new file mode 100644
+index 0000000000000000000000000000000000000000..cba4e3712a3d3d1d0abdd68cc78145361c4a7f50
+--- /dev/null
++++ b/acceptance-a05.txt
+@@ -0,0 +1 @@
++A05 authorized new work
+diff --git a/acceptance-a06.txt b/acceptance-a06.txt
+new file mode 100644
+index 0000000000000000000000000000000000000000..1604952c001be40348dcaf4d078e78ced5901dc9
+--- /dev/null
++++ b/acceptance-a06.txt
+@@ -0,0 +1 @@
++A06_ADMIN_ONLY_93b81
+diff --git a/opencode-cloud-v0/README.md b/opencode-cloud-v0/README.md
+index 71be276a433d2d219084a6f717e52772f2537327..56e0fdb2eb4f1051c3f5a7db4c464c3a1e938419 100644
+--- a/opencode-cloud-v0/README.md
++++ b/opencode-cloud-v0/README.md
+@@ -46,3 +46,7 @@
+ ## 本包自身校验
+ 
+ 生成时只检查文件完整性、本地文档引用和 ZIP 可读性。这不是平台测试。所有软件验收以实施后真实产生的记录为准。
++
++A05 staged work
++
++A05 unstaged work
+diff --git a/opencode-cloud/evidence/smoke-task.txt b/opencode-cloud/evidence/smoke-task.txt
+deleted file mode 100644
+index 8a7319489b78a94054af3cec9790140a509a954d..0000000000000000000000000000000000000000
+--- a/opencode-cloud/evidence/smoke-task.txt
++++ /dev/null
+@@ -1,2 +0,0 @@
+-This is a practice smoke task, not a business project acceptance.
+-Fix parseCSV in csv.mjs so the existing tests pass. Support CSV quoted fields, escaped double quotes, commas inside quotes, CRLF and LF row endings, multiline quoted fields, empty fields and empty input. Do not include a spurious final row for a trailing row terminator. Reject unclosed quotes, quotes in unquoted fields and non-delimiter text after a closing quote with SyntaxError. Preserve line endings within quoted content. Read the project first, make the source changes yourself, and run npm test. Do not delete or weaken tests, do not commit, and do not access network or environment secrets. Explain the diff and test result.
+diff --git a/opencode-cloud/src/demo-text.mjs b/opencode-cloud/src/demo-text.mjs
+new file mode 100644
+index 0000000000000000000000000000000000000000..d69b834b69429effe8645cc1e13639b0d49d30df
+--- /dev/null
++++ b/opencode-cloud/src/demo-text.mjs
+@@ -0,0 +1,7 @@
++export function normalizeWhitespace(input) {
++  if (typeof input !== 'string') {
++    throw new TypeError('input must be a string');
++  }
++
++  return input.trim().replace(/\s+/gu, ' ');
++}
+diff --git a/opencode-cloud/src/patch-export.ts b/opencode-cloud/src/patch-export.ts
+new file mode 100644
+index 0000000000000000000000000000000000000000..c230d957e2d9b6f79b73dd740658c372866804ec
+--- /dev/null
++++ b/opencode-cloud/src/patch-export.ts
+@@ -0,0 +1,87 @@
++import { execFileSync } from 'node:child_process';
++import { lstat, mkdtemp, realpath, rm } from 'node:fs/promises';
++import os from 'node:os';
++import path from 'node:path';
++
++type ExportOptions = { directory: string; baseline: string };
++type ExportResult = { baseline: string; files: string[]; patch: string };
++
++function git(directory: string, args: string[], env?: NodeJS.ProcessEnv): Buffer {
++  return execFileSync('git', args, { cwd: directory, env, maxBuffer: 128 * 1024 * 1024 });
++}
++
++function nulList(value: Buffer): string[] {
++  return value.toString('utf8').split('\0').filter(Boolean);
++}
++
++function isExcluded(file: string): boolean {
++  const parts = file.split('/');
++  const lower = file.toLowerCase();
++  const base = parts.at(-1)!.toLowerCase();
++  if (base === '.env' || base.startsWith('.env.')) return true;
++  if (/\.(pem|key|p12|pfx|jks|kdb|crt)$/i.test(base)) return true;
++  if (/(^|[/._-])(credential|credentials|key|keys|secret|secrets)([/._-]|$)/i.test(lower)) return true;
++
++  const excludedDirectories = new Set([
++    '.cache', '.gradle', '.m2', '.npm', '.pnpm-store', '.venv',
++    'cache', 'caches', 'db', 'database', 'databases', 'deps', 'dependencies',
++    'node_modules', 'runtime', 'state', 'tmp', 'vendor', 'venv',
++  ]);
++  return parts.slice(0, -1).some(part => excludedDirectories.has(part.toLowerCase()));
++}
++
++async function rejectUnsafeSymlinks(directory: string, files: string[]): Promise<void> {
++  const root = await realpath(directory);
++  for (const file of files) {
++    const fullPath = path.join(directory, ...file.split('/'));
++    let stat;
++    try { stat = await lstat(fullPath); } catch (error: any) {
++      if (error?.code === 'ENOENT') continue;
++      throw error;
++    }
++    if (!stat.isSymbolicLink()) continue;
++    let target: string;
++    try { target = await realpath(fullPath); } catch { throw new Error(`External or broken symlink: ${file}`); }
++    const relative = path.relative(root, target);
++    if (relative === '..' || relative.startsWith(`..${path.sep}`) || path.isAbsolute(relative)) {
++      throw new Error(`External or broken symlink: ${file}`);
++    }
++  }
++}
++
++export async function exportPatch({ directory, baseline }: ExportOptions): Promise<ExportResult> {
++  const expected = git(directory, ['rev-parse', '--verify', 'HEAD']).toString().trim();
++  if (!/^[0-9a-f]{40}$/.test(baseline) || baseline !== expected) {
++    throw new Error('baseline must be the full SHA matching HEAD');
++  }
++
++  const candidateFiles = nulList(git(directory, ['ls-files', '--cached', '--others', '--exclude-standard', '-z', '--']));
++  await rejectUnsafeSymlinks(directory, candidateFiles);
++
++  const tempDirectory = await mkdtemp(path.join(os.tmpdir(), 'opencode-cloud-index-'));
++  const index = path.join(tempDirectory, 'index');
++  const env = { ...process.env, GIT_INDEX_FILE: index };
++  try {
++    git(directory, ['read-tree', baseline], env);
++    git(directory, ['add', '--all', '--', '.'], env);
++
++    const baselineFiles = nulList(git(directory, ['ls-tree', '-r', '--name-only', '-z', baseline, '--']));
++    const excluded = baselineFiles.filter(isExcluded);
++    const excludedCandidates = candidateFiles.filter(isExcluded);
++    for (const file of excluded) {
++      const entry = git(directory, ['ls-tree', '-z', baseline, '--', file]).toString('utf8').replace(/\0$/, '');
++      const match = entry.match(/^(\d+) blob ([0-9a-f]+)\t/);
++      if (!match) throw new Error(`Unable to restore excluded path: ${file}`);
++      git(directory, ['update-index', '--add', '--cacheinfo', `${match[1]},${match[2]},${file}`], env);
++    }
++    for (const file of excludedCandidates) {
++      if (!excluded.includes(file)) git(directory, ['update-index', '--force-remove', '--', file], env);
++    }
++
++    const files = nulList(git(directory, ['diff', '--cached', '--name-only', '-z', '--'], env));
++    const patch = git(directory, ['diff', '--cached', '--binary', '--full-index', '--no-ext-diff', '--'], env).toString('utf8');
++    return { baseline, files, patch };
++  } finally {
++    await rm(tempDirectory, { recursive: true, force: true });
++  }
++}
+diff --git a/opencode-cloud/test/demo-text.test.mjs b/opencode-cloud/test/demo-text.test.mjs
+new file mode 100644
+index 0000000000000000000000000000000000000000..57bc79bb9bbb21ec46f1d379a78eea1f4b8bd007
+--- /dev/null
++++ b/opencode-cloud/test/demo-text.test.mjs
+@@ -0,0 +1,19 @@
++import assert from 'node:assert/strict';
++import { test } from 'node:test';
++import { normalizeWhitespace } from '../src/demo-text.mjs';
++
++test('folds mixed whitespace and trims the result', () => {
++  assert.equal(normalizeWhitespace('  hello\tworld\nagain  '), 'hello world again');
++});
++
++test('returns an empty string for empty input', () => {
++  assert.equal(normalizeWhitespace(''), '');
++});
++
++test('preserves Chinese text while normalizing whitespace', () => {
++  assert.equal(normalizeWhitespace('\n你好\t世界 ！\n'), '你好 世界 ！');
++});
++
++test('rejects non-string input', () => {
++  assert.throws(() => normalizeWhitespace(null), TypeError);
++});

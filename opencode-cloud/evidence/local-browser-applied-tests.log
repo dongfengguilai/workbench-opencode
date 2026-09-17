@@ -1,0 +1,34 @@
+TAP version 13
+# Subtest: folds mixed whitespace and trims the result
+ok 1 - folds mixed whitespace and trims the result
+  ---
+  duration_ms: 7.003109
+  type: 'test'
+  ...
+# Subtest: returns an empty string for empty input
+ok 2 - returns an empty string for empty input
+  ---
+  duration_ms: 3.924218
+  type: 'test'
+  ...
+# Subtest: preserves Chinese text while normalizing whitespace
+ok 3 - preserves Chinese text while normalizing whitespace
+  ---
+  duration_ms: 0.306917
+  type: 'test'
+  ...
+# Subtest: rejects non-string input
+ok 4 - rejects non-string input
+  ---
+  duration_ms: 0.534337
+  type: 'test'
+  ...
+1..4
+# tests 4
+# suites 0
+# pass 4
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1016.597234

@@ -64,3 +64,19 @@ backup 先实际检查两个原生状态 idle，停止 admissions 与原生进�
 恢复功能验证由 test/restore-live.mjs 在新的 Compose 项目和内部网络实际启动恢复副本，检查同一 Session/文件摘要，再由原生模型执行测试。恢复环境仍使用 UID 防火墙和 guard；临时环境停止后保留恢复数据。不要只验证文件存在，也不要以聊天文本导出代替 SQLite 会话。
 
 当前部署与证据参考 evidence/baseline.md、各验收 result.json 及 STATUS.md；A10 必须实际用户签收。
+
+## Codex 内置浏览器本机入口
+
+在运行 Codex 的当前宿主机执行（需要 Node 22 或以上）：
+
+```sh
+python3 scripts/local-browser.py start
+python3 scripts/local-browser.py status
+python3 scripts/local-browser.py stop
+```
+
+只启动本机代理，复用运行中的平台与原生环境，不重启容器、不重发任务。浏览器打开 `http://127.0.0.1:8444`；该端口只绑定宿主机回环，不提供远程 HTTP 登录。代理固定连接当前批准的 HTTPS 平台，使用 runtime/tls.crt 校验地址、证书链、有效期及准确叶证书 SHA256，不使用 rejectUnauthorized=false。证书更换后需重启本机代理。HTTP/SSE/原生终端 WebSocket/下载均直接转发；仅本机响应中的 agent_session 移除 Secure，HttpOnly/SameSite/注销保持，原 HTTPS 入口不变。
+
+完整启动时可用 `sh scripts/start.sh --local-browser`；完整 stop 同时停止代理。代理 PID/starttime 与日志在忽略的 runtime 内，仅停止核对为本脚本的进程，遇到他人占用 8444 拒绝启动。`LOCAL_BROWSER_TRACE=1 python3 scripts/local-browser.py start` 可临时记录方法、无查询字符串的路径和状态，不记录 Header、Cookie、密码、请求内容或模型 Key。默认不启用逐请求日志。
+
+`node --test test/local-browser.test.mjs` 使用实际正在运行的平台检查本机绑定、认证、Origin/Host/CONNECT/WS 与错误证书拒绝；缺少真实平台时失败，不启动替代服务器。可见内置浏览器示例证据见 evidence/local-browser-demo-result.json。这是维护者本机验证入口，不代表远程生产证书验收通过。

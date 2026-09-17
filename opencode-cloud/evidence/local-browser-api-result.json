@@ -1,0 +1,11 @@
+{
+  "status": "PASS",
+  "httpsCookieSecure": true,
+  "localCookieHttpOnly": true,
+  "localCookieSameSite": "Lax",
+  "localCookieSecure": false,
+  "realSSE": true,
+  "downloadStatus": 200,
+  "downloadSHA256": "6bc8a9dcce1ec6530c0fb29ecd568ed2468621a18219d32d392937a3264e452d",
+  "session": "ses_f52403502ffeaGvtr8uvfQZ8W5"
+}

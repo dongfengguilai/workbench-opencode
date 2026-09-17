@@ -1,0 +1,40 @@
+TAP version 13
+# Subtest: real verified platform loads; anonymous project stays protected
+ok 1 - real verified platform loads; anonymous project stays protected
+  ---
+  duration_ms: 146.906454
+  type: 'test'
+  ...
+# Subtest: wrong Host, external Origin, cross-site, missing write Origin and absolute target refused
+ok 2 - wrong Host, external Origin, cross-site, missing write Origin and absolute target refused
+  ---
+  duration_ms: 26.555652
+  type: 'test'
+  ...
+# Subtest: CONNECT and forged WebSocket origin refused
+ok 3 - CONNECT and forged WebSocket origin refused
+  ---
+  duration_ms: 13.987822
+  type: 'test'
+  ...
+# Subtest: wrong fingerprint cannot connect to real platform
+ok 4 - wrong fingerprint cannot connect to real platform
+  ---
+  duration_ms: 22.858141
+  type: 'test'
+  ...
+# Subtest: untrusted CA cannot connect to real platform
+ok 5 - untrusted CA cannot connect to real platform
+  ---
+  duration_ms: 13.6474
+  type: 'test'
+  ...
+1..5
+# tests 5
+# suites 0
+# pass 5
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 488.344971

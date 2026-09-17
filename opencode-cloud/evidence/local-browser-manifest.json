@@ -1,0 +1,13 @@
+{
+  "baseline": "9320d7bdc9f2f1e87c865646952c86f239a57d9b",
+  "files": [
+    "acceptance-a05.bin",
+    "acceptance-a05.txt",
+    "acceptance-a06.txt",
+    "opencode-cloud-v0/README.md",
+    "opencode-cloud/evidence/smoke-task.txt",
+    "opencode-cloud/src/demo-text.mjs",
+    "opencode-cloud/src/patch-export.ts",
+    "opencode-cloud/test/demo-text.test.mjs"
+  ]
+}

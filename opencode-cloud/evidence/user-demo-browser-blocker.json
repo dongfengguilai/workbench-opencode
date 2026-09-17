@@ -1,0 +1,22 @@
+{
+  "date": "2026-09-17",
+  "request": "用户要求在可见浏览器操作一个示例",
+  "url": "https://192.168.142.130:8443",
+  "browser": "Codex In-app Browser",
+  "result": "BLOCKED_BEFORE_LOGIN",
+  "error": "net::ERR_CERT_AUTHORITY_INVALID",
+  "observed_page": "192.168.142.130's certificate could not be verified",
+  "actions_completed": ["创建可见浏览器标签并尝试打开已部署 HTTPS 入口"],
+  "actions_not_completed": ["登录", "提交原生 OpenCode 示例任务", "查看或下载示例变更"],
+  "next_blocker": "用户亲自处理证书信任提示，或提供浏览器受信任的 HTTPS 证书；不得由 Agent 绕过安全提示或关闭校验",
+  "acceptance": "A10 仍未通过，不将此次打开失败计为演示成功",
+  "followup_server_check": {
+    "platform_published_port": "0.0.0.0:8443 and [::]:8443",
+    "both_native_guards": "HTTP 200 healthy, version 1.18.31",
+    "https_login_check": "curl --noproxy '*' --cacert opencode-cloud/runtime/tls.crt https://192.168.142.130:8443/__platform/login returned HTTP 200; certificate validation enabled",
+    "certificate_san": ["192.168.142.130", "127.0.0.1", "localhost"],
+    "certificate_valid_utc": "2026-09-17 03:41:58 to 2026-10-17 03:41:58",
+    "certificate_sha256": "0B:1B:44:44:8C:63:D1:2A:31:03:9A:B3:99:93:88:5C:87:C0:6C:B0:46:3B:E8:F1:17:DF:99:FB:A4:FE:FD:82",
+    "user_browser_error": "尚待用户提供，不能将其所有拒绝情况一律归因于证书"
+  }
+}

@@ -1,0 +1,190 @@
+- navigation:
+  - generic: Administrator · workbench-opencode · 云端环境就绪
+  - link "授权项目":
+    - /url: /L3dvcmtzcGFjZS9wcm9qZWN0/session
+  - link "变更清单":
+    - /url: /__platform/changes
+  - link "下载变更":
+    - /url: /__platform/download
+  - button "退出登录"
+- banner:
+  - button "Home":
+  - link "p 新增 normalizeWhitespace 示例及测试 Close tab":
+    - link "p 新增 normalizeWhitespace 示例及测试":
+      - /url: /server/aHR0cDovLzEyNy4wLjAuMTo4NDQ0/session/ses_f52403502ffeaGvtr8uvfQZ8W5
+      - generic: p
+      - generic: 新增 normalizeWhitespace 示例及测试
+    - button "Close tab":
+  - button "New session":
+- main:
+  - tablist:
+    - tab "Session" [selected]
+    - tab "Changes"
+  - button "Jump to latest":
+  - region "scrollable content":
+    - heading "新增 normalizeWhitespace 示例及测试" [level=1]
+    - button "View context usage":
+    - button "More options":
+    - button "Explored , 7 read s , 0 search es , 0 list s":
+      - generic "Explored":
+        - generic "Explored":
+          - generic: Explored
+          - generic: Explored
+      - generic: ","
+      - generic "7":
+        - generic: "0"
+        - generic: "1"
+        - generic: "2"
+        - generic: "3"
+        - generic: "4"
+        - generic: "5"
+        - generic: "6"
+        - generic: "7"
+        - generic: "8"
+        - generic: "9"
+        - generic: "0"
+        - generic: "1"
+        - generic: "2"
+        - generic: "3"
+        - generic: "4"
+        - generic: "5"
+        - generic: "6"
+        - generic: "7"
+        - generic: "8"
+        - generic: "9"
+        - generic: "0"
+        - generic: "1"
+        - generic: "2"
+        - generic: "3"
+        - generic: "4"
+        - generic: "5"
+        - generic: "6"
+        - generic: "7"
+        - generic: "8"
+        - generic: "9"
+      - generic: read
+      - generic: s
+      - generic: ","
+      - generic "0":
+        - generic: "0"
+        - generic: "1"
+        - generic: "2"
+        - generic: "3"
+        - generic: "4"
+        - generic: "5"
+        - generic: "6"
+        - generic: "7"
+        - generic: "8"
+        - generic: "9"
+        - generic: "0"
+        - generic: "1"
+        - generic: "2"
+        - generic: "3"
+        - generic: "4"
+        - generic: "5"
+        - generic: "6"
+        - generic: "7"
+        - generic: "8"
+        - generic: "9"
+        - generic: "0"
+        - generic: "1"
+        - generic: "2"
+        - generic: "3"
+        - generic: "4"
+        - generic: "5"
+        - generic: "6"
+        - generic: "7"
+        - generic: "8"
+        - generic: "9"
+      - generic: search
+      - generic: es
+      - generic: ","
+      - generic "0":
+        - generic: "0"
+        - generic: "1"
+        - generic: "2"
+        - generic: "3"
+        - generic: "4"
+        - generic: "5"
+        - generic: "6"
+        - generic: "7"
+        - generic: "8"
+        - generic: "9"
+        - generic: "0"
+        - generic: "1"
+        - generic: "2"
+        - generic: "3"
+        - generic: "4"
+        - generic: "5"
+        - generic: "6"
+        - generic: "7"
+        - generic: "8"
+        - generic: "9"
+        - generic: "0"
+        - generic: "1"
+        - generic: "2"
+        - generic: "3"
+        - generic: "4"
+        - generic: "5"
+        - generic: "6"
+        - generic: "7"
+        - generic: "8"
+        - generic: "9"
+      - generic: list
+      - generic: s
+    - generic: "实现将使用字符串类型检查和 Unicode 空白正则，测试覆盖混合空白折叠、空字符串、中文保留及非字符串抛出 `TypeError`。只新增用户指定的两个文件。"
+    - button "Patch 2 files":
+      - generic "Patch":
+        - generic: Patch
+        - generic: Patch
+      - generic: 2 files
+    - generic: 两个文件已创建。现在运行用户指定的测试命令，并检查最终状态以确认没有修改或新增其他文件。
+    - button "Shell node --test opencode-cloud/test/demo-text.test.mjs":
+      - generic "Shell":
+        - generic: Shell
+        - generic: Shell
+      - generic: node --test opencode-cloud/test/demo-text.test.mjs
+    - button "Shell git status --short":
+      - generic "Shell":
+        - generic: Shell
+        - generic: Shell
+      - generic: git status --short
+    - text: 已完成，仅新增以下两个文件，保留了所有原有未提交修改：
+    - text: "- `opencode-cloud/src/demo-text.mjs`"
+    - text: "- 导出 `normalizeWhitespace(input)`"
+    - text: "- 非字符串输入抛出 `TypeError`"
+    - text: "- 去除首尾空白"
+    - text: "- 将连续空白折叠为一个空格"
+    - text: "- 保留中文内容"
+    - text: "- `opencode-cloud/test/demo-text.test.mjs`"
+    - text: "- 使用 Node 标准库 `node:test` 和 `node:assert/strict`"
+    - text: "- 覆盖混合空白、空字符串、中文和非字符串输入"
+    - text: 测试命令：
+    - text: "```text"
+    - text: node --test opencode-cloud/test/demo-text.test.mjs
+    - text: "```"
+    - text: "结果：4 个测试全部通过，0 失败。未安装依赖、未执行 `git add` 或提交，也未修改其他文件。"
+    - button "Copy response":
+    - generic: Build · gpt-5.6-luna · 59s
+    - generic: 2 Changed files
+    - generic: "+26"
+    - generic: "-0"
+    - heading "‪opencode-cloud/src/‬ demo-text.mjs +7 -0" [level=3]:
+      - button "‪opencode-cloud/src/‬ demo-text.mjs +7 -0":
+        - generic: ‪opencode-cloud/src/‬
+        - generic: demo-text.mjs
+        - generic: "+7"
+        - generic: "-0"
+    - heading "‪opencode-cloud/test/‬ demo-text.test.mjs +19 -0" [level=3]:
+      - button "‪opencode-cloud/test/‬ demo-text.test.mjs +19 -0":
+        - generic: ‪opencode-cloud/test/‬
+        - generic: demo-text.test.mjs
+        - generic: "+19"
+        - generic: "-0"
+  - textbox "Prompt"
+  - generic: Ask anything, / for commands, @ for context...
+  - button "Add images and files":
+  - button "Select model":
+    - generic: Select model
+  - button "Send" [disabled]:
+- region "Notifications alt+T"
