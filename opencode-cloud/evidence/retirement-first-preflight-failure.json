@@ -1,0 +1,8 @@
+{
+  "kind": "real_preflight_failure",
+  "reason": "du attempted to read root-owned lost+found inside mounted quota disks",
+  "exitCode": 1,
+  "serviceStopExecuted": false,
+  "dataDeletionExecuted": false,
+  "correction": "Use du -sbx to count installation files without descending into mounted quota filesystems; the quota image files themselves remain counted."
+}

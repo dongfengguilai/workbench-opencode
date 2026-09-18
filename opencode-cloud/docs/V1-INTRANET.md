@@ -1,5 +1,7 @@
 # WorkBench V1 企业内网一键部署
 
+> 2026-09-18：此远程试验部署已退役，旧入口不可用。源码与私密冷备保留在本机，详见 [退役记录](REMOTE-RETIREMENT.md)。以下说明保留供历史版本维护使用。
+
 固定目标 `aisvr@10.243.117.57`，目录 `/home/aisvr/mnt/sda/programs/WorkBench-v1`，Compose 项目 `workbench-v1`。不需要购买公网域名，不迁移旧数据，不改同机模型和其他业务。默认首次只允许 NetID `mj33kd`；可按 [双身份说明](DUAL-IDENTITY.md) 使用 `./deploy.sh add-admin` 增加独立本地管理员。日额度 100,000、并发 2、输出 16,000。
 
 ## 安装与恢复运行

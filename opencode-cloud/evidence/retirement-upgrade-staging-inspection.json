@@ -1,0 +1,12 @@
+{
+  "kind": "real_old_upgrade_staging_inspection",
+  "remotePath": "/home/aisvr/mnt/sda/programs/.WorkBench-v1-upgrade-e4i3mvom",
+  "releaseSha256": "7685ccc91b23899af1b3062c7e7fac966e84c66ca85ae73ed6003d45678b4ed0",
+  "releaseBytes": 1044630207,
+  "allArtifactChecksumsVerified": true,
+  "unknownExtractedTopLevelNames": [],
+  "hasRuntime": false,
+  "hasBackups": false,
+  "matchingSystemdUnitFiles": [],
+  "matchingPathsInRemoteHomeAndTmp": []
+}

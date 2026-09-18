@@ -1,0 +1,40 @@
+{
+  "kind": "real_unrelated_container_guard_difference",
+  "differences": [
+    {
+      "name": "drawing_mark_apn_staging-drawing-analysis-1",
+      "before": {
+        "id": "6f93ef85ff557e0f63e63fc90bf2d03c7df2c45af12a0a629f4a2420015fb549",
+        "name": "drawing_mark_apn_staging-drawing-analysis-1",
+        "image": "sha256:c30f67d01783630e7fd0959730dd3494b4cdf9c4286081f256fa80959eedcf16",
+        "project": "drawing_mark_apn_staging",
+        "startedAt": "2026-09-04T07:13:58.792774078Z",
+        "running": true,
+        "restartCount": 0,
+        "mountSources": [
+          "/home/aisvr/mnt/sdb/data/infrastructures/drawing_process/drawing_mark_apn/drawing_mark_apn_staging",
+          "/home/aisvr/mnt/sda/projects/work/drawing_process/drawing_mark_apn/drawing_mark_apn_staging"
+        ]
+      },
+      "after": {
+        "id": "6f93ef85ff557e0f63e63fc90bf2d03c7df2c45af12a0a629f4a2420015fb549",
+        "name": "drawing_mark_apn_staging-drawing-analysis-1",
+        "image": "sha256:c30f67d01783630e7fd0959730dd3494b4cdf9c4286081f256fa80959eedcf16",
+        "project": "drawing_mark_apn_staging",
+        "startedAt": "2026-09-04T07:13:58.792774078Z",
+        "running": true,
+        "restartCount": 0,
+        "mountSources": [
+          "/home/aisvr/mnt/sda/projects/work/drawing_process/drawing_mark_apn/drawing_mark_apn_staging",
+          "/home/aisvr/mnt/sdb/data/infrastructures/drawing_process/drawing_mark_apn/drawing_mark_apn_staging"
+        ]
+      },
+      "changedFields": [
+        "mountSources"
+      ]
+    }
+  ],
+  "cleanupExitedBeforeContainerRemoval": true,
+  "dataDeletionExecuted": false,
+  "correction": "Compare sorted mountSources because Docker inspect does not guarantee mount-list order; retain all id/image/start/running/restart/source checks."
+}

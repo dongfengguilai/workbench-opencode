@@ -1,0 +1,15 @@
+{
+  "kind": "real_local_cold_archive_verification",
+  "archive": "/home/vmware/Workspace/projects/experiments/Workbench_space/releases/retired-workbench-v1/20260918T053225Z/.WorkBench-v1-retirement-20260918T053225Z.tar.gz",
+  "sha256": "b282dccfc45a19b6786598d4e943b89ef0693b39df3d27f21e38440edce4a124",
+  "archiveBytes": 2303035000,
+  "members": 1442,
+  "regularFiles": 1319,
+  "uncompressedFileBytesRead": 7515920044,
+  "engineerAndAdminNativeImagesMatched": true,
+  "requiredInstallationAndPrivateConfigurationPresent": true,
+  "allRegularMembersReadWithoutExtraction": true,
+  "directoryMode": "0700",
+  "archiveMode": "0600",
+  "restoreOnLiveServerPerformed": false
+}

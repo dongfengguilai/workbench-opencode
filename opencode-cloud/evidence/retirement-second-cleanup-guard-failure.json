@@ -1,0 +1,9 @@
+{
+  "kind": "real_cleanup_guard_failure",
+  "exitCode": 1,
+  "failingCheck": "WorkBench network ID inventory equality",
+  "reason": "docker network ls -q returned shortened IDs while stored network inspect inventory used full IDs",
+  "containerRemovalExecuted": false,
+  "dataDeletionExecuted": false,
+  "correction": "Request --no-trunc and compare complete network IDs; continue requiring exact network inventory and absence of foreign endpoints."
+}

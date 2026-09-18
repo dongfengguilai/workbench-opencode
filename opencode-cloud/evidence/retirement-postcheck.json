@@ -1,0 +1,131 @@
+{
+  "kind": "independent_real_remote_retirement_postcheck",
+  "installDirectoryExists": false,
+  "remainingWorkBenchNamedPathsInInstallParentHomeTmp": [],
+  "remainingProjectNetworks": "",
+  "remainingProjectVolumes": "",
+  "nativeRepositoryTagsRemaining": [],
+  "sharedNodeImageId": "sha256:4a4884e8a44826194dff92ba316264f392056cbe243dcc9fd3551e71cea02b90",
+  "noQuotaMountsOrLoopAssociations": true,
+  "portsConnectErrors": {
+    "8443": 111,
+    "8445": 111,
+    "8447": 111,
+    "8449": 111
+  },
+  "otherContainers": [
+    {
+      "id": "3460b749cb3562072c9d1b8ec2f0031752849a76386a820a67c5d8040f40d054",
+      "name": "qwen3.6",
+      "image": "sha256:5aaa33f13fd0d7b79add91465ac84ff7df099a404a3751ca6c089ec4617d70f2",
+      "project": "qwen",
+      "startedAt": "2026-09-17T00:20:35.5377441Z",
+      "running": true,
+      "restartCount": 0,
+      "mountSources": [
+        "/home/aisvr/mnt/sdb/models/llama/qwen/models"
+      ]
+    },
+    {
+      "id": "d2ab2f48034045ace598291832a9c20ab7cf10ffba37a2996173f1b34eb66a44",
+      "name": "stirling-pdf",
+      "image": "sha256:3b3670fce70b396ec56ba380a3cc7858e0abf83fe13f31c88f7737847763a396",
+      "project": null,
+      "startedAt": "2026-09-08T05:20:10.329944849Z",
+      "running": true,
+      "restartCount": 0,
+      "mountSources": [
+        "/home/aisvr/mnt/sdb/program/stirling_pdf/stirling-data"
+      ]
+    },
+    {
+      "id": "6f93ef85ff557e0f63e63fc90bf2d03c7df2c45af12a0a629f4a2420015fb549",
+      "name": "drawing_mark_apn_staging-drawing-analysis-1",
+      "image": "sha256:c30f67d01783630e7fd0959730dd3494b4cdf9c4286081f256fa80959eedcf16",
+      "project": "drawing_mark_apn_staging",
+      "startedAt": "2026-09-04T07:13:58.792774078Z",
+      "running": true,
+      "restartCount": 0,
+      "mountSources": [
+        "/home/aisvr/mnt/sda/projects/work/drawing_process/drawing_mark_apn/drawing_mark_apn_staging",
+        "/home/aisvr/mnt/sdb/data/infrastructures/drawing_process/drawing_mark_apn/drawing_mark_apn_staging"
+      ]
+    },
+    {
+      "id": "a5f7abcdb4a785d4990d7924656fd25e415a07300adc78ac084bba5db4a6d840",
+      "name": "drawing_engineering_change_produce-drawing-analysis-1",
+      "image": "sha256:421226ef9047627ee994d58eb94a17f61c27b1064bbbef7dde4abbacaa594518",
+      "project": "drawing_engineering_change_produce",
+      "startedAt": "2026-08-28T01:57:46.084036557Z",
+      "running": true,
+      "restartCount": 0,
+      "mountSources": [
+        "/home/aisvr/mnt/sda/projects/work/drawing_process/drawing_engineering_change/drawing_engineering_change_produce"
+      ]
+    },
+    {
+      "id": "4efa900d7fd33abb3fb762bf86248fb61cb7a257026cdf7b3558e36b895d1cac",
+      "name": "vllm-iharness-engineering-change",
+      "image": "sha256:d5b12dfb74d605615f8b29ebafaa52294c118bcac7bc9e941785c4108fdb913a",
+      "project": "iharness_engineering_change",
+      "startedAt": "2026-08-28T01:03:30.000771492Z",
+      "running": true,
+      "restartCount": 0,
+      "mountSources": [
+        "/home/aisvr/mnt/sdb/models/vllm/iharness_engineering_change/models"
+      ]
+    },
+    {
+      "id": "2bc75499cbc6125d01d7e2365c2486074cd9dc3f3a362d9a704cb106014a66f4",
+      "name": "drawing_compare_produce-drawing-analysis-1",
+      "image": "sha256:e9ddf9b7cc82e17bc0d99f5b10c7efea605890899597d2612ff19e93cca2ca10",
+      "project": "drawing_compare_produce",
+      "startedAt": "2026-08-12T01:09:47.960093095Z",
+      "running": true,
+      "restartCount": 0,
+      "mountSources": [
+        "/home/aisvr/mnt/sda/projects/work/drawing_process/drawing_compare/drawing_compare_produce",
+        "/home/aisvr/mnt/sdb/data/infrastructures/drawing_process/drawing_compare/drawing_compare_produce"
+      ]
+    },
+    {
+      "id": "5abf1f780527b41613a112c1ac0b5be0bb5f1e0b01e045a88db26b0577b45950",
+      "name": "drawing_analysis_produce-drawing-analysis-1",
+      "image": "sha256:b0777c17691762ac83282b9abd4bb9e5a189c68c21e82e5e902f038f2f1eeac7",
+      "project": "drawing_analysis_produce",
+      "startedAt": "2026-08-12T01:09:19.39241735Z",
+      "running": true,
+      "restartCount": 0,
+      "mountSources": [
+        "/home/aisvr/mnt/sda/projects/work/drawing_process/drawing_analysis/drawing_analysis_produce",
+        "/home/aisvr/mnt/sdb/data/infrastructures/drawing_process/drawing_analysis/drawing_analysis_produce"
+      ]
+    },
+    {
+      "id": "9261f5637140a43128c142ac18f725016dbab64e3071afb5131e1dc3ff42cc6d",
+      "name": "iharness_tools_produce-iharness_tools-1",
+      "image": "sha256:be56f3eac3215da9252f36b08df4ac4e4c0e7152e820e830211fe9f6d12d3628",
+      "project": "iharness_tools_produce",
+      "startedAt": "2026-08-11T03:20:54.824630209Z",
+      "running": true,
+      "restartCount": 0,
+      "mountSources": [
+        "/home/aisvr/mnt/sda/projects/work/iharness_tools/iharness_tools_produce"
+      ]
+    },
+    {
+      "id": "91e7bad71d62b104a5d782b6153fd53d049ae4f27a3651119841a4b591c20ac5",
+      "name": "vllm-minstral3-14b",
+      "image": "sha256:2622f38a0aa646c15ccc27bd5033911a58fd94ac69fd8f86aba0692d77cfe5b9",
+      "project": "mistral-ai",
+      "startedAt": "2026-07-31T05:45:34.373647221Z",
+      "running": false,
+      "restartCount": 0,
+      "mountSources": [
+        "/home/aisvr/mnt/sdb/ai_models/vllm/mistral-ai"
+      ]
+    }
+  ],
+  "mountsAfter": "/sys sysfs sysfs shared\n/proc proc proc shared\n/dev udev devtmpfs shared\n/dev/pts devpts devpts shared\n/run tmpfs tmpfs shared\n/ /dev/nvme0n1p2 ext4 shared\n/sys/kernel/security securityfs securityfs shared\n/dev/shm tmpfs tmpfs shared\n/run/lock tmpfs tmpfs shared\n/sys/fs/cgroup cgroup2 cgroup2 shared\n/sys/fs/pstore none pstore shared\n/sys/firmware/efi/efivars efivarfs efivarfs shared\n/sys/fs/bpf bpf bpf shared\n/proc/sys/fs/binfmt_misc systemd-1 autofs shared\n/dev/hugepages hugetlbfs hugetlbfs shared\n/dev/mqueue mqueue mqueue shared\n/sys/kernel/debug debugfs debugfs shared\n/sys/kernel/tracing tracefs tracefs shared\n/sys/fs/fuse/connections fusectl fusectl shared\n/sys/kernel/config configfs configfs shared\n/snap/core22/2292 /dev/loop0 squashfs shared\n/snap/core24/1643 /dev/loop1 squashfs shared\n/snap/bare/5 /dev/loop2 squashfs shared\n/snap/firefox/8702 /dev/loop3 squashfs shared\n/snap/core22/2411 /dev/loop5 squashfs shared\n/snap/firmware-updater/226 /dev/loop6 squashfs shared\n/snap/gnome-42-2204/263 /dev/loop7 squashfs shared\n/snap/firmware-updater/210 /dev/loop8 squashfs shared\n/snap/mesa-2404/1839 /dev/loop9 squashfs shared\n/snap/gtk-common-themes/1535 /dev/loop11 squashfs shared\n/snap/gnome-46-2404/164 /dev/loop12 squashfs shared\n/snap/gnome-42-2204/247 /dev/loop10 squashfs shared\n/snap/snap-store/1367 /dev/loop13 squashfs shared\n/snap/snapd-desktop-integration/343 /dev/loop15 squashfs shared\n/snap/snapd-desktop-integration/391 /dev/loop16 squashfs shared\n/snap/snapd/27591 /dev/loop18 squashfs shared\n/boot/efi /dev/nvme0n1p1 vfat shared\n/home/aisvr/mnt/sda /dev/sda1 ext4 shared\n/home/aisvr/mnt/sdb /dev/sdb1 ext4 shared\n/proc/sys/fs/binfmt_misc binfmt_misc binfmt_misc shared\n/run/snapd/ns tmpfs[/snapd/ns] tmpfs private\n/run/snapd/ns/snapd-desktop-integration.mnt nsfs[mnt:[4026534572]] nsfs private\n/run/snapd/ns/firmware-updater.mnt nsfs[mnt:[4026533866]] nsfs private\n/home/aisvr/mnt/sdb/virtualware/docker/rootfs/overlayfs/9261f5637140a43128c142ac18f725016dbab64e3071afb5131e1dc3ff42cc6d overlay overlay shared\n/run/docker/netns/485d79bbbe10 nsfs[net:[4026535232]] nsfs shared\n/home/aisvr/mnt/sdb/virtualware/docker/rootfs/overlayfs/5abf1f780527b41613a112c1ac0b5be0bb5f1e0b01e045a88db26b0577b45950 overlay overlay shared\n/run/docker/netns/73252163fd0e nsfs[net:[4026535098]] nsfs shared\n/home/aisvr/mnt/sdb/virtualware/docker/rootfs/overlayfs/2bc75499cbc6125d01d7e2365c2486074cd9dc3f3a362d9a704cb106014a66f4 overlay overlay shared\n/run/docker/netns/f417d92fdb80 nsfs[net:[4026535164]] nsfs shared\n/snap/firefox/8754 /dev/loop19 squashfs shared\n/run/snapd/ns/firefox.mnt nsfs[mnt:[4026534684]] nsfs private\n/run/user/1001 tmpfs tmpfs shared\n/run/user/1001/doc portal fuse.portal shared\n/run/user/1001/gvfs gvfsd-fuse fuse.gvfsd-fuse shared\n/home/aisvr/mnt/sdb/virtualware/docker/rootfs/overlayfs/4efa900d7fd33abb3fb762bf86248fb61cb7a257026cdf7b3558e36b895d1cac overlay overlay shared\n/run/docker/netns/7b592806597f nsfs[net:[4026533878]] nsfs shared\n/home/aisvr/mnt/sdb/virtualware/docker/rootfs/overlayfs/a5f7abcdb4a785d4990d7924656fd25e415a07300adc78ac084bba5db4a6d840 overlay overlay shared\n/run/docker/netns/4012fc33aba7 nsfs[net:[4026534716]] nsfs shared\n/run/user/1000 tmpfs tmpfs shared\n/run/user/1000/doc portal fuse.portal shared\n/home/aisvr/mnt/sdb/virtualware/docker/rootfs/overlayfs/6f93ef85ff557e0f63e63fc90bf2d03c7df2c45af12a0a629f4a2420015fb549 overlay overlay shared\n/run/docker/netns/642dc94ac777 nsfs[net:[4026534697]] nsfs shared\n/home/aisvr/mnt/sdb/virtualware/docker/rootfs/overlayfs/d2ab2f48034045ace598291832a9c20ab7cf10ffba37a2996173f1b34eb66a44 overlay overlay shared\n/run/docker/netns/80fe11f8c28e nsfs[net:[4026534836]] nsfs shared\n/home/aisvr/mnt/sdb/virtualware/docker/rootfs/overlayfs/3460b749cb3562072c9d1b8ec2f0031752849a76386a820a67c5d8040f40d054 overlay overlay shared\n/run/docker/netns/95567da77969 nsfs[net:[4026534595]] nsfs shared\n/run/user/1000/gvfs gvfsd-fuse fuse.gvfsd-fuse shared\n/snap/snapd/27738 /dev/loop20 squashfs shared\n/snap/core24/2124 /dev/loop14 squashfs shared\n/snap/snap-store/1390 /dev/loop21 squashfs shared",
+  "otherContainerIdImageStartRunningRestartMountsMatched": true
+}

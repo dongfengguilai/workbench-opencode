@@ -1,0 +1,345 @@
+{
+  "kind": "real_remote_workbench_retirement",
+  "timestamp": "20260918T053225Z",
+  "tasksIdleBeforeStop": true,
+  "backupSha256ConfirmedBeforeDeletion": "b282dccfc45a19b6786598d4e943b89ef0693b39df3d27f21e38440edce4a124",
+  "coldDataBeforeUnmount": {
+    "engineer": {
+      "project": {
+        "sha256": "28a93b1148558ce13e646e2ccc0043fb7ad6f5e80f9fbe0791f71be64daa2181",
+        "files": 633,
+        "links": 0
+      },
+      "state": {
+        "sha256": "ca67d26ded23d7a2a11af1e149bc5d82c04e869b5c673c28e713d57482fc7b64",
+        "files": 678,
+        "links": 0
+      },
+      "gitStatus": "?? package-lock.json\n?? sample.pdf\n?? web/",
+      "gitIndexSha256": "cfc7dff042573de651c16aee30f3313dc01e76119b53b664534e73b387f01350",
+      "budgetSha256": "f7a76f9c3cbf2e771d1dd56a66d8a4c9d92fa076bf5982c927b513a76116f822"
+    },
+    "admin": {
+      "project": {
+        "sha256": "54c445d42669a7130ecd5dc468d1c8cc6f2348272eeb18a2c9bb676cd26e19e7",
+        "files": 30,
+        "links": 0
+      },
+      "state": {
+        "sha256": "b4d389d4e9b6e48a3d793f4a3bf443b0b33035a133f63f2cb55acc16b1292aeb",
+        "files": 26,
+        "links": 0
+      },
+      "gitStatus": "",
+      "gitIndexSha256": "6b1c05d9baee4842bb6abdd76f4c7e6535e79ff7f5be7f63e4e2c7dac42db217",
+      "budgetSha256": "4b10b652dde96922cfbf4529e68b8cb1fb807122d11f6264ec718701f47be43f"
+    }
+  },
+  "nativeImageSha256": {
+    "engineer": "7c0f13e0865a71fe6410b4e2410792abc7f61b2c1cbea0b49c209ad51cb3a92d",
+    "admin": "c16d29d0cf446a9f5618be387a71cdb15e7229cc07509b0bc2dd074051962e0d"
+  },
+  "removedContainerIds": [
+    "1005756015bb53aa380f838b5706fe1a506414487876ae0ad4d6e6f7b8d68ab0",
+    "529111cb9d347942ee2cb7b51489a6392e36ff99de175145786a2d2408ad4983",
+    "746a5d9e1042de0a971311b2101f0cb3b84b6a6e232e199cd0eef0029b171dba",
+    "a92190a8798bc4c4e31825475a02c79d0ed18dd65eeff763973c11f04a4e142c",
+    "8f4c0a4b2fe633e418a57f140620c5a2379dedfb4cb0d26456069e1bb366cf7d",
+    "ed44ff9313300f4197a8d0ce1b459e1a4bff33460e45acb092c24c09eb312991",
+    "3626a14da7e8ae7745d9e00299751c61980aff893ecac2473699ba6ffdd53cd3",
+    "d30dda82dbed69bc34b5ca7d92c1fdb4785e0953591ada223077636b22366b5d",
+    "00b57a4e1c112d3912ece9db6db0e4fb3fd86b442b5bfbc4358b2652b0cec622",
+    "ad87ec6f7c103d4ff510bfca31943852cf8028013c31da92ac3f8f81f9c8bd24",
+    "1772da900329b0b800c3f3cac14ad3645d17fe17a79da7bea404cbbe0c9ea140",
+    "3af86110ee25acc5d5e0813244d3880c38a721cccb9ac5c1a5fc5ae0dcdd2c95",
+    "e4b30c81040ffc4c36ab3cafbe16e41cf1b605266bb5f9983439cd7c0a2cb05a",
+    "373ad950f7675a4f9597e0587c41b7dc101e99b18b1f24a888c31d47cdd8abd5",
+    "4c46f228d68a8903871500147af639acd7887b81308a9cbc0b63ec2b2ae45b48"
+  ],
+  "removedNetworks": [
+    {
+      "id": "38e912f83edf4f05d41192861467ae2c31aef233a6c0d3bc8d35e140c7d29827",
+      "name": "workbench-v1_admin-native"
+    },
+    {
+      "id": "1f0c807acec7bc290054b46cd76d0024902cb128a5b12d4fe37e7352bb85f346",
+      "name": "workbench-v1_frontend"
+    },
+    {
+      "id": "e6b49fd60e44000aed767b60b3cd612d444f59ecc569b8447355c5f3dada8287",
+      "name": "workbench-v1_model-egress"
+    },
+    {
+      "id": "03b13e6330883a8e7223005ab509c806cd342590e25a1ac070a54afc3885e254",
+      "name": "workbench-v1_native"
+    }
+  ],
+  "removedImages": [
+    {
+      "tag": "opencode-cloud/native:1.18.31-browser-v1",
+      "id": "sha256:264c89bb377c3fdd2d6c88ba857c3abe6ff20864314f31bc8e3717f42cb3fcd3"
+    },
+    {
+      "tag": "opencode-cloud/native:1.18.31-managed-v0",
+      "id": "sha256:4c8c616b353679b174f7ef538a74b4143c78a7315b4370576319d3890d7abaff"
+    }
+  ],
+  "retainedImages": [],
+  "installDirectoryExists": false,
+  "remoteTemporaryArchiveExists": false,
+  "remoteTemporaryReportExists": false,
+  "remainingProjectContainers": "",
+  "remainingProjectNetworks": "",
+  "remainingProjectVolumes": "",
+  "noQuotaMountsOrLoops": true,
+  "ports": {
+    "8443": {
+      "tcpConnectError": 111,
+      "acceptingConnection": false
+    },
+    "8445": {
+      "tcpConnectError": 111,
+      "acceptingConnection": false
+    },
+    "8447": {
+      "tcpConnectError": 111,
+      "acceptingConnection": false
+    },
+    "8449": {
+      "tcpConnectError": 111,
+      "acceptingConnection": false
+    }
+  },
+  "unrelatedContainersUnchanged": true,
+  "unrelatedContainersBefore": [
+    {
+      "id": "3460b749cb3562072c9d1b8ec2f0031752849a76386a820a67c5d8040f40d054",
+      "name": "qwen3.6",
+      "image": "sha256:5aaa33f13fd0d7b79add91465ac84ff7df099a404a3751ca6c089ec4617d70f2",
+      "project": "qwen",
+      "startedAt": "2026-09-17T00:20:35.5377441Z",
+      "running": true,
+      "restartCount": 0,
+      "mountSources": [
+        "/home/aisvr/mnt/sdb/models/llama/qwen/models"
+      ]
+    },
+    {
+      "id": "d2ab2f48034045ace598291832a9c20ab7cf10ffba37a2996173f1b34eb66a44",
+      "name": "stirling-pdf",
+      "image": "sha256:3b3670fce70b396ec56ba380a3cc7858e0abf83fe13f31c88f7737847763a396",
+      "project": null,
+      "startedAt": "2026-09-08T05:20:10.329944849Z",
+      "running": true,
+      "restartCount": 0,
+      "mountSources": [
+        "/home/aisvr/mnt/sdb/program/stirling_pdf/stirling-data"
+      ]
+    },
+    {
+      "id": "6f93ef85ff557e0f63e63fc90bf2d03c7df2c45af12a0a629f4a2420015fb549",
+      "name": "drawing_mark_apn_staging-drawing-analysis-1",
+      "image": "sha256:c30f67d01783630e7fd0959730dd3494b4cdf9c4286081f256fa80959eedcf16",
+      "project": "drawing_mark_apn_staging",
+      "startedAt": "2026-09-04T07:13:58.792774078Z",
+      "running": true,
+      "restartCount": 0,
+      "mountSources": [
+        "/home/aisvr/mnt/sda/projects/work/drawing_process/drawing_mark_apn/drawing_mark_apn_staging",
+        "/home/aisvr/mnt/sdb/data/infrastructures/drawing_process/drawing_mark_apn/drawing_mark_apn_staging"
+      ]
+    },
+    {
+      "id": "a5f7abcdb4a785d4990d7924656fd25e415a07300adc78ac084bba5db4a6d840",
+      "name": "drawing_engineering_change_produce-drawing-analysis-1",
+      "image": "sha256:421226ef9047627ee994d58eb94a17f61c27b1064bbbef7dde4abbacaa594518",
+      "project": "drawing_engineering_change_produce",
+      "startedAt": "2026-08-28T01:57:46.084036557Z",
+      "running": true,
+      "restartCount": 0,
+      "mountSources": [
+        "/home/aisvr/mnt/sda/projects/work/drawing_process/drawing_engineering_change/drawing_engineering_change_produce"
+      ]
+    },
+    {
+      "id": "4efa900d7fd33abb3fb762bf86248fb61cb7a257026cdf7b3558e36b895d1cac",
+      "name": "vllm-iharness-engineering-change",
+      "image": "sha256:d5b12dfb74d605615f8b29ebafaa52294c118bcac7bc9e941785c4108fdb913a",
+      "project": "iharness_engineering_change",
+      "startedAt": "2026-08-28T01:03:30.000771492Z",
+      "running": true,
+      "restartCount": 0,
+      "mountSources": [
+        "/home/aisvr/mnt/sdb/models/vllm/iharness_engineering_change/models"
+      ]
+    },
+    {
+      "id": "2bc75499cbc6125d01d7e2365c2486074cd9dc3f3a362d9a704cb106014a66f4",
+      "name": "drawing_compare_produce-drawing-analysis-1",
+      "image": "sha256:e9ddf9b7cc82e17bc0d99f5b10c7efea605890899597d2612ff19e93cca2ca10",
+      "project": "drawing_compare_produce",
+      "startedAt": "2026-08-12T01:09:47.960093095Z",
+      "running": true,
+      "restartCount": 0,
+      "mountSources": [
+        "/home/aisvr/mnt/sda/projects/work/drawing_process/drawing_compare/drawing_compare_produce",
+        "/home/aisvr/mnt/sdb/data/infrastructures/drawing_process/drawing_compare/drawing_compare_produce"
+      ]
+    },
+    {
+      "id": "5abf1f780527b41613a112c1ac0b5be0bb5f1e0b01e045a88db26b0577b45950",
+      "name": "drawing_analysis_produce-drawing-analysis-1",
+      "image": "sha256:b0777c17691762ac83282b9abd4bb9e5a189c68c21e82e5e902f038f2f1eeac7",
+      "project": "drawing_analysis_produce",
+      "startedAt": "2026-08-12T01:09:19.39241735Z",
+      "running": true,
+      "restartCount": 0,
+      "mountSources": [
+        "/home/aisvr/mnt/sda/projects/work/drawing_process/drawing_analysis/drawing_analysis_produce",
+        "/home/aisvr/mnt/sdb/data/infrastructures/drawing_process/drawing_analysis/drawing_analysis_produce"
+      ]
+    },
+    {
+      "id": "9261f5637140a43128c142ac18f725016dbab64e3071afb5131e1dc3ff42cc6d",
+      "name": "iharness_tools_produce-iharness_tools-1",
+      "image": "sha256:be56f3eac3215da9252f36b08df4ac4e4c0e7152e820e830211fe9f6d12d3628",
+      "project": "iharness_tools_produce",
+      "startedAt": "2026-08-11T03:20:54.824630209Z",
+      "running": true,
+      "restartCount": 0,
+      "mountSources": [
+        "/home/aisvr/mnt/sda/projects/work/iharness_tools/iharness_tools_produce"
+      ]
+    },
+    {
+      "id": "91e7bad71d62b104a5d782b6153fd53d049ae4f27a3651119841a4b591c20ac5",
+      "name": "vllm-minstral3-14b",
+      "image": "sha256:2622f38a0aa646c15ccc27bd5033911a58fd94ac69fd8f86aba0692d77cfe5b9",
+      "project": "mistral-ai",
+      "startedAt": "2026-07-31T05:45:34.373647221Z",
+      "running": false,
+      "restartCount": 0,
+      "mountSources": [
+        "/home/aisvr/mnt/sdb/ai_models/vllm/mistral-ai"
+      ]
+    }
+  ],
+  "unrelatedContainersAfter": [
+    {
+      "id": "3460b749cb3562072c9d1b8ec2f0031752849a76386a820a67c5d8040f40d054",
+      "name": "qwen3.6",
+      "image": "sha256:5aaa33f13fd0d7b79add91465ac84ff7df099a404a3751ca6c089ec4617d70f2",
+      "project": "qwen",
+      "startedAt": "2026-09-17T00:20:35.5377441Z",
+      "running": true,
+      "restartCount": 0,
+      "mountSources": [
+        "/home/aisvr/mnt/sdb/models/llama/qwen/models"
+      ]
+    },
+    {
+      "id": "d2ab2f48034045ace598291832a9c20ab7cf10ffba37a2996173f1b34eb66a44",
+      "name": "stirling-pdf",
+      "image": "sha256:3b3670fce70b396ec56ba380a3cc7858e0abf83fe13f31c88f7737847763a396",
+      "project": null,
+      "startedAt": "2026-09-08T05:20:10.329944849Z",
+      "running": true,
+      "restartCount": 0,
+      "mountSources": [
+        "/home/aisvr/mnt/sdb/program/stirling_pdf/stirling-data"
+      ]
+    },
+    {
+      "id": "6f93ef85ff557e0f63e63fc90bf2d03c7df2c45af12a0a629f4a2420015fb549",
+      "name": "drawing_mark_apn_staging-drawing-analysis-1",
+      "image": "sha256:c30f67d01783630e7fd0959730dd3494b4cdf9c4286081f256fa80959eedcf16",
+      "project": "drawing_mark_apn_staging",
+      "startedAt": "2026-09-04T07:13:58.792774078Z",
+      "running": true,
+      "restartCount": 0,
+      "mountSources": [
+        "/home/aisvr/mnt/sda/projects/work/drawing_process/drawing_mark_apn/drawing_mark_apn_staging",
+        "/home/aisvr/mnt/sdb/data/infrastructures/drawing_process/drawing_mark_apn/drawing_mark_apn_staging"
+      ]
+    },
+    {
+      "id": "a5f7abcdb4a785d4990d7924656fd25e415a07300adc78ac084bba5db4a6d840",
+      "name": "drawing_engineering_change_produce-drawing-analysis-1",
+      "image": "sha256:421226ef9047627ee994d58eb94a17f61c27b1064bbbef7dde4abbacaa594518",
+      "project": "drawing_engineering_change_produce",
+      "startedAt": "2026-08-28T01:57:46.084036557Z",
+      "running": true,
+      "restartCount": 0,
+      "mountSources": [
+        "/home/aisvr/mnt/sda/projects/work/drawing_process/drawing_engineering_change/drawing_engineering_change_produce"
+      ]
+    },
+    {
+      "id": "4efa900d7fd33abb3fb762bf86248fb61cb7a257026cdf7b3558e36b895d1cac",
+      "name": "vllm-iharness-engineering-change",
+      "image": "sha256:d5b12dfb74d605615f8b29ebafaa52294c118bcac7bc9e941785c4108fdb913a",
+      "project": "iharness_engineering_change",
+      "startedAt": "2026-08-28T01:03:30.000771492Z",
+      "running": true,
+      "restartCount": 0,
+      "mountSources": [
+        "/home/aisvr/mnt/sdb/models/vllm/iharness_engineering_change/models"
+      ]
+    },
+    {
+      "id": "2bc75499cbc6125d01d7e2365c2486074cd9dc3f3a362d9a704cb106014a66f4",
+      "name": "drawing_compare_produce-drawing-analysis-1",
+      "image": "sha256:e9ddf9b7cc82e17bc0d99f5b10c7efea605890899597d2612ff19e93cca2ca10",
+      "project": "drawing_compare_produce",
+      "startedAt": "2026-08-12T01:09:47.960093095Z",
+      "running": true,
+      "restartCount": 0,
+      "mountSources": [
+        "/home/aisvr/mnt/sda/projects/work/drawing_process/drawing_compare/drawing_compare_produce",
+        "/home/aisvr/mnt/sdb/data/infrastructures/drawing_process/drawing_compare/drawing_compare_produce"
+      ]
+    },
+    {
+      "id": "5abf1f780527b41613a112c1ac0b5be0bb5f1e0b01e045a88db26b0577b45950",
+      "name": "drawing_analysis_produce-drawing-analysis-1",
+      "image": "sha256:b0777c17691762ac83282b9abd4bb9e5a189c68c21e82e5e902f038f2f1eeac7",
+      "project": "drawing_analysis_produce",
+      "startedAt": "2026-08-12T01:09:19.39241735Z",
+      "running": true,
+      "restartCount": 0,
+      "mountSources": [
+        "/home/aisvr/mnt/sda/projects/work/drawing_process/drawing_analysis/drawing_analysis_produce",
+        "/home/aisvr/mnt/sdb/data/infrastructures/drawing_process/drawing_analysis/drawing_analysis_produce"
+      ]
+    },
+    {
+      "id": "9261f5637140a43128c142ac18f725016dbab64e3071afb5131e1dc3ff42cc6d",
+      "name": "iharness_tools_produce-iharness_tools-1",
+      "image": "sha256:be56f3eac3215da9252f36b08df4ac4e4c0e7152e820e830211fe9f6d12d3628",
+      "project": "iharness_tools_produce",
+      "startedAt": "2026-08-11T03:20:54.824630209Z",
+      "running": true,
+      "restartCount": 0,
+      "mountSources": [
+        "/home/aisvr/mnt/sda/projects/work/iharness_tools/iharness_tools_produce"
+      ]
+    },
+    {
+      "id": "91e7bad71d62b104a5d782b6153fd53d049ae4f27a3651119841a4b591c20ac5",
+      "name": "vllm-minstral3-14b",
+      "image": "sha256:2622f38a0aa646c15ccc27bd5033911a58fd94ac69fd8f86aba0692d77cfe5b9",
+      "project": "mistral-ai",
+      "startedAt": "2026-07-31T05:45:34.373647221Z",
+      "running": false,
+      "restartCount": 0,
+      "mountSources": [
+        "/home/aisvr/mnt/sdb/ai_models/vllm/mistral-ai"
+      ]
+    }
+  ],
+  "sharedNodeImagePreserved": true,
+  "clientCertificateModified": false,
+  "oldUpgradeStagingRemoved": true,
+  "oldUpgradeStagingReleaseSha256": "7685ccc91b23899af1b3062c7e7fac966e84c66ca85ae73ed6003d45678b4ed0",
+  "oldReleasePreservedLocally": "/home/vmware/Workspace/projects/experiments/Workbench_space/releases/workbench-v1-20260918-dual-identity-rc3.tar.gz"
+}
