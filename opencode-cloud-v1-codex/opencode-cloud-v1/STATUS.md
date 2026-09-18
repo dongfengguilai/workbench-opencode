@@ -1,9 +1,9 @@
 # WorkBench v1 当前状态
 
-- 更新时间：2026-09-18。
+- 更新时间：2026-09-19。
 - v0：**USER_CONFIRMED_ACCEPTED**，继承用户完整验收，不重开旧验收。
-- 实际 HEAD：`4643999fc02192116d94aa28d4489c63deec8bc6`。增量工作区未提交，原有未提交任务包、参考图和数据保留。
-- v1：**IN_PROGRESS**。本轮是已批准的本机 `admin`＋`engineer-b`，不代表第二个真实 NetID 或两位真人签收。
+- 实施基线：`4643999`；实现提交：`e32b702`；交付记录：`f907c25`，已推送并核对远端main一致。原有参考图、v2草案、其他未提交记录和数据保留。
+- 已批准本机核心闭环：**READY_FOR_USER_ACCEPTANCE**。原任务包更广整体契约：**IN_PROGRESS/PARTIAL**。本轮是本机 `admin`＋`engineer-b`，不代表第二个真实 NetID 或两位真人签收。
 
 ## 用户新增能做什么
 

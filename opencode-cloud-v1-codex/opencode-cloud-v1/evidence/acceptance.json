@@ -284,5 +284,13 @@
     "scope": "User-approved local development admin + engineer-b; authorized existing learn project; one human, not two NetIDs or production HTTPS",
     "summary": "../../../opencode-cloud/evidence/increment-v1/v1-local-signoff-summary.json"
   },
-  "releaseRecord": "../../../opencode-cloud/evidence/increment-v1/v1-local-release-record.json"
+  "releaseRecord": "../../../opencode-cloud/evidence/increment-v1/v1-local-release-record.json",
+  "sourcePublication": {
+    "status": "PUSHED_AND_REMOTE_VERIFIED",
+    "implementationCommit": "e32b702",
+    "deliveryRecordCommit": "f907c2580cc438f337b0acb12007ddb6d2c0aa45",
+    "remote": "git@github.com:dongfengguilai/workbench-opencode.git",
+    "branch": "main",
+    "excluded": "Raw native/business records, runtime/backups/passwords, reference images and v2 draft"
+  }
 }
