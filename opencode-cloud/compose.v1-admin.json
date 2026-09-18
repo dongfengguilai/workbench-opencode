@@ -1,0 +1,229 @@
+{
+  "services": {
+    "admin-model-gateway": {
+      "image": "node:22.19.0-bookworm-slim@sha256:4a4884e8a44826194dff92ba316264f392056cbe243dcc9fd3551e71cea02b90",
+      "user": "1000:1000",
+      "command": [
+        "node",
+        "--experimental-strip-types",
+        "/app/model-gateway.ts"
+      ],
+      "env_file": "./runtime/admin/gateway.env",
+      "volumes": [
+        "./src/model-gateway.ts:/app/model-gateway.ts:ro",
+        "./runtime/admin/gateway-state:/gateway-state"
+      ],
+      "networks": [
+        "admin-native",
+        "model-egress"
+      ],
+      "read_only": true,
+      "cap_drop": [
+        "ALL"
+      ],
+      "security_opt": [
+        "no-new-privileges:true"
+      ],
+      "mem_limit": "256m",
+      "pids_limit": 64,
+      "healthcheck": {
+        "test": [
+          "CMD",
+          "node",
+          "-e",
+          "fetch('http://localhost:8318/health').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"
+        ],
+        "interval": "5s",
+        "timeout": "3s",
+        "retries": 10
+      },
+      "extra_hosts": [
+        "host.docker.internal:host-gateway"
+      ],
+      "restart": "unless-stopped"
+    },
+    "admin-web-egress": {
+      "image": "node:22.19.0-bookworm-slim@sha256:4a4884e8a44826194dff92ba316264f392056cbe243dcc9fd3551e71cea02b90",
+      "user": "1000:1000",
+      "command": [
+        "node",
+        "/app/web-egress.mjs"
+      ],
+      "environment": {
+        "EGRESS_MODE": "direct-public"
+      },
+      "volumes": [
+        "./src/web-egress.mjs:/app/web-egress.mjs:ro",
+        "./src/egress-policy:/app/egress-policy:ro"
+      ],
+      "networks": [
+        "admin-native",
+        "model-egress"
+      ],
+      "read_only": true,
+      "cap_drop": [
+        "ALL"
+      ],
+      "security_opt": [
+        "no-new-privileges:true"
+      ],
+      "mem_limit": "128m",
+      "cpus": 0.5,
+      "pids_limit": 32,
+      "healthcheck": {
+        "test": [
+          "CMD",
+          "node",
+          "-e",
+          "fetch('http://127.0.0.1:8320/health').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"
+        ],
+        "interval": "5s",
+        "timeout": "3s",
+        "retries": 10
+      },
+      "restart": "unless-stopped"
+    },
+    "admin-native": {
+      "image": "${WORKBENCH_NATIVE_IMAGE:-opencode-cloud/native:1.18.31-browser-v1}",
+      "command": [
+        "opencode",
+        "serve",
+        "--hostname",
+        "127.0.0.1",
+        "--port",
+        "4030"
+      ],
+      "init": true,
+      "env_file": "./runtime/admin/native.env",
+      "environment": {
+        "HTTPS_PROXY": "http://admin-web-egress:8320",
+        "https_proxy": "http://admin-web-egress:8320",
+        "HTTP_PROXY": "http://admin-web-egress:8320",
+        "http_proxy": "http://admin-web-egress:8320",
+        "ALL_PROXY": "",
+        "all_proxy": "",
+        "NO_PROXY": "localhost,127.0.0.1,::1,admin-model-gateway",
+        "no_proxy": "localhost,127.0.0.1,::1,admin-model-gateway"
+      },
+      "volumes": [
+        "./runtime/admin/project:/workspace/project",
+        "./runtime/admin/state:/state",
+        "./runtime/admin/opencode.json:/trusted/opencode.json:ro",
+        "./runtime/admin/browser.json:/trusted/browser.json:ro",
+        "./browser-tools/vite.config.mjs:/trusted/vite.config.mjs:ro",
+        "./browser-tools/start-preview.sh:/trusted/start-preview.sh:ro",
+        "./browser-tools/BROWSER_USAGE.md:/trusted/BROWSER_USAGE.md:ro"
+      ],
+      "networks": [
+        "admin-native"
+      ],
+      "depends_on": {
+        "admin-model-gateway": {
+          "condition": "service_healthy"
+        },
+        "admin-web-egress": {
+          "condition": "service_healthy"
+        }
+      },
+      "read_only": true,
+      "tmpfs": [
+        "/tmp:rw,nosuid,nodev,size=256m"
+      ],
+      "cap_drop": [
+        "ALL"
+      ],
+      "security_opt": [
+        "no-new-privileges:true"
+      ],
+      "cpus": 2,
+      "mem_limit": "2g",
+      "pids_limit": 256,
+      "restart": "unless-stopped"
+    },
+    "admin-native-firewall": {
+      "image": "opencode-cloud/native:1.18.31-managed-v0",
+      "user": "0:0",
+      "network_mode": "service:admin-native",
+      "command": [
+        "sh",
+        "-c",
+        "iptables -C OUTPUT -p tcp --dport 4030 -m owner --uid-owner 1000 -j REJECT 2>/dev/null || iptables -I OUTPUT 1 -p tcp --dport 4030 -m owner --uid-owner 1000 -j REJECT"
+      ],
+      "cap_drop": [
+        "ALL"
+      ],
+      "cap_add": [
+        "NET_ADMIN"
+      ],
+      "read_only": true,
+      "depends_on": [
+        "admin-native"
+      ]
+    },
+    "admin-native-guard": {
+      "image": "opencode-cloud/native:1.18.31-managed-v0",
+      "user": "1001:1001",
+      "command": [
+        "node",
+        "--experimental-strip-types",
+        "/app/environment-guard.ts"
+      ],
+      "network_mode": "service:admin-native",
+      "env_file": "./runtime/admin/native.env",
+      "environment": {
+        "GIT_CONFIG_COUNT": "1",
+        "GIT_CONFIG_KEY_0": "safe.directory",
+        "GIT_CONFIG_VALUE_0": "/workspace/project"
+      },
+      "volumes": [
+        "./src:/app:ro",
+        "./runtime/admin/project:/workspace/project:ro"
+      ],
+      "tmpfs": [
+        "/tmp:rw,nosuid,nodev,size=128m"
+      ],
+      "read_only": true,
+      "cap_drop": [
+        "ALL"
+      ],
+      "security_opt": [
+        "no-new-privileges:true"
+      ],
+      "mem_limit": "256m",
+      "pids_limit": 64,
+      "healthcheck": {
+        "test": [
+          "CMD",
+          "node",
+          "-e",
+          "fetch('http://localhost:4096/global/health',{headers:{Authorization:'Basic '+Buffer.from('opencode:'+process.env.OPENCODE_SERVER_PASSWORD).toString('base64')},signal:AbortSignal.timeout(5000)}).then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"
+        ],
+        "interval": "2s",
+        "timeout": "6s",
+        "retries": 30,
+        "start_period": "3s"
+      },
+      "depends_on": {
+        "admin-native-firewall": {
+          "condition": "service_completed_successfully"
+        }
+      },
+      "restart": "unless-stopped"
+    },
+    "platform": {
+      "networks": [
+        "admin-native"
+      ],
+      "depends_on": {
+        "admin-native-guard": {
+          "condition": "service_healthy"
+        }
+      }
+    }
+  },
+  "networks": {
+    "admin-native": {
+      "internal": true
+    }
+  }
+}

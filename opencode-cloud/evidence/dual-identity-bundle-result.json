@@ -1,0 +1,39 @@
+{
+  "bundle": "/home/vmware/Workspace/projects/experiments/Workbench_space/releases/workbench-v1-20260918-dual-identity-rc3.tar.gz",
+  "bytes": 1044630207,
+  "sha256": "7685ccc91b23899af1b3062c7e7fac966e84c66ca85ae73ed6003d45678b4ed0",
+  "manifest": {
+    "schema": 1,
+    "opencode": "1.18.31",
+    "playwrightCLI": "0.1.20",
+    "bun": "1.3.14",
+    "createdAt": "2026-09-18T04:36:10.583192+00:00",
+    "sourceBaseCommit": "7aefcee24ad7dc59a7ae316023ff081e633629ed",
+    "sourceIncludesWorkingChanges": true,
+    "images": [
+      {
+        "role": "native",
+        "tag": "opencode-cloud/native:1.18.31-browser-v1",
+        "id": "sha256:264c89bb377c3fdd2d6c88ba857c3abe6ff20864314f31bc8e3717f42cb3fcd3",
+        "archive": "images/native.tar",
+        "sha256": "0ad84299e7230452427be40144cf017ded5aa8cf99c4f33cbeb9286108da96b3"
+      },
+      {
+        "role": "managed",
+        "tag": "opencode-cloud/native:1.18.31-managed-v0",
+        "id": "sha256:4c8c616b353679b174f7ef538a74b4143c78a7315b4370576319d3890d7abaff",
+        "archive": "images/managed.tar",
+        "sha256": "a975d07b93abde5a6bc489331d8414284e6c4ee34dd72c2571b1c48738c3263e"
+      },
+      {
+        "role": "node",
+        "tag": "node:22.19.0-bookworm-slim",
+        "id": "sha256:4a4884e8a44826194dff92ba316264f392056cbe243dcc9fd3551e71cea02b90",
+        "archive": "images/node.tar",
+        "sha256": "7d0af4b2d57f8437f67a851b7cd2527e5da14ffaf91a62aba3f3bdba8ff8c07a"
+      }
+    ],
+    "liveDataIncluded": false,
+    "netidPasswordIncluded": false
+  }
+}

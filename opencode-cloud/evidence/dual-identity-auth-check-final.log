@@ -1,0 +1,44 @@
+TAP version 13
+# (node:14) ExperimentalWarning: Transform Types is an experimental feature and might change at any time
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: administrator succeeds locally and wrong password never calls NetID
+ok 1 - administrator succeeds locally and wrong password never calls NetID
+  ---
+  duration_ms: 200.640874
+  type: 'test'
+  ...
+# Subtest: NetID requires exact verified subject and never uses local credentials
+ok 2 - NetID requires exact verified subject and never uses local credentials
+  ---
+  duration_ms: 0.973326
+  type: 'test'
+  ...
+# Subtest: invalid hash, mixed credentials and account collisions fail closed
+ok 3 - invalid hash, mixed credentials and account collisions fail closed
+  ---
+  duration_ms: 0.624102
+  type: 'test'
+  ...
+# (node:25) ExperimentalWarning: Transform Types is an experimental feature and might change at any time
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: formal origins are maintained, separate, and never fall back for an unknown identity
+ok 4 - formal origins are maintained, separate, and never fall back for an unknown identity
+  ---
+  duration_ms: 0.817644
+  type: 'test'
+  ...
+# Subtest: NetID-only adapter sends the old protocol and rejects an absent real subject
+ok 5 - NetID-only adapter sends the old protocol and rejects an absent real subject
+  ---
+  duration_ms: 1.232408
+  type: 'test'
+  ...
+1..5
+# tests 5
+# suites 0
+# pass 5
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 640.321302

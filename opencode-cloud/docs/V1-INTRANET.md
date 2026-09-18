@@ -1,6 +1,6 @@
 # WorkBench V1 企业内网一键部署
 
-固定目标 `aisvr@10.243.117.57`，目录 `/home/aisvr/mnt/sda/programs/WorkBench-v1`，Compose 项目 `workbench-v1`。不需要购买公网域名，不迁移旧数据，不改同机模型和其他业务。只允许 NetID `mj33kd`，管理员日额度 100,000、并发 2、输出 16,000。
+固定目标 `aisvr@10.243.117.57`，目录 `/home/aisvr/mnt/sda/programs/WorkBench-v1`，Compose 项目 `workbench-v1`。不需要购买公网域名，不迁移旧数据，不改同机模型和其他业务。默认首次只允许 NetID `mj33kd`；可按 [双身份说明](DUAL-IDENTITY.md) 使用 `./deploy.sh add-admin` 增加独立本地管理员。日额度 100,000、并发 2、输出 16,000。
 
 ## 安装与恢复运行
 
@@ -13,7 +13,7 @@ cd /home/aisvr/mnt/sda/programs/WorkBench-v1
 
 首次隐藏输入模型 API Key，**不是 NetID 或 SSH 密码**。维护者也可用 `--model-key-file /ABS/OWNER_ONLY_FILE` 指定 0600 单行文件。模型只有同机现存 `10.243.117.57:4003` 的 Qwen3.6-35B-A3B；不使用 Luna 或旧主机代理。
 
-脚本检查包摘要、位置、未知文件、UID、ext4/shared、loop、镜像和首次空闲端口，原子生成独立 Git 项目与受保护配置，准备 1 GiB 项目＋原生状态文件系统并启动。已有 runtime 必须有匹配的部署标记；未知数据不自动修复或初始化。失败 staging 保留并报告位置。
+脚本检查包摘要、位置、未知文件、UID、ext4/shared、loop、镜像和首次空闲端口，原子生成独立 Git 项目与受保护配置，准备工程师 4 GiB 项目＋原生状态文件系统（旧部署按标记保留原容量）并启动。已有 runtime 必须有匹配的部署标记；未知数据不自动修复或初始化。失败 staging 保留并报告位置。
 
 再次执行只恢复挂载／服务，保留项目、会话、证书、模型令牌和今日计数。维护命令使用独立 compose.v1.json，不用旧 compose／initialize／start 脚本。
 
@@ -46,7 +46,7 @@ Windows Chrome／Edge：双击维护者提供的根证书 → 安装证书 → �
 
 ## 范围与真实证据
 
-IP 入口只支持一个预分配真实 NetID；不能直接追加第二用户共享同一 IP Cookie。多身份浏览器存储隔离需独立来源另验，edge 拒绝多身份配置。原生 Agent／审批／会话不改，工作容器非 root、内部网络、无 Docker Socket。公开 HTTPS 443 经检查全部 DNS 后连接字面 IP 的 CONNECT 网关；私网／元数据／非 443／普通 HTTP及工作容器直接外连仍拒绝。
+原 IP 入口只支持 mj33kd；新增本地管理员使用独立固定内部主机名和本人预览，不能追加第二身份共享同一 IP Cookie。两身份的真实验收状态见 STATUS.md。原生 Agent／审批／会话不改，工作容器非 root、内部网络、无 Docker Socket。公开 HTTPS 443 经检查全部 DNS 后连接字面 IP 的 CONNECT 网关；私网／元数据／非 443／普通 HTTP及工作容器直接外连仍拒绝。
 
 有限 Host／Origin、签名元数据、一次性票据、注销撤销、CSP 和 WebSocket 代理保持；平台 Cookie 不转发到生成应用。只支持 web/ 静态 HTML/CSS/JS 和锁定 Vite/React，不新增环境配置入口。
 

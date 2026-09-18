@@ -3,10 +3,13 @@ let maintained;
 // Only server-owned configuration sets formal origins, never request arguments.
 export function configureOrigins(origins){
  if(!origins){maintained=undefined;return;}
+ const addresses=new Set();const hostnameOwners=new Map();
  for(const [identity,pair] of Object.entries(origins)){
   if(!identity||!pair?.workbench||!pair?.preview)throw Error('Incomplete public origin mapping');
   for(const value of [pair.workbench,pair.preview]){const u=new URL(value);if(u.protocol!=='https:'||u.origin!==value||u.username||u.password)throw Error('Fixed HTTPS origin required');}
   if(pair.workbench===pair.preview)throw Error('Preview must have a separate origin');
+  for(const value of [pair.workbench,pair.preview]){if(addresses.has(value))throw Error('Origins must be globally unique');addresses.add(value);}
+  for(const value of [pair.workbench,pair.preview]){const host=new URL(value).hostname;const owner=hostnameOwners.get(host);if(owner&&owner!==identity)throw Error('Identities require separate cookie hosts');hostnameOwners.set(host,identity);}
  }
  maintained=structuredClone(origins);
 }

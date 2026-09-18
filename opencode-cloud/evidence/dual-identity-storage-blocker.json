@@ -1,0 +1,65 @@
+{
+  "kind": "real_native_storage_diagnosis",
+  "filesystem": {
+    "bytes": 1020702720,
+    "availableBytes": 0,
+    "availableInodes": 56734
+  },
+  "sizes": [
+    "0\t/home/aisvr/mnt/sda/programs/WorkBench-v1/runtime/project",
+    "0\t/home/aisvr/mnt/sda/programs/WorkBench-v1/runtime/state"
+  ],
+  "mounts": [
+    {
+      "source": "/home/aisvr/mnt/sda/programs/WorkBench-v1/browser-tools/vite.config.mjs",
+      "destination": "/trusted/vite.config.mjs"
+    },
+    {
+      "source": "/home/aisvr/mnt/sda/programs/WorkBench-v1/browser-tools/start-preview.sh",
+      "destination": "/trusted/start-preview.sh"
+    },
+    {
+      "source": "/home/aisvr/mnt/sda/programs/WorkBench-v1/browser-tools/BROWSER_USAGE.md",
+      "destination": "/trusted/BROWSER_USAGE.md"
+    },
+    {
+      "source": "/home/aisvr/mnt/sda/programs/WorkBench-v1/runtime/project",
+      "destination": "/workspace/project"
+    },
+    {
+      "source": "/home/aisvr/mnt/sda/programs/WorkBench-v1/runtime/state",
+      "destination": "/state"
+    },
+    {
+      "source": "/home/aisvr/mnt/sda/programs/WorkBench-v1/runtime/opencode.json",
+      "destination": "/trusted/opencode.json"
+    },
+    {
+      "source": "/home/aisvr/mnt/sda/programs/WorkBench-v1/runtime/browser.json",
+      "destination": "/trusted/browser.json"
+    }
+  ],
+  "databases": [
+    {
+      "path": "data/opencode/opencode.db-wal",
+      "bytes": 63311872,
+      "uid": 1000
+    },
+    {
+      "path": "data/opencode/opencode.db",
+      "bytes": 794877952,
+      "uid": 1000
+    },
+    {
+      "path": "data/opencode/opencode.db-shm",
+      "bytes": 131072,
+      "uid": 1000
+    }
+  ],
+  "backupSha": [
+    [
+      "runtime-20260918-112940.tar.gz.sha256",
+      "e28383d89bf2b592008311961f0602c9a4073f84c5f46f3be3ab1588e1e51116"
+    ]
+  ]
+}

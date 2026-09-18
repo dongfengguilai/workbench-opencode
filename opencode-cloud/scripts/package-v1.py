@@ -28,7 +28,9 @@ def main():
     args=parser.parse_args();out=Path(args.output).resolve()
     if out.exists():raise SystemExit('Refusing to overwrite an existing release')
     out.parent.mkdir(parents=True,exist_ok=True)
-    build=json.loads((ROOT/'evidence/v1-intranet-ui-build.json').read_text())
+    buildPath=ROOT/'evidence/dual-identity-ui-build.json'
+    if not buildPath.exists():buildPath=ROOT/'evidence/v1-intranet-ui-build.json'
+    build=json.loads(buildPath.read_text())
     for name,expected in build['overlaySha256'].items():
         if sha(ROOT/'ui'/name)!=expected:raise SystemExit('UI build is stale: '+name)
     with tempfile.TemporaryDirectory(prefix='workbench-v1-bundle-',dir=out.parent) as temp:
@@ -40,7 +42,7 @@ def main():
         for name in ['src','scripts','ui','test','docs','browser-tools']:
             for source in sorted((ROOT/name).rglob('*')):
                 if source.is_file() and '__pycache__' not in source.parts:copy(source,source.relative_to(ROOT))
-        for name in ['Dockerfile','Dockerfile.browser','package.json','compose.yaml','compose.v1.json','deploy.sh','.gitignore']:
+        for name in ['Dockerfile','Dockerfile.browser','package.json','compose.yaml','compose.v1.json','compose.v1-admin.json','deploy.sh','.gitignore']:
             if (ROOT/name).is_file():copy(ROOT/name,name)
         for source in (ROOT/'public').iterdir():
             if source.is_file():copy(source,source.relative_to(ROOT))
@@ -51,7 +53,7 @@ def main():
         copy(ROOT/'public/workbench-ui/manifest.json','public/workbench-ui/manifest.json')
         for name in ['opencode-v1.18.31.tar.gz','bun-1.3.14/bun.zip','build-ca.crt']:
             if (ROOT/'vendor'/name).is_file():copy(ROOT/'vendor'/name,'vendor/'+name)
-        for name in ['source-provenance.json','v1-intranet-ui-build.json']:
+        for name in ['source-provenance.json',buildPath.name]:
             copy(ROOT/'evidence'/name,'provenance/'+name)
         for source in (ROOT.parent/'opencode-cloud-v0').glob('*.md'):
             copy(source,'delivery/'+source.name)
@@ -97,7 +99,7 @@ def main():
         with tarfile.open(out,'w:gz',compresslevel=3) as archive:archive.add(package,arcname='WorkBench-v1')
     out.with_suffix(out.suffix+'.sha256').write_text(sha(out)+'  '+out.name+'\n')
     report={'bundle':str(out),'bytes':out.stat().st_size,'sha256':sha(out),'manifest':manifest}
-    (ROOT/'evidence/v1-bundle-result.json').write_text(json.dumps(report,indent=2)+'\n')
+    (ROOT/'evidence/dual-identity-bundle-result.json').write_text(json.dumps(report,indent=2)+'\n')
     print(json.dumps(report,indent=2))
 
 

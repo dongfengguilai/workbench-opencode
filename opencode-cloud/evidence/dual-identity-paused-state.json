@@ -1,0 +1,25 @@
+{
+  "kind": "paused_only_failed_native_to_preserve_data",
+  "projectFiles": {
+    "README.md": "2deeeae75be6928c35ecc3ed4b2a125886d9eb7aadaa84d1705a9ca933df924e",
+    "package-lock.json": "bb1cf7a87da1a47004485cbecb36f3c56d7d3c1d51df3c901b012eadc0a95c63",
+    ".gitignore": "70ae91a20a227421ec5979b2524037d303c905e9b4809891b6c0a554443834e8",
+    "sample.pdf": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "web/vite.config.js": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "web/index.html": "ed0380359dfb2af762e849b8aba9da90e79766bb3a6cf264909b2a93747b981c",
+    "web/public/pdf.worker.js": "e3f005b22146f290af16ac0dc16ab45f0df898173de1cc539d6e4092832da9d8",
+    "web/public/sample.pdf": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "web/public/pdf.worker.min.js": "feabdf309770ed24bba31a5467836cdc8cf639c705af27d52b585b041bb8527b",
+    "web/public/pdf.js": "d83766f20a4c31fbce5a29d98789cdfbef781b147441da45be1d1079e8e0f81c"
+  },
+  "indexSha256": "cfc7dff042573de651c16aee30f3313dc01e76119b53b664534e73b387f01350",
+  "budget": {
+    "day": "2026-09-18",
+    "count": 102
+  },
+  "adminExists": false,
+  "platformAuthMode": "netid",
+  "containers": "373ad950f7675a4f9597e0587c41b7dc101e99b18b1f24a888c31d47cdd8abd5 workbench-v1-web-egress-1 node:22.19.0-bookworm-slim@sha256:4a4884e8a44826194dff92ba316264f392056cbe243dcc9fd3551e71cea02b90\n4c46f228d68a8903871500147af639acd7887b81308a9cbc0b63ec2b2ae45b48 workbench-v1-model-gateway-1 node:22.19.0-bookworm-slim@sha256:4a4884e8a44826194dff92ba316264f392056cbe243dcc9fd3551e71cea02b90\n3460b749cb3562072c9d1b8ec2f0031752849a76386a820a67c5d8040f40d054 qwen3.6 llama-gv100:server-cuda\nd2ab2f48034045ace598291832a9c20ab7cf10ffba37a2996173f1b34eb66a44 stirling-pdf docker.stirlingpdf.com/stirlingtools/stirling-pdf:latest\n6f93ef85ff557e0f63e63fc90bf2d03c7df2c45af12a0a629f4a2420015fb549 drawing_mark_apn_staging-drawing-analysis-1 drawing_mark_apn_staging-drawing-analysis\na5f7abcdb4a785d4990d7924656fd25e415a07300adc78ac084bba5db4a6d840 drawing_engineering_change_produce-drawing-analysis-1 drawing_engineering_change_produce-drawing-analysis\n4efa900d7fd33abb3fb762bf86248fb61cb7a257026cdf7b3558e36b895d1cac vllm-iharness-engineering-change vllm/vllm-openai:v0.11.1\n2bc75499cbc6125d01d7e2365c2486074cd9dc3f3a362d9a704cb106014a66f4 drawing_compare_produce-drawing-analysis-1 drawing_compare_produce-drawing-analysis\n5abf1f780527b41613a112c1ac0b5be0bb5f1e0b01e045a88db26b0577b45950 drawing_analysis_produce-drawing-analysis-1 drawing_analysis_produce-drawing-analysis\n9261f5637140a43128c142ac18f725016dbab64e3071afb5131e1dc3ff42cc6d iharness_tools_produce-iharness_tools-1 cplus_deployment\n",
+  "projectFilesUnchanged": true,
+  "gitIndexUnchanged": true
+}

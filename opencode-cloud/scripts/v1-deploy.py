@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Maintainer-only, fresh one-NetID deployment. Never calls legacy initialization."""
+"""Maintainer-only, explicit identity deployment. Never calls legacy initialization."""
 from pathlib import Path
 import argparse
 import datetime
@@ -148,7 +148,7 @@ def initialize(host, key):
         certs(staging,host)
         der = subprocess.check_output(['openssl','x509','-in',str(staging/'tls.crt'),'-outform','DER'])
         protected(staging/'edge.json',json.dumps({'origin':cfg['origin'],'previewRelayKey':relay,'publicOrigins':pairs,'platformFingerprint':hashlib.sha256(der).hexdigest()},indent=2)+'\n')
-        protected(staging/'deployment.json',json.dumps({'schema':1,'installPath':str(ROOT),'identity':'mj33kd','host':host,'baseline':baseline,'composeProject':'workbench-v1','createdAt':datetime.datetime.now(datetime.timezone.utc).isoformat()},indent=2)+'\n')
+        protected(staging/'deployment.json',json.dumps({'schema':1,'installPath':str(ROOT),'identity':'mj33kd','host':host,'baseline':baseline,'composeProject':'workbench-v1','nativeQuotaBytes':4*1024**3,'createdAt':datetime.datetime.now(datetime.timezone.utc).isoformat()},indent=2)+'\n')
         staging.rename(runtime)
     except BaseException:
         # No data is silently erased after a failed initialization.
@@ -156,29 +156,138 @@ def initialize(host, key):
         raise
 
 
-def maintenance(script):
+def admin_installed():
+    folder=ROOT/'runtime/admin'
+    if not folder.exists():return False
+    marker=folder/'deployment.json'
+    if folder.is_symlink() or not marker.is_file():raise RuntimeError('Unknown administrator data; refusing overwrite')
+    cfg=json.loads(marker.read_text())
+    if cfg.get('schema')!=1 or cfg.get('identity')!='admin' or cfg.get('installPath')!=str(ROOT):
+        raise RuntimeError('Unknown administrator deployment')
+    return True
+
+
+def configure_compose():
+    override=str(ROOT/'compose.v1-admin.json')
+    COMPOSE[:]=['docker','compose','-p','workbench-v1','-f',str(ROOT/'compose.v1.json')]
+    if admin_installed():COMPOSE.extend(['-f',override])
+
+
+def administrator_password_hash():
+    first=getpass.getpass('New local admin password (12+ characters; hidden): ')
+    second=getpass.getpass('Confirm local admin password (hidden): ')
+    if first!=second or len(first)<12 or len(first)>1024:
+        raise RuntimeError('Passwords must match and contain 12 to 1024 characters; no changes made')
+    salt=secrets.token_bytes(16)
+    key=hashlib.scrypt(first.encode(),salt=salt,n=32768,r=8,p=1,dklen=64,maxmem=64*1024*1024)
+    return 'scrypt$32768$8$1$'+salt.hex()+'$'+key.hex()
+
+
+def add_admin():
+    cfg=json.loads((ROOT/'runtime/platform.json').read_text())
+    if admin_installed():
+        if cfg.get('auth',{}).get('mode')!='mixed' or cfg.get('users',{}).get('admin',{}).get('authProvider')!='local-admin':
+            raise RuntimeError('Administrator installation is incomplete; restore the pre-change backup instead of resetting data')
+        print('Administrator already installed; password and data retained')
+        start();return
+    if set(cfg['users'])!={'mj33kd'} or cfg.get('auth',{}).get('mode')!='netid':
+        raise RuntimeError('Expected recognized single-NetID source configuration')
+    idle()
+    password_hash=administrator_password_hash()
+    # A complete cold backup is required before installing a second identity.
+    backup()
+    runtime=ROOT/'runtime'
+    folder=runtime/'admin'
+    staging=Path(tempfile.mkdtemp(prefix='.admin-initializing-',dir=runtime))
+    os.umask(0o077)
+    try:
+        (staging/'project').mkdir();(staging/'state').mkdir()
+        (staging/'project/README.md').write_text('# Administrator independent project\n\nWeb applications live in web/.\n')
+        (staging/'project/.gitignore').write_text((runtime/'project/.gitignore').read_text())
+        checked(['git','init','-q',str(staging/'project')])
+        checked(['git','-C',str(staging/'project'),'add','README.md','.gitignore'])
+        checked(['git','-C',str(staging/'project'),'-c','user.name=WorkBench','-c','user.email=workbench@invalid','commit','-qm','Initial independent administrator project'])
+        (staging/'project').chmod(0o755)
+        for p in (staging/'project').rglob('*'):
+            p.chmod(0o755 if p.is_dir() else stat.S_IMODE(p.stat().st_mode)|0o044)
+        baseline=output(['git','-C',str(staging/'project'),'rev-parse','HEAD'])
+        for name in ['gateway-state','disks','state/browser-home','state/browser-config','state/browser-cache']:(staging/name).mkdir(parents=True,exist_ok=True)
+        scope,native_password=[secrets.token_urlsafe(32) for _ in range(2)]
+        gateway=dict(line.split('=',1) for line in (runtime/'gateway.env').read_text().splitlines() if '=' in line)
+        gateway['ENV_MODEL_TOKEN']=scope;gateway['MODEL_DAILY_REQUEST_LIMIT']='100000'
+        protected(staging/'gateway.env',''.join(k+'='+v+'\n' for k,v in gateway.items()))
+        protected(staging/'native.env',f'OPENCODE_SERVER_PASSWORD={native_password}\nENV_MODEL_TOKEN={scope}\nPROJECT_BASELINE={baseline}\nOPENCODE_CLIENT=app\n')
+        native=json.loads((runtime/'opencode.json').read_text())
+        native['provider']['approved']['options']['baseURL']='http://admin-model-gateway:8318/v1'
+        native['provider']['approved']['options']['apiKey']=scope
+        protected(staging/'opencode.json',json.dumps(native,indent=2)+'\n')
+        browser=json.loads((runtime/'browser.json').read_text());browser['browser']['proxy']['server']='http://admin-web-egress:8320'
+        protected(staging/'browser.json',json.dumps(browser,indent=2)+'\n')
+        protected(staging/'deployment.json',json.dumps({'schema':1,'identity':'admin','installPath':str(ROOT),'baseline':baseline})+'\n')
+        # Stage certificate under the existing CA: never replace the root.
+        quiet={'stdout':subprocess.DEVNULL,'stderr':subprocess.DEVNULL}
+        checked(['openssl','req','-new','-newkey','rsa:2048','-nodes','-keyout',str(staging/'edge.key'),'-out',str(staging/'edge.csr'),'-subj','/CN=WorkBench V1 ingress'],**quiet)
+        host=deployment()['host']
+        (staging/'edge.ext').write_text('basicConstraints=critical,CA:FALSE\nkeyUsage=critical,digitalSignature,keyEncipherment\nextendedKeyUsage=serverAuth\nsubjectAltName=IP:'+host+',DNS:admin.workbench.internal,DNS:preview.admin.workbench.internal\n')
+        checked(['openssl','x509','-req','-in',str(staging/'edge.csr'),'-CA',str(runtime/'ca.crt'),'-CAkey',str(runtime/'ca.key'),'-CAserial',str(runtime/'ca.srl'),'-days','365','-sha256','-extfile',str(staging/'edge.ext'),'-out',str(staging/'edge.crt')],**quiet)
+        (staging/'edge.key').chmod(0o600);(staging/'edge.csr').unlink();(staging/'edge.ext').unlink()
+        cfg['auth']['mode']='mixed'
+        cfg['users']['mj33kd'].update(authProvider='netid',role='engineer')
+        cfg['users']['admin']={'displayName':'管理员','enabled':True,'authProvider':'local-admin','role':'admin','passwordHash':password_hash,'environment':'http://admin-native:4096','nativePassword':native_password}
+        cfg['publicOrigins']['admin']={'workbench':'https://admin.workbench.internal:8443','preview':'https://preview.admin.workbench.internal:8445'}
+        edge=json.loads((runtime/'edge.json').read_text());edge['publicOrigins']=cfg['publicOrigins']
+        # Commit only after all initialization succeeds. Failures retain cold backup
+        # and staging; recovery is explicit, never an automatic project reset.
+        staging.rename(folder)
+        quota(runtime=folder)
+        for name in ['edge.key','edge.crt']:
+            (runtime/name).rename(folder/('previous-'+name))
+            shutil.copy2(folder/name,runtime/name)
+        protected(runtime/'platform.json',json.dumps(cfg,indent=2)+'\n')
+        protected(runtime/'edge.json',json.dumps(edge,indent=2)+'\n')
+        configure_compose()
+        # No force-recreate and no updates to the engineer native service spec.
+        checked(COMPOSE+['up','-d','--no-build','--wait','--wait-timeout','180'])
+        # Bind-mounted file replacements require only the two ingress restarts.
+        checked(COMPOSE+['restart','edge-workbench','edge-preview'])
+        print('Administrator installed: https://admin.workbench.internal:8443/\nHosts: '+host+' admin.workbench.internal preview.admin.workbench.internal\nNetID project preserved; actual two-identity acceptance remains required.')
+    except BaseException:
+        print('Administrator installation failed; retained staging/data and cold backup. Restore before retrying.')
+        raise
+
+
+def maintenance(script, runtime=None):
+    runtime=runtime or ROOT/'runtime'
     checked(['docker','run','--rm','--user','0:0','--network','none','--cap-drop','ALL',
              '--cap-add','SYS_ADMIN','--cap-add','DAC_OVERRIDE','--cap-add','CHOWN','--cap-add','MKNOD',
              '--device','/dev/loop-control','--device-cgroup-rule','b 7:* rwm','--security-opt','apparmor=unconfined',
-             '--mount',f'type=bind,src={ROOT}/runtime/disks,dst=/disks,bind-propagation=rshared',
+             '--mount',f'type=bind,src={runtime}/disks,dst=/disks,bind-propagation=rshared',
              '--entrypoint','sh',IMAGE,'-c',script])
 
 
-def quota(unmount=False):
-    runtime=ROOT/'runtime'; disks=runtime/'disks'; disk=disks/'native.img'; dest=disks/'native'
+def quota_bytes(runtime):
+    if runtime==ROOT/'runtime/admin':return 1024**3
+    value=json.loads((runtime/'deployment.json').read_text()).get('nativeQuotaBytes',1024**3)
+    if value not in [1024**3,4*1024**3]:raise RuntimeError('Unapproved engineer quota capacity')
+    return value
+
+
+def quota(unmount=False, runtime=None):
+    runtime=runtime or ROOT/'runtime'; disks=runtime/'disks'; disk=disks/'native.img'; dest=disks/'native'
     dest.mkdir(exist_ok=True)
     mounted=subprocess.run(['mountpoint','-q',str(dest)]).returncode==0
     if unmount:
         if mounted:
-            maintenance('set -eu; sync; dev=$(findmnt -n -o SOURCE /disks/native); case "$dev" in /dev/loop[0-9]*) ;; *) exit 2 ;; esac; test -b "$dev" || mknod "$dev" b 7 "${dev#/dev/loop}"; umount /disks/native; losetup -d "$dev"')
+            maintenance('set -eu; sync; dev=$(findmnt -n -o SOURCE /disks/native); case "$dev" in /dev/loop[0-9]*) ;; *) exit 2 ;; esac; test -b "$dev" || mknod "$dev" b 7 "${dev#/dev/loop}"; umount /disks/native; losetup -d "$dev"', runtime)
         return
+    expected=quota_bytes(runtime)
     if not disk.exists():
         if any(dest.iterdir()):raise RuntimeError('Unknown quota destination data')
-        checked(['fallocate','-l','1G',str(disk)]);checked(['mkfs.ext4','-q','-F',str(disk)])
-    if disk.stat().st_size!=1024**3:raise RuntimeError('Quota image is not the approved 1 GiB size')
+        checked(['fallocate','-l',str(expected),str(disk)]);checked(['mkfs.ext4','-q','-F',str(disk)])
+    if disk.stat().st_size!=expected:raise RuntimeError('Quota image differs from recorded approved capacity')
     if not mounted:
         if any(dest.iterdir()):raise RuntimeError('Unbounded quota destination contains data; refusing mount')
-        maintenance('set -eu; dev=$(losetup -f); test -b "$dev" || mknod "$dev" b 7 "${dev#/dev/loop}"; losetup "$dev" /disks/native.img; mount -o rw,nosuid,nodev "$dev" /disks/native; mkdir -p /disks/native/project /disks/native/state; chown 1000:1000 /disks/native/project /disks/native/state')
+        maintenance('set -eu; dev=$(losetup -f); test -b "$dev" || mknod "$dev" b 7 "${dev#/dev/loop}"; losetup "$dev" /disks/native.img; mount -o rw,nosuid,nodev "$dev" /disks/native; mkdir -p /disks/native/project /disks/native/state; chown 1000:1000 /disks/native/project /disks/native/state', runtime)
     mount=json.loads(output(['findmnt','-J','-T',str(dest),'-o','TARGET,FSTYPE,OPTIONS']))['filesystems'][0]
     if Path(mount['target'])!=dest or mount['fstype']!='ext4' or 'rw' not in mount['options'].split(','):
         raise RuntimeError('Bounded ext4 mount not verified')
@@ -201,7 +310,8 @@ def deployment():
 
 
 def start():
-    cfg=deployment();quota()
+    cfg=deployment();configure_compose();quota()
+    if admin_installed():quota(runtime=ROOT/'runtime/admin')
     checked(COMPOSE+['up','-d','--no-build','--wait','--wait-timeout','180'])
     context=ssl.create_default_context(cafile=str(ROOT/'runtime/ca.crt'))
     with urllib.request.urlopen(f'https://{cfg["host"]}:8443/__platform/login',context=context,timeout=10) as response:
@@ -210,17 +320,25 @@ def start():
 
 
 def idle():
-    if not output(COMPOSE+['ps','--status','running','-q','native']):return
+    configure_compose()
+    for prefix in ['', 'admin-'] if admin_installed() else ['']:
+        idle_environment(prefix)
+
+
+def idle_environment(prefix):
+    if not output(COMPOSE+['ps','--status','running','-q',prefix+'native']):return
     script="fetch('http://127.0.0.1:4030/session/status',{headers:{Authorization:'Basic '+Buffer.from('opencode:'+process.env.OPENCODE_SERVER_PASSWORD).toString('base64')},signal:AbortSignal.timeout(5000)}).then(async r=>{if(!r.ok)throw Error('status');const s=await r.json();process.exit(Object.values(s).some(x=>x.type!=='idle')?3:0)}).catch(()=>process.exit(2))"
-    checked(COMPOSE+['exec','-T','native-guard','node','-e',script])
+    checked(COMPOSE+['exec','-T',prefix+'native-guard','node','-e',script])
 
 
 def backup(restart=True):
-    deployment();idle();checked(COMPOSE+['stop']);quota(unmount=True)
+    deployment();configure_compose();idle();checked(COMPOSE+['stop'])
     folder=ROOT/'backups';folder.mkdir(exist_ok=True)
     name=folder/('runtime-'+datetime.datetime.now().strftime('%Y%m%d-%H%M%S')+'.tar.gz')
     try:
-        with tarfile.open(name,'w:gz',dereference=False) as archive:archive.add(ROOT/'runtime',arcname='runtime')
+        quota(unmount=True)
+        if admin_installed():quota(unmount=True,runtime=ROOT/'runtime/admin')
+        with tarfile.open(name,'w:gz',dereference=False,compresslevel=3) as archive:archive.add(ROOT/'runtime',arcname='runtime')
         name.chmod(0o600);protected(name.with_suffix(name.suffix+'.sha256'),digest(name)+'\n')
         print('Cold backup (includes protected credentials): '+str(name))
     finally:
@@ -246,7 +364,8 @@ def restore(path, expected):
         cfg=json.loads((candidate/'deployment.json').read_text())
         if cfg.get('installPath')!=str(ROOT) or cfg.get('identity')!='mj33kd':raise RuntimeError('Backup belongs to another deployment')
         if (ROOT/'runtime').exists():
-            deployment();idle();checked(COMPOSE+['stop']);quota(unmount=True)
+            deployment();configure_compose();idle();checked(COMPOSE+['stop']);quota(unmount=True)
+            if admin_installed():quota(unmount=True,runtime=ROOT/'runtime/admin')
             backups=ROOT/'backups';backups.mkdir(exist_ok=True)
             (ROOT/'runtime').rename(backups/('runtime.pre-restore-'+secrets.token_hex(4)))
         candidate.rename(ROOT/'runtime')
@@ -262,6 +381,8 @@ def rollback(path, expected):
             archive.extractall(directory,filter='data')
         candidate=Path(directory)/'WorkBench-v1';manifest=verify_bundle(candidate)
         if (candidate/'runtime').exists() or (candidate/'backups').exists():raise RuntimeError('Artifact package must not contain live data')
+        if admin_installed() and not (candidate/'compose.v1-admin.json').is_file():raise RuntimeError('Single-identity artifacts cannot run a dual-identity runtime; use a compatible release')
+        if deployment().get('nativeQuotaBytes',1024**3)==4*1024**3 and 'nativeQuotaBytes' not in (candidate/'scripts/v1-deploy.py').read_text():raise RuntimeError('Old artifacts cannot run the approved 4 GiB runtime; use a capacity-compatible release')
         backup(restart=False)
         saved=ROOT/'backups'/('artifacts-'+secrets.token_hex(4));saved.mkdir()
         names={p.name for p in ROOT.iterdir()}-{'runtime','backups','.deployment.lock',Path(directory).name}
@@ -273,7 +394,7 @@ def rollback(path, expected):
 
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('action',nargs='?',default='start',choices=['start','status','stop','backup','restore','rollback'])
+    parser.add_argument('action',nargs='?',default='start',choices=['start','status','stop','backup','restore','rollback','add-admin'])
     parser.add_argument('--host',default='10.243.117.57')
     parser.add_argument('--model-key-file')
     parser.add_argument('--archive');parser.add_argument('--sha256')
@@ -283,6 +404,9 @@ def main():
     try:fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
     except BlockingIOError:raise RuntimeError('Another deployment operation is active')
     manifest=verify_bundle()
+    configure_compose()
+    if args.action=='add-admin':
+        deployment();load_images(manifest);add_admin();return
     if args.action=='status':
         deployment();checked(COMPOSE+['ps']);return
     if args.action=='stop':

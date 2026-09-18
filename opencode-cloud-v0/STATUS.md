@@ -1,5 +1,16 @@
 # 当前交付状态：IN_PROGRESS
 
+2026-09-18 本地管理员＋真实NetID安装程序和固定WorkBench UI已实际发布到10.243.117.57，**当前等待用户在本人服务器终端设置admin密码；管理员尚未创建，双身份完整验收仍未通过**。工程师已按用户明确批准从1GiB扩到4GiB，剩余约3GiB；全部源码／索引／模型计数102及2会话／104消息／449消息片段的逻辑摘要在扩容和发布前后均完全不变。Native保持原容器ID，发布UI时未重启Native、guard或模型。
+
+- 用户现在能做：继续使用mj33kd旧HTTPS入口与NetID登录方式；在服务器固定安装目录执行`./deploy.sh add-admin`，两次隐藏输入独立新密码（12–1024字符），脚本完成独立admin环境与1GiB持久空间配置。只保存带随机盐的scrypt摘要，不需要向助手提供密码。重复合法安装保留密码和数据，未知目录拒绝覆盖；两个身份额度均100,000、并发2、输出16000。
+- 尚不能做：admin实际环境／登录和双身份真实任务、浏览器存储／预览／截图／ZIP／补丁隔离均NOT_RUN；用户尚未设置管理员密码或hosts。本地认证5项、维护者保护5项与固定UI构建／类型检查通过，不能替代实际NetID或管理员登录。没有伪造NetID、没有通用管理后台、未自动开放更多账号，A10未签收。
+- 真实证据：opencode-cloud/evidence/dual-identity-capacity-recovery-result.json、artifacts-publication.json、capacity-first-restart-rejection.json、before.json、paused-state.json、coldbackup-first-failure.json、native-restart-first-failure.json、storage-blocker.json、auth-check-final.log、deploy-check-final.log及dual-identity-ui-*。缩写前缀均为dual-identity-。旧本机代理测试因旧平台未运行503的失败在first-check-result.json保留；扩容首次启动子命令被维护者部署锁拦截，释放后恢复通过，不隐藏失败。
+- 保护与回滚：原1GiB完整冷备为目标backups/runtime-20260918-112940.tar.gz，SHA256 e28383d89bf2b592008311961f0602c9a4073f84c5f46f3be3ab1588e1e51116。扩容保护目录backups/capacity-4g-20260918-123255；发布原源码／UI／checksums在backups/dual-ui-release-20260918-123641。回滚旧制品必须兼容实际容量与身份数量，脚本拒绝不兼容包，不重置数据。用户图片与未提交修改保留。
+- 完整离线包：/home/vmware/Workspace/projects/experiments/Workbench_space/releases/workbench-v1-20260918-dual-identity-rc3.tar.gz，1,044,630,207字节，SHA256 7685ccc91b23899af1b3062c7e7fac966e84c66ca85ae73ed6003d45678b4ed0；固定原生／浏览器镜像、951个UI资源、源码及逐项摘要，不含现存数据／管理员密码／NetID密码。操作说明opencode-cloud/docs/DUAL-IDENTITY.md。
+- 下一步只完成管理员密码设置检查点：用户在本人终端执行add-admin后告知完成或错误，不发送密码。之后检查新环境、两网关真实额度、原工程师数据及本人hosts（10.243.117.57 admin.workbench.internal preview.admin.workbench.internal），再继续用户亲自参与的认证与隔离验收。工程师旧IP入口保持，根证书保持不变。不能因已发布代码标记READY或完整双身份通过。
+
+## 本轮之前的单NetID部署历史
+
 2026-09-18 企业内网 V1 已实际部署并启动：目录 `/home/aisvr/mnt/sda/programs/WorkBench-v1`，Compose `workbench-v1`，全新独立数据，只有 NetID `mj33kd`，Qwen-only，管理员日上限100,000。用户仅开放外网，没有重启。**当前等待本人安装根证书并实际 NetID 登录；尚未标记完整闭环通过或 A10 签收。** 无需公网域名，未更改 Codex 的全局 TLS／证书数据库。
 
 - 用户现在能做：取得完整离线包与专用公开根证书；工作台 `https://10.243.117.57:8443/` 已启动，服务器侧及当前机器用专用根证书正常校验链／IP并取得登录页 HTTP200。安装客户端信任后可尝试本人 NetID 登录，不保存 NetID 密码、没有本地账号回退。操作说明 `opencode-cloud/docs/V1-INTRANET.md`。本人静态网页已由真实 Qwen 创建并通过原生 Bash 的3项标准库测试，预览经原生PTY健康启动；这些为维护者原生验证，不能冒充用户登录或浏览器预览通过。

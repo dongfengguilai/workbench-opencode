@@ -10,7 +10,7 @@ import "./workbench.css"
 import {Deliverables} from "./deliverables"
 import {createPreview,PreviewPanel,PreviewResize} from "./preview-panel"
 
-type Identity = { user_id: string; display_name: string; project: string; directory: string; ready: boolean }
+type Identity = { role?: 'admin'|'engineer'; auth_provider?: 'local-admin'|'netid'; user_id: string; display_name: string; project: string; directory: string; ready: boolean }
 async function identity(): Promise<Identity> {
   const response = await fetch('/__platform/me')
   if (response.status === 401) { location.replace('/__platform/login'); throw new Error('请重新登录。') }
@@ -105,7 +105,7 @@ export function WorkBenchShell(props: ParentProps) {
         <nav><button class="wb-nav" onClick={wb.newSession} disabled={wb.busy()}><span>＋</span>{wb.busy() ? '正在准备…' : '新建会话'}</button><button class="wb-nav" classList={{ active: route.pathname === '/' }} onClick={() => navigate('/')}><span>▦</span>项目</button></nav>
         <label class="wb-search"><span>⌕</span><input aria-label="搜索会话" placeholder="搜索会话" value={query()} onInput={e => setQuery(e.currentTarget.value)}/></label>
         <div class="wb-history"><p class="wb-eyebrow">最近会话</p><Show when={!wb.sessions.data.loading()} fallback={<p class="wb-muted">正在加载会话…</p>}><For each={records()}>{r => <button class="wb-session-link" classList={{ active: route.pathname.endsWith('/' + r.session.id) }} title={r.session.title} onClick={() => { wb.sessions.session.open(r.session); setDrawer(false) }}>{r.session.title}</button>}</For><Show when={!records().length}><p class="wb-muted">{query() ? '没有匹配的会话' : '开启你的第一个会话'}</p></Show></Show></div>
-        <div class="wb-account"><div class="wb-avatar">{wb.me()?.display_name?.slice(0,1) || 'W'}</div><div class="wb-user"><strong>{wb.me()?.display_name || '正在加载'}</strong><span>独立云端空间</span></div><ThemeSwitch/><button class="wb-icon" aria-label="退出登录" title="退出登录" onClick={logout}>↪</button></div>
+        <div class="wb-account"><div class="wb-avatar">{wb.me()?.display_name?.slice(0,1) || 'W'}</div><div class="wb-user"><strong>{wb.me()?.display_name || '正在加载'}</strong><span>{wb.me()?.role==='admin'?'管理员 · 本地账号':wb.me()?.auth_provider==='netid'?'工程师 · NetID':'独立云端空间'}</span></div><ThemeSwitch/><button class="wb-icon" aria-label="退出登录" title="退出登录" onClick={logout}>↪</button></div>
       </aside>
       <section class="wb-content">
         <header class="wb-toolbar"><div class="wb-toolbar-title"><button class="wb-icon wb-menu" aria-label="打开导航" onClick={() => { setCollapsed(false); setDrawer(true) }}>☷</button><span>{route.pathname === '/' ? '项目' : 'workbench-opencode'}</span><span class="wb-state" classList={{ ready: wb.me()?.ready }}>● {wb.me.loading ? '连接中' : wb.me()?.ready ? '环境就绪' : '环境未就绪'}</span></div><div id="opencode-titlebar-center" class="wb-native-search"/><div class="wb-actions"><div id="opencode-titlebar-right" class="wb-native-controls"/><Show when={route.pathname !== "/"}><button onClick={() => command.trigger("terminal.toggle")}>终端</button><button onClick={() => command.trigger("fileTree.toggle")}>文件</button></Show><button onClick={inspect} disabled={changesLoading()}>{changesLoading() ? '检查中…' : '检查变更'}</button><Show when={preview.status()?.web?.available}><button onClick={()=>preview.show()}>预览</button></Show><button onClick={() => setDeliverables(true)}>项目成果</button></div></header>

@@ -1,0 +1,16 @@
+{
+  "recoveryFolder": "/home/aisvr/mnt/sda/programs/WorkBench-v1/backups/capacity-4g-20260918-123255",
+  "log": " Container workbench-v1-edge-preview-1 Stopping \n Container workbench-v1-edge-workbench-1 Stopping \n Container workbench-v1-edge-preview-1 Stopped \n Container workbench-v1-edge-workbench-1 Stopped \n Container workbench-v1-platform-1 Stopping \n Container workbench-v1-platform-1 Stopped \n Container workbench-v1-native-guard-1 Stopping \n Container workbench-v1-native-guard-1 Stopped \n Container workbench-v1-native-firewall-1 Stopping \n Container workbench-v1-native-firewall-1 Stopped \n Container workbench-v1-native-1 Stopping \n Container workbench-v1-native-1 Stopped \n Container workbench-v1-web-egress-1 Stopping \n Container workbench-v1-model-gateway-1 Stopping \n Container workbench-v1-web-egress-1 Stopped \n Container workbench-v1-model-gateway-1 Stopped \n/home/aisvr/mnt/sda/programs/WorkBench-v1/runtime/disks/native.img: 8802/65536 files (0.1% non-contiguous), 244941/262144 blocks\nresize2fs 1.47.0 (5-Feb-2023)\nResizing the filesystem on /home/aisvr/mnt/sda/programs/WorkBench-v1/runtime/disks/native.img to 1048576 (4k) blocks.\nThe filesystem on /home/aisvr/mnt/sda/programs/WorkBench-v1/runtime/disks/native.img is now 1048576 (4k) blocks long.\n\nDeployment stopped: Another deployment operation is active\n",
+  "deployment": {
+    "schema": 1,
+    "installPath": "/home/aisvr/mnt/sda/programs/WorkBench-v1",
+    "identity": "mj33kd",
+    "host": "10.243.117.57",
+    "baseline": "02f0526297b8ce0f5407f8543e21970810bbc9f0",
+    "composeProject": "workbench-v1",
+    "createdAt": "2026-09-18T01:40:34.032339+00:00",
+    "nativeQuotaBytes": 4294967296
+  },
+  "imageBytes": 4294967296,
+  "mount": ""
+}

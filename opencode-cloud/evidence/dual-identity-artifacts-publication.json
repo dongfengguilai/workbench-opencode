@@ -1,0 +1,37 @@
+{
+  "kind": "real_dual_identity_artifacts_publication",
+  "bundleSha256": "7685ccc91b23899af1b3062c7e7fac966e84c66ca85ae73ed6003d45678b4ed0",
+  "uploadedBytes": 1044630207,
+  "engineerNativeSourceIndexBudgetAndAllMessagesUnchanged": true,
+  "engineerNativeIdentity": "e4b30c81040ffc4c36ab3cafbe16e41cf1b605266bb5f9983439cd7c0a2cb05a 2026-09-18T04:33:54.593682884Z",
+  "nativeTables": {
+    "session": {
+      "count": 2,
+      "sha256": "a7d2492f9b350f9cf670758891d603476a47977573ba8496b6b330ddec2452de"
+    },
+    "message": {
+      "count": 104,
+      "sha256": "10d0aa7bce0a6711c721b03155faf4a74d1787137d1ad24c914ef8e2adf9f2a5"
+    },
+    "part": {
+      "count": 449,
+      "sha256": "ef1fd219f4eb9c4ec481dda9e5fec79878f885e63a2814416f2c9178dafac0aa"
+    }
+  },
+  "budget": {
+    "day": "2026-09-18",
+    "count": 102
+  },
+  "loginInfo": {
+    "status": 200,
+    "body": {
+      "method": "netid",
+      "alternativeLoginUrl": null
+    }
+  },
+  "protectedArtifactsRollback": "/home/aisvr/mnt/sda/programs/WorkBench-v1/backups/dual-ui-release-20260918-123641",
+  "incomingReleaseFolder": "/home/aisvr/mnt/sda/programs/.WorkBench-v1-upgrade-e4i3mvom",
+  "administratorCreated": false,
+  "realAdministratorLogin": "NOT_RUN",
+  "realNetidAcceptance": "NOT_RUN"
+}

@@ -2,6 +2,7 @@ import https from 'node:https';
 import {readFileSync,writeFileSync,renameSync,mkdirSync} from 'node:fs';
 import {randomBytes} from 'node:crypto';
 import { IntranetAuthClient,sessionDigest,readCookie,InvalidCredentialsError } from './auth.ts';
+import {authenticateAccount,validateAccount,type Account} from './identity-auth.ts';
 import {forward,upgrade,error,readBody} from './native-proxy.ts';
 import {loadUi,uiPage} from './ui-assets.mjs';
 import {checkRequest} from './access-policy.ts';
@@ -9,14 +10,15 @@ import {previewPlatform} from './preview-platform.ts';
 import {workbenchOrigin,previewOrigin,configureOrigins,formalOrigins} from './preview-origin.mjs';
 import {WorkbenchHandoff} from './workbench-handoff.mjs';
 import {sameSecret} from './preview-sessions.mjs';
-type User={password?:string,displayName:string,enabled:boolean,environment:string,nativePassword:string};
-type Config={origin:string,sessionTtl:number,previewRelayKey?:string,users:Record<string,User>,publicOrigins?:Record<string,{workbench:string,preview:string}>,auth?:{mode:'netid',baseUrl:string}};
+type User={password?:string,passwordHash?:string,authProvider?:Account['authProvider'],role?:Account['role'],displayName:string,enabled:boolean,environment:string,nativePassword:string};
+type Config={origin:string,sessionTtl:number,previewRelayKey?:string,users:Record<string,User>,publicOrigins?:Record<string,{workbench:string,preview:string}>,auth?:{mode:'netid'|'mixed',baseUrl:string}};
 type Session={user:string,expires:number};
 const configPath=process.env.PLATFORM_CONFIG||'/trusted/platform.json';
 function config():Config{return JSON.parse(readFileSync(configPath,'utf8'));}
 const initial=config();
 configureOrigins(initial.publicOrigins);
-if(initial.auth && (initial.auth.mode!=='netid'||!initial.auth.baseUrl||!initial.publicOrigins))throw Error('Invalid NetID-only deployment configuration');
+if(initial.auth && (!['netid','mixed'].includes(initial.auth.mode)||!initial.auth.baseUrl||!initial.publicOrigins))throw Error('Invalid NetID-only deployment configuration');
+if(initial.auth?.mode==='mixed')for(const [name,user] of Object.entries(initial.users))validateAccount(name,user as Account);
 const origin=new URL(initial.origin);
 if(origin.protocol!=='https:')throw new Error('HTTPS origin required');
 mkdirSync('/platform-state',{recursive:true});
@@ -60,6 +62,12 @@ const server=https.createServer({key:readFileSync('/trusted/tls.key'),cert:readF
   if(Object.hasOwn(anonymousAssets,publicName)&&req.method==='GET'){
    res.setHeader('Content-Type',anonymousAssets[publicName]);res.end(readFileSync('/public/'+publicName));return;
   }
+  if(p==='/__platform/login-info'&&req.method==='GET'){
+   const cfg=config();const b=browserOrigin(req);const name=Object.keys(cfg.users).find(n=>workbenchOrigin(n)===b);
+   if(!name){error(res,403,'Unrecognized login origin');return;}
+   const user=cfg.users[name];const other=Object.keys(cfg.users).find(n=>n!==name&&cfg.users[n].enabled);
+   json(res,200,{method:user.authProvider|| (cfg.auth?'netid':'local-admin'),alternativeLoginUrl:other?workbenchOrigin(other)+'/__platform/login':null});return;
+  }
   if((p==='/__platform/login'||p==='/api/auth/login')&&req.method==='GET'){
    res.setHeader('Content-Type','text/html');res.setHeader('Content-Security-Policy',"default-src 'self'; script-src 'self'; style-src 'self'; form-action 'self'; frame-ancestors 'none'");res.end(loginHtml);return;
   }
@@ -67,9 +75,9 @@ const server=https.createServer({key:readFileSync('/trusted/tls.key'),cert:readF
    const body=await readBody(req);const cfg=config();const name=typeof body?.username==='string'?body.username.trim():'';const user=cfg.users[name];
    if(!user?.enabled){error(res,401,'Invalid credentials');return;}
    if(!ownedBrowser(req,name)){error(res,403,'Identity belongs to another workbench origin');return;}
-   if(initial.auth&&cfg.auth?.mode!=='netid'){error(res,503,'NetID-only configuration unavailable');return;}
+   if(initial.auth&&cfg.auth?.mode!==initial.auth.mode){error(res,503,'NetID-only configuration unavailable');return;}
    const auth=new IntranetAuthClient({intranetBaseUrl:cfg.auth?.baseUrl||'',intranetTimeoutSeconds:10,intranetVerifyTls:true,localAdminEnabled:!cfg.auth,localAdminUsername:name,localAdminPassword:user.password||'',localAdminDisplayName:user.displayName,requireExplicitSubject:!!cfg.auth});
-   try{const verified=await auth.authenticate(name,body.password);if(cfg.auth&&(verified.provider!=='intranet'||verified.subject!==name)){error(res,403,'Authenticated NetID is not authorized for this environment');return;}}catch(e){error(res,e instanceof InvalidCredentialsError?401:503,'Authentication failed');return;}
+   try{const verified=cfg.auth?.mode==='mixed'?await authenticateAccount(name,body.password,user as Account,cfg.auth.baseUrl):await auth.authenticate(name,body.password);if(cfg.auth?.mode==='netid'&&(verified.provider!=='intranet'||verified.subject!==name)){error(res,403,'Authenticated NetID is not authorized for this environment');return;}}catch(e){error(res,e instanceof InvalidCredentialsError?401:503,'Authentication failed');return;}
    const previous=current(req);if(previous){delete sessions[previous.hash];closeSession(previous.hash);}
    const token=randomBytes(32).toString('base64url');sessions[sessionDigest(token)]={user:name,expires:Date.now()+cfg.sessionTtl*1000};persist();
    res.setHeader('Set-Cookie',`agent_session=${token}; Path=/; Max-Age=${cfg.sessionTtl}; HttpOnly; Secure; SameSite=Lax`);
@@ -120,7 +128,7 @@ const server=https.createServer({key:readFileSync('/trusted/tls.key'),cert:readF
   }
   if(p==='/__platform/me'&&req.method==='GET'){
    const health=await fetch(new URL('/global/health',opts.target),{headers:{Authorization:'Basic '+Buffer.from('opencode:'+opts.password).toString('base64')},signal:AbortSignal.timeout(5000)});
-   json(res,200,{user_id:identity.username,display_name:identity.user.displayName,project:'workbench-opencode',directory:'/workspace/project',ready:health.ok,project_url:'/L3dvcmtzcGFjZS9wcm9qZWN0/session',workbench_origin:workbenchOrigin(identity.username),preview_origin:previewOrigin(identity.username),embedded_preview:browserOrigin(req)===workbenchOrigin(identity.username)});return;
+   json(res,200,{user_id:identity.username,display_name:identity.user.displayName,role:identity.user.role||'engineer',auth_provider:identity.user.authProvider||(config().auth?'netid':'local-admin'),project:'workbench-opencode',directory:'/workspace/project',ready:health.ok,project_url:'/L3dvcmtzcGFjZS9wcm9qZWN0/session',workbench_origin:workbenchOrigin(identity.username),preview_origin:previewOrigin(identity.username),embedded_preview:browserOrigin(req)===workbenchOrigin(identity.username)});return;
   }
   if(['/__platform/download','/__platform/changes'].includes(p)&&req.method==='GET'){
    const response=await fetch(new URL('/__export',opts.target),{headers:{Authorization:'Basic '+Buffer.from('opencode:'+opts.password).toString('base64')},signal:AbortSignal.timeout(60000)});

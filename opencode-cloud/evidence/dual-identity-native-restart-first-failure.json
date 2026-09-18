@@ -1,0 +1,12 @@
+{
+  "native": "\nFailed query: PRAGMA wal_checkpoint(PASSIVE)\nparams: \n\u001b[91m\u001b[1mError: \u001b[0mUnexpected error\n\nFailed query: PRAGMA wal_checkpoint(PASSIVE)\nparams: \n\u001b[91m\u001b[1mError: \u001b[0mUnexpected error\n\nFailed query: PRAGMA wal_checkpoint(PASSIVE)\nparams: \n\u001b[91m\u001b[1mError: \u001b[0mUnexpected error\n\nFailed query: PRAGMA wal_checkpoint(PASSIVE)\nparams: \n\u001b[91m\u001b[1mError: \u001b[0mUnexpected error\n\nFailed query: PRAGMA wal_checkpoint(PASSIVE)\nparams: \n\u001b[91m\u001b[1mError: \u001b[0mUnexpected error\n\nFailed query: PRAGMA wal_checkpoint(PASSIVE)\nparams: \n\u001b[91m\u001b[1mError: \u001b[0mUnexpected error\n\nFailed query: PRAGMA wal_checkpoint(PASSIVE)\nparams: \n\u001b[91m\u001b[1mError: \u001b[0mUnexpected error\n\nFailed query: PRAGMA wal_checkpoint(PASSIVE)\nparams: \n\u001b[91m\u001b[1mError: \u001b[0mUnexpected error\n\nFailed query: PRAGMA wal_checkpoint(PASSIVE)\nparams: \n",
+  "native-guard": "fixed native environment guard listening\nfixed native environment guard listening\n",
+  "projectPath": "/home/aisvr/mnt/sda/programs/WorkBench-v1/runtime/disks/native/project",
+  "projectStat": {
+    "uid": 1000,
+    "gid": 1000,
+    "mode": "0o40755"
+  },
+  "mount": "/home/aisvr/mnt/sda/programs/WorkBench-v1/runtime/disks/native /dev/loop4 ext4   rw,nosuid,nodev,relatime\n",
+  "nativeConfigHash": "6631b8c334bd84cc9a7f37d67b4c41dc2a550d73dab857fd98cd545682450f42"
+}
