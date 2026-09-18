@@ -1,5 +1,14 @@
 # 当前交付状态：IN_PROGRESS
 
+2026-09-18 管理员入口用户回归：用户完成重试后，服务器已真实安装admin，配置mixed，mj33kd仍netid、admin为local-admin；管理员原生环境运行，guard／模型网关／HTTPS出口健康。工程师与管理员登录页及login-info经固定IP连接、专用CA及各自实际主机名校验均HTTP200；根证书摘要不变。**当前阻塞转为客户端内部域名解析／访问，实际管理员登录和双身份隔离未验收。**
+
+- 用户现在能做：在使用浏览器的电脑配置hosts：`10.243.117.57 admin.workbench.internal preview.admin.workbench.internal`；然后进入 `https://admin.workbench.internal:8443/__platform/login`，用admin及本人刚设置的密码尝试登录。mj33kd旧IP入口保持。无需重装／重新初始化或恢复工程师数据。
+- 尚不能做：未确认用户电脑hosts／证书信任和真实浏览器管理员登录。用户报“This site can’t be reached”，未取得具体浏览器网络错误代码；当前Codex机器getent无法解析管理员内部域名，该名称不是已部署的公共DNS地址，不把服务器200作为用户访问已修复证据。双身份任务、存储、预览、截图和下载隔离仍NOT_RUN，A10仍由用户签收。
+- 真实证据：`opencode-cloud/evidence/dual-identity-admin-entry-diagnosis.json`；只读检查，没有修改服务器配置、数据或重启服务。操作说明 `opencode-cloud/docs/DUAL-IDENTITY.md` 的客户端hosts章节。
+- 下一步只修：客户端管理员域名解析并验证实际打开登录页；通过后再继续用户亲自登录和双身份验收，不扩大修改范围。
+
+## 客户端访问反馈之前的安装修复历史
+
 2026-09-18 当前阻塞修复：用户实际运行 `add-admin` 触发 `KeyError: 'proxy'`。已修正为固定 Playwright CLI 的 `browser.launchOptions.proxy`，并实际更新目标服务器安装脚本、测试和说明及对应制品摘要；提前检查配置，避免错误配置进入密码／冷备阶段。服务器7项维护者回归通过，实际工程师浏览器配置可克隆到管理员出口；专用CA正常校验的登录页面HTTP200。**管理员尚未创建，双身份实际登录与隔离仍未验收。**
 
 - 用户现在能做：继续使用 mj33kd；在 `/home/aisvr/mnt/sda/programs/WorkBench-v1` 重新运行 `./deploy.sh add-admin`，在本人终端隐藏输入两次独立新密码。上次密码摘要仅在失败进程内存，未保存；不向助手发送密码。

@@ -1,0 +1,48 @@
+{
+  "kind": "real_admin_entry_availability_diagnosis",
+  "adminDataExists": true,
+  "authMode": "mixed",
+  "identities": {
+    "mj33kd": {
+      "authProvider": "netid",
+      "role": "engineer",
+      "enabled": true
+    },
+    "admin": {
+      "authProvider": "local-admin",
+      "role": "admin",
+      "enabled": true
+    }
+  },
+  "httpsProbesWithFixedIpAndHostnameVerification": {
+    "10.243.117.57": {
+      "loginStatus": 200,
+      "loginInfoStatus": 200,
+      "method": "netid",
+      "alternativeLoginUrl": "https://admin.workbench.internal:8443/__platform/login",
+      "tlsChainAndRequestedHostnameVerified": true
+    },
+    "admin.workbench.internal": {
+      "loginStatus": 200,
+      "loginInfoStatus": 200,
+      "method": "local-admin",
+      "alternativeLoginUrl": "https://10.243.117.57:8443/__platform/login",
+      "tlsChainAndRequestedHostnameVerified": true
+    }
+  },
+  "adminGuardHealthy": true,
+  "adminModelGatewayHealthy": true,
+  "adminWebEgressHealthy": true,
+  "engineerGuardHealthy": true,
+  "caSha256": "ba55ae5804689f070b19255a51ec2d7ebc1219987cd7cda30c3dabb09ca6d2b4",
+  "currentCodexMachineDnsProbe": {
+    "command": "getent hosts admin.workbench.internal",
+    "exitCode": 2,
+    "output": ""
+  },
+  "userBrowserError": "This site can’t be reached",
+  "userBrowserExactNetworkErrorCode": "NOT_PROVIDED",
+  "userClientHostsAndBrowserTrust": "NOT_VERIFIED",
+  "realAdministratorLogin": "NOT_RUN_private_password_not_available_to_assistant",
+  "serverMutationPerformed": false
+}
