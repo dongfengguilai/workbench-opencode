@@ -261,7 +261,8 @@
         "/app/v1-edge.mjs"
       ],
       "environment": {
-        "EDGE_ROLE": "workbench"
+        "EDGE_ROLE": "workbench",
+        "EDGE_IDENTITY": "mj33kd"
       },
       "volumes": [
         "./src:/app:ro",
@@ -298,7 +299,8 @@
         "/app/v1-edge.mjs"
       ],
       "environment": {
-        "EDGE_ROLE": "preview"
+        "EDGE_ROLE": "preview",
+        "EDGE_IDENTITY": "mj33kd"
       },
       "volumes": [
         "./src:/app:ro",

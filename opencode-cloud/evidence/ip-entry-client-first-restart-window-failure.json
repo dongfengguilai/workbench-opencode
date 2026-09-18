@@ -1,0 +1,7 @@
+{
+  "kind": "real_client_probe_during_planned_proxy_restart",
+  "exitCode": 1,
+  "firstProbe": "https://10.243.117.57:8443/__platform/login",
+  "error": "ConnectionRefusedError Errno 111",
+  "timing": "Client probe started before parallel proxy restart operation returned; subsequent server policy check verified listeners available. Repeat only read-only client reachability after restart finishes."
+}

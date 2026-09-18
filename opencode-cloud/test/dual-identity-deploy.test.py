@@ -66,12 +66,26 @@ class Safeguards(unittest.TestCase):
         root=Path(__file__).resolve().parents[1]
         base=json.loads((root/'compose.v1.json').read_text())
         override=json.loads((root/'compose.v1-admin.json').read_text())
-        self.assertEqual(set(override['services']),{'admin-model-gateway','admin-web-egress','admin-native','admin-native-firewall','admin-native-guard','platform'})
+        self.assertEqual(set(override['services']),{'admin-model-gateway','admin-web-egress','admin-native','admin-native-firewall','admin-native-guard','platform','admin-edge-workbench','admin-edge-preview'})
         for name,service in override['services'].items():
             if name=='platform':continue
-            self.assertNotIn('ports',service)
+            if name.startswith('admin-edge-'):
+                self.assertEqual(service['environment']['EDGE_IDENTITY'],'admin')
+                self.assertEqual(service['ports'],['8447:8447'] if name.endswith('workbench') else ['8449:8449'])
+            else:self.assertNotIn('ports',service)
             self.assertNotIn('/var/run/docker.sock',json.dumps(service))
         self.assertTrue(override['networks']['admin-native']['internal'])
         self.assertEqual(base['services']['native']['networks'],['native'])
+
+    def test_ip_mapping_preserves_private_accounts_and_existing_engineer_cookie(self):
+        config={'auth':{'mode':'mixed'},'users':{'mj33kd':{'authProvider':'netid'},'admin':{'authProvider':'local-admin','passwordHash':'private-unit-marker'}},'publicOrigins':{}}
+        original=json.dumps(config,sort_keys=True)
+        with patch.object(module,'deployment',return_value={'host':'10.243.117.57'}):updated=module.ip_entry_configuration(config)
+        self.assertEqual(json.dumps(config,sort_keys=True),original)
+        self.assertEqual(updated['users'],config['users'])
+        self.assertEqual(updated['publicOrigins']['admin'],{'workbench':'https://10.243.117.57:8447','preview':'https://10.243.117.57:8449'})
+        self.assertEqual(updated['cookieNames']['mj33kd']['session'],'agent_session')
+        with patch.object(module,'deployment',return_value={'host':'bad-host'}):
+            with self.assertRaises(ValueError):module.ip_entry_configuration(config)
 
 if __name__=='__main__':unittest.main()

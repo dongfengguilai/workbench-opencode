@@ -1,0 +1,41 @@
+{
+  "kind": "real_ip_entry_final_artifact_health_check",
+  "allArtifactChecksumsVerified": true,
+  "coldBackup": "/home/aisvr/mnt/sda/programs/WorkBench-v1/backups/runtime-20260918-130226.tar.gz",
+  "coldBackupBytes": 285014891,
+  "coldBackupSha256": "9d7d8346589c0d9d9ae0aa9a226b793e023f1ee39a561ef57d4d10f941da942e",
+  "actualModelGatewayLimits": {
+    "model-gateway": "100000",
+    "admin-model-gateway": "100000"
+  },
+  "health": {
+    "native-guard": "healthy",
+    "admin-native-guard": "healthy",
+    "model-gateway": "healthy",
+    "admin-model-gateway": "healthy",
+    "web-egress": "healthy",
+    "admin-web-egress": "healthy"
+  },
+  "publicOrigins": {
+    "mj33kd": {
+      "workbench": "https://10.243.117.57:8443",
+      "preview": "https://10.243.117.57:8445"
+    },
+    "admin": {
+      "workbench": "https://10.243.117.57:8447",
+      "preview": "https://10.243.117.57:8449"
+    }
+  },
+  "credentialCookieNames": {
+    "mj33kd": {
+      "session": "agent_session",
+      "preview": "workbench_preview"
+    },
+    "admin": {
+      "session": "agent_session_admin",
+      "preview": "workbench_preview_admin"
+    }
+  },
+  "modelGatewayCountsNotReset": true,
+  "realSuccessfulPasswordLogin": "NOT_RUN_user_private_password"
+}

@@ -19,7 +19,7 @@ cd /home/aisvr/mnt/sda/programs/WorkBench-v1
 
 ## 一次性信任内网证书
 
-工作台 `https://10.243.117.57:8443/`，预览 `https://10.243.117.57:8445/`；从工作台“预览”授权进入。两个端口是不同来源。5173 仍是容器内部端口。
+工作台 `https://10.243.117.57:8443/`，预览 `https://10.243.117.57:8445/`；从工作台“预览”授权进入。两个端口是不同来源。5173 仍是容器内部端口。 本地管理员使用同IP的8447工作台／8449预览，无需客户端hosts；安装与旧入口转换见DUAL-IDENTITY.md。
 
 安装自动生成 WorkBench 私有 CA 和含 IP SAN 的证书。维护者只将公开 `runtime/ca.crt` 复制为 `WorkBench-v1-root.crt` 交给试用者；**不分发 ca.key、edge.key、tls.key**。
 

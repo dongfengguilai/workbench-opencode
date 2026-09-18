@@ -196,6 +196,46 @@ def administrator_browser_config(runtime):
     return config
 
 
+def ip_entry_configuration(config):
+    if config.get('auth',{}).get('mode')!='mixed' or set(config['users'])!={'mj33kd','admin'}:
+        raise RuntimeError('IP entries require the recognized local-admin and NetID deployment')
+    cfg=json.loads(json.dumps(config))
+    host=str(ipaddress.IPv4Address(deployment()['host']))
+    cfg['publicOrigins']={'mj33kd':{'workbench':f'https://{host}:8443','preview':f'https://{host}:8445'},'admin':{'workbench':f'https://{host}:8447','preview':f'https://{host}:8449'}}
+    cfg['cookieNames']={'mj33kd':{'session':'agent_session','preview':'workbench_preview'},'admin':{'session':'agent_session_admin','preview':'workbench_preview_admin'}}
+    return cfg
+
+
+def check_admin_entry_ports():
+    for port,service in [(8447,'admin-edge-workbench'),(8449,'admin-edge-preview')]:
+        if output(COMPOSE+['ps','--status','running','-q',service]):continue
+        with socket.socket() as probe:
+            try:probe.bind(('0.0.0.0',port))
+            except OSError as error:raise RuntimeError(f'Administrator entry port {port} is occupied; no changes made') from error
+
+
+def use_ip_entries():
+    runtime=ROOT/'runtime'
+    cfg=json.loads((runtime/'platform.json').read_text())
+    if not admin_installed():raise RuntimeError('Install the independent administrator first; no changes made')
+    candidate=ip_entry_configuration(cfg)
+    edge=json.loads((runtime/'edge.json').read_text())
+    if all(current.get('publicOrigins')==candidate['publicOrigins'] and current.get('cookieNames')==candidate['cookieNames'] for current in [cfg,edge]):
+        print('IP entries already configured; identities and data retained');start();return
+    check_admin_entry_ports();idle()
+    # Stop and preserve both environments before changing only ingress settings.
+    backup(restart=False)
+    try:
+        edge['publicOrigins']=candidate['publicOrigins'];edge['cookieNames']=candidate['cookieNames']
+        protected(runtime/'platform.json',json.dumps(candidate,indent=2)+'\n')
+        protected(runtime/'edge.json',json.dumps(edge,indent=2)+'\n')
+        start()
+        print('Administrator: '+candidate['publicOrigins']['admin']['workbench']+'/\nPreview is authorized from WorkBench; no client hosts changes required.')
+    except BaseException:
+        print('IP entry migration failed; retained both environments and cold backup. Inspect the reported error before retrying; never reinitialize projects.',file=sys.stderr)
+        raise
+
+
 def add_admin():
     cfg=json.loads((ROOT/'runtime/platform.json').read_text())
     if admin_installed():
@@ -207,6 +247,7 @@ def add_admin():
         raise RuntimeError('Expected recognized single-NetID source configuration')
     runtime=ROOT/'runtime'
     browser=administrator_browser_config(runtime)
+    check_admin_entry_ports()
     idle()
     password_hash=administrator_password_hash()
     # A complete cold backup is required before installing a second identity.
@@ -237,33 +278,22 @@ def add_admin():
         protected(staging/'opencode.json',json.dumps(native,indent=2)+'\n')
         protected(staging/'browser.json',json.dumps(browser,indent=2)+'\n')
         protected(staging/'deployment.json',json.dumps({'schema':1,'identity':'admin','installPath':str(ROOT),'baseline':baseline})+'\n')
-        # Stage certificate under the existing CA: never replace the root.
-        quiet={'stdout':subprocess.DEVNULL,'stderr':subprocess.DEVNULL}
-        checked(['openssl','req','-new','-newkey','rsa:2048','-nodes','-keyout',str(staging/'edge.key'),'-out',str(staging/'edge.csr'),'-subj','/CN=WorkBench V1 ingress'],**quiet)
-        host=deployment()['host']
-        (staging/'edge.ext').write_text('basicConstraints=critical,CA:FALSE\nkeyUsage=critical,digitalSignature,keyEncipherment\nextendedKeyUsage=serverAuth\nsubjectAltName=IP:'+host+',DNS:admin.workbench.internal,DNS:preview.admin.workbench.internal\n')
-        checked(['openssl','x509','-req','-in',str(staging/'edge.csr'),'-CA',str(runtime/'ca.crt'),'-CAkey',str(runtime/'ca.key'),'-CAserial',str(runtime/'ca.srl'),'-days','365','-sha256','-extfile',str(staging/'edge.ext'),'-out',str(staging/'edge.crt')],**quiet)
-        (staging/'edge.key').chmod(0o600);(staging/'edge.csr').unlink();(staging/'edge.ext').unlink()
         cfg['auth']['mode']='mixed'
         cfg['users']['mj33kd'].update(authProvider='netid',role='engineer')
         cfg['users']['admin']={'displayName':'管理员','enabled':True,'authProvider':'local-admin','role':'admin','passwordHash':password_hash,'environment':'http://admin-native:4096','nativePassword':native_password}
-        cfg['publicOrigins']['admin']={'workbench':'https://admin.workbench.internal:8443','preview':'https://preview.admin.workbench.internal:8445'}
-        edge=json.loads((runtime/'edge.json').read_text());edge['publicOrigins']=cfg['publicOrigins']
+        cfg=ip_entry_configuration(cfg)
+        edge=json.loads((runtime/'edge.json').read_text());edge['publicOrigins']=cfg['publicOrigins'];edge['cookieNames']=cfg['cookieNames']
         # Commit only after all initialization succeeds. Failures retain cold backup
         # and staging; recovery is explicit, never an automatic project reset.
         staging.rename(folder)
         quota(runtime=folder)
-        for name in ['edge.key','edge.crt']:
-            (runtime/name).rename(folder/('previous-'+name))
-            shutil.copy2(folder/name,runtime/name)
         protected(runtime/'platform.json',json.dumps(cfg,indent=2)+'\n')
         protected(runtime/'edge.json',json.dumps(edge,indent=2)+'\n')
         configure_compose()
         # No force-recreate and no updates to the engineer native service spec.
         checked(COMPOSE+['up','-d','--no-build','--wait','--wait-timeout','180'])
-        # Bind-mounted file replacements require only the two ingress restarts.
-        checked(COMPOSE+['restart','edge-workbench','edge-preview'])
-        print('Administrator installed: https://admin.workbench.internal:8443/\nHosts: '+host+' admin.workbench.internal preview.admin.workbench.internal\nNetID project preserved; actual two-identity acceptance remains required.')
+        checked(COMPOSE+['restart','edge-workbench','edge-preview','admin-edge-workbench','admin-edge-preview'])
+        print('Administrator installed: '+cfg['publicOrigins']['admin']['workbench']+'/\nNo client hosts changes required. NetID project preserved; actual two-identity acceptance remains required.')
     except BaseException:
         if folder.exists():
             print('Administrator installation failed after committing administrator data; retained data and cold backup. Restore before retrying.')
@@ -398,6 +428,7 @@ def rollback(path, expected):
         candidate=Path(directory)/'WorkBench-v1';manifest=verify_bundle(candidate)
         if (candidate/'runtime').exists() or (candidate/'backups').exists():raise RuntimeError('Artifact package must not contain live data')
         if admin_installed() and not (candidate/'compose.v1-admin.json').is_file():raise RuntimeError('Single-identity artifacts cannot run a dual-identity runtime; use a compatible release')
+        if json.loads((ROOT/'runtime/platform.json').read_text()).get('cookieNames') and 'sessionCookieName' not in (candidate/'src/preview-origin.mjs').read_text():raise RuntimeError('Old artifacts cannot run IP entries with isolated credential cookies; use a compatible release or restore its matching configuration first')
         if deployment().get('nativeQuotaBytes',1024**3)==4*1024**3 and 'nativeQuotaBytes' not in (candidate/'scripts/v1-deploy.py').read_text():raise RuntimeError('Old artifacts cannot run the approved 4 GiB runtime; use a capacity-compatible release')
         backup(restart=False)
         saved=ROOT/'backups'/('artifacts-'+secrets.token_hex(4));saved.mkdir()
@@ -410,7 +441,7 @@ def rollback(path, expected):
 
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('action',nargs='?',default='start',choices=['start','status','stop','backup','restore','rollback','add-admin'])
+    parser.add_argument('action',nargs='?',default='start',choices=['start','status','stop','backup','restore','rollback','add-admin','use-ip-entries'])
     parser.add_argument('--host',default='10.243.117.57')
     parser.add_argument('--model-key-file')
     parser.add_argument('--archive');parser.add_argument('--sha256')
@@ -423,6 +454,8 @@ def main():
     configure_compose()
     if args.action=='add-admin':
         deployment();load_images(manifest);add_admin();return
+    if args.action=='use-ip-entries':
+        deployment();use_ip_entries();return
     if args.action=='status':
         deployment();checked(COMPOSE+['ps']);return
     if args.action=='stop':

@@ -1,5 +1,18 @@
 # 当前交付状态：IN_PROGRESS
 
+2026-09-18 用户批准取消客户端hosts配置后，**已实际切换到服务器IP＋独立端口**：工程师 `https://10.243.117.57:8443/`（预览8445），本地管理员 `https://10.243.117.57:8447/`（预览8449）。两边登录页和login-info在服务器与当前客户端经专用CA／IP严格校验均HTTP200，登录页固定切换链接已返回新IP地址；无需管理员新域名解析或客户端hosts改动。**仍等待用户实际管理员正确密码登录／浏览器预览与双身份隔离，不标完整验收通过或A10签收。**
+
+- 用户现在能做：直接打开8447，用admin与原先设置的管理员密码尝试登录；不重新设置密码，不执行add-admin或初始化。mj33kd继续使用8443和真实NetID，失败不回退。原浏览器根证书已信任时不需再导入，证书／根证书未变；尚未信任的电脑仍需要首次信任专用CA。
+- 账号与成果保护：切换前两环境空闲并保存双环境完整冷备；Native为冷备短暂停止／恢复，两个Native原容器ID保持，不重建持久卷。实际两个模型网关上限均100,000，guard／模型网关／HTTPS出口健康。同机Qwen及其他8个业务的ID／启动时间不变。两边账号配置（含管理员密码摘要）、源码、Git索引、模型计数、原生全部会话／消息／片段及既有PDF截图摘要前后完全一致；工程师今日计数仍102。入口切换不会恢复网页PTY进程，需工作台显式启动预览。
+- 网络与认证实证：实际错误管理员密码401，两个身份错误入口403，伪造Host／Origin403，未授权预览401。同一IP不同端口不天然隔离Cookie，因此使用维护者固定的不同认证／预览凭据名称，入口核对真实身份，代理剔除其他身份凭据与应用伪造凭据；同站的跨来源图片／脚本／no-cors请求也403。允许的登录文档导航200，本人iframe路径进入鉴权401，而非源检查403。普通应用Cookie仍遵循浏览器主机规则，不宣称端口可隔离所有Cookie。
+- 尚不能宣称通过：真实管理员正确密码登录与用户浏览器信任／iframe／WebSocket及双身份源码、会话、截图和下载实际互访验收仍NOT_RUN；维护者没有管理员／NetID密码。隔离HTTP fixture使用真实本地scrypt认证及预置工程师令牌，只作为Cookie／注销／票据回归，不能算真实NetID或实际用户登录。UI沿用已构建固定制品，前端正式地址来自平台，本轮不改Agent或工作镜像。
+- 真实证据：`opencode-cloud/evidence/ip-entry-final-server-result.json`、`opencode-cloud/evidence/ip-entry-preflight.json`、`ip-entry-switch-result.json`、`ip-entry-fetch-metadata-server-result.json`、`ip-entry-client-https-result.json`。维护者回归：8项Node单元＋8项Python保护＋1项HTTP隔离fixture＋1项代理资源请求边界，见ip-entry-unit-result.json和对应test/ip-entry-*.test.mjs；本地Node缺少TS支持、首次fixture私钥权限、SSH参数过长及客户端探测撞上计划代理重启的失败均在ip-entry-first-*／ip-entry-client-first-*保留，修正维护者执行方式后通过，不隐藏失败。
+- 回滚保护：目标 `backups/runtime-20260918-130226.tar.gz` 为本次双环境完整冷备（285,014,891字节，SHA256 `9d7d8346589c0d9d9ae0aa9a226b793e023f1ee39a561ef57d4d10f941da942e`）；原制品在 `backups/ip-entry-release-20260918-130142/artifacts`，资源请求规则增补备份在其same-site-policy-artifacts。回滚不兼容的旧单Cookie制品会被脚本拒绝；恢复历史域名配置后需选择匹配制品或再次运行use-ip-entries，不重置项目。操作说明opencode-cloud/docs/DUAL-IDENTITY.md；新安装add-admin直接配置IP入口，旧版转换命令`./deploy.sh use-ip-entries`，重复执行保留数据。
+- 新完整离线包：`/home/vmware/Workspace/projects/experiments/Workbench_space/releases/workbench-v1-20260918-ip-entries-rc1.tar.gz`，1044639749字节，SHA256 `e7b60ee1c43a35f3f521c3bb989b8df030dc9b2116f0c33641f2c42f0d8aafb0`，固定原生／浏览器／管理镜像与951个UI资源未变，包不含现存数据／登录密码。新包报告dual-identity-bundle-result.json，旧包报告ip-entry-bundle-before.json保留。已安装目标无需重新解压。
+- 下一步只检查：用户打开新的8447入口并用本人管理员密码实际登录；成功后继续本人项目／预览与双身份成果隔离验收，失败只处理具体错误。此前hosts新增行已不需要，不自动修改用户电脑。
+
+## IP入口切换之前的客户端DNS反馈历史
+
 2026-09-18 管理员入口用户回归：用户完成重试后，服务器已真实安装admin，配置mixed，mj33kd仍netid、admin为local-admin；管理员原生环境运行，guard／模型网关／HTTPS出口健康。工程师与管理员登录页及login-info经固定IP连接、专用CA及各自实际主机名校验均HTTP200；根证书摘要不变。**当前阻塞转为客户端内部域名解析／访问，实际管理员登录和双身份隔离未验收。**
 
 - 用户现在能做：在使用浏览器的电脑配置hosts：`10.243.117.57 admin.workbench.internal preview.admin.workbench.internal`；然后进入 `https://admin.workbench.internal:8443/__platform/login`，用admin及本人刚设置的密码尝试登录。mj33kd旧IP入口保持。无需重装／重新初始化或恢复工程师数据。

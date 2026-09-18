@@ -1,0 +1,17 @@
+{
+  "kind": "real_ip_entry_preflight",
+  "tasksIdle": true,
+  "ports": {
+    "8447": "available",
+    "8449": "available"
+  },
+  "sourceAddressScheme": "internal_admin_domains",
+  "adminMarkerRecognized": true,
+  "engineerBudget": {
+    "day": "2026-09-18",
+    "count": 102
+  },
+  "adminBudget": "not_yet_called",
+  "caSha256": "ba55ae5804689f070b19255a51ec2d7ebc1219987cd7cda30c3dabb09ca6d2b4",
+  "mutationPerformed": false
+}

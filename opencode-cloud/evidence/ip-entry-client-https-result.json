@@ -1,0 +1,33 @@
+{
+  "kind": "real_client_to_server_ip_https_check",
+  "certificateTrust": "dedicated CA for this request only; no global/browser trust changes",
+  "results": {
+    "8443": {
+      "loginStatus": 200,
+      "tlsIpAndChainVerified": true,
+      "bodyBytes": 1449,
+      "loginInfo": {
+        "method": "netid",
+        "alternativeLoginUrl": "https://10.243.117.57:8447/__platform/login"
+      }
+    },
+    "8447": {
+      "loginStatus": 200,
+      "tlsIpAndChainVerified": true,
+      "bodyBytes": 1449,
+      "loginInfo": {
+        "method": "local-admin",
+        "alternativeLoginUrl": "https://10.243.117.57:8443/__platform/login"
+      }
+    },
+    "8445": {
+      "unauthorizedPreviewStatus": 401,
+      "tlsIpAndChainVerified": true
+    },
+    "8449": {
+      "unauthorizedPreviewStatus": 401,
+      "tlsIpAndChainVerified": true
+    }
+  },
+  "userBrowserActualLogin": "NOT_RUN"
+}

@@ -7,16 +7,16 @@ import {forward,upgrade,error,readBody} from './native-proxy.ts';
 import {loadUi,uiPage} from './ui-assets.mjs';
 import {checkRequest} from './access-policy.ts';
 import {previewPlatform} from './preview-platform.ts';
-import {workbenchOrigin,previewOrigin,configureOrigins,formalOrigins} from './preview-origin.mjs';
+import {workbenchOrigin,previewOrigin,configureOrigins,formalOrigins,sessionCookieName} from './preview-origin.mjs';
 import {WorkbenchHandoff} from './workbench-handoff.mjs';
 import {sameSecret} from './preview-sessions.mjs';
 type User={password?:string,passwordHash?:string,authProvider?:Account['authProvider'],role?:Account['role'],displayName:string,enabled:boolean,environment:string,nativePassword:string};
-type Config={origin:string,sessionTtl:number,previewRelayKey?:string,users:Record<string,User>,publicOrigins?:Record<string,{workbench:string,preview:string}>,auth?:{mode:'netid'|'mixed',baseUrl:string}};
+type Config={origin:string,sessionTtl:number,previewRelayKey?:string,users:Record<string,User>,publicOrigins?:Record<string,{workbench:string,preview:string}>,cookieNames?:Record<string,{session:string,preview:string}>,auth?:{mode:'netid'|'mixed',baseUrl:string}};
 type Session={user:string,expires:number};
 const configPath=process.env.PLATFORM_CONFIG||'/trusted/platform.json';
 function config():Config{return JSON.parse(readFileSync(configPath,'utf8'));}
 const initial=config();
-configureOrigins(initial.publicOrigins);
+configureOrigins(initial.publicOrigins,initial.cookieNames);
 if(initial.auth && (!['netid','mixed'].includes(initial.auth.mode)||!initial.auth.baseUrl||!initial.publicOrigins))throw Error('Invalid NetID-only deployment configuration');
 if(initial.auth?.mode==='mixed')for(const [name,user] of Object.entries(initial.users))validateAccount(name,user as Account);
 const origin=new URL(initial.origin);
@@ -30,10 +30,12 @@ const connections=new Map<string,Set<()=>void>>();
 function closeSession(hash:string){for(const close of connections.get(hash)||[])close();connections.delete(hash);}
 function register(hash:string){return (close:()=>void)=>{let group=connections.get(hash);if(!group){group=new Set();connections.set(hash,group);}group.add(close);return()=>{group!.delete(close);if(!group!.size)connections.delete(hash);};};}
 function current(req:any){
- const token=readCookie(req.headers.cookie,'agent_session');if(!token)return;
+ const name=sessionCookieName(browserOrigin(req));if(!name)return;
+ const token=readCookie(req.headers.cookie,name);if(!token)return;
  const hash=sessionDigest(token);const s=sessions[hash];
  if(!s||s.expires<=Date.now()){closeSession(hash);return;}
  const user=config().users[s.user];if(!user?.enabled){closeSession(hash);return;}
+ if(!ownedBrowser(req,s.user))return;
  return {hash,session:s,user,username:s.user};
 }
 setInterval(()=>{try{const cfg=config();for(const [h,s] of Object.entries(sessions))if(s.expires<=Date.now()||!cfg.users[s.user]?.enabled){closeSession(h);delete sessions[h];persist();}}catch{for(const h of connections.keys())closeSession(h);}},2000).unref();
@@ -56,7 +58,7 @@ const server=https.createServer({key:readFileSync('/trusted/tls.key'),cert:readF
    const b=browserOrigin(req);const entry=b&&handoff.take(new URL(req.url!,origin).searchParams.get('ticket'),b);
    if(!entry){error(res,401,'Workbench authorization expired or belongs to another origin');return;}
    const session=sessions[entry.hash];const ttl=Math.max(0,Math.floor((session.expires-Date.now())/1000));
-   res.writeHead(303,{'Location':entry.path,'Referrer-Policy':'no-referrer','Set-Cookie':`agent_session=${entry.token}; Path=/; Max-Age=${ttl}; HttpOnly; Secure; SameSite=Lax`});res.end();return;
+   res.writeHead(303,{'Location':entry.path,'Referrer-Policy':'no-referrer','Set-Cookie':`${sessionCookieName(b)}=${entry.token}; Path=/; Max-Age=${ttl}; HttpOnly; Secure; SameSite=Lax`});res.end();return;
   }
   const publicName=p.startsWith('/__platform/')?p.slice('/__platform/'.length):'';
   if(Object.hasOwn(anonymousAssets,publicName)&&req.method==='GET'){
@@ -80,18 +82,19 @@ const server=https.createServer({key:readFileSync('/trusted/tls.key'),cert:readF
    try{const verified=cfg.auth?.mode==='mixed'?await authenticateAccount(name,body.password,user as Account,cfg.auth.baseUrl):await auth.authenticate(name,body.password);if(cfg.auth?.mode==='netid'&&(verified.provider!=='intranet'||verified.subject!==name)){error(res,403,'Authenticated NetID is not authorized for this environment');return;}}catch(e){error(res,e instanceof InvalidCredentialsError?401:503,'Authentication failed');return;}
    const previous=current(req);if(previous){delete sessions[previous.hash];closeSession(previous.hash);}
    const token=randomBytes(32).toString('base64url');sessions[sessionDigest(token)]={user:name,expires:Date.now()+cfg.sessionTtl*1000};persist();
-   res.setHeader('Set-Cookie',`agent_session=${token}; Path=/; Max-Age=${cfg.sessionTtl}; HttpOnly; Secure; SameSite=Lax`);
+   res.setHeader('Set-Cookie',`${sessionCookieName(browserOrigin(req))}=${token}; Path=/; Max-Age=${cfg.sessionTtl}; HttpOnly; Secure; SameSite=Lax`);
    json(res,200,{user_id:name,display_name:user.displayName});return;
   }
   if(p==='/api/auth/logout'&&req.method==='POST'){
-   const token=readCookie(req.headers.cookie,'agent_session');if(token){const h=sessionDigest(token);delete sessions[h];closeSession(h);persist();}
-   res.setHeader('Set-Cookie','agent_session=; Path=/; Max-Age=0; HttpOnly; Secure; SameSite=Lax');res.setHeader('Clear-Site-Data','"cache", "storage"');res.writeHead(204);res.end();return;
+   const name=sessionCookieName(browserOrigin(req));if(!name){error(res,403,'Unrecognized logout origin');return;}
+   const previous=current(req);if(previous&&ownedBrowser(req,previous.username)){delete sessions[previous.hash];closeSession(previous.hash);persist();}
+   res.setHeader('Set-Cookie',`${name}=; Path=/; Max-Age=0; HttpOnly; Secure; SameSite=Lax`);res.setHeader('Clear-Site-Data','"cache", "storage"');res.writeHead(204);res.end();return;
   }
   const identity=current(req);
   if(!identity){if(req.method==='GET'&&req.headers.accept?.includes('text/html')){res.writeHead(302,{Location:'/__platform/login'});res.end();}else error(res,401,'Authentication required');return;}
   if(!ownedBrowser(req,identity.username)){error(res,403,'Identity belongs to another workbench origin');return;}
   if(browserOrigin(req)==='http://127.0.0.1:8444'&&req.method==='GET'&&req.headers.accept?.includes('text/html')&&uiPage(p)){
-   const b=workbenchOrigin(identity.username);const path=req.url!.replace(/^\/server\/[A-Za-z0-9_-]+\/session\//,'/server/'+Buffer.from(b).toString('base64url')+'/session/');res.writeHead(303,{'Location':handoff.issue({token:readCookie(req.headers.cookie,'agent_session'),origin:workbenchOrigin(identity.username),path}),'Referrer-Policy':'no-referrer'});res.end();return;
+   const b=workbenchOrigin(identity.username);const path=req.url!.replace(/^\/server\/[A-Za-z0-9_-]+\/session\//,'/server/'+Buffer.from(b).toString('base64url')+'/session/');res.writeHead(303,{'Location':handoff.issue({token:readCookie(req.headers.cookie,sessionCookieName(browserOrigin(req))),origin:workbenchOrigin(identity.username),path}),'Referrer-Policy':'no-referrer'});res.end();return;
   }
   const browser=browserOrigin(req);const route=p.match(/^\/server\/([A-Za-z0-9_-]+)\/session\/(ses_[\w-]+)$/);
   if(browser===workbenchOrigin(identity.username)&&req.method==='GET'&&route&&route[1]!==Buffer.from(browser).toString('base64url')){res.writeHead(303,{'Location':'/server/'+Buffer.from(browser).toString('base64url')+'/session/'+route[2]});res.end();return;}

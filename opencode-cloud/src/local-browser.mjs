@@ -6,6 +6,7 @@ import {readFileSync} from 'node:fs';
 import {fileURLToPath} from 'node:url';
 import path from 'node:path';
 import {uiPage} from './ui-assets.mjs';
+import {sessionCookieName,previewCookieName,isCredentialCookie,scopedCookieHeader} from './preview-origin.mjs';
 
 const hop = new Set(['connection','keep-alive','proxy-authenticate','proxy-authorization','te','trailer','transfer-encoding','upgrade']);
 function filtered(headers) {
@@ -36,17 +37,17 @@ export function createLocalBrowser({origin, cert, fingerprint, port=8444, previe
     return !!own &&
       req.url?.startsWith('/') && !req.url.startsWith('//') &&
       (!req.headers.origin || req.headers.origin===own) &&
-      (req.headers['sec-fetch-site']!=='cross-site' || (req.method==='GET' && (previewNavigation || browserNavigation))) &&
+      (!['cross-site','same-site'].includes(req.headers['sec-fetch-site']) || (req.method==='GET' && (previewNavigation || browserNavigation))) &&
       (['GET','HEAD'].includes(req.method) || req.headers.origin===own) &&
       !['CONNECT','TRACE'].includes(req.method);
   }
   function options(req, websocket=false) {
     const headers = filtered(req.headers);
     delete headers.authorization;
-    if(!previewKey)headers.cookie=String(headers.cookie||'').split(';').filter(s=>!/^\s*workbench_preview=/i.test(s)).join(';');
+    headers.cookie=scopedCookieHeader(headers.cookie,previewKey?previewCookieName(requestOrigin(req)):sessionCookieName(requestOrigin(req)));
     delete headers['x-workbench-browser-relay']; delete headers['x-workbench-browser-origin'];
     if(browserKey){headers['x-workbench-browser-relay']=browserKey;headers['x-workbench-browser-origin']=requestOrigin(req);}
-    if(previewKey){headers.cookie=String(headers.cookie||'').split(';').filter(s=>!/^\s*agent_session=/i.test(s)).join(';');headers['x-workbench-preview-relay']=previewKey;headers['x-workbench-preview-origin']=requestOrigin(req);}
+    if(previewKey){headers['x-workbench-preview-relay']=previewKey;headers['x-workbench-preview-origin']=requestOrigin(req);}
     for (const k of Object.keys(headers)) if (k.startsWith('x-forwarded-') || k === 'forwarded') delete headers[k];
     headers.host = target.host;
     if (req.headers.origin) headers.origin = target.origin;
@@ -62,7 +63,7 @@ export function createLocalBrowser({origin, cert, fingerprint, port=8444, previe
   function responseHeaders(headers,req) {
     const out = filtered(headers);
     if (!httpsServer && out['set-cookie']) out['set-cookie']=out['set-cookie'].map(value=>
-      (previewKey?/^workbench_preview=/:/^agent_session=/).test(value) ? value.replace(/;\s*Secure(?=;|$)/ig,'') : value);
+      isCredentialCookie(value) ? value.replace(/;\s*Secure(?=;|$)/ig,'') : value);
     if (out.location) {
       const location = new URL(out.location,target);
       if((previewKey||browserKey)&&origins().has(location.origin)){out.location=location.href;return out;}

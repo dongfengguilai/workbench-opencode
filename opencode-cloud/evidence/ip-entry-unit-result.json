@@ -1,0 +1,29 @@
+{
+  "kind": "local_ip_entry_regression_not_real_netid_or_user_browser_acceptance",
+  "pinnedNode": "22.19.0",
+  "nodeUnitTests": {
+    "count": 8,
+    "exitCode": 0
+  },
+  "maintainerPythonTests": {
+    "count": 8,
+    "exitCode": 0
+  },
+  "isolatedHttpAuthenticationFixture": {
+    "exitCode": 0,
+    "seededEngineerTokenIsNotRealNetidLogin": true,
+    "checks": [
+      "two cookie credentials coexist",
+      "renamed cross-identity token rejected",
+      "wrong entry login rejected before NetID",
+      "forged logout preserves engineer",
+      "preview ticket owner origin enforced",
+      "own logout revokes own session and preview, preserves engineer"
+    ]
+  },
+  "fetchMetadataPolicyUnitTest": {
+    "count": 1,
+    "exitCode": 0,
+    "upstreamNotInvoked": true
+  }
+}

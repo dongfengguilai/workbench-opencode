@@ -1,0 +1,8 @@
+{
+  "kind": "host_maintainer_node_runtime_failure",
+  "hostNode": "22.22.1",
+  "error": "ERR_NO_TYPESCRIPT: Node.js is not compiled with TypeScript support",
+  "pass": 3,
+  "failedTestFiles": 2,
+  "remediation": "Use product-pinned Node 22.19.0 image; all 8 relevant tests passed without changing authentication implementation"
+}

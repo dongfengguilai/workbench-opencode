@@ -219,6 +219,82 @@
           "condition": "service_healthy"
         }
       }
+    },
+    "admin-edge-workbench": {
+      "image": "node:22.19.0-bookworm-slim@sha256:4a4884e8a44826194dff92ba316264f392056cbe243dcc9fd3551e71cea02b90",
+      "user": "1000:1000",
+      "command": [
+        "node",
+        "/app/v1-edge.mjs"
+      ],
+      "environment": {
+        "EDGE_ROLE": "workbench",
+        "EDGE_IDENTITY": "admin"
+      },
+      "volumes": [
+        "./src:/app:ro",
+        "./runtime/edge.json:/trusted/edge.json:ro",
+        "./runtime/ca.crt:/trusted/ca.crt:ro",
+        "./runtime/edge.key:/trusted/edge.key:ro",
+        "./runtime/edge.crt:/trusted/edge.crt:ro"
+      ],
+      "ports": [
+        "8447:8447"
+      ],
+      "networks": [
+        "frontend"
+      ],
+      "depends_on": [
+        "platform"
+      ],
+      "read_only": true,
+      "cap_drop": [
+        "ALL"
+      ],
+      "security_opt": [
+        "no-new-privileges:true"
+      ],
+      "mem_limit": "128m",
+      "pids_limit": 32,
+      "restart": "unless-stopped"
+    },
+    "admin-edge-preview": {
+      "image": "node:22.19.0-bookworm-slim@sha256:4a4884e8a44826194dff92ba316264f392056cbe243dcc9fd3551e71cea02b90",
+      "user": "1000:1000",
+      "command": [
+        "node",
+        "/app/v1-edge.mjs"
+      ],
+      "environment": {
+        "EDGE_ROLE": "preview",
+        "EDGE_IDENTITY": "admin"
+      },
+      "volumes": [
+        "./src:/app:ro",
+        "./runtime/edge.json:/trusted/edge.json:ro",
+        "./runtime/ca.crt:/trusted/ca.crt:ro",
+        "./runtime/edge.key:/trusted/edge.key:ro",
+        "./runtime/edge.crt:/trusted/edge.crt:ro"
+      ],
+      "ports": [
+        "8449:8449"
+      ],
+      "networks": [
+        "frontend"
+      ],
+      "depends_on": [
+        "platform"
+      ],
+      "read_only": true,
+      "cap_drop": [
+        "ALL"
+      ],
+      "security_opt": [
+        "no-new-privileges:true"
+      ],
+      "mem_limit": "128m",
+      "pids_limit": 32,
+      "restart": "unless-stopped"
     }
   },
   "networks": {

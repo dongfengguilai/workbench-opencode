@@ -22,17 +22,19 @@ cd /home/aisvr/mnt/sda/programs/WorkBench-v1
 
 工程师旧入口不变：https://10.243.117.57:8443/ 。预览由工作台授权到 IP 的8445。
 
-管理员入口：https://admin.workbench.internal:8443/ 。预览：https://preview.admin.workbench.internal:8445/ 。两身份使用不同主机名隔离 Cookie 和存储；只开放维护者固定地址，不根据请求增加目标。
+管理员入口：https://10.243.117.57:8447/ 。管理员预览：https://10.243.117.57:8449/ ，由本人工作台签发短时票据授权进入。工程师保留8443／8445。用户无需修改hosts或提供内部DNS；登录页提供两个固定入口切换。
 
-在使用管理员的电脑 hosts 文件添加一行（需要本机管理员权限）：
+四个地址均为固定允许清单，管理员入口只接受admin，工程师入口只接受mj33kd。浏览器同一IP的不同端口会共享Cookie，因此平台认证／预览凭据使用分别独立的名称（工程师agent_session／workbench_preview，管理员agent_session_admin／workbench_preview_admin），按入口选择并再次核对身份；代理过滤其他身份凭据，应用无法取得这些HttpOnly凭据。跨来源资源请求即使同站也拒绝，仅保留安全页面导航和本人预览iframe流程。浏览器localStorage／IndexedDB按不同来源隔离。普通应用Cookie仍遵循浏览器的主机规则，不承诺端口天然隔离Cookie。
 
-```text
-10.243.117.57 admin.workbench.internal preview.admin.workbench.internal
+已安装旧域名版的维护者在服务器运行一次：
+
+```sh
+./deploy.sh use-ip-entries
 ```
 
-Windows：用管理员权限打开记事本，打开 `C:\Windows\System32\drivers\etc\hosts` 后添加。Linux／macOS：编辑 `/etc/hosts`。不覆盖原有条目，若已有同名映射先核对。企业 IT 可改为内部 DNS。服务器启动不需要修改客户端 hosts，但客户端浏览器访问管理员必须正确解析名称。
+脚本检查8447／8449端口与两环境空闲，保存双环境完整冷备后切换入口；不重新输入管理员密码，不初始化或复制项目，不清零模型计数。再次执行保留账号及数据。新安装的add-admin直接使用IP入口。原内网域名链接属于历史地址，不能继续作为新入口；之前添加的hosts条目不再需要，不自动修改客户端文件。
 
-现有 WorkBench 根证书保持不变，仅新增入口证书名称，已经信任根证书的电脑无需重新导入。仍未信任的电脑按 V1-INTRANET.md 安装公开 ca.crt，不分发私钥、不关闭 TLS 校验。localhost:8445 是历史本机入口，不是此服务器入口。
+根证书和入口证书保持不变，已有证书包含服务器IP，已经信任根证书的电脑无需重新导入。仍未信任的电脑按V1-INTRANET.md安装公开ca.crt，不分发私钥、不关闭TLS校验。localhost:8445是历史本机入口，不是此服务器入口。
 
 ## 使用与维护
 

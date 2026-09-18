@@ -1,0 +1,8 @@
+{
+  "kind": "isolated_local_http_fixture_failure_not_production",
+  "exitCode": 1,
+  "initialSymptom": "ECONNREFUSED 127.0.0.1 ephemeral port",
+  "diagnosedError": "EACCES /trusted/tls.key",
+  "cause": "Fixture container default root with all capabilities dropped could not read maintainer-owned 0600 private key",
+  "remediation": "Run fixture as maintainer UID/GID, matching production non-root identity; do not loosen key file permissions"
+}

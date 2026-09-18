@@ -1,0 +1,49 @@
+{
+  "kind": "real_shared_ip_fetch_metadata_policy",
+  "results": {
+    "8443": {
+      "same-site-image": 403,
+      "same-site-script": 403,
+      "same-site-empty": 403,
+      "cross-site-image": 403,
+      "cross-site-script": 403,
+      "cross-site-empty": 403,
+      "loginNavigation": 200
+    },
+    "8445": {
+      "unauthorizedIframeReachesAuthentication": 401
+    },
+    "8447": {
+      "same-site-image": 403,
+      "same-site-script": 403,
+      "same-site-empty": 403,
+      "cross-site-image": 403,
+      "cross-site-script": 403,
+      "cross-site-empty": 403,
+      "loginNavigation": 200
+    },
+    "8449": {
+      "unauthorizedIframeReachesAuthentication": 401
+    }
+  },
+  "nativeAndGuardsIdentityAndStartedAtUnchanged": true,
+  "beforeNative": {
+    "native": "e4b30c81040ffc4c36ab3cafbe16e41cf1b605266bb5f9983439cd7c0a2cb05a 2026-09-18T05:03:06.644820852Z",
+    "admin-native": "d30dda82dbed69bc34b5ca7d92c1fdb4785e0953591ada223077636b22366b5d 2026-09-18T05:03:06.752452313Z",
+    "native-guard": "1772da900329b0b800c3f3cac14ad3645d17fe17a79da7bea404cbbe0c9ea140 2026-09-18T05:03:08.369802864Z",
+    "admin-native-guard": "ed44ff9313300f4197a8d0ce1b459e1a4bff33460e45acb092c24c09eb312991 2026-09-18T05:03:08.398921345Z"
+  },
+  "afterNative": {
+    "native": "e4b30c81040ffc4c36ab3cafbe16e41cf1b605266bb5f9983439cd7c0a2cb05a 2026-09-18T05:03:06.644820852Z",
+    "admin-native": "d30dda82dbed69bc34b5ca7d92c1fdb4785e0953591ada223077636b22366b5d 2026-09-18T05:03:06.752452313Z",
+    "native-guard": "1772da900329b0b800c3f3cac14ad3645d17fe17a79da7bea404cbbe0c9ea140 2026-09-18T05:03:08.369802864Z",
+    "admin-native-guard": "ed44ff9313300f4197a8d0ce1b459e1a4bff33460e45acb092c24c09eb312991 2026-09-18T05:03:08.398921345Z"
+  },
+  "patchedSha256": {
+    "src/local-browser.mjs": "e3482f96190be794735f0a00a2e955e4b10fa33ec2c71686b82cb395df63cce6",
+    "docs/DUAL-IDENTITY.md": "85203799af1c2151006be8efe7b21bff88c3b5c868a847009dd29ca5bd914ab7",
+    "test/ip-entry-fetch-metadata.test.mjs": "a2d54c1f48decf20d5c4c8a86b93de6abb832d69974c303084cbc0fbc77841ac"
+  },
+  "rollbackFolder": "/home/aisvr/mnt/sda/programs/WorkBench-v1/backups/ip-entry-release-20260918-130142/same-site-policy-artifacts",
+  "correctPasswordUserLoginAndAuthenticatedIframe": "NOT_RUN_user_input_required"
+}

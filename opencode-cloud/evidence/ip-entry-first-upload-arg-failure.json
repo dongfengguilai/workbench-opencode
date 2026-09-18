@@ -1,0 +1,6 @@
+{
+  "kind": "maintainer_transport_preexecution_failure",
+  "error": "OSError Errno 7 Argument list too long",
+  "remoteMutationPerformed": false,
+  "remediation": "Stream remote maintenance Python source over SSH stdin; retain exact pinned host-key validation and local non-echo password prompt"
+}

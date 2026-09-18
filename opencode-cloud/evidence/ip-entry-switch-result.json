@@ -1,0 +1,311 @@
+{
+  "kind": "real_ip_entry_switch_result",
+  "artifactRollbackFolder": "/home/aisvr/mnt/sda/programs/WorkBench-v1/backups/ip-entry-release-20260918-130142",
+  "exitCode": 0,
+  "accountSourceIndexBudgetAllNativeMessagesCertificatesAndOtherBusinessUnchanged": true,
+  "before": {
+    "accountConfigSha256": "d3c45db3aa71d762651ff85eb7efaae938dfc0d9d134b502eb9f771d43b1fca1",
+    "identities": {
+      "mj33kd": {
+        "source": {
+          "README.md": "2deeeae75be6928c35ecc3ed4b2a125886d9eb7aadaa84d1705a9ca933df924e",
+          "package-lock.json": "bb1cf7a87da1a47004485cbecb36f3c56d7d3c1d51df3c901b012eadc0a95c63",
+          ".gitignore": "70ae91a20a227421ec5979b2524037d303c905e9b4809891b6c0a554443834e8",
+          "sample.pdf": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "web/vite.config.js": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "web/index.html": "ed0380359dfb2af762e849b8aba9da90e79766bb3a6cf264909b2a93747b981c",
+          "web/public/pdf.worker.js": "e3f005b22146f290af16ac0dc16ab45f0df898173de1cc539d6e4092832da9d8",
+          "web/public/sample.pdf": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "web/public/pdf.worker.min.js": "feabdf309770ed24bba31a5467836cdc8cf639c705af27d52b585b041bb8527b",
+          "web/public/pdf.js": "d83766f20a4c31fbce5a29d98789cdfbef781b147441da45be1d1079e8e0f81c"
+        },
+        "indexSha256": "cfc7dff042573de651c16aee30f3313dc01e76119b53b664534e73b387f01350",
+        "budget": {
+          "day": "2026-09-18",
+          "count": 102
+        },
+        "tables": {
+          "session": {
+            "count": 2,
+            "sha256": "a7d2492f9b350f9cf670758891d603476a47977573ba8496b6b330ddec2452de"
+          },
+          "message": {
+            "count": 104,
+            "sha256": "10d0aa7bce0a6711c721b03155faf4a74d1787137d1ad24c914ef8e2adf9f2a5"
+          },
+          "part": {
+            "count": 449,
+            "sha256": "ef1fd219f4eb9c4ec481dda9e5fec79878f885e63a2814416f2c9178dafac0aa"
+          }
+        },
+        "screenshots": {
+          ".workbench-artifacts/sandbox_test/iframe_pdf_test.png": "2da5a47bbf4b57513709c4437f07d594531de1b5c3dbb68bde348eac816c1358"
+        },
+        "protectedSha256": {
+          "native.env": "b4db863320192371d4e57fd2a151067252c54ce87a695424872018f75234cfde",
+          "gateway.env": "be5ea6b1b7b86b8d9b314f4b51911e64426658b4f00ddc4fcd97066af161d1ef",
+          "browser.json": "d1bdb0174631108ab259017ccd93e6f991158ce2637d61a323d4df846c91cb99",
+          "opencode.json": "6631b8c334bd84cc9a7f37d67b4c41dc2a550d73dab857fd98cd545682450f42"
+        },
+        "nativeId": "e4b30c81040ffc4c36ab3cafbe16e41cf1b605266bb5f9983439cd7c0a2cb05a"
+      },
+      "admin": {
+        "source": {
+          ".gitignore": "70ae91a20a227421ec5979b2524037d303c905e9b4809891b6c0a554443834e8",
+          "README.md": "c48294c6676fb2b84d4aec46bb4a98ee1d7d40fac0c0735cb6d09ed82843c867"
+        },
+        "indexSha256": "d928d508327ca3b5c2a23f35702c26711b6315ae4aa96d44b11da382f9850f43",
+        "budget": null,
+        "tables": {
+          "session": {
+            "count": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "message": {
+            "count": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "part": {
+            "count": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "screenshots": {},
+        "protectedSha256": {
+          "native.env": "efb699ea13478c45ecd7c3e2751e0363d7dacb9d6358b642c123774f4210640b",
+          "gateway.env": "94bd5fb65e86bef895b13523376c74d6537f6baec206d6ae2f5d1caca1928e13",
+          "browser.json": "239241e6e6a3051f7f415fc55b2cad2b3e5d12fab9995e0ff5f429edb09067ef",
+          "opencode.json": "c2b6005bc7ddf90bfc02feb2225ef8aca6b209163a742cca40dd96d969ef935e"
+        },
+        "nativeId": "d30dda82dbed69bc34b5ca7d92c1fdb4785e0953591ada223077636b22366b5d"
+      }
+    },
+    "certificates": {
+      "ca.crt": "ba55ae5804689f070b19255a51ec2d7ebc1219987cd7cda30c3dabb09ca6d2b4",
+      "edge.crt": "5954d5a7377e146ec042c2b84862c40c1b30a2a69518dfd7a029601183e651a4",
+      "edge.key": "b68d5c6aec63122ff991470ca089efdf26b3955e10f156212330046bccf711e0",
+      "tls.crt": "aa4c18e5a19a37c392e8f2b1f701c1d5af4f221e08378386121018a427e0b164",
+      "tls.key": "8eadf812e53db88c10b3a959a407da0db547f3e9697be307966fb814b5201860"
+    },
+    "otherContainers": {
+      "/qwen3.6": {
+        "id": "3460b749cb3562072c9d1b8ec2f0031752849a76386a820a67c5d8040f40d054",
+        "image": "sha256:5aaa33f13fd0d7b79add91465ac84ff7df099a404a3751ca6c089ec4617d70f2",
+        "startedAt": "2026-09-17T00:20:35.5377441Z"
+      },
+      "/stirling-pdf": {
+        "id": "d2ab2f48034045ace598291832a9c20ab7cf10ffba37a2996173f1b34eb66a44",
+        "image": "sha256:3b3670fce70b396ec56ba380a3cc7858e0abf83fe13f31c88f7737847763a396",
+        "startedAt": "2026-09-08T05:20:10.329944849Z"
+      },
+      "/drawing_mark_apn_staging-drawing-analysis-1": {
+        "id": "6f93ef85ff557e0f63e63fc90bf2d03c7df2c45af12a0a629f4a2420015fb549",
+        "image": "sha256:c30f67d01783630e7fd0959730dd3494b4cdf9c4286081f256fa80959eedcf16",
+        "startedAt": "2026-09-04T07:13:58.792774078Z"
+      },
+      "/drawing_engineering_change_produce-drawing-analysis-1": {
+        "id": "a5f7abcdb4a785d4990d7924656fd25e415a07300adc78ac084bba5db4a6d840",
+        "image": "sha256:421226ef9047627ee994d58eb94a17f61c27b1064bbbef7dde4abbacaa594518",
+        "startedAt": "2026-08-28T01:57:46.084036557Z"
+      },
+      "/vllm-iharness-engineering-change": {
+        "id": "4efa900d7fd33abb3fb762bf86248fb61cb7a257026cdf7b3558e36b895d1cac",
+        "image": "sha256:d5b12dfb74d605615f8b29ebafaa52294c118bcac7bc9e941785c4108fdb913a",
+        "startedAt": "2026-08-28T01:03:30.000771492Z"
+      },
+      "/drawing_compare_produce-drawing-analysis-1": {
+        "id": "2bc75499cbc6125d01d7e2365c2486074cd9dc3f3a362d9a704cb106014a66f4",
+        "image": "sha256:e9ddf9b7cc82e17bc0d99f5b10c7efea605890899597d2612ff19e93cca2ca10",
+        "startedAt": "2026-08-12T01:09:47.960093095Z"
+      },
+      "/drawing_analysis_produce-drawing-analysis-1": {
+        "id": "5abf1f780527b41613a112c1ac0b5be0bb5f1e0b01e045a88db26b0577b45950",
+        "image": "sha256:b0777c17691762ac83282b9abd4bb9e5a189c68c21e82e5e902f038f2f1eeac7",
+        "startedAt": "2026-08-12T01:09:19.39241735Z"
+      },
+      "/iharness_tools_produce-iharness_tools-1": {
+        "id": "9261f5637140a43128c142ac18f725016dbab64e3071afb5131e1dc3ff42cc6d",
+        "image": "sha256:be56f3eac3215da9252f36b08df4ac4e4c0e7152e820e830211fe9f6d12d3628",
+        "startedAt": "2026-08-11T03:20:54.824630209Z"
+      }
+    }
+  },
+  "after": {
+    "accountConfigSha256": "d3c45db3aa71d762651ff85eb7efaae938dfc0d9d134b502eb9f771d43b1fca1",
+    "identities": {
+      "mj33kd": {
+        "source": {
+          "README.md": "2deeeae75be6928c35ecc3ed4b2a125886d9eb7aadaa84d1705a9ca933df924e",
+          "package-lock.json": "bb1cf7a87da1a47004485cbecb36f3c56d7d3c1d51df3c901b012eadc0a95c63",
+          ".gitignore": "70ae91a20a227421ec5979b2524037d303c905e9b4809891b6c0a554443834e8",
+          "sample.pdf": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "web/vite.config.js": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "web/index.html": "ed0380359dfb2af762e849b8aba9da90e79766bb3a6cf264909b2a93747b981c",
+          "web/public/pdf.worker.js": "e3f005b22146f290af16ac0dc16ab45f0df898173de1cc539d6e4092832da9d8",
+          "web/public/sample.pdf": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "web/public/pdf.worker.min.js": "feabdf309770ed24bba31a5467836cdc8cf639c705af27d52b585b041bb8527b",
+          "web/public/pdf.js": "d83766f20a4c31fbce5a29d98789cdfbef781b147441da45be1d1079e8e0f81c"
+        },
+        "indexSha256": "cfc7dff042573de651c16aee30f3313dc01e76119b53b664534e73b387f01350",
+        "budget": {
+          "day": "2026-09-18",
+          "count": 102
+        },
+        "tables": {
+          "session": {
+            "count": 2,
+            "sha256": "a7d2492f9b350f9cf670758891d603476a47977573ba8496b6b330ddec2452de"
+          },
+          "message": {
+            "count": 104,
+            "sha256": "10d0aa7bce0a6711c721b03155faf4a74d1787137d1ad24c914ef8e2adf9f2a5"
+          },
+          "part": {
+            "count": 449,
+            "sha256": "ef1fd219f4eb9c4ec481dda9e5fec79878f885e63a2814416f2c9178dafac0aa"
+          }
+        },
+        "screenshots": {
+          ".workbench-artifacts/sandbox_test/iframe_pdf_test.png": "2da5a47bbf4b57513709c4437f07d594531de1b5c3dbb68bde348eac816c1358"
+        },
+        "protectedSha256": {
+          "native.env": "b4db863320192371d4e57fd2a151067252c54ce87a695424872018f75234cfde",
+          "gateway.env": "be5ea6b1b7b86b8d9b314f4b51911e64426658b4f00ddc4fcd97066af161d1ef",
+          "browser.json": "d1bdb0174631108ab259017ccd93e6f991158ce2637d61a323d4df846c91cb99",
+          "opencode.json": "6631b8c334bd84cc9a7f37d67b4c41dc2a550d73dab857fd98cd545682450f42"
+        },
+        "nativeId": "e4b30c81040ffc4c36ab3cafbe16e41cf1b605266bb5f9983439cd7c0a2cb05a"
+      },
+      "admin": {
+        "source": {
+          ".gitignore": "70ae91a20a227421ec5979b2524037d303c905e9b4809891b6c0a554443834e8",
+          "README.md": "c48294c6676fb2b84d4aec46bb4a98ee1d7d40fac0c0735cb6d09ed82843c867"
+        },
+        "indexSha256": "d928d508327ca3b5c2a23f35702c26711b6315ae4aa96d44b11da382f9850f43",
+        "budget": null,
+        "tables": {
+          "session": {
+            "count": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "message": {
+            "count": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "part": {
+            "count": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "screenshots": {},
+        "protectedSha256": {
+          "native.env": "efb699ea13478c45ecd7c3e2751e0363d7dacb9d6358b642c123774f4210640b",
+          "gateway.env": "94bd5fb65e86bef895b13523376c74d6537f6baec206d6ae2f5d1caca1928e13",
+          "browser.json": "239241e6e6a3051f7f415fc55b2cad2b3e5d12fab9995e0ff5f429edb09067ef",
+          "opencode.json": "c2b6005bc7ddf90bfc02feb2225ef8aca6b209163a742cca40dd96d969ef935e"
+        },
+        "nativeId": "d30dda82dbed69bc34b5ca7d92c1fdb4785e0953591ada223077636b22366b5d"
+      }
+    },
+    "certificates": {
+      "ca.crt": "ba55ae5804689f070b19255a51ec2d7ebc1219987cd7cda30c3dabb09ca6d2b4",
+      "edge.crt": "5954d5a7377e146ec042c2b84862c40c1b30a2a69518dfd7a029601183e651a4",
+      "edge.key": "b68d5c6aec63122ff991470ca089efdf26b3955e10f156212330046bccf711e0",
+      "tls.crt": "aa4c18e5a19a37c392e8f2b1f701c1d5af4f221e08378386121018a427e0b164",
+      "tls.key": "8eadf812e53db88c10b3a959a407da0db547f3e9697be307966fb814b5201860"
+    },
+    "otherContainers": {
+      "/qwen3.6": {
+        "id": "3460b749cb3562072c9d1b8ec2f0031752849a76386a820a67c5d8040f40d054",
+        "image": "sha256:5aaa33f13fd0d7b79add91465ac84ff7df099a404a3751ca6c089ec4617d70f2",
+        "startedAt": "2026-09-17T00:20:35.5377441Z"
+      },
+      "/stirling-pdf": {
+        "id": "d2ab2f48034045ace598291832a9c20ab7cf10ffba37a2996173f1b34eb66a44",
+        "image": "sha256:3b3670fce70b396ec56ba380a3cc7858e0abf83fe13f31c88f7737847763a396",
+        "startedAt": "2026-09-08T05:20:10.329944849Z"
+      },
+      "/drawing_mark_apn_staging-drawing-analysis-1": {
+        "id": "6f93ef85ff557e0f63e63fc90bf2d03c7df2c45af12a0a629f4a2420015fb549",
+        "image": "sha256:c30f67d01783630e7fd0959730dd3494b4cdf9c4286081f256fa80959eedcf16",
+        "startedAt": "2026-09-04T07:13:58.792774078Z"
+      },
+      "/drawing_engineering_change_produce-drawing-analysis-1": {
+        "id": "a5f7abcdb4a785d4990d7924656fd25e415a07300adc78ac084bba5db4a6d840",
+        "image": "sha256:421226ef9047627ee994d58eb94a17f61c27b1064bbbef7dde4abbacaa594518",
+        "startedAt": "2026-08-28T01:57:46.084036557Z"
+      },
+      "/vllm-iharness-engineering-change": {
+        "id": "4efa900d7fd33abb3fb762bf86248fb61cb7a257026cdf7b3558e36b895d1cac",
+        "image": "sha256:d5b12dfb74d605615f8b29ebafaa52294c118bcac7bc9e941785c4108fdb913a",
+        "startedAt": "2026-08-28T01:03:30.000771492Z"
+      },
+      "/drawing_compare_produce-drawing-analysis-1": {
+        "id": "2bc75499cbc6125d01d7e2365c2486074cd9dc3f3a362d9a704cb106014a66f4",
+        "image": "sha256:e9ddf9b7cc82e17bc0d99f5b10c7efea605890899597d2612ff19e93cca2ca10",
+        "startedAt": "2026-08-12T01:09:47.960093095Z"
+      },
+      "/drawing_analysis_produce-drawing-analysis-1": {
+        "id": "5abf1f780527b41613a112c1ac0b5be0bb5f1e0b01e045a88db26b0577b45950",
+        "image": "sha256:b0777c17691762ac83282b9abd4bb9e5a189c68c21e82e5e902f038f2f1eeac7",
+        "startedAt": "2026-08-12T01:09:19.39241735Z"
+      },
+      "/iharness_tools_produce-iharness_tools-1": {
+        "id": "9261f5637140a43128c142ac18f725016dbab64e3071afb5131e1dc3ff42cc6d",
+        "image": "sha256:be56f3eac3215da9252f36b08df4ac4e4c0e7152e820e830211fe9f6d12d3628",
+        "startedAt": "2026-08-11T03:20:54.824630209Z"
+      }
+    }
+  },
+  "https": {
+    "8443": {
+      "loginStatus": 200,
+      "loginInfo": {
+        "method": "netid",
+        "alternativeLoginUrl": "https://10.243.117.57:8447/__platform/login"
+      },
+      "tlsIpAndChainVerified": true
+    },
+    "8445": {
+      "unauthorizedPreviewStatus": 401
+    },
+    "8447": {
+      "loginStatus": 200,
+      "loginInfo": {
+        "method": "local-admin",
+        "alternativeLoginUrl": "https://10.243.117.57:8443/__platform/login"
+      },
+      "tlsIpAndChainVerified": true
+    },
+    "8449": {
+      "unauthorizedPreviewStatus": 401
+    }
+  },
+  "negativeTests": {
+    "adminOnEngineerEntry": {
+      "status": 403,
+      "body": "{\"detail\":\"Identity belongs to another workbench origin\"}"
+    },
+    "engineerOnAdminEntry": {
+      "status": 403,
+      "body": "{\"detail\":\"Identity belongs to another workbench origin\"}"
+    },
+    "adminWrongPassword": {
+      "status": 401,
+      "body": "{\"detail\":\"Authentication failed\"}"
+    },
+    "forgedHost": {
+      "status": 403,
+      "body": "Local browser origin required"
+    },
+    "forgedOrigin": {
+      "status": 403,
+      "body": "Local browser origin required"
+    }
+  },
+  "coldBackupLog": " Container workbench-v1-edge-workbench-1 Stopping \n Container workbench-v1-edge-preview-1 Stopping \n Container workbench-v1-edge-workbench-1 Stopped \n Container workbench-v1-edge-preview-1 Stopped \n Container workbench-v1-platform-1 Stopping \n Container workbench-v1-platform-1 Stopped \n Container workbench-v1-admin-native-guard-1 Stopping \n Container workbench-v1-native-guard-1 Stopping \n Container workbench-v1-native-guard-1 Stopped \n Container workbench-v1-native-firewall-1 Stopping \n Container workbench-v1-native-firewall-1 Stopped \n Container workbench-v1-native-1 Stopping \n Container workbench-v1-admin-native-guard-1 Stopped \n Container workbench-v1-admin-native-firewall-1 Stopping \n Container workbench-v1-admin-native-firewall-1 Stopped \n Container workbench-v1-admin-native-1 Stopping \n Container workbench-v1-native-1 Stopped \n Container workbench-v1-model-gateway-1 Stopping \n Container workbench-v1-web-egress-1 Stopping \n Container workbench-v1-admin-native-1 Stopped \n Container workbench-v1-admin-web-egress-1 Stopping \n Container workbench-v1-admin-model-gateway-1 Stopping \n Container workbench-v1-web-egress-1 Stopped \n Container workbench-v1-admin-web-egress-1 Stopped \n Container workbench-v1-admin-model-gateway-1 Stopped \n Container workbench-v1-model-gateway-1 Stopped \n Container workbench-v1-admin-edge-preview-1 Creating \n Container workbench-v1-admin-edge-workbench-1 Creating \n Container workbench-v1-edge-preview-1 Recreate \n Container workbench-v1-edge-workbench-1 Recreate \n Container workbench-v1-admin-edge-workbench-1 Created \n Container workbench-v1-admin-edge-preview-1 Created \n Container workbench-v1-edge-workbench-1 Recreated \n Container workbench-v1-edge-preview-1 Recreated \n Container workbench-v1-model-gateway-1 Starting \n Container workbench-v1-web-egress-1 Starting \n Container workbench-v1-admin-model-gateway-1 Starting \n Container workbench-v1-admin-web-egress-1 Starting \n Container workbench-v1-web-egress-1 Started \n Container workbench-v1-model-gateway-1 Started \n Container workbench-v1-web-egress-1 Waiting \n Container workbench-v1-admin-web-egress-1 Started \n Container workbench-v1-model-gateway-1 Waiting \n Container workbench-v1-admin-model-gateway-1 Started \n Container workbench-v1-admin-model-gateway-1 Waiting \n Container workbench-v1-admin-web-egress-1 Waiting \n Container workbench-v1-model-gateway-1 Healthy \n Container workbench-v1-web-egress-1 Healthy \n Container workbench-v1-native-1 Starting \n Container workbench-v1-admin-model-gateway-1 Healthy \n Container workbench-v1-admin-web-egress-1 Healthy \n Container workbench-v1-admin-native-1 Starting \n Container workbench-v1-native-1 Started \n Container workbench-v1-native-firewall-1 Starting \n Container workbench-v1-admin-native-1 Started \n Container workbench-v1-admin-native-firewall-1 Starting \n Container workbench-v1-native-firewall-1 Started \n Container workbench-v1-native-firewall-1 Waiting \n Container workbench-v1-admin-native-firewall-1 Started \n Container workbench-v1-admin-native-firewall-1 Waiting \n Container workbench-v1-native-firewall-1 Exited \n Container workbench-v1-native-guard-1 Starting \n Container workbench-v1-admin-native-firewall-1 Exited \n Container workbench-v1-admin-native-guard-1 Starting \n Container workbench-v1-native-guard-1 Started \n Container workbench-v1-admin-native-guard-1 Started \n Container workbench-v1-native-guard-1 Waiting \n Container workbench-v1-admin-native-guard-1 Waiting \n Container workbench-v1-admin-native-guard-1 Healthy \n Container workbench-v1-native-guard-1 Healthy \n Container workbench-v1-platform-1 Starting \n Container workbench-v1-platform-1 Started \n Container workbench-v1-edge-preview-1 Starting \n Container workbench-v1-edge-workbench-1 Starting \n Container workbench-v1-admin-edge-workbench-1 Starting \n Container workbench-v1-admin-edge-preview-1 Starting \n Container workbench-v1-edge-workbench-1 Started \n Container workbench-v1-admin-edge-workbench-1 Started \n Container workbench-v1-edge-preview-1 Started \n Container workbench-v1-admin-edge-preview-1 Started \n Container workbench-v1-admin-native-guard-1 Waiting \n Container workbench-v1-admin-model-gateway-1 Waiting \n Container workbench-v1-admin-native-1 Waiting \n Container workbench-v1-admin-web-egress-1 Waiting \n Container workbench-v1-admin-edge-workbench-1 Waiting \n Container workbench-v1-native-guard-1 Waiting \n Container workbench-v1-native-firewall-1 Waiting \n Container workbench-v1-platform-1 Waiting \n Container workbench-v1-admin-native-firewall-1 Waiting \n Container workbench-v1-edge-preview-1 Waiting \n Container workbench-v1-edge-workbench-1 Waiting \n Container workbench-v1-admin-edge-preview-1 Waiting \n Container workbench-v1-native-1 Waiting \n Container workbench-v1-web-egress-1 Waiting \n Container workbench-v1-model-gateway-1 Waiting \n Container workbench-v1-admin-native-firewall-1 Exited \n Container workbench-v1-admin-native-guard-1 Healthy \n Container workbench-v1-admin-edge-workbench-1 Healthy \n Container workbench-v1-native-firewall-1 Exited \n Container workbench-v1-edge-preview-1 Healthy \n Container workbench-v1-model-gateway-1 Healthy \n Container workbench-v1-native-1 Healthy \n Container workbench-v1-native-guard-1 Healthy \n Container workbench-v1-admin-model-gateway-1 Healthy \n Container workbench-v1-web-egress-1 Healthy \n Container workbench-v1-platform-1 Healthy \n Container workbench-v1-admin-native-1 Healthy \n Container workbench-v1-admin-web-egress-1 Healthy \n Container workbench-v1-edge-workbench-1 Healthy \n Container workbench-v1-admin-edge-preview-1 Healthy \nCold backup (includes protected credentials): /home/aisvr/mnt/sda/programs/WorkBench-v1/backups/runtime-20260918-130226.tar.gz\nWorkBench: https://10.243.117.57:8443/\nNetID: mj33kd (no local fallback)\nClient root certificate: /home/aisvr/mnt/sda/programs/WorkBench-v1/runtime/ca.crt\nBrowser trust and actual NetID login: NOT_YET_ACCEPTED\nAdministrator: https://10.243.117.57:8447/\nPreview is authorized from WorkBench; no client hosts changes required.\n",
+  "administratorPasswordUnchanged": true,
+  "nativeContainersRebuilt": false,
+  "nativeRestartedForColdBackup": true,
+  "realAdministratorCorrectPasswordAndUserBrowserAcceptance": "NOT_RUN_private_password_and_client_trust_required"
+}
