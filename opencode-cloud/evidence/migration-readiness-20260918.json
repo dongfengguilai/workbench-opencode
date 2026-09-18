@@ -1,0 +1,21 @@
+{
+  "time": "2026-09-18T00:32:20.523998+00:00",
+  "kind": "read_only_migration_readiness_inspection",
+  "status": "TARGET_DEPLOYMENT_NOT_VERIFIED",
+  "currentVersion": "be4155db00fc7a696279996e7b9bc7597152715e",
+  "verifiedLocalScope": [
+    "real local account login and native Qwen coding",
+    "owned localhost iframe preview and source delivery evidence already recorded"
+  ],
+  "migrationBlockers": [
+    "preview-origin.mjs generates localhost origins; remote paired HTTPS origins not implemented or verified",
+    "local-browser.mjs accepts fixed upstream https://192.168.142.130:8443; copied relay cannot target a new origin",
+    "compose.yaml egress proxy fixed to 192.168.56.1:7890; target connectivity unknown",
+    "configure-qwen.py fixed Qwen endpoint 10.243.117.57:4003; target connectivity unknown",
+    "built UI and Docker images plus protected runtime data must be shipped independently of Git",
+    "target SSH/OS/domain/certificate not supplied; target login and persistence not tested"
+  ],
+  "authentication": "actual local accounts are active; NetID is not configured/accepted",
+  "remainingAcceptance": "target-server real complete workflow and user A10 signoff",
+  "deploymentPerformed": false
+}

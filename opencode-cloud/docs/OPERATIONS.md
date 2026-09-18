@@ -1,5 +1,7 @@
 # 固定试用部署
 
+**新服务器 V1 尚未部署。** `/home/aisvr/mnt/sda/programs/WorkBench-v1` 的实际预检、HTTPS 阻塞及所需材料见 [V1-DEPLOYMENT.md](V1-DEPLOYMENT.md)。下方是现有本机试用流程，不是新的 NetID 一键部署包；不要在目标服务器照此初始化旧两用户／Luna 配置。
+
 所有命令从仓库的 `opencode-cloud` 目录执行。Linux x86_64、Docker/Compose >=2.40（!override）、Git、Python3、OpenSSL、util-linux/e2fsprogs、共享传播宿主挂载、loop 设备为真实要求。Docker 控制权限只在维护者侧，平台和工作容器没有 Socket。旧 agent_platform 不参与运行。
 
 ## 新部署

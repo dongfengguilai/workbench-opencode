@@ -1,0 +1,14 @@
+{
+  "time": "2026-09-18T01:07:44.533619+00:00",
+  "kind": "local_filesystem_safety_tests_not_target_acceptance",
+  "command": "python3 opencode-cloud/test/v1-preflight.test.py",
+  "exitCode": 0,
+  "scope": [
+    "nonempty directory untouched",
+    "missing directory not created",
+    "symlink and regular file rejected",
+    "missing HTTPS never accepted"
+  ],
+  "externalAcceptance": "NOT_RUN",
+  "probeSha256": "b76cebc96cd3d1b55a930ed8ef7e2ae773ea2c7c3c1ed594615e9abe0ae0330f"
+}

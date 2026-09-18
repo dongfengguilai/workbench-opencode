@@ -1,0 +1,11 @@
+test_dangling_install_symlink_rejected (__main__.PreflightSafety.test_dangling_install_symlink_rejected) ... ok
+test_existing_unknown_data_is_rejected_and_unchanged (__main__.PreflightSafety.test_existing_unknown_data_is_rejected_and_unchanged) ... ok
+test_missing_directory_is_not_created (__main__.PreflightSafety.test_missing_directory_is_not_created) ... ok
+test_missing_https_is_never_accepted (__main__.PreflightSafety.test_missing_https_is_never_accepted) ... ok
+test_regular_file_install_target_rejected (__main__.PreflightSafety.test_regular_file_install_target_rejected) ... ok
+test_symlink_ancestor_rejected (__main__.PreflightSafety.test_symlink_ancestor_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.002s
+
+OK

@@ -1,0 +1,145 @@
+{
+  "time": "2026-09-18T01:08:17.925699+00:00",
+  "kind": "read_only_v1_target_infrastructure_preflight",
+  "status": "BLOCKED_PREREQUISITES",
+  "deploymentPerformed": false,
+  "acceptance": "NOT_RUN",
+  "intendedDeployment": {
+    "installPath": "/home/aisvr/mnt/sda/programs/WorkBench-v1",
+    "composeProject": "workbench-v1",
+    "netidAllowlist": [
+      "mj33kd"
+    ],
+    "adminDailyLimit": 100000,
+    "model": "Qwen3.6-35B-A3B",
+    "freshData": true
+  },
+  "directory": {
+    "path": "/home/aisvr/mnt/sda/programs/WorkBench-v1",
+    "exists": false,
+    "nearestExistingParent": "/home/aisvr/mnt/sda/programs",
+    "symlinks": [],
+    "parentWritable": true,
+    "freeBytes": 926755151872,
+    "existingEntries": null,
+    "blockers": []
+  },
+  "mount": {
+    "target": "/home/aisvr/mnt/sda",
+    "source": "/dev/sda1",
+    "fstype": "ext4",
+    "options": "rw,relatime",
+    "propagation": "shared"
+  },
+  "tools": {
+    "docker": "/usr/bin/docker",
+    "git": "/usr/bin/git",
+    "openssl": "/usr/bin/openssl",
+    "findmnt": "/usr/bin/findmnt",
+    "losetup": "/usr/sbin/losetup",
+    "mkfs.ext4": "/usr/sbin/mkfs.ext4",
+    "mount": "/usr/bin/mount"
+  },
+  "docker": {
+    "exitCode": 0,
+    "stdout": "29.6.2\n",
+    "stderr": ""
+  },
+  "compose": {
+    "exitCode": 0,
+    "stdout": "5.3.1\n",
+    "stderr": ""
+  },
+  "loopControl": true,
+  "sudoNoninteractive": {
+    "exitCode": 1,
+    "stdout": "",
+    "stderr": "sudo: a password is required\n"
+  },
+  "existingContainersBefore": {
+    "exitCode": 0,
+    "stdout": "3460b749cb3562072c9d1b8ec2f0031752849a76386a820a67c5d8040f40d054 /qwen3.6 sha256:5aaa33f13fd0d7b79add91465ac84ff7df099a404a3751ca6c089ec4617d70f2 2026-09-17T00:20:35.5377441Z\nd2ab2f48034045ace598291832a9c20ab7cf10ffba37a2996173f1b34eb66a44 /stirling-pdf sha256:3b3670fce70b396ec56ba380a3cc7858e0abf83fe13f31c88f7737847763a396 2026-09-08T05:20:10.329944849Z\n6f93ef85ff557e0f63e63fc90bf2d03c7df2c45af12a0a629f4a2420015fb549 /drawing_mark_apn_staging-drawing-analysis-1 sha256:c30f67d01783630e7fd0959730dd3494b4cdf9c4286081f256fa80959eedcf16 2026-09-04T07:13:58.792774078Z\na5f7abcdb4a785d4990d7924656fd25e415a07300adc78ac084bba5db4a6d840 /drawing_engineering_change_produce-drawing-analysis-1 sha256:421226ef9047627ee994d58eb94a17f61c27b1064bbbef7dde4abbacaa594518 2026-08-28T01:57:46.084036557Z\n4efa900d7fd33abb3fb762bf86248fb61cb7a257026cdf7b3558e36b895d1cac /vllm-iharness-engineering-change sha256:d5b12dfb74d605615f8b29ebafaa52294c118bcac7bc9e941785c4108fdb913a 2026-08-28T01:03:30.000771492Z\n2bc75499cbc6125d01d7e2365c2486074cd9dc3f3a362d9a704cb106014a66f4 /drawing_compare_produce-drawing-analysis-1 sha256:e9ddf9b7cc82e17bc0d99f5b10c7efea605890899597d2612ff19e93cca2ca10 2026-08-12T01:09:47.960093095Z\n5abf1f780527b41613a112c1ac0b5be0bb5f1e0b01e045a88db26b0577b45950 /drawing_analysis_produce-drawing-analysis-1 sha256:b0777c17691762ac83282b9abd4bb9e5a189c68c21e82e5e902f038f2f1eeac7 2026-08-12T01:09:19.39241735Z\n9261f5637140a43128c142ac18f725016dbab64e3071afb5131e1dc3ff42cc6d /iharness_tools_produce-iharness_tools-1 sha256:be56f3eac3215da9252f36b08df4ac4e4c0e7152e820e830211fe9f6d12d3628 2026-08-11T03:20:54.824630209Z\n",
+    "stderr": ""
+  },
+  "existingContainersAfter": {
+    "exitCode": 0,
+    "stdout": "3460b749cb3562072c9d1b8ec2f0031752849a76386a820a67c5d8040f40d054 /qwen3.6 sha256:5aaa33f13fd0d7b79add91465ac84ff7df099a404a3751ca6c089ec4617d70f2 2026-09-17T00:20:35.5377441Z\nd2ab2f48034045ace598291832a9c20ab7cf10ffba37a2996173f1b34eb66a44 /stirling-pdf sha256:3b3670fce70b396ec56ba380a3cc7858e0abf83fe13f31c88f7737847763a396 2026-09-08T05:20:10.329944849Z\n6f93ef85ff557e0f63e63fc90bf2d03c7df2c45af12a0a629f4a2420015fb549 /drawing_mark_apn_staging-drawing-analysis-1 sha256:c30f67d01783630e7fd0959730dd3494b4cdf9c4286081f256fa80959eedcf16 2026-09-04T07:13:58.792774078Z\na5f7abcdb4a785d4990d7924656fd25e415a07300adc78ac084bba5db4a6d840 /drawing_engineering_change_produce-drawing-analysis-1 sha256:421226ef9047627ee994d58eb94a17f61c27b1064bbbef7dde4abbacaa594518 2026-08-28T01:57:46.084036557Z\n4efa900d7fd33abb3fb762bf86248fb61cb7a257026cdf7b3558e36b895d1cac /vllm-iharness-engineering-change sha256:d5b12dfb74d605615f8b29ebafaa52294c118bcac7bc9e941785c4108fdb913a 2026-08-28T01:03:30.000771492Z\n2bc75499cbc6125d01d7e2365c2486074cd9dc3f3a362d9a704cb106014a66f4 /drawing_compare_produce-drawing-analysis-1 sha256:e9ddf9b7cc82e17bc0d99f5b10c7efea605890899597d2612ff19e93cca2ca10 2026-08-12T01:09:47.960093095Z\n5abf1f780527b41613a112c1ac0b5be0bb5f1e0b01e045a88db26b0577b45950 /drawing_analysis_produce-drawing-analysis-1 sha256:b0777c17691762ac83282b9abd4bb9e5a189c68c21e82e5e902f038f2f1eeac7 2026-08-12T01:09:19.39241735Z\n9261f5637140a43128c142ac18f725016dbab64e3071afb5131e1dc3ff42cc6d /iharness_tools_produce-iharness_tools-1 sha256:be56f3eac3215da9252f36b08df4ac4e4c0e7152e820e830211fe9f6d12d3628 2026-08-11T03:20:54.824630209Z\n",
+    "stderr": ""
+  },
+  "existingContainersUnchanged": true,
+  "model": {
+    "httpStatus": 200,
+    "responseTruncated": false,
+    "modelIds": [
+      "Qwen3.6-35B-A3B"
+    ],
+    "inferenceAcceptance": "NOT_RUN"
+  },
+  "netid": {
+    "httpStatus": 500,
+    "purpose": "GET_route_probe_only_not_password_login",
+    "loginAcceptance": "NOT_RUN"
+  },
+  "ingress": {
+    "baseDomain": null,
+    "browserAcceptance": "NOT_RUN",
+    "blockers": [
+      "HTTPS_BASE_DOMAIN_MISSING",
+      "HTTPS_CERTIFICATE_AND_KEY_MISSING"
+    ]
+  },
+  "egressApprovedCA": null,
+  "publicHTTPS": {
+    "wttr.in": {
+      "httpStatus": null,
+      "error": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1000)>",
+      "peerChainDiagnostics": {
+        "purpose": "untrusted_peer_chain_diagnostics_only",
+        "certificates": [
+          {
+            "sha256": "af64052d9d8ce07e978e558bcd5f488d3f5db1d318933a8fc18255b97ce29afe",
+            "metadata": "subject=CN = wttr.in\nissuer=O = Aptiv, CN = internet.aptiv.com\nnotBefore=Sep 16 07:23:58 2026 GMT\nnotAfter=Dec 15 07:23:57 2026 GMT"
+          },
+          {
+            "sha256": "3c81f93d51736da44e21621715dd65dd8ff42cc191e3b3b814dc1e41ceffe67b",
+            "metadata": "subject=O = Aptiv, CN = internet.aptiv.com\nissuer=O = Aptiv, CN = internet.aptiv.com\nnotBefore=Apr 24 14:41:23 2018 GMT\nnotAfter=Jul 24 14:41:23 2036 GMT"
+          }
+        ],
+        "verificationDiagnostics": "depth=1 O = Aptiv, CN = internet.aptiv.com\nverify error:num=19:self-signed certificate in certificate chain\nverify return:1\ndepth=1 O = Aptiv, CN = internet.aptiv.com\nverify return:1\ndepth=0 CN = wttr.in\nverify return:1\nDONE\n",
+        "error": null
+      }
+    },
+    "playwright.dev": {
+      "httpStatus": null,
+      "error": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1000)>",
+      "peerChainDiagnostics": {
+        "purpose": "untrusted_peer_chain_diagnostics_only",
+        "certificates": [
+          {
+            "sha256": "491100929edb6df945fd6dc94b724e9a5ffc84c44564e68d89e92fc3a775a592",
+            "metadata": "subject=CN = playwright.dev\nissuer=O = Aptiv, CN = internet.aptiv.com\nnotBefore=Aug 20 22:29:21 2026 GMT\nnotAfter=Nov 18 22:29:20 2026 GMT"
+          },
+          {
+            "sha256": "3c81f93d51736da44e21621715dd65dd8ff42cc191e3b3b814dc1e41ceffe67b",
+            "metadata": "subject=O = Aptiv, CN = internet.aptiv.com\nissuer=O = Aptiv, CN = internet.aptiv.com\nnotBefore=Apr 24 14:41:23 2018 GMT\nnotAfter=Jul 24 14:41:23 2036 GMT"
+          }
+        ],
+        "verificationDiagnostics": "depth=1 O = Aptiv, CN = internet.aptiv.com\nverify error:num=19:self-signed certificate in certificate chain\nverify return:1\ndepth=1 O = Aptiv, CN = internet.aptiv.com\nverify return:1\ndepth=0 CN = playwright.dev\nverify return:1\nDONE\n",
+        "error": null
+      }
+    }
+  },
+  "blockers": [
+    "HTTPS_BASE_DOMAIN_MISSING",
+    "HTTPS_CERTIFICATE_AND_KEY_MISSING",
+    "PUBLIC_HTTPS_UNVERIFIED:wttr.in",
+    "PUBLIC_HTTPS_UNVERIFIED:playwright.dev"
+  ],
+  "transport": {
+    "host": "aisvr@10.243.117.57",
+    "verifiedHostKey": "SHA256:vaZAzgarzwwAeMnEvev5PQwnlyxkq50TpTvYAJXwUZY",
+    "remoteExitCode": 2,
+    "probeSha256": "b76cebc96cd3d1b55a930ed8ef7e2ae773ea2c7c3c1ed594615e9abe0ae0330f",
+    "execution": "script sent through SSH stdin; no files installed on target"
+  }
+}
