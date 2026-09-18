@@ -48,8 +48,8 @@ export async function resolvePublicTarget(host,lookup=h=>dnsLookup(h,{all:true,v
  return addresses.find(item=>net.isIP(item.address)===4) ?? addresses[0];
 }
 
-export function createEgressGateway({proxyHost,proxyPort=7890,lookup,maxConcurrent=4,connectTimeout=10000,idleTimeout=120000,log=entry=>console.log(JSON.stringify(entry))}={}){
- if(!net.isIP(proxyHost)||!Number.isInteger(proxyPort)||proxyPort<1||proxyPort>65535) throw Error('Fixed administrator proxy IP/port required');
+export function createEgressGateway({proxyHost,proxyPort=7890,direct=false,lookup,maxConcurrent=4,connectTimeout=10000,idleTimeout=120000,log=entry=>console.log(JSON.stringify(entry))}={}){
+ if(!direct&&(!net.isIP(proxyHost)||!Number.isInteger(proxyPort)||proxyPort<1||proxyPort>65535)) throw Error('Fixed administrator proxy IP/port required');
  const sockets=new Set();let active=0;
  const server=http.createServer({maxHeaderSize:8192},(req,res)=>{
   if(req.method==='GET'&&req.url==='/health'&&['127.0.0.1','::1','::ffff:127.0.0.1'].includes(req.socket.remoteAddress)){
@@ -85,11 +85,22 @@ export function createEgressGateway({proxyHost,proxyPort=7890,lookup,maxConcurre
    const target=await resolvePublicTarget(host,lookup);address=target.address;
    if(finished||client.destroyed) return;
    const authority=(net.isIP(address)===6?`[${address}]`:address)+':443';
-   upstream=net.connect({host:proxyHost,port:proxyPort});
+   upstream=net.connect(direct?{host:address,port:443,family:net.isIP(address)}:{host:proxyHost,port:proxyPort});
    upstream.once('end',()=>client.end());
    upstream.on('error',()=>fail(502,'upstream_connection_error'));
    upstream.once('close',()=>{if(!finished&&(!established||!upstream.readableEnded))fail(502,'upstream_closed');});
-   upstream.once('connect',()=>upstream.write(`CONNECT ${authority} HTTP/1.1\r\nHost: ${authority}\r\n\r\n`));
+   function establish(remaining){
+    if(finished||client.destroyed)return;
+    upstream.pause();clearTimeout(timer);established=true;
+    log({host,address,port:443,result:'connected'});
+    client.setTimeout(idleTimeout,()=>fail(504,'tunnel_idle_timeout'));
+    upstream.setTimeout(idleTimeout,()=>fail(504,'tunnel_idle_timeout'));
+    client.write('HTTP/1.1 200 Connection Established\r\n\r\n');
+    if(head.length)upstream.write(head);
+    if(remaining?.length)upstream.unshift(remaining);
+    client.pipe(upstream);upstream.pipe(client);client.resume();upstream.resume();
+   }
+   upstream.once('connect',()=>direct?establish():upstream.write(`CONNECT ${authority} HTTP/1.1\r\nHost: ${authority}\r\n\r\n`));
    let buffer=Buffer.alloc(0);
    const receive=part=>{
     buffer=Buffer.concat([buffer,part]);const end=buffer.indexOf('\r\n\r\n');
@@ -97,18 +108,10 @@ export function createEgressGateway({proxyHost,proxyPort=7890,lookup,maxConcurre
     if(end<0)return;
     const status=/^HTTP\/1\.[01] (\d{3})(?: |\r\n)/.exec(buffer.toString('latin1',0,end+4));
     if(!status||Number(status[1])<200||Number(status[1])>=300){fail(502,'upstream_connect_rejected');return;}
-    upstream.off('data',receive);upstream.pause();clearTimeout(timer);
-    established=true;
-    log({host,address,port:443,result:'connected'});
-    client.setTimeout(idleTimeout,()=>fail(504,'tunnel_idle_timeout'));
-    upstream.setTimeout(idleTimeout,()=>fail(504,'tunnel_idle_timeout'));
-    client.write('HTTP/1.1 200 Connection Established\r\n\r\n');
-    if(head.length)upstream.write(head);
-    const remaining=buffer.subarray(end+4);if(remaining.length)upstream.unshift(remaining);
+    upstream.off('data',receive);establish(buffer.subarray(end+4));
     buffer=undefined;
-    client.pipe(upstream);upstream.pipe(client);client.resume();upstream.resume();
    };
-   upstream.on('data',receive);
+   if(!direct)upstream.on('data',receive);
   }catch(error){fail(['non_public_address','invalid_authority','https_443_only','invalid_hostname','invalid_connect_headers'].includes(error.message)?403:502,error.message==='dns_empty'?'dns_empty':error.code?'dns_lookup_failed':error.message);}
  });
  server.shutdown=()=>{for(const socket of sockets)socket.destroy();server.close();};
@@ -116,7 +119,7 @@ export function createEgressGateway({proxyHost,proxyPort=7890,lookup,maxConcurre
 }
 
 if(process.argv[1]&&pathToFileURL(process.argv[1]).href===import.meta.url){
- const server=createEgressGateway({proxyHost:process.env.UPSTREAM_PROXY_HOST,proxyPort:Number(process.env.UPSTREAM_PROXY_PORT||7890)});
+ const server=createEgressGateway({proxyHost:process.env.UPSTREAM_PROXY_HOST,proxyPort:Number(process.env.UPSTREAM_PROXY_PORT||7890),direct:process.env.EGRESS_MODE==='direct-public'});
  server.listen(8320,'0.0.0.0',()=>console.log(JSON.stringify({result:'ready',port:8320,policySha256:sources.derivedSha256})));
  for(const signal of ['SIGTERM','SIGINT'])process.once(signal,()=>server.shutdown());
 }

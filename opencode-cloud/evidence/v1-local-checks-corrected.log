@@ -1,0 +1,54 @@
+TAP version 13
+# Subtest: real verified platform loads; anonymous project stays protected
+ok 1 - real verified platform loads; anonymous project stays protected
+  ---
+  duration_ms: 104.725744
+  type: 'test'
+  ...
+# Subtest: wrong Host, external Origin, cross-site, missing write Origin and absolute target refused
+ok 2 - wrong Host, external Origin, cross-site, missing write Origin and absolute target refused
+  ---
+  duration_ms: 30.957538
+  type: 'test'
+  ...
+# Subtest: CONNECT and forged WebSocket origin refused
+ok 3 - CONNECT and forged WebSocket origin refused
+  ---
+  duration_ms: 25.136039
+  type: 'test'
+  ...
+# Subtest: wrong fingerprint cannot connect to real platform
+ok 4 - wrong fingerprint cannot connect to real platform
+  ---
+  duration_ms: 14.397964
+  type: 'test'
+  ...
+# Subtest: untrusted CA cannot connect to real platform
+ok 5 - untrusted CA cannot connect to real platform
+  ---
+  duration_ms: 4.587741
+  type: 'test'
+  ...
+# (node:19) ExperimentalWarning: Transform Types is an experimental feature and might change at any time
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: formal origins are maintained, separate, and never fall back for an unknown identity
+ok 6 - formal origins are maintained, separate, and never fall back for an unknown identity
+  ---
+  duration_ms: 0.75296
+  type: 'test'
+  ...
+# Subtest: NetID-only adapter sends the old protocol and rejects an absent real subject
+ok 7 - NetID-only adapter sends the old protocol and rejects an absent real subject
+  ---
+  duration_ms: 1.828966
+  type: 'test'
+  ...
+1..7
+# tests 7
+# suites 0
+# pass 7
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 503.050052

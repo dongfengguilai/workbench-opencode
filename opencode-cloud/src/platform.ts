@@ -6,15 +6,17 @@ import {forward,upgrade,error,readBody} from './native-proxy.ts';
 import {loadUi,uiPage} from './ui-assets.mjs';
 import {checkRequest} from './access-policy.ts';
 import {previewPlatform} from './preview-platform.ts';
-import {workbenchOrigin,previewOrigin} from './preview-origin.mjs';
+import {workbenchOrigin,previewOrigin,configureOrigins,formalOrigins} from './preview-origin.mjs';
 import {WorkbenchHandoff} from './workbench-handoff.mjs';
 import {sameSecret} from './preview-sessions.mjs';
-type User={password:string,displayName:string,enabled:boolean,environment:string,nativePassword:string};
-type Config={origin:string,sessionTtl:number,previewRelayKey?:string,users:Record<string,User>};
+type User={password?:string,displayName:string,enabled:boolean,environment:string,nativePassword:string};
+type Config={origin:string,sessionTtl:number,previewRelayKey?:string,users:Record<string,User>,publicOrigins?:Record<string,{workbench:string,preview:string}>,auth?:{mode:'netid',baseUrl:string}};
 type Session={user:string,expires:number};
 const configPath=process.env.PLATFORM_CONFIG||'/trusted/platform.json';
 function config():Config{return JSON.parse(readFileSync(configPath,'utf8'));}
 const initial=config();
+configureOrigins(initial.publicOrigins);
+if(initial.auth && (initial.auth.mode!=='netid'||!initial.auth.baseUrl||!initial.publicOrigins))throw Error('Invalid NetID-only deployment configuration');
 const origin=new URL(initial.origin);
 if(origin.protocol!=='https:')throw new Error('HTTPS origin required');
 mkdirSync('/platform-state',{recursive:true});
@@ -40,7 +42,7 @@ const anonymousAssets:Record<string,string>={'login.css':'text/css','login.js':'
 const previews=previewPlatform({parent:hash=>{const s=sessions[hash];const user=s&&config().users[s.user];return s&&s.expires>Date.now()&&user?.enabled?{hash,user,username:s.user}:undefined;},register,closeSession,relayKey:()=>config().previewRelayKey||''});
 const handoff=new WorkbenchHandoff({current:hash=>{const s=sessions[hash];return s&&s.expires>Date.now()&&config().users[s.user]?.enabled?s:undefined;}});
 function browserOrigin(req:any){return sameSecret(req.headers['x-workbench-browser-relay'],config().previewRelayKey||'')?req.headers['x-workbench-browser-origin']:undefined;}
-function ownedBrowser(req:any,username:string){const b=browserOrigin(req);return !b||b==='http://127.0.0.1:8444'||b===workbenchOrigin(username);}
+function ownedBrowser(req:any,username:string){const b=browserOrigin(req);return formalOrigins()?b===workbenchOrigin(username):!b||b==='http://127.0.0.1:8444'||b===workbenchOrigin(username);}
 const server=https.createServer({key:readFileSync('/trusted/tls.key'),cert:readFileSync('/trusted/tls.crt')},async(req,res)=>{
  res.setHeader('Cache-Control','no-store');res.setHeader('X-Content-Type-Options','nosniff');res.setHeader('Referrer-Policy','same-origin');
  if(req.headers.host!==origin.host){error(res,400,'Unrecognized platform origin');return;}
@@ -65,8 +67,9 @@ const server=https.createServer({key:readFileSync('/trusted/tls.key'),cert:readF
    const body=await readBody(req);const cfg=config();const name=typeof body?.username==='string'?body.username.trim():'';const user=cfg.users[name];
    if(!user?.enabled){error(res,401,'Invalid credentials');return;}
    if(!ownedBrowser(req,name)){error(res,403,'Identity belongs to another workbench origin');return;}
-   const auth=new IntranetAuthClient({intranetBaseUrl:'',intranetTimeoutSeconds:5,intranetVerifyTls:true,localAdminEnabled:true,localAdminUsername:name,localAdminPassword:user.password,localAdminDisplayName:user.displayName});
-   try{await auth.authenticate(name,body.password);}catch(e){error(res,e instanceof InvalidCredentialsError?401:503,'Authentication failed');return;}
+   if(initial.auth&&cfg.auth?.mode!=='netid'){error(res,503,'NetID-only configuration unavailable');return;}
+   const auth=new IntranetAuthClient({intranetBaseUrl:cfg.auth?.baseUrl||'',intranetTimeoutSeconds:10,intranetVerifyTls:true,localAdminEnabled:!cfg.auth,localAdminUsername:name,localAdminPassword:user.password||'',localAdminDisplayName:user.displayName,requireExplicitSubject:!!cfg.auth});
+   try{const verified=await auth.authenticate(name,body.password);if(cfg.auth&&(verified.provider!=='intranet'||verified.subject!==name)){error(res,403,'Authenticated NetID is not authorized for this environment');return;}}catch(e){error(res,e instanceof InvalidCredentialsError?401:503,'Authentication failed');return;}
    const previous=current(req);if(previous){delete sessions[previous.hash];closeSession(previous.hash);}
    const token=randomBytes(32).toString('base64url');sessions[sessionDigest(token)]={user:name,expires:Date.now()+cfg.sessionTtl*1000};persist();
    res.setHeader('Set-Cookie',`agent_session=${token}; Path=/; Max-Age=${cfg.sessionTtl}; HttpOnly; Secure; SameSite=Lax`);
@@ -117,7 +120,7 @@ const server=https.createServer({key:readFileSync('/trusted/tls.key'),cert:readF
   }
   if(p==='/__platform/me'&&req.method==='GET'){
    const health=await fetch(new URL('/global/health',opts.target),{headers:{Authorization:'Basic '+Buffer.from('opencode:'+opts.password).toString('base64')},signal:AbortSignal.timeout(5000)});
-   json(res,200,{user_id:identity.username,display_name:identity.user.displayName,project:'workbench-opencode',directory:'/workspace/project',ready:health.ok,project_url:'/L3dvcmtzcGFjZS9wcm9qZWN0/session'});return;
+   json(res,200,{user_id:identity.username,display_name:identity.user.displayName,project:'workbench-opencode',directory:'/workspace/project',ready:health.ok,project_url:'/L3dvcmtzcGFjZS9wcm9qZWN0/session',workbench_origin:workbenchOrigin(identity.username),preview_origin:previewOrigin(identity.username),embedded_preview:browserOrigin(req)===workbenchOrigin(identity.username)});return;
   }
   if(['/__platform/download','/__platform/changes'].includes(p)&&req.method==='GET'){
    const response=await fetch(new URL('/__export',opts.target),{headers:{Authorization:'Basic '+Buffer.from('opencode:'+opts.password).toString('base64')},signal:AbortSignal.timeout(60000)});

@@ -1,0 +1,14 @@
+{
+  "kind": "derived_from_real_original_native_messages",
+  "sessionID": "ses_f4dcf58e7ffeyqvvvs2CATg0Tw",
+  "nativeIdleAndAssistantComplete": true,
+  "modelRequests": 9,
+  "lastTestCommand": "node --test web/text.test.mjs",
+  "lastTestExitCode": 0,
+  "testPassCount": 3,
+  "earlierTestFailuresPreserved": 2,
+  "indexAndOriginalFilesUnchanged": true,
+  "rawEvidence": "v1-real-native-api-task.jsonl",
+  "realNetidLogin": "NOT_RUN",
+  "agentBrowserAcceptance": "NOT_RUN"
+}

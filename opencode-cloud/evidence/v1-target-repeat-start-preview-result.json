@@ -1,0 +1,61 @@
+{
+  "kind": "real_repeat_start_and_native_pty_preview",
+  "repeatStartExitCode": 0,
+  "repeatStartOutput": "WorkBench: https://10.243.117.57:8443/\nNetID: mj33kd (no local fallback)\nClient root certificate: /home/aisvr/mnt/sda/programs/WorkBench-v1/runtime/ca.crt\nBrowser trust and actual NetID login: NOT_YET_ACCEPTED\n",
+  "repeatStartDiagnostics": " Container workbench-v1-native-guard-1 Running \n Container workbench-v1-platform-1 Running \n Container workbench-v1-web-egress-1 Running \n Container workbench-v1-model-gateway-1 Running \n Container workbench-v1-native-1 Running \n Container workbench-v1-edge-workbench-1 Running \n Container workbench-v1-edge-preview-1 Running \n Container workbench-v1-model-gateway-1 Waiting \n Container workbench-v1-web-egress-1 Waiting \n Container workbench-v1-web-egress-1 Healthy \n Container workbench-v1-model-gateway-1 Healthy \n Container workbench-v1-native-firewall-1 Starting \n Container workbench-v1-native-firewall-1 Started \n Container workbench-v1-native-firewall-1 Waiting \n Container workbench-v1-native-firewall-1 Exited \n Container workbench-v1-native-guard-1 Waiting \n Container workbench-v1-native-guard-1 Healthy \n Container workbench-v1-platform-1 Waiting \n Container workbench-v1-web-egress-1 Waiting \n Container workbench-v1-model-gateway-1 Waiting \n Container workbench-v1-native-1 Waiting \n Container workbench-v1-native-firewall-1 Waiting \n Container workbench-v1-edge-workbench-1 Waiting \n Container workbench-v1-edge-preview-1 Waiting \n Container workbench-v1-native-guard-1 Waiting \n Container workbench-v1-native-guard-1 Healthy \n Container workbench-v1-edge-preview-1 Healthy \n Container workbench-v1-native-1 Healthy \n Container workbench-v1-web-egress-1 Healthy \n Container workbench-v1-platform-1 Healthy \n Container workbench-v1-native-firewall-1 Exited \n Container workbench-v1-model-gateway-1 Healthy \n Container workbench-v1-edge-workbench-1 Healthy \n",
+  "before": {
+    "native": "e4b30c81040ffc4c36ab3cafbe16e41cf1b605266bb5f9983439cd7c0a2cb05a sha256:264c89bb377c3fdd2d6c88ba857c3abe6ff20864314f31bc8e3717f42cb3fcd3 2026-09-18T01:40:44.369295746Z",
+    "messageSha256": "b44395a3c19f2102f47ab99cf6ea8cbf429d31627058f600db82a2d22988fb36",
+    "sourceSha256": {
+      "README.md": "2deeeae75be6928c35ecc3ed4b2a125886d9eb7aadaa84d1705a9ca933df924e",
+      ".gitignore": "70ae91a20a227421ec5979b2524037d303c905e9b4809891b6c0a554443834e8",
+      "web/index.html": "1514e92c634a22dc52390aaa419504706a1df01c710925d6c1cc6b7e0135d5c7",
+      "web/main.js": "9ce5612cabc33ef0bac916e12e9cee23f457b2ea6074ad977d5d450b447259de",
+      "web/text.mjs": "c66a9e249714de8b2ee8b7f9ca2f0eb031c7d2d12d54590c3ad9700ab9f12b3c",
+      "web/text.test.mjs": "8fb8637095d867671345bffc1997607ec7a3d4fdc22839e7f459b797c2004e92"
+    },
+    "indexSha256": "cfc7dff042573de651c16aee30f3313dc01e76119b53b664534e73b387f01350",
+    "budget": {
+      "day": "2026-09-18",
+      "count": 9
+    }
+  },
+  "after": {
+    "native": "e4b30c81040ffc4c36ab3cafbe16e41cf1b605266bb5f9983439cd7c0a2cb05a sha256:264c89bb377c3fdd2d6c88ba857c3abe6ff20864314f31bc8e3717f42cb3fcd3 2026-09-18T01:40:44.369295746Z",
+    "messageSha256": "b44395a3c19f2102f47ab99cf6ea8cbf429d31627058f600db82a2d22988fb36",
+    "sourceSha256": {
+      "README.md": "2deeeae75be6928c35ecc3ed4b2a125886d9eb7aadaa84d1705a9ca933df924e",
+      ".gitignore": "70ae91a20a227421ec5979b2524037d303c905e9b4809891b6c0a554443834e8",
+      "web/index.html": "1514e92c634a22dc52390aaa419504706a1df01c710925d6c1cc6b7e0135d5c7",
+      "web/main.js": "9ce5612cabc33ef0bac916e12e9cee23f457b2ea6074ad977d5d450b447259de",
+      "web/text.mjs": "c66a9e249714de8b2ee8b7f9ca2f0eb031c7d2d12d54590c3ad9700ab9f12b3c",
+      "web/text.test.mjs": "8fb8637095d867671345bffc1997607ec7a3d4fdc22839e7f459b797c2004e92"
+    },
+    "indexSha256": "cfc7dff042573de651c16aee30f3313dc01e76119b53b664534e73b387f01350",
+    "budget": {
+      "day": "2026-09-18",
+      "count": 9
+    }
+  },
+  "dataAndNativeUnchanged": true,
+  "previewExitCode": 0,
+  "preview": {
+    "status": 200,
+    "body": {
+      "web": {
+        "available": true,
+        "present": true,
+        "kind": "static",
+        "fingerprint": "601b04a796d813160a0376d6134d23ecd9e20cf596027082680b44239e016ddb"
+      },
+      "nativeBusy": false,
+      "running": true,
+      "pty": "pty_0b2360a40001Ifv0vpN4tbyH4X",
+      "port": 5173,
+      "directory": "/workspace/project/web",
+      "processState": "running"
+    }
+  },
+  "previewDiagnostics": "",
+  "netidLoginAcceptance": "NOT_RUN"
+}

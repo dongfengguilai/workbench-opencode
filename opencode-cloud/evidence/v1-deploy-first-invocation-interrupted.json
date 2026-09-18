@@ -1,0 +1,8 @@
+{
+  "kind": "deployment_invocation_blocker",
+  "status": "INTERRUPTED_AT_MODEL_KEY_PROMPT",
+  "reason": "SSH child inherited Python heredoc stdin instead of the controlling terminal; no credential was delivered to the remote prompt",
+  "action": "Interrupt only SSH invocation; rerun same idempotent deploy command with tty stdin",
+  "networkChecksRepeated": false,
+  "netidLoginAcceptance": "NOT_RUN"
+}

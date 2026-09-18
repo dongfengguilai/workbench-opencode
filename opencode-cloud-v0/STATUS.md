@@ -1,4 +1,18 @@
-# 当前交付状态：BLOCKED_EXTERNAL
+# 当前交付状态：IN_PROGRESS
+
+2026-09-18 企业内网 V1 已实际部署并启动：目录 `/home/aisvr/mnt/sda/programs/WorkBench-v1`，Compose `workbench-v1`，全新独立数据，只有 NetID `mj33kd`，Qwen-only，管理员日上限100,000。用户仅开放外网，没有重启。**当前等待本人安装根证书并实际 NetID 登录；尚未标记完整闭环通过或 A10 签收。** 无需公网域名，未更改 Codex 的全局 TLS／证书数据库。
+
+- 用户现在能做：取得完整离线包与专用公开根证书；工作台 `https://10.243.117.57:8443/` 已启动，服务器侧及当前机器用专用根证书正常校验链／IP并取得登录页 HTTP200。安装客户端信任后可尝试本人 NetID 登录，不保存 NetID 密码、没有本地账号回退。操作说明 `opencode-cloud/docs/V1-INTRANET.md`。本人静态网页已由真实 Qwen 创建并通过原生 Bash 的3项标准库测试，预览经原生PTY健康启动；这些为维护者原生验证，不能冒充用户登录或浏览器预览通过。
+- 真实保护与状态：上传前确认目录不存在、无符号链接且可写，包摘要核对后才解压；原有八个业务容器 ID／镜像／启动时间未变，不重启同机模型。新环境索引与 README／.gitignore 在真实任务前后不变，仅新增 web/ 四文件；9次真实模型请求计数保留。再次 `./deploy.sh` 退出0，Native容器／全部消息／源码／索引／计数均完全不变，无初始化或force-recreate。旧本机环境／用户图片未发布、重启或覆盖。
+- 尚不能宣称通过：真实 NetID 正确／错误密码和主体返回尚 NOT_RUN，用户浏览器信任／右侧iframe、HMR／WS、鉴权下载ZIP／补丁与干净复现、原生CLI浏览器截图，以及目标机停止／冷备／恢复／制品回滚和维护重启的真实验收均待登录检查点通过后继续。本轮按用户要求只复测两项网络条件及必要部署／真实任务／重复启动，不跑大矩阵。双NetID尚无第二身份，IP入口显式限制单身份，不标多用户隔离通过。
+- 真实证据：`v1-network-opened-recheck-20260918.json`（两项200，早先出站链失败原样保留）、`v1-target-upload-result.json`、`v1-target-first-deploy.log`与`v1-target-first-deploy-result.json`、`v1-target-client-https-result.json`、`v1-real-native-api-task.jsonl`、`v1-target-repeat-start-preview-result.json`；UI构建／类型检查 `v1-intranet-ui-*`。原生CLI附着返回Session not found且未调模型的失败在`v1-real-native-qwen-task*`保留；其会话创建契约带guard禁止字段，未放宽guard，使用工作台同样的原生V1会话接口完成真实Qwen任务。第一次SSH交互stdin问题在`v1-deploy-first-invocation-interrupted.json`保留，修正终端输入后同一包首次部署成功。初始Git索引stat缓存刷新发生在维护者第一次git status，未修改暂存内容；后续保护快照采用no-optional-locks。
+- 制品：`/home/vmware/Workspace/projects/experiments/Workbench_space/releases/workbench-v1-20260918-rc2.tar.gz`，1,044,615,904字节，SHA256 `ad9102e7d88d0b14747a67132f132eb6627e07babb15384f1ff4b6f32b5b67b2`；见`opencode-cloud/evidence/v1-bundle-result.json`。完整源码／固定OpenCode1.18.31及CLI0.1.20镜像／951个UI资源／原源码归档与Bun来源均在包内，源文件与制品逐项摘要，不含已有数据、模型私密配置或登录密码。首次开发候选包另保留，不作为本次部署包。公开根证书 `releases/WorkBench-v1-root.crt`，文件摘要 `ba55ae5804689f070b19255a51ec2d7ebc1219987cd7cda30c3dabb09ca6d2b4`，私钥只保存在目标runtime，不分发。
+- 下一步只解除真实 NetID 登录检查点：由用户按说明信任受控部署生成的根证书，用mj33kd与本人NetID密码登录；不要在聊天提供密码。成功或具体错误反馈后再继续该用户的预览／下载／持久化验收。A10仍由用户签收。
+
+
+## 已解决的部署前置阻塞历史（以下不是当前状态）
+
+2026-09-18 用户补充：产品只面向企业内网，无现成域名／入口证书。公网域名不是必要条件，此前把基础域名作为唯一部署路径过于严格。后续以支持内网 IP 的单 NetID 部署为候选，工作台与预览仍保持不同来源；可生成 WorkBench 专用私有 CA 与含 IP SAN 的入口证书，但客户端必须明确安装／信任该 CA，不能把自签证书自动当成已被浏览器信任。此模式尚未实现或验收，不修改 Codex 的全局校验或证书数据库。用户正准备重启服务器更新网络；等待其完成通知后再复测 SSH、原有容器／Qwen 和出站 TLS。服务器出站网络信任与用户浏览器入口信任是两项独立条件。
 
 2026-09-18 WorkBench V1 新服务器实施检查：已实现只读预检并通过 SSH 在 `aisvr@10.243.117.57` 实际运行，退出 2，在正式 HTTPS 条件阻塞处停止。**尚未安装产品，尚未完成一键压缩包或 NetID 接入，不能标记交付。** 最新需求是全新数据，不执行下方历史记录中的旧数据迁移方案。
 

@@ -1,0 +1,338 @@
+{
+  "name": "workbench-v1",
+  "services": {
+    "model-gateway": {
+      "image": "node:22.19.0-bookworm-slim@sha256:4a4884e8a44826194dff92ba316264f392056cbe243dcc9fd3551e71cea02b90",
+      "user": "1000:1000",
+      "command": [
+        "node",
+        "--experimental-strip-types",
+        "/app/model-gateway.ts"
+      ],
+      "env_file": "./runtime/gateway.env",
+      "volumes": [
+        "./src/model-gateway.ts:/app/model-gateway.ts:ro",
+        "./runtime/gateway-state:/gateway-state"
+      ],
+      "networks": [
+        "native",
+        "model-egress"
+      ],
+      "read_only": true,
+      "cap_drop": [
+        "ALL"
+      ],
+      "security_opt": [
+        "no-new-privileges:true"
+      ],
+      "mem_limit": "256m",
+      "pids_limit": 64,
+      "healthcheck": {
+        "test": [
+          "CMD",
+          "node",
+          "-e",
+          "fetch('http://localhost:8318/health').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"
+        ],
+        "interval": "5s",
+        "timeout": "3s",
+        "retries": 10
+      },
+      "extra_hosts": [
+        "host.docker.internal:host-gateway"
+      ],
+      "restart": "unless-stopped"
+    },
+    "web-egress": {
+      "image": "node:22.19.0-bookworm-slim@sha256:4a4884e8a44826194dff92ba316264f392056cbe243dcc9fd3551e71cea02b90",
+      "user": "1000:1000",
+      "command": [
+        "node",
+        "/app/web-egress.mjs"
+      ],
+      "environment": {
+        "EGRESS_MODE": "direct-public"
+      },
+      "volumes": [
+        "./src/web-egress.mjs:/app/web-egress.mjs:ro",
+        "./src/egress-policy:/app/egress-policy:ro"
+      ],
+      "networks": [
+        "native",
+        "model-egress"
+      ],
+      "read_only": true,
+      "cap_drop": [
+        "ALL"
+      ],
+      "security_opt": [
+        "no-new-privileges:true"
+      ],
+      "mem_limit": "128m",
+      "cpus": 0.5,
+      "pids_limit": 32,
+      "healthcheck": {
+        "test": [
+          "CMD",
+          "node",
+          "-e",
+          "fetch('http://127.0.0.1:8320/health').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"
+        ],
+        "interval": "5s",
+        "timeout": "3s",
+        "retries": 10
+      },
+      "restart": "unless-stopped"
+    },
+    "native": {
+      "image": "${WORKBENCH_NATIVE_IMAGE:-opencode-cloud/native:1.18.31-browser-v1}",
+      "command": [
+        "opencode",
+        "serve",
+        "--hostname",
+        "127.0.0.1",
+        "--port",
+        "4030"
+      ],
+      "init": true,
+      "env_file": "./runtime/native.env",
+      "environment": {
+        "HTTPS_PROXY": "http://web-egress:8320",
+        "https_proxy": "http://web-egress:8320",
+        "HTTP_PROXY": "http://web-egress:8320",
+        "http_proxy": "http://web-egress:8320",
+        "ALL_PROXY": "",
+        "all_proxy": "",
+        "NO_PROXY": "localhost,127.0.0.1,::1,model-gateway",
+        "no_proxy": "localhost,127.0.0.1,::1,model-gateway"
+      },
+      "volumes": [
+        "./runtime/project:/workspace/project",
+        "./runtime/state:/state",
+        "./runtime/opencode.json:/trusted/opencode.json:ro",
+        "./runtime/browser.json:/trusted/browser.json:ro",
+        "./browser-tools/vite.config.mjs:/trusted/vite.config.mjs:ro",
+        "./browser-tools/start-preview.sh:/trusted/start-preview.sh:ro",
+        "./browser-tools/BROWSER_USAGE.md:/trusted/BROWSER_USAGE.md:ro"
+      ],
+      "networks": [
+        "native"
+      ],
+      "depends_on": {
+        "model-gateway": {
+          "condition": "service_healthy"
+        },
+        "web-egress": {
+          "condition": "service_healthy"
+        }
+      },
+      "read_only": true,
+      "tmpfs": [
+        "/tmp:rw,nosuid,nodev,size=256m"
+      ],
+      "cap_drop": [
+        "ALL"
+      ],
+      "security_opt": [
+        "no-new-privileges:true"
+      ],
+      "cpus": 2,
+      "mem_limit": "2g",
+      "pids_limit": 256,
+      "restart": "unless-stopped"
+    },
+    "native-firewall": {
+      "image": "opencode-cloud/native:1.18.31-managed-v0",
+      "user": "0:0",
+      "network_mode": "service:native",
+      "command": [
+        "sh",
+        "-c",
+        "iptables -C OUTPUT -p tcp --dport 4030 -m owner --uid-owner 1000 -j REJECT 2>/dev/null || iptables -I OUTPUT 1 -p tcp --dport 4030 -m owner --uid-owner 1000 -j REJECT"
+      ],
+      "cap_drop": [
+        "ALL"
+      ],
+      "cap_add": [
+        "NET_ADMIN"
+      ],
+      "read_only": true,
+      "depends_on": [
+        "native"
+      ]
+    },
+    "native-guard": {
+      "image": "opencode-cloud/native:1.18.31-managed-v0",
+      "user": "1001:1001",
+      "command": [
+        "node",
+        "--experimental-strip-types",
+        "/app/environment-guard.ts"
+      ],
+      "network_mode": "service:native",
+      "env_file": "./runtime/native.env",
+      "environment": {
+        "GIT_CONFIG_COUNT": "1",
+        "GIT_CONFIG_KEY_0": "safe.directory",
+        "GIT_CONFIG_VALUE_0": "/workspace/project"
+      },
+      "volumes": [
+        "./src:/app:ro",
+        "./runtime/project:/workspace/project:ro"
+      ],
+      "tmpfs": [
+        "/tmp:rw,nosuid,nodev,size=128m"
+      ],
+      "read_only": true,
+      "cap_drop": [
+        "ALL"
+      ],
+      "security_opt": [
+        "no-new-privileges:true"
+      ],
+      "mem_limit": "256m",
+      "pids_limit": 64,
+      "healthcheck": {
+        "test": [
+          "CMD",
+          "node",
+          "-e",
+          "fetch('http://localhost:4096/global/health',{headers:{Authorization:'Basic '+Buffer.from('opencode:'+process.env.OPENCODE_SERVER_PASSWORD).toString('base64')},signal:AbortSignal.timeout(5000)}).then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"
+        ],
+        "interval": "2s",
+        "timeout": "6s",
+        "retries": 30,
+        "start_period": "3s"
+      },
+      "depends_on": {
+        "native-firewall": {
+          "condition": "service_completed_successfully"
+        }
+      },
+      "restart": "unless-stopped"
+    },
+    "platform": {
+      "image": "opencode-cloud/native:1.18.31-managed-v0",
+      "command": [
+        "node",
+        "--experimental-transform-types",
+        "/app/platform.ts"
+      ],
+      "user": "1000:1000",
+      "environment": {
+        "PLATFORM_UI": "${PLATFORM_UI:-workbench}"
+      },
+      "networks": [
+        "frontend",
+        "native"
+      ],
+      "volumes": [
+        "./src:/app:ro",
+        "./public:/public:ro",
+        "./runtime/platform.json:/trusted/platform.json:ro",
+        "./runtime/tls.key:/trusted/tls.key:ro",
+        "./runtime/tls.crt:/trusted/tls.crt:ro",
+        "./runtime/platform-state:/platform-state"
+      ],
+      "tmpfs": [
+        "/tmp:rw,nosuid,nodev,size=64m"
+      ],
+      "read_only": true,
+      "cap_drop": [
+        "ALL"
+      ],
+      "security_opt": [
+        "no-new-privileges:true"
+      ],
+      "mem_limit": "256m",
+      "pids_limit": 64,
+      "depends_on": {
+        "native-guard": {
+          "condition": "service_healthy"
+        }
+      },
+      "restart": "unless-stopped"
+    },
+    "edge-workbench": {
+      "image": "node:22.19.0-bookworm-slim@sha256:4a4884e8a44826194dff92ba316264f392056cbe243dcc9fd3551e71cea02b90",
+      "user": "1000:1000",
+      "command": [
+        "node",
+        "/app/v1-edge.mjs"
+      ],
+      "environment": {
+        "EDGE_ROLE": "workbench"
+      },
+      "volumes": [
+        "./src:/app:ro",
+        "./runtime/edge.json:/trusted/edge.json:ro",
+        "./runtime/ca.crt:/trusted/ca.crt:ro",
+        "./runtime/edge.key:/trusted/edge.key:ro",
+        "./runtime/edge.crt:/trusted/edge.crt:ro"
+      ],
+      "ports": [
+        "8443:8443"
+      ],
+      "networks": [
+        "frontend"
+      ],
+      "depends_on": [
+        "platform"
+      ],
+      "read_only": true,
+      "cap_drop": [
+        "ALL"
+      ],
+      "security_opt": [
+        "no-new-privileges:true"
+      ],
+      "mem_limit": "128m",
+      "pids_limit": 32,
+      "restart": "unless-stopped"
+    },
+    "edge-preview": {
+      "image": "node:22.19.0-bookworm-slim@sha256:4a4884e8a44826194dff92ba316264f392056cbe243dcc9fd3551e71cea02b90",
+      "user": "1000:1000",
+      "command": [
+        "node",
+        "/app/v1-edge.mjs"
+      ],
+      "environment": {
+        "EDGE_ROLE": "preview"
+      },
+      "volumes": [
+        "./src:/app:ro",
+        "./runtime/edge.json:/trusted/edge.json:ro",
+        "./runtime/ca.crt:/trusted/ca.crt:ro",
+        "./runtime/edge.key:/trusted/edge.key:ro",
+        "./runtime/edge.crt:/trusted/edge.crt:ro"
+      ],
+      "ports": [
+        "8445:8445"
+      ],
+      "networks": [
+        "frontend"
+      ],
+      "depends_on": [
+        "platform"
+      ],
+      "read_only": true,
+      "cap_drop": [
+        "ALL"
+      ],
+      "security_opt": [
+        "no-new-privileges:true"
+      ],
+      "mem_limit": "128m",
+      "pids_limit": 32,
+      "restart": "unless-stopped"
+    }
+  },
+  "networks": {
+    "frontend": {},
+    "native": {
+      "internal": true
+    },
+    "model-egress": {}
+  }
+}

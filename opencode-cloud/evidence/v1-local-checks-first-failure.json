@@ -1,0 +1,13 @@
+{
+  "status": "FAIL",
+  "scope": "local_check_invocation",
+  "tests": 17,
+  "passed": 15,
+  "failed": 2,
+  "failures": [
+    "Node base test container lacks /etc/ssl/certs/ISRG_Root_X1.pem",
+    "auth.ts parameter properties require --experimental-transform-types, not strip-only"
+  ],
+  "remedy": "Rerun only these affected checks using managed image and the platform TypeScript mode",
+  "realNetIDAcceptance": "NOT_RUN"
+}

@@ -1,0 +1,2 @@
+{"checkpoint": "before_real_native_qwen_task", "state": {"indexSha256": "d658a26164ead71ca1058eacc0a4ca821566f609deda61a0dcaa4645ff04bdd8", "gitStatus": "", "budget": null}}
+{"checkpoint": "native_client_exit", "exitCode": 1, "state": {"indexSha256": "cfc7dff042573de651c16aee30f3313dc01e76119b53b664534e73b387f01350", "gitStatus": "", "budget": null}}

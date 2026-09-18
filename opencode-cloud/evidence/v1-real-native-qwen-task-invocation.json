@@ -1,0 +1,7 @@
+{
+  "kind": "real_native_qwen_task",
+  "sshExitCode": 1,
+  "model": "approved/Qwen3.6-35B-A3B",
+  "prompt": "在这个全新授权项目中创建一个小型中文文本统计网页。只新增 web/index.html、web/main.js、web/text.mjs、web/text.test.mjs，不改 README.md、.gitignore、Git 索引或既有文件，不创建 package.json。页面有 textarea#text、button#count、button#clear、输出区域#result；统计非空白 Unicode 字符数量和以空白分隔的单词数，输入 one two ab c 应为字符9、单词4，空白应为0/0，清空重置输入和结果。使用原生 Bash 运行 node --test web/text.test.mjs，测试包含以上情况，保存真实退出结果。不要启动网页或后台进程，我会通过原生 PTY 启动预览。保持静态 HTML/CSS/JS，不安装依赖，不使用外部资源。",
+  "netidLoginAcceptance": "NOT_RUN"
+}

@@ -6,17 +6,20 @@ import path from 'node:path';
 const upstream = new URL(process.env.MODEL_UPSTREAM || 'http://192.168.142.130:8317');
 const master = process.env.MODEL_MASTER_KEY;
 const token = process.env.ENV_MODEL_TOKEN;
-if (!master || !token) throw new Error('Missing MODEL_MASTER_KEY or ENV_MODEL_TOKEN');
+const qwenOnly=process.env.MODEL_ROUTE_MODE==='qwen-only';
+if ((!qwenOnly&&!master) || !token) throw new Error('Missing fixed model credential or ENV_MODEL_TOKEN');
 if (upstream.protocol !== 'http:' || upstream.pathname !== '/' || upstream.search || upstream.username || upstream.password) {
   throw new Error('This fixed gateway requires an administrator configured HTTP origin');
 }
 // Two explicitly approved fixed routes, never an upstream chosen by a request.
-const targets=new Map([['gpt-5.6-luna',{upstream,master}]]);
+const targets=new Map<string,{upstream:URL,master:string}>();
+if(!qwenOnly)targets.set('gpt-5.6-luna',{upstream,master:master!});
 if(process.env.QWEN_UPSTREAM||process.env.QWEN_MASTER_KEY){
  const qwen=new URL(process.env.QWEN_UPSTREAM!);const key=process.env.QWEN_MASTER_KEY;
  if(!key||qwen.protocol!=='http:'||qwen.pathname!=='/'||qwen.search||qwen.username||qwen.password)throw Error('Invalid trusted Qwen route');
  targets.set('Qwen3.6-35B-A3B',{upstream:qwen,master:key});
 }
+if(qwenOnly&&!targets.has('Qwen3.6-35B-A3B'))throw Error('Qwen-only gateway requires its fixed route');
 const budgetFile=process.env.MODEL_BUDGET_FILE||'/gateway-state/budget.json';
 const requestLimit=Number(process.env.MODEL_DAILY_REQUEST_LIMIT||250);
 if(!Number.isSafeInteger(requestLimit)||requestLimit<1)throw new Error('Invalid fixed request budget');

@@ -1,0 +1,8 @@
+{
+  "kind": "real_target_first_deploy",
+  "command": "./deploy.sh",
+  "exitCode": 0,
+  "installPath": "/home/aisvr/mnt/sda/programs/WorkBench-v1",
+  "netidLoginAcceptance": "NOT_RUN",
+  "userBrowserTrust": "NOT_RUN"
+}

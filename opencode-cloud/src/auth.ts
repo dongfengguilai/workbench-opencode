@@ -32,6 +32,7 @@ export interface IntranetAuthOptions {
   readonly localAdminUsername: string;
   readonly localAdminPassword: string;
   readonly localAdminDisplayName: string;
+  readonly requireExplicitSubject?: boolean;
 }
 
 export interface IntranetHttpResult { readonly status: number; readonly body: Uint8Array; }
@@ -85,7 +86,7 @@ function objectValue(value: unknown): Record<string, unknown> | null {
   return typeof value === "object" && value !== null && !Array.isArray(value) ? value as Record<string, unknown> : null;
 }
 
-function decodeIdentity(token: string, fallbackSubject: string): { readonly subject: string; readonly displayName: string } {
+function decodeIdentity(token: string, fallbackSubject: string, strict = false): { readonly subject: string; readonly displayName: string } {
   const parts = token.split(".");
   const encoded = parts.length === 3 ? parts[1] : undefined;
   if (!encoded) throw new IntranetAuthUnavailableError("Intranet login returned an invalid token");
@@ -93,6 +94,7 @@ function decodeIdentity(token: string, fallbackSubject: string): { readonly subj
   try { payload = objectValue(JSON.parse(Buffer.from(encoded, "base64url").toString("utf8"))); }
   catch { throw new IntranetAuthUnavailableError("Intranet login returned an invalid token"); }
   if (!payload) throw new IntranetAuthUnavailableError("Intranet login returned an invalid token");
+  if (strict && (typeof payload.name !== "string" || !payload.name.trim())) throw new IntranetAuthUnavailableError("Intranet login did not identify the authenticated subject");
   const subject = (typeof payload.name === "string" ? payload.name : fallbackSubject).trim();
   const displayName = (typeof payload.displayName === "string" ? payload.displayName
     : typeof payload.name === "string" ? payload.name : subject).trim();
@@ -168,7 +170,7 @@ export class IntranetAuthClient {
     if (typeof token !== "string" || !token || Buffer.byteLength(token) > MAX_TOKEN_BYTES) {
       throw new IntranetAuthUnavailableError("Intranet login response did not contain a valid token");
     }
-    const identity = decodeIdentity(token, normalizedUsername);
+    const identity = decodeIdentity(token, normalizedUsername, this.options.requireExplicitSubject);
     return { provider: "intranet", ...identity };
   }
 }

@@ -12,15 +12,15 @@ function filtered(headers) {
   const blocked = new Set([...hop, ...String(headers.connection || '').toLowerCase().split(',').map(x=>x.trim())]);
   return Object.fromEntries(Object.entries(headers).filter(([k])=>!blocked.has(k)));
 }
-export function createLocalBrowser({origin, cert, fingerprint, port=8444, previewKey,previewOrigins=[],browserKey,browserOrigins=[]}) {
+export function createLocalBrowser({origin, cert, fingerprint, port=8444, previewKey,previewOrigins=[],browserKey,browserOrigins=[],approvedOrigin,httpsServer,bindHost='127.0.0.1'}) {
   const target = new URL(origin);
-  if (target.origin !== 'https://192.168.142.130:8443') throw new Error('Unapproved upstream');
+  if (target.origin !== (approvedOrigin||'https://192.168.142.130:8443')||target.protocol!=='https:'||target.origin!==origin) throw new Error('Unapproved upstream');
   const expected = fingerprint || createHash('sha256').update(new X509Certificate(cert).raw).digest('hex');
   const sockets = new Set();
-  const server = http.createServer();
+  const server = httpsServer?https.createServer(httpsServer):http.createServer();
   const localOrigin = ()=>`http://${previewKey?'localhost':'127.0.0.1'}:${server.address().port}`;
-  const origins=()=>new Set([localOrigin(),...(previewKey?previewOrigins:browserOrigins)]);
-  const requestOrigin=req=>{const incoming='http://'+req.headers.host;return origins().has(incoming)?incoming:undefined;};
+  const origins=()=>new Set([...(httpsServer?[]:[localOrigin()]),...(previewKey?previewOrigins:browserOrigins)]);
+  const requestOrigin=req=>{const incoming=(httpsServer?'https://':'http://')+req.headers.host;return origins().has(incoming)?incoming:undefined;};
   function permitted(req) {
     const own=requestOrigin(req);
     const navigation=req.method==='GET' && req.headers['sec-fetch-mode']==='navigate';
@@ -43,6 +43,7 @@ export function createLocalBrowser({origin, cert, fingerprint, port=8444, previe
   function options(req, websocket=false) {
     const headers = filtered(req.headers);
     delete headers.authorization;
+    if(!previewKey)headers.cookie=String(headers.cookie||'').split(';').filter(s=>!/^\s*workbench_preview=/i.test(s)).join(';');
     delete headers['x-workbench-browser-relay']; delete headers['x-workbench-browser-origin'];
     if(browserKey){headers['x-workbench-browser-relay']=browserKey;headers['x-workbench-browser-origin']=requestOrigin(req);}
     if(previewKey){headers.cookie=String(headers.cookie||'').split(';').filter(s=>!/^\s*agent_session=/i.test(s)).join(';');headers['x-workbench-preview-relay']=previewKey;headers['x-workbench-preview-origin']=requestOrigin(req);}
@@ -60,7 +61,7 @@ export function createLocalBrowser({origin, cert, fingerprint, port=8444, previe
   }
   function responseHeaders(headers,req) {
     const out = filtered(headers);
-    if (out['set-cookie']) out['set-cookie']=out['set-cookie'].map(value=>
+    if (!httpsServer && out['set-cookie']) out['set-cookie']=out['set-cookie'].map(value=>
       (previewKey?/^workbench_preview=/:/^agent_session=/).test(value) ? value.replace(/;\s*Secure(?=;|$)/ig,'') : value);
     if (out.location) {
       const location = new URL(out.location,target);
@@ -106,7 +107,8 @@ export function createLocalBrowser({origin, cert, fingerprint, port=8444, previe
   server.on('connect',(_req,socket)=>socket.end('HTTP/1.1 405 Method Not Allowed\r\nConnection: close\r\n\r\n'));
   server.on('connection',socket=>{sockets.add(socket);socket.on('close',()=>sockets.delete(socket));});
   server.shutdown=()=>{for(const socket of sockets)socket.destroy();server.close();};
-  server.listen(port,'127.0.0.1');
+  server.on('secureConnection',socket=>socket.on('error',()=>socket.destroy()));
+  server.listen(port,bindHost);
   return server;
 }
 
