@@ -1,0 +1,12 @@
+{
+  "implementationCommit": "e32b7027836ce3c684656bd224714c76e73e1859",
+  "codeArchive": "/home/vmware/Workspace/programs/WorkBench/acceptance/v1-local-delivery-20260919/WorkBench-local-v1-code.tar.gz",
+  "sha256": "36c1b71e83c2949c2b669e9de5e15433f1435585a658b31d3f599fe2832e7dd2",
+  "entries": 154,
+  "archiveReadable": true,
+  "containsRuntimeData": false,
+  "includesImagesOrBuiltUI": false,
+  "description": "Immutable source/tests/maintenance snapshot only; not a new offline production installation package",
+  "existingRunningUIBuildEvidence": "../increment-v1-dev-build.json",
+  "protectedBackupsUploaded": false
+}

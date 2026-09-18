@@ -13,8 +13,8 @@
     "independentlyRerunByPackageAuthor": false
   },
   "referenceCommit": "7aefcee24ad7dc59a7ae316023ff081e633629ed",
-  "implementationCommit": null,
-  "artifactDigest": null,
+  "implementationCommit": "e32b7027836ce3c684656bd224714c76e73e1859",
+  "artifactDigest": "36c1b71e83c2949c2b669e9de5e15433f1435585a658b31d3f599fe2832e7dd2",
   "productStatus": "IN_PROGRESS",
   "checks": [
     {
@@ -230,7 +230,7 @@
   },
   "warning": "Structure is not proof. Do not mark live or user acceptance PASS using fixtures or the v0 baseline.",
   "implementationBaseHead": "4643999fc02192116d94aa28d4489c63deec8bc6",
-  "implementationState": "UNCOMMITTED_WORKING_TREE",
+  "implementationState": "COMMITTED_IMPLEMENTATION_WITH_PRIVATE_EVIDENCE_RETAINED_LOCALLY",
   "updatedAt": "2026-09-18T23:14:34.584274+00:00",
   "sourceSha256": {
     "opencode-cloud/src/export-policy.ts": "42fac84e8ed04282e0d2ed0afb7f80618ac7f9ece229df7dce3ffd5ea65b802a",
@@ -283,5 +283,6 @@
     "status": "READY_FOR_USER_ACCEPTANCE",
     "scope": "User-approved local development admin + engineer-b; authorized existing learn project; one human, not two NetIDs or production HTTPS",
     "summary": "../../../opencode-cloud/evidence/increment-v1/v1-local-signoff-summary.json"
-  }
+  },
+  "releaseRecord": "../../../opencode-cloud/evidence/increment-v1/v1-local-release-record.json"
 }

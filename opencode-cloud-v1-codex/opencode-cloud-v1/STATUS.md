@@ -75,3 +75,5 @@
 ## 下一步只做
 
 请负责人明确签收“本机admin＋engineer-b、learn项目真实工作及成果交付”范围。收到明确确认后记录该范围ACCEPTED并停止，不启动v2，不把两位真实NetID/生产HTTPS或原更广契约改成通过。若要求原任务包更广整体契约签收，仍须补其PARTIAL项目，不能以“快速”代替证据。
+
+实现提交：`e32b7027836ce3c684656bd224714c76e73e1859`；可读不可变代码归档：`/home/vmware/Workspace/programs/WorkBench/acceptance/v1-local-delivery-20260919/WorkBench-local-v1-code.tar.gz`，SHA-256 `36c1b71e83c2949c2b669e9de5e15433f1435585a658b31d3f599fe2832e7dd2`。仅代码/测试，不含runtime、凭据、镜像或新离线部署包；现有已构建UI及本机安装继续使用。原任务包、参考图和v2草案未修改，原始业务工具记录与冷备未上传。
