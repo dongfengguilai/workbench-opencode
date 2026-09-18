@@ -1,0 +1,14 @@
+{
+  "status": "ACCEPTED",
+  "scope": "本机 admin＋engineer-b 双身份，授权 learn 项目真实修改、测试、成果下载、干净副本验证及重进继续；不含两位真实 NetID 或生产 HTTPS/更广完整契约",
+  "confirmedBy": "user / product owner",
+  "confirmation": "确认签收本机 v1",
+  "confirmedAt": "2026-09-18T23:16:33.635473+00:00",
+  "evidenceSource": "Explicit user message in current conversation on 2026-09-19 Asia/Shanghai",
+  "acceptedImplementationCommit": "e32b7027836ce3c684656bd224714c76e73e1859",
+  "acceptedPublicationCommit": "46c9ee9fc1914fbd495b6ce406c20f10671bf584",
+  "technicalSummary": "v1-local-signoff-summary.json",
+  "broaderContractStatus": "IN_PROGRESS / existing PARTIAL records retained",
+  "nextAction": "Stop expansion; wait for actual use feedback",
+  "runtimeOperationsIssued": false
+}

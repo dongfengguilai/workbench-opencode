@@ -3,7 +3,7 @@
   "scope": "User-approved local development admin + engineer-b; authorized existing learn project; one human, not two NetIDs or production HTTPS",
   "technicalResult": "PASS_FOR_APPROVED_LOCAL_CORE_CLOSURE",
   "originalFullContract": "IN_PROGRESS; broader PARTIAL records retained, not promoted",
-  "signoff": "PENDING_USER_EXPLICIT_CONFIRMATION",
+  "signoff": "ACCEPTED_FOR_APPROVED_LOCAL_SCOPE",
   "browserCheckpoint": {
     "action": "User privately relogged engineer-b; reopened same native SID and own iframe; clicked existing PDF preview",
     "project": "learn",
@@ -86,5 +86,6 @@
     "Unused ticket wall-clock expiry and disabled identity HTTP assertions were supplemental isolated HTTPS fixture cases; installed identities were not disabled.",
     "Codex IAB download limitation retained; actual normal-browser ZIP/patch were verified.",
     "Raw native model/tool business records and protected backups stay local; not part of public source release."
-  ]
+  ],
+  "userSignoff": "v1-local-user-signoff.json"
 }

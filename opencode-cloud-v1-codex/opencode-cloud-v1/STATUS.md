@@ -3,7 +3,7 @@
 - 更新时间：2026-09-19。
 - v0：**USER_CONFIRMED_ACCEPTED**，继承用户完整验收，不重开旧验收。
 - 实施基线：`4643999`；实现提交：`e32b702`；交付记录：`f907c25`，已推送并核对远端main一致。原有参考图、v2草案、其他未提交记录和数据保留。
-- 已批准本机核心闭环：**READY_FOR_USER_ACCEPTANCE**。原任务包更广整体契约：**IN_PROGRESS/PARTIAL**。本轮是本机 `admin`＋`engineer-b`，不代表第二个真实 NetID 或两位真人签收。
+- 已批准本机核心闭环：**ACCEPTED**。原任务包更广整体契约：**IN_PROGRESS/PARTIAL**。本轮是本机 `admin`＋`engineer-b`，不代表第二个真实 NetID 或两位真人签收。
 
 ## 用户新增能做什么
 
@@ -64,7 +64,7 @@
 
 ## 本轮快速签收汇总（2026-09-19）
 
-已批准的本机核心闭环：READY_FOR_USER_ACCEPTANCE；原任务包的更广完整契约保持IN_PROGRESS/PARTIAL，不冒充已全部通过。当前用户新增可用结果：engineer-b在独立learn项目完成真实PDF修改、51项测试、实际普通浏览器ZIP/补丁下载及两份干净副本安装/测试/构建；重登继续同一原生会话、第二轮锁文件修复，成果与文件仍在。原管理员的功能及数据保护回归和受控制品回退已通过。
+已批准的本机核心闭环：ACCEPTED；原任务包的更广完整契约保持IN_PROGRESS/PARTIAL，不冒充已全部通过。当前用户新增可用结果：engineer-b在独立learn项目完成真实PDF修改、51项测试、实际普通浏览器ZIP/补丁下载及两份干净副本安装/测试/构建；重登继续同一原生会话、第二轮锁文件修复，成果与文件仍在。原管理员的功能及数据保护回归和受控制品回退已通过。
 
 本轮相关29项测试、维护配置9项、密码维护6项通过；实际HTTPS临时测试容器验证真实31秒未用票据到期401、重放401、预览凭据不能用于平台401、停用fixture身份401且admin不受影响。后者明确属于隔离fixture，不冒充在装用户停用/票据到期实测；未修改安装账号或安全时限。strip-only调用错误和测试相对URL错误保留失败日志，修复验证命令/测试辅助函数后通过，未修改产品实现。
 
@@ -72,8 +72,12 @@
 
 真实证据：[本机签收汇总](../../opencode-cloud/evidence/increment-v1/v1-local-signoff-summary.json)。原更广HTTP/认证重放矩阵等PARTIAL项目按原acceptance.json保留；没有新增本机核心产品故障。原生消息业务内容、密码与冷备留本机，不默认公开。
 
+## 用户签收与当前阻塞
+
+2026-09-19，负责人明确回复“确认签收本机 v1”。已批准本机admin＋engineer-b、learn真实修改与成果交付闭环：**ACCEPTED**。证据：[本人明确签收](../../opencode-cloud/evidence/increment-v1/v1-local-user-signoff.json)。签收范围不包含两位真实NetID、两位真人或生产HTTPS；原更广契约PARTIAL/NOT_RUN保留，v0 USER_CONFIRMED_ACCEPTED不变。当前本机签收范围阻塞：无。
+
 ## 下一步只做
 
-请负责人明确签收“本机admin＋engineer-b、learn项目真实工作及成果交付”范围。收到明确确认后记录该范围ACCEPTED并停止，不启动v2，不把两位真实NetID/生产HTTPS或原更广契约改成通过。若要求原任务包更广整体契约签收，仍须补其PARTIAL项目，不能以“快速”代替证据。
+停止扩展，等待实际使用反馈。保持当前服务、项目、会话与文件；不启动v2，不修改远程退役环境，不再要求重复签收。
 
 实现提交：`e32b7027836ce3c684656bd224714c76e73e1859`；可读不可变代码归档：`/home/vmware/Workspace/programs/WorkBench/acceptance/v1-local-delivery-20260919/WorkBench-local-v1-code.tar.gz`，SHA-256 `36c1b71e83c2949c2b669e9de5e15433f1435585a658b31d3f599fe2832e7dd2`。仅代码/测试，不含runtime、凭据、镜像或新离线部署包；现有已构建UI及本机安装继续使用。原任务包、参考图和v2草案未修改，原始业务工具记录与冷备未上传。
