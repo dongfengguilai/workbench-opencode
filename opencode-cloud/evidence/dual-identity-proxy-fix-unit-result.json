@@ -1,0 +1,14 @@
+{
+  "kind": "local_maintainer_regression_not_real_admin_acceptance",
+  "command": "python3 opencode-cloud/test/dual-identity-deploy.test.py",
+  "exitCode": 0,
+  "tests": 7,
+  "result": "passed",
+  "covered": [
+    "actual browser.launchOptions.proxy configuration copied to administrator gateway without altering engineer file",
+    "invalid proxy configuration rejected before password, idle and cold backup",
+    "existing administrator identity/data protected",
+    "approved engineer capacity does not alter administrator capacity",
+    "administrator services do not change engineer native service definition"
+  ]
+}

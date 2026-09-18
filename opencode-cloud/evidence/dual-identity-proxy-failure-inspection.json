@@ -1,0 +1,72 @@
+{
+  "kind": "real_admin_install_proxy_failure_inspection",
+  "browserShape": {
+    "browser": {
+      "browserName": "str",
+      "isolated": "bool",
+      "launchOptions": {
+        "channel": "str",
+        "headless": "bool",
+        "chromiumSandbox": "bool",
+        "args": "list",
+        "env": {
+          "PATH": "str",
+          "HOME": "str",
+          "XDG_CONFIG_HOME": "str",
+          "XDG_CACHE_HOME": "str",
+          "LANG": "str",
+          "TMPDIR": "str"
+        },
+        "proxy": {
+          "server": "str",
+          "bypass": "str"
+        }
+      }
+    },
+    "outputDir": "str"
+  },
+  "browserArgs": [
+    "--proxy-bypass-list=<-loopback>;127.0.0.1:5173"
+  ],
+  "browserProxy": null,
+  "launchOptionsProxy": {
+    "server": "http://web-egress:8320",
+    "bypass": "<-loopback>;127.0.0.1:5173"
+  },
+  "adminExists": false,
+  "staging": [
+    {
+      "name": ".admin-initializing-0zyqc70n",
+      "files": [
+        "native.env",
+        "gateway.env",
+        "opencode.json",
+        "project/.gitignore",
+        "project/README.md"
+      ]
+    }
+  ],
+  "authMode": "netid",
+  "users": [
+    "mj33kd"
+  ],
+  "budget": {
+    "day": "2026-09-18",
+    "count": 102
+  },
+  "newestColdBackups": [
+    {
+      "name": "runtime-20260918-112940.tar.gz",
+      "bytes": 223331029,
+      "sha": "e28383d89bf2b592008311961f0602c9a4073f84c5f46f3be3ab1588e1e51116"
+    },
+    {
+      "name": "runtime-20260918-124025.tar.gz",
+      "bytes": 274453415,
+      "sha": "90e699fd1ca049563790ace4c58e5bd70ea28cd5a421d3e629efcbeea05ed799"
+    }
+  ],
+  "nativeStatus": "e4b30c81040ffc4c36ab3cafbe16e41cf1b605266bb5f9983439cd7c0a2cb05a running\n",
+  "guardHealth": "healthy\n",
+  "rootCertificateSha": "ba55ae5804689f070b19255a51ec2d7ebc1219987cd7cda30c3dabb09ca6d2b4"
+}

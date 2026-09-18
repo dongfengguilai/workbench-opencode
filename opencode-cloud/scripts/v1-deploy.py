@@ -183,6 +183,19 @@ def administrator_password_hash():
     return 'scrypt$32768$8$1$'+salt.hex()+'$'+key.hex()
 
 
+def administrator_browser_config(runtime):
+    # Playwright CLI's proxy is a Chromium launch option, not a browser option.
+    # Validate before prompting or stopping the existing engineer environment.
+    config=json.loads((runtime/'browser.json').read_text())
+    browser=config.get('browser')
+    launch=browser.get('launchOptions') if isinstance(browser,dict) else None
+    proxy=launch.get('proxy') if isinstance(launch,dict) else None
+    if not isinstance(proxy,dict) or not isinstance(proxy.get('server'),str):
+        raise RuntimeError('Expected browser.launchOptions.proxy in the fixed Playwright CLI configuration; no changes made')
+    proxy['server']='http://admin-web-egress:8320'
+    return config
+
+
 def add_admin():
     cfg=json.loads((ROOT/'runtime/platform.json').read_text())
     if admin_installed():
@@ -192,11 +205,12 @@ def add_admin():
         start();return
     if set(cfg['users'])!={'mj33kd'} or cfg.get('auth',{}).get('mode')!='netid':
         raise RuntimeError('Expected recognized single-NetID source configuration')
+    runtime=ROOT/'runtime'
+    browser=administrator_browser_config(runtime)
     idle()
     password_hash=administrator_password_hash()
     # A complete cold backup is required before installing a second identity.
     backup()
-    runtime=ROOT/'runtime'
     folder=runtime/'admin'
     staging=Path(tempfile.mkdtemp(prefix='.admin-initializing-',dir=runtime))
     os.umask(0o077)
@@ -221,7 +235,6 @@ def add_admin():
         native['provider']['approved']['options']['baseURL']='http://admin-model-gateway:8318/v1'
         native['provider']['approved']['options']['apiKey']=scope
         protected(staging/'opencode.json',json.dumps(native,indent=2)+'\n')
-        browser=json.loads((runtime/'browser.json').read_text());browser['browser']['proxy']['server']='http://admin-web-egress:8320'
         protected(staging/'browser.json',json.dumps(browser,indent=2)+'\n')
         protected(staging/'deployment.json',json.dumps({'schema':1,'identity':'admin','installPath':str(ROOT),'baseline':baseline})+'\n')
         # Stage certificate under the existing CA: never replace the root.
@@ -252,7 +265,10 @@ def add_admin():
         checked(COMPOSE+['restart','edge-workbench','edge-preview'])
         print('Administrator installed: https://admin.workbench.internal:8443/\nHosts: '+host+' admin.workbench.internal preview.admin.workbench.internal\nNetID project preserved; actual two-identity acceptance remains required.')
     except BaseException:
-        print('Administrator installation failed; retained staging/data and cold backup. Restore before retrying.')
+        if folder.exists():
+            print('Administrator installation failed after committing administrator data; retained data and cold backup. Restore before retrying.')
+        else:
+            print('Administrator installation failed before committing administrator data; engineer configuration unchanged. Retained staging and cold backup; fix the reported error and retry without resetting data.')
         raise
 
 

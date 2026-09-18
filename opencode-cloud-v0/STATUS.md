@@ -1,5 +1,16 @@
 # 当前交付状态：IN_PROGRESS
 
+2026-09-18 当前阻塞修复：用户实际运行 `add-admin` 触发 `KeyError: 'proxy'`。已修正为固定 Playwright CLI 的 `browser.launchOptions.proxy`，并实际更新目标服务器安装脚本、测试和说明及对应制品摘要；提前检查配置，避免错误配置进入密码／冷备阶段。服务器7项维护者回归通过，实际工程师浏览器配置可克隆到管理员出口；专用CA正常校验的登录页面HTTP200。**管理员尚未创建，双身份实际登录与隔离仍未验收。**
+
+- 用户现在能做：继续使用 mj33kd；在 `/home/aisvr/mnt/sda/programs/WorkBench-v1` 重新运行 `./deploy.sh add-admin`，在本人终端隐藏输入两次独立新密码。上次密码摘要仅在失败进程内存，未保存；不向助手发送密码。
+- 尚不能做：admin环境、认证、双身份任务／预览／截图／下载隔离仍NOT_RUN。已修复安装字段错误不能算完整管理员安装通过，A10仍由用户签收。
+- 保护与恢复：本次用户失败发生在提交管理员数据之前，真实配置仍为NetID-only且仅有mj33kd；不需要恢复或删除项目。保留失败目录 `.admin-initializing-0zyqc70n` 与冷备 `backups/runtime-20260918-124025.tar.gz`（SHA256 `90e699fd1ca049563790ace4c58e5bd70ea28cd5a421d3e629efcbeea05ed799`）。本次脚本制品备份 `backups/admin-proxy-fix-20260918-124451`。没有重启容器或模型，没有改工程师配置、源码、索引及计数；校验窗口全部摘要、容器ID／启动时间一致，原根证书保持。
+- 真实证据：`opencode-cloud/evidence/dual-identity-proxy-failure-inspection.json`、`dual-identity-proxy-repair-server-result.json`；本地7项保护回归为 `dual-identity-proxy-fix-unit-result.json`。维护者第一次误访问需认证的根路径得到401，在 `dual-identity-proxy-repair-first-probe-failure.json` 保留；改探测真实登录路径后200，不放宽认证。操作说明 `opencode-cloud/docs/DUAL-IDENTITY.md`。
+- 修复后的完整离线包：`/home/vmware/Workspace/projects/experiments/Workbench_space/releases/workbench-v1-20260918-dual-identity-proxy-fix.tar.gz`，1044633114字节，SHA256 `dfd12584fc0c38d503c6d804fe78c7057df1494bf09be1cd2e9e19c81d410825`；固定镜像未变，不含现存数据或登录密码。新包报告 `opencode-cloud/evidence/dual-identity-bundle-result.json`，旧包报告在 `dual-identity-bundle-before-proxy-fix.json` 保留。服务器已原位修复，无需重新解压部署包或恢复旧数据。
+- 下一步只检查：用户重新执行修复后的add-admin完成私密密码设置；若失败仅处理新报错。成功后核对新管理员服务和旧工程师保护摘要，再继续用户真实登录／隔离，不提前标记READY。
+
+## 本次修复之前的双身份发布历史
+
 2026-09-18 本地管理员＋真实NetID安装程序和固定WorkBench UI已实际发布到10.243.117.57，**当前等待用户在本人服务器终端设置admin密码；管理员尚未创建，双身份完整验收仍未通过**。工程师已按用户明确批准从1GiB扩到4GiB，剩余约3GiB；全部源码／索引／模型计数102及2会话／104消息／449消息片段的逻辑摘要在扩容和发布前后均完全不变。Native保持原容器ID，发布UI时未重启Native、guard或模型。
 
 - 用户现在能做：继续使用mj33kd旧HTTPS入口与NetID登录方式；在服务器固定安装目录执行`./deploy.sh add-admin`，两次隐藏输入独立新密码（12–1024字符），脚本完成独立admin环境与1GiB持久空间配置。只保存带随机盐的scrypt摘要，不需要向助手提供密码。重复合法安装保留密码和数据，未知目录拒绝覆盖；两个身份额度均100,000、并发2、输出16000。

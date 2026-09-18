@@ -10,6 +10,28 @@ spec=importlib.util.spec_from_file_location('v1deploy',Path(__file__).resolve().
 module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
 
 class Safeguards(unittest.TestCase):
+    def test_actual_launch_proxy_shape_creates_admin_copy_without_changing_engineer(self):
+        with tempfile.TemporaryDirectory() as directory:
+            runtime=Path(directory)
+            config={'browser':{'browserName':'chromium','isolated':True,'launchOptions':{'headless':True,'args':['--proxy-bypass-list=<-loopback>;127.0.0.1:5173'],'env':{'HOME':'/state/browser-home'},'proxy':{'server':'http://web-egress:8320','bypass':'<-loopback>;127.0.0.1:5173'}}},'outputDir':'/workspace/project/.workbench-artifacts'}
+            original=json.dumps(config,indent=2)+'\n'
+            (runtime/'browser.json').write_text(original)
+            copied=module.administrator_browser_config(runtime)
+            expected=json.loads(original)
+            expected['browser']['launchOptions']['proxy']['server']='http://admin-web-egress:8320'
+            self.assertEqual(copied,expected)
+            self.assertNotIn('proxy',copied['browser'])
+            self.assertEqual((runtime/'browser.json').read_text(),original)
+    def test_invalid_browser_config_fails_before_password_backup_and_idle(self):
+        with tempfile.TemporaryDirectory() as directory,patch.object(module,'ROOT',Path(directory)):
+            runtime=Path(directory)/'runtime';runtime.mkdir()
+            (runtime/'platform.json').write_text(json.dumps({'users':{'mj33kd':{}},'auth':{'mode':'netid'}}))
+            (runtime/'browser.json').write_text(json.dumps({'browser':{'proxy':{'server':'wrong-level'}}}))
+            with patch.object(module,'administrator_password_hash') as password,patch.object(module,'backup') as backup,patch.object(module,'idle') as idle:
+                with self.assertRaisesRegex(RuntimeError,'browser.launchOptions.proxy'):module.add_admin()
+                password.assert_not_called();backup.assert_not_called();idle.assert_not_called()
+            self.assertEqual(set(runtime.iterdir()),{runtime/'platform.json',runtime/'browser.json'})
+
     def test_unknown_admin_data_and_symlink_are_rejected(self):
         with tempfile.TemporaryDirectory() as directory,patch.object(module,'ROOT',Path(directory)):
             admin=Path(directory)/'runtime/admin';admin.mkdir(parents=True)

@@ -1,0 +1,10 @@
+{
+  "kind": "real_repair_verification_probe_failure",
+  "exitCode": 1,
+  "artifactsWrittenAndVerified": true,
+  "targetRegressionTestsPassed": true,
+  "request": "GET https://10.243.117.57:8443/ without authentication",
+  "result": "HTTP 401 Unauthorized",
+  "interpretation": "Root route requires authentication. Maintenance probe incorrectly expected the anonymous login page at root; correct probe to the actual login route. Do not change authentication or runtime data.",
+  "administratorInstalled": false
+}
