@@ -1,0 +1,28 @@
+TAP version 13
+# Subtest: developer API selects local engineer and preserves the old administrator session
+not ok 1 - developer API selects local engineer and preserves the old administrator session
+  ---
+  duration_ms: 33285.087812
+  type: 'test'
+  location: '/home/vmware/Workspace/projects/experiments/Workbench_space/workbench-opencode/opencode-cloud/test/development-platform.test.mjs:11:1'
+  failureType: 'testCodeFailure'
+  error: 'Invalid URL'
+  code: 'ERR_INVALID_URL'
+  name: 'TypeError'
+  stack: |-
+    new URL (node:internal/url:818:25)
+    preview (file:///home/vmware/Workspace/projects/experiments/Workbench_space/workbench-opencode/opencode-cloud/test/development-platform.test.mjs:41:62)
+    TestContext.<anonymous> (file:///home/vmware/Workspace/projects/experiments/Workbench_space/workbench-opencode/opencode-cloud/test/development-platform.test.mjs:51:23)
+    process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:296:3)
+  ...
+1..1
+# tests 1
+# suites 0
+# pass 0
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 33563.234527

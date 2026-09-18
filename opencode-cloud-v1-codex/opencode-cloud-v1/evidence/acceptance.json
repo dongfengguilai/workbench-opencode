@@ -1,0 +1,287 @@
+{
+  "developmentVersion": "v1",
+  "v0Baseline": {
+    "status": "USER_CONFIRMED_ACCEPTED",
+    "confirmedBy": "user",
+    "confirmationDate": "2026-09-18",
+    "scope": [
+      "personal enterprise ID login",
+      "full deployment",
+      "full acceptance tests"
+    ],
+    "evidenceSource": "Current conversation; see BASELINE.md",
+    "independentlyRerunByPackageAuthor": false
+  },
+  "referenceCommit": "7aefcee24ad7dc59a7ae316023ff081e633629ed",
+  "implementationCommit": null,
+  "artifactDigest": null,
+  "productStatus": "IN_PROGRESS",
+  "checks": [
+    {
+      "id": "V1-A01",
+      "status": "PARTIAL",
+      "environment": "local working tree",
+      "commandOrAction": "Inspect actual HEAD/status; no original runtime/config/data changes",
+      "evidence": [
+        "../../../opencode-cloud/evidence/increment-v1/before.json",
+        "../../../opencode-cloud/evidence/increment-v1/result.json",
+        "../../../opencode-cloud/evidence/increment-v1/admin-export-affected-regression.json",
+        "../../../opencode-cloud/evidence/increment-v1/admin-credential-preservation.json",
+        "../../../opencode-cloud/evidence/increment-v1/export-source-change-publication-result.json"
+      ],
+      "notes": "v0 USER_CONFIRMED_ACCEPTED inherited. Actual original admin ZIP export returned 200; response and byte SHA256 match; original Git index unchanged. Remaining affected isolation regressions not yet complete. Original admin configuration equals cold backup; developer admin verifies the same original password without exposing credentials. Only B guard restarted; all3 native container IDs and B Git index unchanged."
+    },
+    {
+      "id": "V1-A02",
+      "status": "PARTIAL",
+      "environment": "Local installed development profile",
+      "commandOrAction": "User completed hidden engineer password setup; maintainer dev start exit 0; visible engineer login opened",
+      "evidence": [
+        "../../../opencode-cloud/evidence/increment-v1/p2-authorization.json",
+        "../../../opencode-cloud/evidence/increment-v1/development-auth.log",
+        "../../../opencode-cloud/evidence/increment-v1/developer-setup-awaiting-password.log",
+        "../../../opencode-cloud/evidence/increment-v1/dev-start-checkpoint.json",
+        "../../../opencode-cloud/evidence/increment-v1/dev-start.log",
+        "../../../opencode-cloud/evidence/increment-v1/p2-engineer-browser-login.json"
+      ],
+      "notes": "Setup/start succeeded; user privately entered engineer password in visible Codex browser and reached learn. One wrong password returned 401. No NetID claim; remaining switch/logout isolation checks not complete."
+    },
+    {
+      "id": "V1-A03",
+      "status": "PASS",
+      "environment": "engineer-b native OpenCode 1.18.31 + real approved Qwen",
+      "commandOrAction": "Submit authorized P2 PDF requirements via native prompt_async; confirm same message busy without resubmitting",
+      "evidence": [
+        "../../../opencode-cloud/evidence/increment-v1/p2-round1-submission.json",
+        "../../../opencode-cloud/evidence/increment-v1/p2-round1-messages.json",
+        "../../../opencode-cloud/evidence/increment-v1/p2-round1-criteria.json",
+        "../../../opencode-cloud/evidence/increment-v1/p2-simplified-submission.json",
+        "../../../opencode-cloud/evidence/increment-v1/p2-round1-messages-before-simplify.json",
+        "../../../opencode-cloud/evidence/increment-v1/p2-pdf-upload-browser-failure.json",
+        "../../../opencode-cloud/evidence/increment-v1/p2-browser-fix-submission.json",
+        "../../../opencode-cloud/evidence/increment-v1/p2-rename-browser-failure.json",
+        "../../../opencode-cloud/evidence/increment-v1/p2-rename-fix-submission.json",
+        "../../../opencode-cloud/evidence/increment-v1/p2-rename-download-integrity.json",
+        "../../../opencode-cloud/evidence/increment-v1/p2-cli-independent-final-assertion.log",
+        "../../../opencode-cloud/evidence/increment-v1/p2-browser-relogin-and-delivery.json",
+        "../../../opencode-cloud/evidence/increment-v1/p2-round2-lock-audit-failure.json",
+        "../../../opencode-cloud/evidence/increment-v1/p2-round2-lock-audit.json",
+        "../../../opencode-cloud/evidence/increment-v1/p2-round2-final-integrity.json",
+        "../../../opencode-cloud/evidence/increment-v1/p2-browser-clean-result.json"
+      ],
+      "notes": "User-approved local simplified PDF task completed via fixed native OpenCode and real Qwen in authorized learn copy. Actual IAB upload/first-page canvas/DOM rename and reload persistence PASS; independent pinned CLI PDF download hash equals uploaded fixture. Original native stop/simplify/continue and automatic native context compaction preserved. Actual IAB change check displays baseline and11 changed paths; actual browser ZIP/patch each freshly installed/tested51/51/built. No second real NetID/two-human claim."
+    },
+    {
+      "id": "V1-A04",
+      "status": "PARTIAL",
+      "environment": "Actual local admin + engineer-b in same Codex browser and installed guards",
+      "commandOrAction": "Private relogin, simultaneous own sessions/previews, foreign SID guesses, real admin logout and engineer refresh; installed native/config/PTY rejection audits",
+      "evidence": [
+        "../../../opencode-cloud/evidence/increment-v1/dual-browser-isolation-regression.json",
+        "../../../opencode-cloud/evidence/increment-v1/admin-engineer-installed-guard-isolation.json",
+        "../../../opencode-cloud/evidence/increment-v1/installed-config-pty-audit.json",
+        "../../../opencode-cloud/evidence/increment-v1/dual-browser-regression-data-preservation.json"
+      ],
+      "notes": "Recorded local access cases PASS: no cross-session/source/preview data; native foreign PTY/token handshake404, foreign credentials401. Real logout revoked own observed connections; engineer login/context/PDF remain. Authenticated platform bearer replay and all broader combinations not yet completed; do not claim universal isolation from sampled cases."
+    },
+    {
+      "id": "V1-A05",
+      "status": "PARTIAL",
+      "environment": "Actual installed engineer guard + native read-only controls",
+      "commandOrAction": "11 actual rejected configuration/message/environment/directory writes; prove no native message created. Inspect pinned image runtime disable flags and trusted config mount",
+      "evidence": [
+        "../../../opencode-cloud/evidence/increment-v1/installed-config-pty-audit.json",
+        "../../../opencode-cloud/evidence/increment-v1/installed-model-and-config-scope.json"
+      ],
+      "notes": "Actual403 and rejected native message404; project/default plugin/external skill disable flags true and config ro. No deliberate live project config injection fixture executed."
+    },
+    {
+      "id": "V1-A06",
+      "status": "PARTIAL",
+      "environment": "Real local HTTP loopback paired distinct iframe origins; existing v0 HTTPS inherited",
+      "commandOrAction": "Load each own iframe; actual consumed ticket replay could not load new document; seven live relay host/origin/spoof rejects",
+      "evidence": [
+        "../../../opencode-cloud/evidence/increment-v1/dual-browser-isolation-regression.json",
+        "../../../opencode-cloud/evidence/increment-v1/installed-relay-origin-isolation.json"
+      ],
+      "notes": "Iframe sandbox and distinct owner origins verified, rejected replay loads no document. Exact HTTP status unavailable in IAB; do not infer401. Unused-ticket real expiry, authenticated cookie replay and full CSP negative matrix incomplete. No production HTTPS claim."
+    },
+    {
+      "id": "V1-A07",
+      "status": "PARTIAL",
+      "environment": "Pinned local Node v22.19.0 image; network disabled; temporary Git repositories",
+      "commandOrAction": "7-item export contract + 15 export regressions + 1 independent clean reproduction test",
+      "evidence": [
+        "../../../opencode-cloud/evidence/increment-v1/export-contract.json",
+        "../../../opencode-cloud/evidence/increment-v1/export-regression.log",
+        "../../../opencode-cloud/evidence/increment-v1/export-reproduction.json"
+      ],
+      "notes": "Offline contract and regression PASS. This is not a genuine P2/browser/user acceptance result; preserves prior failure logs."
+    },
+    {
+      "id": "V1-A08",
+      "status": "PARTIAL",
+      "environment": "Pinned local Node v22.19.0 image; network disabled; temporary Git repositories",
+      "commandOrAction": "7-item export contract + 15 export regressions + 1 independent clean reproduction test",
+      "evidence": [
+        "../../../opencode-cloud/evidence/increment-v1/export-contract.json",
+        "../../../opencode-cloud/evidence/increment-v1/export-regression.log",
+        "../../../opencode-cloud/evidence/increment-v1/export-reproduction.json"
+      ],
+      "notes": "Offline contract and regression PASS. This is not a genuine P2/browser/user acceptance result; preserves prior failure logs."
+    },
+    {
+      "id": "V1-A09",
+      "status": "PASS",
+      "environment": "Local separate clean source ZIP and fixed-baseline patch copies, pinned native image, own controlled public HTTPS gateway",
+      "commandOrAction": "New actual authenticated guard ZIP/patch capture; manifest/SHA/index check; fixed-baseline patch check/apply; each fresh npm ci, npm test51/51, npm run build",
+      "evidence": [
+        "../../../opencode-cloud/evidence/increment-v1/export-reproduction.json",
+        "../../../opencode-cloud/evidence/increment-v1/p2-api-delivery-capture.json",
+        "../../../opencode-cloud/evidence/increment-v1/p2-clean-zip-cache-fix.log",
+        "../../../opencode-cloud/evidence/increment-v1/p2-clean-patch-cache-fix.log",
+        "../../../opencode-cloud/evidence/increment-v1/p2-lock-incomplete.json",
+        "../../../opencode-cloud/evidence/increment-v1/p2-round2-delivery-capture.json",
+        "../../../opencode-cloud/evidence/increment-v1/p2-round2-clean-result.json",
+        "../../../opencode-cloud/evidence/increment-v1/p2-round2-final-integrity.json",
+        "../../../opencode-cloud/evidence/increment-v1/p2-browser-download-diagnosis.json",
+        "../../../opencode-cloud/evidence/increment-v1/p2-normal-browser-download-user-confirmation.json",
+        "../../../opencode-cloud/evidence/increment-v1/p2-browser-files-capture.json",
+        "../../../opencode-cloud/evidence/increment-v1/p2-browser-clean-result.json"
+      ],
+      "notes": "User identified ordinary-browser downloads directory. Actual WorkBench-source (3).zip SHA4acd0c4f1cdf752e3106a05a25823b559e923734f4d414631044d610a26086bc and workbench-opencode (5).patch SHAab547ac3a60399f50395c03f75a28671c5646e64ad0259853bd5ed9482266677 inspected/copied unchanged. New clean copies from these exact browser bytes each npm ci/test51/51/build exit0 with fresh logs; patch check/apply at fixed baseline succeeds; all12 source files match manifests and native index unchanged. Previously validated registry cache used, no node_modules copied, verification network disabled. Codex IAB download limitation remains separate."
+    },
+    {
+      "id": "V1-A10",
+      "status": "PARTIAL",
+      "environment": "Actual engineer-b guard; continuous own background source writer; isolated offline source-change tests",
+      "commandOrAction": "Before fix ZIP200 during107 writes; after fix ZIP and patch409 EXPORT_SOURCE_CHANGED during182/188 writes; stable source200 with live Vite;22 regressions and7 contract checks pass",
+      "evidence": [
+        "../../../opencode-cloud/evidence/increment-v1/export-background-write-before.json",
+        "../../../opencode-cloud/evidence/increment-v1/export-background-write-after.json",
+        "../../../opencode-cloud/evidence/increment-v1/export-source-change-regression.log",
+        "../../../opencode-cloud/evidence/increment-v1/export-source-change-regression-fixed.log",
+        "../../../opencode-cloud/evidence/increment-v1/export-source-change-original-regression.log",
+        "../../../opencode-cloud/evidence/increment-v1/export-source-change-contract.log",
+        "../../../opencode-cloud/evidence/increment-v1/export-source-change-publication-result.json",
+        "../../../opencode-cloud/evidence/increment-v1/native-pty-export-audit.json"
+      ],
+      "notes": "Real background and native PTY source writes cause explicit409 EXPORT_SOURCE_CHANGED forZIP/patch. Owned fixture cleaned, original index unchanged; stable patch returns200 identical accepted capture tree79a2a0657116049b171998c7ea8e7402fbad5c5b and digestab547ac3. Preserve unreadable fixture and immediate stability409 logs. Does not promise filesystem atomic quiescence; complete cap scenarios not newly live-tested."
+    },
+    {
+      "id": "V1-A11",
+      "status": "PASS",
+      "environment": "Actual local engineer-b authenticated IAB and same native session",
+      "commandOrAction": "User privately reauthenticated; reopened learn/same SID; persistent PDF/rename; same native Qwen session completed round2 dependency lock repair and independently verified new exports",
+      "evidence": [
+        "../../../opencode-cloud/evidence/increment-v1/p2-round2-lock-submission.json",
+        "../../../opencode-cloud/evidence/increment-v1/p2-browser-relogin-and-delivery.json",
+        "../../../opencode-cloud/evidence/increment-v1/p2-round2-lock-audit.json",
+        "../../../opencode-cloud/evidence/increment-v1/p2-round2-clean-result.json"
+      ],
+      "notes": "Local scope only: native history/source/owner IndexedDB persisted after actual user relogin. Meaningful second native task repaired delivery lock without changing versions; final exact exports independently installed/tested/built. No unknown outcome resubmission, reset or context replacement."
+    },
+    {
+      "id": "V1-A12",
+      "status": "PARTIAL",
+      "environment": "Actual installed model gateways, same-browser admin logout and persistent engineer",
+      "commandOrAction": "Own/foreign model token scoped /v1/models requests; inspect actual caps/budget mounts; live own-logout socket closure and independent browser refresh",
+      "evidence": [
+        "../../../opencode-cloud/evidence/increment-v1/installed-model-and-config-scope.json",
+        "../../../opencode-cloud/evidence/increment-v1/dual-browser-revocation-before.json",
+        "../../../opencode-cloud/evidence/increment-v1/dual-browser-revocation-after-logout.json",
+        "../../../opencode-cloud/evidence/increment-v1/dual-browser-isolation-regression.json",
+        "../../../opencode-cloud/evidence/increment-v1/dual-browser-regression-data-preservation.json"
+      ],
+      "notes": "Own models200, other credentials401, both caps100000, independent tokens/budget mounts, counts unchanged. Admin observed guard connections4->0; three previous engineer connections remain, own login and PDF refresh work. No actual disabled identity, quota saturation or all overload cases this turn; no model completions sent."
+    },
+    {
+      "id": "V1-A13",
+      "status": "PARTIAL",
+      "environment": null,
+      "commandOrAction": null,
+      "evidence": [
+        "../../../opencode-cloud/evidence/increment-v1/development-profile.log",
+        "../../../opencode-cloud/evidence/increment-v1/quota-loop-repair.json",
+        "../../../opencode-cloud/evidence/increment-v1/quota-repair-regression.log",
+        "../../../opencode-cloud/evidence/increment-v1/quota-resume-preflight.log",
+        "../../../opencode-cloud/evidence/increment-v1/dev-start-checkpoint.json",
+        "../../../opencode-cloud/evidence/increment-v1/export-source-change-publication-prepared.json",
+        "../../../opencode-cloud/evidence/increment-v1/export-source-change-publication-result.json",
+        "../../../opencode-cloud/evidence/increment-v1/controlled-artifact-rollback.json",
+        "../../../opencode-cloud/evidence/increment-v1/controlled-artifact-rollback-unreadable-staging.json"
+      ],
+      "notes": "Original cold backup verified; loop identity read-only fix; user resumed setup successfully, start exit 0, ready setup re-run retained password/files/sessions/counters. Runtime mounts recovered without formatting; rollback and active task refusal still need affected checks. B guard patch published after idle checks and tests; exact pre-change code SHA rollback saved privately. Original guards/platform/native not restarted; actual broader rollback still pending. Actual previous artifact rollback and candidate restoration PASS: engineer guard only recreated; own session/messages/export200, exact baseline/tree unchanged, source/index/budget/config and original service IDs/start times unchanged. First staged600 code permission failure preserved; candidate recovery confirmed before staged-copy-only644 fix. Broader active-task refusal remains incomplete."
+    },
+    {
+      "id": "V1-A14",
+      "status": "NOT_RUN",
+      "environment": null,
+      "commandOrAction": null,
+      "evidence": [],
+      "notes": ""
+    }
+  ],
+  "v1Signoff": {
+    "status": "REQUESTED_PENDING_EXPLICIT_CONFIRMATION",
+    "by": null,
+    "time": null,
+    "evidence": null
+  },
+  "warning": "Structure is not proof. Do not mark live or user acceptance PASS using fixtures or the v0 baseline.",
+  "implementationBaseHead": "4643999fc02192116d94aa28d4489c63deec8bc6",
+  "implementationState": "UNCOMMITTED_WORKING_TREE",
+  "updatedAt": "2026-09-18T23:14:34.584274+00:00",
+  "sourceSha256": {
+    "opencode-cloud/src/export-policy.ts": "42fac84e8ed04282e0d2ed0afb7f80618ac7f9ece229df7dce3ffd5ea65b802a",
+    "opencode-cloud/src/source-export.ts": "5cebefd500531561a8a588b1f8af1370764dbf904ecd5970b18a755f4c77c459",
+    "opencode-cloud/src/patch-export.ts": "7f0b62237a917bfd027db42ec4ff4cb05d0e8cf9e35960e2b5d485cbbcf03bbf",
+    "opencode-cloud/src/environment-guard.ts": "a7c4226ee0cc6a094d6c87e76efcf86c53a3a485b7b567e2147b944b92e4b9e5",
+    "opencode-cloud/src/platform.ts": "f88b471b3a47617a1b32e8d5f1491a6914e57607b0d6c6a4eff49deecc0f58b3",
+    "opencode-cloud/test/export-policy.test.mjs": "1f4c3fbf439b6e20b95032d602af90a5e4dfbbc0f37bd45ebac051085ab771b4",
+    "opencode-cloud/test/export-reproduction.test.mjs": "cb78e82da9fe2f26d6a94999f4ec54b93ae95f6dc506b400ab18c9881f8bdca0",
+    "opencode-cloud/test/patch-export-extra.test.mjs": "f2f238669812a2bf926d3b3d4ff6e93ce8e5bd92e088f1d2c7d5dcf7779b5ba6",
+    "workbench.sh": "cc6c03b3ffa9b292045dda76665ad6fbefbf6000ddf2acee0ee44ec336cbbd06",
+    "opencode-cloud/scripts/dev-workbench.py": "588494aa6d6dd94f3cb2ccd480d933008468b28da8f8e6e32d0b31e4d45855ed",
+    "opencode-cloud/src/identity-auth.ts": "980f82811b47c7baa0794db9677748834f548d012b02ffe5b0e48b40deacb877",
+    "opencode-cloud/src/local-browser.mjs": "15b2dd62719963aa19d2eef79d29bfa5c738e438c474580f78576f085bff0994",
+    "opencode-cloud/src/local-preview.mjs": "554887ddce0ec7544a656dedcb520fc51d045e79420563c380c89b0e6d4ae6bb",
+    "opencode-cloud/public/login.js": "7013d747e4693a080f29013887046f5a230d0aa4ec92d217d42b2e60d31c0f7e",
+    "opencode-cloud/ui/workbench.tsx": "6bdab720b4ff14e7d3206b955b2281f444dbcf9ad323c83a1ceb3bc69f710c2b",
+    "opencode-cloud/test/development-auth.test.mjs": "d52de100caa25d93b0ab228a8ce8154a0e771d73e156d885c9c7a5c9366c3fde",
+    "opencode-cloud/test/development-profile.test.py": "25b990095ad6449fb03d1f67695bf53cc79fa18f87e146ccc8b4d3282960ccb5",
+    "opencode-cloud/test/development-platform.test.mjs": "d98257745ce549b2fc186d2d232131b0aee4df6a7321e3a91694abe02b288cb3",
+    "opencode-cloud/DEV.md": "428a670029d710803fc7795398db34219bc4340ebfa5f804245f88238e3e0e06",
+    "opencode-cloud/src/snapshot-git.ts": "c6f180758f32eaad3fedab6fed64f0233e0a4fdc8a818bd05ee74c7fdc316370",
+    "opencode-cloud/test/export-source-change.test.mjs": "36d9fb5077806d6c48d0a1faa4e52653ecf979adf7e0985f4491b9f159ba9c23",
+    "opencode-cloud/test/admin-password-reset.test.py": "a488a74c34e810931c6b675bf663a849baf7da9beeab78097e499e0e3e5e2207"
+  },
+  "currentBlocker": "No observed local core product failure. Original broader contract remains IN_PROGRESS with PARTIAL cases; local approved core closure ready for explicit user signoff. Supplementary real31s expiry/disabled-identity assertions passed only in isolated HTTPS fixture, not installed-user claims.",
+  "scope": "User-approved local development admin + engineer-b, authorized existing learn project; v0 accepted baseline inherited; not second real NetID or two-human signoff.",
+  "P2": {
+    "source": "/home/vmware/Workspace/projects/learn",
+    "authorizedBy": "user",
+    "requirement": "Simplified: PDF upload, canvas first-page preview and rename; preserve download/delete/IndexedDB",
+    "sourceModified": false,
+    "engineerRuntimeImported": true,
+    "sourceUnchangedAtEnd": true,
+    "session": "ses_f4cb7c6d6ffeHxXuJcNeFmuqs0",
+    "baseline": "a9b4de9354832cc41a2d84ad44c2be45a9f95be8"
+  },
+  "developmentCheckpoint": "../../../opencode-cloud/evidence/increment-v1/development-checkpoint.json",
+  "quotaRecoveryEvidence": "../../../opencode-cloud/evidence/increment-v1/quota-repair-checkpoint.json",
+  "currentScope": "User-approved local development: preserved admin plus local engineer-b; not second NetID or two human sign-off.",
+  "administratorPasswordMaintenance": {
+    "command": "./workbench.sh dev reset-admin-password",
+    "state": "USER_ROTATED_AND_LOGGED_IN",
+    "actualPasswordRotated": true,
+    "evidence": "../../../opencode-cloud/evidence/increment-v1/admin-password-reset-ready.json",
+    "actualLoginEvidence": "../../../opencode-cloud/evidence/increment-v1/admin-login-isolation-browser-checkpoint.json"
+  },
+  "lastRegression": "../../../opencode-cloud/evidence/increment-v1/v1-local-signoff-summary.json",
+  "localCoreDelivery": {
+    "status": "READY_FOR_USER_ACCEPTANCE",
+    "scope": "User-approved local development admin + engineer-b; authorized existing learn project; one human, not two NetIDs or production HTTPS",
+    "summary": "../../../opencode-cloud/evidence/increment-v1/v1-local-signoff-summary.json"
+  }
+}

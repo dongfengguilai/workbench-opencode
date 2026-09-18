@@ -1,0 +1,55 @@
+{
+  "kind": "targeted_export_contract",
+  "developmentVersion": "v1",
+  "timestamp": "2026-09-18T06:08:31.896Z",
+  "node": "v22.19.0",
+  "productionTouched": false,
+  "sourceSha256": {
+    "patch-export.ts": "fc7ec87c0a470e94bfb0f7d061f62777a8875be003a897f6a6da007306a71b72",
+    "source-export.ts": "06862cde83dd4d59dad677dd8c36a1b67f8a03e9bf6ed2d2a96a1c0cda184ccb",
+    "snapshot-git.ts": "497fbdc9d06d8164a2e445a51efac9b348b9b5c6200d22528c31dbc7965bee79"
+  },
+  "tests": [
+    {
+      "id": "E01",
+      "name": "patch retains innocent business source paths",
+      "status": "PASS"
+    },
+    {
+      "id": "E02",
+      "name": "ZIP retains actual bytes of innocent business source paths",
+      "status": "PASS"
+    },
+    {
+      "id": "E03",
+      "name": "patch excludes or explicitly blocks credential-bearing config fixtures",
+      "status": "PASS"
+    },
+    {
+      "id": "E04",
+      "name": "ZIP excludes or explicitly blocks credential-bearing config fixtures",
+      "status": "PASS"
+    },
+    {
+      "id": "E05",
+      "name": "patch applies staged, unstaged, deleted and binary files without mutating source",
+      "status": "PASS"
+    },
+    {
+      "id": "E06",
+      "name": "ZIP content and manifest agree; source index unchanged",
+      "status": "PASS"
+    },
+    {
+      "id": "E07",
+      "name": "both formats reject outside-project symlink without index mutation",
+      "status": "PASS"
+    }
+  ],
+  "summary": {
+    "total": 7,
+    "passed": 7,
+    "failed": 0
+  },
+  "status": "PASS"
+}

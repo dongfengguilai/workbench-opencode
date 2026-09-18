@@ -3,7 +3,7 @@ import https from 'node:https';
 import {checkServerIdentity} from 'node:tls';
 import {createHash, X509Certificate} from 'node:crypto';
 import {readFileSync} from 'node:fs';
-import {fileURLToPath} from 'node:url';
+import {fileURLToPath,pathToFileURL} from 'node:url';
 import path from 'node:path';
 import {uiPage} from './ui-assets.mjs';
 import {sessionCookieName,previewCookieName,isCredentialCookie,scopedCookieHeader} from './preview-origin.mjs';
@@ -114,11 +114,12 @@ export function createLocalBrowser({origin, cert, fingerprint, port=8444, previe
 }
 
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
-  const runtime=new URL('../runtime/',import.meta.url);
+  const runtime=process.env.WORKBENCH_LOCAL_RUNTIME?pathToFileURL(path.resolve(process.env.WORKBENCH_LOCAL_RUNTIME)+'/'):new URL('../runtime/',import.meta.url);
   const config=JSON.parse(readFileSync(new URL('platform.json',runtime),'utf8'));
   const {workbenchOrigin}=await import('./preview-origin.mjs');
   const {origin}=config;
-  const server=createLocalBrowser({origin,cert:readFileSync(new URL('tls.crt',runtime)),browserKey:config.previewRelayKey,browserOrigins:Object.keys(config.users).map(workbenchOrigin)});
+  const approvedOrigin=config.auth?.mode==='development'?'https://127.0.0.1:8443':undefined;
+  const server=createLocalBrowser({origin,approvedOrigin,cert:readFileSync(new URL('tls.crt',runtime)),browserKey:config.previewRelayKey,browserOrigins:Object.keys(config.users).map(workbenchOrigin)});
   server.on('listening',()=>console.log('Local browser entry: http://127.0.0.1:8444 (verified HTTPS upstream)'));
   server.on('error',error=>{console.error(error.code || 'Local entry failed');process.exitCode=1;});
   for(const signal of ['SIGTERM','SIGINT'])process.on(signal,()=>server.shutdown());

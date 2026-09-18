@@ -1,0 +1,31 @@
+{
+  "scope": "Actual engineer native PTY writes an exclusively-created audit fixture only, not business code or a Qwen task.",
+  "rows": [
+    {
+      "route": "/__source",
+      "status": 409,
+      "reason": "EXPORT_SOURCE_CHANGED: stop source writers before exporting",
+      "pass": true
+    },
+    {
+      "route": "/__export",
+      "status": 409,
+      "reason": "EXPORT_SOURCE_CHANGED: stop source writers before exporting",
+      "pass": true
+    }
+  ],
+  "ptyCleanupStatus": 200,
+  "fixtureRemoved": true,
+  "immediatePostCleanupStatus": {
+    "status": 200
+  },
+  "stableExport": {
+    "status": 200,
+    "baseline": "a9b4de9354832cc41a2d84ad44c2be45a9f95be8",
+    "tree": "79a2a0657116049b171998c7ea8e7402fbad5c5b",
+    "sha256": "ab547ac3a60399f50395c03f75a28671c5646e64ad0259853bd5ed9482266677"
+  },
+  "indexUnchanged": true,
+  "pass": true,
+  "historicalChecks": "Unreadable0600 fixture and immediate postcleanup409 retained separately. Only owned fixture switched0644. Current audit explicitly records any previous export cleanup lock409 and performs one later stable GET after500ms; no code task or model request retried."
+}

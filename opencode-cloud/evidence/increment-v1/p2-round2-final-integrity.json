@@ -1,0 +1,19 @@
+{
+  "status": "PASS",
+  "time": "2026-09-18T08:15:24.278758+00:00",
+  "allDeliveredFilesIdenticalBetweenZIPAndAppliedPatch": true,
+  "files": 12,
+  "captureTree": "79a2a0657116049b171998c7ea8e7402fbad5c5b",
+  "fixedBaseline": "a9b4de9354832cc41a2d84ad44c2be45a9f95be8",
+  "eachCleanCopyTests": {
+    "tests": 51,
+    "pass": 51,
+    "fail": 0
+  },
+  "originalSourceUnchanged": true,
+  "originalSourceSHA256": {
+    "upload-download.html": "a32e3f673a03a8667255529ba86b0ea2cd28e75daf223ee9805ce38d684e4791",
+    "article.docx": "0d70281a8ccce38ee434f32db948adc201242a317b4c0bc199fd58a2c9531470"
+  },
+  "browserDownload": "NOT_CONFIRMED"
+}

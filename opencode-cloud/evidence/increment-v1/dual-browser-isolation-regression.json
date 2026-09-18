@@ -1,0 +1,72 @@
+{
+  "time": "2026-09-18T10:39:26.423502+00:00",
+  "scope": "User-approved local development dual identity; same human acting as admin and engineer-b. Inherits accepted v0, does not represent second real NetID or production HTTPS acceptance.",
+  "browser": "Visible Codex in-app browser",
+  "userConfirmedEngineerRelogin": true,
+  "simultaneousIdentityViews": {
+    "admin": {
+      "project": "workbench-opencode",
+      "session": "ses_f4f7bcc24ffenu1OPoS7DnWsde",
+      "title": "前端 Markdown 展示与预览",
+      "previewTitle": "Markdown 渲染演示"
+    },
+    "engineer-b": {
+      "project": "learn",
+      "session": "ses_f4cb7c6d6ffeHxXuJcNeFmuqs0",
+      "title": "PDF 上传、预览与改名功能完善",
+      "previewTitle": "文件预览"
+    }
+  },
+  "iframeSandbox": "allow-scripts allow-forms allow-same-origin",
+  "ownerPreviewOrigins": {
+    "admin": "http://u-8c6976e5b5410415bde908bd4dee15dfb167a9c8.localhost:8445",
+    "engineer-b": "http://u-50291244ba26863f4fe050b10d0c750b0a46333f.localhost:8445"
+  },
+  "foreignSessionGuesses": {
+    "adminGuessesEngineer": "No foreign heading/messages; fixed own environment shows unavailable outcome; actual installed guard404 separately verified",
+    "engineerGuessesAdmin": "No foreign heading/messages; fixed own environment shows unavailable outcome; actual installed guard404 separately verified"
+  },
+  "administratorLogout": {
+    "loginPageDisplayed": true,
+    "ownAllObservedGuardConnectionsClosed": true,
+    "engineerThreeObservedConnectionsStayedOpen": true,
+    "engineerLoginStayedValid": true,
+    "engineerBrowserRefreshedOriginalSession": true,
+    "engineerPreviewReloadedUploadedPDF": true,
+    "administratorPreviewFreshNavigationDenied": true,
+    "administratorPreviewHttpStatus": "NOT_OBSERVED: IAB blocks non-success navigation, previous document can remain on reload. New blank-tab navigation did not obtain app."
+  },
+  "engineerPDF": {
+    "filename": "内置浏览器验收.pdf",
+    "bytes": 868,
+    "firstPageCanvas": [
+      450,
+      300
+    ],
+    "visibleText": "WorkBench PDF page 1",
+    "actualIABScreenshot": "CUA getScreenshot emitted in this task turn; not saved as a local screenshot file. Prior p2-pdf-canvas.png belongs to independent native CLI."
+  },
+  "previewTicketReplay": {
+    "source": "Actual DOM iframe src of successfully claimed owner preview; opaque ticket never emitted to evidence",
+    "result": "A fresh blank tab using the consumed ticket could not load a document",
+    "httpStatus": "NOT_OBSERVED; do not claim401 solely from browser client rejection"
+  },
+  "tests": {
+    "installedGuardReadOnlyChecks": 30,
+    "configurationAndNativePTYChecks": 18,
+    "relayOriginChecks": 7,
+    "modelCredentialScopeChecks": 4
+  },
+  "preservationEvidence": "dual-browser-regression-data-preservation.json",
+  "nativePTYExportEvidence": "native-pty-export-audit.json",
+  "auditIssuedModelCompletions": 0,
+  "auditRestartedNativePlatformOrProxy": false,
+  "status": "PASS_FOR_RECORDED_LOCAL_ACCESS_CASES",
+  "limits": [
+    "No second real NetID or two-human signoff",
+    "No observed HTTP status for IAB denied preview/replayed-ticket navigation",
+    "No unused-ticket actual expiry, actual identity disable or full authenticated platform bearer replay test",
+    "No actual cold release rollback this turn"
+  ],
+  "nextCheckpoint": "Controlled artifact rollback verification, while preserving user source/state and checking idle."
+}

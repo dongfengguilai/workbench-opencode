@@ -1,0 +1,8 @@
+{
+  "status": "PASS",
+  "nativeContainerIDsUnchanged": true,
+  "nativeIndexUnchanged": true,
+  "originalPlatformAndGuardsNotRestarted": true,
+  "onlyEngineerGuardRestarted": true,
+  "originalAdminCredentialUnchanged": "admin-credential-preservation.json"
+}

@@ -1,0 +1,16 @@
+TAP version 13
+# Subtest: developer API selects local engineer and preserves the old administrator session
+ok 1 - developer API selects local engineer and preserves the old administrator session
+  ---
+  duration_ms: 33225.289132
+  type: 'test'
+  ...
+1..1
+# tests 1
+# suites 0
+# pass 1
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 33433.117383

@@ -1,0 +1,205 @@
+TAP version 13
+# Subtest: fixed-version routes and prompt overrides are enforced
+ok 1 - fixed-version routes and prompt overrides are enforced
+  ---
+  duration_ms: 2.766373
+  type: 'test'
+  ...
+# node:internal/modules/run_main:123
+#     triggerUncaughtException(
+#     ^
+# file:///app/src/auth.ts:12
+#     message: "Authentication required" | "Session expired",
+#     public readonly code: "missing" | "expired",
+#                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+#   ) {
+# SyntaxError [ERR_UNSUPPORTED_TYPESCRIPT_SYNTAX]: TypeScript parameter property is not supported in strip-only mode
+#     at parseTypeScript (node:internal/modules/typescript:63:40)
+#     at processTypeScriptCode (node:internal/modules/typescript:133:42)
+#     at stripTypeScriptModuleTypes (node:internal/modules/typescript:163:10)
+#     at ModuleLoader.<anonymous> (node:internal/modules/esm/translators:536:16)
+#     at \#translate (node:internal/modules/esm/loader:540:12)
+#     at ModuleLoader.loadAndTranslate (node:internal/modules/esm/loader:587:27)
+#     at async ModuleJob._link (node:internal/modules/esm/module_job:162:19) {
+#   code: 'ERR_UNSUPPORTED_TYPESCRIPT_SYNTAX'
+# }
+# Node.js v22.19.0
+# Subtest: /app/test/development-auth.test.mjs
+not ok 2 - /app/test/development-auth.test.mjs
+  ---
+  duration_ms: 276.826858
+  type: 'test'
+  location: '/app/test/development-auth.test.mjs:1:1'
+  failureType: 'testCodeFailure'
+  exitCode: 1
+  signal: ~
+  error: 'test failed'
+  code: 'ERR_TEST_FAILURE'
+  ...
+# Subtest: business directories and credential-named source are deliverable at root and nested levels
+ok 3 - business directories and credential-named source are deliverable at root and nested levels
+  ---
+  duration_ms: 1028.409453
+  type: 'test'
+  ...
+# Subtest: tracked credentials including deletions never escape either format; exclusions have reasons
+ok 4 - tracked credentials including deletions never escape either format; exclusions have reasons
+  ---
+  duration_ms: 261.47161
+  type: 'test'
+  ...
+# Subtest: renamed private PEM content is explicitly refused without printing sensitive bytes
+ok 5 - renamed private PEM content is explicitly refused without printing sensitive bytes
+  ---
+  duration_ms: 332.079926
+  type: 'test'
+  ...
+# Subtest: patch checks deleted binary baseline bytes against protected credentials
+ok 6 - patch checks deleted binary baseline bytes against protected credentials
+  ---
+  duration_ms: 258.386931
+  type: 'test'
+  ...
+# Subtest: links cannot alias excluded credentials into source
+ok 7 - links cannot alias excluded credentials into source
+  ---
+  duration_ms: 104.274297
+  type: 'test'
+  ...
+# Subtest: explicit platform ownership excludes only the configured subtree
+ok 8 - explicit platform ownership excludes only the configured subtree
+  ---
+  duration_ms: 0.430604
+  type: 'test'
+  ...
+# Subtest: actual ZIP bytes and binary patch reproduce tests in independent clean directories
+ok 9 - actual ZIP bytes and binary patch reproduce tests in independent clean directories
+  ---
+  duration_ms: 2438.670473
+  type: 'test'
+  ...
+# Subtest: source change detection: edit
+ok 10 - source change detection: edit
+  ---
+  duration_ms: 22.767739
+  type: 'test'
+  ...
+# Subtest: source change detection: add
+ok 11 - source change detection: add
+  ---
+  duration_ms: 9.350008
+  type: 'test'
+  ...
+# Subtest: source change detection: delete
+ok 12 - source change detection: delete
+  ---
+  duration_ms: 6.242796
+  type: 'test'
+  ...
+# Subtest: source change detection: mode
+ok 13 - source change detection: mode
+  ---
+  duration_ms: 9.109905
+  type: 'test'
+  ...
+# Subtest: source change detection: link
+ok 14 - source change detection: link
+  ---
+  duration_ms: 5.196317
+  type: 'test'
+  ...
+# Subtest: excluded runtime/build writes do not reject a stable deliverable
+ok 15 - excluded runtime/build writes do not reject a stable deliverable
+  ---
+  duration_ms: 4.287052
+  type: 'test'
+  ...
+# Subtest: untracked credentials and state are excluded even without gitignore rules
+ok 16 - untracked credentials and state are excluded even without gitignore rules
+  ---
+  duration_ms: 182.545166
+  type: 'test'
+  ...
+# Subtest: deleted tracked secrets are restored to baseline in temporary index
+ok 17 - deleted tracked secrets are restored to baseline in temporary index
+  ---
+  duration_ms: 124.656516
+  type: 'test'
+  ...
+# From /tmp/cloud-export-PHr41y
+#  * branch            fd5a30dc007400f7acd497afc38a581e8d9daa03 -> FETCH_HEAD
+# Subtest: complete binary patch applies staged, unstaged, new and deleted files without changing index
+ok 18 - complete binary patch applies staged, unstaged, new and deleted files without changing index
+  ---
+  duration_ms: 260.811808
+  type: 'test'
+  ...
+# Subtest: tracked secret paths are excluded and baseline mismatch fails explicitly
+ok 19 - tracked secret paths are excluded and baseline mismatch fails explicitly
+  ---
+  duration_ms: 142.334603
+  type: 'test'
+  ...
+# Subtest: untracked external symlink is rejected without modifying the index
+ok 20 - untracked external symlink is rejected without modifying the index
+  ---
+  duration_ms: 45.18135
+  type: 'test'
+  ...
+# Subtest: preview tickets are one-use, expire, remain bound to the parent and revoke credentials
+ok 21 - preview tickets are one-use, expire, remain bound to the parent and revoke credentials
+  ---
+  duration_ms: 2.782523
+  type: 'test'
+  ...
+# Subtest: relay credentials require exact nonempty values
+ok 22 - relay credentials require exact nonempty values
+  ---
+  duration_ms: 0.192389
+  type: 'test'
+  ...
+# Subtest: captured links stay within the exported tree even after directory-link resolution
+ok 23 - captured links stay within the exported tree even after directory-link resolution
+  ---
+  duration_ms: 4.359515
+  type: 'test'
+  ...
+# Subtest: immutable ZIP contains current source, binary additions and metadata; excludes every credential/cache; keeps original index
+ok 24 - immutable ZIP contains current source, binary additions and metadata; excludes every credential/cache; keeps original index
+  ---
+  duration_ms: 236.21309
+  type: 'test'
+  ...
+# Subtest: source export refuses outward links without reading target content
+ok 25 - source export refuses outward links without reading target content
+  ---
+  duration_ms: 96.533202
+  type: 'test'
+  ...
+# Subtest: source snapshot includes ignored source and ignores project Git execution/configuration and archive exclusions
+ok 26 - source snapshot includes ignored source and ignores project Git execution/configuration and archive exclusions
+  ---
+  duration_ms: 219.702193
+  type: 'test'
+  ...
+# Subtest: handoff is short lived, one use and bound to origin and existing parent
+ok 27 - handoff is short lived, one use and bound to origin and existing parent
+  ---
+  duration_ms: 12.616323
+  type: 'test'
+  ...
+# Subtest: same user host pair remains different origins and different user host pairs
+ok 28 - same user host pair remains different origins and different user host pairs
+  ---
+  duration_ms: 0.349725
+  type: 'test'
+  ...
+1..28
+# tests 28
+# suites 0
+# pass 27
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 8396.039514

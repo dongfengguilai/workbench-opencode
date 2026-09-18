@@ -1,0 +1,20 @@
+{
+  "time": "2026-09-18T10:34:26.526325+00:00",
+  "fileSha256Unchanged": {
+    "admin": true,
+    "engineer-b": true
+  },
+  "budgetSha256Unchanged": {
+    "opencode-cloud/runtime/admin-gateway-state/budget.json": true,
+    "/home/vmware/Workspace/programs/WorkBench/runtime/engineer-b-gateway-state/budget.json": true
+  },
+  "ownedExportFixtureGone": true,
+  "modelRequestsIssuedByAudit": 0,
+  "nativeServicesRestartedByAudit": false,
+  "platformOrProxyRestartedByAudit": false,
+  "authorizedSourceUnchanged": {
+    "upload-download.html": true,
+    "article.docx": true
+  },
+  "pass": true
+}

@@ -1,0 +1,90 @@
+{
+  "time": "2026-09-18T23:14:34.584274+00:00",
+  "scope": "User-approved local development admin + engineer-b; authorized existing learn project; one human, not two NetIDs or production HTTPS",
+  "technicalResult": "PASS_FOR_APPROVED_LOCAL_CORE_CLOSURE",
+  "originalFullContract": "IN_PROGRESS; broader PARTIAL records retained, not promoted",
+  "signoff": "PENDING_USER_EXPLICIT_CONFIRMATION",
+  "browserCheckpoint": {
+    "action": "User privately relogged engineer-b; reopened same native SID and own iframe; clicked existing PDF preview",
+    "project": "learn",
+    "session": "ses_f4cb7c6d6ffeHxXuJcNeFmuqs0",
+    "uploadedFilename": "内置浏览器验收.pdf",
+    "pdfBytes": 868,
+    "actualCanvas": {
+      "width": 450,
+      "height": 300
+    },
+    "userPasswordRead": false,
+    "newModelTasksSubmitted": 0
+  },
+  "evidence": [
+    {
+      "title": "原用户数据保护与受控回退",
+      "file": "controlled-artifact-rollback.json",
+      "sha256": "9e2a6e030f5fff21ad999375b15f77a11ca92ee2bf7d619967f837f38ac31e4e"
+    },
+    {
+      "title": "真实OpenCode两轮工作和普通浏览器成果复现",
+      "file": "p2-browser-clean-result.json",
+      "sha256": "cc4a4d2349fcb67952656337197874a18403243b1c46515c7124211f6ff69560"
+    },
+    {
+      "title": "同浏览器双身份隔离及注销",
+      "file": "dual-browser-isolation-regression.json",
+      "sha256": "e250878a2ef83330d8462c0eed6eff87da92a4879bec92b804c582c24759801e"
+    },
+    {
+      "title": "真实配置和PTY边界",
+      "file": "installed-config-pty-audit.json",
+      "sha256": "33565a0279e88f76d3513a4a99fc1203f249d15986060a58d0f3ecab0497bf8b"
+    },
+    {
+      "title": "Host/Origin边界",
+      "file": "installed-relay-origin-isolation.json",
+      "sha256": "97524d6a30f498001b627597e08889f7312ff44affc6bb15df1554f4f037e02c"
+    },
+    {
+      "title": "模型作用域和计数",
+      "file": "installed-model-and-config-scope.json",
+      "sha256": "e1fef31db6109282f49ab879b4b54a825ef75dded9656c7505c3b8188271a176"
+    },
+    {
+      "title": "真实PTY写入导出拒绝",
+      "file": "native-pty-export-audit.json",
+      "sha256": "53b3ae13f8a6efccb4802a520f81d4e2786c7d1a6d53a6f8ef6d8761937f422c"
+    }
+  ],
+  "supplementaryTests": [
+    {
+      "log": "signoff-affected-regression.log",
+      "passed": 29,
+      "scope": "Pinned native image Node22.19 isolated fixture tests, not user coding evidence"
+    },
+    {
+      "log": "signoff-development-profile.log",
+      "passed": 9,
+      "scope": "Offline maintainer regression"
+    },
+    {
+      "log": "signoff-password-maintenance.log",
+      "passed": 6,
+      "scope": "Offline maintainer regression"
+    },
+    {
+      "log": "signoff-development-platform-expiry.log",
+      "passed": 1,
+      "scope": "Actual HTTPS platform code in a temporary fixture container; local fixture login, real31s ticket expiry/replay/cookie separation/disabled identity. NOT installed-user expiry evidence"
+    }
+  ],
+  "retainedFailures": [
+    "signoff-affected-regression-strip-only-failure.log",
+    "signoff-development-platform-expiry-url-fixture-failure.log",
+    "controlled-artifact-rollback-unreadable-staging.json"
+  ],
+  "limitations": [
+    "Original broader A01-A14 contract retains PARTIAL records; no full enterprise/production signoff.",
+    "Unused ticket wall-clock expiry and disabled identity HTTP assertions were supplemental isolated HTTPS fixture cases; installed identities were not disabled.",
+    "Codex IAB download limitation retained; actual normal-browser ZIP/patch were verified.",
+    "Raw native model/tool business records and protected backups stay local; not part of public source release."
+  ]
+}

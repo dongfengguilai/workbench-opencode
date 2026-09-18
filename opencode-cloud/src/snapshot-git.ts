@@ -1,5 +1,29 @@
-import {execFile} from 'node:child_process';import {promisify} from 'node:util';import path from 'node:path';import {mkdir,writeFile} from 'node:fs/promises';
+import {execFile} from 'node:child_process';import {promisify} from 'node:util';import path from 'node:path';import {mkdir,writeFile,readdir,lstat,readlink} from 'node:fs/promises';import {createHash} from 'node:crypto';
 const execute=promisify(execFile);
+// Detect ordinary concurrent writes without following links or reading secrets.
+// This is a change detector, not a claim of a filesystem-wide atomic snapshot.
+export async function watchExportSource(directory:string,excluded:(file:string)=>string|undefined){
+ const changed=()=>{const error:any=Error('EXPORT_SOURCE_CHANGED: stop source writers before exporting');error.code='EXPORT_SOURCE_CHANGED';return error;};
+ async function state(){
+  const hash=createHash('sha256');
+  async function visit(current:string){
+   const entries=(await readdir(current,{withFileTypes:true})).sort((a,b)=>a.name.localeCompare(b.name));
+   for(const entry of entries){
+    const filename=path.join(current,entry.name),relative=path.relative(directory,filename).split(path.sep).join('/');
+    if(excluded(relative))continue;
+    const stat=await lstat(filename,{bigint:true});
+    // Excluded build/cache children can change a parent's timestamps. The
+    // included child inventory detects additions/deletions without that noise.
+    if(stat.isDirectory()){hash.update(JSON.stringify([relative,'directory',String(stat.mode)]));await visit(filename);}
+    else hash.update(JSON.stringify([relative,String(stat.dev),String(stat.ino),String(stat.mode),String(stat.size),String(stat.mtimeNs),String(stat.ctimeNs),stat.isSymbolicLink()?await readlink(filename):'']));
+   }
+  }
+  try{await visit(directory);}catch(error:any){if(['ENOENT','ENOTDIR','ELOOP'].includes(error.code))throw changed();throw error;}
+  return hash.digest('hex');
+ }
+ const before=await state();
+ return async()=>{if(before!==await state())throw changed();};
+}
 // Never execute a project's .git/config filters, hooks, diff or archive drivers
 // as the network guard UID. Only its immutable objects are shared as alternates.
 export async function snapshotGit(directory:string,temporary:string){

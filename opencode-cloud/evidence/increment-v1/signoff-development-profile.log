@@ -1,0 +1,15 @@
+test_fresh_random_salt_and_no_plaintext (__main__.DevelopmentProfile.test_fresh_random_salt_and_no_plaintext) ... ok
+test_loop_identity_matches_inode_not_a_namespace_filename (__main__.DevelopmentProfile.test_loop_identity_matches_inode_not_a_namespace_filename) ... ok
+test_missing_new_container_is_expected_but_docker_failure_refuses (__main__.DevelopmentProfile.test_missing_new_container_is_expected_but_docker_failure_refuses) ... ok
+test_noninteractive_setup_does_not_create_installation (__main__.DevelopmentProfile.test_noninteractive_setup_does_not_create_installation) ... ok
+test_original_source_inventory_and_link_refusal (__main__.DevelopmentProfile.test_original_source_inventory_and_link_refusal) ... ok
+test_repeated_setup_preserves_password_data_and_counter (__main__.DevelopmentProfile.test_repeated_setup_preserves_password_data_and_counter) ... ok
+test_resolved_compose_enforces_independent_environment_and_loopback (__main__.DevelopmentProfile.test_resolved_compose_enforces_independent_environment_and_loopback) ... ok
+test_resume_unknown_stage_does_not_touch_data (__main__.DevelopmentProfile.test_resume_unknown_stage_does_not_touch_data) ... ok
+test_unknown_installation_is_not_overwritten (__main__.DevelopmentProfile.test_unknown_installation_is_not_overwritten) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 1.350s
+
+OK
+Existing developer profile retained; password, files, sessions and counters not reset.

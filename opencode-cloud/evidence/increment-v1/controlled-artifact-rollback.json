@@ -1,0 +1,162 @@
+{
+  "time": "20260918T230923Z",
+  "scope": "Engineer guard artifact only; no data restore, native/model/platform rebuild or original guard restart",
+  "privateStage": "/home/vmware/Workspace/programs/WorkBench/backups/controlled-artifact-rollback-20260918T230923Z",
+  "pass": true,
+  "before": {
+    "containers": {
+      "opencode-cloud-v0-native-1": {
+        "id": "fad137e3b8b1f6e60e1f7e8d2dfde7cb2f317999fab014194f8f010375032b53",
+        "started": "2026-09-18T06:47:56.98302397Z"
+      },
+      "opencode-cloud-v0-admin-native-1": {
+        "id": "0ac4166c34fcd21d6025b60be435e071874f4607466caf6bf46ddb66749fe7e7",
+        "started": "2026-09-18T06:47:58.513462863Z"
+      },
+      "opencode-cloud-v0-engineer-b-native-1": {
+        "id": "7f9a57da2a51195955a2968034db628f071bc21d49b529c1157ac429b5b5cf0c",
+        "started": "2026-09-18T06:47:57.641251802Z"
+      },
+      "opencode-cloud-v0-platform-1": {
+        "id": "73af5e66445cc359ebfa30e5fbce52f4cc13d1b7e78be5a6af91f6a936142075",
+        "started": "2026-09-18T10:20:23.101128277Z"
+      },
+      "opencode-cloud-v0-admin-native-guard-1": {
+        "id": "cbc10d8dcdf8a5e128c115abfea5d0f69a92d6870b7250525f74a46cc265a94d",
+        "started": "2026-09-18T06:48:12.262668092Z"
+      },
+      "opencode-cloud-v0-native-guard-1": {
+        "id": "b08cd4bb06499d80055196e8cac15a37de898c0828797ccf103f4268a3e8527d",
+        "started": "2026-09-18T06:48:12.325203466Z"
+      },
+      "opencode-cloud-v0-admin-model-gateway-1": {
+        "id": "b6534fc7649836748e5a1cdd73557a5c8d75074e95fe64940988001eb6216fa7",
+        "started": "2026-09-18T06:47:50.688225619Z"
+      },
+      "opencode-cloud-v0-engineer-b-model-gateway-1": {
+        "id": "0c071b0300d1c2e5b270423b62c3947b88a0ad34b4989d9418407d3739058c9d",
+        "started": "2026-09-18T06:47:50.695402758Z"
+      }
+    },
+    "files": {
+      "/home/vmware/Workspace/projects/experiments/Workbench_space/workbench-opencode/opencode-cloud/runtime/admin-project/.git/index": "9bc5893272eda78bf9734fad51e68957da6d383ecd69a0f1045b74d10642e5df",
+      "/home/vmware/Workspace/projects/experiments/Workbench_space/workbench-opencode/opencode-cloud/runtime/admin-project/web/index.html": "0652e03bd9de9de5743de7161e978cd5e296487e087bf9ee8ad4837162ebaab6",
+      "/home/vmware/Workspace/projects/experiments/Workbench_space/workbench-opencode/opencode-cloud/runtime/admin-project/web/package-lock.json": "19431e7667f49adda5a8e430538e810c03511552ea5790ba637a08443e56339f",
+      "/home/vmware/Workspace/programs/WorkBench/runtime/disks/engineer-b/project/.git/index": "823f244f1b8c3c0b525f68d4ce2c0b221959e0362ec477436da753941f0c6567",
+      "/home/vmware/Workspace/programs/WorkBench/runtime/disks/engineer-b/project/web/index.html": "52f0be2e42efba1a531768ff4314f8d4590fe5e15302d8be965b3da8ea34971a",
+      "/home/vmware/Workspace/programs/WorkBench/runtime/disks/engineer-b/project/web/package-lock.json": "df0dc7929b4baff2d3696afbc4ce2173433b504636c8794b3a69d20ff2997d1b",
+      "/home/vmware/Workspace/programs/WorkBench/runtime/platform.json": "5b76ebb5897b10c3e21176715a3357b7ccc9da6a6063003567f8ff63e6175ad1",
+      "/home/vmware/Workspace/programs/WorkBench/runtime/compose.dev.yaml": "2eb03cdde41763b754909b46d02b916356138608e648ff5497071c1f97893d02",
+      "/home/vmware/Workspace/programs/WorkBench/runtime/engineer-b-gateway-state/budget.json": "fdaf886f73a85fc470000f49d008704052d3647ce5a9c9430bcb5d4ebde242c3",
+      "/home/vmware/Workspace/projects/experiments/Workbench_space/workbench-opencode/opencode-cloud/runtime/admin-gateway-state/budget.json": "a74a0e0f4cbf1a9a4b2c82f61a94acfc7c402551cc9fd69ce612ee17b1a5d7b4"
+    },
+    "sessions": {
+      "opencode-cloud-v0-admin-native-1": {
+        "idle": true,
+        "sessionStatus": 200,
+        "messageStatus": 200,
+        "sessionHash": "c8db6c2d7f93bf9f8d70236de032112523edb1b7aca92d3cb7dad3ef257aa9df",
+        "messageHash": "f8623009ae5bda39a8af417801c27f60ebe1632357c85586a1699f98c1bc3e83"
+      },
+      "opencode-cloud-v0-engineer-b-native-1": {
+        "idle": true,
+        "sessionStatus": 200,
+        "messageStatus": 200,
+        "sessionHash": "6f8c8fff21ecd22c0f54b6333343f97fb1924f89e7ae84285da7cb1b0357185b",
+        "messageHash": "b2e7b5f1ce89debf25c5724a2f32890d8debe7e34498ccbdfbeab687ac282b8d"
+      }
+    }
+  },
+  "previousArtifact": {
+    "idle": true,
+    "sessionStatus": 200,
+    "messageStatus": 200,
+    "sessionHash": "6f8c8fff21ecd22c0f54b6333343f97fb1924f89e7ae84285da7cb1b0357185b",
+    "messageHash": "b2e7b5f1ce89debf25c5724a2f32890d8debe7e34498ccbdfbeab687ac282b8d",
+    "export": {
+      "status": 200,
+      "tree": "79a2a0657116049b171998c7ea8e7402fbad5c5b",
+      "baseline": "a9b4de9354832cc41a2d84ad44c2be45a9f95be8"
+    }
+  },
+  "rollbackGuardID": "127fc4c70f35f60a015abecab547e8e91756cb31677575e585cf6e8a5c5efecb",
+  "restoredCandidate": {
+    "idle": true,
+    "sessionStatus": 200,
+    "messageStatus": 200,
+    "sessionHash": "6f8c8fff21ecd22c0f54b6333343f97fb1924f89e7ae84285da7cb1b0357185b",
+    "messageHash": "b2e7b5f1ce89debf25c5724a2f32890d8debe7e34498ccbdfbeab687ac282b8d",
+    "export": {
+      "status": 200,
+      "tree": "79a2a0657116049b171998c7ea8e7402fbad5c5b",
+      "baseline": "a9b4de9354832cc41a2d84ad44c2be45a9f95be8"
+    }
+  },
+  "restoredGuardID": "b7f7bc8b349ee3dceca587f03005da083b8850ac73bd4db100627fcc1605d543",
+  "after": {
+    "containers": {
+      "opencode-cloud-v0-native-1": {
+        "id": "fad137e3b8b1f6e60e1f7e8d2dfde7cb2f317999fab014194f8f010375032b53",
+        "started": "2026-09-18T06:47:56.98302397Z"
+      },
+      "opencode-cloud-v0-admin-native-1": {
+        "id": "0ac4166c34fcd21d6025b60be435e071874f4607466caf6bf46ddb66749fe7e7",
+        "started": "2026-09-18T06:47:58.513462863Z"
+      },
+      "opencode-cloud-v0-engineer-b-native-1": {
+        "id": "7f9a57da2a51195955a2968034db628f071bc21d49b529c1157ac429b5b5cf0c",
+        "started": "2026-09-18T06:47:57.641251802Z"
+      },
+      "opencode-cloud-v0-platform-1": {
+        "id": "73af5e66445cc359ebfa30e5fbce52f4cc13d1b7e78be5a6af91f6a936142075",
+        "started": "2026-09-18T10:20:23.101128277Z"
+      },
+      "opencode-cloud-v0-admin-native-guard-1": {
+        "id": "cbc10d8dcdf8a5e128c115abfea5d0f69a92d6870b7250525f74a46cc265a94d",
+        "started": "2026-09-18T06:48:12.262668092Z"
+      },
+      "opencode-cloud-v0-native-guard-1": {
+        "id": "b08cd4bb06499d80055196e8cac15a37de898c0828797ccf103f4268a3e8527d",
+        "started": "2026-09-18T06:48:12.325203466Z"
+      },
+      "opencode-cloud-v0-admin-model-gateway-1": {
+        "id": "b6534fc7649836748e5a1cdd73557a5c8d75074e95fe64940988001eb6216fa7",
+        "started": "2026-09-18T06:47:50.688225619Z"
+      },
+      "opencode-cloud-v0-engineer-b-model-gateway-1": {
+        "id": "0c071b0300d1c2e5b270423b62c3947b88a0ad34b4989d9418407d3739058c9d",
+        "started": "2026-09-18T06:47:50.695402758Z"
+      }
+    },
+    "files": {
+      "/home/vmware/Workspace/projects/experiments/Workbench_space/workbench-opencode/opencode-cloud/runtime/admin-project/.git/index": "9bc5893272eda78bf9734fad51e68957da6d383ecd69a0f1045b74d10642e5df",
+      "/home/vmware/Workspace/projects/experiments/Workbench_space/workbench-opencode/opencode-cloud/runtime/admin-project/web/index.html": "0652e03bd9de9de5743de7161e978cd5e296487e087bf9ee8ad4837162ebaab6",
+      "/home/vmware/Workspace/projects/experiments/Workbench_space/workbench-opencode/opencode-cloud/runtime/admin-project/web/package-lock.json": "19431e7667f49adda5a8e430538e810c03511552ea5790ba637a08443e56339f",
+      "/home/vmware/Workspace/programs/WorkBench/runtime/disks/engineer-b/project/.git/index": "823f244f1b8c3c0b525f68d4ce2c0b221959e0362ec477436da753941f0c6567",
+      "/home/vmware/Workspace/programs/WorkBench/runtime/disks/engineer-b/project/web/index.html": "52f0be2e42efba1a531768ff4314f8d4590fe5e15302d8be965b3da8ea34971a",
+      "/home/vmware/Workspace/programs/WorkBench/runtime/disks/engineer-b/project/web/package-lock.json": "df0dc7929b4baff2d3696afbc4ce2173433b504636c8794b3a69d20ff2997d1b",
+      "/home/vmware/Workspace/programs/WorkBench/runtime/platform.json": "5b76ebb5897b10c3e21176715a3357b7ccc9da6a6063003567f8ff63e6175ad1",
+      "/home/vmware/Workspace/programs/WorkBench/runtime/compose.dev.yaml": "2eb03cdde41763b754909b46d02b916356138608e648ff5497071c1f97893d02",
+      "/home/vmware/Workspace/programs/WorkBench/runtime/engineer-b-gateway-state/budget.json": "fdaf886f73a85fc470000f49d008704052d3647ce5a9c9430bcb5d4ebde242c3",
+      "/home/vmware/Workspace/projects/experiments/Workbench_space/workbench-opencode/opencode-cloud/runtime/admin-gateway-state/budget.json": "a74a0e0f4cbf1a9a4b2c82f61a94acfc7c402551cc9fd69ce612ee17b1a5d7b4"
+    },
+    "sessions": {
+      "opencode-cloud-v0-admin-native-1": {
+        "idle": true,
+        "sessionStatus": 200,
+        "messageStatus": 200,
+        "sessionHash": "c8db6c2d7f93bf9f8d70236de032112523edb1b7aca92d3cb7dad3ef257aa9df",
+        "messageHash": "f8623009ae5bda39a8af417801c27f60ebe1632357c85586a1699f98c1bc3e83"
+      },
+      "opencode-cloud-v0-engineer-b-native-1": {
+        "idle": true,
+        "sessionStatus": 200,
+        "messageStatus": 200,
+        "sessionHash": "6f8c8fff21ecd22c0f54b6333343f97fb1924f89e7ae84285da7cb1b0357185b",
+        "messageHash": "b2e7b5f1ce89debf25c5724a2f32890d8debe7e34498ccbdfbeab687ac282b8d"
+      }
+    }
+  },
+  "dataConfigCountersAndOriginalServicesUnchanged": true,
+  "candidateSourceUnchanged": true
+}

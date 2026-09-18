@@ -1,0 +1,20 @@
+{
+  "scope": "Publish change detection to own engineer-b guard only after idle check; no native/platform/data recreation",
+  "rollbackCodeDirectory": "/home/vmware/Workspace/programs/WorkBench/backups/source-change-code-20260918T162432",
+  "beforeCodeSHA256": {
+    "snapshot-git.ts": "497fbdc9d06d8164a2e445a51efac9b348b9b5c6200d22528c31dbc7965bee79",
+    "source-export.ts": "df10974dd0c8090ab550959ec9735c751641dd61dfc624c4ca49208d1ee6dcd4",
+    "patch-export.ts": "fc7ec87c0a470e94bfb0f7d061f62777a8875be003a897f6a6da007306a71b72"
+  },
+  "candidateCodeSHA256": {
+    "snapshot-git.ts": "c6f180758f32eaad3fedab6fed64f0233e0a4fdc8a818bd05ee74c7fdc316370",
+    "source-export.ts": "5cebefd500531561a8a588b1f8af1370764dbf904ecd5970b18a755f4c77c459",
+    "patch-export.ts": "7f0b62237a917bfd027db42ec4ff4cb05d0e8cf9e35960e2b5d485cbbcf03bbf"
+  },
+  "nativeContainerIDs": {
+    "opencode-cloud-v0-engineer-b-native-1": "7f9a57da2a51195955a2968034db628f071bc21d49b529c1157ac429b5b5cf0c",
+    "opencode-cloud-v0-native-1": "fad137e3b8b1f6e60e1f7e8d2dfde7cb2f317999fab014194f8f010375032b53",
+    "opencode-cloud-v0-admin-native-1": "0ac4166c34fcd21d6025b60be435e071874f4607466caf6bf46ddb66749fe7e7"
+  },
+  "nativeIndexSHA256": "823f244f1b8c3c0b525f68d4ce2c0b221959e0362ec477436da753941f0c6567"
+}

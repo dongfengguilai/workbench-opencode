@@ -1,0 +1,49 @@
+{
+  "scope": "Actual loopback relay admission. Host/Origin/FetchMetadata rejects happen before authentication, no cookie or invented session used.",
+  "time": "2026-09-18T10:33:52.003587+00:00",
+  "rows": [
+    {
+      "name": "unknown workbench Host",
+      "status": 403,
+      "rejectedBeforeAuthentication": true,
+      "pass": true
+    },
+    {
+      "name": "cross-user workbench Origin",
+      "status": 403,
+      "rejectedBeforeAuthentication": true,
+      "pass": true
+    },
+    {
+      "name": "cross-site login write",
+      "status": 403,
+      "rejectedBeforeAuthentication": true,
+      "pass": true
+    },
+    {
+      "name": "cross-user preview Origin",
+      "status": 403,
+      "rejectedBeforeAuthentication": true,
+      "pass": true
+    },
+    {
+      "name": "non-allowlisted preview Host",
+      "status": 403,
+      "rejectedBeforeAuthentication": true,
+      "pass": true
+    },
+    {
+      "name": "TRACE denied",
+      "status": 403,
+      "rejectedBeforeAuthentication": true,
+      "pass": true
+    },
+    {
+      "name": "spoofed relay/forwarded headers cannot change login identity",
+      "status": 200,
+      "username": "engineer-b",
+      "pass": true
+    }
+  ],
+  "pass": true
+}

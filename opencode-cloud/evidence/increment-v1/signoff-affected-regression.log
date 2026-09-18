@@ -1,0 +1,202 @@
+TAP version 13
+# (node:12) ExperimentalWarning: Transform Types is an experimental feature and might change at any time
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: fixed-version routes and prompt overrides are enforced
+ok 1 - fixed-version routes and prompt overrides are enforced
+  ---
+  duration_ms: 2.125712
+  type: 'test'
+  ...
+# (node:19) ExperimentalWarning: Transform Types is an experimental feature and might change at any time
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: local engineering authentication requires an explicit development profile and never contacts NetID
+ok 2 - local engineering authentication requires an explicit development profile and never contacts NetID
+  ---
+  duration_ms: 304.691068
+  type: 'test'
+  ...
+# Subtest: production launch rejects development configuration even when it contains valid hashes
+ok 3 - production launch rejects development configuration even when it contains valid hashes
+  ---
+  duration_ms: 0.979041
+  type: 'test'
+  ...
+# (node:30) ExperimentalWarning: Transform Types is an experimental feature and might change at any time
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: business directories and credential-named source are deliverable at root and nested levels
+ok 4 - business directories and credential-named source are deliverable at root and nested levels
+  ---
+  duration_ms: 487.261942
+  type: 'test'
+  ...
+# Subtest: tracked credentials including deletions never escape either format; exclusions have reasons
+ok 5 - tracked credentials including deletions never escape either format; exclusions have reasons
+  ---
+  duration_ms: 375.911056
+  type: 'test'
+  ...
+# Subtest: renamed private PEM content is explicitly refused without printing sensitive bytes
+ok 6 - renamed private PEM content is explicitly refused without printing sensitive bytes
+  ---
+  duration_ms: 304.525509
+  type: 'test'
+  ...
+# Subtest: patch checks deleted binary baseline bytes against protected credentials
+ok 7 - patch checks deleted binary baseline bytes against protected credentials
+  ---
+  duration_ms: 221.2553
+  type: 'test'
+  ...
+# Subtest: links cannot alias excluded credentials into source
+ok 8 - links cannot alias excluded credentials into source
+  ---
+  duration_ms: 56.064954
+  type: 'test'
+  ...
+# Subtest: explicit platform ownership excludes only the configured subtree
+ok 9 - explicit platform ownership excludes only the configured subtree
+  ---
+  duration_ms: 0.415413
+  type: 'test'
+  ...
+# (node:184) ExperimentalWarning: Transform Types is an experimental feature and might change at any time
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: actual ZIP bytes and binary patch reproduce tests in independent clean directories
+ok 10 - actual ZIP bytes and binary patch reproduce tests in independent clean directories
+  ---
+  duration_ms: 1009.264119
+  type: 'test'
+  ...
+# (node:290) ExperimentalWarning: Transform Types is an experimental feature and might change at any time
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: source change detection: edit
+ok 11 - source change detection: edit
+  ---
+  duration_ms: 30.6931
+  type: 'test'
+  ...
+# Subtest: source change detection: add
+ok 12 - source change detection: add
+  ---
+  duration_ms: 6.452683
+  type: 'test'
+  ...
+# Subtest: source change detection: delete
+ok 13 - source change detection: delete
+  ---
+  duration_ms: 6.067898
+  type: 'test'
+  ...
+# Subtest: source change detection: mode
+ok 14 - source change detection: mode
+  ---
+  duration_ms: 5.481168
+  type: 'test'
+  ...
+# Subtest: source change detection: link
+ok 15 - source change detection: link
+  ---
+  duration_ms: 4.465142
+  type: 'test'
+  ...
+# Subtest: excluded runtime/build writes do not reject a stable deliverable
+ok 16 - excluded runtime/build writes do not reject a stable deliverable
+  ---
+  duration_ms: 3.767832
+  type: 'test'
+  ...
+# (node:301) ExperimentalWarning: Transform Types is an experimental feature and might change at any time
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: untracked credentials and state are excluded even without gitignore rules
+ok 17 - untracked credentials and state are excluded even without gitignore rules
+  ---
+  duration_ms: 261.696133
+  type: 'test'
+  ...
+# Subtest: deleted tracked secrets are restored to baseline in temporary index
+ok 18 - deleted tracked secrets are restored to baseline in temporary index
+  ---
+  duration_ms: 240.431617
+  type: 'test'
+  ...
+# (node:353) ExperimentalWarning: Transform Types is an experimental feature and might change at any time
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# From /tmp/cloud-export-QGhar2
+#  * branch            4478e0f00e975261bbeb14ff2a78fa401d10bca0 -> FETCH_HEAD
+# Subtest: complete binary patch applies staged, unstaged, new and deleted files without changing index
+ok 19 - complete binary patch applies staged, unstaged, new and deleted files without changing index
+  ---
+  duration_ms: 316.21497
+  type: 'test'
+  ...
+# Subtest: tracked secret paths are excluded and baseline mismatch fails explicitly
+ok 20 - tracked secret paths are excluded and baseline mismatch fails explicitly
+  ---
+  duration_ms: 211.02247
+  type: 'test'
+  ...
+# Subtest: untracked external symlink is rejected without modifying the index
+ok 21 - untracked external symlink is rejected without modifying the index
+  ---
+  duration_ms: 55.943498
+  type: 'test'
+  ...
+# Subtest: preview tickets are one-use, expire, remain bound to the parent and revoke credentials
+ok 22 - preview tickets are one-use, expire, remain bound to the parent and revoke credentials
+  ---
+  duration_ms: 6.218318
+  type: 'test'
+  ...
+# Subtest: relay credentials require exact nonempty values
+ok 23 - relay credentials require exact nonempty values
+  ---
+  duration_ms: 0.339784
+  type: 'test'
+  ...
+# (node:439) ExperimentalWarning: Transform Types is an experimental feature and might change at any time
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: captured links stay within the exported tree even after directory-link resolution
+ok 24 - captured links stay within the exported tree even after directory-link resolution
+  ---
+  duration_ms: 13.351855
+  type: 'test'
+  ...
+# Subtest: immutable ZIP contains current source, binary additions and metadata; excludes every credential/cache; keeps original index
+ok 25 - immutable ZIP contains current source, binary additions and metadata; excludes every credential/cache; keeps original index
+  ---
+  duration_ms: 428.793729
+  type: 'test'
+  ...
+# Subtest: source export refuses outward links without reading target content
+ok 26 - source export refuses outward links without reading target content
+  ---
+  duration_ms: 47.782442
+  type: 'test'
+  ...
+# Subtest: source snapshot includes ignored source and ignores project Git execution/configuration and archive exclusions
+ok 27 - source snapshot includes ignored source and ignores project Git execution/configuration and archive exclusions
+  ---
+  duration_ms: 177.293178
+  type: 'test'
+  ...
+# Subtest: handoff is short lived, one use and bound to origin and existing parent
+ok 28 - handoff is short lived, one use and bound to origin and existing parent
+  ---
+  duration_ms: 1.8919
+  type: 'test'
+  ...
+# Subtest: same user host pair remains different origins and different user host pairs
+ok 29 - same user host pair remains different origins and different user host pairs
+  ---
+  duration_ms: 0.265159
+  type: 'test'
+  ...
+1..29
+# tests 29
+# suites 0
+# pass 29
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 6697.140051

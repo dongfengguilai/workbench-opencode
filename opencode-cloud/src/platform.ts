@@ -2,7 +2,7 @@ import https from 'node:https';
 import {readFileSync,writeFileSync,renameSync,mkdirSync} from 'node:fs';
 import {randomBytes} from 'node:crypto';
 import { IntranetAuthClient,sessionDigest,readCookie,InvalidCredentialsError } from './auth.ts';
-import {authenticateAccount,validateAccount,type Account} from './identity-auth.ts';
+import {authenticateAccount,validateAccount,authenticationProfile,type Account} from './identity-auth.ts';
 import {forward,upgrade,error,readBody} from './native-proxy.ts';
 import {loadUi,uiPage} from './ui-assets.mjs';
 import {checkRequest} from './access-policy.ts';
@@ -10,15 +10,19 @@ import {previewPlatform} from './preview-platform.ts';
 import {workbenchOrigin,previewOrigin,configureOrigins,formalOrigins,sessionCookieName} from './preview-origin.mjs';
 import {WorkbenchHandoff} from './workbench-handoff.mjs';
 import {sameSecret} from './preview-sessions.mjs';
-type User={password?:string,passwordHash?:string,authProvider?:Account['authProvider'],role?:Account['role'],displayName:string,enabled:boolean,environment:string,nativePassword:string};
-type Config={origin:string,sessionTtl:number,previewRelayKey?:string,users:Record<string,User>,publicOrigins?:Record<string,{workbench:string,preview:string}>,cookieNames?:Record<string,{session:string,preview:string}>,auth?:{mode:'netid'|'mixed',baseUrl:string}};
+type User={password?:string,passwordHash?:string,authProvider?:Account['authProvider'],role?:Account['role'],projectName?:string,displayName:string,enabled:boolean,environment:string,nativePassword:string};
+type Config={origin:string,sessionTtl:number,previewRelayKey?:string,users:Record<string,User>,publicOrigins?:Record<string,{workbench:string,preview:string}>,cookieNames?:Record<string,{session:string,preview:string}>,auth?:{mode:'netid'|'mixed'|'development',baseUrl?:string}};
 type Session={user:string,expires:number};
 const configPath=process.env.PLATFORM_CONFIG||'/trusted/platform.json';
 function config():Config{return JSON.parse(readFileSync(configPath,'utf8'));}
 const initial=config();
+const profile=authenticationProfile(initial,process.env.WORKBENCH_AUTH_PROFILE);
 configureOrigins(initial.publicOrigins,initial.cookieNames);
-if(initial.auth && (!['netid','mixed'].includes(initial.auth.mode)||!initial.auth.baseUrl||!initial.publicOrigins))throw Error('Invalid NetID-only deployment configuration');
-if(initial.auth?.mode==='mixed')for(const [name,user] of Object.entries(initial.users))validateAccount(name,user as Account);
+if(initial.auth && profile!=='development' && (!['netid','mixed'].includes(initial.auth.mode)||!initial.auth.baseUrl||!initial.publicOrigins))throw Error('Invalid NetID-only deployment configuration');
+for(const [name,user] of Object.entries(initial.users)){
+ if(initial.auth?.mode==='mixed'||profile==='development')validateAccount(name,user as Account,profile);
+ else if(user.authProvider==='local-engineer')throw Error('Development engineer forbidden in production configuration');
+}
 const origin=new URL(initial.origin);
 if(origin.protocol!=='https:')throw new Error('HTTPS origin required');
 mkdirSync('/platform-state',{recursive:true});
@@ -65,10 +69,11 @@ const server=https.createServer({key:readFileSync('/trusted/tls.key'),cert:readF
    res.setHeader('Content-Type',anonymousAssets[publicName]);res.end(readFileSync('/public/'+publicName));return;
   }
   if(p==='/__platform/login-info'&&req.method==='GET'){
-   const cfg=config();const b=browserOrigin(req);const name=Object.keys(cfg.users).find(n=>workbenchOrigin(n)===b);
+   const cfg=config();const b=browserOrigin(req);const name=Object.keys(cfg.users).find(n=>workbenchOrigin(n)===b)||(profile==='development'&&b==='http://127.0.0.1:8444'?'admin':undefined);
    if(!name){error(res,403,'Unrecognized login origin');return;}
-   const user=cfg.users[name];const other=Object.keys(cfg.users).find(n=>n!==name&&cfg.users[n].enabled);
-   json(res,200,{method:user.authProvider|| (cfg.auth?'netid':'local-admin'),alternativeLoginUrl:other?workbenchOrigin(other)+'/__platform/login':null});return;
+   const user=cfg.users[name];const preferred=profile==='development'?(name==='admin'?'engineer-b':'admin'):undefined;
+   const other=preferred&&cfg.users[preferred]?.enabled?preferred:Object.keys(cfg.users).find(n=>n!==name&&cfg.users[n].enabled);
+   json(res,200,{method:user.authProvider|| (cfg.auth?'netid':'local-admin'),username:name,profile,alternativeMethod:other?cfg.users[other].authProvider:null,alternativeLoginUrl:other?workbenchOrigin(other)+'/__platform/login':null});return;
   }
   if((p==='/__platform/login'||p==='/api/auth/login')&&req.method==='GET'){
    res.setHeader('Content-Type','text/html');res.setHeader('Content-Security-Policy',"default-src 'self'; script-src 'self'; style-src 'self'; form-action 'self'; frame-ancestors 'none'");res.end(loginHtml);return;
@@ -79,7 +84,7 @@ const server=https.createServer({key:readFileSync('/trusted/tls.key'),cert:readF
    if(!ownedBrowser(req,name)){error(res,403,'Identity belongs to another workbench origin');return;}
    if(initial.auth&&cfg.auth?.mode!==initial.auth.mode){error(res,503,'NetID-only configuration unavailable');return;}
    const auth=new IntranetAuthClient({intranetBaseUrl:cfg.auth?.baseUrl||'',intranetTimeoutSeconds:10,intranetVerifyTls:true,localAdminEnabled:!cfg.auth,localAdminUsername:name,localAdminPassword:user.password||'',localAdminDisplayName:user.displayName,requireExplicitSubject:!!cfg.auth});
-   try{const verified=cfg.auth?.mode==='mixed'?await authenticateAccount(name,body.password,user as Account,cfg.auth.baseUrl):await auth.authenticate(name,body.password);if(cfg.auth?.mode==='netid'&&(verified.provider!=='intranet'||verified.subject!==name)){error(res,403,'Authenticated NetID is not authorized for this environment');return;}}catch(e){error(res,e instanceof InvalidCredentialsError?401:503,'Authentication failed');return;}
+   try{const verified=cfg.auth?.mode==='mixed'||profile==='development'?await authenticateAccount(name,body.password,user as Account,cfg.auth?.baseUrl||'',undefined,profile):await auth.authenticate(name,body.password);if(cfg.auth?.mode==='netid'&&(verified.provider!=='intranet'||verified.subject!==name)){error(res,403,'Authenticated NetID is not authorized for this environment');return;}}catch(e){error(res,e instanceof InvalidCredentialsError?401:503,'Authentication failed');return;}
    const previous=current(req);if(previous){delete sessions[previous.hash];closeSession(previous.hash);}
    const token=randomBytes(32).toString('base64url');sessions[sessionDigest(token)]={user:name,expires:Date.now()+cfg.sessionTtl*1000};persist();
    res.setHeader('Set-Cookie',`${sessionCookieName(browserOrigin(req))}=${token}; Path=/; Max-Age=${cfg.sessionTtl}; HttpOnly; Secure; SameSite=Lax`);
@@ -110,7 +115,8 @@ const server=https.createServer({key:readFileSync('/trusted/tls.key'),cert:readF
   if(p==='/__platform/source.zip'&&req.method==='GET'){
    if(new URL(req.url!,origin).search){error(res,403,'Source export takes no routing arguments');return;}
    const response=await fetch(new URL('/__source',opts.target),{headers:{Authorization:'Basic '+Buffer.from('opencode:'+opts.password).toString('base64')},signal:AbortSignal.timeout(60000)});
-   res.writeHead(response.status,{'Content-Type':response.headers.get('content-type')||'application/json','Cache-Control':'no-store',...(response.ok?{'Content-Disposition':'attachment; filename="WorkBench-source.zip"'}:{})});res.end(Buffer.from(await response.arrayBuffer()));return;
+   const digest=response.headers.get('x-workbench-sha256');
+   res.writeHead(response.status,{'Content-Type':response.headers.get('content-type')||'application/json','Cache-Control':'no-store',...(response.ok?{'Content-Disposition':'attachment; filename="WorkBench-source.zip"',...(digest&&/^[a-f0-9]{64}$/.test(digest)?{'X-WorkBench-SHA256':digest}:{})}:{})});res.end(Buffer.from(await response.arrayBuffer()));return;
   }
   if(['/__platform/style.css','/__platform/shell.js','/__platform/workbench-guard.js'].includes(p)&&req.method==='GET'){
    const name=p.split('/').pop()!;res.setHeader('Content-Type',name.endsWith('.css')?'text/css':'application/javascript');res.end(readFileSync('/public/'+name));return;
@@ -131,14 +137,14 @@ const server=https.createServer({key:readFileSync('/trusted/tls.key'),cert:readF
   }
   if(p==='/__platform/me'&&req.method==='GET'){
    const health=await fetch(new URL('/global/health',opts.target),{headers:{Authorization:'Basic '+Buffer.from('opencode:'+opts.password).toString('base64')},signal:AbortSignal.timeout(5000)});
-   json(res,200,{user_id:identity.username,display_name:identity.user.displayName,role:identity.user.role||'engineer',auth_provider:identity.user.authProvider||(config().auth?'netid':'local-admin'),project:'workbench-opencode',directory:'/workspace/project',ready:health.ok,project_url:'/L3dvcmtzcGFjZS9wcm9qZWN0/session',workbench_origin:workbenchOrigin(identity.username),preview_origin:previewOrigin(identity.username),embedded_preview:browserOrigin(req)===workbenchOrigin(identity.username)});return;
+   json(res,200,{user_id:identity.username,display_name:identity.user.displayName,role:identity.user.role||'engineer',auth_provider:identity.user.authProvider||(config().auth?'netid':'local-admin'),project:identity.user.projectName||'workbench-opencode',directory:'/workspace/project',ready:health.ok,project_url:'/L3dvcmtzcGFjZS9wcm9qZWN0/session',workbench_origin:workbenchOrigin(identity.username),preview_origin:previewOrigin(identity.username),embedded_preview:browserOrigin(req)===workbenchOrigin(identity.username)});return;
   }
   if(['/__platform/download','/__platform/changes'].includes(p)&&req.method==='GET'){
    const response=await fetch(new URL('/__export',opts.target),{headers:{Authorization:'Basic '+Buffer.from('opencode:'+opts.password).toString('base64')},signal:AbortSignal.timeout(60000)});
    if(!response.ok){error(res,response.status,(await response.json() as any).detail||'Export failed');return;}
    const result=await response.json() as any;
-   if(p.endsWith('/changes'))json(res,200,{baseline:result.baseline,files:result.files});
-   else{res.writeHead(200,{'Content-Type':'application/octet-stream','Content-Disposition':'attachment; filename="workbench-opencode.patch"'});res.end(result.patch);}
+   if(p.endsWith('/changes'))json(res,200,{baseline:result.baseline,files:result.files,head:result.head,tree:result.tree,exportedAt:result.exportedAt,sha256:result.sha256,excluded:result.excluded});
+   else{res.writeHead(200,{'Content-Type':'application/octet-stream','Content-Disposition':'attachment; filename="workbench-opencode.patch"','Cache-Control':'no-store',...(/^[a-f0-9]{64}$/.test(result.sha256)?{'X-WorkBench-SHA256':result.sha256}:{})});res.end(result.patch);}
    return;
   }
   await forward(req,res,{...opts,html:html=>html.replace('</head>','<link rel="stylesheet" href="/__platform/style.css"><script defer src="/__platform/shell.js"></script></head>')});

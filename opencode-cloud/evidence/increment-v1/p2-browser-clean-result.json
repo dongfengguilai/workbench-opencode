@@ -1,0 +1,43 @@
+{
+  "status": "PASS",
+  "actualBrowserFiles": [
+    {
+      "browserFile": "/home/vmware/下载/WorkBench-source (3).zip",
+      "privateCopy": "/home/vmware/Workspace/programs/WorkBench/acceptance/p2-browser-files-20260918T162115/source.zip",
+      "bytes": 417500,
+      "sha256": "4acd0c4f1cdf752e3106a05a25823b559e923734f4d414631044d610a26086bc",
+      "modifiedAt": "2026-09-18T08:20:10.344714+00:00"
+    },
+    {
+      "browserFile": "/home/vmware/下载/workbench-opencode (5).patch",
+      "privateCopy": "/home/vmware/Workspace/programs/WorkBench/acceptance/p2-browser-files-20260918T162115/changes.patch",
+      "bytes": 2134241,
+      "sha256": "ab547ac3a60399f50395c03f75a28671c5646e64ad0259853bd5ed9482266677",
+      "modifiedAt": "2026-09-18T08:20:23.525566+00:00"
+    }
+  ],
+  "baseline": "a9b4de9354832cc41a2d84ad44c2be45a9f95be8",
+  "tree": "79a2a0657116049b171998c7ea8e7402fbad5c5b",
+  "zip": {
+    "install": 0,
+    "test": 0,
+    "build": 0,
+    "tests": 51,
+    "pass": 51
+  },
+  "patch": {
+    "check": 0,
+    "apply": 0,
+    "install": 0,
+    "test": 0,
+    "build": 0,
+    "tests": 51,
+    "pass": 51
+  },
+  "all12FilesMatch": true,
+  "sourceFilesNotModifiedByVerification": true,
+  "nativeIndexUnchanged": true,
+  "nativeIndexSHA256": "823f244f1b8c3c0b525f68d4ce2c0b221959e0362ec477436da753941f0c6567",
+  "privateDirectory": "/home/vmware/Workspace/programs/WorkBench/acceptance/p2-browser-files-20260918T162115",
+  "codexIABDownload": "Known separate browser limitation; ordinary browser bytes independently verified"
+}

@@ -2,4 +2,12 @@ async function clearStorage(){document.querySelector('#login').dataset.phase='st
 document.querySelector('.theme').addEventListener('click',()=>window.workbenchTheme(document.documentElement.dataset.colorScheme==='dark'?'light':'dark'));
 document.querySelector('#login').addEventListener('submit',async event=>{event.preventDefault();const form=event.currentTarget;const button=form.querySelector('button[type=submit]');if(button.disabled)return;const label=button.innerHTML;button.disabled=true;button.textContent='正在登录…';form.setAttribute('aria-busy','true');document.querySelector('#error').textContent='';try{await Promise.race([clearStorage(),new Promise((_,reject)=>setTimeout(()=>reject(new Error('浏览器缓存清理超时，请刷新后重试。')),10000))]);form.dataset.phase='authenticate';const data=Object.fromEntries(new FormData(form));const response=await fetch('/api/auth/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data),signal:AbortSignal.timeout(10000)});if(!response.ok)throw new Error(response.status===401?'账号或密码错误，请重新输入。':'登录服务暂不可用，请稍后再试。');location.replace('/');}catch(e){document.querySelector('#error').textContent=e.message;button.disabled=false;button.innerHTML=label;form.removeAttribute('aria-busy');}});
 
-fetch('/__platform/login-info').then(r=>r.ok?r.json():null).then(info=>{if(!info)return;const local=info.method==='local-admin';document.querySelector('#login-kind').textContent=local?'管理员登录 · 本地账号':'工程师登录 · 企业 NetID';document.querySelector('label[for=username]').textContent=local?'管理员账号':'NetID';if(local)document.querySelector('#username').value='admin';if(info.alternativeLoginUrl){const a=document.createElement('a');a.href=info.alternativeLoginUrl;a.textContent=local?'前往 NetID 登录':'前往管理员登录';document.querySelector('#login-switch').append(a);}}).catch(()=>{});
+fetch('/__platform/login-info').then(r=>r.ok?r.json():null).then(info=>{
+ if(!info)return;
+ const admin=info.method==='local-admin',engineer=info.method==='local-engineer';
+ document.querySelector('#login-kind').textContent=admin?'管理员登录 · 本地账号':engineer?'工程师登录 · 本机开发':'工程师登录 · 企业 NetID';
+ document.querySelector('label[for=username]').textContent=admin?'管理员账号':engineer?'工程师账号':'NetID';
+ if(admin)document.querySelector('#username').value='admin';
+ if(engineer)document.querySelector('#username').value=info.username||'engineer-b';
+ if(info.alternativeLoginUrl){const a=document.createElement('a');a.href=info.alternativeLoginUrl;a.textContent=info.alternativeMethod==='local-engineer'?'前往本机工程师登录':info.alternativeMethod==='local-admin'?'前往管理员登录':admin?'前往 NetID 登录':'前往管理员登录';document.querySelector('#login-switch').append(a);}
+}).catch(()=>{});

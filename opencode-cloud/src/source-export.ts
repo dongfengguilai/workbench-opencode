@@ -4,15 +4,13 @@ import path from 'node:path';
 import {createHash} from 'node:crypto';
 import {execFile} from 'node:child_process';
 import {promisify} from 'node:util';
-import {snapshotGit} from './snapshot-git.ts';
+import {snapshotGit,watchExportSource} from './snapshot-git.ts';
 
 const run=promisify(execFile);
-const excludedDirectory=/^(?:\.git|\.ssh|\.aws|\.kube|\.cache|\.opencode|\.state|\.playwright|\.playwright-cli|\.workbench-artifacts|\.vite|cache|caches|database|databases|db|deps|dependencies|node_modules|runtime|state|vendor|evidence|dist|coverage|test-results|playwright-report)$/i;
-const excludedFile=/^(?:\.env(?:\..*)?|\.npmrc|\.netrc|id_rsa|id_ed25519|.*(?:credential|secret|private[-_.]?key|access[-_.]?key|api[-_.]?key).*)$|\.(?:key|pem|p12|pfx|jks|keystore)$/i;
-const excluded=(name:string)=>name.split('/').some(p=>excludedDirectory.test(p))||excludedFile.test(path.posix.basename(name));
+import {exportPolicy,assertExportContent,type ExportExclusion} from './export-policy.ts';
 
 // Validate the captured tree too: a working-tree link may change after walking.
-export function validateSnapshotLinks(entries:{path:string;mode:string;target?:string}[]) {
+export function validateSnapshotLinks(entries:{path:string;mode:string;target?:string}[],excluded=exportPolicy()) {
  const files=new Set(entries.map(e=>e.path)),directories=new Set(['']);
  const links=new Map(entries.filter(e=>e.mode==='120000').map(e=>[e.path,e.target!]));
  for(const file of files)for(let d=path.posix.dirname(file);d!=='.';d=path.posix.dirname(d))directories.add(d);
@@ -32,15 +30,18 @@ export function validateSnapshotLinks(entries:{path:string;mode:string;target?:s
  }
 }
 
-export async function exportSource({directory,baseline,secrets=[]}:{directory:string;baseline:string;secrets?:string[]}) {
+export async function exportSource({directory,baseline,secrets=[],ownedPaths=[]}:{directory:string;baseline:string;secrets?:string[];ownedPaths?:string[]}) {
+ const excluded=exportPolicy(ownedPaths);
+ const exclusions:ExportExclusion[]=[];
  if(!/^[a-f0-9]{40}(?:[a-f0-9]{24})?$/i.test(baseline))throw Error('Invalid baseline');
  const root=await realpath(directory);
+ const assertUnchanged=await watchExportSource(root,excluded);
  const selected:string[]=[];
  let selectedBytes=0;
  async function validate(current:string) {
   for(const entry of await readdir(current,{withFileTypes:true})) {
    const filename=path.join(current,entry.name);const relative=path.relative(root,filename).split(path.sep).join('/');
-   if(excluded(relative))continue;
+   const reason=excluded(relative);if(reason){exclusions.push({path:relative,reason});continue;}
    if(entry.isSymbolicLink()) {
     if(path.isAbsolute(await readlink(filename)))throw Error('Unsafe absolute symlink: '+relative);
     const target=path.relative(root,await realpath(filename));
@@ -68,18 +69,20 @@ export async function exportSource({directory,baseline,secrets=[]}:{directory:st
    if(match[1]==='160000')throw Error('Source archive does not support submodules');
    const content=await git(['cat-file','blob',match[2]]);bytes+=content.length;
    if(bytes>32*1024*1024)throw Error('Source archive exceeds 32 MiB; dependencies and verification artifacts must remain excluded');
-   if(secrets.filter(s=>s&&s.length>=8).some(s=>content.includes(Buffer.from(s))))throw Error('Protected credential found in source: '+match[3]);
+   assertExportContent(match[3],content,secrets);
    files.push({path:match[3],bytes:content.length,sha256:createHash('sha256').update(content).digest('hex'),mode:match[1]});
    captured.push({path:match[3],mode:match[1],target:match[1]==='120000'?content.toString():undefined});
   }
-  validateSnapshotLinks(captured);
+  validateSnapshotLinks(captured,excluded);
   const tree=(await git(['write-tree'])).toString().trim();
   const zip=await git(['archive','--worktree-attributes','--format=zip','--prefix=source/',tree],true);
   const archive=path.join(temporary,'source.zip');await writeFile(archive,zip);
-  const manifest={baseline,head,tree,exportedAt:new Date().toISOString(),files,excluded:'credentials, native state, caches, dependencies, verification artifacts, build output'};
+  const manifest={baseline,head,tree,exportedAt:new Date().toISOString(),files,excluded:exclusions.sort((a,b)=>a.path.localeCompare(b.path))};
   await writeFile(path.join(temporary,'manifest.json'),JSON.stringify(manifest,null,2)+'\n');
   await writeFile(path.join(temporary,'run.md'),'# WorkBench source export\n\nThe complete deliverable source is in source/. No baseline checkout is needed.\n\nFor a Vite/React project: cd source/web; npm ci --maxsockets=2 --fetch-retries=0; npm test; npm run build; npm run dev -- --host 127.0.0.1 --port 5173 --strictPort.\nFor plain HTML/CSS/JS: cd source/web; npx --yes vite@7.3.6 --host 127.0.0.1 --port 5173 --strictPort (downloads this fixed version if unavailable).\nRead the project README for its actual tests. An export is not proof that builds or tests passed.\nDependencies, credentials, browser state and verification artifacts are excluded; obtain dependencies from the lockfile.\n');
   await run('python3',['-c','import zipfile,sys; z=zipfile.ZipFile(sys.argv[1],"a",compression=zipfile.ZIP_DEFLATED); z.write(sys.argv[2],"WORKBENCH_EXPORT.json"); z.write(sys.argv[3],"WORKBENCH_RUN.md"); z.close()',archive,path.join(temporary,'manifest.json'),path.join(temporary,'run.md')]);
-  return {...manifest,zip:await readFile(archive)};
+  const result=await readFile(archive);
+  await assertUnchanged();
+  return {...manifest,sha256:createHash('sha256').update(result).digest('hex'),zip:result};
  }finally{await rm(temporary,{recursive:true,force:true});}
 }

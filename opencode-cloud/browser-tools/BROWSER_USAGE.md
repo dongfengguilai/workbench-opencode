@@ -1,7 +1,7 @@
 # WorkBench 原生浏览器与网页
 
 网页只能放在 /workspace/project/web。静态 HTML/CSS/JS 使用固定 Vite；React 在 web 中保留 package.json 与依赖锁，安装自己的 React 依赖。平台启动按钮通过原生 PTY 执行 /trusted/start-preview.sh，固定 127.0.0.1:5173；不要另启第二个实例。不得读取 /trusted 配置内容、环境变量或密钥。
-依赖下载最多2并发，以留出本人HTTPS网关的4个隧道名额。安装命令使用 npm install --ignore-scripts --maxsockets=2 --fetch-retries=0；保留锁文件，重现用 npm ci --ignore-scripts --maxsockets=2 --fetch-retries=0。明确失败后只定位原因，不反复清空/重装或切换工具重试。
+依赖下载最多2并发，以留出本人HTTPS网关的4个隧道名额。安装命令使用 npm install --ignore-scripts --maxsockets=2 --fetch-retries=0；保留锁文件，重现用 npm ci --ignore-scripts --maxsockets=2 --fetch-retries=0。首次依赖解析和下载可能超过 120 秒；原生 Bash 可显式设置 timeout=600000，npm 自身仍保留 fetch 超时与零重试。命令超时不等于安装已成功，也不应自动重复：先确认进程、锁文件及依赖状态；结果未知时不得重发。已有官方缓存可使用 --prefer-offline；它只复用缓存，不取消版本锁定或 TLS 校验。明确失败后只定位原因，不反复清空/重装或切换工具重试。
 
 浏览器直接使用原生 Bash 的 Microsoft Playwright CLI 0.1.20，没有额外浏览器工具或自动 Skill。先运行 playwright-cli --help。打开时必须显式指定可信配置（项目配置优先级高于环境变量）：
 

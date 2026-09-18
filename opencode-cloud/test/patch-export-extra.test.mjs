@@ -16,7 +16,7 @@ test('untracked credentials and state are excluded even without gitignore rules'
   await writeFile(path.join(dir,'src/private-key.pem'),'NOT_A_REAL_SECRET_sentinel');
   await writeFile(path.join(dir,'.env.production'),'NOT_A_REAL_SECRET_sentinel');
   await mkdir(path.join(dir,'state'));await writeFile(path.join(dir,'state/session.db'),'NOT_A_REAL_SECRET_sentinel');
-  const result=await exportPatch({directory:dir,baseline});
+  const result=await exportPatch({directory:dir,baseline,ownedPaths:['state']});
   assert.deepEqual(result.files,['src/new.txt']);
   assert.ok(!result.patch.includes('NOT_A_REAL_SECRET_sentinel'));
  }finally{await rm(dir,{recursive:true,force:true});}

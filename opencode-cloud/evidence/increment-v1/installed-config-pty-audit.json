@@ -1,0 +1,96 @@
+{
+  "scope": "Actual installed engineer guard configuration rejection and both native PTY boundaries; credentials private to trusted platform. Rejected requests must not reach native tools or model.",
+  "rows": [
+    {
+      "name": "engineer configuration override /config model",
+      "status": 403,
+      "pass": true
+    },
+    {
+      "name": "engineer configuration override /global/config mcp",
+      "status": 403,
+      "pass": true
+    },
+    {
+      "name": "engineer configuration override /mcp name",
+      "status": 403,
+      "pass": true
+    },
+    {
+      "name": "engineer configuration override /provider/auth apiKey",
+      "status": 403,
+      "pass": true
+    },
+    {
+      "name": "engineer configuration override /session/ses_f4cb7c6d6ffeHxXuJcNeFmuqs0/message messageID,parts,model",
+      "status": 403,
+      "pass": true
+    },
+    {
+      "name": "engineer configuration override /session/ses_f4cb7c6d6ffeHxXuJcNeFmuqs0/message messageID,parts,system",
+      "status": 403,
+      "pass": true
+    },
+    {
+      "name": "engineer configuration override /session/ses_f4cb7c6d6ffeHxXuJcNeFmuqs0/message messageID,parts,tools",
+      "status": 403,
+      "pass": true
+    },
+    {
+      "name": "engineer configuration override /session/ses_f4cb7c6d6ffeHxXuJcNeFmuqs0/message messageID,parts,workspace",
+      "status": 403,
+      "pass": true
+    },
+    {
+      "name": "engineer configuration override /session/ses_f4cb7c6d6ffeHxXuJcNeFmuqs0/message messageID,parts,agent",
+      "status": 403,
+      "pass": true
+    },
+    {
+      "name": "engineer configuration override /pty env",
+      "status": 403,
+      "pass": true
+    },
+    {
+      "name": "engineer configuration override /pty cwd",
+      "status": 403,
+      "pass": true
+    },
+    {
+      "name": "admin foreign native PTY connect-token",
+      "status": 404,
+      "pass": true
+    },
+    {
+      "name": "admin foreign native PTY WebSocket",
+      "status": 404,
+      "pass": true
+    },
+    {
+      "name": "admin foreign credential WebSocket",
+      "status": 401,
+      "pass": true
+    },
+    {
+      "name": "engineer-b foreign native PTY connect-token",
+      "status": 404,
+      "pass": true
+    },
+    {
+      "name": "engineer-b foreign native PTY WebSocket",
+      "status": 404,
+      "pass": true
+    },
+    {
+      "name": "engineer-b foreign credential WebSocket",
+      "status": 401,
+      "pass": true
+    },
+    {
+      "name": "rejected override never produced a native message",
+      "status": 404,
+      "pass": true
+    }
+  ],
+  "pass": true
+}

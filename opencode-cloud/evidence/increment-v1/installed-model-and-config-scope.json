@@ -1,0 +1,54 @@
+{
+  "rows": [
+    {
+      "gateway": "admin",
+      "credentialScope": "admin",
+      "status": 200,
+      "pass": true
+    },
+    {
+      "gateway": "admin",
+      "credentialScope": "engineer-b",
+      "status": 401,
+      "pass": true
+    },
+    {
+      "gateway": "engineer-b",
+      "credentialScope": "engineer-b",
+      "status": 200,
+      "pass": true
+    },
+    {
+      "gateway": "engineer-b",
+      "credentialScope": "admin",
+      "status": 401,
+      "pass": true
+    }
+  ],
+  "pass": true,
+  "scope": "Real installed fixed model gateways. Only authenticated model list requests, no completions or retries. No credentials emitted.",
+  "nativeControls": {
+    "admin": {
+      "nativeId": "0ac4166c34fcd21d6025b60be435e071874f4607466caf6bf46ddb66749fe7e7",
+      "startedAt": "2026-09-18T06:47:58.513462863Z",
+      "projectConfigDisabled": true,
+      "externalSkillsDisabled": true,
+      "defaultPluginsDisabled": true,
+      "trustedConfigReadOnly": true
+    },
+    "engineer-b": {
+      "nativeId": "7f9a57da2a51195955a2968034db628f071bc21d49b529c1157ac429b5b5cf0c",
+      "startedAt": "2026-09-18T06:47:57.641251802Z",
+      "projectConfigDisabled": true,
+      "externalSkillsDisabled": true,
+      "defaultPluginsDisabled": true,
+      "trustedConfigReadOnly": true
+    }
+  },
+  "dailyLimits": {
+    "admin": 100000,
+    "engineer-b": 100000
+  },
+  "independentBudgetMounts": true,
+  "tokensDistinct": true
+}

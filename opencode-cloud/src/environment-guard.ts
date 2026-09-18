@@ -42,10 +42,10 @@ const server=http.createServer(async(req,res)=>{
    process.env.GIT_ALTERNATE_OBJECT_DIRECTORIES='/workspace/project/.git/objects';
    process.env.GIT_LITERAL_PATHSPECS='1';
    const source=req.url==='/__source';
-   const result=source?await exportSource({directory:'/workspace/project',baseline,secrets:[password,process.env.ENV_MODEL_TOKEN||'']}):await exportPatch({directory:'/workspace/project',baseline});
+   const result=source?await exportSource({directory:'/workspace/project',baseline,secrets:[password,process.env.ENV_MODEL_TOKEN||'']}):await exportPatch({directory:'/workspace/project',baseline,secrets:[password,process.env.ENV_MODEL_TOKEN||'']});
    delete process.env.GIT_OBJECT_DIRECTORY;delete process.env.GIT_ALTERNATE_OBJECT_DIRECTORIES;delete process.env.GIT_LITERAL_PATHSPECS;
    await rm(temporary,{recursive:true,force:true});temporary=undefined;exporting=false;
-   res.writeHead(200,{'Content-Type':source?'application/zip':'application/json','Cache-Control':'no-store'});res.end(source?(result as any).zip:JSON.stringify(result));
+   res.writeHead(200,{'Content-Type':source?'application/zip':'application/json','Cache-Control':'no-store','X-WorkBench-SHA256':result.sha256});res.end(source?(result as any).zip:JSON.stringify(result));
   }catch(e:any){error(res,409,e.message);}
   finally{delete process.env.GIT_OBJECT_DIRECTORY;delete process.env.GIT_ALTERNATE_OBJECT_DIRECTORIES;delete process.env.GIT_LITERAL_PATHSPECS;if(temporary)await rm(temporary,{recursive:true,force:true});exporting=false;}
   return;
