@@ -1,0 +1,17 @@
+test_busy_stop_restores_ready_without_signal (__main__.Lifecycle.test_busy_stop_restores_ready_without_signal) ... ok
+test_concurrent_duplicate_enter_starts_one_generation (__main__.Lifecycle.test_concurrent_duplicate_enter_starts_one_generation) ... ok
+test_enter_idempotent_one_generation (__main__.Lifecycle.test_enter_idempotent_one_generation) ... ok
+test_failed_initialization_is_visible_and_retryable (__main__.Lifecycle.test_failed_initialization_is_visible_and_retryable) ... ok
+test_lazy_initialization_only_on_first_enter (__main__.Lifecycle.test_lazy_initialization_only_on_first_enter) ... ok
+test_partial_failed_start_holds_slot_and_cancel_cannot_release_it (__main__.Lifecycle.test_partial_failed_start_holds_slot_and_cancel_cannot_release_it) ... ok
+test_queue_is_bounded_and_expired_entry_does_not_start (__main__.Lifecycle.test_queue_is_bounded_and_expired_entry_does_not_start) ... ok
+test_safe_stop_drains_rechecks_and_never_forces (__main__.Lifecycle.test_safe_stop_drains_rechecks_and_never_forces) ... ok
+test_status_never_starts (__main__.Lifecycle.test_status_never_starts) ... ok
+test_status_recovers_completed_start_once (__main__.Lifecycle.test_status_recovers_completed_start_once) ... ok
+test_stopping_one_space_promotes_one_waiter (__main__.Lifecycle.test_stopping_one_space_promotes_one_waiter) ... ok
+test_three_spaces_two_slots_queue_deduplicate_cancel (__main__.Lifecycle.test_three_spaces_two_slots_queue_deduplicate_cancel) ... ok
+
+----------------------------------------------------------------------
+Ran 12 tests in 0.081s
+
+OK

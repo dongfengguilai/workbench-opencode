@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "capturedAt": "2026-09-19T01:59:43.628853+00:00",
+  "dispatch": {
+    "id": "d089c9345ae99639fd17f60561d68c8f",
+    "scope": "engineer-b",
+    "backend": "fixture-hold",
+    "promptStored": false
+  },
+  "clientResult": "AbortError",
+  "fixture": {
+    "dispatched": "2026-09-19T01:59:10.635Z",
+    "upstreamObservedAbort": null,
+    "backendCompleted": "2026-09-19T01:59:12.138Z"
+  },
+  "blockedStop": {
+    "state": "READY",
+    "blockers": [
+      "model-dispatch"
+    ]
+  },
+  "reconciliation": {
+    "confirmedEnded": "d089c9345ae99639fd17f60561d68c8f",
+    "remaining": 0
+  },
+  "stopAfterReconciliation": {
+    "generation": 10,
+    "state": "STOPPED",
+    "requestIds": [
+      "t1_ticket_stop_cb66dbc3dd0571d8",
+      "t2_a_b8d3b624",
+      "t2_stop_a_8699a09e",
+      "t2-shared-enter-1",
+      "t2-shared-env-refresh-stop",
+      "t2-shared-enter-2",
+      "t2-shared-promote-stop",
+      "t2-evidence-a",
+      "t2-evidence-stop-a",
+      "t2-isolation-enter",
+      "t2-isolation-stop",
+      "t2-concurrent-same",
+      "t2-concurrent-stop",
+      "t2-unknown-enter",
+      "t2-unknown-stop-blocked",
+      "t2-unknown-stop-after-reconcile"
+    ],
+    "lastError": null,
+    "blockers": [],
+    "initialization": "READY",
+    "queuedAt": null,
+    "forced": false
+  },
+  "journalAfter": [],
+  "realBackendCapability": {
+    "qwen": "no trusted per-request status/cancel API verified",
+    "luna": "no trusted per-request status/cancel API verified; chat currently externally unavailable"
+  },
+  "assertions": {
+    "dispatchedAbortDidNotRelease": true,
+    "backendCompletedAfterClientAbort": true,
+    "lifecycleStopBlockedOnUnknown": true,
+    "gatewayWasStoppedForReconciliation": true,
+    "explicitConfirmationRequired": true,
+    "requestWasNotReplayed": true
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "capturedAt": "2026-09-19T01:55:57.291406+00:00",
+  "backends": {
+    "qwen": {
+      "discovery": {
+        "status": 200,
+        "models": [
+          "Qwen3.6-35B-A3B"
+        ]
+      }
+    },
+    "luna": {
+      "discovery": {
+        "status": 200,
+        "models": [
+          "gpt-5.5",
+          "gpt-image-1.5",
+          "gpt-image-2.5-sunburst",
+          "gpt-5.6-terra",
+          "gpt-5.6-luna",
+          "codex-auto-review",
+          "gpt-image-2",
+          "gpt-image-2.5-flare",
+          "gpt-image-2.5"
+        ]
+      },
+      "chat": {
+        "status": 500,
+        "completed": false,
+        "sanitizedCause": "upstream proxy unavailable at loopback:7890"
+      }
+    }
+  },
+  "conclusion": "Qwen live task passed through the shared gateway. Luna discovery succeeds, but its service currently returns HTTP 500 because its own loopback proxy is unavailable; WorkBench returns non-retryable 424 and does not fall back."
+}

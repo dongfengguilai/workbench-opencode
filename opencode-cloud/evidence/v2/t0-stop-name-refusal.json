@@ -1,0 +1,5 @@
+{
+  "result": "Initial diagnostic missing Compose replica suffix refused Docker inspect before any termination signal",
+  "scope": "Isolated checkpoint only; managed preview had been stopped while native idle",
+  "correction": "Use recorded allowlisted service replica names; original names unchanged"
+}

@@ -1,0 +1,28 @@
+{
+  "status": "PASS",
+  "checkedAt": "2026-09-19T01:10:10.493335+00:00",
+  "initialization": "READY",
+  "generationAfterRepeatedEnter": 1,
+  "persistentMarkerAndGitUnchanged": true,
+  "runningMembersBeforeStop": [
+    "workbench-v2-checkpoint-lazy-c-native-guard-1",
+    "workbench-v2-checkpoint-lazy-c-web-egress-1",
+    "workbench-v2-checkpoint-lazy-c-model-gateway-1",
+    "workbench-v2-checkpoint-lazy-c-native-1"
+  ],
+  "stop": {
+    "generation": 1,
+    "state": "STOPPED",
+    "requestIds": [
+      "lazy_enter_df08c00c87ab",
+      "lazy_retry_a147b98e052d",
+      "lazy_repeat_2dcb65ea5d63",
+      "lazy_stop_7536c090c581"
+    ],
+    "initialization": "READY",
+    "lastError": null,
+    "blockers": [],
+    "forced": false
+  },
+  "firstStartFailureRetainedInLifecycleHistory": true
+}

@@ -1,0 +1,93 @@
+{
+  "schemaVersion": 1,
+  "capturedAt": "2026-09-19T02:21:12.931582+00:00",
+  "enter": {
+    "generation": 16,
+    "state": "READY",
+    "requestIds": [
+      "t2-unknown-enter",
+      "t2-unknown-stop-blocked",
+      "t2-unknown-stop-after-reconcile",
+      "t3_a06_agent_enter",
+      "t3_a06_agent_stop",
+      "t3_a06_terminal_stop",
+      "t3_a06_unknown_stop",
+      "t3_a06_export_stop",
+      "t3_a06_export_enter",
+      "t3_a06_export_stop_2",
+      "t3_a06_unresponsive_stop",
+      "t3_a06_unresponsive_retry_enter",
+      "t3_a06_unresponsive_stop_2",
+      "t3_a07_idle_enter",
+      "t3_a07_activity_enter",
+      "t3_a07_busy_enter"
+    ],
+    "lastError": null,
+    "blockers": [],
+    "initialization": "READY",
+    "queuedAt": null,
+    "lastActivityAt": 1789784459.505121,
+    "autoStopNotBefore": 1789784464.505121
+  },
+  "afterIdleWhileTerminalActive": {
+    "generation": 16,
+    "state": "READY",
+    "requestIds": [
+      "t2-unknown-enter",
+      "t2-unknown-stop-blocked",
+      "t2-unknown-stop-after-reconcile",
+      "t3_a06_agent_enter",
+      "t3_a06_agent_stop",
+      "t3_a06_terminal_stop",
+      "t3_a06_unknown_stop",
+      "t3_a06_export_stop",
+      "t3_a06_export_enter",
+      "t3_a06_export_stop_2",
+      "t3_a06_unresponsive_stop",
+      "t3_a06_unresponsive_retry_enter",
+      "t3_a06_unresponsive_stop_2",
+      "t3_a07_idle_enter",
+      "t3_a07_activity_enter",
+      "t3_a07_busy_enter"
+    ],
+    "lastError": null,
+    "blockers": [
+      "terminal",
+      "unknown-process"
+    ],
+    "initialization": "READY",
+    "queuedAt": null,
+    "lastActivityAt": 1789784459.505121,
+    "autoStopNotBefore": 1789784464.505121,
+    "runningMembers": 3
+  },
+  "afterTerminalClosed": {
+    "generation": 16,
+    "state": "STOPPED",
+    "requestIds": [
+      "t2-unknown-enter",
+      "t2-unknown-stop-blocked",
+      "t2-unknown-stop-after-reconcile",
+      "t3_a06_agent_enter",
+      "t3_a06_agent_stop",
+      "t3_a06_terminal_stop",
+      "t3_a06_unknown_stop",
+      "t3_a06_export_stop",
+      "t3_a06_export_enter",
+      "t3_a06_export_stop_2",
+      "t3_a06_unresponsive_stop",
+      "t3_a06_unresponsive_retry_enter",
+      "t3_a06_unresponsive_stop_2",
+      "t3_a07_idle_enter",
+      "t3_a07_activity_enter",
+      "t3_a07_busy_enter"
+    ],
+    "lastError": null,
+    "blockers": [],
+    "initialization": "READY",
+    "queuedAt": null,
+    "lastActivityAt": 1789784459.505121,
+    "autoStopNotBefore": null,
+    "runningMembers": 0
+  }
+}

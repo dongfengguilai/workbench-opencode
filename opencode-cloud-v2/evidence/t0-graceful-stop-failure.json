@@ -1,0 +1,18 @@
+{
+  "time": "2026-09-18T23:24:12.374828+00:00",
+  "stage": "T0 actual stop measurement",
+  "expected": "SIGTERM-only graceful stop within30s, all private members confirmed exited",
+  "observed": "Guard stayed RUNNING at30s; Node isPID1, Docker HostConfig.Init null",
+  "result": "FAIL",
+  "automaticSIGKILLIssued": false,
+  "capacityReleased": false,
+  "stillRunningPrivateMembers": [
+    "engineer-b-native-guard",
+    "engineer-b-native",
+    "engineer-b-model-gateway",
+    "engineer-b-web-egress"
+  ],
+  "scope": "Only explicitly created workbench-v2-checkpoint stack, not existing opencode-cloud-v0",
+  "candidateCorrection": "Compose execution group init:true; new isolated signal test required before recreation",
+  "limitations": "Old stuck diagnostic group cannot apply init until recreated; do not use Docker default stop/force-recreate to silently SIGKILL it"
+}

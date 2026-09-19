@@ -1,0 +1,198 @@
+$ docker ps --format ...
+exit=0
+$ docker inspect opencode-cloud-v0-engineer-b-native-guard-1
+exit=0
+$ docker inspect opencode-cloud-v0-engineer-b-web-egress-1
+exit=0
+$ docker inspect opencode-cloud-v0-platform-1
+exit=0
+$ docker inspect opencode-cloud-v0-engineer-b-native-1
+exit=0
+$ docker inspect opencode-cloud-v0-engineer-b-model-gateway-1
+exit=0
+$ docker inspect opencode-cloud-v0-native-guard-1
+exit=0
+$ docker inspect opencode-cloud-v0-admin-native-guard-1
+exit=0
+$ docker inspect opencode-cloud-v0-native-1
+exit=0
+$ docker inspect opencode-cloud-v0-admin-native-1
+exit=0
+$ docker inspect opencode-cloud-v0-admin-model-gateway-1
+exit=0
+$ docker inspect opencode-cloud-v0-web-egress-1
+exit=0
+$ docker inspect opencode-cloud-v0-admin-web-egress-1
+exit=0
+$ docker inspect opencode-cloud-v0-model-gateway-1
+exit=0
+$ docker compose -f ...
+exit=0
+$ docker inspect workbench-v2-checkpoint-platform-1
+exit=0
+$ docker inspect workbench-v2-checkpoint-shared-model-gateway-1
+exit=0
+$ docker inspect workbench-v2-checkpoint-platform-1
+exit=0
+$ docker inspect workbench-v2-checkpoint-shared-model-gateway-1
+exit=0
+$ docker inspect workbench-v2-checkpoint-platform-1
+exit=0
+$ docker inspect workbench-v2-checkpoint-shared-model-gateway-1
+exit=0
+$ docker inspect workbench-v2-checkpoint-platform-1
+exit=0
+$ docker inspect workbench-v2-checkpoint-shared-model-gateway-1
+exit=0
+$ docker inspect workbench-v2-checkpoint-platform-1
+exit=0
+$ docker inspect workbench-v2-checkpoint-shared-model-gateway-1
+exit=0
+$ docker inspect workbench-v2-checkpoint-platform-1
+exit=0
+$ docker inspect workbench-v2-checkpoint-shared-model-gateway-1
+exit=0
+$ docker inspect workbench-v2-checkpoint-platform-1
+exit=0
+$ docker inspect workbench-v2-checkpoint-shared-model-gateway-1
+exit=0
+$ docker inspect workbench-v2-checkpoint-platform-1
+exit=0
+$ docker inspect workbench-v2-checkpoint-shared-model-gateway-1
+exit=0
+$ docker inspect workbench-v2-checkpoint-platform-1
+exit=0
+$ docker inspect workbench-v2-checkpoint-shared-model-gateway-1
+exit=0
+$ docker inspect workbench-v2-checkpoint-platform-1
+exit=0
+$ docker inspect workbench-v2-checkpoint-shared-model-gateway-1
+exit=0
+$ docker inspect workbench-v2-checkpoint-platform-1
+exit=0
+$ docker inspect workbench-v2-checkpoint-shared-model-gateway-1
+exit=0
+$ docker inspect workbench-v2-checkpoint-platform-1
+exit=0
+$ docker inspect workbench-v2-checkpoint-shared-model-gateway-1
+exit=0
+$ docker inspect workbench-v2-checkpoint-platform-1
+exit=0
+$ docker inspect workbench-v2-checkpoint-shared-model-gateway-1
+exit=0
+$ docker inspect workbench-v2-checkpoint-platform-1
+exit=0
+$ docker inspect workbench-v2-checkpoint-shared-model-gateway-1
+exit=0
+$ docker inspect workbench-v2-checkpoint-platform-1
+exit=0
+$ docker inspect workbench-v2-checkpoint-shared-model-gateway-1
+exit=0
+$ docker inspect workbench-v2-checkpoint-platform-1
+exit=0
+$ docker inspect workbench-v2-checkpoint-shared-model-gateway-1
+exit=0
+$ docker inspect workbench-v2-checkpoint-platform-1
+exit=0
+$ docker inspect workbench-v2-checkpoint-shared-model-gateway-1
+exit=0
+$ docker inspect workbench-v2-checkpoint-platform-1
+exit=0
+$ docker inspect workbench-v2-checkpoint-shared-model-gateway-1
+exit=0
+$ docker inspect workbench-v2-checkpoint-platform-1
+exit=0
+$ docker inspect workbench-v2-checkpoint-shared-model-gateway-1
+exit=0
+$ docker inspect workbench-v2-checkpoint-platform-1
+exit=0
+$ docker inspect workbench-v2-checkpoint-shared-model-gateway-1
+exit=0
+$ docker inspect workbench-v2-checkpoint-platform-1
+exit=0
+$ docker inspect workbench-v2-checkpoint-shared-model-gateway-1
+exit=0
+$ docker inspect workbench-v2-checkpoint-platform-1
+exit=0
+$ docker inspect workbench-v2-checkpoint-shared-model-gateway-1
+exit=0
+$ docker inspect workbench-v2-checkpoint-platform-1
+exit=0
+$ docker inspect workbench-v2-checkpoint-shared-model-gateway-1
+exit=0
+$ docker inspect workbench-v2-checkpoint-platform-1
+exit=0
+$ docker inspect workbench-v2-checkpoint-shared-model-gateway-1
+exit=0
+$ docker inspect workbench-v2-checkpoint-platform-1
+exit=0
+$ docker inspect workbench-v2-checkpoint-shared-model-gateway-1
+exit=0
+$ docker inspect workbench-v2-checkpoint-platform-1
+exit=0
+$ docker inspect workbench-v2-checkpoint-shared-model-gateway-1
+exit=0
+$ docker inspect workbench-v2-checkpoint-platform-1
+exit=0
+$ docker inspect workbench-v2-checkpoint-shared-model-gateway-1
+exit=0
+$ docker inspect workbench-v2-checkpoint-platform-1
+exit=0
+$ docker inspect workbench-v2-checkpoint-shared-model-gateway-1
+exit=0
+$ docker inspect workbench-v2-checkpoint-platform-1
+exit=0
+$ docker inspect workbench-v2-checkpoint-shared-model-gateway-1
+exit=0
+$ docker inspect workbench-v2-checkpoint-platform-1
+exit=0
+$ docker inspect workbench-v2-checkpoint-shared-model-gateway-1
+exit=0
+$ docker inspect workbench-v2-checkpoint-platform-1
+exit=0
+$ docker inspect workbench-v2-checkpoint-shared-model-gateway-1
+exit=0
+$ docker inspect workbench-v2-checkpoint-platform-1
+exit=0
+$ docker inspect workbench-v2-checkpoint-shared-model-gateway-1
+exit=0
+$ docker inspect workbench-v2-checkpoint-platform-1
+exit=0
+$ docker inspect workbench-v2-checkpoint-shared-model-gateway-1
+exit=0
+$ docker inspect workbench-v2-checkpoint-platform-1
+exit=0
+$ docker inspect workbench-v2-checkpoint-shared-model-gateway-1
+exit=0
+$ docker inspect workbench-v2-checkpoint-platform-1
+exit=0
+$ docker inspect workbench-v2-checkpoint-shared-model-gateway-1
+exit=0
+$ docker inspect workbench-v2-checkpoint-platform-1
+exit=0
+$ docker inspect workbench-v2-checkpoint-shared-model-gateway-1
+exit=0
+$ docker inspect workbench-v2-checkpoint-platform-1
+exit=0
+$ docker inspect workbench-v2-checkpoint-shared-model-gateway-1
+exit=0
+$ docker inspect workbench-v2-checkpoint-platform-1
+exit=0
+$ docker inspect workbench-v2-checkpoint-shared-model-gateway-1
+exit=0
+$ docker inspect workbench-v2-checkpoint-platform-1
+exit=0
+$ docker inspect workbench-v2-checkpoint-shared-model-gateway-1
+exit=0
+$ docker inspect workbench-v2-checkpoint-platform-1
+exit=0
+$ docker inspect workbench-v2-checkpoint-shared-model-gateway-1
+exit=0
+$ docker inspect workbench-v2-checkpoint-platform-1
+exit=0
+$ docker inspect workbench-v2-checkpoint-shared-model-gateway-1
+exit=0
+$ docker inspect workbench-v2-checkpoint-platform-1
+exit=0
+$ docker inspect workbench-v2-checkpoint-shared-model-gateway-1
+exit=0

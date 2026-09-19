@@ -1,0 +1,12 @@
+Traceback (most recent call last):
+  File "/home/vmware/Workspace/projects/experiments/Workbench_space/workbench-opencode/opencode-cloud/evidence/v2/t4-three-space-acceptance.py", line 289, in <module>
+    raise SystemExit(main())
+                     ~~~~^^
+  File "/home/vmware/Workspace/projects/experiments/Workbench_space/workbench-opencode/opencode-cloud/evidence/v2/t4-three-space-acceptance.py", line 281, in main
+    report = Acceptance(args.root.resolve(), args.evidence.resolve()).execute()
+  File "/home/vmware/Workspace/projects/experiments/Workbench_space/workbench-opencode/opencode-cloud/evidence/v2/t4-three-space-acceptance.py", line 218, in execute
+    self.wait({"engineer-b": (a_session, a_message), "lazy-c": (b_session, b_message)})
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/vmware/Workspace/projects/experiments/Workbench_space/workbench-opencode/opencode-cloud/evidence/v2/t4-three-space-acceptance.py", line 135, in wait
+    raise RuntimeError(f"real model failed for {space}: {result['errorName']}")
+RuntimeError: real model failed for lazy-c: APIError

@@ -1,0 +1,284 @@
+{
+  "schemaVersion": 1,
+  "capturedAt": "2026-09-19T03:34:15.710771+00:00",
+  "environment": "same isolated learn project, fixed OpenCode 1.18.31, approved Qwen; finite Docker CLI samples",
+  "t0V1Baseline": {
+    "singleGroupIdleMiB": 390.34000000000003,
+    "singleGroupMaximumObservedMiB": 891.83,
+    "stoppedGroupMiB": 0,
+    "taskEvidence": "t0-task-observation.json"
+  },
+  "v2": {
+    "stoppedPrivateMiB": 0.0,
+    "singleGroupIdleMiB": 285.55,
+    "singleGroupTaskPeakPrivateMiB": 966.52,
+    "persistentPlatformAndSharedGatewayPeakMiB": 150.52,
+    "singleTaskPeakIncludingPersistentMiB": 1117.04,
+    "coldStartSeconds": 8.403,
+    "previewStarted": true,
+    "realModel": "Qwen3.6-35B-A3B",
+    "session": "ses_f484609ebffepwnxpb2z48eRsQ",
+    "modelResult": {
+      "busy": false,
+      "messageFound": true,
+      "completed": true,
+      "finish": "stop",
+      "tools": [
+        {
+          "tool": "bash",
+          "status": "completed",
+          "exit": 0,
+          "outputSha256": "17acde718f64cbf48097b44dd0488259f091a0b1075ea358896e089e9875c1e5"
+        },
+        {
+          "tool": "bash",
+          "status": "completed",
+          "exit": 0,
+          "outputSha256": "1af79cb9205134934adc1a49b1a9cce7199876512c43dcedb13396a5a4796c67"
+        },
+        {
+          "tool": "bash",
+          "status": "completed",
+          "exit": 0,
+          "outputSha256": "efefc15c24ee8645a3f5f6958389db729c1577eb6b32aeac4caab2a86d90daa3"
+        },
+        {
+          "tool": "bash",
+          "status": "completed",
+          "exit": 0,
+          "outputSha256": "6691a387a521b8a3ce14f0a32c5173666f20f35bfc8578ea26bafa749cce7b70"
+        },
+        {
+          "tool": "bash",
+          "status": "completed",
+          "exit": 0,
+          "outputSha256": "eeea2652df2b35f62d5f6c8c7f69cc9441b538642203b5b05c30d083efd47f5e"
+        },
+        {
+          "tool": "bash",
+          "status": "completed",
+          "exit": 0,
+          "outputSha256": "a1ebda2c21a94829f3a2b0ea50579e5ae83b0dcebd4f55fb8bf3d12fbc38171a"
+        },
+        {
+          "tool": "bash",
+          "status": "completed",
+          "exit": 0,
+          "outputSha256": "3f601705282d2c747146c6601c831e5f471f5f4fd701942d880a2e0da0f5a974"
+        }
+      ]
+    },
+    "stoppedAfterPrivateMiB": 0.0,
+    "initialStop": {
+      "generation": 30,
+      "state": "READY",
+      "requestIds": [
+        "t3_final_activity_stop",
+        "t4-enter-engineer-b-65231393",
+        "t4-initial-failure-clean-engineer-b",
+        "t4-enter-engineer-b-15627e7d",
+        "t4-model-failure-clean-engineer",
+        "t4-enter-engineer-b-447ce1db",
+        "t4-stop-engineer-b-13f7d9d4",
+        "t4-reenter-engineer-b-3efe4072",
+        "t4-export-path-failure-clean",
+        "t4-enter-engineer-b-15e6e87e",
+        "t4-stop-engineer-b-d35d0bff",
+        "t4-reenter-engineer-b-1dc360ca",
+        "DPwAYgRHvzvPIOACmDt6jwix",
+        "t4-final-stop-engineer-b-7aadfecc",
+        "t4-resource-enter-d2fa681c",
+        "t4-resource-stop-f4c5073d"
+      ],
+      "lastError": null,
+      "blockers": [
+        "terminal",
+        "unknown-process"
+      ],
+      "initialization": "READY",
+      "queuedAt": null,
+      "lastActivityAt": 1789788807.9035766,
+      "autoStopNotBefore": 1789788927.9035766
+    },
+    "managedPreviewCleanup": {
+      "web": {
+        "available": true,
+        "present": true,
+        "kind": "vite",
+        "fingerprint": "f8bc42077fd44a1263c066d8b14b4203b5f2eb3a582c9225177885a9010ef751"
+      },
+      "nativeBusy": false,
+      "running": false,
+      "port": 5173,
+      "directory": "/workspace/project/web",
+      "processState": "stopped"
+    },
+    "safeStop": {
+      "generation": 30,
+      "state": "STOPPED",
+      "requestIds": [
+        "t4-enter-engineer-b-65231393",
+        "t4-initial-failure-clean-engineer-b",
+        "t4-enter-engineer-b-15627e7d",
+        "t4-model-failure-clean-engineer",
+        "t4-enter-engineer-b-447ce1db",
+        "t4-stop-engineer-b-13f7d9d4",
+        "t4-reenter-engineer-b-3efe4072",
+        "t4-export-path-failure-clean",
+        "t4-enter-engineer-b-15e6e87e",
+        "t4-stop-engineer-b-d35d0bff",
+        "t4-reenter-engineer-b-1dc360ca",
+        "DPwAYgRHvzvPIOACmDt6jwix",
+        "t4-final-stop-engineer-b-7aadfecc",
+        "t4-resource-enter-d2fa681c",
+        "t4-resource-stop-f4c5073d",
+        "t4-resource-preview-clean-321d21f8"
+      ],
+      "lastError": null,
+      "blockers": [],
+      "initialization": "READY",
+      "queuedAt": null,
+      "lastActivityAt": 1789788807.9035766,
+      "autoStopNotBefore": null,
+      "forced": false,
+      "automatic": false
+    },
+    "stoppedAfterPersistentMiB": 140.77
+  },
+  "twoSlotObservation": {
+    "twoGroupsIdleMiB": 574.62,
+    "twoGroupsTaskPeakMiB": 970.73,
+    "registeredThirdQueuedWithoutRunningContainer": true
+  },
+  "tradeoffs": [
+    "Stopped private execution memory reached zero, while the platform and shared model gateway remain resident.",
+    "Cold entry adds measured startup delay; host page cache is not claimed as instantly reclaimed.",
+    "Persistent project, session and legitimate user data continue to consume disk as work grows.",
+    "Finite event samples are not an absolute peak or a user-capacity promise."
+  ],
+  "samples": [
+    {
+      "at": "2026-09-19T03:33:19.502899+00:00",
+      "label": "resource-stopped-before",
+      "runningContainers": 2,
+      "privateMemoryBytes": 0,
+      "privatePids": 0,
+      "persistentMemoryBytes": 151624089,
+      "persistentPids": 31,
+      "privateContainerCount": 0,
+      "persistentContainerCount": 2
+    },
+    {
+      "at": "2026-09-19T03:33:30.210991+00:00",
+      "label": "resource-single-idle",
+      "runningContainers": 5,
+      "privateMemoryBytes": 299420876,
+      "privatePids": 24,
+      "persistentMemoryBytes": 147524157,
+      "persistentPids": 24,
+      "privateContainerCount": 3,
+      "persistentContainerCount": 2
+    },
+    {
+      "at": "2026-09-19T03:33:36.180176+00:00",
+      "label": "real-model-work",
+      "runningContainers": 5,
+      "privateMemoryBytes": 566713385,
+      "privatePids": 57,
+      "persistentMemoryBytes": 147534643,
+      "persistentPids": 24,
+      "privateContainerCount": 3,
+      "persistentContainerCount": 2
+    },
+    {
+      "at": "2026-09-19T03:33:41.971415+00:00",
+      "label": "real-model-work",
+      "runningContainers": 5,
+      "privateMemoryBytes": 717246955,
+      "privatePids": 87,
+      "persistentMemoryBytes": 147524157,
+      "persistentPids": 24,
+      "privateContainerCount": 3,
+      "persistentContainerCount": 2
+    },
+    {
+      "at": "2026-09-19T03:33:47.776512+00:00",
+      "label": "real-model-work",
+      "runningContainers": 5,
+      "privateMemoryBytes": 584423833,
+      "privatePids": 58,
+      "persistentMemoryBytes": 147545129,
+      "persistentPids": 24,
+      "privateContainerCount": 3,
+      "persistentContainerCount": 2
+    },
+    {
+      "at": "2026-09-19T03:33:53.246480+00:00",
+      "label": "real-model-work",
+      "runningContainers": 5,
+      "privateMemoryBytes": 569754255,
+      "privatePids": 57,
+      "persistentMemoryBytes": 147817758,
+      "persistentPids": 24,
+      "privateContainerCount": 3,
+      "persistentContainerCount": 2
+    },
+    {
+      "at": "2026-09-19T03:33:59.223361+00:00",
+      "label": "real-model-work",
+      "runningContainers": 5,
+      "privateMemoryBytes": 1013469675,
+      "privatePids": 122,
+      "persistentMemoryBytes": 147817758,
+      "persistentPids": 24,
+      "privateContainerCount": 3,
+      "persistentContainerCount": 2
+    },
+    {
+      "at": "2026-09-19T03:34:05.379386+00:00",
+      "label": "real-model-work",
+      "runningContainers": 5,
+      "privateMemoryBytes": 968129249,
+      "privatePids": 123,
+      "persistentMemoryBytes": 157831659,
+      "persistentPids": 31,
+      "privateContainerCount": 3,
+      "persistentContainerCount": 2
+    },
+    {
+      "at": "2026-09-19T03:34:11.569205+00:00",
+      "label": "real-model-work",
+      "runningContainers": 5,
+      "privateMemoryBytes": 871293256,
+      "privatePids": 58,
+      "persistentMemoryBytes": 147849216,
+      "persistentPids": 24,
+      "privateContainerCount": 3,
+      "persistentContainerCount": 2
+    },
+    {
+      "at": "2026-09-19T03:34:15.710245+00:00",
+      "label": "resource-stopped-after",
+      "runningContainers": 5,
+      "privateMemoryBytes": 871911915,
+      "privatePids": 57,
+      "persistentMemoryBytes": 147597557,
+      "persistentPids": 24,
+      "privateContainerCount": 3,
+      "persistentContainerCount": 2
+    },
+    {
+      "at": "2026-09-19T03:34:55.872914+00:00",
+      "label": "resource-stopped-after-preview-cleanup",
+      "runningContainers": 2,
+      "privateMemoryBytes": 0,
+      "privatePids": 0,
+      "persistentMemoryBytes": 147608043,
+      "persistentPids": 24,
+      "privateContainerCount": 0,
+      "persistentContainerCount": 2
+    }
+  ],
+  "status": "PASS",
+  "finalizedAt": "2026-09-19T03:34:55.872962+00:00"
+}

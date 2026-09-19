@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "time": "2026-09-19T02:17:52.336Z",
+  "before": {
+    "path": "/__lifecycle/status",
+    "method": "GET",
+    "status": 200,
+    "body": "{\"barrier\":\"READY\",\"exporting\":false,\"preview\":{\"web\":{\"available\":true,\"present\":true,\"kind\":\"vite\",\"fingerprint\":\"f8bc42077fd44a1263c066d8b14b4203b5f2eb3a582c9225177885a9010ef751\"},\"nativeBusy\":false,\"running\":false,\"port\":5173,\"directory\":\"/workspace/project/web\",\"processState\":\"stopped\"}}"
+  },
+  "drain": {
+    "path": "/__lifecycle/drain",
+    "method": "POST",
+    "status": 204,
+    "body": ""
+  },
+  "readDuringDrain": {
+    "path": "/session/status?directory=/workspace/project",
+    "method": "GET",
+    "status": 200,
+    "body": "{}"
+  },
+  "ptyDuringDrain": {
+    "path": "/pty?directory=/workspace/project",
+    "method": "POST",
+    "status": 409,
+    "body": "{\"detail\":\"Environment is draining\"}"
+  },
+  "previewDuringDrain": {
+    "path": "/__preview-control/start",
+    "method": "POST",
+    "status": 409,
+    "body": "{\"detail\":\"Environment is draining\"}"
+  },
+  "resume": {
+    "path": "/__lifecycle/resume",
+    "method": "POST",
+    "status": 204,
+    "body": ""
+  },
+  "after": {
+    "path": "/__lifecycle/status",
+    "method": "GET",
+    "status": 200,
+    "body": "{\"barrier\":\"READY\",\"exporting\":false,\"preview\":{\"web\":{\"available\":true,\"present\":true,\"kind\":\"vite\",\"fingerprint\":\"f8bc42077fd44a1263c066d8b14b4203b5f2eb3a582c9225177885a9010ef751\"},\"nativeBusy\":false,\"running\":false,\"port\":5173,\"directory\":\"/workspace/project/web\",\"processState\":\"stopped\"}}"
+  }
+}

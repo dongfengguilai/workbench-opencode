@@ -1,0 +1,162 @@
+{
+  "schemaVersion": 1,
+  "capturedAt": "2026-09-19T02:32:30.455218+00:00",
+  "admission": {
+    "httpStatus": 409,
+    "bodyContainsInsufficientStorage": true,
+    "state": {
+      "generation": 3,
+      "state": "STOPPED",
+      "requestIds": [
+        "t2_c_31538327",
+        "t2_cancel_a71294ca",
+        "t2_c2_d956287a",
+        "cleanup_d62e8cb32b",
+        "t2-shared-d-enter",
+        "t2-shared-clean-lazy-d",
+        "t2-evidence-c",
+        "t2-evidence-stop-c",
+        "t3_a09_queue_c",
+        "t3_a12_logout_queue",
+        "L-ETUphyDvhpCwTsIZxCIH3k",
+        "t3_a12_disable_queue",
+        "pQqZvJDu6eW2oUqyaEJeUTOA",
+        "t3_a13_low_disk_enter"
+      ],
+      "initialization": "READY",
+      "queuedAt": null,
+      "lastError": "Storage admission refused: insufficient-free-space",
+      "blockers": [
+        "insufficient-free-space"
+      ],
+      "lastActivityAt": null,
+      "autoStopNotBefore": null,
+      "runningMembers": 0
+    },
+    "availableBytes": 104748711936,
+    "requiredBytes": 105822453760
+  },
+  "isolatedQuotaFilesystem": {
+    "fillExit": 1,
+    "error": "dd: error writing '/quota/fill': No space left on device 8+0 records in 7+0 records out 8384512 bytes (8.0MB) copied, 0.004585 seconds, 1.7GB/s ",
+    "before": "ca67bd59cc4116ac80db5f64cbf4747f26ba929c85e8cc689a6123368d08719b",
+    "after": "ca67bd59cc4116ac80db5f64cbf4747f26ba929c85e8cc689a6123368d08719b",
+    "recovered": "recovered"
+  },
+  "persistentFilesUnchanged": true,
+  "fileCount": 65,
+  "logRotation": {
+    "workbench-v2-checkpoint-platform-1": {
+      "driver": "json-file",
+      "config": {
+        "max-file": "2",
+        "max-size": "5m"
+      }
+    },
+    "workbench-v2-checkpoint-lazy-d-native-guard-1": {
+      "driver": "json-file",
+      "config": {
+        "max-file": "2",
+        "max-size": "5m"
+      },
+      "files": []
+    },
+    "workbench-v2-checkpoint-lazy-c-native-guard-1": {
+      "driver": "json-file",
+      "config": {
+        "max-file": "2",
+        "max-size": "5m"
+      },
+      "files": []
+    },
+    "workbench-v2-checkpoint-lazy-d-native-1": {
+      "driver": "json-file",
+      "config": {
+        "max-file": "2",
+        "max-size": "5m"
+      },
+      "files": []
+    },
+    "workbench-v2-checkpoint-lazy-c-native-1": {
+      "driver": "json-file",
+      "config": {
+        "max-file": "2",
+        "max-size": "5m"
+      },
+      "files": []
+    },
+    "workbench-v2-checkpoint-engineer-b-native-guard-1": {
+      "driver": "json-file",
+      "config": {
+        "max-file": "2",
+        "max-size": "5m"
+      },
+      "files": []
+    },
+    "workbench-v2-checkpoint-engineer-b-native-1": {
+      "driver": "json-file",
+      "config": {
+        "max-file": "2",
+        "max-size": "5m"
+      },
+      "files": []
+    },
+    "workbench-v2-checkpoint-shared-model-gateway-1": {
+      "driver": "json-file",
+      "config": {
+        "max-file": "2",
+        "max-size": "5m"
+      },
+      "files": []
+    },
+    "workbench-v2-checkpoint-lazy-d-model-gateway-1": {
+      "driver": "json-file",
+      "config": {
+        "max-file": "2",
+        "max-size": "5m"
+      },
+      "files": []
+    },
+    "workbench-v2-checkpoint-lazy-d-web-egress-1": {
+      "driver": "json-file",
+      "config": {
+        "max-file": "2",
+        "max-size": "5m"
+      },
+      "files": []
+    },
+    "workbench-v2-checkpoint-lazy-c-web-egress-1": {
+      "driver": "json-file",
+      "config": {
+        "max-file": "2",
+        "max-size": "5m"
+      },
+      "files": []
+    },
+    "workbench-v2-checkpoint-lazy-c-model-gateway-1": {
+      "driver": "json-file",
+      "config": {
+        "max-file": "2",
+        "max-size": "5m"
+      },
+      "files": []
+    },
+    "workbench-v2-checkpoint-engineer-b-web-egress-1": {
+      "driver": "json-file",
+      "config": {
+        "max-file": "2",
+        "max-size": "5m"
+      },
+      "files": []
+    },
+    "workbench-v2-checkpoint-engineer-b-model-gateway-1": {
+      "driver": "json-file",
+      "config": {
+        "max-file": "2",
+        "max-size": "5m"
+      },
+      "files": []
+    }
+  },
+  "hostFilesystemWasNotFilled": true
+}

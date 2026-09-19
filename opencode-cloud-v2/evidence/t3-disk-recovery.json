@@ -1,0 +1,70 @@
+{
+  "schemaVersion": 1,
+  "capturedAt": "2026-09-19T02:41:17.978124+00:00",
+  "afterRestoringStorageThreshold": {
+    "enter": {
+      "generation": 4,
+      "state": "READY",
+      "requestIds": [
+        "t2_c_31538327",
+        "t2_cancel_a71294ca",
+        "t2_c2_d956287a",
+        "cleanup_d62e8cb32b",
+        "t2-shared-d-enter",
+        "t2-shared-clean-lazy-d",
+        "t2-evidence-c",
+        "t2-evidence-stop-c",
+        "t3_a09_queue_c",
+        "t3_a12_logout_queue",
+        "L-ETUphyDvhpCwTsIZxCIH3k",
+        "t3_a12_disable_queue",
+        "pQqZvJDu6eW2oUqyaEJeUTOA",
+        "t3_a13_low_disk_enter",
+        "t3_final_disk_recovery_enter"
+      ],
+      "initialization": "READY",
+      "queuedAt": null,
+      "lastError": null,
+      "blockers": [],
+      "lastActivityAt": 1789785673.7020051,
+      "autoStopNotBefore": 1789785793.7020051
+    },
+    "models": {
+      "status": 200,
+      "ids": [
+        "Qwen3.6-35B-A3B",
+        "gpt-5.6-luna"
+      ]
+    },
+    "stop": {
+      "generation": 4,
+      "state": "STOPPED",
+      "requestIds": [
+        "t2_c_31538327",
+        "t2_cancel_a71294ca",
+        "t2_c2_d956287a",
+        "cleanup_d62e8cb32b",
+        "t2-shared-d-enter",
+        "t2-shared-clean-lazy-d",
+        "t2-evidence-c",
+        "t2-evidence-stop-c",
+        "t3_a09_queue_c",
+        "t3_a12_logout_queue",
+        "L-ETUphyDvhpCwTsIZxCIH3k",
+        "t3_a12_disable_queue",
+        "pQqZvJDu6eW2oUqyaEJeUTOA",
+        "t3_a13_low_disk_enter",
+        "t3_final_disk_recovery_enter",
+        "t3_final_disk_recovery_stop"
+      ],
+      "initialization": "READY",
+      "queuedAt": null,
+      "lastError": null,
+      "blockers": [],
+      "lastActivityAt": 1789785673.7020051,
+      "autoStopNotBefore": null,
+      "forced": false,
+      "automatic": false
+    }
+  }
+}

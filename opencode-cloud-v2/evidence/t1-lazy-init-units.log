@@ -1,0 +1,12 @@
+test_busy_stop_restores_ready_without_signal (__main__.Lifecycle.test_busy_stop_restores_ready_without_signal) ... ok
+test_enter_idempotent_one_generation (__main__.Lifecycle.test_enter_idempotent_one_generation) ... ok
+test_failed_initialization_is_visible_and_retryable (__main__.Lifecycle.test_failed_initialization_is_visible_and_retryable) ... ok
+test_lazy_initialization_only_on_first_enter (__main__.Lifecycle.test_lazy_initialization_only_on_first_enter) ... ok
+test_safe_stop_drains_rechecks_and_never_forces (__main__.Lifecycle.test_safe_stop_drains_rechecks_and_never_forces) ... ok
+test_status_never_starts (__main__.Lifecycle.test_status_never_starts) ... ok
+test_status_recovers_completed_start_once (__main__.Lifecycle.test_status_recovers_completed_start_once) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.006s
+
+OK

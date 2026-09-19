@@ -1,0 +1,28 @@
+TAP version 13
+# Subtest: shared limits merge aliases, isolate identities, bound queues, and persist per-model budgets
+ok 1 - shared limits merge aliases, isolate identities, bound queues, and persist per-model budgets
+  ---
+  duration_ms: 4485.343781
+  type: 'test'
+  ...
+# Subtest: queued cancellation is not dispatched and an uncertain dispatched request suspends its backend across restart
+ok 2 - queued cancellation is not dispatched and an uncertain dispatched request suspends its backend across restart
+  ---
+  duration_ms: 5716.928666
+  type: 'test'
+  ...
+# Subtest: a valid bearer token is still rejected outside its registered execution source
+ok 3 - a valid bearer token is still rejected outside its registered execution source
+  ---
+  duration_ms: 1719.765054
+  type: 'test'
+  ...
+1..3
+# tests 3
+# suites 0
+# pass 3
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 14123.714169

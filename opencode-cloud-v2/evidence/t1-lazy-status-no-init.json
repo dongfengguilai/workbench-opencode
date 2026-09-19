@@ -1,0 +1,17 @@
+{
+  "status": "PASS",
+  "checkedAt": "2026-09-19T01:09:07.718638+00:00",
+  "api": {
+    "generation": 0,
+    "state": "STOPPED",
+    "requestIds": [],
+    "initialization": "PENDING",
+    "runningMembers": 0
+  },
+  "heavyDirectoriesExist": {
+    "project": false,
+    "state": false,
+    "gateway-state": false
+  },
+  "containers": []
+}

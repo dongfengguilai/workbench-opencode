@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "capturedAt": "2026-09-19T02:36:56.177529+00:00",
+  "pendingPermissions": [
+    {
+      "id": "per_0b785d4670017fMLhnsLeY9Uxv",
+      "sessionID": "ses_f487a3a23ffe15ZkPzVQpfJODO",
+      "permission": "bash",
+      "patterns": [
+        "pwd"
+      ]
+    }
+  ],
+  "stopWhilePermissionPending": {
+    "generation": 22,
+    "state": "READY",
+    "requestIds": [
+      "t3_a06_unresponsive_stop",
+      "t3_a06_unresponsive_retry_enter",
+      "t3_a06_unresponsive_stop_2",
+      "t3_a07_idle_enter",
+      "t3_a07_activity_enter",
+      "t3_a07_busy_enter",
+      "t3_a07_preview_enter",
+      "t3_a07_clock_enter",
+      "t3_a07_clock_retry_enter",
+      "t3_a09_queue_a",
+      "t3_a13_stop_a",
+      "t3_a06_question_enter",
+      "t3_a06_question_stop",
+      "t3_permission_config_restart_stop",
+      "t3_permission_config_restart_enter",
+      "t3_a06_permission_stop"
+    ],
+    "lastError": null,
+    "blockers": [
+      "native-task",
+      "permission"
+    ],
+    "initialization": "READY",
+    "queuedAt": null,
+    "lastActivityAt": 1789785381.0523884,
+    "autoStopNotBefore": 1789785501.0523884
+  },
+  "cleanupReplyStatus": 200
+}

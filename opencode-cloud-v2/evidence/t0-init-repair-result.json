@@ -1,0 +1,131 @@
+{
+  "time": "2026-09-19T00:14:29.012058+00:00",
+  "authorization": "User explicitly allowed diagnostic cleanup/rebuild",
+  "scope": "Four workbench-v2-checkpoint compute containers only; persistent project/state/gateway data retained",
+  "new": [
+    {
+      "name": "workbench-v2-checkpoint-engineer-b-native-guard-1",
+      "id": "52fae5ed6875b57a0b16766adbaf1dfdbd3b788286b693a4d071e99802197dd9",
+      "init": true
+    },
+    {
+      "name": "workbench-v2-checkpoint-engineer-b-native-1",
+      "id": "60e0a821652e5af868bba9fe00a715e9d80126b08782e46925f1c41a002f7ee7",
+      "init": true
+    },
+    {
+      "name": "workbench-v2-checkpoint-engineer-b-model-gateway-1",
+      "id": "b0035958439d2d0cf6bdd968d73440cff9a28c23f71c96d77ffb440a1c711b8a",
+      "init": true
+    },
+    {
+      "name": "workbench-v2-checkpoint-engineer-b-web-egress-1",
+      "id": "281b130ee43483d9b7f868c945383949dac44c10ee0b33f16f8ec4a682992658",
+      "init": true
+    }
+  ],
+  "logicalSessionAfterRestart": {
+    "time": "2026-09-19T00:14:27.218Z",
+    "sid": "ses_f492d11b9ffe7ptlGuGIwvoCec",
+    "state": "idle",
+    "finalAssistant": {
+      "completed": true,
+      "finish": "stop"
+    },
+    "tools": [
+      {
+        "tool": "bash",
+        "status": "completed",
+        "exit": 0,
+        "inputCommand": "mkdir -p /workspace/project/.workbench-artifacts",
+        "outputSha256": "efefc15c24ee8645a3f5f6958389db729c1577eb6b32aeac4caab2a86d90daa3"
+      },
+      {
+        "tool": "bash",
+        "status": "completed",
+        "exit": 0,
+        "inputCommand": "cd /workspace/project/web && npm test 2>&1; echo \"EXIT_CODE=$?\"",
+        "outputSha256": "3ebcf4a57785103b60e55bcfbd7b3597424a2a279ad7ca6e0b0452bb6f2f4860"
+      },
+      {
+        "tool": "bash",
+        "status": "completed",
+        "exit": 0,
+        "inputCommand": "cd /workspace/project/web && npm run build 2>&1; echo \"EXIT_CODE=$?\"",
+        "outputSha256": "b29f3de8bfa27f7b87116a3ed8cc54d29dfc281ae9b8dd73776eaf1a6fa97098"
+      },
+      {
+        "tool": "bash",
+        "status": "completed",
+        "exit": 0,
+        "inputCommand": "playwright-cli --help 2>&1",
+        "outputSha256": "0840b2fabc0e738b10d70a0e440c5807a7aae2ee9b6308ab8c97e50db76699db"
+      },
+      {
+        "tool": "bash",
+        "status": "completed",
+        "exit": 0,
+        "inputCommand": "playwright-cli -s=wb open http://127.0.0.1:5173/ --config /trusted/browser.json 2>&1",
+        "outputSha256": "1ce414567ffcccd8817fba374a6fdc7703f6aa6782d87876b8be9234966be2af"
+      },
+      {
+        "tool": "bash",
+        "status": "completed",
+        "exit": 0,
+        "inputCommand": "playwright-cli -s=wb snapshot 2>&1",
+        "outputSha256": "eeea2652df2b35f62d5f6c8c7f69cc9441b538642203b5b05c30d083efd47f5e"
+      },
+      {
+        "tool": "bash",
+        "status": "completed",
+        "exit": 0,
+        "inputCommand": "playwright-cli -s=wb screenshot --filename=/workspace/project/.workbench-artifacts/v2-t0.png 2>&1",
+        "outputSha256": "39ebddc0de6c94284ed0471a6731d354b35cedbb16b8028b9084de804af7fed2"
+      },
+      {
+        "tool": "bash",
+        "status": "completed",
+        "exit": 0,
+        "inputCommand": "playwright-cli -s=wb close 2>&1",
+        "outputSha256": "3f601705282d2c747146c6601c831e5f471f5f4fd701942d880a2e0da0f5a974"
+      }
+    ],
+    "tests51": true,
+    "buildObserved": true,
+    "screenshotExists": true
+  },
+  "stopRows": [
+    {
+      "service": "engineer-b-native-guard",
+      "id": "52fae5ed6875b57a0b16766adbaf1dfdbd3b788286b693a4d071e99802197dd9",
+      "exitCode": 143,
+      "sigkillExit137": false,
+      "forced": false
+    },
+    {
+      "service": "engineer-b-native",
+      "id": "60e0a821652e5af868bba9fe00a715e9d80126b08782e46925f1c41a002f7ee7",
+      "exitCode": 143,
+      "sigkillExit137": false,
+      "forced": false
+    },
+    {
+      "service": "engineer-b-model-gateway",
+      "id": "b0035958439d2d0cf6bdd968d73440cff9a28c23f71c96d77ffb440a1c711b8a",
+      "exitCode": 143,
+      "sigkillExit137": false,
+      "forced": false
+    },
+    {
+      "service": "engineer-b-web-egress",
+      "id": "281b130ee43483d9b7f868c945383949dac44c10ee0b33f16f8ec4a682992658",
+      "exitCode": 0,
+      "sigkillExit137": false,
+      "forced": false
+    }
+  ],
+  "allInitTrue": true,
+  "allStoppedWithoutSIGKILL": true,
+  "persistentProjectIndexSHA256": "c3ce9066034e996eb0e832c3dcf217085f09eb0121f58911b5cf090f134764df",
+  "originalContainersUnchanged": true
+}

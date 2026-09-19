@@ -1,0 +1,20 @@
+{
+  "status": "PASS",
+  "checkedAt": "2026-09-19T00:49:02.131653+00:00",
+  "elapsedSeconds": 6.747,
+  "entry": {
+    "generation": 1,
+    "state": "READY",
+    "requestIds": [
+      "t1_enter_d1cf0e85900e92b6"
+    ],
+    "lastError": null
+  },
+  "meReady": true,
+  "runningMembers": [
+    "workbench-v2-checkpoint-engineer-b-model-gateway-1",
+    "workbench-v2-checkpoint-engineer-b-native-1",
+    "workbench-v2-checkpoint-engineer-b-native-guard-1",
+    "workbench-v2-checkpoint-engineer-b-web-egress-1"
+  ]
+}

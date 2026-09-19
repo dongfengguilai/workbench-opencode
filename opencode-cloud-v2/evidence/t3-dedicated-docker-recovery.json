@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "capturedAt": "2026-09-19T02:26:38.618489+00:00",
+  "environment": "dedicated nested Docker 27.5.1 daemon; host daemon not restarted",
+  "beforeDaemonRestart": [
+    "wb-egress Up (restart=no)",
+    "wb-native Up (restart=no)",
+    "wb-guard Up (restart=no)",
+    "restart-control Up (restart=always)"
+  ],
+  "afterDaemonRestart": [
+    "restart-control|running|Up Less than a second",
+    "wb-guard|exited|Exited (255) 1 second ago",
+    "wb-native|exited|Exited (255) 1 second ago",
+    "wb-egress|exited|Exited (255) 1 second ago"
+  ],
+  "hostV0PlatformStartedAtUnchanged": "2026-09-18T10:20:23.101128277Z",
+  "expected": "wb-egress/native/guard with restart=no remain exited; restart-control with always returns running"
+}

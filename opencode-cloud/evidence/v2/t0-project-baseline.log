@@ -1,0 +1,381 @@
+
+added 18 packages, and audited 19 packages in 2s
+
+8 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+
+> file-upload-preview-web@1.0.0 test
+> node --test ../test/*.mjs
+
+TAP version 13
+# Subtest: PDF validation
+    # Subtest: valid PDF magic bytes are accepted
+    ok 1 - valid PDF magic bytes are accepted
+      ---
+      duration_ms: 0.886815
+      type: 'test'
+      ...
+    # Subtest: valid PDF %PDF-1.4 header is accepted
+    ok 2 - valid PDF %PDF-1.4 header is accepted
+      ---
+      duration_ms: 0.213581
+      type: 'test'
+      ...
+    # Subtest: non-PDF plain text is rejected
+    ok 3 - non-PDF plain text is rejected
+      ---
+      duration_ms: 0.440389
+      type: 'test'
+      ...
+    # Subtest: JPEG file is rejected
+    ok 4 - JPEG file is rejected
+      ---
+      duration_ms: 0.406628
+      type: 'test'
+      ...
+    # Subtest: empty buffer is rejected
+    ok 5 - empty buffer is rejected
+      ---
+      duration_ms: 0.17446
+      type: 'test'
+      ...
+    # Subtest: buffer too short (< 6 bytes) is rejected
+    ok 6 - buffer too short (< 6 bytes) is rejected
+      ---
+      duration_ms: 0.166986
+      type: 'test'
+      ...
+    # Subtest: buffer with valid header but non-digit version is rejected
+    ok 7 - buffer with valid header but non-digit version is rejected
+      ---
+      duration_ms: 0.144129
+      type: 'test'
+      ...
+    # Subtest: valid PDF with full structure passes content validation
+    ok 8 - valid PDF with full structure passes content validation
+      ---
+      duration_ms: 2.560033
+      type: 'test'
+      ...
+    # Subtest: corrupted PDF (valid header, no structure) fails content validation
+    ok 9 - corrupted PDF (valid header, no structure) fails content validation
+      ---
+      duration_ms: 0.615384
+      type: 'test'
+      ...
+    # Subtest: non-PDF file with .pdf extension fails content validation
+    ok 10 - non-PDF file with .pdf extension fails content validation
+      ---
+      duration_ms: 1.725222
+      type: 'test'
+      ...
+    1..10
+ok 1 - PDF validation
+  ---
+  duration_ms: 8.821042
+  type: 'suite'
+  ...
+# Subtest: Filename validation
+    # Subtest: empty string is rejected
+    ok 1 - empty string is rejected
+      ---
+      duration_ms: 0.222655
+      type: 'test'
+      ...
+    # Subtest: whitespace-only string is rejected
+    ok 2 - whitespace-only string is rejected
+      ---
+      duration_ms: 0.070342
+      type: 'test'
+      ...
+    # Subtest: filename with backslash is rejected
+    ok 3 - filename with backslash is rejected
+      ---
+      duration_ms: 0.0908
+      type: 'test'
+      ...
+    # Subtest: filename with forward slash is rejected
+    ok 4 - filename with forward slash is rejected
+      ---
+      duration_ms: 0.086123
+      type: 'test'
+      ...
+    # Subtest: filename with colon is rejected
+    ok 5 - filename with colon is rejected
+      ---
+      duration_ms: 0.052723
+      type: 'test'
+      ...
+    # Subtest: filename with asterisk is rejected
+    ok 6 - filename with asterisk is rejected
+      ---
+      duration_ms: 0.062617
+      type: 'test'
+      ...
+    # Subtest: filename with question mark is rejected
+    ok 7 - filename with question mark is rejected
+      ---
+      duration_ms: 0.050546
+      type: 'test'
+      ...
+    # Subtest: filename with double quote is rejected
+    ok 8 - filename with double quote is rejected
+      ---
+      duration_ms: 0.048456
+      type: 'test'
+      ...
+    # Subtest: filename with less-than is rejected
+    ok 9 - filename with less-than is rejected
+      ---
+      duration_ms: 0.044317
+      type: 'test'
+      ...
+    # Subtest: filename with greater-than is rejected
+    ok 10 - filename with greater-than is rejected
+      ---
+      duration_ms: 0.054989
+      type: 'test'
+      ...
+    # Subtest: filename with pipe is rejected
+    ok 11 - filename with pipe is rejected
+      ---
+      duration_ms: 0.049134
+      type: 'test'
+      ...
+    # Subtest: HTML injection in filename is rejected
+    ok 12 - HTML injection in filename is rejected
+      ---
+      duration_ms: 0.044772
+      type: 'test'
+      ...
+    # Subtest: path traversal attempt is rejected
+    ok 13 - path traversal attempt is rejected
+      ---
+      duration_ms: 0.042402
+      type: 'test'
+      ...
+    # Subtest: filename exceeding 255 characters is rejected
+    ok 14 - filename exceeding 255 characters is rejected
+      ---
+      duration_ms: 0.058039
+      type: 'test'
+      ...
+    # Subtest: valid filename with spaces is accepted
+    ok 15 - valid filename with spaces is accepted
+      ---
+      duration_ms: 0.11559
+      type: 'test'
+      ...
+    # Subtest: valid filename with Chinese characters is accepted
+    ok 16 - valid filename with Chinese characters is accepted
+      ---
+      duration_ms: 0.092869
+      type: 'test'
+      ...
+    # Subtest: valid non-PDF filename is accepted
+    ok 17 - valid non-PDF filename is accepted
+      ---
+      duration_ms: 0.056443
+      type: 'test'
+      ...
+    # Subtest: renaming PDF to non-pdf extension is rejected
+    ok 18 - renaming PDF to non-pdf extension is rejected
+      ---
+      duration_ms: 0.073351
+      type: 'test'
+      ...
+    # Subtest: renaming PDF keeping .pdf extension is accepted
+    ok 19 - renaming PDF keeping .pdf extension is accepted
+      ---
+      duration_ms: 0.0501
+      type: 'test'
+      ...
+    1..19
+ok 2 - Filename validation
+  ---
+  duration_ms: 1.708229
+  type: 'suite'
+  ...
+# Subtest: HTML escaping
+    # Subtest: ampersand is escaped
+    ok 1 - ampersand is escaped
+      ---
+      duration_ms: 0.175553
+      type: 'test'
+      ...
+    # Subtest: less-than is escaped
+    ok 2 - less-than is escaped
+      ---
+      duration_ms: 0.064796
+      type: 'test'
+      ...
+    # Subtest: greater-than is escaped
+    ok 3 - greater-than is escaped
+      ---
+      duration_ms: 0.053911
+      type: 'test'
+      ...
+    # Subtest: double-quote is escaped
+    ok 4 - double-quote is escaped
+      ---
+      duration_ms: 0.043654
+      type: 'test'
+      ...
+    # Subtest: single-quote is escaped
+    ok 5 - single-quote is escaped
+      ---
+      duration_ms: 0.039826
+      type: 'test'
+      ...
+    # Subtest: XSS payload is fully escaped
+    ok 6 - XSS payload is fully escaped
+      ---
+      duration_ms: 0.055562
+      type: 'test'
+      ...
+    # Subtest: mixed HTML and special characters are all escaped
+    ok 7 - mixed HTML and special characters are all escaped
+      ---
+      duration_ms: 0.052776
+      type: 'test'
+      ...
+    # Subtest: textContent safety: escaped output contains no injectable markup
+    ok 8 - textContent safety: escaped output contains no injectable markup
+      ---
+      duration_ms: 0.086553
+      type: 'test'
+      ...
+    1..8
+ok 3 - HTML escaping
+  ---
+  duration_ms: 0.712025
+  type: 'suite'
+  ...
+# Subtest: Download integrity simulation
+    # Subtest: storing and retrieving blob preserves byte content
+    ok 1 - storing and retrieving blob preserves byte content
+      ---
+      duration_ms: 3.550607
+      type: 'test'
+      ...
+    # Subtest: binary PDF content roundtrips correctly through Blob
+    ok 2 - binary PDF content roundtrips correctly through Blob
+      ---
+      duration_ms: 0.359901
+      type: 'test'
+      ...
+    # Subtest: large binary content roundtrips correctly
+    ok 3 - large binary content roundtrips correctly
+      ---
+      duration_ms: 137.957794
+      type: 'test'
+      ...
+    # Subtest: multiple blobs preserve different content
+    ok 4 - multiple blobs preserve different content
+      ---
+      duration_ms: 1.071492
+      type: 'test'
+      ...
+    1..4
+ok 4 - Download integrity simulation
+  ---
+  duration_ms: 143.168774
+  type: 'suite'
+  ...
+# Subtest: Rename logic simulation
+    # Subtest: rename preserves file key and updates name in metadata
+    ok 1 - rename preserves file key and updates name in metadata
+      ---
+      duration_ms: 0.274206
+      type: 'test'
+      ...
+    # Subtest: rename to empty string is rejected
+    ok 2 - rename to empty string is rejected
+      ---
+      duration_ms: 0.061513
+      type: 'test'
+      ...
+    # Subtest: rename metadata is JSON-serializable
+    ok 3 - rename metadata is JSON-serializable
+      ---
+      duration_ms: 0.116269
+      type: 'test'
+      ...
+    # Subtest: rename preserves date and size
+    ok 4 - rename preserves date and size
+      ---
+      duration_ms: 0.070127
+      type: 'test'
+      ...
+    1..4
+ok 5 - Rename logic simulation
+  ---
+  duration_ms: 0.643908
+  type: 'suite'
+  ...
+# Subtest: Edge cases
+    # Subtest: multiple validation errors are handled independently
+    ok 1 - multiple validation errors are handled independently
+      ---
+      duration_ms: 0.115658
+      type: 'test'
+      ...
+    # Subtest: validatePdfHeader handles null/undefined gracefully
+    ok 2 - validatePdfHeader handles null/undefined gracefully
+      ---
+      duration_ms: 0.07586
+      type: 'test'
+      ...
+    # Subtest: validateFilename handles null input
+    ok 3 - validateFilename handles null input
+      ---
+      duration_ms: 4.304045
+      type: 'test'
+      ...
+    # Subtest: validateFilename handles undefined input
+    ok 4 - validateFilename handles undefined input
+      ---
+      duration_ms: 0.074681
+      type: 'test'
+      ...
+    # Subtest: validateFilename handles number input as string
+    ok 5 - validateFilename handles number input as string
+      ---
+      duration_ms: 0.068734
+      type: 'test'
+      ...
+    # Subtest: validateFilename number without pdf extension is rejected for pdf input
+    ok 6 - validateFilename number without pdf extension is rejected for pdf input
+      ---
+      duration_ms: 0.157665
+      type: 'test'
+      ...
+    1..6
+ok 6 - Edge cases
+  ---
+  duration_ms: 4.936414
+  type: 'suite'
+  ...
+1..6
+# tests 51
+# suites 6
+# pass 51
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 377.801841
+
+> file-upload-preview-web@1.0.0 build
+> vite build
+
+vite v7.3.6 building client environment for production...
+transforming...
+✓ 7 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                  6.40 kB │ gzip:   2.23 kB
+dist/assets/index-CkW2E12D.js  415.42 kB │ gzip: 122.30 kB
+✓ built in 2.66s

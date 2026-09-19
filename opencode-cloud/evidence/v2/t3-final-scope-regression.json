@@ -1,0 +1,70 @@
+{
+  "schemaVersion": 1,
+  "capturedAt": "2026-09-19T02:39:21.098222+00:00",
+  "lazyCScopeAfterCorrection": {
+    "enter": {
+      "generation": 6,
+      "state": "READY",
+      "requestIds": [
+        "lazy_enter_df08c00c87ab",
+        "lazy_retry_a147b98e052d",
+        "lazy_repeat_2dcb65ea5d63",
+        "lazy_stop_7536c090c581",
+        "t2_b_9d1d8832",
+        "cleanup_f081f0140f",
+        "t2-shared-c-enter",
+        "t2-shared-clean-lazy-c",
+        "t2-evidence-b",
+        "t2-evidence-stop-b",
+        "t3_a09_queue_b",
+        "t3_a13_stop_b",
+        "t3_a13_stop_b_retry",
+        "t3_a13_stop_b_after_scope_fix",
+        "t3_final_scope_enter"
+      ],
+      "initialization": "READY",
+      "lastError": null,
+      "blockers": [],
+      "queuedAt": null,
+      "lastActivityAt": 1789785556.5788903,
+      "autoStopNotBefore": 1789785676.5788903
+    },
+    "models": {
+      "status": 200,
+      "ids": [
+        "Qwen3.6-35B-A3B",
+        "gpt-5.6-luna"
+      ]
+    },
+    "stop": {
+      "generation": 6,
+      "state": "STOPPED",
+      "requestIds": [
+        "lazy_enter_df08c00c87ab",
+        "lazy_retry_a147b98e052d",
+        "lazy_repeat_2dcb65ea5d63",
+        "lazy_stop_7536c090c581",
+        "t2_b_9d1d8832",
+        "cleanup_f081f0140f",
+        "t2-shared-c-enter",
+        "t2-shared-clean-lazy-c",
+        "t2-evidence-b",
+        "t2-evidence-stop-b",
+        "t3_a09_queue_b",
+        "t3_a13_stop_b",
+        "t3_a13_stop_b_retry",
+        "t3_a13_stop_b_after_scope_fix",
+        "t3_final_scope_enter",
+        "t3_final_scope_stop"
+      ],
+      "initialization": "READY",
+      "lastError": null,
+      "blockers": [],
+      "queuedAt": null,
+      "lastActivityAt": 1789785556.5788903,
+      "autoStopNotBefore": null,
+      "forced": false,
+      "automatic": false
+    }
+  }
+}

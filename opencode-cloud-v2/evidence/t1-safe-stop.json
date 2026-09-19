@@ -1,0 +1,48 @@
+{
+  "status": "PASS",
+  "checkedAt": "2026-09-19T00:58:05.411619+00:00",
+  "elapsedSeconds": 2.108,
+  "response": {
+    "generation": 1,
+    "state": "STOPPED",
+    "requestIds": [
+      "t1_enter_d1cf0e85900e92b6",
+      "t1_busy_990c59c6e0b01b12",
+      "t1_stop_50677d633448d804"
+    ],
+    "lastError": null,
+    "blockers": [],
+    "forced": false
+  },
+  "postStopStatus": {
+    "generation": 1,
+    "state": "STOPPED",
+    "requestIds": [
+      "t1_enter_d1cf0e85900e92b6",
+      "t1_busy_990c59c6e0b01b12",
+      "t1_stop_50677d633448d804"
+    ],
+    "lastError": null,
+    "blockers": [],
+    "runningMembers": 0
+  },
+  "meReady": false,
+  "members": {
+    "workbench-v2-checkpoint-engineer-b-native-guard-1": {
+      "state": "exited",
+      "status": "Exited (143) 1 second ago"
+    },
+    "workbench-v2-checkpoint-engineer-b-web-egress-1": {
+      "state": "exited",
+      "status": "Exited (0) Less than a second ago"
+    },
+    "workbench-v2-checkpoint-engineer-b-model-gateway-1": {
+      "state": "exited",
+      "status": "Exited (143) Less than a second ago"
+    },
+    "workbench-v2-checkpoint-engineer-b-native-1": {
+      "state": "exited",
+      "status": "Exited (143) 1 second ago"
+    }
+  }
+}

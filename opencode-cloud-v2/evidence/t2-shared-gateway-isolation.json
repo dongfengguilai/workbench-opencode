@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "capturedAt": "2026-09-19T01:56:24.079041+00:00",
+  "enter": {
+    "state": "READY",
+    "generation": 8
+  },
+  "checks": {
+    "invalidScopeStatus": 401,
+    "directQwenStatus": 0,
+    "directLunaStatus": 0,
+    "authorized": {
+      "status": 200,
+      "models": [
+        "Qwen3.6-35B-A3B",
+        "gpt-5.6-luna"
+      ]
+    }
+  },
+  "stop": {
+    "state": "STOPPED",
+    "forced": false
+  },
+  "runningAfter": [
+    "platform",
+    "shared-model-gateway"
+  ],
+  "assertions": {
+    "invalidScopeRejected": true,
+    "directBackendsUnreachable": true,
+    "bothModelsVisibleThroughScope": true,
+    "onlyPersistentServicesRemain": true
+  }
+}

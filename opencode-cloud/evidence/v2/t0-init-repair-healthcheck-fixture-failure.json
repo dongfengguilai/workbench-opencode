@@ -1,0 +1,6 @@
+{
+  "result": "Candidate containers started with init=true, but repair verifier incorrectly expected a Docker healthcheck not defined in isolated compose",
+  "candidateContainersWereStopped": false,
+  "originalDeploymentTouched": false,
+  "correction": "Use actual guarded /global/health plus task/question/permission checks, then continue same candidate without recreating"
+}

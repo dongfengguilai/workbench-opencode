@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "capturedAt": "2026-09-19T03:21:58.806755+00:00",
+  "environment": "isolated workbench-v2-checkpoint",
+  "failedScope": "lazy-c",
+  "backend": "qwen-local",
+  "dispatchId": "58690c3ec7a49986d4fe697c4939a280",
+  "observedFailure": {
+    "name": "APIError",
+    "platformStatus": 424,
+    "retryable": false
+  },
+  "backendObservation": {
+    "httpStatus": 200,
+    "slotCount": 1,
+    "activeSlots": 0
+  },
+  "reconciliation": {
+    "gatewayStopped": true,
+    "exactDispatchConfirmedEnded": true,
+    "gatewayRestartedHealthy": true
+  },
+  "cleanup": {
+    "engineer": "STOPPED",
+    "lazyC": "STOPPED"
+  },
+  "claim": "The first T4 run failed closed on an uncertain Qwen dispatch. A maintainer observed zero active llama.cpp slots, stopped the shared gateway, reconciled only the exact dispatch ID, restarted it healthy, and safely stopped both spaces before any manual retry."
+}

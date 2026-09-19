@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "capturedAt": "2026-09-19T02:14:41.261151+00:00",
+  "environment": "isolated workbench-v2-checkpoint",
+  "session": "ses_f488e76daffew2nzQQ2GH8NIpb",
+  "submission": {
+    "session": "ses_f488e76daffew2nzQQ2GH8NIpb",
+    "messageID": "msg_t3_a06_live_agent",
+    "status": 204,
+    "body": "",
+    "model": "approved/Qwen3.6-35B-A3B",
+    "time": "2026-09-19T02:14:40.165Z"
+  },
+  "immediateStop": {
+    "generation": 11,
+    "state": "READY",
+    "requestIds": [
+      "t2_stop_a_8699a09e",
+      "t2-shared-enter-1",
+      "t2-shared-env-refresh-stop",
+      "t2-shared-enter-2",
+      "t2-shared-promote-stop",
+      "t2-evidence-a",
+      "t2-evidence-stop-a",
+      "t2-isolation-enter",
+      "t2-isolation-stop",
+      "t2-concurrent-same",
+      "t2-concurrent-stop",
+      "t2-unknown-enter",
+      "t2-unknown-stop-blocked",
+      "t2-unknown-stop-after-reconcile",
+      "t3_a06_agent_enter",
+      "t3_a06_agent_stop"
+    ],
+    "lastError": null,
+    "blockers": [
+      "model-dispatch",
+      "native-task"
+    ],
+    "initialization": "READY",
+    "queuedAt": null,
+    "lastActivityAt": 1789784042.6557958,
+    "autoStopNotBefore": 1789784162.6557958
+  },
+  "nativeStatus": {
+    "ses_f488e76daffew2nzQQ2GH8NIpb": {
+      "type": "busy"
+    }
+  },
+  "claim": "Real native OpenCode/Qwen request remained active and safe stop returned blockers without signalling containers."
+}

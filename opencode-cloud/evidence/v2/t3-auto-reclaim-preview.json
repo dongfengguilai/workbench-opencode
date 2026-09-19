@@ -1,0 +1,79 @@
+{
+  "schemaVersion": 1,
+  "capturedAt": "2026-09-19T02:21:43.101368+00:00",
+  "enter": {
+    "generation": 17,
+    "state": "READY",
+    "requestIds": [
+      "t2-unknown-stop-blocked",
+      "t2-unknown-stop-after-reconcile",
+      "t3_a06_agent_enter",
+      "t3_a06_agent_stop",
+      "t3_a06_terminal_stop",
+      "t3_a06_unknown_stop",
+      "t3_a06_export_stop",
+      "t3_a06_export_enter",
+      "t3_a06_export_stop_2",
+      "t3_a06_unresponsive_stop",
+      "t3_a06_unresponsive_retry_enter",
+      "t3_a06_unresponsive_stop_2",
+      "t3_a07_idle_enter",
+      "t3_a07_activity_enter",
+      "t3_a07_busy_enter",
+      "t3_a07_preview_enter"
+    ],
+    "lastError": null,
+    "blockers": [],
+    "initialization": "READY",
+    "queuedAt": null,
+    "lastActivityAt": 1789784490.6675599,
+    "autoStopNotBefore": 1789784495.6675599
+  },
+  "managedPreviewStarted": {
+    "status": 200,
+    "body": {
+      "web": {
+        "available": true,
+        "present": true,
+        "kind": "vite",
+        "fingerprint": "f8bc42077fd44a1263c066d8b14b4203b5f2eb3a582c9225177885a9010ef751"
+      },
+      "nativeBusy": false,
+      "running": true,
+      "pty": "pty_0b77808ab001jGBi81TiORUNbo",
+      "port": 5173,
+      "directory": "/workspace/project/web",
+      "processState": "running"
+    }
+  },
+  "afterIdle": {
+    "generation": 17,
+    "state": "STOPPED",
+    "requestIds": [
+      "t2-unknown-stop-blocked",
+      "t2-unknown-stop-after-reconcile",
+      "t3_a06_agent_enter",
+      "t3_a06_agent_stop",
+      "t3_a06_terminal_stop",
+      "t3_a06_unknown_stop",
+      "t3_a06_export_stop",
+      "t3_a06_export_enter",
+      "t3_a06_export_stop_2",
+      "t3_a06_unresponsive_stop",
+      "t3_a06_unresponsive_retry_enter",
+      "t3_a06_unresponsive_stop_2",
+      "t3_a07_idle_enter",
+      "t3_a07_activity_enter",
+      "t3_a07_busy_enter",
+      "t3_a07_preview_enter"
+    ],
+    "lastError": null,
+    "blockers": [],
+    "initialization": "READY",
+    "queuedAt": null,
+    "lastActivityAt": 1789784490.6675599,
+    "autoStopNotBefore": null,
+    "runningMembers": 0
+  },
+  "runningExecutionContainers": []
+}

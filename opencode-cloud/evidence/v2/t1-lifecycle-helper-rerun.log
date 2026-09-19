@@ -1,0 +1,9 @@
+test_busy_stop_restores_ready_without_signal (__main__.Lifecycle.test_busy_stop_restores_ready_without_signal) ... ok
+test_enter_idempotent_one_generation (__main__.Lifecycle.test_enter_idempotent_one_generation) ... ok
+test_safe_stop_drains_rechecks_and_never_forces (__main__.Lifecycle.test_safe_stop_drains_rechecks_and_never_forces) ... ok
+test_status_never_starts (__main__.Lifecycle.test_status_never_starts) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.005s
+
+OK

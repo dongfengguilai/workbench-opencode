@@ -1,0 +1,23 @@
+{
+  "scope": "Only newly created isolated checkpoint, not original runtime",
+  "privateArchive": "/home/vmware/Workspace/programs/WorkBench/backups/v2-checkpoint-before-init-repair/checkpoint.tar.gz",
+  "archiveSHA256": "d5ad303026fa4894d6b2ad2751d0d91f65955fdae42ab739c7f71a9a8015b85c",
+  "archiveReadable": true,
+  "archiveEntries": 176,
+  "SQLiteBackupIntegrity": [
+    {
+      "path": "data/opencode/opencode.db",
+      "integrity": "ok"
+    }
+  ],
+  "backupType": "Stable project + SQLite online backup; NOT cold raw-live DB byte copy",
+  "protectedConfigIncluded": true,
+  "publication": "Archive/snapshot never commit or publish",
+  "proposedComputeOnlyRepair": [
+    "workbench-v2-checkpoint-engineer-b-native-guard-1",
+    "workbench-v2-checkpoint-engineer-b-native-1",
+    "workbench-v2-checkpoint-engineer-b-model-gateway-1",
+    "workbench-v2-checkpoint-engineer-b-web-egress-1"
+  ],
+  "originalDeploymentObjectsNotTargeted": true
+}

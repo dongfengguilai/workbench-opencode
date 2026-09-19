@@ -1,0 +1,137 @@
+{
+  "schemaVersion": 1,
+  "capturedAt": "2026-09-19T01:55:07.007270+00:00",
+  "composeProject": "workbench-v2-checkpoint",
+  "maxRunning": 2,
+  "events": [
+    {
+      "time": "2026-09-19T01:54:27.738728+00:00",
+      "action": "status",
+      "space": "engineer-b",
+      "result": {
+        "state": "STOPPED",
+        "generation": 6,
+        "runningMembers": 0
+      }
+    },
+    {
+      "time": "2026-09-19T01:54:27.939768+00:00",
+      "action": "status",
+      "space": "lazy-c",
+      "result": {
+        "state": "STOPPED",
+        "generation": 3,
+        "runningMembers": 0
+      }
+    },
+    {
+      "time": "2026-09-19T01:54:28.041712+00:00",
+      "action": "status",
+      "space": "lazy-d",
+      "result": {
+        "state": "STOPPED",
+        "generation": 2,
+        "runningMembers": 0
+      }
+    },
+    {
+      "time": "2026-09-19T01:54:37.147698+00:00",
+      "action": "enter",
+      "space": "engineer-b",
+      "result": {
+        "state": "READY",
+        "generation": 7
+      }
+    },
+    {
+      "time": "2026-09-19T01:54:46.268916+00:00",
+      "action": "enter",
+      "space": "lazy-c",
+      "result": {
+        "state": "READY",
+        "generation": 4
+      }
+    },
+    {
+      "time": "2026-09-19T01:54:46.636508+00:00",
+      "action": "enter",
+      "space": "lazy-d",
+      "result": {
+        "state": "QUEUED",
+        "generation": 2,
+        "queuePosition": 1
+      }
+    },
+    {
+      "time": "2026-09-19T01:54:58.381365+00:00",
+      "action": "stop",
+      "space": "engineer-b",
+      "result": {
+        "state": "STOPPED",
+        "generation": 7,
+        "forced": false
+      }
+    },
+    {
+      "time": "2026-09-19T01:54:58.493984+00:00",
+      "action": "status",
+      "space": "lazy-d",
+      "result": {
+        "state": "READY",
+        "generation": 3,
+        "runningMembers": 3
+      }
+    },
+    {
+      "time": "2026-09-19T01:55:02.776819+00:00",
+      "action": "stop",
+      "space": "lazy-c",
+      "result": {
+        "state": "STOPPED",
+        "generation": 4,
+        "forced": false
+      }
+    },
+    {
+      "time": "2026-09-19T01:55:06.848920+00:00",
+      "action": "stop",
+      "space": "lazy-d",
+      "result": {
+        "state": "STOPPED",
+        "generation": 3,
+        "forced": false
+      }
+    }
+  ],
+  "runningAtCapacity": [
+    "engineer-b-native",
+    "engineer-b-native-guard",
+    "engineer-b-web-egress",
+    "lazy-c-native",
+    "lazy-c-native-guard",
+    "lazy-c-web-egress",
+    "platform",
+    "shared-model-gateway"
+  ],
+  "runningAfterPromotion": [
+    "lazy-c-native",
+    "lazy-c-native-guard",
+    "lazy-c-web-egress",
+    "lazy-d-native",
+    "lazy-d-native-guard",
+    "lazy-d-web-egress",
+    "platform",
+    "shared-model-gateway"
+  ],
+  "runningAfterCleanup": [
+    "platform",
+    "shared-model-gateway"
+  ],
+  "assertions": {
+    "thirdSpaceQueued": true,
+    "oneStopPromotedExactlyOne": true,
+    "perSpaceRunningMembers": 3,
+    "sharedGatewayRemainedRunning": true,
+    "noForceStop": true
+  }
+}

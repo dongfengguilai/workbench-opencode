@@ -1,0 +1,19 @@
+Traceback (most recent call last):
+  File "/home/vmware/Workspace/projects/experiments/Workbench_space/workbench-opencode/opencode-cloud/evidence/v2/t4-three-space-acceptance.py", line 283, in <module>
+    raise SystemExit(main())
+                     ~~~~^^
+  File "/home/vmware/Workspace/projects/experiments/Workbench_space/workbench-opencode/opencode-cloud/evidence/v2/t4-three-space-acceptance.py", line 275, in main
+    report = Acceptance(args.root.resolve(), args.evidence.resolve()).execute()
+  File "/home/vmware/Workspace/projects/experiments/Workbench_space/workbench-opencode/opencode-cloud/evidence/v2/t4-three-space-acceptance.py", line 210, in execute
+    a_session, a_message = self.submit("engineer-b", "Inspect the authorized project and run npm test from /workspace/project/web. Report the exact result. Do not modify files.")
+                           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/vmware/Workspace/projects/experiments/Workbench_space/workbench-opencode/opencode-cloud/evidence/v2/t4-three-space-acceptance.py", line 100, in submit
+    result = json.loads(run(["docker", "exec", "-i", self.native(space), "node", "-", payload], input_text=source, timeout=90))
+                                                     ~~~~~~~~~~~^^^^^^^
+  File "/home/vmware/Workspace/projects/experiments/Workbench_space/workbench-opencode/opencode-cloud/evidence/v2/t4-three-space-acceptance.py", line 79, in native
+    return self.service(space, "native")
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/home/vmware/Workspace/projects/experiments/Workbench_space/workbench-opencode/opencode-cloud/evidence/v2/t4-three-space-acceptance.py", line 76, in service
+    return cfg["containers"][cfg["roles"][role]]
+                             ~~~^^^^^^^^^
+KeyError: 'roles'

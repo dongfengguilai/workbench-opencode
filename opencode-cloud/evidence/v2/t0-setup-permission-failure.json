@@ -1,0 +1,7 @@
+{
+  "stage": "Isolated checkpoint preparation",
+  "result": "Initial low-capability chown/chmod helper failed; existing runtime/config never targeted",
+  "cause": "root with dropped DAC/FOWNER could not traverse host-owned0700 checkpoint parent",
+  "correction": "Host owner uid1000 adjusts only newly copied config permissions; no additional caps, original ownership or data writes",
+  "guardHealthAfterCorrection": 200
+}

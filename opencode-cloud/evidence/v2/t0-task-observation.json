@@ -1,0 +1,98 @@
+{
+  "time": "2026-09-18T23:22:27.336Z",
+  "sid": "ses_f492d11b9ffe7ptlGuGIwvoCec",
+  "state": "idle",
+  "finalAssistant": {
+    "completed": true,
+    "finish": "stop"
+  },
+  "tools": [
+    {
+      "tool": "bash",
+      "status": "completed",
+      "exit": 0,
+      "inputCommand": "mkdir -p /workspace/project/.workbench-artifacts",
+      "outputSha256": "efefc15c24ee8645a3f5f6958389db729c1577eb6b32aeac4caab2a86d90daa3"
+    },
+    {
+      "tool": "bash",
+      "status": "completed",
+      "exit": 0,
+      "inputCommand": "cd /workspace/project/web && npm test 2>&1; echo \"EXIT_CODE=$?\"",
+      "outputSha256": "3ebcf4a57785103b60e55bcfbd7b3597424a2a279ad7ca6e0b0452bb6f2f4860"
+    },
+    {
+      "tool": "bash",
+      "status": "completed",
+      "exit": 0,
+      "inputCommand": "cd /workspace/project/web && npm run build 2>&1; echo \"EXIT_CODE=$?\"",
+      "outputSha256": "b29f3de8bfa27f7b87116a3ed8cc54d29dfc281ae9b8dd73776eaf1a6fa97098"
+    },
+    {
+      "tool": "bash",
+      "status": "completed",
+      "exit": 0,
+      "inputCommand": "playwright-cli --help 2>&1",
+      "outputSha256": "0840b2fabc0e738b10d70a0e440c5807a7aae2ee9b6308ab8c97e50db76699db"
+    },
+    {
+      "tool": "bash",
+      "status": "completed",
+      "exit": 0,
+      "inputCommand": "playwright-cli -s=wb open http://127.0.0.1:5173/ --config /trusted/browser.json 2>&1",
+      "outputSha256": "1ce414567ffcccd8817fba374a6fdc7703f6aa6782d87876b8be9234966be2af"
+    },
+    {
+      "tool": "bash",
+      "status": "completed",
+      "exit": 0,
+      "inputCommand": "playwright-cli -s=wb snapshot 2>&1",
+      "outputSha256": "eeea2652df2b35f62d5f6c8c7f69cc9441b538642203b5b05c30d083efd47f5e"
+    },
+    {
+      "tool": "bash",
+      "status": "completed",
+      "exit": 0,
+      "inputCommand": "playwright-cli -s=wb screenshot --filename=/workspace/project/.workbench-artifacts/v2-t0.png 2>&1",
+      "outputSha256": "39ebddc0de6c94284ed0471a6731d354b35cedbb16b8028b9084de804af7fed2"
+    },
+    {
+      "tool": "bash",
+      "status": "completed",
+      "exit": 0,
+      "inputCommand": "playwright-cli -s=wb close 2>&1",
+      "outputSha256": "3f601705282d2c747146c6601c831e5f471f5f4fd701942d880a2e0da0f5a974"
+    }
+  ],
+  "tests51": true,
+  "buildObserved": true,
+  "screenshotExists": true,
+  "cliNativeOutputChecks": [
+    {
+      "status": "completed",
+      "exit": 0,
+      "cliErrorMarker": false
+    },
+    {
+      "status": "completed",
+      "exit": 0,
+      "cliErrorMarker": false
+    },
+    {
+      "status": "completed",
+      "exit": 0,
+      "cliErrorMarker": false
+    },
+    {
+      "status": "completed",
+      "exit": 0,
+      "cliErrorMarker": false
+    },
+    {
+      "status": "completed",
+      "exit": 0,
+      "cliErrorMarker": false
+    }
+  ],
+  "realRegressionCompleted": true
+}

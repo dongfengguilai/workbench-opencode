@@ -1,0 +1,150 @@
+TAP version 13
+# (node:13) ExperimentalWarning: Transform Types is an experimental feature and might change at any time
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: fixed-version routes and prompt overrides are enforced
+ok 1 - fixed-version routes and prompt overrides are enforced
+  ---
+  duration_ms: 5.190759
+  type: 'test'
+  ...
+# (node:20) ExperimentalWarning: Transform Types is an experimental feature and might change at any time
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: local engineering authentication requires an explicit development profile and never contacts NetID
+ok 2 - local engineering authentication requires an explicit development profile and never contacts NetID
+  ---
+  duration_ms: 337.284963
+  type: 'test'
+  ...
+# Subtest: production launch rejects development configuration even when it contains valid hashes
+ok 3 - production launch rejects development configuration even when it contains valid hashes
+  ---
+  duration_ms: 0.523512
+  type: 'test'
+  ...
+# Subtest: developer API selects local engineer and preserves the old administrator session
+not ok 4 - developer API selects local engineer and preserves the old administrator session
+  ---
+  duration_ms: 490.906753
+  type: 'test'
+  location: '/repo/opencode-cloud/test/development-platform.test.mjs:11:1'
+  failureType: 'testCodeFailure'
+  error: 'spawnSync docker ENOENT'
+  code: 'ENOENT'
+  stack: |-
+    Object.spawnSync (node:internal/child_process:1120:20)
+    spawnSync (node:child_process:901:24)
+    execFileSync (node:child_process:944:15)
+    TestContext.<anonymous> (file:///repo/opencode-cloud/test/development-platform.test.mjs:24:13)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.start (node:internal/test_runner/test:944:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:296:17)
+  ...
+# (node:40) ExperimentalWarning: Transform Types is an experimental feature and might change at any time
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: administrator succeeds locally and wrong password never calls NetID
+ok 5 - administrator succeeds locally and wrong password never calls NetID
+  ---
+  duration_ms: 203.080302
+  type: 'test'
+  ...
+# Subtest: NetID requires exact verified subject and never uses local credentials
+ok 6 - NetID requires exact verified subject and never uses local credentials
+  ---
+  duration_ms: 2.05978
+  type: 'test'
+  ...
+# Subtest: invalid hash, mixed credentials and account collisions fail closed
+ok 7 - invalid hash, mixed credentials and account collisions fail closed
+  ---
+  duration_ms: 0.724979
+  type: 'test'
+  ...
+# Subtest: same-IP sessions, logout and preview tickets remain bound to their entry
+not ok 8 - same-IP sessions, logout and preview tickets remain bound to their entry
+  ---
+  duration_ms: 223.502241
+  type: 'test'
+  location: '/repo/opencode-cloud/test/ip-entry-platform.test.mjs:10:1'
+  failureType: 'testCodeFailure'
+  error: 'spawnSync docker ENOENT'
+  code: 'ENOENT'
+  stack: |-
+    Object.spawnSync (node:internal/child_process:1120:20)
+    spawnSync (node:child_process:901:24)
+    execFileSync (node:child_process:944:15)
+    TestContext.<anonymous> (file:///repo/opencode-cloud/test/ip-entry-platform.test.mjs:25:13)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.start (node:internal/test_runner/test:944:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:296:17)
+  ...
+# (node:60) ExperimentalWarning: Transform Types is an experimental feature and might change at any time
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: draining rejects mutable traffic while keeping observation and preview stop available
+ok 9 - draining rejects mutable traffic while keeping observation and preview stop available
+  ---
+  duration_ms: 0.770823
+  type: 'test'
+  ...
+# Subtest: drain closes every registered writable connection
+ok 10 - drain closes every registered writable connection
+  ---
+  duration_ms: 0.157898
+  type: 'test'
+  ...
+# (node:67) ExperimentalWarning: Transform Types is an experimental feature and might change at any time
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: client sends only fixed identity, action, and bounded request id over unix socket
+ok 11 - client sends only fixed identity, action, and bounded request id over unix socket
+  ---
+  duration_ms: 20.899571
+  type: 'test'
+  ...
+# Subtest: preview tickets are one-use, expire, remain bound to the parent and revoke credentials
+ok 12 - preview tickets are one-use, expire, remain bound to the parent and revoke credentials
+  ---
+  duration_ms: 1.77575
+  type: 'test'
+  ...
+# Subtest: relay credentials require exact nonempty values
+ok 13 - relay credentials require exact nonempty values
+  ---
+  duration_ms: 0.23399
+  type: 'test'
+  ...
+# Subtest: only listed immutable build files and exact native page routes are hosted
+ok 14 - only listed immutable build files and exact native page routes are hosted
+  ---
+  duration_ms: 2.977393
+  type: 'test'
+  ...
+# Subtest: manifest path traversal and symlinks fail closed
+ok 15 - manifest path traversal and symlinks fail closed
+  ---
+  duration_ms: 0.549977
+  type: 'test'
+  ...
+# (node:88) ExperimentalWarning: Transform Types is an experimental feature and might change at any time
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: formal origins are maintained, separate, and never fall back for an unknown identity
+ok 16 - formal origins are maintained, separate, and never fall back for an unknown identity
+  ---
+  duration_ms: 1.03416
+  type: 'test'
+  ...
+# Subtest: NetID-only adapter sends the old protocol and rejects an absent real subject
+ok 17 - NetID-only adapter sends the old protocol and rejects an absent real subject
+  ---
+  duration_ms: 1.361417
+  type: 'test'
+  ...
+1..17
+# tests 17
+# suites 0
+# pass 15
+# fail 2
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 3284.64812

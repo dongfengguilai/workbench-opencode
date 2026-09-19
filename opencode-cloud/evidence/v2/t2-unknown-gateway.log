@@ -1,0 +1,6 @@
+shared model gateway listening
+shared model gateway listening
+shared model gateway listening
+{"time":"2026-09-19T01:59:10.621Z","event":"dispatched","id":"d089c9345ae99639fd17f60561d68c8f","scope":"engineer-b","backend":"fixture-hold","model":"fixture-hold"}
+{"time":"2026-09-19T01:59:11.051Z","event":"uncertain","id":"d089c9345ae99639fd17f60561d68c8f","scope":"engineer-b","backend":"fixture-hold"}
+{"time":"2026-09-19T01:59:11.053Z","event":"uncertain","id":"d089c9345ae99639fd17f60561d68c8f","scope":"engineer-b","backend":"fixture-hold"}

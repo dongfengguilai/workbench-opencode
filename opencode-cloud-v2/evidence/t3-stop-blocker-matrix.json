@@ -1,0 +1,122 @@
+{
+  "schemaVersion": 1,
+  "capturedAt": "2026-09-19T02:15:15.970487+00:00",
+  "terminalStop": {
+    "generation": 11,
+    "state": "READY",
+    "requestIds": [
+      "t2-shared-enter-1",
+      "t2-shared-env-refresh-stop",
+      "t2-shared-enter-2",
+      "t2-shared-promote-stop",
+      "t2-evidence-a",
+      "t2-evidence-stop-a",
+      "t2-isolation-enter",
+      "t2-isolation-stop",
+      "t2-concurrent-same",
+      "t2-concurrent-stop",
+      "t2-unknown-enter",
+      "t2-unknown-stop-blocked",
+      "t2-unknown-stop-after-reconcile",
+      "t3_a06_agent_enter",
+      "t3_a06_agent_stop",
+      "t3_a06_terminal_stop"
+    ],
+    "lastError": null,
+    "blockers": [
+      "terminal",
+      "unknown-process"
+    ],
+    "initialization": "READY",
+    "queuedAt": null,
+    "lastActivityAt": 1789784112.9793105,
+    "autoStopNotBefore": 1789784162.6557958
+  },
+  "unknownProcessStop": {
+    "generation": 11,
+    "state": "READY",
+    "requestIds": [
+      "t2-shared-env-refresh-stop",
+      "t2-shared-enter-2",
+      "t2-shared-promote-stop",
+      "t2-evidence-a",
+      "t2-evidence-stop-a",
+      "t2-isolation-enter",
+      "t2-isolation-stop",
+      "t2-concurrent-same",
+      "t2-concurrent-stop",
+      "t2-unknown-enter",
+      "t2-unknown-stop-blocked",
+      "t2-unknown-stop-after-reconcile",
+      "t3_a06_agent_enter",
+      "t3_a06_agent_stop",
+      "t3_a06_terminal_stop",
+      "t3_a06_unknown_stop"
+    ],
+    "lastError": null,
+    "blockers": [
+      "unknown-process"
+    ],
+    "initialization": "READY",
+    "queuedAt": null,
+    "lastActivityAt": 1789784112.9793105,
+    "autoStopNotBefore": 1789784162.6557958
+  },
+  "liveAgentMessages": [
+    {
+      "role": "user",
+      "error": null,
+      "text": "\u53ea\u8bfb\u53d6 package.json\uff0c\u786e\u8ba4\u9879\u76ee\u540d\u79f0\u5e76\u7528\u4e00\u53e5\u4e2d\u6587\u56de\u590d\uff1b\u4e0d\u8981\u4fee\u6539\u4efb\u4f55\u6587\u4ef6\u3002",
+      "tools": []
+    },
+    {
+      "role": "assistant",
+      "modelID": "Qwen3.6-35B-A3B",
+      "finish": "tool-calls",
+      "error": null,
+      "text": "",
+      "tools": [
+        {
+          "tool": "read",
+          "status": "error"
+        }
+      ]
+    },
+    {
+      "role": "assistant",
+      "modelID": "Qwen3.6-35B-A3B",
+      "finish": "tool-calls",
+      "error": null,
+      "text": "",
+      "tools": [
+        {
+          "tool": "glob",
+          "status": "completed"
+        }
+      ]
+    },
+    {
+      "role": "assistant",
+      "modelID": "Qwen3.6-35B-A3B",
+      "finish": "tool-calls",
+      "error": null,
+      "text": "",
+      "tools": [
+        {
+          "tool": "read",
+          "status": "completed"
+        }
+      ]
+    },
+    {
+      "role": "assistant",
+      "modelID": "Qwen3.6-35B-A3B",
+      "finish": "stop",
+      "error": null,
+      "text": "\u9879\u76ee\u540d\u79f0\u662f **file-upload-preview-web**\u3002",
+      "tools": []
+    }
+  ],
+  "containersStillRunning": true,
+  "cleanup": "PTY deleted; only test sleep terminated; no environment signal sent"
+}

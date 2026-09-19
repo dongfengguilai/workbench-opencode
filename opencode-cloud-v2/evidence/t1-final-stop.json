@@ -1,0 +1,21 @@
+{
+  "status": "PASS",
+  "checkedAt": "2026-09-19T01:04:50.926201+00:00",
+  "elapsedSeconds": 2.097,
+  "response": {
+    "generation": 2,
+    "state": "STOPPED",
+    "requestIds": [
+      "t1_enter_d1cf0e85900e92b6",
+      "t1_busy_990c59c6e0b01b12",
+      "t1_stop_50677d633448d804",
+      "t1_reenter_5d064bd9d6e3cc2b",
+      "t1_final_stop_63ef2b1a330531e7"
+    ],
+    "lastError": null,
+    "blockers": [],
+    "forced": false
+  },
+  "runningEnvironmentMembers": [],
+  "platformRemainsRunning": true
+}

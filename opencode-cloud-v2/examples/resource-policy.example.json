@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "purpose": "test-example-not-runtime-config",
+  "testOnly": true,
+  "productVersion": "v2",
+  "environments": {
+    "maxRunning": 2,
+    "maxQueued": 3,
+    "maxQueueWaitSeconds": 180,
+    "oneRunningGroupPerSpace": true,
+    "idleSeconds": 120,
+    "startObserveTimeoutSeconds": 90,
+    "stopObserveTimeoutSeconds": 30,
+    "autoForceKill": false,
+    "restartExecutionGroupsAutomatically": false,
+    "wakeOnRead": false,
+    "initializeOnFirstEnter": true
+  },
+  "model": {
+    "globalPerBackend": 2,
+    "perIdentity": 1,
+    "maxQueuedPerBackend": 8,
+    "maxQueueWaitSeconds": 5,
+    "replayDispatchedRequests": false,
+    "unknownOutcomePolicy": "retain-permit-and-reconcile-or-block",
+    "verifiedBackendHardDeadlineSeconds": null
+  },
+  "storage": {
+    "minFreeBytesBeforeStart": 2147483648,
+    "migrateExistingData": false,
+    "truncateQuotaImages": false,
+    "cleanupUserSource": false
+  },
+  "notes": [
+    "These numbers are test settings, not production capacity recommendations.",
+    "No image names, credentials, NetIDs, paths or upstream addresses are supplied.",
+    "Codex must map these design fields to actual implementation after T0.",
+    "A local timeout is not a verified backend execution deadline."
+  ]
+}

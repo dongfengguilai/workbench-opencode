@@ -1,0 +1,739 @@
+{
+  "time": "2026-09-18T23:19:52.547636+00:00",
+  "head": "09e0c6d24c418d04fbebe1ee1e29e753a2d2c2e9",
+  "dirty": [
+    "?? opencode-cloud-v1-codex/opencode-cloud-v1/PACKAGE_MANIFEST.json",
+    "?? opencode-cloud-v1-codex/opencode-cloud-v1/README.md",
+    "?? opencode-cloud-v1-codex/opencode-cloud-v1/examples/",
+    "?? opencode-cloud-v1-codex/opencode-cloud-v1/scripts/",
+    "?? opencode-cloud-v1-codex/opencode-cloud-v1/validation/",
+    "?? opencode-cloud-v2/",
+    "?? opencode-cloud/evidence/increment-v1-dev-build.log",
+    "?? opencode-cloud/evidence/increment-v1-dev-install-final.log",
+    "?? opencode-cloud/evidence/increment-v1-dev-typecheck.log",
+    "?? opencode-cloud/evidence/increment-v1/README.md",
+    "?? opencode-cloud/evidence/increment-v1/admin-credential-preservation.json",
+    "?? opencode-cloud/evidence/increment-v1/admin-engineer-installed-guard-isolation-initial-expectation.json",
+    "?? opencode-cloud/evidence/increment-v1/admin-engineer-installed-guard-isolation.json",
+    "?? opencode-cloud/evidence/increment-v1/admin-engineer-installed-guard-isolation.log",
+    "?? opencode-cloud/evidence/increment-v1/admin-export-affected-regression.json",
+    "?? opencode-cloud/evidence/increment-v1/admin-login-isolation-browser-checkpoint.json",
+    "?? opencode-cloud/evidence/increment-v1/admin-password-reset-noninteractive.log",
+    "?? opencode-cloud/evidence/increment-v1/admin-password-reset-profile-regression.log",
+    "?? opencode-cloud/evidence/increment-v1/admin-password-reset-ready.json",
+    "?? opencode-cloud/evidence/increment-v1/admin-password-reset-tests.log",
+    "?? opencode-cloud/evidence/increment-v1/before.json",
+    "?? opencode-cloud/evidence/increment-v1/dev-busy-refusal.json",
+    "?? opencode-cloud/evidence/increment-v1/dev-direct-egress-policy.log",
+    "?? opencode-cloud/evidence/increment-v1/dev-direct-egress-profile.log",
+    "?? opencode-cloud/evidence/increment-v1/dev-engineer-direct-egress-denied.json",
+    "?? opencode-cloud/evidence/increment-v1/dev-engineer-egress-denial-live.json",
+    "?? opencode-cloud/evidence/increment-v1/dev-engineer-egress-publication.json",
+    "?? opencode-cloud/evidence/increment-v1/dev-engineer-egress-publication.log",
+    "?? opencode-cloud/evidence/increment-v1/dev-entry-live.json",
+    "?? opencode-cloud/evidence/increment-v1/dev-live-binding.json",
+    "?? opencode-cloud/evidence/increment-v1/dev-start-checkpoint.json",
+    "?? opencode-cloud/evidence/increment-v1/dev-start.log",
+    "?? opencode-cloud/evidence/increment-v1/developer-setup-awaiting-password.log",
+    "?? opencode-cloud/evidence/increment-v1/developer-setup-missing-container-failure.log",
+    "?? opencode-cloud/evidence/increment-v1/development-api-fixture.log",
+    "?? opencode-cloud/evidence/increment-v1/development-auth-initial-runner-failure.log",
+    "?? opencode-cloud/evidence/increment-v1/development-auth.log",
+    "?? opencode-cloud/evidence/increment-v1/development-checkpoint.json",
+    "?? opencode-cloud/evidence/increment-v1/development-platform-regression.log",
+    "?? opencode-cloud/evidence/increment-v1/development-profile-compose-expectation-failure.log",
+    "?? opencode-cloud/evidence/increment-v1/development-profile-env-serialization-failure.log",
+    "?? opencode-cloud/evidence/increment-v1/development-profile-initial-fixture-failure.log",
+    "?? opencode-cloud/evidence/increment-v1/development-profile.log",
+    "?? opencode-cloud/evidence/increment-v1/development-ui-build-driver.log",
+    "?? opencode-cloud/evidence/increment-v1/dual-browser-revocation-after-logout.json",
+    "?? opencode-cloud/evidence/increment-v1/dual-browser-revocation-before.json",
+    "?? opencode-cloud/evidence/increment-v1/dual-browser-socket-observer.mjs",
+    "?? opencode-cloud/evidence/increment-v1/export-background-write-after.json",
+    "?? opencode-cloud/evidence/increment-v1/export-background-write-before.json",
+    "?? opencode-cloud/evidence/increment-v1/export-contract-before.json",
+    "?? opencode-cloud/evidence/increment-v1/export-contract-before.log",
+    "?? opencode-cloud/evidence/increment-v1/export-contract.log",
+    "?? opencode-cloud/evidence/increment-v1/export-regression.log",
+    "?? opencode-cloud/evidence/increment-v1/export-reproduction-initial-failure.log",
+    "?? opencode-cloud/evidence/increment-v1/export-reproduction.json",
+    "?? opencode-cloud/evidence/increment-v1/export-reproduction.log",
+    "?? opencode-cloud/evidence/increment-v1/export-source-change-contract.log",
+    "?? opencode-cloud/evidence/increment-v1/export-source-change-guard-restart.json",
+    "?? opencode-cloud/evidence/increment-v1/export-source-change-original-regression.log",
+    "?? opencode-cloud/evidence/increment-v1/export-source-change-regression-fixed.log",
+    "?? opencode-cloud/evidence/increment-v1/export-source-change-regression.log",
+    "?? opencode-cloud/evidence/increment-v1/fixture-changes.patch",
+    "?? opencode-cloud/evidence/increment-v1/fixture-source.zip",
+    "?? opencode-cloud/evidence/increment-v1/fixtures/",
+    "?? opencode-cloud/evidence/increment-v1/installed-config-pty-audit.log",
+    "?? opencode-cloud/evidence/increment-v1/installed-config-pty-audit.mjs",
+    "?? opencode-cloud/evidence/increment-v1/native-pty-export-audit-immediate-stable-check.json",
+    "?? opencode-cloud/evidence/increment-v1/native-pty-export-audit-immediate-stable-check.log",
+    "?? opencode-cloud/evidence/increment-v1/native-pty-export-audit-unreadable-fixture.json",
+    "?? opencode-cloud/evidence/increment-v1/native-pty-export-audit-unreadable-fixture.log",
+    "?? opencode-cloud/evidence/increment-v1/native-pty-export-audit.log",
+    "?? opencode-cloud/evidence/increment-v1/native-pty-export-audit.mjs",
+    "?? opencode-cloud/evidence/increment-v1/p2-api-delivery-capture.json",
+    "?? opencode-cloud/evidence/increment-v1/p2-api-delivery-location.json",
+    "?? opencode-cloud/evidence/increment-v1/p2-authorization.json",
+    "?? opencode-cloud/evidence/increment-v1/p2-browser-clean-patch-build.json",
+    "?? opencode-cloud/evidence/increment-v1/p2-browser-clean-patch-build.log",
+    "?? opencode-cloud/evidence/increment-v1/p2-browser-clean-patch-install.json",
+    "?? opencode-cloud/evidence/increment-v1/p2-browser-clean-patch-install.log",
+    "?? opencode-cloud/evidence/increment-v1/p2-browser-clean-patch-test.json",
+    "?? opencode-cloud/evidence/increment-v1/p2-browser-clean-patch-test.log",
+    "?? opencode-cloud/evidence/increment-v1/p2-browser-clean-zip-build.json",
+    "?? opencode-cloud/evidence/increment-v1/p2-browser-clean-zip-build.log",
+    "?? opencode-cloud/evidence/increment-v1/p2-browser-clean-zip-install.json",
+    "?? opencode-cloud/evidence/increment-v1/p2-browser-clean-zip-install.log",
+    "?? opencode-cloud/evidence/increment-v1/p2-browser-clean-zip-test.json",
+    "?? opencode-cloud/evidence/increment-v1/p2-browser-clean-zip-test.log",
+    "?? opencode-cloud/evidence/increment-v1/p2-browser-download-diagnosis.json",
+    "?? opencode-cloud/evidence/increment-v1/p2-browser-files-prepared.json",
+    "?? opencode-cloud/evidence/increment-v1/p2-browser-files-reproduce.py",
+    "?? opencode-cloud/evidence/increment-v1/p2-browser-fix-prepared.json",
+    "?? opencode-cloud/evidence/increment-v1/p2-browser-fix-prompt.txt",
+    "?? opencode-cloud/evidence/increment-v1/p2-browser-fix-submission.json",
+    "?? opencode-cloud/evidence/increment-v1/p2-browser-patch-apply.json",
+    "?? opencode-cloud/evidence/increment-v1/p2-browser-patch-apply.log",
+    "?? opencode-cloud/evidence/increment-v1/p2-browser-patch-check.json",
+    "?? opencode-cloud/evidence/increment-v1/p2-browser-patch-check.log",
+    "?? opencode-cloud/evidence/increment-v1/p2-browser-relogin-and-delivery.json",
+    "?? opencode-cloud/evidence/increment-v1/p2-busy-export-refusal.json",
+    "?? opencode-cloud/evidence/increment-v1/p2-clean-patch-cache-fix.json",
+    "?? opencode-cloud/evidence/increment-v1/p2-clean-patch-cache-fix.log",
+    "?? opencode-cloud/evidence/increment-v1/p2-clean-patch.json",
+    "?? opencode-cloud/evidence/increment-v1/p2-clean-patch.log",
+    "?? opencode-cloud/evidence/increment-v1/p2-clean-reproduction-prepared.json",
+    "?? opencode-cloud/evidence/increment-v1/p2-clean-zip-cache-fix.json",
+    "?? opencode-cloud/evidence/increment-v1/p2-clean-zip-cache-fix.log",
+    "?? opencode-cloud/evidence/increment-v1/p2-clean-zip.json",
+    "?? opencode-cloud/evidence/increment-v1/p2-clean-zip.log",
+    "?? opencode-cloud/evidence/increment-v1/p2-cli-form-open.log",
+    "?? opencode-cloud/evidence/increment-v1/p2-cli-form-snapshot.log",
+    "?? opencode-cloud/evidence/increment-v1/p2-cli-independent-acceptance.js",
+    "?? opencode-cloud/evidence/increment-v1/p2-cli-independent-acceptance.log",
+    "?? opencode-cloud/evidence/increment-v1/p2-cli-independent-final-assertion.log",
+    "?? opencode-cloud/evidence/increment-v1/p2-egress-direct-probe.json",
+    "?? opencode-cloud/evidence/increment-v1/p2-engineer-browser-login.json",
+    "?? opencode-cloud/evidence/increment-v1/p2-final-build.json",
+    "?? opencode-cloud/evidence/increment-v1/p2-final-build.log",
+    "?? opencode-cloud/evidence/increment-v1/p2-final-unit.json",
+    "?? opencode-cloud/evidence/increment-v1/p2-final-unit.log",
+    "?? opencode-cloud/evidence/increment-v1/p2-fixtures.json",
+    "?? opencode-cloud/evidence/increment-v1/p2-independent-build-before-browser.json",
+    "?? opencode-cloud/evidence/increment-v1/p2-independent-build-before-browser.log",
+    "?? opencode-cloud/evidence/increment-v1/p2-independent-unit-before-browser.json",
+    "?? opencode-cloud/evidence/increment-v1/p2-independent-unit-before-browser.log",
+    "?? opencode-cloud/evidence/increment-v1/p2-install-direct-public.json",
+    "?? opencode-cloud/evidence/increment-v1/p2-install-direct-public.log",
+    "?? opencode-cloud/evidence/increment-v1/p2-install-recovery.log",
+    "?? opencode-cloud/evidence/increment-v1/p2-live-status.json",
+    "?? opencode-cloud/evidence/increment-v1/p2-lock-incomplete.json",
+    "?? opencode-cloud/evidence/increment-v1/p2-maintainer-install-stop.json",
+    "?? opencode-cloud/evidence/increment-v1/p2-native-cli-audit-close.log",
+    "?? opencode-cloud/evidence/increment-v1/p2-native-cli-audit-open.log",
+    "?? opencode-cloud/evidence/increment-v1/p2-native-cli-upload-failure-screenshot.log",
+    "?? opencode-cloud/evidence/increment-v1/p2-native-cli-upload-failure.log",
+    "?? opencode-cloud/evidence/increment-v1/p2-normal-browser-download-user-confirmation.json",
+    "?? opencode-cloud/evidence/increment-v1/p2-npm-registry-probe.log",
+    "?? opencode-cloud/evidence/increment-v1/p2-observe.mjs",
+    "?? opencode-cloud/evidence/increment-v1/p2-orphan-install-stop.json",
+    "?? opencode-cloud/evidence/increment-v1/p2-pdf-canvas.png",
+    "?? opencode-cloud/evidence/increment-v1/p2-pdf-upload-browser-failure.json",
+    "?? opencode-cloud/evidence/increment-v1/p2-preflight.json",
+    "?? opencode-cloud/evidence/increment-v1/p2-registry-probe.json",
+    "?? opencode-cloud/evidence/increment-v1/p2-registry-transfer-gzip.json",
+    "?? opencode-cloud/evidence/increment-v1/p2-registry-transfer.json",
+    "?? opencode-cloud/evidence/increment-v1/p2-rename-browser-failure.json",
+    "?? opencode-cloud/evidence/increment-v1/p2-rename-download-integrity.json",
+    "?? opencode-cloud/evidence/increment-v1/p2-rename-fix-prepared.json",
+    "?? opencode-cloud/evidence/increment-v1/p2-rename-fix-prompt.txt",
+    "?? opencode-cloud/evidence/increment-v1/p2-rename-fix-submission.json",
+    "?? opencode-cloud/evidence/increment-v1/p2-renamed-download.pdf",
+    "?? opencode-cloud/evidence/increment-v1/p2-round1-abort.json",
+    "?? opencode-cloud/evidence/increment-v1/p2-round1-continuation-prepared.json",
+    "?? opencode-cloud/evidence/increment-v1/p2-round1-continuation-submission.json",
+    "?? opencode-cloud/evidence/increment-v1/p2-round1-continuation-submission.stderr.log",
+    "?? opencode-cloud/evidence/increment-v1/p2-round1-continue-prompt.txt",
+    "?? opencode-cloud/evidence/increment-v1/p2-round1-criteria.json",
+    "?? opencode-cloud/evidence/increment-v1/p2-round1-messages-before-simplify.json",
+    "?? opencode-cloud/evidence/increment-v1/p2-round1-messages.json",
+    "?? opencode-cloud/evidence/increment-v1/p2-round1-native.jsonl",
+    "?? opencode-cloud/evidence/increment-v1/p2-round1-native.stderr.log",
+    "?? opencode-cloud/evidence/increment-v1/p2-round1-process.json",
+    "?? opencode-cloud/evidence/increment-v1/p2-round1-prompt.txt",
+    "?? opencode-cloud/evidence/increment-v1/p2-round1-submission-invalid-argv.json",
+    "?? opencode-cloud/evidence/increment-v1/p2-round1-submission.json",
+    "?? opencode-cloud/evidence/increment-v1/p2-round1-submission.stderr.log",
+    "?? opencode-cloud/evidence/increment-v1/p2-round2-clean-patch-build.json",
+    "?? opencode-cloud/evidence/increment-v1/p2-round2-clean-patch-build.log",
+    "?? opencode-cloud/evidence/increment-v1/p2-round2-clean-patch-install.json",
+    "?? opencode-cloud/evidence/increment-v1/p2-round2-clean-patch-install.log",
+    "?? opencode-cloud/evidence/increment-v1/p2-round2-clean-patch-test.json",
+    "?? opencode-cloud/evidence/increment-v1/p2-round2-clean-patch-test.log",
+    "?? opencode-cloud/evidence/increment-v1/p2-round2-clean-result.json",
+    "?? opencode-cloud/evidence/increment-v1/p2-round2-clean-zip-build.json",
+    "?? opencode-cloud/evidence/increment-v1/p2-round2-clean-zip-build.log",
+    "?? opencode-cloud/evidence/increment-v1/p2-round2-clean-zip-install.json",
+    "?? opencode-cloud/evidence/increment-v1/p2-round2-clean-zip-install.log",
+    "?? opencode-cloud/evidence/increment-v1/p2-round2-clean-zip-test.json",
+    "?? opencode-cloud/evidence/increment-v1/p2-round2-clean-zip-test.log",
+    "?? opencode-cloud/evidence/increment-v1/p2-round2-delivery-capture.json",
+    "?? opencode-cloud/evidence/increment-v1/p2-round2-integrity-correction-prompt.txt",
+    "?? opencode-cloud/evidence/increment-v1/p2-round2-integrity-correction-submission.json",
+    "?? opencode-cloud/evidence/increment-v1/p2-round2-lock-audit-failure.json",
+    "?? opencode-cloud/evidence/increment-v1/p2-round2-lock-audit.json",
+    "?? opencode-cloud/evidence/increment-v1/p2-round2-lock-prompt.txt",
+    "?? opencode-cloud/evidence/increment-v1/p2-round2-lock-submission.json",
+    "?? opencode-cloud/evidence/increment-v1/p2-round2-patch-apply.log",
+    "?? opencode-cloud/evidence/increment-v1/p2-round2-patch-check.log",
+    "?? opencode-cloud/evidence/increment-v1/p2-round2-prepared.json",
+    "?? opencode-cloud/evidence/increment-v1/p2-round2-reproduce.py",
+    "?? opencode-cloud/evidence/increment-v1/p2-round2-reproduction-prepared.json",
+    "?? opencode-cloud/evidence/increment-v1/p2-runtime-checkpoint.json",
+    "?? opencode-cloud/evidence/increment-v1/p2-simplified-acceptance-checkpoint.json",
+    "?? opencode-cloud/evidence/increment-v1/p2-simplified-prepared.json",
+    "?? opencode-cloud/evidence/increment-v1/p2-simplified-prompt.txt",
+    "?? opencode-cloud/evidence/increment-v1/p2-simplified-submission.json",
+    "?? opencode-cloud/evidence/increment-v1/p2-simplify-abort.json",
+    "?? opencode-cloud/evidence/increment-v1/p2-submit.mjs",
+    "?? opencode-cloud/evidence/increment-v1/p2-upload-failure.png",
+    "?? opencode-cloud/evidence/increment-v1/p2-valid-pdf-independent-parse.log",
+    "?? opencode-cloud/evidence/increment-v1/p2-valid-pdf-pdfinfo.log",
+    "?? opencode-cloud/evidence/increment-v1/platform-route-regression.log",
+    "?? opencode-cloud/evidence/increment-v1/platform-syntax.log",
+    "?? opencode-cloud/evidence/increment-v1/quota-loop-repair.json",
+    "?? opencode-cloud/evidence/increment-v1/quota-repair-checkpoint.json",
+    "?? opencode-cloud/evidence/increment-v1/quota-repair-regression.log",
+    "?? opencode-cloud/evidence/increment-v1/quota-resume-artifact-validation-failure.log",
+    "?? opencode-cloud/evidence/increment-v1/quota-resume-preflight.log",
+    "?? opencode-cloud/evidence/increment-v1/qwen-discovery.json",
+    "?? opencode-cloud/evidence/increment-v1/result.json",
+    "?? opencode-cloud/evidence/increment-v1/signoff-development-platform.log",
+    "?? opencode-cloud/scripts/v2-resource-baseline.py",
+    "?? web_ui_example_png/"
+  ],
+  "dockerVersion": "29.1.3",
+  "composeVersion": "2.40.3+ds1-0ubuntu1",
+  "cpuLogical": 2,
+  "memory": "MemTotal:       19591808 kB\nMemFree:         6615532 kB\nMemAvailable:   11724936 kB\nBuffers:          201616 kB\nCached:          4794536 kB\nSwapCached:       104056 kB\nActive:          6990940 kB\nInactive:        4314088 kB\nActive(anon):    5215880 kB\nInactive(anon):  1035260 kB\nActive(file):    1775060 kB\nInactive(file):  3278828 kB\nUnevictable:         168 kB\nMlocked:             168 kB\nSwapTotal:       8388604 kB\nSwapFree:        5991876 kB\nZswap:                 0 kB\nZswapped:              0 kB\nDirty:               748 kB\nWriteback:             0 kB\nAnonPages:       6270748 kB\nMapped:          1509104 kB\nShmem:            270344 kB\nKReclaimable:     407876 kB\nSlab:             833288 kB\nSReclaimable:     407876 kB\nSUnreclaim:       425412 kB\nKernelStack:       36504 kB\nPageTables:       127276 kB\nSecPageTables:         0 kB\nNFS_Unstable:          0 kB\nBounce:                0 kB\nWritebackTmp:          0 kB\nCommitLimit:    18184508 kB\nCommitted_AS:   35206356 kB\nVmallocTotal:   34359738367 kB\nVmallocUsed:       68336 kB\nVmallocChunk:          0 kB\nPercpu:           156160 kB\nHardwareCorrupted:     0 kB\nAnonHugePages:         0 kB\nShmemHugePages:        0 kB\nShmemPmdMapped:        0 kB\nFileHugePages:    530432 kB\nFilePmdMapped:         0 kB\nCmaTotal:              0 kB\nCmaFree:          718788 kB\nUnaccepted:            0 kB\nBalloon:               0 kB\nHugePages_Total:       0\nHugePages_Free:        0\nHugePages_Rsvd:        0\nHugePages_Surp:        0\nHugepagesize:       2048 kB\nHugetlb:               0 kB\nDirectMap4k:      210752 kB\nDirectMap2M:    11008000 kB\nDirectMap1G:     9437184 kB\n",
+  "disk": {
+    "blockSize": 4096,
+    "blocks": 51327738,
+    "availableBlocks": 25784613
+  },
+  "containers": [
+    {
+      "id": "b7f7bc8b349ee3dceca587f03005da083b8850ac73bd4db100627fcc1605d543",
+      "name": "opencode-cloud-v0-engineer-b-native-guard-1",
+      "imageId": "sha256:4c8c616b353679b174f7ef538a74b4143c78a7315b4370576319d3890d7abaff",
+      "started": "2026-09-18T23:09:54.167858788Z",
+      "running": true,
+      "restartPolicy": "no",
+      "namespace": "container:7f9a57da2a51195955a2968034db628f071bc21d49b529c1157ac429b5b5cf0c",
+      "mounts": [
+        {
+          "Source": "/home/vmware/Workspace/projects/experiments/Workbench_space/workbench-opencode/opencode-cloud/src",
+          "Destination": "/app",
+          "RW": false
+        },
+        {
+          "Source": "/home/vmware/Workspace/programs/WorkBench/runtime/disks/engineer-b/project",
+          "Destination": "/workspace/project",
+          "RW": false
+        }
+      ]
+    },
+    {
+      "id": "2243f5c43f390b0824b086e0975c65562f32f8bfd087f633961fec8258d39ad9",
+      "name": "opencode-cloud-v0-engineer-b-web-egress-1",
+      "imageId": "sha256:4a4884e8a44826194dff92ba316264f392056cbe243dcc9fd3551e71cea02b90",
+      "started": "2026-09-18T07:02:59.309065175Z",
+      "running": true,
+      "restartPolicy": "no",
+      "namespace": "opencode-cloud-v0_model-egress",
+      "mounts": [
+        {
+          "Source": "/home/vmware/Workspace/projects/experiments/Workbench_space/workbench-opencode/opencode-cloud/src/egress-policy",
+          "Destination": "/app/egress-policy",
+          "RW": false
+        },
+        {
+          "Source": "/home/vmware/Workspace/projects/experiments/Workbench_space/workbench-opencode/opencode-cloud/src/web-egress.mjs",
+          "Destination": "/app/web-egress.mjs",
+          "RW": false
+        }
+      ]
+    },
+    {
+      "id": "73af5e66445cc359ebfa30e5fbce52f4cc13d1b7e78be5a6af91f6a936142075",
+      "name": "opencode-cloud-v0-platform-1",
+      "imageId": "sha256:4c8c616b353679b174f7ef538a74b4143c78a7315b4370576319d3890d7abaff",
+      "started": "2026-09-18T10:20:23.101128277Z",
+      "running": true,
+      "restartPolicy": "no",
+      "namespace": "opencode-cloud-v0_frontend",
+      "mounts": [
+        {
+          "Source": "/home/vmware/Workspace/projects/experiments/Workbench_space/workbench-opencode/opencode-cloud/runtime/platform-state",
+          "Destination": "/platform-state",
+          "RW": true
+        },
+        {
+          "Source": "/home/vmware/Workspace/programs/WorkBench/releases/increment-v1/src",
+          "Destination": "/app",
+          "RW": false
+        },
+        {
+          "Source": "/home/vmware/Workspace/programs/WorkBench/releases/increment-v1/public",
+          "Destination": "/public",
+          "RW": false
+        },
+        {
+          "Source": "/home/vmware/Workspace/programs/WorkBench/runtime/platform.json",
+          "Destination": "/trusted/platform.json",
+          "RW": false
+        },
+        {
+          "Source": "/home/vmware/Workspace/programs/WorkBench/runtime/tls.key",
+          "Destination": "/trusted/tls.key",
+          "RW": false
+        },
+        {
+          "Source": "/home/vmware/Workspace/programs/WorkBench/runtime/tls.crt",
+          "Destination": "/trusted/tls.crt",
+          "RW": false
+        }
+      ]
+    },
+    {
+      "id": "d5a698c36fbe3567bfcfef7d4e2b1c116d157e8d7ea3d9d5c4d2432f957f74a2",
+      "name": "opencode-cloud-v0-engineer-b-native-firewall-1",
+      "imageId": "sha256:4c8c616b353679b174f7ef538a74b4143c78a7315b4370576319d3890d7abaff",
+      "started": "2026-09-18T06:48:11.505347298Z",
+      "running": false,
+      "restartPolicy": "no",
+      "namespace": "container:7f9a57da2a51195955a2968034db628f071bc21d49b529c1157ac429b5b5cf0c",
+      "mounts": []
+    },
+    {
+      "id": "7f9a57da2a51195955a2968034db628f071bc21d49b529c1157ac429b5b5cf0c",
+      "name": "opencode-cloud-v0-engineer-b-native-1",
+      "imageId": "sha256:264c89bb377c3fdd2d6c88ba857c3abe6ff20864314f31bc8e3717f42cb3fcd3",
+      "started": "2026-09-18T06:47:57.641251802Z",
+      "running": true,
+      "restartPolicy": "no",
+      "namespace": "opencode-cloud-v0_native-engineer-b",
+      "mounts": [
+        {
+          "Source": "/home/vmware/Workspace/projects/experiments/Workbench_space/workbench-opencode/opencode-cloud/browser-tools/vite.config.mjs",
+          "Destination": "/trusted/vite.config.mjs",
+          "RW": false
+        },
+        {
+          "Source": "/home/vmware/Workspace/projects/experiments/Workbench_space/workbench-opencode/opencode-cloud/browser-tools/start-preview.sh",
+          "Destination": "/trusted/start-preview.sh",
+          "RW": false
+        },
+        {
+          "Source": "/home/vmware/Workspace/projects/experiments/Workbench_space/workbench-opencode/opencode-cloud/browser-tools/BROWSER_USAGE.md",
+          "Destination": "/trusted/BROWSER_USAGE.md",
+          "RW": false
+        },
+        {
+          "Source": "/home/vmware/Workspace/programs/WorkBench/runtime/disks/engineer-b/project",
+          "Destination": "/workspace/project",
+          "RW": true
+        },
+        {
+          "Source": "/home/vmware/Workspace/programs/WorkBench/runtime/disks/engineer-b/state",
+          "Destination": "/state",
+          "RW": true
+        },
+        {
+          "Source": "/home/vmware/Workspace/programs/WorkBench/runtime/engineer-b-opencode.json",
+          "Destination": "/trusted/opencode.json",
+          "RW": false
+        },
+        {
+          "Source": "/home/vmware/Workspace/programs/WorkBench/runtime/engineer-b-browser.json",
+          "Destination": "/trusted/browser.json",
+          "RW": false
+        }
+      ]
+    },
+    {
+      "id": "0c071b0300d1c2e5b270423b62c3947b88a0ad34b4989d9418407d3739058c9d",
+      "name": "opencode-cloud-v0-engineer-b-model-gateway-1",
+      "imageId": "sha256:4a4884e8a44826194dff92ba316264f392056cbe243dcc9fd3551e71cea02b90",
+      "started": "2026-09-18T06:47:50.695402758Z",
+      "running": true,
+      "restartPolicy": "no",
+      "namespace": "opencode-cloud-v0_model-egress",
+      "mounts": [
+        {
+          "Source": "/home/vmware/Workspace/projects/experiments/Workbench_space/workbench-opencode/opencode-cloud/src/model-gateway.ts",
+          "Destination": "/app/model-gateway.ts",
+          "RW": false
+        },
+        {
+          "Source": "/home/vmware/Workspace/programs/WorkBench/runtime/engineer-b-gateway-state",
+          "Destination": "/gateway-state",
+          "RW": true
+        }
+      ]
+    },
+    {
+      "id": "b08cd4bb06499d80055196e8cac15a37de898c0828797ccf103f4268a3e8527d",
+      "name": "opencode-cloud-v0-native-guard-1",
+      "imageId": "sha256:4c8c616b353679b174f7ef538a74b4143c78a7315b4370576319d3890d7abaff",
+      "started": "2026-09-18T06:48:12.325203466Z",
+      "running": true,
+      "restartPolicy": "no",
+      "namespace": "container:fad137e3b8b1f6e60e1f7e8d2dfde7cb2f317999fab014194f8f010375032b53",
+      "mounts": [
+        {
+          "Source": "/home/vmware/Workspace/projects/experiments/Workbench_space/workbench-opencode/opencode-cloud/src",
+          "Destination": "/app",
+          "RW": false
+        },
+        {
+          "Source": "/home/vmware/Workspace/projects/experiments/Workbench_space/workbench-opencode/opencode-cloud/runtime/project",
+          "Destination": "/workspace/project",
+          "RW": false
+        }
+      ]
+    },
+    {
+      "id": "cbc10d8dcdf8a5e128c115abfea5d0f69a92d6870b7250525f74a46cc265a94d",
+      "name": "opencode-cloud-v0-admin-native-guard-1",
+      "imageId": "sha256:4c8c616b353679b174f7ef538a74b4143c78a7315b4370576319d3890d7abaff",
+      "started": "2026-09-18T06:48:12.262668092Z",
+      "running": true,
+      "restartPolicy": "no",
+      "namespace": "container:0ac4166c34fcd21d6025b60be435e071874f4607466caf6bf46ddb66749fe7e7",
+      "mounts": [
+        {
+          "Source": "/home/vmware/Workspace/projects/experiments/Workbench_space/workbench-opencode/opencode-cloud/src",
+          "Destination": "/app",
+          "RW": false
+        },
+        {
+          "Source": "/home/vmware/Workspace/projects/experiments/Workbench_space/workbench-opencode/opencode-cloud/runtime/admin-project",
+          "Destination": "/workspace/project",
+          "RW": false
+        }
+      ]
+    },
+    {
+      "id": "2c4013864ad7b418694c88b246bc1938fed9fd00d7408eb2693a15aa83787e9c",
+      "name": "opencode-cloud-v0-native-firewall-1",
+      "imageId": "sha256:4c8c616b353679b174f7ef538a74b4143c78a7315b4370576319d3890d7abaff",
+      "started": "2026-09-18T06:48:11.525117061Z",
+      "running": false,
+      "restartPolicy": "no",
+      "namespace": "container:fad137e3b8b1f6e60e1f7e8d2dfde7cb2f317999fab014194f8f010375032b53",
+      "mounts": []
+    },
+    {
+      "id": "3e48c5f261f05f1599858afaececcd9ead2a43a6d50600d432d6884f6d716be3",
+      "name": "opencode-cloud-v0-admin-native-firewall-1",
+      "imageId": "sha256:4c8c616b353679b174f7ef538a74b4143c78a7315b4370576319d3890d7abaff",
+      "started": "2026-09-18T06:48:11.523218688Z",
+      "running": false,
+      "restartPolicy": "no",
+      "namespace": "container:0ac4166c34fcd21d6025b60be435e071874f4607466caf6bf46ddb66749fe7e7",
+      "mounts": []
+    },
+    {
+      "id": "fad137e3b8b1f6e60e1f7e8d2dfde7cb2f317999fab014194f8f010375032b53",
+      "name": "opencode-cloud-v0-native-1",
+      "imageId": "sha256:264c89bb377c3fdd2d6c88ba857c3abe6ff20864314f31bc8e3717f42cb3fcd3",
+      "started": "2026-09-18T06:47:56.98302397Z",
+      "running": true,
+      "restartPolicy": "no",
+      "namespace": "opencode-cloud-v0_native",
+      "mounts": [
+        {
+          "Source": "/home/vmware/Workspace/projects/experiments/Workbench_space/workbench-opencode/opencode-cloud/runtime/opencode.json",
+          "Destination": "/trusted/opencode.json",
+          "RW": false
+        },
+        {
+          "Source": "/home/vmware/Workspace/projects/experiments/Workbench_space/workbench-opencode/opencode-cloud/browser-tools/start-preview.sh",
+          "Destination": "/trusted/start-preview.sh",
+          "RW": false
+        },
+        {
+          "Source": "/home/vmware/Workspace/projects/experiments/Workbench_space/workbench-opencode/opencode-cloud/browser-tools/vite.config.mjs",
+          "Destination": "/trusted/vite.config.mjs",
+          "RW": false
+        },
+        {
+          "Source": "/home/vmware/Workspace/projects/experiments/Workbench_space/workbench-opencode/opencode-cloud/runtime/project",
+          "Destination": "/workspace/project",
+          "RW": true
+        },
+        {
+          "Source": "/home/vmware/Workspace/projects/experiments/Workbench_space/workbench-opencode/opencode-cloud/runtime/state",
+          "Destination": "/state",
+          "RW": true
+        },
+        {
+          "Source": "/home/vmware/Workspace/projects/experiments/Workbench_space/workbench-opencode/opencode-cloud/browser-tools/BROWSER_USAGE.md",
+          "Destination": "/trusted/BROWSER_USAGE.md",
+          "RW": false
+        },
+        {
+          "Source": "/home/vmware/Workspace/projects/experiments/Workbench_space/workbench-opencode/opencode-cloud/runtime/browser.json",
+          "Destination": "/trusted/browser.json",
+          "RW": false
+        }
+      ]
+    },
+    {
+      "id": "0ac4166c34fcd21d6025b60be435e071874f4607466caf6bf46ddb66749fe7e7",
+      "name": "opencode-cloud-v0-admin-native-1",
+      "imageId": "sha256:264c89bb377c3fdd2d6c88ba857c3abe6ff20864314f31bc8e3717f42cb3fcd3",
+      "started": "2026-09-18T06:47:58.513462863Z",
+      "running": true,
+      "restartPolicy": "no",
+      "namespace": "opencode-cloud-v0_native-admin",
+      "mounts": [
+        {
+          "Source": "/home/vmware/Workspace/projects/experiments/Workbench_space/workbench-opencode/opencode-cloud/browser-tools/vite.config.mjs",
+          "Destination": "/trusted/vite.config.mjs",
+          "RW": false
+        },
+        {
+          "Source": "/home/vmware/Workspace/projects/experiments/Workbench_space/workbench-opencode/opencode-cloud/runtime/admin-project",
+          "Destination": "/workspace/project",
+          "RW": true
+        },
+        {
+          "Source": "/home/vmware/Workspace/projects/experiments/Workbench_space/workbench-opencode/opencode-cloud/runtime/admin-state",
+          "Destination": "/state",
+          "RW": true
+        },
+        {
+          "Source": "/home/vmware/Workspace/projects/experiments/Workbench_space/workbench-opencode/opencode-cloud/browser-tools/BROWSER_USAGE.md",
+          "Destination": "/trusted/BROWSER_USAGE.md",
+          "RW": false
+        },
+        {
+          "Source": "/home/vmware/Workspace/projects/experiments/Workbench_space/workbench-opencode/opencode-cloud/runtime/admin-browser.json",
+          "Destination": "/trusted/browser.json",
+          "RW": false
+        },
+        {
+          "Source": "/home/vmware/Workspace/projects/experiments/Workbench_space/workbench-opencode/opencode-cloud/runtime/admin-opencode.json",
+          "Destination": "/trusted/opencode.json",
+          "RW": false
+        },
+        {
+          "Source": "/home/vmware/Workspace/projects/experiments/Workbench_space/workbench-opencode/opencode-cloud/browser-tools/start-preview.sh",
+          "Destination": "/trusted/start-preview.sh",
+          "RW": false
+        }
+      ]
+    },
+    {
+      "id": "b6534fc7649836748e5a1cdd73557a5c8d75074e95fe64940988001eb6216fa7",
+      "name": "opencode-cloud-v0-admin-model-gateway-1",
+      "imageId": "sha256:4a4884e8a44826194dff92ba316264f392056cbe243dcc9fd3551e71cea02b90",
+      "started": "2026-09-18T06:47:50.688225619Z",
+      "running": true,
+      "restartPolicy": "no",
+      "namespace": "opencode-cloud-v0_model-egress",
+      "mounts": [
+        {
+          "Source": "/home/vmware/Workspace/projects/experiments/Workbench_space/workbench-opencode/opencode-cloud/src/model-gateway.ts",
+          "Destination": "/app/model-gateway.ts",
+          "RW": false
+        },
+        {
+          "Source": "/home/vmware/Workspace/projects/experiments/Workbench_space/workbench-opencode/opencode-cloud/runtime/admin-gateway-state",
+          "Destination": "/gateway-state",
+          "RW": true
+        }
+      ]
+    },
+    {
+      "id": "1dee703573858ebf8ab2b275f36f362ce3791379f2165a9458e967019d177caf",
+      "name": "opencode-cloud-v0-web-egress-1",
+      "imageId": "sha256:4a4884e8a44826194dff92ba316264f392056cbe243dcc9fd3551e71cea02b90",
+      "started": "2026-09-18T06:47:50.683635746Z",
+      "running": true,
+      "restartPolicy": "no",
+      "namespace": "opencode-cloud-v0_model-egress",
+      "mounts": [
+        {
+          "Source": "/home/vmware/Workspace/projects/experiments/Workbench_space/workbench-opencode/opencode-cloud/src/egress-policy",
+          "Destination": "/app/egress-policy",
+          "RW": false
+        },
+        {
+          "Source": "/home/vmware/Workspace/projects/experiments/Workbench_space/workbench-opencode/opencode-cloud/src/web-egress.mjs",
+          "Destination": "/app/web-egress.mjs",
+          "RW": false
+        }
+      ]
+    },
+    {
+      "id": "7af11afa47568b880cb40a22d81f21bc105e45e833a852b15d08b8d7473f1452",
+      "name": "opencode-cloud-v0-admin-web-egress-1",
+      "imageId": "sha256:4a4884e8a44826194dff92ba316264f392056cbe243dcc9fd3551e71cea02b90",
+      "started": "2026-09-18T06:47:50.695132134Z",
+      "running": true,
+      "restartPolicy": "no",
+      "namespace": "opencode-cloud-v0_model-egress",
+      "mounts": [
+        {
+          "Source": "/home/vmware/Workspace/projects/experiments/Workbench_space/workbench-opencode/opencode-cloud/src/egress-policy",
+          "Destination": "/app/egress-policy",
+          "RW": false
+        },
+        {
+          "Source": "/home/vmware/Workspace/projects/experiments/Workbench_space/workbench-opencode/opencode-cloud/src/web-egress.mjs",
+          "Destination": "/app/web-egress.mjs",
+          "RW": false
+        }
+      ]
+    },
+    {
+      "id": "e5861698ba6505e3ac2a14e7abde02f1d0011e90bbaaafe2612bf7a6b8cb4c61",
+      "name": "opencode-cloud-v0-model-gateway-1",
+      "imageId": "sha256:4a4884e8a44826194dff92ba316264f392056cbe243dcc9fd3551e71cea02b90",
+      "started": "2026-09-18T06:47:50.686128722Z",
+      "running": true,
+      "restartPolicy": "no",
+      "namespace": "opencode-cloud-v0_model-egress",
+      "mounts": [
+        {
+          "Source": "/home/vmware/Workspace/projects/experiments/Workbench_space/workbench-opencode/opencode-cloud/src/model-gateway.ts",
+          "Destination": "/app/model-gateway.ts",
+          "RW": false
+        },
+        {
+          "Source": "/home/vmware/Workspace/projects/experiments/Workbench_space/workbench-opencode/opencode-cloud/runtime/gateway-state",
+          "Destination": "/gateway-state",
+          "RW": true
+        }
+      ]
+    },
+    {
+      "id": "874c8884cdb5389af027d0e53be81b6132c45b19e63cf9e10064517d161743a7",
+      "name": "opencode-cloud-v0-upstream-proxy-bridge-1",
+      "imageId": "sha256:4a4884e8a44826194dff92ba316264f392056cbe243dcc9fd3551e71cea02b90",
+      "started": "2026-09-17T13:49:45.338993248Z",
+      "running": false,
+      "restartPolicy": "no",
+      "namespace": "opencode-cloud-v0_model-egress",
+      "mounts": [
+        {
+          "Source": "/home/vmware/Workspace/projects/experiments/Workbench_space/workbench-opencode/opencode-cloud/src/upstream-proxy-bridge.mjs",
+          "Destination": "/app/upstream-proxy-bridge.mjs",
+          "RW": false
+        }
+      ]
+    },
+    {
+      "id": "5c28a49d69dc9174769a9cfd000ed1651853141ded5ebd41f84907a422bc5b50",
+      "name": "workbench-delivery-browser-trial",
+      "imageId": "sha256:030d3b8600c0857b35e816cdde674d97a8c42350bfff215ce222ba3c365058e7",
+      "started": "2026-09-17T12:58:59.527876355Z",
+      "running": false,
+      "restartPolicy": "no",
+      "namespace": "opencode-cloud-v0_native-admin",
+      "mounts": [
+        {
+          "Source": "/home/vmware/Workspace/projects/experiments/Workbench_space/workbench-opencode/opencode-cloud/runtime/delivery-trial/state",
+          "Destination": "/state",
+          "RW": true
+        },
+        {
+          "Source": "/home/vmware/Workspace/projects/experiments/Workbench_space/workbench-opencode/opencode-cloud/runtime/delivery-trial/browser.json",
+          "Destination": "/trusted/browser.json",
+          "RW": false
+        },
+        {
+          "Source": "/home/vmware/Workspace/projects/experiments/Workbench_space/workbench-opencode/opencode-cloud/runtime/admin-opencode.json",
+          "Destination": "/trusted/opencode.json",
+          "RW": false
+        },
+        {
+          "Source": "/home/vmware/Workspace/projects/experiments/Workbench_space/workbench-opencode/opencode-cloud/runtime/delivery-trial/project",
+          "Destination": "/workspace/project",
+          "RW": true
+        }
+      ]
+    },
+    {
+      "id": "4a87772d878f9fede319009132936b7e4ebaa8fb6a6233e163e744bc292b974c",
+      "name": "workbench-delivery-browser-trial-initial",
+      "imageId": "sha256:fa2a7aa09603d25d8feb7b7ca6241c85dcccae9792aa5fde51cfe9a0df3d4e8e",
+      "started": "2026-09-17T12:56:07.26431277Z",
+      "running": false,
+      "restartPolicy": "no",
+      "namespace": "opencode-cloud-v0_native-admin",
+      "mounts": [
+        {
+          "Source": "/home/vmware/Workspace/projects/experiments/Workbench_space/workbench-opencode/opencode-cloud/runtime/delivery-trial/state",
+          "Destination": "/state",
+          "RW": true
+        },
+        {
+          "Source": "/home/vmware/Workspace/projects/experiments/Workbench_space/workbench-opencode/opencode-cloud/runtime/delivery-trial/browser.json",
+          "Destination": "/trusted/browser.json",
+          "RW": false
+        },
+        {
+          "Source": "/home/vmware/Workspace/projects/experiments/Workbench_space/workbench-opencode/opencode-cloud/runtime/admin-opencode.json",
+          "Destination": "/trusted/opencode.json",
+          "RW": false
+        },
+        {
+          "Source": "/home/vmware/Workspace/projects/experiments/Workbench_space/workbench-opencode/opencode-cloud/runtime/delivery-trial/project",
+          "Destination": "/workspace/project",
+          "RW": true
+        }
+      ]
+    },
+    {
+      "id": "2c1a2d118bb13906192ee555f9edb386a772c85c848b568b88afc096c9d0b3c7",
+      "name": "naughty_proskuriakova",
+      "imageId": "sha256:5b30c0643e9c64e61aec046233bce0798db7e1d581769a362e09848cbb8e202f",
+      "started": "2026-09-17T12:48:07.355801714Z",
+      "running": false,
+      "restartPolicy": "no",
+      "namespace": "bridge",
+      "mounts": []
+    }
+  ],
+  "disks": [
+    {
+      "path": "/home/vmware/Workspace/projects/experiments/Workbench_space/workbench-opencode/opencode-cloud/runtime/disks/admin.img",
+      "logicalBytes": 1073741824,
+      "allocatedBytes": 954490880
+    },
+    {
+      "path": "/home/vmware/Workspace/projects/experiments/Workbench_space/workbench-opencode/opencode-cloud/runtime/disks/native.img",
+      "logicalBytes": 1073741824,
+      "allocatedBytes": 52596736
+    },
+    {
+      "path": "/home/vmware/Workspace/programs/WorkBench/runtime/disks/engineer-b.img",
+      "logicalBytes": 1073741824,
+      "allocatedBytes": 494100480
+    }
+  ],
+  "existingConfigSHA256": {
+    "/home/vmware/Workspace/programs/WorkBench/runtime/platform.json": "5b76ebb5897b10c3e21176715a3357b7ccc9da6a6063003567f8ff63e6175ad1",
+    "/home/vmware/Workspace/programs/WorkBench/runtime/engineer-b-opencode.json": "a6a447ad4a0ff3b789506c885a7d05d2abe3daae87022b30e66aa28653c644eb",
+    "/home/vmware/Workspace/programs/WorkBench/runtime/compose.dev.yaml": "2eb03cdde41763b754909b46d02b916356138608e648ff5497071c1f97893d02"
+  },
+  "modelBackground": "Approved Qwen on external existing server; GPU RAM/inflight and other consumers NOT_OBSERVED; no remote writes",
+  "originalOperations": "inventory only; no existing service/config/data modifications"
+}

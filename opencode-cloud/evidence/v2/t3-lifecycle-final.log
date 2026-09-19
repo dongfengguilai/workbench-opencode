@@ -1,0 +1,24 @@
+test_activity_only_renews_ready_and_status_does_not (__main__.Lifecycle.test_activity_only_renews_ready_and_status_does_not) ... ok
+test_busy_stop_restores_ready_without_signal (__main__.Lifecycle.test_busy_stop_restores_ready_without_signal) ... ok
+test_capacity_is_rechecked_inside_the_admission_lock (__main__.Lifecycle.test_capacity_is_rechecked_inside_the_admission_lock) ... ok
+test_concurrent_duplicate_enter_starts_one_generation (__main__.Lifecycle.test_concurrent_duplicate_enter_starts_one_generation) ... ok
+test_enter_idempotent_one_generation (__main__.Lifecycle.test_enter_idempotent_one_generation) ... ok
+test_failed_initialization_is_visible_and_retryable (__main__.Lifecycle.test_failed_initialization_is_visible_and_retryable) ... ok
+test_idle_sweep_stops_managed_preview_but_busy_work_blocks (__main__.Lifecycle.test_idle_sweep_stops_managed_preview_but_busy_work_blocks) ... ok
+test_interrupted_stop_with_members_is_unknown (__main__.Lifecycle.test_interrupted_stop_with_members_is_unknown) ... ok
+test_lazy_initialization_only_on_first_enter (__main__.Lifecycle.test_lazy_initialization_only_on_first_enter) ... ok
+test_partial_failed_start_holds_slot_and_cancel_cannot_release_it (__main__.Lifecycle.test_partial_failed_start_holds_slot_and_cancel_cannot_release_it) ... ok
+test_queue_is_bounded_and_expired_entry_does_not_start (__main__.Lifecycle.test_queue_is_bounded_and_expired_entry_does_not_start) ... ok
+test_recovery_grace_prevents_stale_clock_immediate_stop (__main__.Lifecycle.test_recovery_grace_prevents_stale_clock_immediate_stop) ... ok
+test_recovery_requires_queued_confirmation_and_delays_ready_reaping (__main__.Lifecycle.test_recovery_requires_queued_confirmation_and_delays_ready_reaping) ... ok
+test_safe_stop_drains_rechecks_and_never_forces (__main__.Lifecycle.test_safe_stop_drains_rechecks_and_never_forces) ... ok
+test_status_never_starts (__main__.Lifecycle.test_status_never_starts) ... ok
+test_status_recovers_completed_start_once (__main__.Lifecycle.test_status_recovers_completed_start_once) ... ok
+test_stopping_one_space_promotes_one_waiter (__main__.Lifecycle.test_stopping_one_space_promotes_one_waiter) ... ok
+test_storage_refusal_never_initializes_or_marks_ready (__main__.Lifecycle.test_storage_refusal_never_initializes_or_marks_ready) ... ok
+test_three_spaces_two_slots_queue_deduplicate_cancel (__main__.Lifecycle.test_three_spaces_two_slots_queue_deduplicate_cancel) ... ok
+
+----------------------------------------------------------------------
+Ran 19 tests in 0.107s
+
+OK

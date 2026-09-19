@@ -1,0 +1,365 @@
+{
+  "schemaVersion": 1,
+  "capturedAt": "2026-09-19T03:46:39.851835+00:00",
+  "environment": "authorized isolated workbench-v2-checkpoint; no production or retired remote deployment",
+  "artifact": {
+    "schemaVersion": 1,
+    "createdAt": "2026-09-19T03:42:06.575767+00:00",
+    "implementationCommit": "cba249137c43c4b68162bf5bddf6ccf3f6b338d1",
+    "artifact": "/home/vmware/Workspace/programs/WorkBench/acceptance/v2-checkpoint/releases/workbench-v2-cba249137c43c4b68162bf5bddf6ccf3f6b338d1.tar.gz",
+    "artifactSha256": "07b02dd95ddc77d3f1ee8c61ec26ab9f395e916d806aeca29c53cef6154a4153",
+    "releaseDirectory": "/home/vmware/Workspace/programs/WorkBench/acceptance/v2-checkpoint/releases/cba249137c43c4b68162bf5bddf6ccf3f6b338d1",
+    "composeSha256": "0a2dd4b6c5e7fa24b8b85529c88aaa12a529950b8ff659de4e27200c2034b22d",
+    "lifecycleSha256": "f0a5ab99a6a1e89debb3de157537a2ebe471cd51bc78d4da3d35a370ec827420",
+    "artifactBytes": 49317786,
+    "uiManifestSha256": "b5248d84ce78ffc00b1a44103a571b8fd87544d6876d3179c04fc625894b2e09"
+  },
+  "before": {
+    "protected": {
+      "/home/vmware/Workspace/programs/WorkBench/acceptance/v2-checkpoint/platform.json": "ad0476a37d753436772f89d3f811e621f00fa66e00ddecff73e08e71361fb62e",
+      "/home/vmware/Workspace/programs/WorkBench/acceptance/v2-checkpoint/shared-model/model-scopes.json": "39b2a3c11feabae19174d24a509a547b619da3340c1198114122812b5fce8274",
+      "/home/vmware/Workspace/programs/WorkBench/acceptance/v2-checkpoint/native.env": "ce24db83c9fc1e0a160e1572732f123f4433ba41fb629d0ee22c6b29a7140a6d",
+      "/home/vmware/Workspace/programs/WorkBench/acceptance/v2-checkpoint/scope.env": "0072664d8bd3c6f25759c0e743501f2b6ceab694274896c2bb37a51445ea55d2",
+      "/home/vmware/Workspace/programs/WorkBench/acceptance/v2-checkpoint/lazy-c/native.env": "f8b2f7c2673b18f8ccf4631202557c1ced22b82c9ad38bccbe7099c18b3b9560",
+      "/home/vmware/Workspace/programs/WorkBench/acceptance/v2-checkpoint/lazy-c/scope.env": "a9cf8d94246a85e3e527acd47a6b89cb8a194879aeaa9ae3881fb3f52fb4593d",
+      "/home/vmware/Workspace/programs/WorkBench/acceptance/v2-checkpoint/lazy-d/native.env": "f83d039b1cb5053452075befc3c2cec9a2a433f1ce658421c2168a31b6c52d46",
+      "/home/vmware/Workspace/programs/WorkBench/acceptance/v2-checkpoint/lazy-d/scope.env": "35d34a66f4a647fe016473f0ac6ea9f12eceb05afd23d6a90cc46f00d27e4c1a",
+      "/home/vmware/Workspace/programs/WorkBench/runtime/tls.crt": "e290dbb7ab09bbf130c8419dff63e2f2192126048c32fc5d933ac0a9adbbadbd",
+      "/home/vmware/Workspace/programs/WorkBench/runtime/tls.key": "29cb1e9c033de273e6d546833a5bd25e000fd72a2dd35c7468277de678a090b4"
+    },
+    "budget": {
+      "sha256": "ffbe7030a3a50e382097bb6a1dc9dc791ac746347bf3cc59d4a14ef3560913cb",
+      "bytes": 173,
+      "scopes": [
+        "counts",
+        "day"
+      ],
+      "rawType": "dict"
+    },
+    "project": {
+      "fileCount": 14,
+      "manifestSha256": "b38f492dcd326080fbfff3f5077092c7de73a5fbceb40fcb50426610a1de3324",
+      "indexSha256": "c3ce9066034e996eb0e832c3dcf217085f09eb0121f58911b5cf090f134764df",
+      "gitStatus": [
+        " M src/validation.js",
+        " M test/validation.test.mjs",
+        " M web/src/validation.js",
+        "?? .workbench-artifacts/",
+        "?? src/t4-label.js",
+        "?? test/t4-label.test.mjs"
+      ]
+    },
+    "v0": {
+      "opencode-cloud-v0-engineer-b-native-guard-1": {
+        "id": "b7f7bc8b349ee3dceca587f03005da083b8850ac73bd4db100627fcc1605d543",
+        "startedAt": "2026-09-18T23:09:54.167858788Z"
+      },
+      "opencode-cloud-v0-engineer-b-web-egress-1": {
+        "id": "2243f5c43f390b0824b086e0975c65562f32f8bfd087f633961fec8258d39ad9",
+        "startedAt": "2026-09-18T07:02:59.309065175Z"
+      },
+      "opencode-cloud-v0-platform-1": {
+        "id": "73af5e66445cc359ebfa30e5fbce52f4cc13d1b7e78be5a6af91f6a936142075",
+        "startedAt": "2026-09-18T10:20:23.101128277Z"
+      },
+      "opencode-cloud-v0-engineer-b-native-1": {
+        "id": "7f9a57da2a51195955a2968034db628f071bc21d49b529c1157ac429b5b5cf0c",
+        "startedAt": "2026-09-18T06:47:57.641251802Z"
+      },
+      "opencode-cloud-v0-engineer-b-model-gateway-1": {
+        "id": "0c071b0300d1c2e5b270423b62c3947b88a0ad34b4989d9418407d3739058c9d",
+        "startedAt": "2026-09-18T06:47:50.695402758Z"
+      },
+      "opencode-cloud-v0-native-guard-1": {
+        "id": "b08cd4bb06499d80055196e8cac15a37de898c0828797ccf103f4268a3e8527d",
+        "startedAt": "2026-09-18T06:48:12.325203466Z"
+      },
+      "opencode-cloud-v0-admin-native-guard-1": {
+        "id": "cbc10d8dcdf8a5e128c115abfea5d0f69a92d6870b7250525f74a46cc265a94d",
+        "startedAt": "2026-09-18T06:48:12.262668092Z"
+      },
+      "opencode-cloud-v0-native-1": {
+        "id": "fad137e3b8b1f6e60e1f7e8d2dfde7cb2f317999fab014194f8f010375032b53",
+        "startedAt": "2026-09-18T06:47:56.98302397Z"
+      },
+      "opencode-cloud-v0-admin-native-1": {
+        "id": "0ac4166c34fcd21d6025b60be435e071874f4607466caf6bf46ddb66749fe7e7",
+        "startedAt": "2026-09-18T06:47:58.513462863Z"
+      },
+      "opencode-cloud-v0-admin-model-gateway-1": {
+        "id": "b6534fc7649836748e5a1cdd73557a5c8d75074e95fe64940988001eb6216fa7",
+        "startedAt": "2026-09-18T06:47:50.688225619Z"
+      },
+      "opencode-cloud-v0-web-egress-1": {
+        "id": "1dee703573858ebf8ab2b275f36f362ce3791379f2165a9458e967019d177caf",
+        "startedAt": "2026-09-18T06:47:50.683635746Z"
+      },
+      "opencode-cloud-v0-admin-web-egress-1": {
+        "id": "7af11afa47568b880cb40a22d81f21bc105e45e833a852b15d08b8d7473f1452",
+        "startedAt": "2026-09-18T06:47:50.695132134Z"
+      },
+      "opencode-cloud-v0-model-gateway-1": {
+        "id": "e5861698ba6505e3ac2a14e7abde02f1d0011e90bbaaafe2612bf7a6b8cb4c61",
+        "startedAt": "2026-09-18T06:47:50.686128722Z"
+      }
+    },
+    "states": {
+      "engineer-b": "STOPPED",
+      "lazy-c": "STOPPED",
+      "lazy-d": "STOPPED"
+    }
+  },
+  "deployed": {
+    "label": "release",
+    "helperPid": 1511618,
+    "states": {
+      "engineer-b": "STOPPED",
+      "lazy-c": "STOPPED",
+      "lazy-d": "STOPPED"
+    },
+    "mounts": {
+      "workbench-v2-checkpoint-platform-1": {
+        "/trusted/platform.json": "/home/vmware/Workspace/programs/WorkBench/acceptance/v2-checkpoint/platform.json",
+        "/trusted/tls.key": "/home/vmware/Workspace/programs/WorkBench/runtime/tls.key",
+        "/trusted/tls.crt": "/home/vmware/Workspace/programs/WorkBench/runtime/tls.crt",
+        "/platform-state": "/home/vmware/Workspace/programs/WorkBench/acceptance/v2-checkpoint/platform-state",
+        "/lifecycle": "/home/vmware/Workspace/programs/WorkBench/acceptance/v2-checkpoint/lifecycle",
+        "/app": "/home/vmware/Workspace/programs/WorkBench/acceptance/v2-checkpoint/releases/cba249137c43c4b68162bf5bddf6ccf3f6b338d1/opencode-cloud/src",
+        "/public": "/home/vmware/Workspace/programs/WorkBench/acceptance/v2-checkpoint/releases/cba249137c43c4b68162bf5bddf6ccf3f6b338d1/opencode-cloud/public"
+      },
+      "workbench-v2-checkpoint-shared-model-gateway-1": {
+        "/gateway-state": "/home/vmware/Workspace/programs/WorkBench/acceptance/v2-checkpoint/shared-model/state",
+        "/app/shared-model-gateway.ts": "/home/vmware/Workspace/programs/WorkBench/acceptance/v2-checkpoint/releases/cba249137c43c4b68162bf5bddf6ccf3f6b338d1/opencode-cloud/src/shared-model-gateway.ts",
+        "/trusted/model-scopes.json": "/home/vmware/Workspace/programs/WorkBench/acceptance/v2-checkpoint/shared-model/model-scopes.json"
+      }
+    }
+  },
+  "postReleaseWork": {
+    "session": "ses_f483aad69ffeZProB6KHxF420g",
+    "message": "msg_t4_e045da19eb0c411fa2dbbe3466ad07e5",
+    "markerSha256": "5a4a62bf42c3ede8127270fbd02491e4dc78132ba8f46a4827438b688f87b237",
+    "modelResult": {
+      "completedBeforeRollback": true
+    },
+    "project": {
+      "fileCount": 15,
+      "manifestSha256": "e326812ce885fc3642614a75d8352ea5016c356455f115951d1fa5f28aa41607",
+      "indexSha256": "c3ce9066034e996eb0e832c3dcf217085f09eb0121f58911b5cf090f134764df",
+      "gitStatus": [
+        " M src/validation.js",
+        " M test/validation.test.mjs",
+        " M web/src/validation.js",
+        "?? .workbench-artifacts/",
+        "?? T4_RELEASE_ROLLBACK.txt",
+        "?? src/t4-label.js",
+        "?? test/t4-label.test.mjs"
+      ]
+    },
+    "budget": {
+      "sha256": "6b69bc8ae213157ebf5982f2725d40345c9a0467d91585e77a8ae6465d8cc93e",
+      "bytes": 173,
+      "scopes": [
+        "counts",
+        "day"
+      ],
+      "rawType": "dict"
+    }
+  },
+  "rollback": {
+    "label": "rollback",
+    "helperPid": 1515712,
+    "states": {
+      "engineer-b": "STOPPED",
+      "lazy-c": "STOPPED",
+      "lazy-d": "STOPPED"
+    },
+    "mounts": {
+      "workbench-v2-checkpoint-platform-1": {
+        "/platform-state": "/home/vmware/Workspace/programs/WorkBench/acceptance/v2-checkpoint/platform-state",
+        "/lifecycle": "/home/vmware/Workspace/programs/WorkBench/acceptance/v2-checkpoint/lifecycle",
+        "/app": "/home/vmware/Workspace/projects/experiments/Workbench_space/workbench-opencode/opencode-cloud/src",
+        "/public": "/home/vmware/Workspace/projects/experiments/Workbench_space/workbench-opencode/opencode-cloud/public",
+        "/trusted/platform.json": "/home/vmware/Workspace/programs/WorkBench/acceptance/v2-checkpoint/platform.json",
+        "/trusted/tls.key": "/home/vmware/Workspace/programs/WorkBench/runtime/tls.key",
+        "/trusted/tls.crt": "/home/vmware/Workspace/programs/WorkBench/runtime/tls.crt"
+      },
+      "workbench-v2-checkpoint-shared-model-gateway-1": {
+        "/app/shared-model-gateway.ts": "/home/vmware/Workspace/projects/experiments/Workbench_space/workbench-opencode/opencode-cloud/src/shared-model-gateway.ts",
+        "/trusted/model-scopes.json": "/home/vmware/Workspace/programs/WorkBench/acceptance/v2-checkpoint/shared-model/model-scopes.json",
+        "/gateway-state": "/home/vmware/Workspace/programs/WorkBench/acceptance/v2-checkpoint/shared-model/state"
+      }
+    }
+  },
+  "rollbackObservation": {
+    "busy": false,
+    "messageFound": true,
+    "completed": true,
+    "finish": "stop",
+    "tools": [
+      {
+        "tool": "write",
+        "status": "completed",
+        "exit": null,
+        "outputSha256": "e3e06ec0f8c958669ed3682941ab88218ff9ee42a7ab9b48fd78126336aa968c"
+      },
+      {
+        "tool": "bash",
+        "status": "completed",
+        "exit": 0,
+        "outputSha256": "d88db7d706db1e69dfc48205833ab55625958ded1d5de932812ab33fe7985973"
+      }
+    ]
+  },
+  "rollbackProject": {
+    "fileCount": 15,
+    "manifestSha256": "e326812ce885fc3642614a75d8352ea5016c356455f115951d1fa5f28aa41607",
+    "indexSha256": "c3ce9066034e996eb0e832c3dcf217085f09eb0121f58911b5cf090f134764df",
+    "gitStatus": [
+      " M src/validation.js",
+      " M test/validation.test.mjs",
+      " M web/src/validation.js",
+      "?? .workbench-artifacts/",
+      "?? T4_RELEASE_ROLLBACK.txt",
+      "?? src/t4-label.js",
+      "?? test/t4-label.test.mjs"
+    ]
+  },
+  "rollbackBudget": {
+    "sha256": "6b69bc8ae213157ebf5982f2725d40345c9a0467d91585e77a8ae6465d8cc93e",
+    "bytes": 173,
+    "scopes": [
+      "counts",
+      "day"
+    ],
+    "rawType": "dict"
+  },
+  "finalRelease": {
+    "label": "final-release",
+    "helperPid": 1519023,
+    "states": {
+      "engineer-b": "STOPPED",
+      "lazy-c": "STOPPED",
+      "lazy-d": "STOPPED"
+    },
+    "mounts": {
+      "workbench-v2-checkpoint-platform-1": {
+        "/trusted/platform.json": "/home/vmware/Workspace/programs/WorkBench/acceptance/v2-checkpoint/platform.json",
+        "/trusted/tls.key": "/home/vmware/Workspace/programs/WorkBench/runtime/tls.key",
+        "/trusted/tls.crt": "/home/vmware/Workspace/programs/WorkBench/runtime/tls.crt",
+        "/platform-state": "/home/vmware/Workspace/programs/WorkBench/acceptance/v2-checkpoint/platform-state",
+        "/lifecycle": "/home/vmware/Workspace/programs/WorkBench/acceptance/v2-checkpoint/lifecycle",
+        "/app": "/home/vmware/Workspace/programs/WorkBench/acceptance/v2-checkpoint/releases/cba249137c43c4b68162bf5bddf6ccf3f6b338d1/opencode-cloud/src",
+        "/public": "/home/vmware/Workspace/programs/WorkBench/acceptance/v2-checkpoint/releases/cba249137c43c4b68162bf5bddf6ccf3f6b338d1/opencode-cloud/public"
+      },
+      "workbench-v2-checkpoint-shared-model-gateway-1": {
+        "/app/shared-model-gateway.ts": "/home/vmware/Workspace/programs/WorkBench/acceptance/v2-checkpoint/releases/cba249137c43c4b68162bf5bddf6ccf3f6b338d1/opencode-cloud/src/shared-model-gateway.ts",
+        "/trusted/model-scopes.json": "/home/vmware/Workspace/programs/WorkBench/acceptance/v2-checkpoint/shared-model/model-scopes.json",
+        "/gateway-state": "/home/vmware/Workspace/programs/WorkBench/acceptance/v2-checkpoint/shared-model/state"
+      }
+    }
+  },
+  "after": {
+    "protected": {
+      "/home/vmware/Workspace/programs/WorkBench/acceptance/v2-checkpoint/platform.json": "ad0476a37d753436772f89d3f811e621f00fa66e00ddecff73e08e71361fb62e",
+      "/home/vmware/Workspace/programs/WorkBench/acceptance/v2-checkpoint/shared-model/model-scopes.json": "39b2a3c11feabae19174d24a509a547b619da3340c1198114122812b5fce8274",
+      "/home/vmware/Workspace/programs/WorkBench/acceptance/v2-checkpoint/native.env": "ce24db83c9fc1e0a160e1572732f123f4433ba41fb629d0ee22c6b29a7140a6d",
+      "/home/vmware/Workspace/programs/WorkBench/acceptance/v2-checkpoint/scope.env": "0072664d8bd3c6f25759c0e743501f2b6ceab694274896c2bb37a51445ea55d2",
+      "/home/vmware/Workspace/programs/WorkBench/acceptance/v2-checkpoint/lazy-c/native.env": "f8b2f7c2673b18f8ccf4631202557c1ced22b82c9ad38bccbe7099c18b3b9560",
+      "/home/vmware/Workspace/programs/WorkBench/acceptance/v2-checkpoint/lazy-c/scope.env": "a9cf8d94246a85e3e527acd47a6b89cb8a194879aeaa9ae3881fb3f52fb4593d",
+      "/home/vmware/Workspace/programs/WorkBench/acceptance/v2-checkpoint/lazy-d/native.env": "f83d039b1cb5053452075befc3c2cec9a2a433f1ce658421c2168a31b6c52d46",
+      "/home/vmware/Workspace/programs/WorkBench/acceptance/v2-checkpoint/lazy-d/scope.env": "35d34a66f4a647fe016473f0ac6ea9f12eceb05afd23d6a90cc46f00d27e4c1a",
+      "/home/vmware/Workspace/programs/WorkBench/runtime/tls.crt": "e290dbb7ab09bbf130c8419dff63e2f2192126048c32fc5d933ac0a9adbbadbd",
+      "/home/vmware/Workspace/programs/WorkBench/runtime/tls.key": "29cb1e9c033de273e6d546833a5bd25e000fd72a2dd35c7468277de678a090b4"
+    },
+    "budget": {
+      "sha256": "6b69bc8ae213157ebf5982f2725d40345c9a0467d91585e77a8ae6465d8cc93e",
+      "bytes": 173,
+      "scopes": [
+        "counts",
+        "day"
+      ],
+      "rawType": "dict"
+    },
+    "project": {
+      "fileCount": 15,
+      "manifestSha256": "e326812ce885fc3642614a75d8352ea5016c356455f115951d1fa5f28aa41607",
+      "indexSha256": "c3ce9066034e996eb0e832c3dcf217085f09eb0121f58911b5cf090f134764df",
+      "gitStatus": [
+        " M src/validation.js",
+        " M test/validation.test.mjs",
+        " M web/src/validation.js",
+        "?? .workbench-artifacts/",
+        "?? T4_RELEASE_ROLLBACK.txt",
+        "?? src/t4-label.js",
+        "?? test/t4-label.test.mjs"
+      ]
+    },
+    "v0": {
+      "opencode-cloud-v0-engineer-b-native-guard-1": {
+        "id": "b7f7bc8b349ee3dceca587f03005da083b8850ac73bd4db100627fcc1605d543",
+        "startedAt": "2026-09-18T23:09:54.167858788Z"
+      },
+      "opencode-cloud-v0-engineer-b-web-egress-1": {
+        "id": "2243f5c43f390b0824b086e0975c65562f32f8bfd087f633961fec8258d39ad9",
+        "startedAt": "2026-09-18T07:02:59.309065175Z"
+      },
+      "opencode-cloud-v0-platform-1": {
+        "id": "73af5e66445cc359ebfa30e5fbce52f4cc13d1b7e78be5a6af91f6a936142075",
+        "startedAt": "2026-09-18T10:20:23.101128277Z"
+      },
+      "opencode-cloud-v0-engineer-b-native-1": {
+        "id": "7f9a57da2a51195955a2968034db628f071bc21d49b529c1157ac429b5b5cf0c",
+        "startedAt": "2026-09-18T06:47:57.641251802Z"
+      },
+      "opencode-cloud-v0-engineer-b-model-gateway-1": {
+        "id": "0c071b0300d1c2e5b270423b62c3947b88a0ad34b4989d9418407d3739058c9d",
+        "startedAt": "2026-09-18T06:47:50.695402758Z"
+      },
+      "opencode-cloud-v0-native-guard-1": {
+        "id": "b08cd4bb06499d80055196e8cac15a37de898c0828797ccf103f4268a3e8527d",
+        "startedAt": "2026-09-18T06:48:12.325203466Z"
+      },
+      "opencode-cloud-v0-admin-native-guard-1": {
+        "id": "cbc10d8dcdf8a5e128c115abfea5d0f69a92d6870b7250525f74a46cc265a94d",
+        "startedAt": "2026-09-18T06:48:12.262668092Z"
+      },
+      "opencode-cloud-v0-native-1": {
+        "id": "fad137e3b8b1f6e60e1f7e8d2dfde7cb2f317999fab014194f8f010375032b53",
+        "startedAt": "2026-09-18T06:47:56.98302397Z"
+      },
+      "opencode-cloud-v0-admin-native-1": {
+        "id": "0ac4166c34fcd21d6025b60be435e071874f4607466caf6bf46ddb66749fe7e7",
+        "startedAt": "2026-09-18T06:47:58.513462863Z"
+      },
+      "opencode-cloud-v0-admin-model-gateway-1": {
+        "id": "b6534fc7649836748e5a1cdd73557a5c8d75074e95fe64940988001eb6216fa7",
+        "startedAt": "2026-09-18T06:47:50.688225619Z"
+      },
+      "opencode-cloud-v0-web-egress-1": {
+        "id": "1dee703573858ebf8ab2b275f36f362ce3791379f2165a9458e967019d177caf",
+        "startedAt": "2026-09-18T06:47:50.683635746Z"
+      },
+      "opencode-cloud-v0-admin-web-egress-1": {
+        "id": "7af11afa47568b880cb40a22d81f21bc105e45e833a852b15d08b8d7473f1452",
+        "startedAt": "2026-09-18T06:47:50.695132134Z"
+      },
+      "opencode-cloud-v0-model-gateway-1": {
+        "id": "e5861698ba6505e3ac2a14e7abde02f1d0011e90bbaaafe2612bf7a6b8cb4c61",
+        "startedAt": "2026-09-18T06:47:50.686128722Z"
+      }
+    }
+  },
+  "assertions": {
+    "immutableArtifactDigestVerified": true,
+    "releaseUsedImmutableMounts": true,
+    "rollbackUsedPreviousMounts": true,
+    "postReleaseWorkSurvivedRollback": true,
+    "latestBudgetSurvivedRollback": true,
+    "protectedConfigCredentialsCertificatesUnchanged": true,
+    "v0ContainersUntouched": true,
+    "finalCandidateRedeployed": true,
+    "allPrivateGroupsStopped": true
+  },
+  "rollbackScope": "Artifact mount and trusted lifecycle/compose routing only; data, sessions, counters, identity config, credentials and TLS were never restored from backup.",
+  "status": "PASS"
+}

@@ -1,0 +1,233 @@
+{
+  "schemaVersion": 1,
+  "capturedAt": "2026-09-19T01:57:54.800793+00:00",
+  "temporaryPolicy": {
+    "maxRunning": 1,
+    "maxQueued": 1,
+    "maxWaitSeconds": 1
+  },
+  "events": [
+    {
+      "time": "2026-09-19T01:57:37.145604+00:00",
+      "space": "engineer-b",
+      "action": "enter",
+      "requestId": "edge-a",
+      "status": 200,
+      "result": {
+        "generation": 1,
+        "state": "READY",
+        "requestIds": [
+          "edge-a"
+        ],
+        "initialization": "READY",
+        "lastError": null,
+        "queuedAt": null
+      }
+    },
+    {
+      "time": "2026-09-19T01:57:37.444325+00:00",
+      "space": "lazy-c",
+      "action": "enter",
+      "requestId": "edge-b",
+      "status": 200,
+      "result": {
+        "generation": 0,
+        "state": "QUEUED",
+        "requestIds": [
+          "edge-b"
+        ],
+        "initialization": "PENDING",
+        "queuedAt": 1789783057.4408336,
+        "lastError": null,
+        "queuePosition": 1
+      }
+    },
+    {
+      "time": "2026-09-19T01:57:37.804194+00:00",
+      "space": "lazy-d",
+      "action": "enter",
+      "requestId": "edge-c",
+      "status": 409,
+      "result": {
+        "body": "<!DOCTYPE HTML>\n<html lang=\"en\">\n    <head>\n        <meta charset=\"utf-8\">\n        <style type=\"text/css\">\n            :root {\n                color-scheme: light dark;\n            }\n        </style>\n        <title>Error response</title>\n    </head>\n    <body>\n        <h1>Error response</h1>\n       "
+      }
+    },
+    {
+      "time": "2026-09-19T01:57:39.084793+00:00",
+      "space": "lazy-c",
+      "action": "status",
+      "requestId": null,
+      "status": 200,
+      "result": {
+        "generation": 0,
+        "state": "STOPPED",
+        "requestIds": [
+          "edge-b"
+        ],
+        "initialization": "PENDING",
+        "queuedAt": null,
+        "lastError": "Enter request expired",
+        "runningMembers": 0
+      }
+    },
+    {
+      "time": "2026-09-19T01:57:42.993374+00:00",
+      "space": "engineer-b",
+      "action": "stop",
+      "requestId": "edge-a-stop",
+      "status": 200,
+      "result": {
+        "generation": 1,
+        "state": "STOPPED",
+        "requestIds": [
+          "edge-a",
+          "edge-a-stop"
+        ],
+        "initialization": "READY",
+        "lastError": null,
+        "queuedAt": null,
+        "blockers": [],
+        "forced": false
+      }
+    },
+    {
+      "time": "2026-09-19T01:57:49.763795+00:00",
+      "space": "engineer-b",
+      "action": "enter",
+      "requestId": "edge-race-enter",
+      "status": 200,
+      "result": {
+        "generation": 2,
+        "state": "READY",
+        "requestIds": [
+          "edge-a",
+          "edge-a-stop",
+          "edge-race-enter"
+        ],
+        "initialization": "READY",
+        "lastError": null,
+        "queuedAt": null,
+        "blockers": []
+      }
+    },
+    {
+      "time": "2026-09-19T01:57:49.843631+00:00",
+      "space": "engineer-b",
+      "action": "cancel",
+      "requestId": "edge-race-cancel",
+      "status": 200,
+      "result": {
+        "generation": 2,
+        "state": "READY",
+        "requestIds": [
+          "edge-a",
+          "edge-a-stop",
+          "edge-race-enter",
+          "edge-race-cancel"
+        ],
+        "initialization": "READY",
+        "lastError": null,
+        "queuedAt": null,
+        "blockers": []
+      }
+    },
+    {
+      "time": "2026-09-19T01:57:49.926821+00:00",
+      "space": "engineer-b",
+      "action": "status",
+      "requestId": null,
+      "status": 200,
+      "result": {
+        "generation": 2,
+        "state": "READY",
+        "requestIds": [
+          "edge-a",
+          "edge-a-stop",
+          "edge-race-enter",
+          "edge-race-cancel"
+        ],
+        "initialization": "READY",
+        "lastError": null,
+        "queuedAt": null,
+        "blockers": [],
+        "runningMembers": 3
+      }
+    },
+    {
+      "time": "2026-09-19T01:57:54.481855+00:00",
+      "space": "engineer-b",
+      "action": "stop",
+      "requestId": "edge-race-stop",
+      "status": 200,
+      "result": {
+        "generation": 2,
+        "state": "STOPPED",
+        "requestIds": [
+          "edge-a",
+          "edge-a-stop",
+          "edge-race-enter",
+          "edge-race-cancel",
+          "edge-race-stop"
+        ],
+        "initialization": "READY",
+        "lastError": null,
+        "queuedAt": null,
+        "blockers": [],
+        "forced": false
+      }
+    }
+  ],
+  "race": {
+    "enter": {
+      "time": "2026-09-19T01:57:49.763795+00:00",
+      "space": "engineer-b",
+      "action": "enter",
+      "requestId": "edge-race-enter",
+      "status": 200,
+      "result": {
+        "generation": 2,
+        "state": "READY",
+        "requestIds": [
+          "edge-a",
+          "edge-a-stop",
+          "edge-race-enter"
+        ],
+        "initialization": "READY",
+        "lastError": null,
+        "queuedAt": null,
+        "blockers": []
+      }
+    },
+    "cancel": {
+      "time": "2026-09-19T01:57:49.843631+00:00",
+      "space": "engineer-b",
+      "action": "cancel",
+      "requestId": "edge-race-cancel",
+      "status": 200,
+      "result": {
+        "generation": 2,
+        "state": "READY",
+        "requestIds": [
+          "edge-a",
+          "edge-a-stop",
+          "edge-race-enter",
+          "edge-race-cancel"
+        ],
+        "initialization": "READY",
+        "lastError": null,
+        "queuedAt": null,
+        "blockers": []
+      }
+    }
+  },
+  "runningAfter": [
+    "platform",
+    "shared-model-gateway"
+  ],
+  "assertions": {
+    "queueFull409": true,
+    "queueExpiredWithoutStart": true,
+    "cancelDuringSynchronousStartDidNotReleaseSlot": true,
+    "noExecutionGroupsRemain": true
+  }
+}

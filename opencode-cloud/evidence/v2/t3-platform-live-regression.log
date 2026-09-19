@@ -1,0 +1,22 @@
+TAP version 13
+# Subtest: developer API selects local engineer and preserves the old administrator session
+ok 1 - developer API selects local engineer and preserves the old administrator session
+  ---
+  duration_ms: 33150.827442
+  type: 'test'
+  ...
+# Subtest: same-IP sessions, logout and preview tickets remain bound to their entry
+ok 2 - same-IP sessions, logout and preview tickets remain bound to their entry
+  ---
+  duration_ms: 1964.165627
+  type: 'test'
+  ...
+1..2
+# tests 2
+# suites 0
+# pass 2
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 35762.878363

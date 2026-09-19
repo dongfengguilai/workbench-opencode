@@ -1,0 +1,22 @@
+TAP version 13
+# Subtest: shared limits merge aliases, isolate identities, bound queues, and persist per-model budgets
+ok 1 - shared limits merge aliases, isolate identities, bound queues, and persist per-model budgets
+  ---
+  duration_ms: 5186.943598
+  type: 'test'
+  ...
+# Subtest: queued cancellation is not dispatched and an uncertain dispatched request suspends its backend across restart
+ok 2 - queued cancellation is not dispatched and an uncertain dispatched request suspends its backend across restart
+  ---
+  duration_ms: 7087.997806
+  type: 'test'
+  ...
+1..2
+# tests 2
+# suites 0
+# pass 2
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 14530.756002

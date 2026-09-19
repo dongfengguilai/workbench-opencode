@@ -1,0 +1,67 @@
+{
+  "samples": [
+    {
+      "label": "isolated-idle",
+      "runningMembers": 4,
+      "memoryMiB": 390.34000000000003,
+      "pidsAndThreads": 31
+    },
+    {
+      "label": "real-model-task",
+      "runningMembers": 4,
+      "memoryMiB": 646.36,
+      "pidsAndThreads": 71
+    },
+    {
+      "label": "accepted-real-model-task",
+      "runningMembers": 4,
+      "memoryMiB": 676.5500000000001,
+      "pidsAndThreads": 72
+    },
+    {
+      "label": "accepted-task-observation",
+      "runningMembers": 4,
+      "memoryMiB": 716.0500000000001,
+      "pidsAndThreads": 72
+    },
+    {
+      "label": "observed-model-and-tools",
+      "runningMembers": 4,
+      "memoryMiB": 804.6800000000001,
+      "pidsAndThreads": 102
+    },
+    {
+      "label": "real-tools-observation",
+      "runningMembers": 4,
+      "memoryMiB": 891.83,
+      "pidsAndThreads": 73
+    },
+    {
+      "label": "after-failed-stop-attempt",
+      "runningMembers": 4,
+      "memoryMiB": 677.11,
+      "pidsAndThreads": 38
+    },
+    {
+      "label": "after-failed-stop-attempt",
+      "runningMembers": 4,
+      "memoryMiB": 677.39,
+      "pidsAndThreads": 37
+    },
+    {
+      "label": "isolated-group-confirmed-stopped",
+      "runningMembers": 0,
+      "memoryMiB": 0,
+      "pidsAndThreads": 0
+    }
+  ],
+  "maximumObservedGroupMiB": 891.83,
+  "absolutePeak": "NOT_OBSERVED; finite event samples, no hard peak claim",
+  "testMaxRunningCandidate": 2,
+  "perGroupConfiguredMemoryLimitMiB": 2688,
+  "testHeadroom": "~12GB available vs two conservative2688MiB caps; not production capacity promise",
+  "actualStoppedMeasurement": "PASS: all four private containers stopped, zero running members/processes, data retained",
+  "rssAndCgroupDetailedSource": "t0-samples.jsonl",
+  "metricReference": "https://docs.docker.com/reference/cli/docker/container/stats/",
+  "T0Status": "PASS"
+}

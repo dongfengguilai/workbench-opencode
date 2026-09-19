@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "capturedAt": "2026-09-19T02:18:40.400586+00:00",
+  "readyAfterControllerRestart": {
+    "generation": 12,
+    "state": "READY",
+    "requestIds": [
+      "t2-evidence-a",
+      "t2-evidence-stop-a",
+      "t2-isolation-enter",
+      "t2-isolation-stop",
+      "t2-concurrent-same",
+      "t2-concurrent-stop",
+      "t2-unknown-enter",
+      "t2-unknown-stop-blocked",
+      "t2-unknown-stop-after-reconcile",
+      "t3_a06_agent_enter",
+      "t3_a06_agent_stop",
+      "t3_a06_terminal_stop",
+      "t3_a06_unknown_stop",
+      "t3_a06_export_stop",
+      "t3_a06_export_enter",
+      "t3_a06_export_stop_2"
+    ],
+    "lastError": null,
+    "blockers": [
+      "export",
+      "unknown-process"
+    ],
+    "initialization": "READY",
+    "queuedAt": null,
+    "lastActivityAt": 1789784227.0524385,
+    "autoStopNotBefore": 1789784408.608656,
+    "runningMembers": 3
+  },
+  "secondControllerAttempt": "Another lifecycle controller owns this state",
+  "claim": "READY group stayed running across controller restart; second controller was refused by the exclusive state lock."
+}

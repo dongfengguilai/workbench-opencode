@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "capturedAt": "2026-09-19T02:19:07.013160+00:00",
+  "stopResponse": {
+    "status": 409,
+    "body": "<!DOCTYPE HTML>\n<html lang=\"en\">\n    <head>\n        <meta charset=\"utf-8\">\n        <style type=\"text/css\">\n            :root {\n                color-scheme: light dark;\n            }\n        </style>\n        <title>Error response</title>\n    </head>\n    <body>\n        <h1>Error response</h1>\n        <p>Error code: 409</p>\n        <p>Message: Graceful stop observation timeout; no SIGKILL issued.</p>\n        <p>Error code explanation: 409 - Request conflict.</p>\n    </body>\n</html>\n"
+  },
+  "stateAfterTimeout": {
+    "generation": 13,
+    "state": "UNKNOWN",
+    "requestIds": [
+      "t2-isolation-stop",
+      "t2-concurrent-same",
+      "t2-concurrent-stop",
+      "t2-unknown-enter",
+      "t2-unknown-stop-blocked",
+      "t2-unknown-stop-after-reconcile",
+      "t3_a06_agent_enter",
+      "t3_a06_agent_stop",
+      "t3_a06_terminal_stop",
+      "t3_a06_unknown_stop",
+      "t3_a06_export_stop",
+      "t3_a06_export_enter",
+      "t3_a06_export_stop_2",
+      "t3_a06_unresponsive_stop",
+      "t3_a06_unresponsive_retry_enter",
+      "t3_a06_unresponsive_stop_2"
+    ],
+    "lastError": "Partial runtime group requires maintainer review",
+    "blockers": [],
+    "initialization": "READY",
+    "queuedAt": null,
+    "lastActivityAt": 1789784341.5996547,
+    "autoStopNotBefore": 1789784461.5996547,
+    "runningMembers": 1
+  },
+  "unresponsiveMember": {
+    "Status": "running",
+    "Running": true,
+    "Paused": false,
+    "Restarting": false,
+    "OOMKilled": false,
+    "Dead": false,
+    "Pid": 1008472,
+    "ExitCode": 0,
+    "Error": "",
+    "StartedAt": "2026-09-19T02:18:52.903314177Z",
+    "FinishedAt": "2026-09-19T02:18:39.640056559Z"
+  },
+  "signalPolicy": "SIGTERM only; stopObserveSeconds=1; no SIGKILL issued"
+}

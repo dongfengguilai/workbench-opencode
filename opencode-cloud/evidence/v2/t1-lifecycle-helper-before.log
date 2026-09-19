@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/home/vmware/Workspace/projects/experiments/Workbench_space/workbench-opencode/opencode-cloud/test/lifecycle-helper.test.py", line 3, in <module>
+    script=Path(__file__).resolve().parents[1]/'scripts/lifecycle-helper.py';spec=importlib.util.spec_from_file_location('lifecycle_helper',script);m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m)
+                                                                                                                                                                                            ~~~~~~~~~~~~~~~~~~~~~~~^^^
+  File "<frozen importlib._bootstrap_external>", line 755, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 892, in get_code
+  File "<frozen importlib._bootstrap_external>", line 950, in get_data
+FileNotFoundError: [Errno 2] No such file or directory: '/home/vmware/Workspace/projects/experiments/Workbench_space/workbench-opencode/opencode-cloud/scripts/lifecycle-helper.py'

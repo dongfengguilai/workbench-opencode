@@ -1,0 +1,66 @@
+TAP version 13
+# (node:13) ExperimentalWarning: Transform Types is an experimental feature and might change at any time
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: draining rejects mutable traffic while keeping observation and preview stop available
+ok 1 - draining rejects mutable traffic while keeping observation and preview stop available
+  ---
+  duration_ms: 5.018526
+  type: 'test'
+  ...
+# Subtest: drain closes every registered writable connection
+ok 2 - drain closes every registered writable connection
+  ---
+  duration_ms: 4.356704
+  type: 'test'
+  ...
+# (node:20) ExperimentalWarning: Transform Types is an experimental feature and might change at any time
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: client sends only fixed identity, action, and bounded request id over unix socket
+ok 3 - client sends only fixed identity, action, and bounded request id over unix socket
+  ---
+  duration_ms: 23.083577
+  type: 'test'
+  ...
+1..3
+# tests 3
+# suites 0
+# pass 3
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 757.799435
+TAP version 13
+# Subtest: shared limits merge aliases, isolate identities, bound queues, and persist per-model budgets
+ok 1 - shared limits merge aliases, isolate identities, bound queues, and persist per-model budgets
+  ---
+  duration_ms: 3945.206553
+  type: 'test'
+  ...
+# Subtest: queued cancellation is not dispatched and an uncertain dispatched request suspends its backend across restart
+ok 2 - queued cancellation is not dispatched and an uncertain dispatched request suspends its backend across restart
+  ---
+  duration_ms: 5856.742922
+  type: 'test'
+  ...
+# Subtest: a valid bearer token is still rejected outside its registered execution source
+ok 3 - a valid bearer token is still rejected outside its registered execution source
+  ---
+  duration_ms: 1676.032643
+  type: 'test'
+  ...
+# Subtest: fixed Node behind Docker init exits after SIGTERM without timeout escalation
+ok 4 - fixed Node behind Docker init exits after SIGTERM without timeout escalation
+  ---
+  duration_ms: 511.741963
+  type: 'test'
+  ...
+1..4
+# tests 4
+# suites 0
+# pass 4
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 14305.2371

@@ -1,0 +1,12 @@
+{
+  "status": "PASS",
+  "checkedAt": "2026-09-19T00:57:50.973920+00:00",
+  "createdPty": true,
+  "stopState": "READY",
+  "blockers": [
+    "terminal",
+    "unknown-process"
+  ],
+  "ptyDeleteStatus": 200,
+  "noContainerWasStopped": true
+}

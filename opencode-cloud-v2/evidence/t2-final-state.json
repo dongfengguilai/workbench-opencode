@@ -1,0 +1,181 @@
+{
+  "schemaVersion": 1,
+  "capturedAt": "2026-09-19T02:01:13.210734+00:00",
+  "checkpointServices": [
+    {
+      "service": "platform",
+      "state": "running",
+      "health": ""
+    },
+    {
+      "service": "shared-model-gateway",
+      "state": "running",
+      "health": "healthy"
+    }
+  ],
+  "lifecycle": {
+    "schemaVersion": 1,
+    "spaces": {
+      "engineer-b": {
+        "generation": 10,
+        "state": "STOPPED",
+        "requestIds": [
+          "t1_ticket_stop_cb66dbc3dd0571d8",
+          "t2_a_b8d3b624",
+          "t2_stop_a_8699a09e",
+          "t2-shared-enter-1",
+          "t2-shared-env-refresh-stop",
+          "t2-shared-enter-2",
+          "t2-shared-promote-stop",
+          "t2-evidence-a",
+          "t2-evidence-stop-a",
+          "t2-isolation-enter",
+          "t2-isolation-stop",
+          "t2-concurrent-same",
+          "t2-concurrent-stop",
+          "t2-unknown-enter",
+          "t2-unknown-stop-blocked",
+          "t2-unknown-stop-after-reconcile"
+        ],
+        "lastError": null,
+        "blockers": [],
+        "initialization": "READY",
+        "queuedAt": null
+      },
+      "lazy-c": {
+        "generation": 4,
+        "state": "STOPPED",
+        "requestIds": [
+          "lazy_enter_df08c00c87ab",
+          "lazy_retry_a147b98e052d",
+          "lazy_repeat_2dcb65ea5d63",
+          "lazy_stop_7536c090c581",
+          "t2_b_9d1d8832",
+          "cleanup_f081f0140f",
+          "t2-shared-c-enter",
+          "t2-shared-clean-lazy-c",
+          "t2-evidence-b",
+          "t2-evidence-stop-b"
+        ],
+        "initialization": "READY",
+        "lastError": null,
+        "blockers": [],
+        "queuedAt": null
+      },
+      "lazy-d": {
+        "generation": 3,
+        "state": "STOPPED",
+        "requestIds": [
+          "t2_c_31538327",
+          "t2_cancel_a71294ca",
+          "t2_c2_d956287a",
+          "cleanup_d62e8cb32b",
+          "t2-shared-d-enter",
+          "t2-shared-clean-lazy-d",
+          "t2-evidence-c",
+          "t2-evidence-stop-c"
+        ],
+        "initialization": "READY",
+        "queuedAt": null,
+        "lastError": null,
+        "blockers": []
+      }
+    },
+    "queue": []
+  },
+  "budget": {
+    "day": "2026-09-19",
+    "counts": {
+      "engineer-b:Qwen3.6-35B-A3B": 29,
+      "engineer-b:gpt-5.6-luna": 1,
+      "engineer-b:fixture-hold": 1
+    }
+  },
+  "dispatches": [],
+  "v0Containers": [
+    {
+      "name": "opencode-cloud-v0-admin-model-gateway-1",
+      "id": "b6534fc7649836748e5a1cdd73557a5c8d75074e95fe64940988001eb6216fa7",
+      "startedAt": "2026-09-18T06:47:50.688225619Z",
+      "running": true
+    },
+    {
+      "name": "opencode-cloud-v0-admin-native-1",
+      "id": "0ac4166c34fcd21d6025b60be435e071874f4607466caf6bf46ddb66749fe7e7",
+      "startedAt": "2026-09-18T06:47:58.513462863Z",
+      "running": true
+    },
+    {
+      "name": "opencode-cloud-v0-admin-native-guard-1",
+      "id": "cbc10d8dcdf8a5e128c115abfea5d0f69a92d6870b7250525f74a46cc265a94d",
+      "startedAt": "2026-09-18T06:48:12.262668092Z",
+      "running": true
+    },
+    {
+      "name": "opencode-cloud-v0-admin-web-egress-1",
+      "id": "7af11afa47568b880cb40a22d81f21bc105e45e833a852b15d08b8d7473f1452",
+      "startedAt": "2026-09-18T06:47:50.695132134Z",
+      "running": true
+    },
+    {
+      "name": "opencode-cloud-v0-engineer-b-model-gateway-1",
+      "id": "0c071b0300d1c2e5b270423b62c3947b88a0ad34b4989d9418407d3739058c9d",
+      "startedAt": "2026-09-18T06:47:50.695402758Z",
+      "running": true
+    },
+    {
+      "name": "opencode-cloud-v0-engineer-b-native-1",
+      "id": "7f9a57da2a51195955a2968034db628f071bc21d49b529c1157ac429b5b5cf0c",
+      "startedAt": "2026-09-18T06:47:57.641251802Z",
+      "running": true
+    },
+    {
+      "name": "opencode-cloud-v0-engineer-b-native-guard-1",
+      "id": "b7f7bc8b349ee3dceca587f03005da083b8850ac73bd4db100627fcc1605d543",
+      "startedAt": "2026-09-18T23:09:54.167858788Z",
+      "running": true
+    },
+    {
+      "name": "opencode-cloud-v0-engineer-b-web-egress-1",
+      "id": "2243f5c43f390b0824b086e0975c65562f32f8bfd087f633961fec8258d39ad9",
+      "startedAt": "2026-09-18T07:02:59.309065175Z",
+      "running": true
+    },
+    {
+      "name": "opencode-cloud-v0-model-gateway-1",
+      "id": "e5861698ba6505e3ac2a14e7abde02f1d0011e90bbaaafe2612bf7a6b8cb4c61",
+      "startedAt": "2026-09-18T06:47:50.686128722Z",
+      "running": true
+    },
+    {
+      "name": "opencode-cloud-v0-native-1",
+      "id": "fad137e3b8b1f6e60e1f7e8d2dfde7cb2f317999fab014194f8f010375032b53",
+      "startedAt": "2026-09-18T06:47:56.98302397Z",
+      "running": true
+    },
+    {
+      "name": "opencode-cloud-v0-native-guard-1",
+      "id": "b08cd4bb06499d80055196e8cac15a37de898c0828797ccf103f4268a3e8527d",
+      "startedAt": "2026-09-18T06:48:12.325203466Z",
+      "running": true
+    },
+    {
+      "name": "opencode-cloud-v0-platform-1",
+      "id": "73af5e66445cc359ebfa30e5fbce52f4cc13d1b7e78be5a6af91f6a936142075",
+      "startedAt": "2026-09-18T10:20:23.101128277Z",
+      "running": true
+    },
+    {
+      "name": "opencode-cloud-v0-web-egress-1",
+      "id": "1dee703573858ebf8ab2b275f36f362ce3791379f2165a9458e967019d177caf",
+      "startedAt": "2026-09-18T06:47:50.683635746Z",
+      "running": true
+    }
+  ],
+  "assertions": {
+    "allExecutionGroupsStopped": true,
+    "onlyPlatformAndSharedGatewayRunning": true,
+    "dispatchJournalEmpty": true,
+    "v0AllRunning": true
+  }
+}

@@ -1,0 +1,92 @@
+{
+  "schemaVersion": 1,
+  "capturedAt": "2026-09-19T03:32:18.944782+00:00",
+  "environment": "fresh directories under isolated workbench-v2-checkpoint",
+  "baseline": "53b73c2d0d2e54a82d3f5067838404a07a803c06",
+  "sourceZip": {
+    "bytes": 419696,
+    "sha256": "c20ea917eb1f6ed714f18d38105f86c3ca99e3d6048414372267589b5a7d00d9"
+  },
+  "changesPatch": {
+    "bytes": 11610,
+    "sha256": "bb4dd6fbd521ebe0db6485bb2d6d75cc86f205400722eff43e7df5eb3ef0326a"
+  },
+  "zipSteps": [
+    {
+      "command": [
+        "npm",
+        "ci"
+      ],
+      "exitCode": 0,
+      "outputSha256": "c71dea7331bb9a90749bdccda0426d298ad80fb7e1c5f68c7acf5a2764faa10a"
+    },
+    {
+      "command": [
+        "npm",
+        "test"
+      ],
+      "exitCode": 0,
+      "outputSha256": "8237d1f9d87a5728efeb836b4164cda16da38e1879b97e6242e4c05ee81db07a"
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "build"
+      ],
+      "exitCode": 0,
+      "outputSha256": "f7bf1b65eec40e6176879527f9a61d895b9c3003ab5a3ce5518eea56180e4b10"
+    }
+  ],
+  "patchSteps": [
+    {
+      "command": [
+        "git",
+        "apply",
+        "--check",
+        "/home/vmware/Workspace/programs/WorkBench/acceptance/v2-checkpoint/t4-private-artifacts/changes.patch"
+      ],
+      "exitCode": 0,
+      "outputSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": [
+        "git",
+        "apply",
+        "/home/vmware/Workspace/programs/WorkBench/acceptance/v2-checkpoint/t4-private-artifacts/changes.patch"
+      ],
+      "exitCode": 0,
+      "outputSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": [
+        "npm",
+        "ci"
+      ],
+      "exitCode": 0,
+      "outputSha256": "c71dea7331bb9a90749bdccda0426d298ad80fb7e1c5f68c7acf5a2764faa10a"
+    },
+    {
+      "command": [
+        "npm",
+        "test"
+      ],
+      "exitCode": 0,
+      "outputSha256": "32c177d9fbf89ab25fc11b282c3985184e2108c63fb81fb10ec478cda5fac972"
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "build"
+      ],
+      "exitCode": 0,
+      "outputSha256": "71ca816604be1f9883412f3c040132810b744c49dd69e1c8793025e3592fa08c"
+    }
+  ],
+  "sourceIndexBefore": "c3ce9066034e996eb0e832c3dcf217085f09eb0121f58911b5cf090f134764df",
+  "sourceIndexAfter": "c3ce9066034e996eb0e832c3dcf217085f09eb0121f58911b5cf090f134764df",
+  "sourceIndexUnchanged": true,
+  "status": "PASS",
+  "privateReproductionDirectory": "/home/vmware/Workspace/programs/WorkBench/acceptance/v2-checkpoint/t4-reproduction"
+}

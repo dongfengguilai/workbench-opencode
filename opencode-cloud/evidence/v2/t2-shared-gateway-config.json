@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "capturedAt": "2026-09-19T01:55:57.395478+00:00",
+  "runtimeConfig": {
+    "totalConcurrency": 2,
+    "userConcurrency": 1,
+    "maxQueue": 4,
+    "waitMs": 15000,
+    "backends": {
+      "qwen-local": {
+        "concurrency": 1
+      },
+      "luna-limited": {
+        "concurrency": 2
+      }
+    },
+    "models": {
+      "Qwen3.6-35B-A3B": {
+        "backend": "qwen-local",
+        "upstream": "http://10.243.117.57:4003/",
+        "masterEnv": "QWEN_MASTER_KEY"
+      },
+      "gpt-5.6-luna": {
+        "backend": "luna-limited",
+        "upstream": "http://192.168.142.130:8317/",
+        "masterEnv": "MODEL_MASTER_KEY"
+      }
+    },
+    "scopes": {
+      "engineer-b": {
+        "token": "<redacted>",
+        "models": [
+          "Qwen3.6-35B-A3B",
+          "gpt-5.6-luna"
+        ],
+        "dailyLimits": {
+          "Qwen3.6-35B-A3B": 100000,
+          "gpt-5.6-luna": 250
+        }
+      },
+      "lazy-c": {
+        "token": "<redacted>",
+        "models": [
+          "Qwen3.6-35B-A3B",
+          "gpt-5.6-luna"
+        ],
+        "dailyLimits": {
+          "Qwen3.6-35B-A3B": 100000,
+          "gpt-5.6-luna": 250
+        }
+      },
+      "lazy-d": {
+        "token": "<redacted>",
+        "models": [
+          "Qwen3.6-35B-A3B",
+          "gpt-5.6-luna"
+        ],
+        "dailyLimits": {
+          "Qwen3.6-35B-A3B": 100000,
+          "gpt-5.6-luna": 250
+        }
+      }
+    }
+  },
+  "protectedConfigMode": "0o600",
+  "protectedStateMode": "0o700",
+  "budgetState": {
+    "day": "2026-09-19",
+    "counts": {
+      "engineer-b:Qwen3.6-35B-A3B": 29,
+      "engineer-b:gpt-5.6-luna": 1
+    }
+  },
+  "dispatchState": [],
+  "hashes": {
+    "compose.json": "a665bae88326f2c7dc333a2505445197952eed63e4630a63b9f174e052531e97",
+    "lifecycle.json": "3e9fd65df9e6bc7087b2fb2a3cb96efd81373a4d7b7e096e09f1288cee0cd3d1",
+    "opencode.json": "135f34a731ceab8a23044f65bc121a2c134d9f8511b65b3f5539630ca3385cde",
+    "lazy-c/opencode.json": "135f34a731ceab8a23044f65bc121a2c134d9f8511b65b3f5539630ca3385cde",
+    "lazy-d/opencode.json": "135f34a731ceab8a23044f65bc121a2c134d9f8511b65b3f5539630ca3385cde",
+    "shared-model/model-scopes.json": "b0784ff7fe83cf970d432ca63d7b4cef471dff255ef980ab4bbe28b606ba21eb"
+  }
+}

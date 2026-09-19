@@ -1,0 +1,27 @@
+{
+  "status": "PASS",
+  "checkedAt": "2026-09-19T00:55:31.614615+00:00",
+  "artifacts": {
+    "round1-source.zip": {
+      "bytes": 417983,
+      "sha256": "653db199c168363641ff4c9a1b47610c5f86263d5e1ee4c73b2b1124ae837834"
+    },
+    "round1.patch": {
+      "bytes": 4422,
+      "sha256": "863a1fc4274d44a6a6cb8ef18e2316c8fd1700a7249e067c43b71520b30fefda"
+    }
+  },
+  "zip": {
+    "installExit": 0,
+    "testExit": 0,
+    "buildExit": 0
+  },
+  "patch": {
+    "checkExit": 0,
+    "applyExit": 0,
+    "installExit": 0,
+    "testExit": 0,
+    "buildExit": 0
+  },
+  "dependencyMode": "npm ci --offline against validated private cache"
+}

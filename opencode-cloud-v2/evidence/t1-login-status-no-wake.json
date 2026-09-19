@@ -1,0 +1,28 @@
+{
+  "status": "PASS",
+  "checkedAt": "2026-09-19T00:48:42.578778+00:00",
+  "loginStatus": 200,
+  "identity": "engineer-b",
+  "pageStatus": 200,
+  "pageIsLifecycleEntry": true,
+  "space": {
+    "generation": 0,
+    "state": "STOPPED",
+    "requestIds": [],
+    "runningMembers": 0
+  },
+  "meReady": false,
+  "runtimeBefore": {
+    "workbench-v2-checkpoint-engineer-b-native-guard-1": "exited",
+    "workbench-v2-checkpoint-engineer-b-web-egress-1": "exited",
+    "workbench-v2-checkpoint-engineer-b-model-gateway-1": "exited",
+    "workbench-v2-checkpoint-engineer-b-native-1": "exited"
+  },
+  "runtimeAfter": {
+    "workbench-v2-checkpoint-engineer-b-native-guard-1": "exited",
+    "workbench-v2-checkpoint-engineer-b-web-egress-1": "exited",
+    "workbench-v2-checkpoint-engineer-b-model-gateway-1": "exited",
+    "workbench-v2-checkpoint-engineer-b-native-1": "exited"
+  },
+  "loginAndStatusStartedRuntime": false
+}

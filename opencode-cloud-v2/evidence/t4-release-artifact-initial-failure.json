@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 1,
+  "capturedAt": "2026-09-19T03:47:36.100564+00:00",
+  "environment": "isolated workbench-v2-checkpoint",
+  "rejectedArtifactSha256": "b3a4bfdabb1376d39d1491f13ebf98c104f54bdfea4a15679a6d676adb514fda",
+  "failure": "Platform refused to start because the first source-only archive omitted ignored built UI manifest.json.",
+  "recovery": "Original compose mounts and lifecycle helper were restored before retry; no private execution group or user data was changed.",
+  "correctedArtifactSha256": "07b02dd95ddc77d3f1ee8c61ec26ab9f395e916d806aeca29c53cef6154a4153",
+  "correction": "Deterministic artifact now contains fixed built workbench-ui and its manifest digest."
+}

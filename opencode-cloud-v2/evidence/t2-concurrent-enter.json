@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "capturedAt": "2026-09-19T01:56:55.332066+00:00",
+  "before": {
+    "state": "STOPPED",
+    "generation": 8,
+    "runningMembers": 0
+  },
+  "concurrentResults": [
+    {
+      "state": "READY",
+      "generation": 9,
+      "deduplicated": true
+    },
+    {
+      "state": "READY",
+      "generation": 9,
+      "deduplicated": null
+    }
+  ],
+  "after": {
+    "state": "READY",
+    "generation": 9,
+    "runningMembers": 3
+  },
+  "stop": {
+    "state": "STOPPED",
+    "forced": false
+  },
+  "healthBoundaryEvidence": "t1-lazy-first-enter.json records a conservative first-start failure and unchanged initialization marker/Git on retry",
+  "assertions": {
+    "oneGeneration": true,
+    "oneDeduplicated": true,
+    "oneCompleteGroup": true,
+    "stoppedWithoutForce": true
+  }
+}

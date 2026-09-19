@@ -1,0 +1,40 @@
+TAP version 13
+# Subtest: draining rejects mutable traffic while keeping observation and preview stop available
+ok 1 - draining rejects mutable traffic while keeping observation and preview stop available
+  ---
+  duration_ms: 1.560796
+  type: 'test'
+  ...
+# Subtest: drain closes every registered writable connection
+ok 2 - drain closes every registered writable connection
+  ---
+  duration_ms: 0.165521
+  type: 'test'
+  ...
+# Subtest: client sends only fixed identity, action, and bounded request id over unix socket
+ok 3 - client sends only fixed identity, action, and bounded request id over unix socket
+  ---
+  duration_ms: 23.243465
+  type: 'test'
+  ...
+# Subtest: preview tickets are one-use, expire, remain bound to the parent and revoke credentials
+ok 4 - preview tickets are one-use, expire, remain bound to the parent and revoke credentials
+  ---
+  duration_ms: 3.925413
+  type: 'test'
+  ...
+# Subtest: relay credentials require exact nonempty values
+ok 5 - relay credentials require exact nonempty values
+  ---
+  duration_ms: 0.213216
+  type: 'test'
+  ...
+1..5
+# tests 5
+# suites 0
+# pass 5
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 662.473844

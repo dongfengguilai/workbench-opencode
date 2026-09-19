@@ -1,0 +1,1 @@
+{"status": "PASS", "sessions": {"engineer-b": "ses_f484c4b79ffek907On0cQph0ef", "lazy-c": "ses_f484be182ffe6yTjTph9thTGCq", "lazy-d": "ses_f484b6c9dffeRTIWEtb4fyng3a"}, "assertions": {"twoRunningOneQueued": true, "safeStopPromotedOne": true, "allThreeUsedRealQwen": true, "sameSessionContinued": true, "uncommittedWorkRetainedAndExtended": true, "allExecutionGroupsStopped": true}}

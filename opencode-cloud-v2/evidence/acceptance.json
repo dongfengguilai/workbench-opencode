@@ -1,0 +1,559 @@
+{
+  "schemaVersion": 1,
+  "productVersion": "v2",
+  "status": "READY_FOR_USER_ACCEPTANCE",
+  "baselines": {
+    "v0": "USER_CONFIRMED_ACCEPTED",
+    "v1": "USER_CONFIRMED_ACCEPTED"
+  },
+  "referenceCommit": "4643999fc02192116d94aa28d4489c63deec8bc6",
+  "implementationCommit": "cba249137c43c4b68162bf5bddf6ccf3f6b338d1",
+  "artifactDigest": "sha256:07b02dd95ddc77d3f1ee8c61ec26ab9f395e916d806aeca29c53cef6154a4153",
+  "cases": [
+    {
+      "id": "V2-A01",
+      "title": "资源与工作基线",
+      "status": "PASS",
+      "requiredEvidenceModes": [
+        "measurement"
+      ],
+      "environment": "Authorized local host; independent workbench-v2-checkpoint; existing opencode-cloud-v0 untouched",
+      "observedResult": "Real nativeQwen51tests/build/CLI screenshot complete; measured finite idle/work events and configured caps. Authorized repair retained data; full init:true four-member group reentered same logical session, then SIGTERM-only stopped with no137/SIGKILL; zero running members. Original deployment unchanged.",
+      "evidence": [
+        {
+          "path": "evidence/t0-inventory.json",
+          "sha256": "480217adaade79da6c6069de85705272ed9767b77f35a6846c70982d943729a6",
+          "mode": "measurement"
+        },
+        {
+          "path": "evidence/t0-task-observation.json",
+          "sha256": "abc5bf9b94b79de7d48983a872a60825f42aa71857cea0035f88ec959ca9fe4c",
+          "mode": "live_model"
+        },
+        {
+          "path": "evidence/t0-graceful-stop-failure.json",
+          "sha256": "931f442331a725d50071fd9e1a5f241d216b5c2792729b93ab11e215e14938be",
+          "mode": "measurement"
+        },
+        {
+          "path": "evidence/t0-measurement-summary.json",
+          "sha256": "830a50d50188a551e456faa7882ba3d46686191a8b892085be06d80771a3fd79",
+          "mode": "measurement"
+        },
+        {
+          "path": "evidence/t0-init-repair-result.json",
+          "sha256": "49982eafaf195dedcd156f7626db4ffe35a3e6fed83193c5a99d87850009e2c7",
+          "mode": "live_runtime"
+        },
+        {
+          "path": "evidence/t0-original-preservation.json",
+          "sha256": "e30983b441a9f2cce3ce617d7ecd6372dbe02ddc3045d4a2cd903ca02c93b8ce",
+          "mode": "measurement"
+        }
+      ]
+    },
+    {
+      "id": "V2-A02",
+      "title": "登录不唤醒与延迟初始化",
+      "status": "PASS",
+      "requiredEvidenceModes": [
+        "live_runtime"
+      ],
+      "environment": "Isolated local workbench-v2-checkpoint; persistent platform and stopped existing/new groups",
+      "observedResult": "Authenticated login, root page, status and /me left all existing members stopped. New lazy-c metadata created no project/state/gateway data or containers until first enter; initializer created a fixed verified project once, first start configuration failure was conservative, retry reached READY, repeated enter preserved marker/Git/generation.",
+      "evidence": [
+        {
+          "path": "evidence/t1-login-status-no-wake.json",
+          "sha256": "6d46c67ba4ebf55365012c4f08cbcc55a680a0298abdc7d9b96da447718c0402",
+          "mode": "live_runtime"
+        },
+        {
+          "path": "evidence/t1-lazy-status-no-init.json",
+          "sha256": "8bb72d5e92a51f31002bf16709f13c2be58f5ff0a15c56901d8be0ed0150928c",
+          "mode": "live_runtime"
+        },
+        {
+          "path": "evidence/t1-lazy-first-enter.json",
+          "sha256": "b64a278127510b3d71156ed8574511596e12f43c01334e75a2413bde41d528c6",
+          "mode": "live_runtime"
+        }
+      ]
+    },
+    {
+      "id": "V2-A03",
+      "title": "主动启停及真实编码闭环",
+      "status": "PASS",
+      "requiredEvidenceModes": [
+        "live_model"
+      ],
+      "environment": "Isolated local complete OpenCode 1.18.31 environment with approved Qwen3.6-35B-A3B",
+      "observedResult": "Explicit enter brought all four members READY. Same native session performed two real test-first filename fixes across a full stop/reenter; independent tests/build and both ZIP/patch clean reproductions passed; final groups stopped without force while platform remained.",
+      "evidence": [
+        {
+          "path": "evidence/t1-explicit-enter.json",
+          "sha256": "27bbfd391acdac278228b8738e59c142cd765215d285e85050bce394fe33f913",
+          "mode": "live_model"
+        },
+        {
+          "path": "evidence/t1-round1-real-task.json",
+          "sha256": "74449d1509cfbd83cf2933cd437dd5ed52aa8d0f8e1861856b810567f5451fa3",
+          "mode": "live_model"
+        },
+        {
+          "path": "evidence/t1-round1-delivery-reproduction.json",
+          "sha256": "93a1be8e506935b462c7d964d721e8d02cbb446ad83fdb065a759dd0f577c5a7",
+          "mode": "live_model"
+        },
+        {
+          "path": "evidence/t1-round2-real-task.json",
+          "sha256": "25fcfae425e72f50295fdd7295210435fd328ac53d6fe91581e41169c18e19f8",
+          "mode": "live_model"
+        },
+        {
+          "path": "evidence/t1-round2-delivery-reproduction.json",
+          "sha256": "60c7d8f5108fc9d9c2213b936a96badc49296d4de2dc68757dcc147d91696ba0",
+          "mode": "live_model"
+        },
+        {
+          "path": "evidence/t1-final-stop.json",
+          "sha256": "e9ef9485cf572564d428fc17755b06b59e3da3b95eb51f5f2b2532418f269b36",
+          "mode": "live_model"
+        }
+      ]
+    },
+    {
+      "id": "V2-A04",
+      "title": "重复进入与启动边界",
+      "status": "PASS",
+      "requiredEvidenceModes": [
+        "live_runtime"
+      ],
+      "environment": "Isolated local workbench-v2-checkpoint with fixed helper lock and real Docker execution group",
+      "observedResult": "Two concurrent identical enter requests produced one generation and one complete three-member group; one request was deduplicated. Earlier controlled first-start failure remained conservative and retry preserved initialization marker/Git. Partial failed starts remain UNKNOWN and occupy capacity in regression.",
+      "evidence": [
+        {
+          "path": "evidence/t2-concurrent-enter.json",
+          "sha256": "1187bef19dfb8927f8642cee1e6cc4549b02898e09a2e2dd9269ee8f86f4684b",
+          "mode": "live_runtime"
+        },
+        {
+          "path": "evidence/t1-lazy-first-enter.json",
+          "sha256": "b64a278127510b3d71156ed8574511596e12f43c01334e75a2413bde41d528c6",
+          "mode": "live_runtime"
+        }
+      ]
+    },
+    {
+      "id": "V2-A05",
+      "title": "有限名额与进入队列",
+      "status": "PASS",
+      "requiredEvidenceModes": [
+        "live_runtime"
+      ],
+      "environment": "Isolated local workbench-v2-checkpoint with three spaces, shared persistent gateway, maxRunning=2; separate one-slot short-timeout live edge policy",
+      "observedResult": "A/B occupied two actual three-member groups; C queued without starting and was promoted only after A stopped. Live edges returned 409 when full, expired a queued entry without starting, and did not release a slot when cancel arrived during synchronous start. Unit regression covers dedupe/cancel/partial occupancy.",
+      "evidence": [
+        {
+          "path": "evidence/t2-shared-runtime-sequence.json",
+          "sha256": "b784f93fecb9f39a2234aa42596b513f5e46b8e986079ebb2fa13e81909a0d89",
+          "mode": "live_runtime"
+        },
+        {
+          "path": "evidence/t2-live-queue-edges.json",
+          "sha256": "392fbe963d989dea43c85db1bfeb9de76d4afeb0cab82046e66a27981114ab4e",
+          "mode": "live_runtime"
+        },
+        {
+          "path": "evidence/t2-lifecycle-helper-complete.log",
+          "sha256": "b22cd4331d703166aa333d32228ad485ccd3858edb754477742cd0851684724b",
+          "mode": "live_runtime"
+        }
+      ]
+    },
+    {
+      "id": "V2-A06",
+      "title": "安全停止与竞争",
+      "status": "PASS",
+      "requiredEvidenceModes": [
+        "live_runtime"
+      ],
+      "environment": "Authorized isolated local workbench-v2-checkpoint; no v0/v1 or retired remote mutation",
+      "observedResult": "Real Qwen generation, a pending native question, a pending Bash permission, a live PTY, an unknown process and an in-progress source export each blocked stop with a precise reason. DRAINING rejected new PTY/preview writes while reads remained available. A SIGSTOP fault caused the SIGTERM-only stop to time out as UNKNOWN with one member still occupying capacity; no SIGKILL was issued.",
+      "evidence": [
+        {
+          "path": "evidence/t3-agent-stop-blocker.json",
+          "sha256": "092634e08c31e4f91934760b1b36d1fab658278202403b7ae743f2d1315327df",
+          "mode": "live_runtime"
+        },
+        {
+          "path": "evidence/t3-question-stop-blocker.json",
+          "sha256": "d8761aabd1fef7acb7675a0cb46355cb1659f10224709039c0e25df3f71b8d70",
+          "mode": "live_runtime"
+        },
+        {
+          "path": "evidence/t3-permission-stop-blocker.json",
+          "sha256": "55fa856dc41d2736d0d3bb16d0e5dcef07aba0b17e98d1fe03d7f5652163e41e",
+          "mode": "live_runtime"
+        },
+        {
+          "path": "evidence/t3-export-stop-blocker.json",
+          "sha256": "38635bd357db4e611e6736d2ac3632bc6be7c8f7aab5ebe9e83cccc0b6688e0a",
+          "mode": "live_runtime"
+        },
+        {
+          "path": "evidence/t3-drain-barrier.json",
+          "sha256": "4d5ecfa21b00cd4835413f78d23bcece5b42c7eb86eade95a65c9350aa6c6bcd",
+          "mode": "live_runtime"
+        },
+        {
+          "path": "evidence/t3-unresponsive-graceful-stop.json",
+          "sha256": "f528ab3475100ff27d9d95287bfd86cc33ff9d8307d2e7931af3d73e19130963",
+          "mode": "live_runtime"
+        }
+      ]
+    },
+    {
+      "id": "V2-A07",
+      "title": "自动回收与有效活动",
+      "status": "PASS",
+      "requiredEvidenceModes": [
+        "live_runtime"
+      ],
+      "environment": "Authorized isolated local workbench-v2-checkpoint; no v0/v1 or retired remote mutation",
+      "observedResult": "With a 5-second acceptance timeout, status polling and background observation did not renew activity; an authenticated visible-interaction endpoint did. Idle execution groups stopped, active PTY work blocked reclaim, and a managed Vite preview was stopped before the group. Controller recovery supplied a fresh grace window for stale wall-clock activity.",
+      "evidence": [
+        {
+          "path": "evidence/t3-auto-reclaim-idle.json",
+          "sha256": "cd5b88a5cf1206f3086c92e6cbeac521c83579a31a06649d0df742bd8cc904f5",
+          "mode": "live_runtime"
+        },
+        {
+          "path": "evidence/t3-effective-activity.json",
+          "sha256": "2f99cbe13f6becc85c1f1270f8852d523d27bd452324d232a1a6fae61a4fc931",
+          "mode": "live_runtime"
+        },
+        {
+          "path": "evidence/t3-auto-reclaim-busy.json",
+          "sha256": "edf21cc449dc76ac93263adbc317caa233098ffd512fbd3a62043d6a210c9b3b",
+          "mode": "live_runtime"
+        },
+        {
+          "path": "evidence/t3-auto-reclaim-preview.json",
+          "sha256": "64a5a8d87ae871e37d8439dd7bb74dc3e544b69c46d4df539db176acea09045f",
+          "mode": "live_runtime"
+        },
+        {
+          "path": "evidence/t3-platform-activity-live.json",
+          "sha256": "296b2db925ab6604fb4ce18a3b4b14ec6cf70080ef1476e2fcb7f7cabd8b0b86",
+          "mode": "live_runtime"
+        },
+        {
+          "path": "evidence/t3-restart-clock-safety.json",
+          "sha256": "ce7dd160952d6474d2691245d28ad80cfed83242921d2928a590873c870647af",
+          "mode": "live_runtime"
+        }
+      ]
+    },
+    {
+      "id": "V2-A08",
+      "title": "原地继续与数据保持",
+      "status": "PASS",
+      "requiredEvidenceModes": [
+        "live_runtime"
+      ],
+      "environment": "Isolated local persistent project/native state across complete group stop and generation change",
+      "observedResult": "Generation 2 retained the exact round-one diff and same native session/message; second real change completed in that session. Latest artifacts reproduced cleanly. A pre-stop preview ticket returned 401 after stop/restart; temporary PTY/preview processes were not represented as persistent.",
+      "evidence": [
+        {
+          "path": "evidence/t1-reenter-preservation.json",
+          "sha256": "1fa8dfc1902cfb0644aae7e6ba040dd87616c450dfe27c4b6f437d1823d55e8b",
+          "mode": "live_runtime"
+        },
+        {
+          "path": "evidence/t1-round2-real-task.json",
+          "sha256": "25fcfae425e72f50295fdd7295210435fd328ac53d6fe91581e41169c18e19f8",
+          "mode": "live_runtime"
+        },
+        {
+          "path": "evidence/t1-round2-delivery-reproduction.json",
+          "sha256": "60c7d8f5108fc9d9c2213b936a96badc49296d4de2dc68757dcc147d91696ba0",
+          "mode": "live_runtime"
+        },
+        {
+          "path": "evidence/t1-old-ticket-revocation.json",
+          "sha256": "eecdb98fd0fe2ccc019531d504c034738af91801834e079151c27808ec40ed17",
+          "mode": "live_runtime"
+        }
+      ]
+    },
+    {
+      "id": "V2-A09",
+      "title": "控制器与Docker恢复",
+      "status": "PASS",
+      "requiredEvidenceModes": [
+        "live_runtime"
+      ],
+      "environment": "Authorized isolated local workbench-v2-checkpoint; no v0/v1 or retired remote mutation",
+      "observedResult": "The controller holds an exclusive durable-state lock. READY groups survived controller restart in place; old queued enter requests became STOPPED and required reconfirmation. A dedicated nested Docker 27.5.1 daemon restart left all restart=no execution members exited while an always-restart control returned, without restarting the host daemon.",
+      "evidence": [
+        {
+          "path": "evidence/t3-controller-restart-lock.json",
+          "sha256": "f4934b9318e35ee43fff0caee688692d6f3341a820b68e084d187e1d94735446",
+          "mode": "live_runtime"
+        },
+        {
+          "path": "evidence/t3-controller-queue-recovery.json",
+          "sha256": "34768d1e65f106f999b736214f8e5de27fbb10a57aeb3f062fd255e0927509a6",
+          "mode": "live_runtime"
+        },
+        {
+          "path": "evidence/t3-dedicated-docker-recovery.json",
+          "sha256": "5c9a487e03030dd490df9643996e18b75960a9f503fecf574386d5999a13e15d",
+          "mode": "live_runtime"
+        },
+        {
+          "path": "evidence/t3-lifecycle-final.log",
+          "sha256": "1515c3a9b44752ef7487793c3e282057fc579ba532be68c4262086ef678d8b82",
+          "mode": "live_runtime"
+        }
+      ]
+    },
+    {
+      "id": "V2-A10",
+      "title": "模型总并发与身份用量",
+      "status": "PASS",
+      "requiredEvidenceModes": [
+        "fixture",
+        "live_model"
+      ],
+      "environment": "Pinned Node 22.19 shared gateway fixture plus isolated OpenCode 1.18.31 runtime and approved Qwen/Luna routes",
+      "observedResult": "Controlled backend proved total/backend/user limits, same-backend alias merging, bounded queue, per-identity per-model persistent budgets and trusted credentials. Real Qwen completed a test-first code task through the shared gateway; independent 80/80 tests and build passed. Luna discovery succeeded but its external chat service returned HTTP 500; WorkBench returned non-retryable 424 and did not fallback.",
+      "evidence": [
+        {
+          "path": "evidence/t2-shared-gateway-fixture.log",
+          "sha256": "a636083db3e3baf91c3571733a87e48d4e331ad29d6a268ce4fbf2fef477cb33",
+          "mode": "fixture"
+        },
+        {
+          "path": "evidence/t2-real-model-routing.json",
+          "sha256": "d312f9146304d4ab9d08964174c2ee304fe3fb356c4af3fa2b4b98493aabe177",
+          "mode": "live_model"
+        },
+        {
+          "path": "evidence/t2-qwen-independent-test-build.log",
+          "sha256": "ce6e0b177c6787e69c7f8137618aff47754ed74d8578cfd89d5b4555b4e4d9af",
+          "mode": "live_model"
+        },
+        {
+          "path": "evidence/t2-live-backend-capabilities.json",
+          "sha256": "3e5de5554e73c1b4866d8a97b6d3e7c93834cd157a720e3c4af5bbe6a0fe4425",
+          "mode": "live_model"
+        }
+      ]
+    },
+    {
+      "id": "V2-A11",
+      "title": "模型取消与未知后端状态",
+      "status": "PASS",
+      "requiredEvidenceModes": [
+        "fixture",
+        "live_runtime"
+      ],
+      "environment": "Controlled delayed backend exercised through both gateway unit fixture and complete isolated lifecycle/runtime stack",
+      "observedResult": "Queued cancel was never dispatched or charged. Dispatched client abort created one persistent unresolved record, suspended that backend across restart and left unrelated capacity bounded. In the full stack the unknown model dispatch blocked safe space stop; after the fixture proved backend completion, stopped-gateway exact-ID reconciliation cleared it and stop succeeded without force or replay. Real Qwen/Luna expose no trusted per-request cancel/status API, so production unknowns require the same conservative operator confirmation.",
+      "evidence": [
+        {
+          "path": "evidence/t2-shared-gateway-fixture.log",
+          "sha256": "a636083db3e3baf91c3571733a87e48d4e331ad29d6a268ce4fbf2fef477cb33",
+          "mode": "fixture"
+        },
+        {
+          "path": "evidence/t2-unknown-live-runtime.json",
+          "sha256": "a527e195e9c42cb832fc32a9cf264904d8b8a7138a36a4ad14746ced152fb6e8",
+          "mode": "live_runtime"
+        },
+        {
+          "path": "evidence/t2-unknown-gateway.log",
+          "sha256": "a63cf9d75092c04658c3a04b58fe7446f3849e1fbe924c91a8205af1157b5e34",
+          "mode": "live_runtime"
+        }
+      ]
+    },
+    {
+      "id": "V2-A12",
+      "title": "隔离与访问控制",
+      "status": "PASS",
+      "requiredEvidenceModes": [
+        "live_runtime"
+      ],
+      "environment": "Authorized isolated local workbench-v2-checkpoint; no v0/v1 or retired remote mutation",
+      "observedResult": "Three authenticated identities could operate only their own fixed lifecycle space. Forged body/query/header selectors did not select another identity; logout and disable cancelled queued enters. Private DNS, Docker socket, master keys and trusted config writes remained unavailable. Shared model scopes are now bound to both bearer token and the registered native service address; cross-space token reuse returned 401.",
+      "evidence": [
+        {
+          "path": "evidence/t3-isolation-access.json",
+          "sha256": "6e7048b8ebe9d0a394d67404e988b6fdf4d7361f2fd181a43fd8258cc340059e",
+          "mode": "live_runtime"
+        },
+        {
+          "path": "evidence/t3-final-scope-regression.json",
+          "sha256": "943aecd3a5830eb3ffb27fea30d7fa95263491c81e8a4c126bd59a7d76da6b2e",
+          "mode": "live_runtime"
+        },
+        {
+          "path": "evidence/t3-shared-gateway-final.log",
+          "sha256": "552751ee4827c4c7a5bb20333c26546ee17ee5c4842146efd5917acde8c0ad1f",
+          "mode": "fixture"
+        }
+      ]
+    },
+    {
+      "id": "V2-A13",
+      "title": "磁盘与日志容量保护",
+      "status": "PASS",
+      "requiredEvidenceModes": [
+        "fixture",
+        "live_runtime"
+      ],
+      "environment": "Authorized isolated local workbench-v2-checkpoint; no v0/v1 or retired remote mutation",
+      "observedResult": "A threshold above actual free space rejected enter before start with a visible insufficient-free-space error and unchanged persistent file hashes. An isolated 8 MiB tmpfs was filled to ENOSPC; the retained file hash survived and writes resumed after owned filler removal. Final threshold is 2 GiB and all candidate persistent services use bounded json-file logs.",
+      "evidence": [
+        {
+          "path": "evidence/t3-disk-capacity.json",
+          "sha256": "7f8f52b9a3647c909d73cd17d80e176b18045b9fdb5423ef5f9c087f0a85d958",
+          "mode": "live_runtime"
+        },
+        {
+          "path": "evidence/t3-disk-recovery.json",
+          "sha256": "fe443e612346bc54fbcadc124f3ccfc1f5f5c129e277233f6cd7f4645978a2c3",
+          "mode": "live_runtime"
+        },
+        {
+          "path": "evidence/t3-lifecycle-final.log",
+          "sha256": "1515c3a9b44752ef7487793c3e282057fc579ba532be68c4262086ef678d8b82",
+          "mode": "fixture"
+        },
+        {
+          "path": "evidence/t3-final-state.json",
+          "sha256": "f8749fef2b5c466262186804467d0355006a7aaac7074274c6eb49b80b0f19ff",
+          "mode": "live_runtime"
+        }
+      ]
+    },
+    {
+      "id": "V2-A14",
+      "title": "资源收益与冷启动代价",
+      "status": "PASS",
+      "requiredEvidenceModes": [
+        "measurement"
+      ],
+      "environment": "Same local host and isolated learn checkpoint; fixed OpenCode 1.18.31; approved Qwen; finite Docker working-set samples",
+      "observedResult": "Private execution memory reached 0 after stop; resident platform/shared gateway measured about 141 MiB. Cold starts measured 5.509-9.167s. The same representative task sampled 1117.04 MiB including shared services, higher than the T0 finite peak, so no active-task saving claim is made.",
+      "evidence": [
+        {
+          "path": "evidence/t4-resource-comparison.json",
+          "sha256": "b7ab23154a97c33660c35a57a4aa67bf0d0805424e50a06dbaa6ea747c02ebae",
+          "mode": "measurement"
+        },
+        {
+          "path": "evidence/RESOURCE_REPORT.md",
+          "sha256": "9e83f4ad23e0b974cba73cf16fd47a5bf310e48d54365780d2b705c3978c6092",
+          "mode": "measurement"
+        },
+        {
+          "path": "evidence/t4-three-space-flow.json",
+          "sha256": "00be7e9a1a682e56e308d63ec8206adbbd71f38b6233bce8c97a2e24e4802f5f",
+          "mode": "measurement"
+        }
+      ]
+    },
+    {
+      "id": "V2-A15",
+      "title": "增量发布及回退演练",
+      "status": "PASS",
+      "requiredEvidenceModes": [
+        "live_runtime"
+      ],
+      "environment": "User-authorized isolated workbench-v2-checkpoint only; immutable local artifact; retired remote and existing v0 runtime untouched",
+      "observedResult": "Deployed immutable artifact 07b02d..., created real post-release Qwen work, rolled artifact mounts back, verified the same session/file/latest budget and protected config, then redeployed the identical artifact. All private groups remained bounded and ended stopped.",
+      "evidence": [
+        {
+          "path": "evidence/t4-release-rollback.json",
+          "sha256": "83c2aa4e48a10be250176e558719046d5c1dc9ffd3cce5eebef5f3a0042c8dbe",
+          "mode": "live_runtime"
+        },
+        {
+          "path": "evidence/t4-final-state.json",
+          "sha256": "448828255289b28fa78cd5695452f2c74da064dca6991da0e58f179af29f80dd",
+          "mode": "live_runtime"
+        },
+        {
+          "path": "evidence/t4-release-artifact-initial-failure.json",
+          "sha256": "6e22d807c4bab1fe5f1bc1aa4a585985c847f167cc71092fa91baf7db9a55287",
+          "mode": "live_runtime"
+        }
+      ]
+    },
+    {
+      "id": "V2-A16",
+      "title": "三个空间两个名额交付",
+      "status": "PASS",
+      "requiredEvidenceModes": [
+        "live_model"
+      ],
+      "environment": "Existing local engineer-b identity plus explicitly disclosed lazy-c/lazy-d capacity test identities; two slots on isolated local checkpoint; real Qwen",
+      "observedResult": "A and B worked, C queued, A stopped safely and C was promoted for real work; A reentered the same session, retained existing uncommitted work, added/tests a module, exported ZIP and patch, and both artifacts passed 94/94 tests plus build in clean directories. Technical pass does not substitute for human sign-off.",
+      "evidence": [
+        {
+          "path": "evidence/t4-three-space-flow.json",
+          "sha256": "00be7e9a1a682e56e308d63ec8206adbbd71f38b6233bce8c97a2e24e4802f5f",
+          "mode": "live_model"
+        },
+        {
+          "path": "evidence/t4-delivery-reproduction.json",
+          "sha256": "8cd954e209a7aa251c280daa0f31675d41f084dcd51209e029eeb7adabc08bee",
+          "mode": "live_runtime"
+        },
+        {
+          "path": "evidence/t4-model-uncertain-recovery.json",
+          "sha256": "14a936701f12e354e47a49ae96c962f8506fa165a7f3d93ef0e36c2f1f55381b",
+          "mode": "live_runtime"
+        }
+      ]
+    }
+  ],
+  "deployment": {
+    "status": "PASS",
+    "authorizedTarget": "local isolated workbench-v2-checkpoint explicitly authorized for T0-T4; not production and not the retired remote server",
+    "verifiedArtifactDigest": "sha256:07b02dd95ddc77d3f1ee8c61ec26ab9f395e916d806aeca29c53cef6154a4153",
+    "evidence": [
+      {
+        "path": "evidence/t4-release-rollback.json",
+        "sha256": "83c2aa4e48a10be250176e558719046d5c1dc9ffd3cce5eebef5f3a0042c8dbe",
+        "mode": "live_runtime"
+      },
+      {
+        "path": "evidence/t4-final-state.json",
+        "sha256": "448828255289b28fa78cd5695452f2c74da064dca6991da0e58f179af29f80dd",
+        "mode": "live_runtime"
+      }
+    ]
+  },
+  "humanAcceptance": {
+    "status": "PENDING",
+    "acceptedBy": null,
+    "acceptedAt": null,
+    "evidence": []
+  },
+  "notes": [
+    "User-confirmed v0/v1 acceptance is inherited, not fabricated as re-executed.",
+    "T2 completed in the isolated local checkpoint. Luna model discovery is live but its external chat backend is blocked; no mock or Qwen fallback is reported as Luna success.",
+    "T3 completed only in the authorized isolated local checkpoint. Luna chat remains an external T2 capability issue; it was not treated as a T3 failure or silently replaced.",
+    "T4 technical acceptance completed in the isolated local checkpoint. The active-task resource sample was higher than T0; the measured benefit is stopped private execution groups, bounded slots, and preserved data, with explicit cold-start and resident-service costs.",
+    "T4 A16 used one existing local identity and two named capacity-test identities; it is not evidence of three real NetID users.",
+    "T4 remains READY_FOR_USER_ACCEPTANCE until the real user signs the final path; this agent did not fabricate human acceptance."
+  ],
+  "implementationBaseHead": "09e0c6d24c418d04fbebe1ee1e29e753a2d2c2e9",
+  "currentCheckpoint": "T4_TECHNICAL_COMPLETE",
+  "currentBlocker": "Only real user acceptance remains: the user must enter the final local v2 candidate and confirm the bounded enter/work/stop/reenter path. Technical evidence cannot self-sign this.",
+  "updatedAt": "2026-09-19T03:48:36.581525+00:00"
+}

@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "capturedAt": "2026-09-19T02:34:49.463678+00:00",
+  "pendingQuestions": [
+    {
+      "id": "que_0b783ce84001lit6kL0JlZq4xn",
+      "sessionID": "ses_f487c478bffeoOuVlijJsr6TJu",
+      "questionCount": 1
+    }
+  ],
+  "stopWhileQuestionPending": {
+    "generation": 21,
+    "state": "READY",
+    "requestIds": [
+      "t3_a06_export_stop",
+      "t3_a06_export_enter",
+      "t3_a06_export_stop_2",
+      "t3_a06_unresponsive_stop",
+      "t3_a06_unresponsive_retry_enter",
+      "t3_a06_unresponsive_stop_2",
+      "t3_a07_idle_enter",
+      "t3_a07_activity_enter",
+      "t3_a07_busy_enter",
+      "t3_a07_preview_enter",
+      "t3_a07_clock_enter",
+      "t3_a07_clock_retry_enter",
+      "t3_a09_queue_a",
+      "t3_a13_stop_a",
+      "t3_a06_question_enter",
+      "t3_a06_question_stop"
+    ],
+    "lastError": null,
+    "blockers": [
+      "native-task",
+      "question"
+    ],
+    "initialization": "READY",
+    "queuedAt": null,
+    "lastActivityAt": 1789785257.6285565,
+    "autoStopNotBefore": 1789785377.6285565
+  },
+  "cleanup": "question rejected through native API; no prompt replay"
+}

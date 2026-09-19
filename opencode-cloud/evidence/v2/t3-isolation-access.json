@@ -1,0 +1,316 @@
+{
+  "schemaVersion": 1,
+  "capturedAt": "2026-09-19T02:30:11.438453+00:00",
+  "environment": "isolated workbench-v2-checkpoint",
+  "logins": {
+    "engineer-b": 200,
+    "lazy-c": 200,
+    "lazy-d": 200
+  },
+  "identity": {
+    "engineer-b": {
+      "status": 200,
+      "body": {
+        "user_id": "engineer-b",
+        "display_name": "T1 \u5de5\u7a0b\u5e08",
+        "role": "engineer",
+        "auth_provider": "local-engineer",
+        "project": "learn-checkpoint",
+        "directory": "/workspace/project",
+        "ready": true,
+        "space": {
+          "generation": 20,
+          "state": "READY",
+          "requestIds": [
+            "t3_a06_agent_stop",
+            "t3_a06_terminal_stop",
+            "t3_a06_unknown_stop",
+            "t3_a06_export_stop",
+            "t3_a06_export_enter",
+            "t3_a06_export_stop_2",
+            "t3_a06_unresponsive_stop",
+            "t3_a06_unresponsive_retry_enter",
+            "t3_a06_unresponsive_stop_2",
+            "t3_a07_idle_enter",
+            "t3_a07_activity_enter",
+            "t3_a07_busy_enter",
+            "t3_a07_preview_enter",
+            "t3_a07_clock_enter",
+            "t3_a07_clock_retry_enter",
+            "t3_a09_queue_a"
+          ],
+          "lastError": null,
+          "blockers": [],
+          "initialization": "READY",
+          "queuedAt": null,
+          "lastActivityAt": 1789784661.9768546,
+          "autoStopNotBefore": 1789785282.616053,
+          "runningMembers": 3
+        },
+        "project_url": "/L3dvcmtzcGFjZS9wcm9qZWN0/session",
+        "workbench_origin": "http://workbench.u-50291244ba26863f4fe050b10d0c750b0a46333f.localhost:8444",
+        "preview_origin": "http://u-50291244ba26863f4fe050b10d0c750b0a46333f.localhost:8445",
+        "embedded_preview": false
+      }
+    },
+    "lazy-c": {
+      "status": 200,
+      "body": {
+        "user_id": "lazy-c",
+        "display_name": "T3 lazy-c",
+        "role": "engineer",
+        "auth_provider": "local-engineer",
+        "project": "lazy-c-checkpoint",
+        "directory": "/workspace/project",
+        "ready": true,
+        "space": {
+          "generation": 5,
+          "state": "READY",
+          "requestIds": [
+            "lazy_enter_df08c00c87ab",
+            "lazy_retry_a147b98e052d",
+            "lazy_repeat_2dcb65ea5d63",
+            "lazy_stop_7536c090c581",
+            "t2_b_9d1d8832",
+            "cleanup_f081f0140f",
+            "t2-shared-c-enter",
+            "t2-shared-clean-lazy-c",
+            "t2-evidence-b",
+            "t2-evidence-stop-b",
+            "t3_a09_queue_b"
+          ],
+          "initialization": "READY",
+          "lastError": null,
+          "blockers": [],
+          "queuedAt": null,
+          "lastActivityAt": 1789784673.5638874,
+          "autoStopNotBefore": 1789785282.616053,
+          "runningMembers": 3
+        },
+        "project_url": "/L3dvcmtzcGFjZS9wcm9qZWN0/session",
+        "workbench_origin": "http://workbench.u-aec527022a5b7b09a47fa8cb21d13bb71a9ff593.localhost:8444",
+        "preview_origin": "http://u-aec527022a5b7b09a47fa8cb21d13bb71a9ff593.localhost:8445",
+        "embedded_preview": false
+      }
+    }
+  },
+  "forgedBody": {
+    "status": 403,
+    "body": {
+      "detail": "Fixed lifecycle action required"
+    }
+  },
+  "forgedQuery": {
+    "status": 200,
+    "body": {
+      "generation": 20,
+      "state": "READY",
+      "requestIds": [
+        "t3_a06_agent_stop",
+        "t3_a06_terminal_stop",
+        "t3_a06_unknown_stop",
+        "t3_a06_export_stop",
+        "t3_a06_export_enter",
+        "t3_a06_export_stop_2",
+        "t3_a06_unresponsive_stop",
+        "t3_a06_unresponsive_retry_enter",
+        "t3_a06_unresponsive_stop_2",
+        "t3_a07_idle_enter",
+        "t3_a07_activity_enter",
+        "t3_a07_busy_enter",
+        "t3_a07_preview_enter",
+        "t3_a07_clock_enter",
+        "t3_a07_clock_retry_enter",
+        "t3_a09_queue_a"
+      ],
+      "lastError": null,
+      "blockers": [],
+      "initialization": "READY",
+      "queuedAt": null,
+      "lastActivityAt": 1789784661.9768546,
+      "autoStopNotBefore": 1789785282.616053,
+      "runningMembers": 3
+    }
+  },
+  "forgedHeader": {
+    "status": 200,
+    "body": {
+      "generation": 20,
+      "state": "READY",
+      "requestIds": [
+        "t3_a06_agent_stop",
+        "t3_a06_terminal_stop",
+        "t3_a06_unknown_stop",
+        "t3_a06_export_stop",
+        "t3_a06_export_enter",
+        "t3_a06_export_stop_2",
+        "t3_a06_unresponsive_stop",
+        "t3_a06_unresponsive_retry_enter",
+        "t3_a06_unresponsive_stop_2",
+        "t3_a07_idle_enter",
+        "t3_a07_activity_enter",
+        "t3_a07_busy_enter",
+        "t3_a07_preview_enter",
+        "t3_a07_clock_enter",
+        "t3_a07_clock_retry_enter",
+        "t3_a09_queue_a"
+      ],
+      "lastError": null,
+      "blockers": [],
+      "initialization": "READY",
+      "queuedAt": null,
+      "lastActivityAt": 1789784661.9768546,
+      "autoStopNotBefore": 1789785282.616053,
+      "runningMembers": 3
+    }
+  },
+  "modelScopeBinding": {
+    "engineerOwn": {
+      "status": 200,
+      "ids": [
+        "Qwen3.6-35B-A3B",
+        "gpt-5.6-luna"
+      ]
+    },
+    "engineerUsingLazyC": {
+      "status": 401,
+      "ids": []
+    },
+    "lazyCOwn": {
+      "status": 200,
+      "ids": [
+        "Qwen3.6-35B-A3B",
+        "gpt-5.6-luna"
+      ]
+    }
+  },
+  "workloadBoundary": {
+    "otherPrivateEnvironment": {
+      "error": "EAI_AGAIN"
+    },
+    "dockerSocket": false,
+    "masterKeyVariables": [],
+    "trustedConfigWritable": false
+  },
+  "lazyDQueueBeforeLogout": {
+    "status": 200,
+    "body": {
+      "generation": 3,
+      "state": "QUEUED",
+      "requestIds": [
+        "t2_c_31538327",
+        "t2_cancel_a71294ca",
+        "t2_c2_d956287a",
+        "cleanup_d62e8cb32b",
+        "t2-shared-d-enter",
+        "t2-shared-clean-lazy-d",
+        "t2-evidence-c",
+        "t2-evidence-stop-c",
+        "t3_a09_queue_c",
+        "t3_a12_logout_queue"
+      ],
+      "initialization": "READY",
+      "queuedAt": 1789785013.5244453,
+      "lastError": null,
+      "blockers": [],
+      "lastActivityAt": null,
+      "autoStopNotBefore": null,
+      "queuePosition": 1
+    }
+  },
+  "lazyDLogout": {
+    "status": 204,
+    "body": ""
+  },
+  "lazyDAfterLogout": {
+    "generation": 3,
+    "state": "STOPPED",
+    "requestIds": [
+      "t2_c_31538327",
+      "t2_cancel_a71294ca",
+      "t2_c2_d956287a",
+      "cleanup_d62e8cb32b",
+      "t2-shared-d-enter",
+      "t2-shared-clean-lazy-d",
+      "t2-evidence-c",
+      "t2-evidence-stop-c",
+      "t3_a09_queue_c",
+      "t3_a12_logout_queue",
+      "L-ETUphyDvhpCwTsIZxCIH3k"
+    ],
+    "initialization": "READY",
+    "queuedAt": null,
+    "lastError": "Enter request cancelled",
+    "blockers": [],
+    "lastActivityAt": null,
+    "autoStopNotBefore": null,
+    "runningMembers": 0
+  },
+  "lazyDRelogin": 200,
+  "lazyDQueueBeforeDisable": {
+    "status": 200,
+    "body": {
+      "generation": 3,
+      "state": "QUEUED",
+      "requestIds": [
+        "t2_c_31538327",
+        "t2_cancel_a71294ca",
+        "t2_c2_d956287a",
+        "cleanup_d62e8cb32b",
+        "t2-shared-d-enter",
+        "t2-shared-clean-lazy-d",
+        "t2-evidence-c",
+        "t2-evidence-stop-c",
+        "t3_a09_queue_c",
+        "t3_a12_logout_queue",
+        "L-ETUphyDvhpCwTsIZxCIH3k",
+        "t3_a12_disable_queue"
+      ],
+      "initialization": "READY",
+      "queuedAt": 1789785015.15183,
+      "lastError": null,
+      "blockers": [],
+      "lastActivityAt": null,
+      "autoStopNotBefore": null,
+      "queuePosition": 1
+    }
+  },
+  "lazyDAfterDisable": {
+    "generation": 3,
+    "state": "STOPPED",
+    "requestIds": [
+      "t2_c_31538327",
+      "t2_cancel_a71294ca",
+      "t2_c2_d956287a",
+      "cleanup_d62e8cb32b",
+      "t2-shared-d-enter",
+      "t2-shared-clean-lazy-d",
+      "t2-evidence-c",
+      "t2-evidence-stop-c",
+      "t3_a09_queue_c",
+      "t3_a12_logout_queue",
+      "L-ETUphyDvhpCwTsIZxCIH3k",
+      "t3_a12_disable_queue",
+      "pQqZvJDu6eW2oUqyaEJeUTOA"
+    ],
+    "initialization": "READY",
+    "queuedAt": null,
+    "lastError": "Enter request cancelled",
+    "blockers": [],
+    "lastActivityAt": null,
+    "autoStopNotBefore": null,
+    "runningMembers": 0
+  },
+  "disabledSession": {
+    "status": 401,
+    "body": {
+      "detail": "Authentication required"
+    }
+  },
+  "claims": [
+    "Every platform control is bound to the authenticated username; route/body/header cannot select another space.",
+    "A scope token is accepted only from its registered native service address.",
+    "Private execution networks, Docker socket, master credentials, and trusted config writes remain unavailable.",
+    "Logout and disable revoke the session and cancel its queued enter."
+  ]
+}

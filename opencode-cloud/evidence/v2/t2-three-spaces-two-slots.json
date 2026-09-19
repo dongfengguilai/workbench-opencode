@@ -1,0 +1,207 @@
+{
+  "status": "PASS",
+  "checkedAt": "2026-09-19T01:14:28.966616+00:00",
+  "events": [
+    {
+      "space": "engineer-b",
+      "action": "enter",
+      "requestId": "t2_a_b8d3b624",
+      "status": 200,
+      "elapsed": 8.62,
+      "result": {
+        "generation": 4,
+        "state": "READY",
+        "requestIds": [
+          "t1_enter_d1cf0e85900e92b6",
+          "t1_busy_990c59c6e0b01b12",
+          "t1_stop_50677d633448d804",
+          "t1_reenter_5d064bd9d6e3cc2b",
+          "t1_final_stop_63ef2b1a330531e7",
+          "t1_ticket_enter_84736a219a6a8b81",
+          "t1_ticket_stop_cb66dbc3dd0571d8",
+          "t2_a_b8d3b624"
+        ],
+        "lastError": null,
+        "blockers": [],
+        "initialization": "READY",
+        "queuedAt": null
+      }
+    },
+    {
+      "space": "lazy-c",
+      "action": "enter",
+      "requestId": "t2_b_9d1d8832",
+      "status": 200,
+      "elapsed": 7.49,
+      "result": {
+        "generation": 2,
+        "state": "READY",
+        "requestIds": [
+          "lazy_enter_df08c00c87ab",
+          "lazy_retry_a147b98e052d",
+          "lazy_repeat_2dcb65ea5d63",
+          "lazy_stop_7536c090c581",
+          "t2_b_9d1d8832"
+        ],
+        "initialization": "READY",
+        "lastError": null,
+        "blockers": [],
+        "queuedAt": null
+      }
+    },
+    {
+      "space": "lazy-d",
+      "action": "enter",
+      "requestId": "t2_c_31538327",
+      "status": 200,
+      "elapsed": 0.797,
+      "result": {
+        "generation": 0,
+        "state": "QUEUED",
+        "requestIds": [
+          "t2_c_31538327"
+        ],
+        "initialization": "PENDING",
+        "queuedAt": 1789780452.3624635,
+        "lastError": null,
+        "queuePosition": 1
+      }
+    },
+    {
+      "space": "lazy-d",
+      "action": "enter",
+      "requestId": "t2_c_31538327",
+      "status": 200,
+      "elapsed": 0.275,
+      "result": {
+        "generation": 0,
+        "state": "QUEUED",
+        "requestIds": [
+          "t2_c_31538327"
+        ],
+        "initialization": "PENDING",
+        "queuedAt": 1789780452.3624635,
+        "lastError": null,
+        "queuePosition": 1,
+        "deduplicated": true
+      }
+    },
+    {
+      "space": "lazy-d",
+      "action": "cancel",
+      "requestId": "t2_cancel_a71294ca",
+      "status": 200,
+      "elapsed": 0.184,
+      "result": {
+        "generation": 0,
+        "state": "STOPPED",
+        "requestIds": [
+          "t2_c_31538327",
+          "t2_cancel_a71294ca"
+        ],
+        "initialization": "PENDING",
+        "queuedAt": null,
+        "lastError": "Enter request cancelled"
+      }
+    },
+    {
+      "space": "lazy-d",
+      "action": "enter",
+      "requestId": "t2_c2_d956287a",
+      "status": 200,
+      "elapsed": 0.646,
+      "result": {
+        "generation": 0,
+        "state": "QUEUED",
+        "requestIds": [
+          "t2_c_31538327",
+          "t2_cancel_a71294ca",
+          "t2_c2_d956287a"
+        ],
+        "initialization": "PENDING",
+        "queuedAt": 1789780453.5689719,
+        "lastError": null,
+        "queuePosition": 1
+      }
+    },
+    {
+      "space": "engineer-b",
+      "action": "stop",
+      "requestId": "t2_stop_a_8699a09e",
+      "status": 200,
+      "elapsed": 14.97,
+      "result": {
+        "generation": 4,
+        "state": "STOPPED",
+        "requestIds": [
+          "t1_enter_d1cf0e85900e92b6",
+          "t1_busy_990c59c6e0b01b12",
+          "t1_stop_50677d633448d804",
+          "t1_reenter_5d064bd9d6e3cc2b",
+          "t1_final_stop_63ef2b1a330531e7",
+          "t1_ticket_enter_84736a219a6a8b81",
+          "t1_ticket_stop_cb66dbc3dd0571d8",
+          "t2_a_b8d3b624",
+          "t2_stop_a_8699a09e"
+        ],
+        "lastError": null,
+        "blockers": [],
+        "initialization": "READY",
+        "queuedAt": null,
+        "forced": false
+      }
+    },
+    {
+      "space": "lazy-d",
+      "action": "status",
+      "requestId": null,
+      "status": 200,
+      "elapsed": 0.193,
+      "result": {
+        "generation": 1,
+        "state": "READY",
+        "requestIds": [
+          "t2_c_31538327",
+          "t2_cancel_a71294ca",
+          "t2_c2_d956287a"
+        ],
+        "initialization": "READY",
+        "queuedAt": null,
+        "lastError": null,
+        "runningMembers": 4
+      }
+    }
+  ],
+  "runningBeforeCancel": [
+    "workbench-v2-checkpoint-engineer-b-model-gateway-1",
+    "workbench-v2-checkpoint-engineer-b-native-1",
+    "workbench-v2-checkpoint-engineer-b-native-guard-1",
+    "workbench-v2-checkpoint-engineer-b-web-egress-1",
+    "workbench-v2-checkpoint-lazy-c-model-gateway-1",
+    "workbench-v2-checkpoint-lazy-c-native-1",
+    "workbench-v2-checkpoint-lazy-c-native-guard-1",
+    "workbench-v2-checkpoint-lazy-c-web-egress-1"
+  ],
+  "runningBeforeRelease": [
+    "workbench-v2-checkpoint-engineer-b-model-gateway-1",
+    "workbench-v2-checkpoint-engineer-b-native-1",
+    "workbench-v2-checkpoint-engineer-b-native-guard-1",
+    "workbench-v2-checkpoint-engineer-b-web-egress-1",
+    "workbench-v2-checkpoint-lazy-c-model-gateway-1",
+    "workbench-v2-checkpoint-lazy-c-native-1",
+    "workbench-v2-checkpoint-lazy-c-native-guard-1",
+    "workbench-v2-checkpoint-lazy-c-web-egress-1"
+  ],
+  "runningAfterPromotion": [
+    "workbench-v2-checkpoint-lazy-c-model-gateway-1",
+    "workbench-v2-checkpoint-lazy-c-native-1",
+    "workbench-v2-checkpoint-lazy-c-native-guard-1",
+    "workbench-v2-checkpoint-lazy-c-web-egress-1",
+    "workbench-v2-checkpoint-lazy-d-model-gateway-1",
+    "workbench-v2-checkpoint-lazy-d-native-1",
+    "workbench-v2-checkpoint-lazy-d-native-guard-1",
+    "workbench-v2-checkpoint-lazy-d-web-egress-1"
+  ],
+  "lazyDHeavyDataBeforePromotion": false,
+  "maxRunningGroupsObserved": 2
+}
