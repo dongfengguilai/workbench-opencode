@@ -26,7 +26,7 @@
     "candidateArtifactSha256": "7d1031b62ed7e9a969c57670608c53f50900a1f6c3882a375e9dd2d0fbe37caa",
     "model": "approved/gpt-5.6-luna",
     "opencode": "1.18.31",
-    "sameT0Input": true,
+    "sameT0Input": false,
     "samePrompts": true,
     "maxGatewayDispatchesPerRun": 24,
     "maxWallMinutesPerRun": 20,
@@ -72,7 +72,7 @@
       "titleDispatches": 1,
       "sourceChangedByNativeOpenCode": false,
       "independentEvidence": {
-        "tests": "95/95 PASS",
+        "tests": "95/95 PASS (94-test T0 plus one retained C02 assertion)",
         "build": "PASS",
         "browser": "PDF canvas visible at 450x300; Chrome blocked-page text absent"
       },
@@ -91,7 +91,7 @@
       "titleDispatches": 1,
       "sourceChangedByNativeOpenCode": false,
       "independentEvidence": {
-        "tests": "95/95 PASS",
+        "tests": "95/95 PASS (94-test T0 plus one retained C02 assertion)",
         "build": "PASS",
         "browser": "download suggested report.pdf; downloaded SHA-256 equaled uploaded SHA-256",
         "contentSha256": "03bcc99d171b30fdcc82674551314f5e7629a44ee90f12e61d43c61852ec89ce"
@@ -111,7 +111,7 @@
       "titleDispatches": 1,
       "sourceChangedByNativeOpenCode": false,
       "independentEvidence": {
-        "tests": "95/95 PASS",
+        "tests": "95/95 PASS (94-test T0 plus one retained C02 assertion)",
         "build": "PASS",
         "browser": "after upload, rename and reload, report.pdf remained and the PDF canvas rendered at 918x567"
       },
@@ -152,5 +152,13 @@
     "The original frozen comparison used Qwen; changing the model makes these follow-up runs non-comparable as evidence of platform-only benefit.",
     "C01 was not rerun with Luna in this user-requested slice.",
     "Tokens and monetary cost were unavailable and are not estimated."
-  ]
+  ],
+  "correction": {
+    "recordedAt": "2026-09-19T10:45:46Z",
+    "C02StartedFromT0": true,
+    "C03ThroughC05InputDifference": "test/validation.test.mjs retained one C02-added report.pdf assertion; behavior sources matched T0",
+    "functionalConclusionsChanged": false,
+    "costConclusionsChanged": false,
+    "exactT0ClaimChanged": true
+  }
 }

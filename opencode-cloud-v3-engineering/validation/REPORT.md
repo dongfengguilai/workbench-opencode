@@ -1,35 +1,33 @@
-# v3 工程任务质量增强 · 最终校验报告
+# v3 工程任务质量增强 · 校验报告
 
-校验日期：2026-09-19。版本 v3，路线 `v3-engineering-quality`，包修订 `engineering-r1`。
+校验日期：2026-09-19。版本 v3，路线 v3-engineering-quality。
 
-## 实际执行
+## 历史结果保持
 
-- `python3 -m unittest opencode-cloud-v3-engineering/tests/test_kit_guard.py`：18/18 通过，见 [checker-tests.log](checker-tests.log)。
-- `python3 opencode-cloud-v3-engineering/scripts/check_kit.py`：结构、JSON 和 28 个本地链接通过，见 [structure-check.log](structure-check.log)。
-- v2 共享网关回归：Node 3/3 通过；v2 生命周期回归：Python 19/19 通过。候选代码因无收益已撤回，仓库运行代码保持 v2。
-- 五个真实案例的正式 baseline/candidate 尝试均已执行并保留；C01 候选两次通过，C02 行为失败，C03—C05 超预算；见 [comparison](../evidence/comparison.json)。
-- r4 只在隔离环境运行，随后真实回退 v2；重新进入看到 46 个原生会话，指定实验会话仍在，项目源文件无变化，最终无强制停止；见 [rollback](../evidence/rollback-to-v2.json)。
+原 Qwen 平台对照不回写：C01 候选重复通过，C02 行为失败，C03—C05 超出原 24 次上限，因此当时的结论保持 NO_CHANGE_RECOMMENDED。旧失败、取消、人工介入和回退记录继续保留。
 
-## Luna 后续探索
+后续 Luna 探索显示模型能力是主要变量之一。公开结果同时更正了一处输入描述：C02 从精确 T0 开始，C03—C05 带有 C02 新增的一条非行为测试；它们的浏览器和成本结论不变。
 
-用户随后要求把相同 r4 候选切换到 `approved/gpt-5.6-luna` 评估 C02—C05。两组协议都在运行前冻结，仍采用每案 24 次分发和 20 分钟上限。C02、C03、C04 分别以 15、22、21 次分发通过功能、95/95 测试、构建和独立浏览器验证。C05 的功能验证同样通过，但实际使用 28 次分发，因此仍按协议记为超预算。
+## Luna 产品目标快速验收
 
-该探索支持“部分 Qwen 失败与模型有关”，但模型变量已经变化，且没有用 Luna 重跑 C01，不能作为 r4 平台独立收益或发布依据。完整脱敏结论见 [Luna 探索结果](../evidence/luna-exploration-result.json)。候选随后再次安全停止，v2 Compose 与生命周期助手已经恢复，网关没有未决请求。
+用户将产品目标改为 approved/gpt-5.6-luna。r5 固定候选把 model 与 small_model 都设为 Luna，Qwen 仅保留为非默认维护者回退。协议及 94 测试更正在首次 r5 运行前冻结。
 
-## 发布检查
+实际结果：
 
-最终 `check_kit.py --release --evidence-root opencode-cloud-v3-engineering/evidence` 返回 2（`RELEASE_BLOCKED`），见 [final-release-check.log](final-release-check.log) 和 [退出码](final-release-check.exit)。这是正确结果：产品状态为 `NO_CHANGE_RECOMMENDED`，A12/A13/A14 未通过，没有用户签收，比较结论也不是 `BENEFIT_DEMONSTRATED`。
+- C01：新会话未操作模型选择器；可见默认和请求体均为 Luna；20 次分发全部由 Luna 完成。原生 OpenCode 修改目标项目，独立 94/94 测试、构建及浏览器保留设备名验证通过。
+- C05：从精确 T0 开始；新会话默认和请求体均为 Luna；23 次分发全部由 Luna 完成。原生 OpenCode确认无需修改，源差异为 0；独立 94/94 测试、构建、上传、改名、刷新持久化和 918×1188 Canvas 预览通过。
+- 两案均低于预先冻结的每案 32 次 Luna 分发上限，未估算不可取得的 token 或金额。
 
-检查器只验证记录结构，不能替代真实模型、浏览器行为、业务判断或真人签收。完整私有日志保留在授权的本机证据目录，未写入仓库。
+脱敏结果见 [Luna 产品验收结果](../evidence/luna-product-acceptance-result.json)。
 
-## 重复检查
+## 运行状态与回退
 
-```bash
-python3 opencode-cloud-v3-engineering/scripts/check_kit.py
-python3 -m unittest opencode-cloud-v3-engineering/tests/test_kit_guard.py
-python3 opencode-cloud-v3-engineering/scripts/check_kit.py \
-  --release \
-  --evidence-root opencode-cloud-v3-engineering/evidence
-```
+候选经 lifecycle 正常停止，没有强制终止。独立验证生成的 dist 已移入私有证据目录；项目源与 T0 一致。随后重新创建已签收的 v2 原生容器、guard 与共享模型网关，并启动 v2 固定 lifecycle helper。
 
-前两项应通过；第三项应继续拒绝发布，除非未来启动新的、独立冻结的候选并满足全部验收。不得修改本轮记录把失败包装为通过。
+最终状态：工程师空间 STOPPED，原生容器和 guard 为 Created，共享网关健康，三者均引用 v2 compose.release.json，共享网关未决分发为 []。生产和退役远程部署均未修改。
+
+## 包检查与签收边界
+
+结构检查和测试结果记录在本目录的日志中。文件检查器只能核验结构，不能替代真实模型、浏览器行为或用户签收。
+
+技术状态为 READY_FOR_USER_ACCEPTANCE。历史 Qwen 平台比较仍不是平台增强收益证明；本次通过的是用户批准的固定 Luna 产品配置。用户签收前不得标记 DELIVERED，不得发布或进入 v4。

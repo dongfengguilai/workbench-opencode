@@ -43,3 +43,10 @@ r4 只在隔离的 `workbench-v2-checkpoint` 中运行。正式比较未满足�
 回退后实际验证：平台与共享网关保持运行；工程师空间从 `STOPPED` 显式进入；原生会话列表共 46 条，两个指定 r4 会话仍存在；项目源文件没有变化；随后通过生命周期接口无强制停止并回到 `STOPPED`。脱敏结果见 [rollback-to-v2](evidence/rollback-to-v2.json)。
 
 不得把私有实验目录当成发布源。当前发布源仍是 v2 的 `compose.release.json`、`lifecycle.release.json` 和固定制品 `cba249137c43c4b68162bf5bddf6ccf3f6b338d1`。若未来重新研究该假设，应先冻结新协议，不复用本轮 holdout 作为未见样本。
+
+
+## 13. Luna 产品候选
+
+用户已将产品目标从 Qwen 调整为 Luna。r5 的受控配置以 [Luna 配置](templates/OPENCODE_LUNA_PROFILE.json) 为公开规范：model 和 small_model 均为 approved/gpt-5.6-luna，Qwen 只作为维护者控制的非默认回退，不新增用户模型配置。
+
+r5 仅在隔离的 workbench-v2-checkpoint 中完成技术验收。验收后已正常停止并恢复 v2 固定 Compose 与 lifecycle helper；当前不能把私有候选目录当作正式发布源。用户签收同一候选清单后，才可将已验证配置制成受控制品并按现有小范围发布流程实施。不得因此操作生产或退役远程部署。

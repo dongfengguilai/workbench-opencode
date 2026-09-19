@@ -1,0 +1,108 @@
+{
+  "schemaVersion": 1,
+  "status": "PASS",
+  "completedAt": "2026-09-19T11:03:00Z",
+  "purpose": "Quick technical acceptance of the user-selected Luna product target.",
+  "protocol": {
+    "ref": "luna-product-acceptance-protocol.json",
+    "sha256": "9a6d841dcb6dc6c7e94db58193b0b45ffa2c4045a6588e546b491d6cdb6a1a60",
+    "amendmentRef": "luna-product-acceptance-protocol-amendment.json",
+    "amendmentSha256": "15920084a8351d9c58578f9909860194c9719cd233f2c667913371b8fef129ad"
+  },
+  "productProfile": {
+    "ref": "../templates/OPENCODE_LUNA_PROFILE.json",
+    "sha256": "0681f1918ea207117ec941ae135b9ff00705105d2532aed404209231d4b6d8fe",
+    "defaultModel": "approved/gpt-5.6-luna",
+    "smallModel": "approved/gpt-5.6-luna",
+    "fallbackModel": "approved/Qwen3.6-35B-A3B",
+    "fallbackIsDefault": false
+  },
+  "candidateArtifactSha256": "7ba23322041152a9ead9620edd25dea90523fae158538e4f6ebb728cb2293bb4",
+  "routing": {
+    "freshSessions": true,
+    "manualModelSelection": false,
+    "visibleDefault": "Luna",
+    "submittedProvider": "approved",
+    "submittedModel": "gpt-5.6-luna",
+    "titleAndAgentRequestsUsedLuna": true
+  },
+  "cases": [
+    {
+      "caseId": "C01",
+      "sessionId": "ses_f46b9249bffelGtJFxB4nswgVO",
+      "outcome": "SATISFIED",
+      "executionOrigin": "workbench_native_opencode",
+      "sourceChangedByNativeOpenCode": true,
+      "humanSolutionHints": 0,
+      "humanSourceEdits": 0,
+      "gateway": {
+        "dispatched": 20,
+        "completed": 20,
+        "models": {
+          "gpt-5.6-luna": 20
+        },
+        "withinCap": true,
+        "cap": 32
+      },
+      "independentEvidence": {
+        "tests": "94/94 PASS",
+        "build": "PASS",
+        "browser": "CON.pdf was rejected with the Windows reserved-device error; report.pdf was accepted",
+        "screenshotSha256": "fbb5ffa6f954d1c1c28c68ea14e9e6c03e34ea3272bdc254952d28164045360b",
+        "messagesSha256": "72ff2d84876262d270797302e949a60fa986435a1dd333a3d1cad4f304c81e1e"
+      }
+    },
+    {
+      "caseId": "C05",
+      "sessionId": "ses_f46b2e171ffefiUz65m6B2o7tF",
+      "outcome": "SATISFIED",
+      "executionOrigin": "workbench_native_opencode",
+      "sourceChangedByNativeOpenCode": false,
+      "exactT0SourceDiffLines": 0,
+      "humanSolutionHints": 0,
+      "humanSourceEdits": 0,
+      "gateway": {
+        "dispatched": 23,
+        "completed": 23,
+        "models": {
+          "gpt-5.6-luna": 23
+        },
+        "withinCap": true,
+        "cap": 32
+      },
+      "independentEvidence": {
+        "tests": "94/94 PASS",
+        "build": "PASS",
+        "browser": "After upload, rename and reload, report.pdf remained; preview title matched and one 918x1188 Canvas rendered without error",
+        "screenshotSha256": "15bea8ff6667e03fa66287944d152068eb3215b94dc94028d355a7f3dd9d4340",
+        "messagesSha256": "ef3664d737d38e50c3a13ff16a0879508f35361135291b92ff1e0d5f44d77550"
+      }
+    }
+  ],
+  "retainedFacts": [
+    "The older Qwen causal comparison remains NO_CHANGE_RECOMMENDED and is not relabeled.",
+    "The earlier Luna exploration correction remains visible: C03-C05 had one retained C02 test assertion, although their behavior sources matched T0.",
+    "The r5 acceptance runs restored exact T0 before each case and expected 94 tests.",
+    "The lifecycle stopped each native space after the model work completed; independent verification was performed after controlled re-entry."
+  ],
+  "runtimeAfterAcceptance": {
+    "candidateStoppedGracefully": true,
+    "acceptedV2ComposeRestored": true,
+    "spaceState": "STOPPED",
+    "unresolvedModelDispatches": 0,
+    "productionChanged": false,
+    "retiredRemoteDeploymentTouched": false
+  },
+  "decision": {
+    "technicalAcceptance": "PASS",
+    "productStatus": "READY_FOR_USER_ACCEPTANCE",
+    "humanAcceptance": "NOT_RUN",
+    "reason": "Both representative cases passed with Luna as the actual untouched default, all dispatches used Luna, both remained below the model-specific cap, and the accepted v2 runtime was restored safely."
+  },
+  "privateEvidenceRoot": "/home/vmware/Workspace/programs/WorkBench/acceptance/v3-engineering-private/luna-product-acceptance/",
+  "limitations": [
+    "This validates the fixed Luna product profile, not an r4 platform-only causal benefit over v2.",
+    "The candidate was not published to production or the retired remote server.",
+    "Tokens and monetary cost were unavailable and are not estimated."
+  ]
+}

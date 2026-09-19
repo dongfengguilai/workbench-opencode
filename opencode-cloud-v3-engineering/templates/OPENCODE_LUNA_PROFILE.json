@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "productModelTarget": "approved/gpt-5.6-luna",
+  "opencodeConfig": {
+    "model": "approved/gpt-5.6-luna",
+    "small_model": "approved/gpt-5.6-luna"
+  },
+  "fallbackModel": "approved/Qwen3.6-35B-A3B",
+  "fallbackIsDefault": false,
+  "notes": "Maintainer-controlled product profile. It does not expose user model configuration."
+}

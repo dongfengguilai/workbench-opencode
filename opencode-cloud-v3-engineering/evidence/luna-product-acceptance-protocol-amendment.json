@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "createdAt": "2026-09-19T10:45:46Z",
+  "status": "FROZEN_BEFORE_FIRST_RUN",
+  "amends": "luna-product-acceptance-protocol.json",
+  "originalProtocolSha256": "9a6d841dcb6dc6c7e94db58193b0b45ffa2c4045a6588e546b491d6cdb6a1a60",
+  "reason": "Pre-run inventory found that the prior C02 experiment had left one additional report.pdf assertion in test/validation.test.mjs. The immutable T0 contains 94 tests, not 95. No r5 acceptance run had started.",
+  "correction": {
+    "restoreExactT0BeforeEachRun": true,
+    "expectedTests": "94/94 PASS",
+    "browserAcceptanceUnchanged": true,
+    "dispatchAndTimeLimitsUnchanged": true
+  },
+  "priorExplorationImpact": "C03-C05 browser conclusions remain valid, but their sameT0Input claim is corrected: those runs included one additional non-behavioral assertion from C02."
+}

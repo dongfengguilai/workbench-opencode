@@ -1,58 +1,56 @@
 # v3 工程任务质量增强 · 当前状态
 
 - 产品版本：v3
-- 路线：`v3-engineering-quality`
-- 包修订：`engineering-r1`
-- v0/v1/v2 基线：`USER_CONFIRMED_ACCEPTED`
-- 旧 Shared v3 路线：`SHELVED_BY_USER`
-- 当前产品状态：`NO_CHANGE_RECOMMENDED`
-- 本轮起始 HEAD：`c7a9baa7a82679744791aa00afc4fc0012a23dd2`
-- 最终实验候选：r4，清单 SHA-256 `7d1031b62ed7e9a969c57670608c53f50900a1f6c3882a375e9dd2d0fbe37caa`
-- 当前运行制品：已再次恢复到用户签收的 v2，工程师空间为 `STOPPED`
-- v3 用户签收：`NOT_RUN`（没有发布候选）
+- 路线：v3-engineering-quality
+- v0/v1/v2 基线：USER_CONFIRMED_ACCEPTED
+- 产品目标模型：approved/gpt-5.6-luna
+- 非默认维护者回退模型：approved/Qwen3.6-35B-A3B
+- 当前产品状态：READY_FOR_USER_ACCEPTANCE
+- Luna 候选：r5，清单 SHA-256 7ba23322041152a9ead9620edd25dea90523fae158538e4f6ebb728cb2293bb4
+- 当前运行制品：已恢复用户签收的 v2，工程师空间为 STOPPED
+- v3 用户签收：NOT_RUN
 
-## 用户现在能做什么
+## 用户新增能做什么
 
-用户继续使用已签收的 v2：本机单机按需进入、有界运行、安全停止和原地继续。v3 实验没有改变现有入口、OpenCode 版本、项目数据、会话或资源名称。
+Luna 产品配置已固定：OpenCode 的默认模型与 small_model 都是 Luna，Qwen 只保留为维护者控制的非默认回退；界面无需手动选模型。
 
-新增的 Luna 探索评估证明，在相同 T0 输入、相同 r4 候选和原生 OpenCode 1.18.31 下：
+快速技术验收已通过：
 
-- C02 在 15 次分发内修复实际 Vite 页面，浏览器拒绝 `CON.pdf` 并接受 `report.pdf`；
-- C03 在 22 次分发内确认 Canvas PDF 预览正常；
-- C04 在 21 次分发内确认 `report.pdf` 下载字节与上传文件一致；
-- C05 的刷新持久化和 Canvas 预览功能也通过，但使用 28 次分发，超过冻结的 24 次上限。
+- C01 由 WorkBench 内的原生 OpenCode 完成真实缺陷修复；20/20 次请求全部路由到 Luna。独立验证确认 CON.pdf 被拒绝、report.pdf 可用、94/94 测试和构建通过。
+- C05 从精确 T0 开始，原生 OpenCode 真实验证后没有修改源码；23/23 次请求全部路由到 Luna。独立验证确认上传、改名为 report.pdf、刷新后保留，并重新渲染一个 918×1188 的 PDF Canvas；94/94 测试和构建通过。
+- 两案均未点击模型选择器，实际提交模型是 approved/gpt-5.6-luna，低于预先冻结的每案 32 次 Luna 分发上限。
 
-C02—C05 均有 95/95 测试、构建和独立浏览器证据。目标项目源码只由 WorkBench 内的 OpenCode 修改；C03—C05 无源码修改，C02 的实验修改在下一案例前恢复为 T0。
+已签收的 v2 仍可按原方式使用；本次候选没有更改入口、OpenCode 版本、项目数据、会话或部署资源名称。
 
 ## 尚不能做什么
 
-不能据此发布 v3 或宣称 r4 平台增强已证明收益。原冻结比较使用 Qwen，正式结论仍是：C01 两次通过、C02 行为失败、C03—C05 超预算，两个 holdout 未通过。
+Luna r5 尚未由用户签收，也未作为当前运行制品发布。隔离验收完成后已安全恢复 v2 停止态；没有修改生产环境，也没有恢复退役远程服务器。
 
-Luna 探索改变了模型变量，只支持“此前部分失败与模型有关”。四个案例中只有 C02—C04 同时通过功能与成本门槛；C05 功能通过但仍超预算，而且本切片未用 Luna 重跑 C01。因此不能把这组结果解释成 r4 相对 v2 的独立平台收益。
+历史 Qwen 平台对照仍保持 NO_CHANGE_RECOMMENDED。本次结论是“固定 Luna 产品配置通过代表性技术验收”，不把旧 Qwen 结果改写成 r4 平台自身的因果收益。
 
 ## 检查点
 
 | 检查点 | 状态 | 结果与证据 |
 |---|---|---|
-| T0 真实任务与基线 | PASS | 冻结真实缺陷、输入、模型和预算；`evidence/t0-case.json`、`evidence/t0-inventory.json` |
-| T1 首条闭环 | PASS（实验） | 原生 OpenCode 完成修复、浏览器行为、测试、构建、ZIP／补丁干净复现；`evidence/t1-result.json` |
-| T2 原 Qwen 成对比较 | COMPLETE / NO BENEFIT | 五案例正式比较保持不变；`evidence/comparison.json`、`evidence/case-c01.json` 至 `case-c05.json` |
-| Luna C02—C03 | COMPLETE | 两案均在 24 次分发内通过；`evidence/luna-exploration-protocol.json`、`evidence/luna-exploration-result.json` |
-| Luna C04—C05 | COMPLETE / PARTIAL COST | C04 通过；C05 功能通过但 28 次分发超限；`evidence/luna-exploration-c04-c05-protocol.json`、`evidence/luna-exploration-result.json` |
-| T3 处置 | ROLLED_BACK | 候选仅在隔离栈运行；v2 制品已恢复，空间安全停止且网关无未决请求；`evidence/luna-exploration-result.json`、`evidence/rollback-to-v2.json` |
+| T0—T2 历史 Qwen 对照 | COMPLETE / NO CHANGE | 原比较保持不变；evidence/comparison.json、evidence/benefit-review.json |
+| Luna 探索 | COMPLETE | C02—C04 在原 24 次上限内通过；旧 C05 功能通过但超原上限；输入测试差异已更正；evidence/luna-exploration-result.json |
+| Luna 产品目标协议 | FROZEN | r5 运行前冻结默认模型、两代表案例、32 次模型专属上限；evidence/luna-product-acceptance-protocol.json 及 amendment |
+| Luna 快速技术验收 | PASS | C01 20 次、C05 23 次；默认路由、浏览器、94 测试和构建通过；evidence/luna-product-acceptance-result.json |
+| 安全回退 | PASS | 候选正常停止；v2 Compose、生命周期助手与共享网关恢复；空间 STOPPED，未决分发为 0 |
+| 用户签收 | NOT_RUN | 等待用户确认同一 r5 Luna 候选 |
 
 ## 真实证据
 
-公开脱敏记录位于 `opencode-cloud-v3-engineering/evidence/`。完整消息、工具输出、网关日志、失败尝试、截图和回退日志位于：
+公开脱敏记录位于 opencode-cloud-v3-engineering/evidence/。完整原生消息、网关日志、测试、构建、浏览器日志、截图、源差异和回退状态位于：
 
-`/home/vmware/Workspace/programs/WorkBench/acceptance/v3-engineering-private/`
+/home/vmware/Workspace/programs/WorkBench/acceptance/v3-engineering-private/luna-product-acceptance/
 
-C04 独立复核保留了两次被生命周期回收预览后的 `ERR_CONNECTION_REFUSED`，随后通过受控活动续期与预览启动完成字节一致性复核。C05 在观测到超过 24 次后中止，不自动重试；所有 28 次分发均已结束，网关无未决请求。
+协议在首个 r5 运行前发现并更正了旧探索遗留的一条额外测试：精确 T0 是 94 项测试。旧证据没有被覆盖，C03—C05 的旧输入差异已明确记录。
 
-## 当前阻塞与下一步
+## 当前唯一阻塞与下一步
 
-当前唯一发布阻塞是：现有证据未隔离“模型变化”和“r4 平台变化”，且 Luna 的 C05 仍超过成本门槛。只有用户明确要求继续 v3 时，下一步才冻结一份完整的 Luna 对照协议并从 C01 开始重跑；本轮不自动扩大评估，也不进入下一版。
+唯一阻塞是用户尚未签收 r5 Luna 候选。下一步只记录用户对候选清单 7ba233...bb4 的实际签收；在签收前不发布、不进入 v4。
 
 ## 范围与保护
 
-没有修改生产环境，没有恢复退役远程部署，没有升级 OpenCode，没有改名或重建现有部署资源，也没有触碰 v0 正式本机容器。隔离候选已安全停止，检查点已恢复用户签收的 v2 Compose 和生命周期助手。
+没有升级 OpenCode，没有改 Agent 内核，没有增加多机、插件平台、用户模型配置或本地连接器。隔离候选已停止，当前容器标签已核对为 v2 compose.release.json，共享模型网关没有未决请求。

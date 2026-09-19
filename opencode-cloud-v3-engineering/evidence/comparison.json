@@ -56,5 +56,23 @@
     "withinBudgetPasses": 3,
     "originalConclusionChanged": false,
     "notes": "C02-C04 passed within 24 dispatches; C05 passed behavior at 28 dispatches and therefore failed the frozen cost limit. The model change prevents this from establishing platform-only benefit."
+  },
+  "productTargetDecision": {
+    "status": "READY_FOR_USER_ACCEPTANCE",
+    "decision": "Use approved/gpt-5.6-luna as both the default and small model; retain Qwen only as a non-default maintainer-controlled fallback.",
+    "profileRef": "../templates/OPENCODE_LUNA_PROFILE.json",
+    "protocolRef": "luna-product-acceptance-protocol.json",
+    "protocolAmendmentRef": "luna-product-acceptance-protocol-amendment.json",
+    "resultRef": "luna-product-acceptance-result.json",
+    "representativeCases": [
+      "C01",
+      "C05"
+    ],
+    "dispatches": {
+      "C01": 20,
+      "C05": 23,
+      "capPerRun": 32
+    },
+    "notes": "This is a user-approved product-target change with its own pre-run acceptance protocol. It does not alter the historical Qwen platform-only comparison in summary."
   }
 }

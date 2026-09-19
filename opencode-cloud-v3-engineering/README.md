@@ -6,11 +6,11 @@
 |---|---|
 | 产品版本 | **v3**，不是 v4 |
 | 当前路线标识 | `v3-engineering-quality` |
-| 包修订 | `engineering-r1` · 2026-09-19 |
+| 包修订 | `engineering-r5-luna` · 2026-09-19 |
 | 实施仓库 | `dongfengguilai/workbench-opencode` |
 | 已接受基线 | v0、v1、v2 均继承；v2 按需运行和容量保护保持 |
 | 搁置路线 | 上一个 v3「共享受限业务助手／Shared + Dedicated」包 |
-| 当前产品状态 | `NOT_STARTED`；本包不是已经实现的软件 |
+| 当前产品状态 | `READY_FOR_USER_ACCEPTANCE`；固定 Luna 产品候选已通过快速技术验收，尚待用户签收 |
 
 ## 唯一主线
 
@@ -47,4 +47,4 @@ python3 -m unittest discover -s opencode-cloud-v3-engineering/tests -v
 python3 opencode-cloud-v3-engineering/scripts/check_kit.py --release
 ```
 
-检查器不调用模型、不执行产品命令、不部署、不证明证据真实。格式正确与文件存在不能代替实际验收。初始状态和所有产品验收保持未运行，见 [状态](STATUS.md)。
+检查器不调用模型、不执行产品命令、不部署、不证明证据真实。格式正确与文件存在不能代替实际验收。当前真实状态、Luna 候选和签收边界见 [状态](STATUS.md)。

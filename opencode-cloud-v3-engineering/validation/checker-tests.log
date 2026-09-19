@@ -1,5 +1,23 @@
-..................
+test_01_initial_structure (test_kit_guard.KitGuardTests.test_01_initial_structure) ... ok
+test_02_initial_release_is_blocked (test_kit_guard.KitGuardTests.test_02_initial_release_is_blocked) ... ok
+test_03_wrong_track_rejected (test_kit_guard.KitGuardTests.test_03_wrong_track_rejected) ... ok
+test_04_missing_acceptance_rejected (test_kit_guard.KitGuardTests.test_04_missing_acceptance_rejected) ... ok
+test_05_complete_synthetic_records_check_plumbing_only (test_kit_guard.KitGuardTests.test_05_complete_synthetic_records_check_plumbing_only) ... ok
+test_06_no_benefit_is_not_a_release (test_kit_guard.KitGuardTests.test_06_no_benefit_is_not_a_release) ... ok
+test_07_missing_check_evidence (test_kit_guard.KitGuardTests.test_07_missing_check_evidence) ... ok
+test_08_absolute_and_traversal_refs (test_kit_guard.KitGuardTests.test_08_absolute_and_traversal_refs) ... ok
+test_09_symlink_refs (test_kit_guard.KitGuardTests.test_09_symlink_refs) ... ok
+test_10_empty_or_missing_refs (test_kit_guard.KitGuardTests.test_10_empty_or_missing_refs) ... ok
+test_11_human_artifact_mismatch (test_kit_guard.KitGuardTests.test_11_human_artifact_mismatch) ... ok
+test_12_protocol_hash_mismatch (test_kit_guard.KitGuardTests.test_12_protocol_hash_mismatch) ... ok
+test_13_no_pair_rejected (test_kit_guard.KitGuardTests.test_13_no_pair_rejected) ... ok
+test_14_synthetic_task_cannot_count_as_real (test_kit_guard.KitGuardTests.test_14_synthetic_task_cannot_count_as_real) ... ok
+test_15_human_help_conflicts_with_independent (test_kit_guard.KitGuardTests.test_15_human_help_conflicts_with_independent) ... ok
+test_16_holdout_tuning_must_be_disclosed (test_kit_guard.KitGuardTests.test_16_holdout_tuning_must_be_disclosed) ... ok
+test_17_no_recommendation_not_delivered (test_kit_guard.KitGuardTests.test_17_no_recommendation_not_delivered) ... ok
+test_18_validation_does_not_mutate_records (test_kit_guard.KitGuardTests.test_18_validation_does_not_mutate_records) ... ok
+
 ----------------------------------------------------------------------
-Ran 18 tests in 0.071s
+Ran 18 tests in 0.105s
 
 OK

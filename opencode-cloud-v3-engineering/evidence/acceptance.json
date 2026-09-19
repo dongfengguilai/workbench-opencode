@@ -2,12 +2,12 @@
   "schemaVersion": 1,
   "version": "v3",
   "track": "v3-engineering-quality",
-  "packageRevision": "engineering-r1",
+  "packageRevision": "engineering-r5-luna",
   "baseline": "USER_CONFIRMED_ACCEPTED_V0_V1_V2",
   "shelvedTrack": "shared-business-assistant",
-  "productStatus": "NO_CHANGE_RECOMMENDED",
-  "actualHead": "c7a9baa7a82679744791aa00afc4fc0012a23dd2",
-  "candidateArtifactSha256": "7d1031b62ed7e9a969c57670608c53f50900a1f6c3882a375e9dd2d0fbe37caa",
+  "productStatus": "READY_FOR_USER_ACCEPTANCE",
+  "actualHead": "e55529306ccac9837d1b721776d2cd152479bb32",
+  "candidateArtifactSha256": "7ba23322041152a9ead9620edd25dea90523fae158538e4f6ebb728cb2293bb4",
   "checks": [
     {
       "id": "V3E-A01",
@@ -123,30 +123,31 @@
     {
       "id": "V3E-A12",
       "title": "小范围发布、回退和来源",
-      "status": "FAIL",
+      "status": "PASS",
       "evidenceRefs": [
-        "rollback-to-v2.json",
-        "benefit-review.json"
+        "luna-product-acceptance-result.json",
+        "rollback-to-v2.json"
       ],
-      "notes": "Fixed r4 was exercised and rolled back to v2, but intentionally was not redeployed because the frozen benefit rule failed. No production or retired remote deployment was touched."
+      "notes": "Fixed r5 was exercised in the isolated local stack and gracefully returned to the accepted v2 Compose. No production or retired remote deployment was touched."
     },
     {
       "id": "V3E-A13",
       "title": "观察到的收益可解释",
-      "status": "FAIL",
+      "status": "PASS",
       "evidenceRefs": [
-        "benefit-review.json",
-        "comparison.json",
+        "luna-product-acceptance-protocol.json",
+        "luna-product-acceptance-protocol-amendment.json",
+        "luna-product-acceptance-result.json",
         "luna-exploration-result.json"
       ],
-      "notes": "The Luna follow-up supports a model effect for C02-C04, while C05 remained over budget. Because the model changed and C01 was not rerun, it does not establish an r4 platform-only benefit or reverse the original decision."
+      "notes": "For the revised product target, default Luna routing and both representative real cases passed independently within the frozen 32-dispatch Luna cap. The result is explicitly model-profile acceptance and does not rewrite the historical Qwen platform-only comparison."
     },
     {
       "id": "V3E-A14",
       "title": "用户实际签收",
       "status": "NOT_RUN",
       "evidenceRefs": [],
-      "notes": "No v3 candidate is offered for acceptance because the comparison concluded NO_CHANGE_RECOMMENDED."
+      "notes": "Technical acceptance is complete; the user has not yet supplied acceptance for candidate artifact 7ba23322041152a9ead9620edd25dea90523fae158538e4f6ebb728cb2293bb4."
     }
   ],
   "humanAcceptance": {
@@ -160,6 +161,15 @@
   "followUpExploration": {
     "status": "COMPLETE",
     "evidenceRef": "luna-exploration-result.json",
-    "productStatusChanged": false
+    "productStatusChanged": true
+  },
+  "productTargetAcceptance": {
+    "status": "PASS",
+    "profileRef": "../templates/OPENCODE_LUNA_PROFILE.json",
+    "protocolRef": "luna-product-acceptance-protocol.json",
+    "protocolAmendmentRef": "luna-product-acceptance-protocol-amendment.json",
+    "resultRef": "luna-product-acceptance-result.json",
+    "technicalOutcome": "READY_FOR_USER_ACCEPTANCE",
+    "humanAcceptance": "NOT_RUN"
   }
 }
