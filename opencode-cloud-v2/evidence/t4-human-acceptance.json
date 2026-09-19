@@ -1,0 +1,8 @@
+{
+  "schemaVersion": 1,
+  "acceptedAt": "2026-09-19T04:05:28.172946+00:00",
+  "acceptedBy": "workspace user",
+  "source": "Current Codex task user message",
+  "confirmation": "确认签收本机 v2",
+  "scope": "Local single-host WorkBench v2 only; inherits user-confirmed v0/v1 and does not authorize v3 or retired remote deployment."
+}

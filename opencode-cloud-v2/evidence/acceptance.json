@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "productVersion": "v2",
-  "status": "READY_FOR_USER_ACCEPTANCE",
+  "status": "DELIVERED",
   "baselines": {
     "v0": "USER_CONFIRMED_ACCEPTED",
     "v1": "USER_CONFIRMED_ACCEPTED"
@@ -539,10 +539,16 @@
     ]
   },
   "humanAcceptance": {
-    "status": "PENDING",
-    "acceptedBy": null,
-    "acceptedAt": null,
-    "evidence": []
+    "status": "ACCEPTED",
+    "acceptedBy": "workspace user",
+    "acceptedAt": "2026-09-19T04:05:28.172946+00:00",
+    "evidence": [
+      {
+        "path": "evidence/t4-human-acceptance.json",
+        "sha256": "5b111d6d46b72ea802926f510ffeddb7e4b4d1cfd1aac1f42665046299364573",
+        "mode": "human"
+      }
+    ]
   },
   "notes": [
     "User-confirmed v0/v1 acceptance is inherited, not fabricated as re-executed.",
@@ -550,10 +556,10 @@
     "T3 completed only in the authorized isolated local checkpoint. Luna chat remains an external T2 capability issue; it was not treated as a T3 failure or silently replaced.",
     "T4 technical acceptance completed in the isolated local checkpoint. The active-task resource sample was higher than T0; the measured benefit is stopped private execution groups, bounded slots, and preserved data, with explicit cold-start and resident-service costs.",
     "T4 A16 used one existing local identity and two named capacity-test identities; it is not evidence of three real NetID users.",
-    "T4 remains READY_FOR_USER_ACCEPTANCE until the real user signs the final path; this agent did not fabricate human acceptance."
+    "The workspace user explicitly confirmed local v2 acceptance in the current Codex task after T4 technical results were delivered. This closes v2 only and does not start v3."
   ],
   "implementationBaseHead": "09e0c6d24c418d04fbebe1ee1e29e753a2d2c2e9",
-  "currentCheckpoint": "T4_TECHNICAL_COMPLETE",
-  "currentBlocker": "Only real user acceptance remains: the user must enter the final local v2 candidate and confirm the bounded enter/work/stop/reenter path. Technical evidence cannot self-sign this.",
-  "updatedAt": "2026-09-19T03:48:36.581525+00:00"
+  "currentCheckpoint": "T4_COMPLETE",
+  "currentBlocker": null,
+  "updatedAt": "2026-09-19T04:05:28.172946+00:00"
 }
