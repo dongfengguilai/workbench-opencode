@@ -1,0 +1,255 @@
+{
+  "schemaVersion": 1,
+  "caseId": "C01",
+  "kind": "real",
+  "split": "development",
+  "selection": {
+    "originRef": "t2-selection.json",
+    "authorizedProject": "isolated authorized capture of /home/vmware/Workspace/projects/learn",
+    "createdBeforeCandidateRun": true,
+    "expectedBehavior": "Reserved name rejected; report.pdf accepted; tests/build and browser behavior pass.",
+    "userPrompt": "我在网页上传一个 PDF 后，把它重命名为 CON.pdf，页面竟然接受了；这个文件下载到 Windows 有问题。请修好，并确认普通名称仍可用。",
+    "acceptanceRef": "t2-criteria.json",
+    "acceptanceSha256": "3695b3308867a26a36e6035e461791a0be346a7d3fb4981f32fc46784a12cf99",
+    "holdoutNotUsedForTuning": false
+  },
+  "input": {
+    "projectCommit": "53b73c2d0d2e54a82d3f5067838404a07a803c06",
+    "workingTreeManifestSha256": "2608698f326b2b3226632d2eb48d5e65819f073b0657d6062303cdce2a21367a",
+    "lockfileSha256": "df0dc7929b4baff2d3696afbc4ce2173433b504636c8794b3a69d20ff2997d1b",
+    "userChangesPreserved": true
+  },
+  "conditions": {
+    "opencodeArtifact": "1.18.31",
+    "modelRoute": "approved/Qwen3.6-35B-A3B",
+    "modelVersionKnown": true,
+    "parametersRef": "t2-protocol-r4.json",
+    "budgetRef": "t2-protocol-r4.json",
+    "environmentRef": "t2-protocol-r4.json",
+    "coldOrWarm": "recorded per run; no result excluded for warm/cold state",
+    "primaryVariable": "r4 controlled project guidance, long gateway wait/cooldown, continuous-idle lifecycle guard, and fixed managed-preview starter"
+  },
+  "runs": [
+    {
+      "arm": "baseline",
+      "attempt": 1,
+      "nativeSessionId": "ses_f47418066ffesb0cwV5TdrUmIy",
+      "nativeMessageIds": [],
+      "artifactSha256": "07b02dd95ddc77d3f1ee8c61ec26ab9f395e916d806aeca29c53cef6154a4153",
+      "contextSha256": "",
+      "executionOrigin": "workbench_native_opencode",
+      "independentCompletion": false,
+      "outcome": "BLOCKED",
+      "clarifications": 0,
+      "solutionHints": 0,
+      "humanSourceEdits": 0,
+      "environmentRescues": 0,
+      "humanMinutes": 0,
+      "wallSeconds": 47,
+      "queueSeconds": null,
+      "coldStartSeconds": null,
+      "modelRequests": 2,
+      "tokens": null,
+      "cost": null,
+      "requirementResults": [
+        {
+          "requirement": "CON.pdf rename rejected visibly",
+          "status": "NOT_SATISFIED"
+        },
+        {
+          "requirement": "report.pdf rename accepted",
+          "status": "NOT_SATISFIED"
+        },
+        {
+          "requirement": "94 tests and build pass",
+          "status": "NOT_SATISFIED"
+        }
+      ],
+      "sourceManifestSha256": "2608698f326b2b3226632d2eb48d5e65819f073b0657d6062303cdce2a21367a",
+      "evidenceRefs": [
+        "runs/C01-baseline-1.json"
+      ],
+      "zip": {
+        "sha256": "",
+        "cleanReproduction": "NOT_RUN",
+        "evidenceRef": ""
+      },
+      "patch": {
+        "sha256": "",
+        "cleanReproduction": "NOT_RUN",
+        "evidenceRef": ""
+      },
+      "failures": [
+        "Accepted v2 gateway timed out after dispatch on slow Qwen; no tool ran. The uncertain request was not replayed and was reconciled after authenticated backend idle observation."
+      ],
+      "limitations": [
+        "Tokens and monetary cost were unavailable and are not estimated."
+      ]
+    },
+    {
+      "arm": "baseline",
+      "attempt": 2,
+      "nativeSessionId": "ses_f47405957ffekaR2WXoRtp7Uvt",
+      "nativeMessageIds": [],
+      "artifactSha256": "07b02dd95ddc77d3f1ee8c61ec26ab9f395e916d806aeca29c53cef6154a4153",
+      "contextSha256": "",
+      "executionOrigin": "workbench_native_opencode",
+      "independentCompletion": false,
+      "outcome": "BLOCKED",
+      "clarifications": 0,
+      "solutionHints": 0,
+      "humanSourceEdits": 0,
+      "environmentRescues": 0,
+      "humanMinutes": 0,
+      "wallSeconds": 36,
+      "queueSeconds": null,
+      "coldStartSeconds": null,
+      "modelRequests": 2,
+      "tokens": null,
+      "cost": null,
+      "requirementResults": [
+        {
+          "requirement": "CON.pdf rename rejected visibly",
+          "status": "NOT_SATISFIED"
+        },
+        {
+          "requirement": "report.pdf rename accepted",
+          "status": "NOT_SATISFIED"
+        },
+        {
+          "requirement": "94 tests and build pass",
+          "status": "NOT_SATISFIED"
+        }
+      ],
+      "sourceManifestSha256": "2608698f326b2b3226632d2eb48d5e65819f073b0657d6062303cdce2a21367a",
+      "evidenceRefs": [
+        "runs/C01-baseline-2.json"
+      ],
+      "zip": {
+        "sha256": "",
+        "cleanReproduction": "NOT_RUN",
+        "evidenceRef": ""
+      },
+      "patch": {
+        "sha256": "",
+        "cleanReproduction": "NOT_RUN",
+        "evidenceRef": ""
+      },
+      "failures": [
+        "Accepted v2 gateway timed out after dispatch on slow Qwen; no tool ran. The uncertain request was not replayed and was reconciled after authenticated backend idle observation."
+      ],
+      "limitations": [
+        "Tokens and monetary cost were unavailable and are not estimated."
+      ]
+    },
+    {
+      "arm": "candidate",
+      "attempt": 1,
+      "nativeSessionId": "ses_f47215cd2ffeHCAToI66rxWG9O",
+      "nativeMessageIds": [],
+      "artifactSha256": "7d1031b62ed7e9a969c57670608c53f50900a1f6c3882a375e9dd2d0fbe37caa",
+      "contextSha256": "",
+      "executionOrigin": "workbench_native_opencode",
+      "independentCompletion": true,
+      "outcome": "SATISFIED",
+      "clarifications": 0,
+      "solutionHints": 0,
+      "humanSourceEdits": 0,
+      "environmentRescues": 0,
+      "humanMinutes": 0,
+      "wallSeconds": 288,
+      "queueSeconds": null,
+      "coldStartSeconds": null,
+      "modelRequests": 13,
+      "tokens": null,
+      "cost": null,
+      "requirementResults": [
+        {
+          "requirement": "CON.pdf rename rejected visibly",
+          "status": "PASS"
+        },
+        {
+          "requirement": "report.pdf rename accepted",
+          "status": "PASS"
+        },
+        {
+          "requirement": "94 tests and build pass",
+          "status": "PASS"
+        }
+      ],
+      "sourceManifestSha256": "2608698f326b2b3226632d2eb48d5e65819f073b0657d6062303cdce2a21367a",
+      "evidenceRefs": [
+        "runs/C01-candidate-1.json"
+      ],
+      "zip": {
+        "sha256": "",
+        "cleanReproduction": "NOT_RUN",
+        "evidenceRef": ""
+      },
+      "patch": {
+        "sha256": "",
+        "cleanReproduction": "NOT_RUN",
+        "evidenceRef": ""
+      },
+      "failures": [],
+      "limitations": [
+        "Tokens and monetary cost were unavailable and are not estimated."
+      ]
+    },
+    {
+      "arm": "candidate",
+      "attempt": 2,
+      "nativeSessionId": "ses_f471caf1affe4aSGPPtT5bGUty",
+      "nativeMessageIds": [],
+      "artifactSha256": "7d1031b62ed7e9a969c57670608c53f50900a1f6c3882a375e9dd2d0fbe37caa",
+      "contextSha256": "",
+      "executionOrigin": "workbench_native_opencode",
+      "independentCompletion": true,
+      "outcome": "SATISFIED",
+      "clarifications": 0,
+      "solutionHints": 0,
+      "humanSourceEdits": 0,
+      "environmentRescues": 0,
+      "humanMinutes": 0,
+      "wallSeconds": 280,
+      "queueSeconds": null,
+      "coldStartSeconds": null,
+      "modelRequests": 18,
+      "tokens": null,
+      "cost": null,
+      "requirementResults": [
+        {
+          "requirement": "CON.pdf rename rejected visibly",
+          "status": "PASS"
+        },
+        {
+          "requirement": "report.pdf rename accepted",
+          "status": "PASS"
+        },
+        {
+          "requirement": "94 tests and build pass",
+          "status": "PASS"
+        }
+      ],
+      "sourceManifestSha256": "2608698f326b2b3226632d2eb48d5e65819f073b0657d6062303cdce2a21367a",
+      "evidenceRefs": [
+        "runs/C01-candidate-2.json"
+      ],
+      "zip": {
+        "sha256": "",
+        "cleanReproduction": "NOT_RUN",
+        "evidenceRef": ""
+      },
+      "patch": {
+        "sha256": "",
+        "cleanReproduction": "NOT_RUN",
+        "evidenceRef": ""
+      },
+      "failures": [],
+      "limitations": [
+        "Tokens and monetary cost were unavailable and are not estimated."
+      ]
+    }
+  ],
+  "notes": "All formal baseline and r4 candidate attempts are retained. Pre-r4 development candidates remain in private evidence and are excluded by the frozen r4 protocol."
+}

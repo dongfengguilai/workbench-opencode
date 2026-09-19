@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "authority": "Independent acceptance criteria frozen before formal comparison runs",
+  "requirements": {
+    "C01": ["CON.pdf rename rejected visibly", "report.pdf rename accepted", "94 tests and build pass"],
+    "C02": ["valid PDF named CON.pdf is not stored", "valid report.pdf is stored", "related tests and build pass"],
+    "C03": ["real browser preview opens", "canvas is rendered", "no blocked iframe page", "no source change unless defect reproduced"],
+    "C04": ["download event produces report.pdf", "download SHA256 equals upload SHA256", "no source change unless defect reproduced"],
+    "C05": ["report.pdf remains after reload", "stored PDF preview renders after reload", "no source change unless defect reproduced"]
+  }
+}

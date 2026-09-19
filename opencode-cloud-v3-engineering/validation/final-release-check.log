@@ -1,0 +1,16 @@
+KIT_STRUCTURE_OK: 28 local links checked. Product implementation is not evaluated.
+RELEASE_BLOCKED: record checks failed; no deployment was attempted.
+- product is not a release candidate
+- V3E-A12: not PASS
+- V3E-A13: not PASS
+- V3E-A14: not PASS
+- V3E-A14: evidence required
+- human acceptance is not recorded
+- human acceptance quote required
+- human acceptance timestamp required
+- human acceptance scope required
+- human acceptance must refer to the candidate artifact
+- human acceptance: invalid evidence reference
+- benefit has not been demonstrated
+- benefit noMaterialRegression not confirmed
+- benefit withinCostGuardrails not confirmed

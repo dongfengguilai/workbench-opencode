@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "authorizedProject": "local isolated capture of /home/vmware/Workspace/projects/learn",
+  "cases": [
+    {
+      "caseId": "C01",
+      "split": "development",
+      "origin": "User's current real project defect reproduced in the browser",
+      "prompt": "我在网页上传一个 PDF 后，把它重命名为 CON.pdf，页面竟然接受了；这个文件下载到 Windows 有问题。请修好，并确认普通名称仍可用。",
+      "expected": "Reserved name rejected; report.pdf accepted; tests/build and browser behavior pass."
+    },
+    {
+      "caseId": "C02",
+      "split": "development",
+      "origin": "Independent follow-up found in the same real upload workflow",
+      "prompt": "我直接上传名为 CON.pdf 的有效 PDF，页面仍然接受了，下载到 Windows 会有问题。请修复上传路径，同时保证 report.pdf 仍能上传。",
+      "expected": "Upload path rejects reserved name before storage while a normal PDF still uploads."
+    },
+    {
+      "caseId": "C03",
+      "split": "development",
+      "origin": "User previously reported Chrome blocking iframe PDF preview",
+      "prompt": "请检查这个项目的 PDF 预览是否还会被 Chrome 阻止。用真实浏览器上传有效 PDF 并点击预览；只有复现问题时才修改，最后报告实际验证。",
+      "expected": "Canvas preview renders without a Chrome blocked page; no unnecessary change when already correct."
+    },
+    {
+      "caseId": "C04",
+      "split": "holdout",
+      "origin": "User previously required actual downloadable project/file evidence",
+      "prompt": "请验证上传 PDF、改名为 report.pdf 后，下载得到的文件字节与原上传文件一致。只有失败时才修复，并保留真实浏览器和测试结果。",
+      "expected": "Browser download completes with report.pdf and byte-identical content; no unnecessary source change.",
+      "holdoutNotUsedForTuning": true
+    },
+    {
+      "caseId": "C05",
+      "split": "holdout",
+      "origin": "User's accepted requirement that work survives re-entry",
+      "prompt": "请验证上传 PDF 并改名后刷新页面，文件名和预览仍然存在。只有真实复现丢失时才修复，最后给出浏览器证据。",
+      "expected": "Renamed PDF metadata and blob persist after reload and preview still opens; no unnecessary source change.",
+      "holdoutNotUsedForTuning": true
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "caseId": "C03",
+  "arm": "candidate",
+  "attempt": 1,
+  "executionOrigin": "workbench_native_opencode",
+  "nativeSessionId": "ses_f471197a1ffee8U0eJlBheFAgc",
+  "startedAt": "2026-09-19T09:10:14.734Z",
+  "completedAt": "2026-09-19T09:17:27.909Z",
+  "wallSeconds": 433,
+  "assistantMessages": 24,
+  "toolCalls": 27,
+  "modelRequests": 31,
+  "completedModelRequests": 31,
+  "uncertainDispatches": 0,
+  "outcome": "UNSATISFIED",
+  "independentCompletion": false,
+  "solutionHints": 0,
+  "humanSourceEdits": 0,
+  "environmentRescues": 0,
+  "failures": [
+    "31 dispatches exceeded the frozen limit of 24; session was cancelled. No target source change was made."
+  ],
+  "privateEvidenceRoot": "authorized local v3-engineering-private directory; not committed",
+  "limitations": [
+    "Tokens and monetary cost were unavailable and are not estimated."
+  ]
+}

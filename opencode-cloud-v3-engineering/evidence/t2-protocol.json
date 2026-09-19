@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "frozenAt": "2026-09-19T08:16:00Z",
+  "scope": "Five real cases from the authorized PDF upload/preview project; development attempts before this timestamp are excluded from comparison metrics.",
+  "arms": {
+    "baseline": "accepted v2 runtime behavior: OpenCode 1.18.31, Qwen default, BROWSER_USAGE only, shared gateway 15 second wait and no backend cooldown",
+    "candidate": "r3: same OpenCode/Qwen/tools plus verified read-only project guidance, 120 second gateway wait, 1 second Qwen cooldown, and 30 second continuous-safe lifecycle stop confirmation"
+  },
+  "commonConditions": {
+    "model": "approved/Qwen3.6-35B-A3B",
+    "opencode": "1.18.31",
+    "projectInput": "immutable authorized T0 snapshot for each run",
+    "maxGatewayDispatchesPerRun": 24,
+    "maxWallMinutesPerRun": 20,
+    "maxClarifications": 1,
+    "automaticTaskRetry": false,
+    "humanSourceEdits": 0
+  },
+  "primaryMetric": "Count of cases independently satisfying the stated user behavior without a human solution hint or source edit.",
+  "benefitRule": "Candidate must independently satisfy more cases than baseline, introduce no severe regression, satisfy both holdouts, and keep each completed run within 24 gateway dispatches and 20 minutes.",
+  "costGuardrails": "All dispatches, waits, failures and maintenance intervention are retained. Unknown dispatches are never automatically replayed. A model summary never overrides independent behavior, test, build, or export evidence.",
+  "repeatRule": "C01 is run twice per arm with arm order reversed for the second pair.",
+  "holdoutRule": "C04 and C05 are frozen here and are not used to change guidance or candidate behavior before their runs."
+}

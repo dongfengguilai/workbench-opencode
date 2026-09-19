@@ -1,0 +1,158 @@
+{
+  "schemaVersion": 1,
+  "version": "v3",
+  "track": "v3-engineering-quality",
+  "packageRevision": "engineering-r1",
+  "baseline": "USER_CONFIRMED_ACCEPTED_V0_V1_V2",
+  "shelvedTrack": "shared-business-assistant",
+  "productStatus": "NO_CHANGE_RECOMMENDED",
+  "actualHead": "883659621264f7943758c022f0a35718ada1ac64",
+  "candidateArtifactSha256": "7d1031b62ed7e9a969c57670608c53f50900a1f6c3882a375e9dd2d0fbe37caa",
+  "checks": [
+    {
+      "id": "V3E-A01",
+      "title": "路线与基线保护",
+      "status": "PASS",
+      "evidenceRefs": [
+        "t0-inventory.json"
+      ],
+      "notes": "v0-v2 remain inherited; work was isolated and no retired remote deployment was touched."
+    },
+    {
+      "id": "V3E-A02",
+      "title": "真实案例与对照冻结",
+      "status": "PASS",
+      "evidenceRefs": [
+        "t0-case.json",
+        "t0-inventory.json"
+      ],
+      "notes": "The first real case, frozen input, prompt, behavior, and initial budget were recorded before its candidate; later budget revision is disclosed separately."
+    },
+    {
+      "id": "V3E-A03",
+      "title": "项目指引实际生效且受控",
+      "status": "PASS",
+      "evidenceRefs": [
+        "t1-result.json"
+      ],
+      "notes": "Live native config and mounted instruction digests were verified in the private evidence root."
+    },
+    {
+      "id": "V3E-A04",
+      "title": "首个浏览器真实修复闭环",
+      "status": "PASS",
+      "evidenceRefs": [
+        "t1-result.json"
+      ],
+      "notes": "The r3 repair came from the fixed native OpenCode session with Qwen and no developer source edit."
+    },
+    {
+      "id": "V3E-A05",
+      "title": "原问题复现与行为验证",
+      "status": "PASS",
+      "evidenceRefs": [
+        "t1-result.json"
+      ],
+      "notes": "Before/after browser behavior, 94 tests, and build were independently executed."
+    },
+    {
+      "id": "V3E-A06",
+      "title": "状态不冒充完成",
+      "status": "PASS",
+      "evidenceRefs": [
+        "t1-checkpoint.json",
+        "t1-result.json"
+      ],
+      "notes": "Uncertain, failed, stopped, over-budget, and model-summary mismatch records were retained and not promoted to PASS."
+    },
+    {
+      "id": "V3E-A07",
+      "title": "成果字节与验证版本一致",
+      "status": "PASS",
+      "evidenceRefs": [
+        "t1-result.json"
+      ],
+      "notes": "Actual ZIP and patch byte digests each passed clean install/test/build; patch also passed clean apply."
+    },
+    {
+      "id": "V3E-A08",
+      "title": "用户可判断交付限制",
+      "status": "PASS",
+      "evidenceRefs": [
+        "t1-result.json"
+      ],
+      "notes": "Native results, Diff/change inspection, source ZIP and patch remain available; independent evidence explicitly separates self-check and acceptance limits."
+    },
+    {
+      "id": "V3E-A09",
+      "title": "第二真实任务与保留比较",
+      "status": "PASS",
+      "evidenceRefs": [
+        "comparison.json",
+        "case-c01.json",
+        "case-c02.json",
+        "case-c03.json",
+        "case-c04.json",
+        "case-c05.json"
+      ],
+      "notes": "Five real cases, repeated primary runs, two holdouts, and all formal attempts are recorded; failures are retained."
+    },
+    {
+      "id": "V3E-A10",
+      "title": "预算、故障和取消",
+      "status": "PASS",
+      "evidenceRefs": [
+        "benefit-review.json",
+        "runs/C03-candidate-1.json",
+        "runs/C04-candidate-1.json",
+        "runs/C05-candidate-1.json",
+        "runs/C05-candidate-2.json"
+      ],
+      "notes": "Frozen dispatch limits were enforced. Over-budget sessions were cancelled; uncertain C04 work was not replayed and was reconciled only after authenticated backend idle evidence."
+    },
+    {
+      "id": "V3E-A11",
+      "title": "停止重进与安全保持",
+      "status": "PASS",
+      "evidenceRefs": [
+        "rollback-to-v2.json"
+      ],
+      "notes": "The isolated candidate was safely stopped, v2 re-entered with 46 sessions including the expected candidate sessions, project source stayed unchanged, and the space returned to STOPPED without force."
+    },
+    {
+      "id": "V3E-A12",
+      "title": "小范围发布、回退和来源",
+      "status": "FAIL",
+      "evidenceRefs": [
+        "rollback-to-v2.json",
+        "benefit-review.json"
+      ],
+      "notes": "Fixed r4 was exercised and rolled back to v2, but intentionally was not redeployed because the frozen benefit rule failed. No production or retired remote deployment was touched."
+    },
+    {
+      "id": "V3E-A13",
+      "title": "观察到的收益可解释",
+      "status": "FAIL",
+      "evidenceRefs": [
+        "benefit-review.json",
+        "comparison.json"
+      ],
+      "notes": "Repeated C01 improved, but C02 behavior failed and both holdouts exceeded budget. Overall benefit was not demonstrated."
+    },
+    {
+      "id": "V3E-A14",
+      "title": "用户实际签收",
+      "status": "NOT_RUN",
+      "evidenceRefs": [],
+      "notes": "No v3 candidate is offered for acceptance because the comparison concluded NO_CHANGE_RECOMMENDED."
+    }
+  ],
+  "humanAcceptance": {
+    "status": "NOT_RUN",
+    "quote": "",
+    "timestamp": "",
+    "scope": "",
+    "artifactSha256": "",
+    "evidenceRef": ""
+  }
+}

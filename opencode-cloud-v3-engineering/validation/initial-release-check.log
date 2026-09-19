@@ -1,0 +1,59 @@
+KIT_STRUCTURE_OK: 28 local links checked. Product implementation is not evaluated.
+RELEASE_BLOCKED: record checks failed; no deployment was attempted.
+- product is not a release candidate
+- actual implementation commit required
+- candidate artifact SHA256 required
+- V3E-A01: not PASS
+- V3E-A01: evidence required
+- V3E-A02: not PASS
+- V3E-A02: evidence required
+- V3E-A03: not PASS
+- V3E-A03: evidence required
+- V3E-A04: not PASS
+- V3E-A04: evidence required
+- V3E-A05: not PASS
+- V3E-A05: evidence required
+- V3E-A06: not PASS
+- V3E-A06: evidence required
+- V3E-A07: not PASS
+- V3E-A07: evidence required
+- V3E-A08: not PASS
+- V3E-A08: evidence required
+- V3E-A09: not PASS
+- V3E-A09: evidence required
+- V3E-A10: not PASS
+- V3E-A10: evidence required
+- V3E-A11: not PASS
+- V3E-A11: evidence required
+- V3E-A12: not PASS
+- V3E-A12: evidence required
+- V3E-A13: not PASS
+- V3E-A13: evidence required
+- V3E-A14: not PASS
+- V3E-A14: evidence required
+- human acceptance is not recorded
+- human acceptance quote required
+- human acceptance timestamp required
+- human acceptance scope required
+- human acceptance: invalid evidence reference
+- comparison is not complete
+- protocol was not declared frozen before candidate runs
+- protocol frozenAt required
+- protocol primaryMetric required
+- protocol benefitRule required
+- protocol costGuardrails required
+- frozen protocol: invalid evidence reference
+- comparison sameInputsAndModel not confirmed
+- comparison allAttemptsRetained not confirmed
+- comparison holdoutUseDisclosed not confirmed
+- comparability review: invalid evidence reference
+- benefit has not been demonstrated
+- benefit primaryMetricImproved not confirmed
+- benefit noMaterialRegression not confirmed
+- benefit withinCostGuardrails not confirmed
+- benefit report: invalid evidence reference
+- actual case count must match nonempty case records
+- 5–8 cases required unless a scope change is recorded
+- case selection: invalid evidence reference
+- at least one disclosed holdout case is required
+- repeat the primary case in both arms at least once

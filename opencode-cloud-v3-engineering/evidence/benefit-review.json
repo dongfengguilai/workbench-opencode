@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-09-19T09:38:00Z",
+  "protocolRef": "t2-protocol-r4.json",
+  "cases": 5,
+  "baselineSatisfied": 0,
+  "candidateSatisfied": 2,
+  "holdoutsPassed": 0,
+  "candidateOverBudgetCases": [
+    "C03",
+    "C04",
+    "C05"
+  ],
+  "candidateFunctionalFailures": [
+    "C02"
+  ],
+  "conclusion": "NO_CHANGE_RECOMMENDED",
+  "reason": "The frozen benefit rule required both holdouts, no severe regression, and every completed run within 24 dispatches. r4 failed those conditions despite repeated C01 success. Preserve accepted v2 and do not publish r4.",
+  "limitations": [
+    "Small real-case set supports only this decision, not a general model-quality claim.",
+    "Baseline failures were infrastructure blocks from the accepted 15-second gateway policy; they were retained rather than replayed.",
+    "C04 cancellation created one uncertain request; it was reconciled only after authenticated backend idle observation."
+  ]
+}

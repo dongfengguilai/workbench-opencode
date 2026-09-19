@@ -1,0 +1,71 @@
+{
+  "schemaVersion": 1,
+  "caseId": "",
+  "kind": "real",
+  "split": "development",
+  "selection": {
+    "originRef": "",
+    "authorizedProject": "",
+    "createdBeforeCandidateRun": null,
+    "expectedBehavior": "",
+    "userPrompt": "",
+    "acceptanceRef": "",
+    "acceptanceSha256": "",
+    "holdoutNotUsedForTuning": null
+  },
+  "input": {
+    "projectCommit": "",
+    "workingTreeManifestSha256": "",
+    "lockfileSha256": "",
+    "userChangesPreserved": null
+  },
+  "conditions": {
+    "opencodeArtifact": "",
+    "modelRoute": "",
+    "modelVersionKnown": null,
+    "parametersRef": "",
+    "budgetRef": "",
+    "environmentRef": "",
+    "coldOrWarm": "",
+    "primaryVariable": ""
+  },
+  "runs": [],
+  "runRecordFields": {
+    "arm": "baseline_or_candidate",
+    "attempt": null,
+    "nativeSessionId": "",
+    "nativeMessageIds": [],
+    "artifactSha256": "",
+    "contextSha256": "",
+    "executionOrigin": "workbench_native_opencode",
+    "independentCompletion": null,
+    "outcome": "NOT_RUN",
+    "clarifications": null,
+    "solutionHints": null,
+    "humanSourceEdits": null,
+    "environmentRescues": null,
+    "humanMinutes": null,
+    "wallSeconds": null,
+    "queueSeconds": null,
+    "coldStartSeconds": null,
+    "modelRequests": null,
+    "tokens": null,
+    "cost": null,
+    "requirementResults": [],
+    "sourceManifestSha256": "",
+    "evidenceRefs": [],
+    "zip": {
+      "sha256": "",
+      "cleanReproduction": "NOT_RUN",
+      "evidenceRef": ""
+    },
+    "patch": {
+      "sha256": "",
+      "cleanReproduction": "NOT_RUN",
+      "evidenceRef": ""
+    },
+    "failures": [],
+    "limitations": []
+  },
+  "notes": "Template only. Empty values are unknown, not zero or passed. Fill real runs without overwriting failed attempts."
+}

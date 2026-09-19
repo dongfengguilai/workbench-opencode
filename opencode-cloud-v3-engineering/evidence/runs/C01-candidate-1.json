@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "caseId": "C01",
+  "arm": "candidate",
+  "attempt": 1,
+  "executionOrigin": "workbench_native_opencode",
+  "nativeSessionId": "ses_f47215cd2ffeHCAToI66rxWG9O",
+  "startedAt": "2026-09-19T08:53:00.459Z",
+  "completedAt": "2026-09-19T08:57:48.368Z",
+  "wallSeconds": 288,
+  "assistantMessages": 6,
+  "toolCalls": 11,
+  "modelRequests": 13,
+  "completedModelRequests": 13,
+  "uncertainDispatches": 0,
+  "outcome": "SATISFIED",
+  "independentCompletion": true,
+  "solutionHints": 0,
+  "humanSourceEdits": 0,
+  "environmentRescues": 0,
+  "failures": [],
+  "privateEvidenceRoot": "authorized local v3-engineering-private directory; not committed",
+  "limitations": [
+    "Tokens and monetary cost were unavailable and are not estimated."
+  ],
+  "independentEvidence": {
+    "tests": "94/94 PASS",
+    "build": "PASS",
+    "browser": "CON.pdf rename rejected and report.pdf accepted"
+  }
+}

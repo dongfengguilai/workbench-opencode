@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "caseId": "C03",
+  "arm": "baseline",
+  "attempt": 1,
+  "executionOrigin": "workbench_native_opencode",
+  "nativeSessionId": "ses_f473e4250ffe2NffW0T5WnLLrA",
+  "startedAt": "2026-09-19T08:21:28.051Z",
+  "completedAt": "2026-09-19T08:21:57.439Z",
+  "wallSeconds": 29,
+  "assistantMessages": 1,
+  "toolCalls": 0,
+  "modelRequests": 2,
+  "completedModelRequests": 1,
+  "uncertainDispatches": 1,
+  "outcome": "BLOCKED",
+  "independentCompletion": false,
+  "solutionHints": 0,
+  "humanSourceEdits": 0,
+  "environmentRescues": 0,
+  "failures": [
+    "Accepted v2 gateway timed out after dispatch on slow Qwen; no tool ran. The uncertain request was not replayed and was reconciled after authenticated backend idle observation."
+  ],
+  "privateEvidenceRoot": "authorized local v3-engineering-private directory; not committed",
+  "limitations": [
+    "Tokens and monetary cost were unavailable and are not estimated."
+  ]
+}

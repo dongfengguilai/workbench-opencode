@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "capturedAt": "2026-09-19T08:18:00Z",
+  "status": "SUPERSEDED_BY_R3_PASS",
+  "case": "PDF rename accepts Windows reserved device names",
+  "frozenPrompt": "我在网页上传一个 PDF 后，把它重命名为 CON.pdf，页面竟然接受了；这个文件下载到 Windows 有问题。请修好，并确认普通名称仍可用。",
+  "baseline": {
+    "tests": "94/94 PASS",
+    "build": "PASS",
+    "browserReproduction": "CON.pdf accepted before repair",
+    "nativeAttempts": [
+      "Luna returned an upstream capacity failure",
+      "two Qwen dispatches became uncertain while the 15 second shared-gateway queue wait expired behind title generation"
+    ]
+  },
+  "candidateR1": {
+    "change": "shared gateway waitMs 120000 and Qwen cooldownMs 1000",
+    "nativeOpenCodeCompleted": true,
+    "humanSourceEdits": 0,
+    "toolCalls": 18,
+    "gatewayDispatches": 21,
+    "budgetLimit": 12,
+    "budgetResult": "FAIL",
+    "independentTests": "94/94 PASS",
+    "independentBuild": "PASS",
+    "browserBehavior": "report.pdf accepted; con.PDF rejected with the expected visible error",
+    "cleanZipReproduction": "PASS",
+    "cleanPatchReproduction": "PASS",
+    "modelSummaryMismatch": "The model said 80 tests; independent evidence shows 94 tests",
+    "privateEvidenceRoot": "v3-engineering-private"
+  },
+  "candidateR2": {
+    "trustedGuidanceLoaded": true,
+    "gatewayDispatchesBeforeStop": 14,
+    "originalBudgetResult": "FAIL",
+    "lifecycleResult": "FAIL: automatic stop raced a transient native idle interval",
+    "sourceRepairWasPresentAtStop": true
+  },
+  "candidateR3": "See t1-result.json",
+  "decision": "Do not release r1 or r2. r3 passed a separately frozen experiment after the original 12-dispatch assumption was retired explicitly; proceed to the predeclared multi-case comparison before any release claim."
+}

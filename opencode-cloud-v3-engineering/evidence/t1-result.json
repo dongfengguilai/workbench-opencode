@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "status": "PASS",
+  "candidate": "r3",
+  "case": "PDF rename rejects Windows reserved device names",
+  "execution": {
+    "origin": "workbench_native_opencode",
+    "session": "ses_f474d92a7ffeUIHGbsFS7hRXS8",
+    "model": "approved/Qwen3.6-35B-A3B",
+    "opencode": "1.18.31",
+    "wallSeconds": 248,
+    "nativeAssistantMessages": 6,
+    "nativeToolCalls": 10,
+    "gatewayDispatches": 11,
+    "gatewayCompleted": 11,
+    "gatewayUncertain": 0,
+    "humanSourceEdits": 0
+  },
+  "candidateChanges": [
+    "bounded shared-gateway wait increased to 120000 ms for slow Qwen serialization",
+    "Qwen backend release cooldown set to 1000 ms",
+    "verified project context and short engineering guidance mounted read-only",
+    "automatic lifecycle stop now requires a continuously safe 30 second interval"
+  ],
+  "independentAcceptance": {
+    "unitTests": "94/94 PASS",
+    "build": "PASS",
+    "browser": "report.pdf accepted; con.PDF rejected with the expected visible error; original valid name retained",
+    "sourceZip": {
+      "sha256": "5e0e9a0671f57727412418c50db909e59c26b5eff131576be4ad1632f4776312",
+      "cleanTests": "94/94 PASS",
+      "cleanBuild": "PASS"
+    },
+    "patch": {
+      "sha256": "f6ce9de4b5b49d00e970d2fe67a5925a8caeb98a3e357b8b5d495ca1e33c1936",
+      "cleanApply": "PASS",
+      "cleanTests": "94/94 PASS",
+      "cleanBuild": "PASS"
+    }
+  },
+  "retainedFailures": [
+    "v2 baseline Luna upstream capacity failure",
+    "two v2 Qwen requests became uncertain behind the 15 second queue wait",
+    "r1 functionally passed but exceeded the original 12-dispatch budget with 21 dispatches",
+    "r2 exceeded the original budget at 14 dispatches and exposed an automatic-stop race",
+    "r2 initial browser automation failed before model submission while the lifecycle controller was unavailable"
+  ],
+  "truthfulness": "The r1 model summary said 80 tests while independent execution showed 94; the independent result is authoritative. r3 used a separately frozen 24-dispatch budget and is not merged into the earlier 12-dispatch comparison.",
+  "privateEvidenceRoot": "/home/vmware/Workspace/programs/WorkBench/acceptance/v3-engineering-private"
+}

@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "caseId": "pdf-windows-device-rename",
+  "kind": "real",
+  "split": "development",
+  "origin": "User-authorized learn PDF upload/preview project; browser path accepts a Windows reserved device name although helper validation rejects it.",
+  "project": "isolated authorized learn capture",
+  "createdBeforeCandidateRun": true,
+  "userPrompt": "我在网页上传一个 PDF 后，把它重命名为 CON.pdf，页面竟然接受了；这个文件下载到 Windows 有问题。请修好，并确认普通名称仍可用。",
+  "expectedBehavior": [
+    "Browser rename rejects CON.pdf case-insensitively with a visible error",
+    "Normal report.pdf rename remains accepted",
+    "Relevant test and production build pass",
+    "Existing user changes remain"
+  ],
+  "baselineBudget": {
+    "modelRequestsMax": 12,
+    "wallMinutesMax": 20,
+    "clarificationMax": 1,
+    "automaticRetry": false
+  },
+  "primaryMetric": "Independent requirement satisfaction without solution hints or human source edits",
+  "candidateHypothesis": "A short, verified, read-only project guide plus explicit behavior-verification guidance will make OpenCode connect shared validation to the browser path and verify the actual UI, reducing false completion from unit tests alone.",
+  "costGuardrails": "Same Qwen route, OpenCode 1.18.31, permissions, workspace, network, max 12 requests and 20 minutes; no core or tool changes."
+}

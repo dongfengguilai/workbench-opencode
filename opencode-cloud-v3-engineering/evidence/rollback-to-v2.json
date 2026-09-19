@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "performedAt": "2026-09-19T09:37:41Z",
+  "scope": "isolated v2 checkpoint only",
+  "candidateArtifactSha256": "7d1031b62ed7e9a969c57670608c53f50900a1f6c3882a375e9dd2d0fbe37caa",
+  "restoredArtifactSha256": "07b02dd95ddc77d3f1ee8c61ec26ab9f395e916d806aeca29c53cef6154a4153",
+  "result": "PASS",
+  "details": {
+    "v2ComposeForAllChecked": true,
+    "reentered": true,
+    "sessionCount": 46,
+    "finalState": "STOPPED",
+    "forced": false,
+    "projectT0Hashes": {
+      "upload-download.html": "cce0dc3c5f913aa087c51c78e60e714c387395c0fd4b2f1d06f34369a36718c0",
+      "web/index.html": "52f0be2e42efba1a531768ff4314f8d4590fe5e15302d8be965b3da8ea34971a"
+    },
+    "stateFilesChangedDuringReentry": [
+      "state/data/opencode/log/opencode.log",
+      "state/data/opencode/opencode.db-shm",
+      "state/data/opencode/opencode.db-wal"
+    ],
+    "projectFilesChangedDuringReentry": []
+  },
+  "resourceNamesChanged": false,
+  "retiredRemoteTouched": false,
+  "productionTouched": false,
+  "privateEvidence": "authorized v3-engineering-private/rollback-to-v2 directory"
+}

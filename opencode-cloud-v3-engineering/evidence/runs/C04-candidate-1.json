@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "caseId": "C04",
+  "arm": "candidate",
+  "attempt": 1,
+  "executionOrigin": "workbench_native_opencode",
+  "nativeSessionId": "ses_f470a0c07ffeXSL8QE1kDqpV0F",
+  "startedAt": "2026-09-19T09:18:30.229Z",
+  "completedAt": "2026-09-19T09:22:47.513Z",
+  "wallSeconds": 257,
+  "assistantMessages": 34,
+  "toolCalls": 46,
+  "modelRequests": 35,
+  "completedModelRequests": 34,
+  "uncertainDispatches": 1,
+  "outcome": "UNSATISFIED",
+  "independentCompletion": false,
+  "solutionHints": 0,
+  "humanSourceEdits": 0,
+  "environmentRescues": 1,
+  "failures": [
+    "35 dispatches exceeded the frozen limit of 24; session was cancelled. One in-flight request became uncertain and was reconciled only after authenticated backend slots reported idle. No target source change was made."
+  ],
+  "privateEvidenceRoot": "authorized local v3-engineering-private directory; not committed",
+  "limitations": [
+    "Tokens and monetary cost were unavailable and are not estimated."
+  ]
+}

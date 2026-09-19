@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "capturedAt": "2026-09-19T07:17:40.804416+00:00",
+  "workbenchHead": "883659621264f7943758c022f0a35718ada1ac64",
+  "track": "v3-engineering-quality",
+  "shelvedTrackLoaded": false,
+  "project": "authorized learn capture in isolated v2 checkpoint",
+  "projectGitHead": "53b73c2d0d2e54a82d3f5067838404a07a803c06",
+  "workingTreeStatus": [
+    " M src/validation.js",
+    " M test/validation.test.mjs",
+    " M web/src/validation.js",
+    "?? .workbench-artifacts/",
+    "?? T4_RELEASE_ROLLBACK.txt",
+    "?? src/t4-label.js",
+    "?? test/t4-label.test.mjs"
+  ],
+  "manifestSha256": "2608698f326b2b3226632d2eb48d5e65819f073b0657d6062303cdce2a21367a",
+  "manifestFileCount": 15,
+  "v2Artifact": "sha256:07b02dd95ddc77d3f1ee8c61ec26ab9f395e916d806aeca29c53cef6154a4153",
+  "opencodeVersion": "1.18.31",
+  "model": "approved/Qwen3.6-35B-A3B"
+}

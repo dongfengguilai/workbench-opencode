@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "caseId": "C02",
+  "arm": "candidate",
+  "attempt": 1,
+  "executionOrigin": "workbench_native_opencode",
+  "nativeSessionId": "ses_f47177ea3ffeHrAvujoziwtdOF",
+  "startedAt": "2026-09-19T09:03:49.137Z",
+  "completedAt": "2026-09-19T09:06:13.828Z",
+  "wallSeconds": 145,
+  "assistantMessages": 11,
+  "toolCalls": 19,
+  "modelRequests": 12,
+  "completedModelRequests": 12,
+  "uncertainDispatches": 0,
+  "outcome": "UNSATISFIED",
+  "independentCompletion": false,
+  "solutionHints": 0,
+  "humanSourceEdits": 0,
+  "environmentRescues": 0,
+  "failures": [
+    "OpenCode edited the standalone upload-download.html, while the served web/index.html still accepted CON.pdf in independent browser verification."
+  ],
+  "privateEvidenceRoot": "authorized local v3-engineering-private directory; not committed",
+  "limitations": [
+    "Tokens and monetary cost were unavailable and are not estimated."
+  ],
+  "independentEvidence": {
+    "tests": "94/94 PASS",
+    "build": "PASS",
+    "browser": "FAIL: served application accepted CON.pdf"
+  }
+}
