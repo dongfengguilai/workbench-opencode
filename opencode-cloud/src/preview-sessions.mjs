@@ -10,5 +10,9 @@ export class PreviewSessions {
  claim(token){const entry=this.takeTicket(token);if(!entry)return;const credential=randomBytes(32).toString('base64url');this.credentials.set(digest(credential),{hash:entry.hash,expires:this.now()+this.credentialTtl});return credential;}
  current(token){const entry=this.credentials.get(digest(token||''));if(!entry||entry.expires<=this.now())return;const identity=this.parent(entry.hash);return identity?{...identity,credentialExpires:entry.expires}:undefined;}
  sweep(){for(const [key,e] of this.tickets)if(e.expires<=this.now()||!this.parent(e.hash))this.tickets.delete(key);for(const [key,e] of this.credentials)if(e.expires<=this.now()||!this.parent(e.hash)){this.credentials.delete(key);this.close(key);}}
+ revokeParent(hash){
+  for(const [key,e] of this.tickets)if(e.hash===hash)this.tickets.delete(key);
+  for(const [key,e] of this.credentials)if(e.hash===hash){this.credentials.delete(key);this.close(key);}
+ }
  connectionKey(token){return 'preview:'+digest(token||'');}
 }

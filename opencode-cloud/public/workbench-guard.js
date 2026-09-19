@@ -22,3 +22,5 @@ async function checkNativeOutcome(){
 setInterval(checkNativeOutcome,5000);checkNativeOutcome();
 
 window.addEventListener('keydown',event=>{if((event.ctrlKey||event.metaKey)&&event.key===','){event.preventDefault();event.stopImmediatePropagation();}},true);
+// Effective activity is emitted only for a visible page and a real local user event.
+(()=>{let last=0;const report=event=>{if(event&&!event.isTrusted)return;if(document.visibilityState!=='visible')return;const now=Date.now();if(now-last<15000)return;last=now;fetch('/__platform/space/activity',{method:'POST',headers:{'Content-Type':'application/json'},body:'{}',keepalive:true}).catch(()=>{});};for(const type of ['pointerdown','keydown','input'])window.addEventListener(type,report,{capture:true,passive:true});document.addEventListener('visibilitychange',event=>{if(document.visibilityState==='visible')report(event);});window.addEventListener('focus',report);})();

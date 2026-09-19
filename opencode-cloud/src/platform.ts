@@ -10,6 +10,7 @@ import {previewPlatform} from './preview-platform.ts';
 import {workbenchOrigin,previewOrigin,configureOrigins,formalOrigins,sessionCookieName} from './preview-origin.mjs';
 import {WorkbenchHandoff} from './workbench-handoff.mjs';
 import {sameSecret} from './preview-sessions.mjs';
+import {LifecycleClient} from './lifecycle-client.ts';
 type User={password?:string,passwordHash?:string,authProvider?:Account['authProvider'],role?:Account['role'],projectName?:string,displayName:string,enabled:boolean,environment:string,nativePassword:string};
 type Config={origin:string,sessionTtl:number,previewRelayKey?:string,users:Record<string,User>,publicOrigins?:Record<string,{workbench:string,preview:string}>,cookieNames?:Record<string,{session:string,preview:string}>,auth?:{mode:'netid'|'mixed'|'development',baseUrl?:string}};
 type Session={user:string,expires:number};
@@ -27,6 +28,7 @@ const origin=new URL(initial.origin);
 if(origin.protocol!=='https:')throw new Error('HTTPS origin required');
 mkdirSync('/platform-state',{recursive:true});
 const sessionFile='/platform-state/sessions.json';
+const lifecycle=process.env.WORKBENCH_LIFECYCLE_SOCKET?new LifecycleClient(process.env.WORKBENCH_LIFECYCLE_SOCKET):undefined;
 let sessions:Record<string,Session>={};
 try{sessions=JSON.parse(readFileSync(sessionFile,'utf8'));}catch(e:any){if(e.code!=='ENOENT')throw e;}
 function persist(){const p=sessionFile+'.tmp';writeFileSync(p,JSON.stringify(sessions),{mode:0o600});renameSync(p,sessionFile);}
@@ -42,9 +44,11 @@ function current(req:any){
  if(!ownedBrowser(req,s.user))return;
  return {hash,session:s,user,username:s.user};
 }
-setInterval(()=>{try{const cfg=config();for(const [h,s] of Object.entries(sessions))if(s.expires<=Date.now()||!cfg.users[s.user]?.enabled){closeSession(h);delete sessions[h];persist();}}catch{for(const h of connections.keys())closeSession(h);}},2000).unref();
+async function cancelQueuedSpace(username:string){if(!lifecycle)return;try{await lifecycle.apply(username,'cancel',randomBytes(18).toString('base64url'));}catch{}}
+setInterval(async()=>{try{const cfg=config();let changed=false;for(const [h,s] of Object.entries(sessions))if(s.expires<=Date.now()||!cfg.users[s.user]?.enabled){closeSession(h);delete sessions[h];changed=true;await cancelQueuedSpace(s.user);}if(changed)persist();}catch{for(const h of connections.keys())closeSession(h);}},2000).unref();
 function json(res:any,status:number,body:any){res.writeHead(status,{'Content-Type':'application/json','Cache-Control':'no-store'});res.end(JSON.stringify(body));}
 const loginHtml=readFileSync('/public/login.html');
+const spaceHtml=lifecycle?readFileSync('/public/space.html'):undefined;
 const hostedUi=process.env.PLATFORM_UI==='workbench'?loadUi('/public/workbench-ui'):undefined;
 const anonymousAssets:Record<string,string>={'login.css':'text/css','login.js':'application/javascript','theme.js':'application/javascript','logo.svg':'image/svg+xml','logo-dark.svg':'image/svg+xml','favicon.svg':'image/svg+xml'};
 const previews=previewPlatform({parent:hash=>{const s=sessions[hash];const user=s&&config().users[s.user];return s&&s.expires>Date.now()&&user?.enabled?{hash,user,username:s.user}:undefined;},register,closeSession,relayKey:()=>config().previewRelayKey||''});
@@ -92,7 +96,7 @@ const server=https.createServer({key:readFileSync('/trusted/tls.key'),cert:readF
   }
   if(p==='/api/auth/logout'&&req.method==='POST'){
    const name=sessionCookieName(browserOrigin(req));if(!name){error(res,403,'Unrecognized logout origin');return;}
-   const previous=current(req);if(previous&&ownedBrowser(req,previous.username)){delete sessions[previous.hash];closeSession(previous.hash);persist();}
+   const previous=current(req);if(previous&&ownedBrowser(req,previous.username)){delete sessions[previous.hash];closeSession(previous.hash);persist();await cancelQueuedSpace(previous.username);}
    res.setHeader('Set-Cookie',`${name}=; Path=/; Max-Age=0; HttpOnly; Secure; SameSite=Lax`);res.setHeader('Clear-Site-Data','"cache", "storage"');res.writeHead(204);res.end();return;
   }
   const identity=current(req);
@@ -104,6 +108,35 @@ const server=https.createServer({key:readFileSync('/trusted/tls.key'),cert:readF
   const browser=browserOrigin(req);const route=p.match(/^\/server\/([A-Za-z0-9_-]+)\/session\/(ses_[\w-]+)$/);
   if(browser===workbenchOrigin(identity.username)&&req.method==='GET'&&route&&route[1]!==Buffer.from(browser).toString('base64url')){res.writeHead(303,{'Location':'/server/'+Buffer.from(browser).toString('base64url')+'/session/'+route[2]});res.end();return;}
   const opts={target:identity.user.environment,password:identity.user.nativePassword,register:register(identity.hash)};
+  if(lifecycle&&p==='/__platform/space'&&req.method==='GET'){
+   json(res,200,await lifecycle.apply(identity.username,'status'));return;
+  }
+  if(lifecycle&&p==='/__platform/space/activity'&&req.method==='POST'){
+   const body=await readBody(req);if(Object.keys(body||{}).length){error(res,403,'Activity takes no arguments');return;}
+   json(res,200,await lifecycle.apply(identity.username,'activity'));return;
+  }
+  if(lifecycle&&p==='/__platform/space'&&req.method==='POST'){
+   const body=await readBody(req);const keys=body&&typeof body==='object'?Object.keys(body):[];
+   if(keys.some(key=>!['action','requestId'].includes(key))||!['enter','stop','cancel'].includes(body?.action)){error(res,403,'Fixed lifecycle action required');return;}
+   const result=await lifecycle.apply(identity.username,body.action,body.requestId);
+   if(result.state==='STOPPED'){previews.revoke(identity.hash);closeSession(identity.hash);}
+   json(res,200,result);return;
+  }
+  if(lifecycle&&['/__platform/space.css','/__platform/space.js'].includes(p)&&req.method==='GET'){
+   const name=p.split('/').pop()!;res.setHeader('Content-Type',name.endsWith('.css')?'text/css':'application/javascript');res.end(readFileSync('/public/'+name));return;
+  }
+  const spaceState=lifecycle?await lifecycle.apply(identity.username,'status'):undefined;
+  if(lifecycle&&p==='/__platform/me'&&req.method==='GET'){
+   if(spaceState!.state!=='READY'){json(res,200,{user_id:identity.username,display_name:identity.user.displayName,role:identity.user.role||'engineer',auth_provider:identity.user.authProvider||(config().auth?'netid':'local-admin'),project:identity.user.projectName||'workbench-opencode',directory:'/workspace/project',ready:false,space:spaceState});return;}
+   const health=await fetch(new URL('/global/health',opts.target),{headers:{Authorization:'Basic '+Buffer.from('opencode:'+opts.password).toString('base64')},signal:AbortSignal.timeout(5000)});
+   json(res,200,{user_id:identity.username,display_name:identity.user.displayName,role:identity.user.role||'engineer',auth_provider:identity.user.authProvider||(config().auth?'netid':'local-admin'),project:identity.user.projectName||'workbench-opencode',directory:'/workspace/project',ready:health.ok,space:spaceState,project_url:'/L3dvcmtzcGFjZS9wcm9qZWN0/session',workbench_origin:workbenchOrigin(identity.username),preview_origin:previewOrigin(identity.username),embedded_preview:browserOrigin(req)===workbenchOrigin(identity.username)});return;
+  }
+  if(lifecycle&&spaceState!.state!=='READY'){
+   if(req.method==='GET'&&req.headers.accept?.includes('text/html')&&uiPage(p)){
+    res.setHeader('Content-Type','text/html; charset=utf-8');res.setHeader('Content-Security-Policy',"default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self'; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'");res.end(spaceHtml);return;
+   }
+   error(res,409,'Workspace is not ready; enter it before using OpenCode');return;
+  }
   if(p==='/__platform/preview/ticket'&&req.method==='POST'){if(new URL(req.url!,origin).search||Object.keys(await readBody(req)||{}).length){error(res,403,'Preview takes no routing arguments');return;}json(res,200,previews.ticket(identity.hash,browserOrigin(req)===workbenchOrigin(identity.username)));return;}
   if(/^\/__platform\/preview\/(status|start|stop|log|verification|screenshot)$/.test(p)){
    const action=p.split('/').pop()!;if(!((['start','stop'].includes(action)&&req.method==='POST')||(!['start','stop'].includes(action)&&req.method==='GET'))){error(res,403,'Fixed preview method required');return;}
@@ -153,7 +186,8 @@ const server=https.createServer({key:readFileSync('/trusted/tls.key'),cert:readF
 server.on('upgrade',(req,socket,head)=>{
  if(req.headers.host===origin.host&&req.url?.startsWith('/__preview/')){previews.upgrade(req,socket,head);return;}
  try{const identity=current(req);if(!identity||!ownedBrowser(req,identity.username)||req.headers.origin!==origin.origin||req.headers.host!==origin.host){socket.end('HTTP/1.1 401 Unauthorized\r\n\r\n');return;}
- upgrade(req,socket,head,{target:identity.user.environment,password:identity.user.nativePassword,register:register(identity.hash)});
+  if(lifecycle){lifecycle.apply(identity.username,'status').then(state=>{if(state.state!=='READY'){socket.end('HTTP/1.1 409 Conflict\r\nConnection: close\r\n\r\n');return;}upgrade(req,socket,head,{target:identity.user.environment,password:identity.user.nativePassword,register:register(identity.hash)});}).catch(()=>socket.destroy());return;}
+  upgrade(req,socket,head,{target:identity.user.environment,password:identity.user.nativePassword,register:register(identity.hash)});
  }catch{socket.destroy();}
 });
 // Upgraded/rejected WebSocket clients may reset TLS before proxy setup finishes.

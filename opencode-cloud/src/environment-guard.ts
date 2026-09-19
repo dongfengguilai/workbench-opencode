@@ -8,6 +8,7 @@ import {previewProxy,previewUpgrade} from './preview-proxy.mjs';
 import {mkdtemp,mkdir,rm} from 'node:fs/promises';
 import {tmpdir} from 'node:os';
 import path from 'node:path';
+import {LifecycleBarrier} from './lifecycle-barrier.ts';
 const password=process.env.OPENCODE_SERVER_PASSWORD;
 const baseline=process.env.PROJECT_BASELINE;
 if(!password||!baseline)throw new Error('Missing instance secrets or fixed project baseline');
@@ -18,8 +19,18 @@ function authorized(req:http.IncomingMessage) {
 const target='http://127.0.0.1:4030';
 const preview=previewRuntime('Basic '+Buffer.from('opencode:'+password).toString('base64'));
 let exporting=false;
+const lifecycle=new LifecycleBarrier();
 const server=http.createServer(async(req,res)=>{
  if(!authorized(req)){error(res,401,'Instance authentication required');return;}
+ const pathname=new URL(req.url||'/',target).pathname;
+ if(pathname==='/__lifecycle/status'&&req.method==='GET'){
+  try{res.writeHead(200,{'Content-Type':'application/json','Cache-Control':'no-store'});res.end(JSON.stringify({barrier:lifecycle.state(),exporting,preview:await preview.status()}));}
+  catch{error(res,503,'Lifecycle state observation unavailable');}
+  return;
+ }
+ if(pathname==='/__lifecycle/drain'&&req.method==='POST'){lifecycle.drain();res.writeHead(204,{'Cache-Control':'no-store'});res.end();return;}
+ if(pathname==='/__lifecycle/resume'&&req.method==='POST'){lifecycle.resume();res.writeHead(204,{'Cache-Control':'no-store'});res.end();return;}
+ if(!lifecycle.allows(req.method,pathname)){error(res,409,'Environment is draining');return;}
  if(req.url?.startsWith('/__preview-app/')){previewProxy(req,res,{target:'http://127.0.0.1:5173',pathname:req.url.slice('/__preview-app'.length)});return;}
  if(req.url?.startsWith('/__preview-control/')){
   try{const p=new URL(req.url,'http://fixed');const action=p.pathname.slice('/__preview-control/'.length);
@@ -52,5 +63,13 @@ const server=http.createServer(async(req,res)=>{
  }
  await forward(req,res,{target,password,checkFiles:true,busy:true});
 });
-server.on('upgrade',(req,socket,head)=>{if(!authorized(req)){socket.end('HTTP/1.1 401 Unauthorized\r\n\r\n');return;}if(req.url?.startsWith('/__preview-app/')){previewUpgrade(req,socket,head,{target:'http://127.0.0.1:5173',pathname:req.url.slice('/__preview-app'.length)});return;}upgrade(req,socket,head,{target,password});});
+server.on('upgrade',(req,socket,head)=>{
+ if(!authorized(req)){socket.end('HTTP/1.1 401 Unauthorized\r\n\r\n');return;}
+ const pathname=new URL(req.url||'/',target).pathname;
+ if(!lifecycle.allows('POST',pathname)){socket.end('HTTP/1.1 409 Conflict\r\nConnection: close\r\n\r\n');return;}
+ const unregister=lifecycle.register(()=>socket.destroy());socket.once('close',unregister);
+ if(socket.destroyed)return;
+ if(req.url?.startsWith('/__preview-app/')){previewUpgrade(req,socket,head,{target:'http://127.0.0.1:5173',pathname:req.url.slice('/__preview-app'.length)});return;}
+ upgrade(req,socket,head,{target,password});
+});
 server.listen(4096,'0.0.0.0',()=>console.log('fixed native environment guard listening'));

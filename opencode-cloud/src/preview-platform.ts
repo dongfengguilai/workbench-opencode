@@ -12,6 +12,7 @@ export function previewPlatform({parent,register,closeSession,relayKey}:{parent:
  function appPath(req:any){const p=req.url.slice('/__preview'.length);if(!p.startsWith('/')||p.startsWith('//')||/^\/(?:__platform|api\/auth)(?:\/|$)/.test(p))throw Error('Preview namespace only');return '/__preview-app'+p;}
  return {
   ticket(hash:string,embedded=false){const id=parent(hash);return {url:((embedded||formalOrigins())?previewOrigin(id.username):local)+'/__workbench/claim?ticket='+access.issue(hash),expiresIn:30};},
+  revoke(hash:string){access.revokeParent(hash);},
   handle(req:any,res:any){
    if(!sameSecret(req.headers['x-workbench-preview-relay'],relayKey())){error(res,403,'Owned loopback preview relay required');return;}
    const url=new URL(req.url,'http://fixed');
