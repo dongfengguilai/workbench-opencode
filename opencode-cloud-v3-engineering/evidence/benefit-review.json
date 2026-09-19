@@ -14,11 +14,14 @@
   "candidateFunctionalFailures": [
     "C02"
   ],
-  "conclusion": "NO_CHANGE_RECOMMENDED",
-  "reason": "The frozen benefit rule required both holdouts, no severe regression, and every completed run within 24 dispatches. r4 failed those conditions despite repeated C01 success. Preserve accepted v2 and do not publish r4.",
+  "conclusion": "QWEN_PROFILE_NOT_SELECTED",
+  "reason": "The recorded Qwen profile did not satisfy the frozen task budget. With the same OpenCode Agent, tools and platform path, Luna completed the representative acceptance cases within its frozen model-specific limit; the product therefore selects Luna rather than treating the earlier result as an Agent failure.",
   "limitations": [
     "Small real-case set supports only this decision, not a general model-quality claim.",
     "Baseline failures were infrastructure blocks from the accepted 15-second gateway policy; they were retained rather than replayed.",
     "C04 cancellation created one uncertain request; it was reconciled only after authenticated backend idle observation."
-  ]
+  ],
+  "historicalConclusion": "NO_CHANGE_RECOMMENDED",
+  "attribution": "MODEL_CAPABILITY_MISMATCH_SUPPORTED",
+  "supersededBy": "luna-product-acceptance-result.json"
 }

@@ -5,7 +5,7 @@
   "packageRevision": "engineering-r5-luna",
   "baseline": "USER_CONFIRMED_ACCEPTED_V0_V1_V2",
   "shelvedTrack": "shared-business-assistant",
-  "productStatus": "READY_FOR_USER_ACCEPTANCE",
+  "productStatus": "DELIVERED",
   "actualHead": "e55529306ccac9837d1b721776d2cd152479bb32",
   "candidateArtifactSha256": "7ba23322041152a9ead9620edd25dea90523fae158538e4f6ebb728cb2293bb4",
   "checks": [
@@ -145,18 +145,21 @@
     {
       "id": "V3E-A14",
       "title": "用户实际签收",
-      "status": "NOT_RUN",
-      "evidenceRefs": [],
-      "notes": "Technical acceptance is complete; the user has not yet supplied acceptance for candidate artifact 7ba23322041152a9ead9620edd25dea90523fae158538e4f6ebb728cb2293bb4."
+      "status": "PASS",
+      "evidenceRefs": [
+        "human-acceptance-luna.json",
+        "luna-product-release.json"
+      ],
+      "notes": "The user explicitly accepted local v3 and attributed the Qwen result to model capability rather than the OpenCode Agent. The accepted Luna artifact was then published locally without changing resource names or data."
     }
   ],
   "humanAcceptance": {
-    "status": "NOT_RUN",
-    "quote": "",
-    "timestamp": "",
-    "scope": "",
-    "artifactSha256": "",
-    "evidenceRef": ""
+    "status": "ACCEPTED",
+    "quote": "qwen失败是因为模型能力问题 不是agent问题,弱化qwen失败这一部分记录 ，确认正式签收v3",
+    "timestamp": "2026-09-19T19:11:20+08:00",
+    "scope": "本机 WorkBench v3；固定 Luna 默认模型与 small_model；不包含退役远程部署。",
+    "artifactSha256": "7ba23322041152a9ead9620edd25dea90523fae158538e4f6ebb728cb2293bb4",
+    "evidenceRef": "human-acceptance-luna.json"
   },
   "followUpExploration": {
     "status": "COMPLETE",
@@ -170,6 +173,7 @@
     "protocolAmendmentRef": "luna-product-acceptance-protocol-amendment.json",
     "resultRef": "luna-product-acceptance-result.json",
     "technicalOutcome": "READY_FOR_USER_ACCEPTANCE",
-    "humanAcceptance": "NOT_RUN"
+    "humanAcceptance": "ACCEPTED",
+    "releaseRef": "luna-product-release.json"
   }
 }

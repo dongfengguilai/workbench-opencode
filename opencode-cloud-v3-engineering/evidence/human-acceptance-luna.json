@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "status": "ACCEPTED",
+  "timestamp": "2026-09-19T19:11:20+08:00",
+  "quote": "qwen失败是因为模型能力问题 不是agent问题,弱化qwen失败这一部分记录 ，确认正式签收v3",
+  "scope": "本机 WorkBench v3；固定 Luna 默认模型与 small_model；保留 Qwen 为非默认维护者回退；不包含退役远程部署。",
+  "candidateArtifactSha256": "7ba23322041152a9ead9620edd25dea90523fae158538e4f6ebb728cb2293bb4",
+  "attribution": {
+    "qwen": "该工程任务集合中的模型能力不匹配，不归因为 OpenCode Agent 架构失败",
+    "support": "相同 OpenCode 1.18.31、工具与平台候选使用 Luna 后完成代表性真实案例"
+  }
+}

@@ -122,7 +122,7 @@
   ],
   "comparisonToOriginalQwenR4": {
     "C02": {
-      "qwen": "functional failure at 12 requests",
+      "qwen": "did not satisfy the required browser behavior at 12 requests",
       "luna": "pass at 15 dispatches"
     },
     "C03": {
@@ -138,7 +138,7 @@
       "luna": "functional pass but over budget at 28 dispatches"
     }
   },
-  "conclusion": "The model hypothesis is supported for C02-C04: with the same r4 candidate and T0 input, Luna satisfied all three within the frozen budget where Qwen failed behavior or cost. C05 also passed behavior but still exceeded the cost limit. This exploratory model change does not isolate an r4 platform benefit and does not reverse the original NO_CHANGE_RECOMMENDED decision.",
+  "conclusion": "The model-capability hypothesis is supported: with the same OpenCode Agent, tools and r4 path, Luna satisfied C02-C04 within the frozen limit and C05 behavior also passed. The Qwen observations are retained as measurements of an unsuitable model profile for this task set rather than evidence of an Agent architecture failure.",
   "runtimeAfterEvaluation": {
     "candidateStoppedGracefully": true,
     "acceptedV2Restored": true,

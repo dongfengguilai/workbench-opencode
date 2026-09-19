@@ -26,6 +26,8 @@ class KitGuardTests(unittest.TestCase):
 
     def complete(self):
         a, c = copy.deepcopy(self.a), copy.deepcopy(self.c)
+        a.pop('productTargetAcceptance', None)
+        c.pop('productTargetDecision', None)
         a['productStatus'] = 'READY_FOR_USER_ACCEPTANCE'
         a['actualHead'] = 'a' * 40
         a['candidateArtifactSha256'] = 'b' * 64
@@ -121,6 +123,45 @@ class KitGuardTests(unittest.TestCase):
     def test_18_validation_does_not_mutate_records(self):
         a,c=self.complete(); before=copy.deepcopy((a,c)); module.validate_release(a,c,self.root)
         self.assertEqual((a,c),before)
+
+    def product_target_complete(self):
+        a,c=self.complete()
+        c['summary'] = dict(conclusion='NO_CHANGE_RECOMMENDED', primaryMetricImproved=True,
+                            noMaterialRegression=False, withinCostGuardrails=False,
+                            summaryRef='evidence.txt')
+        protocol=self.root/'product-protocol.json'; protocol.write_text('{"frozen":true}\n')
+        amendment=self.root/'product-amendment.json'; amendment.write_text('{"amends":"product"}\n')
+        result={
+            'status':'PASS', 'candidateArtifactSha256':'b'*64,
+            'protocol':{
+                'sha256':hashlib.sha256(protocol.read_bytes()).hexdigest(),
+                'amendmentSha256':hashlib.sha256(amendment.read_bytes()).hexdigest(),
+            },
+            'routing':{'manualModelSelection':False,'submittedModel':'gpt-5.6-luna'},
+            'cases':[
+                {'caseId':cid,'outcome':'SATISFIED','executionOrigin':'workbench_native_opencode',
+                 'humanSolutionHints':0,'humanSourceEdits':0,
+                 'gateway':{'withinCap':True,'dispatched':20,'completed':20,'cap':32}}
+                for cid in ('C01','C05')
+            ],
+            'runtimeAfterAcceptance':{'candidateStoppedGracefully':True,'unresolvedModelDispatches':0},
+        }
+        (self.root/'product-result.json').write_text(json.dumps(result))
+        a['productTargetAcceptance']={'status':'PASS','protocolRef':'product-protocol.json',
+            'protocolAmendmentRef':'product-amendment.json','resultRef':'product-result.json'}
+        c['productTargetDecision']={'status':'DELIVERED'}
+        return a,c
+
+    def test_19_product_target_scope_preserves_historical_no_change(self):
+        a,c=self.product_target_complete()
+        self.assertEqual(module.validate_release(a,c,self.root), [])
+
+    def test_20_product_target_over_cap_is_rejected(self):
+        a,c=self.product_target_complete()
+        p=self.root/'product-result.json'; d=json.loads(p.read_text())
+        d['cases'][0]['gateway']['dispatched']=33; d['cases'][0]['gateway']['completed']=33
+        p.write_text(json.dumps(d))
+        self.assertTrue(module.validate_release(a,c,self.root))
 
 
 if __name__ == '__main__':

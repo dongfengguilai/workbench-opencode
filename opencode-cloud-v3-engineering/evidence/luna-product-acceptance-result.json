@@ -80,7 +80,7 @@
     }
   ],
   "retainedFacts": [
-    "The older Qwen causal comparison remains NO_CHANGE_RECOMMENDED and is not relabeled.",
+    "The older Qwen run data and its original decision are retained as historical measurements; the final product interpretation attributes the gap to model capability for this task set.",
     "The earlier Luna exploration correction remains visible: C03-C05 had one retained C02 test assertion, although their behavior sources matched T0.",
     "The r5 acceptance runs restored exact T0 before each case and expected 94 tests.",
     "The lifecycle stopped each native space after the model work completed; independent verification was performed after controlled re-entry."

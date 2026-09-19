@@ -10,7 +10,7 @@
 | 实施仓库 | `dongfengguilai/workbench-opencode` |
 | 已接受基线 | v0、v1、v2 均继承；v2 按需运行和容量保护保持 |
 | 搁置路线 | 上一个 v3「共享受限业务助手／Shared + Dedicated」包 |
-| 当前产品状态 | `READY_FOR_USER_ACCEPTANCE`；固定 Luna 产品候选已通过快速技术验收，尚待用户签收 |
+| 当前产品状态 | `DELIVERED`；固定 Luna 产品候选已由用户签收并在本机受控发布 |
 
 ## 唯一主线
 

@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "status": "PUBLISHED_LOCAL",
+  "publishedAt": "2026-09-19T19:13:00+08:00",
+  "scope": "local single-host WorkBench v3",
+  "candidateArtifactSha256": "7ba23322041152a9ead9620edd25dea90523fae158538e4f6ebb728cb2293bb4",
+  "artifact": {
+    "manifestVerified": true,
+    "promotedExactValidatedCandidate": true,
+    "writeProtectedAfterPromotion": true
+  },
+  "runtime": {
+    "composeProjectNameUnchanged": "workbench-v2-checkpoint",
+    "resourceNamesChanged": false,
+    "opencodeVersion": "1.18.31",
+    "model": "approved/gpt-5.6-luna",
+    "smallModel": "approved/gpt-5.6-luna",
+    "availableModels": [
+      "gpt-5.6-luna",
+      "Qwen3.6-35B-A3B"
+    ],
+    "qwenIsDefault": false,
+    "spaceState": "STOPPED",
+    "unresolvedModelDispatches": 0,
+    "sharedGatewayHealthy": true
+  },
+  "publicationVerification": {
+    "enteredWithoutRunningAModelTask": true,
+    "readOnlyConfigProbe": "PASS",
+    "safeStop": "PASS",
+    "projectDataReinitialized": false,
+    "sessionsReinitialized": false
+  },
+  "protectedScope": {
+    "productionChanged": false,
+    "retiredRemoteDeploymentTouched": false,
+    "opencodeCoreChanged": false,
+    "agentLoopChanged": false
+  },
+  "privateEvidenceRoot": "/home/vmware/Workspace/programs/WorkBench/acceptance/v3-engineering-private/luna-product-acceptance/"
+}

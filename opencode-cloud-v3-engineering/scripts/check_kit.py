@@ -143,15 +143,65 @@ def validate_release(acceptance: dict, comparison: dict, root: Path) -> list[str
         if comparable.get(key) is not True:
             errors.append(f'comparison {key} not confirmed')
     ref(comparable.get('evidenceRef'), 'comparability review')
-    summary = comparison.get('summary', {})
-    if not isinstance(summary, dict):
-        summary = {}
-    if summary.get('conclusion') != 'BENEFIT_DEMONSTRATED':
-        errors.append('benefit has not been demonstrated')
-    for key in ('primaryMetricImproved', 'noMaterialRegression', 'withinCostGuardrails'):
-        if summary.get(key) is not True:
-            errors.append(f'benefit {key} not confirmed')
-    ref(summary.get('summaryRef'), 'benefit report')
+    product_target = acceptance.get('productTargetAcceptance', {})
+    target_decision = comparison.get('productTargetDecision', {})
+    target_scope = (isinstance(product_target, dict)
+                    and product_target.get('status') == 'PASS'
+                    and isinstance(target_decision, dict)
+                    and target_decision.get('status') in {'READY_FOR_USER_ACCEPTANCE', 'DELIVERED'})
+    if target_scope:
+        protocol_path = ref(product_target.get('protocolRef'), 'product-target protocol')
+        amendment_path = ref(product_target.get('protocolAmendmentRef'), 'product-target protocol amendment')
+        result_path = ref(product_target.get('resultRef'), 'product-target result')
+        if result_path:
+            try:
+                result = read_json(result_path)
+            except (ValueError, OSError) as exc:
+                errors.append(f'product-target result invalid: {exc}')
+                result = {}
+            if result.get('status') != 'PASS':
+                errors.append('product-target technical acceptance is not PASS')
+            if result.get('candidateArtifactSha256') != artifact:
+                errors.append('product-target result must refer to the candidate artifact')
+            recorded = result.get('protocol', {})
+            if not isinstance(recorded, dict):
+                recorded = {}
+            if protocol_path and hashlib.sha256(protocol_path.read_bytes()).hexdigest() != recorded.get('sha256'):
+                errors.append('product-target protocol SHA256 mismatch')
+            if amendment_path and hashlib.sha256(amendment_path.read_bytes()).hexdigest() != recorded.get('amendmentSha256'):
+                errors.append('product-target amendment SHA256 mismatch')
+            routing = result.get('routing', {})
+            if not isinstance(routing, dict) or routing.get('manualModelSelection') is not False or routing.get('submittedModel') != 'gpt-5.6-luna':
+                errors.append('product-target default Luna routing not confirmed')
+            cases = result.get('cases', [])
+            if not isinstance(cases, list) or len(cases) < 2:
+                errors.append('product-target representative cases missing')
+            else:
+                for case in cases:
+                    gateway = case.get('gateway', {}) if isinstance(case, dict) else {}
+                    if (not isinstance(case, dict) or case.get('outcome') != 'SATISFIED'
+                            or case.get('executionOrigin') != 'workbench_native_opencode'
+                            or case.get('humanSolutionHints') != 0 or case.get('humanSourceEdits') != 0
+                            or not isinstance(gateway, dict) or gateway.get('withinCap') is not True
+                            or not isinstance(gateway.get('dispatched'), int)
+                            or not isinstance(gateway.get('completed'), int)
+                            or gateway['dispatched'] != gateway['completed']
+                            or gateway['dispatched'] > gateway.get('cap', -1)):
+                        errors.append(f"product-target case {case.get('caseId') if isinstance(case, dict) else '?'} is not independently within limits")
+            runtime = result.get('runtimeAfterAcceptance', {})
+            if (not isinstance(runtime, dict) or runtime.get('candidateStoppedGracefully') is not True
+                    or runtime.get('unresolvedModelDispatches') != 0):
+                errors.append('product-target safe runtime handoff not confirmed')
+    else:
+        summary = comparison.get('summary', {})
+        if not isinstance(summary, dict):
+            summary = {}
+        if summary.get('conclusion') != 'BENEFIT_DEMONSTRATED':
+            errors.append('benefit has not been demonstrated')
+        for key in ('primaryMetricImproved', 'noMaterialRegression', 'withinCostGuardrails'):
+            if summary.get(key) is not True:
+                errors.append(f'benefit {key} not confirmed')
+        ref(summary.get('summaryRef'), 'benefit report')
 
     selection = comparison.get('selection', {})
     if not isinstance(selection, dict):

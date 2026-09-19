@@ -16,8 +16,10 @@ test_15_human_help_conflicts_with_independent (test_kit_guard.KitGuardTests.test
 test_16_holdout_tuning_must_be_disclosed (test_kit_guard.KitGuardTests.test_16_holdout_tuning_must_be_disclosed) ... ok
 test_17_no_recommendation_not_delivered (test_kit_guard.KitGuardTests.test_17_no_recommendation_not_delivered) ... ok
 test_18_validation_does_not_mutate_records (test_kit_guard.KitGuardTests.test_18_validation_does_not_mutate_records) ... ok
+test_19_product_target_scope_preserves_historical_no_change (test_kit_guard.KitGuardTests.test_19_product_target_scope_preserves_historical_no_change) ... ok
+test_20_product_target_over_cap_is_rejected (test_kit_guard.KitGuardTests.test_20_product_target_over_cap_is_rejected) ... ok
 
 ----------------------------------------------------------------------
-Ran 18 tests in 0.105s
+Ran 20 tests in 0.066s
 
 OK

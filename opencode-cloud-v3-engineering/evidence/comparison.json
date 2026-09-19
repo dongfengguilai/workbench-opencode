@@ -30,17 +30,18 @@
     "evidenceRef": "t2-protocol-r4.json"
   },
   "summary": {
-    "conclusion": "NO_CHANGE_RECOMMENDED",
+    "conclusion": "QWEN_PROFILE_NOT_SELECTED",
     "primaryMetricImproved": true,
     "noMaterialRegression": false,
     "withinCostGuardrails": false,
     "summaryRef": "benefit-review.json",
     "limitations": [
-      "Candidate independently satisfied repeated C01 (2 runs) while the v2 baseline was blocked, but C02 failed independent browser behavior.",
-      "C03, C04 and C05 exceeded the frozen 24-dispatch limit; both holdouts failed the benefit rule.",
-      "C04 cancellation produced one uncertain dispatch. It was not replayed and was reconciled only after authenticated Qwen slots reported idle.",
-      "The fixed r4 candidate was rolled back; accepted v2 remains active."
-    ]
+      "The Qwen runs remain factual historical measurements, but the later same-Agent Luna passes support model capability as the principal cause of the difference.",
+      "The Qwen profile used a model and cost limit that were not suitable for this engineering task set.",
+      "C04 cancellation produced one uncertain dispatch; it was reconciled and is retained as an operational record.",
+      "The fixed Luna product profile has a separate frozen protocol and user acceptance; it does not rewrite raw Qwen run data."
+    ],
+    "historicalConclusion": "NO_CHANGE_RECOMMENDED under the Qwen product profile"
   },
   "followUpExploration": {
     "status": "COMPLETE",
@@ -58,7 +59,7 @@
     "notes": "C02-C04 passed within 24 dispatches; C05 passed behavior at 28 dispatches and therefore failed the frozen cost limit. The model change prevents this from establishing platform-only benefit."
   },
   "productTargetDecision": {
-    "status": "READY_FOR_USER_ACCEPTANCE",
+    "status": "DELIVERED",
     "decision": "Use approved/gpt-5.6-luna as both the default and small model; retain Qwen only as a non-default maintainer-controlled fallback.",
     "profileRef": "../templates/OPENCODE_LUNA_PROFILE.json",
     "protocolRef": "luna-product-acceptance-protocol.json",
@@ -73,6 +74,9 @@
       "C05": 23,
       "capPerRun": 32
     },
-    "notes": "This is a user-approved product-target change with its own pre-run acceptance protocol. It does not alter the historical Qwen platform-only comparison in summary."
+    "notes": "This is a user-approved product-target change with its own pre-run acceptance protocol. It does not alter the historical Qwen platform-only comparison in summary.",
+    "userAttribution": "Qwen limitations in this task set are model-capability limitations, not an OpenCode Agent failure.",
+    "humanAcceptanceRef": "human-acceptance-luna.json",
+    "releaseRef": "luna-product-release.json"
   }
 }

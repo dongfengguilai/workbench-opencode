@@ -49,4 +49,4 @@ r4 只在隔离的 `workbench-v2-checkpoint` 中运行。正式比较未满足�
 
 用户已将产品目标从 Qwen 调整为 Luna。r5 的受控配置以 [Luna 配置](templates/OPENCODE_LUNA_PROFILE.json) 为公开规范：model 和 small_model 均为 approved/gpt-5.6-luna，Qwen 只作为维护者控制的非默认回退，不新增用户模型配置。
 
-r5 仅在隔离的 workbench-v2-checkpoint 中完成技术验收。验收后已正常停止并恢复 v2 固定 Compose 与 lifecycle helper；当前不能把私有候选目录当作正式发布源。用户签收同一候选清单后，才可将已验证配置制成受控制品并按现有小范围发布流程实施。不得因此操作生产或退役远程部署。
+r5 先在隔离的 workbench-v2-checkpoint 中完成技术验收并回退。用户签收同一清单后，该精确候选被提升为只读本机发布源；只替换工程师原生容器、guard、共享网关和 lifecycle helper，项目、会话、额度、平台入口与资源名称保持。发布后只读核实默认 Luna 配置并正常停止。生产和退役远程部署仍未操作。
