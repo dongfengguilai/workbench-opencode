@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "frozenAt": "2026-09-19T10:16:45Z",
+  "status": "FROZEN_BEFORE_RUNS",
+  "purpose": "Extend the user-requested Luna model comparison to the two preselected holdout cases C04 and C05 without changing prompts, project input, OpenCode, or the r4 candidate.",
+  "notPartOfOriginalFrozenComparison": true,
+  "candidateArtifactSha256": "7d1031b62ed7e9a969c57670608c53f50900a1f6c3882a375e9dd2d0fbe37caa",
+  "cases": [
+    "C04",
+    "C05"
+  ],
+  "commonConditions": {
+    "projectInput": "same immutable authorized T0 snapshot",
+    "opencode": "1.18.31",
+    "candidate": "same fixed r4 platform candidate",
+    "prompts": "unchanged from t2-selection.json",
+    "model": "approved/gpt-5.6-luna",
+    "maxGatewayDispatchesPerRun": 24,
+    "maxWallMinutesPerRun": 20,
+    "automaticRetryOfUnknownWork": false,
+    "humanSolutionHints": 0,
+    "humanSourceEdits": 0
+  },
+  "acceptance": {
+    "C04": "real Chromium download produces report.pdf whose SHA-256 equals the uploaded PDF; no source change unless a defect is reproduced",
+    "C05": "after real Chromium upload and rename, reload preserves report.pdf and its PDF canvas preview; no source change unless a defect is reproduced"
+  },
+  "interpretation": "Results extend the Luna exploratory model comparison only. They do not overwrite the Qwen comparison, independently establish an r4 platform benefit, authorize release, or reopen v0-v2 acceptance."
+}

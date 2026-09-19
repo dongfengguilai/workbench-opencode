@@ -41,5 +41,20 @@
       "C04 cancellation produced one uncertain dispatch. It was not replayed and was reconciled only after authenticated Qwen slots reported idle.",
       "The fixed r4 candidate was rolled back; accepted v2 remains active."
     ]
+  },
+  "followUpExploration": {
+    "status": "COMPLETE",
+    "model": "approved/gpt-5.6-luna",
+    "cases": [
+      "C02",
+      "C03",
+      "C04",
+      "C05"
+    ],
+    "resultRef": "luna-exploration-result.json",
+    "functionalPasses": 4,
+    "withinBudgetPasses": 3,
+    "originalConclusionChanged": false,
+    "notes": "C02-C04 passed within 24 dispatches; C05 passed behavior at 28 dispatches and therefore failed the frozen cost limit. The model change prevents this from establishing platform-only benefit."
   }
 }

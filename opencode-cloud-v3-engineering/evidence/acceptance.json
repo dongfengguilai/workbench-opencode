@@ -6,7 +6,7 @@
   "baseline": "USER_CONFIRMED_ACCEPTED_V0_V1_V2",
   "shelvedTrack": "shared-business-assistant",
   "productStatus": "NO_CHANGE_RECOMMENDED",
-  "actualHead": "883659621264f7943758c022f0a35718ada1ac64",
+  "actualHead": "c7a9baa7a82679744791aa00afc4fc0012a23dd2",
   "candidateArtifactSha256": "7d1031b62ed7e9a969c57670608c53f50900a1f6c3882a375e9dd2d0fbe37caa",
   "checks": [
     {
@@ -106,9 +106,10 @@
         "runs/C03-candidate-1.json",
         "runs/C04-candidate-1.json",
         "runs/C05-candidate-1.json",
-        "runs/C05-candidate-2.json"
+        "runs/C05-candidate-2.json",
+        "luna-exploration-result.json"
       ],
-      "notes": "Frozen dispatch limits were enforced. Over-budget sessions were cancelled; uncertain C04 work was not replayed and was reconciled only after authenticated backend idle evidence."
+      "notes": "Frozen dispatch limits were enforced. Over-budget sessions were cancelled; uncertain C04 work was not replayed and was reconciled only after authenticated backend idle evidence. In the Luna follow-up, C05 was aborted after the gateway counter crossed the same limit; its independent functional pass remains classified over-budget."
     },
     {
       "id": "V3E-A11",
@@ -135,9 +136,10 @@
       "status": "FAIL",
       "evidenceRefs": [
         "benefit-review.json",
-        "comparison.json"
+        "comparison.json",
+        "luna-exploration-result.json"
       ],
-      "notes": "Repeated C01 improved, but C02 behavior failed and both holdouts exceeded budget. Overall benefit was not demonstrated."
+      "notes": "The Luna follow-up supports a model effect for C02-C04, while C05 remained over budget. Because the model changed and C01 was not rerun, it does not establish an r4 platform-only benefit or reverse the original decision."
     },
     {
       "id": "V3E-A14",
@@ -154,5 +156,10 @@
     "scope": "",
     "artifactSha256": "",
     "evidenceRef": ""
+  },
+  "followUpExploration": {
+    "status": "COMPLETE",
+    "evidenceRef": "luna-exploration-result.json",
+    "productStatusChanged": false
   }
 }

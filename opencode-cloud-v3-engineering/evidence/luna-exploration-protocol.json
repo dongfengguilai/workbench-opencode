@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "frozenAt": "2026-09-19T09:54:00Z",
+  "status": "FROZEN_BEFORE_RUNS",
+  "purpose": "Test the user's hypothesis that the r4 C02/C03 failures were model-dependent by changing only the selected model from Qwen to Luna.",
+  "notPartOfOriginalFrozenComparison": true,
+  "candidateArtifactSha256": "7d1031b62ed7e9a969c57670608c53f50900a1f6c3882a375e9dd2d0fbe37caa",
+  "cases": ["C02", "C03"],
+  "commonConditions": {
+    "projectInput": "same immutable authorized T0 snapshot",
+    "opencode": "1.18.31",
+    "candidate": "same fixed r4 platform candidate",
+    "prompts": "unchanged from t2-selection.json",
+    "model": "approved/gpt-5.6-luna",
+    "maxGatewayDispatchesPerRun": 24,
+    "maxWallMinutesPerRun": 20,
+    "automaticRetryOfUnknownWork": false,
+    "humanSolutionHints": 0,
+    "humanSourceEdits": 0
+  },
+  "acceptance": {
+    "C02": "served web application rejects valid CON.pdf before storage and accepts report.pdf; relevant tests and build pass",
+    "C03": "real Chromium preview renders a PDF canvas without a blocked iframe page; no source change unless the defect is reproduced"
+  },
+  "interpretation": "Results may identify a model effect for these two cases. They do not overwrite the Qwen comparison, constitute a full v3 release comparison, or reopen v0-v2 acceptance."
+}

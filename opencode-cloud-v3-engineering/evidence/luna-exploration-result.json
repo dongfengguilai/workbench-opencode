@@ -1,0 +1,156 @@
+{
+  "schemaVersion": 1,
+  "status": "COMPLETE",
+  "kind": "exploratory-model-comparison",
+  "completedAt": "2026-09-19T10:32:00Z",
+  "purpose": "Evaluate the user hypothesis that r4 failures were model-dependent by selecting Luna while preserving the frozen project input, prompts, OpenCode 1.18.31 and r4 candidate.",
+  "protocols": [
+    {
+      "cases": [
+        "C02",
+        "C03"
+      ],
+      "ref": "luna-exploration-protocol.json",
+      "sha256": "644a4fa32d5ce20aebe213deca99fc77fda250bc2caf60ca1a6aecfa9635a385"
+    },
+    {
+      "cases": [
+        "C04",
+        "C05"
+      ],
+      "ref": "luna-exploration-c04-c05-protocol.json",
+      "sha256": "6814d81e53e45d751b91671fdbc3c6c13c548a7432b72368803839a1ef70cb7f"
+    }
+  ],
+  "commonConditions": {
+    "candidateArtifactSha256": "7d1031b62ed7e9a969c57670608c53f50900a1f6c3882a375e9dd2d0fbe37caa",
+    "model": "approved/gpt-5.6-luna",
+    "opencode": "1.18.31",
+    "sameT0Input": true,
+    "samePrompts": true,
+    "maxGatewayDispatchesPerRun": 24,
+    "maxWallMinutesPerRun": 20,
+    "humanSolutionHints": 0,
+    "humanSourceEdits": 0,
+    "titleGenerationModel": "Qwen3.6-35B-A3B"
+  },
+  "preflight": {
+    "modelsEndpointStatus": 200,
+    "chatEndpointStatus": 200,
+    "modelPresent": true,
+    "secretsPublished": false
+  },
+  "cases": [
+    {
+      "caseId": "C02",
+      "sessionId": "ses_f46e53e8affeNkBBQs6ZpxIVV9",
+      "outcome": "SATISFIED",
+      "functionalBehavior": "PASS",
+      "withinDispatchBudget": true,
+      "gatewayDispatches": 15,
+      "lunaDispatches": 14,
+      "titleDispatches": 1,
+      "sourceChangedByNativeOpenCode": true,
+      "independentEvidence": {
+        "tests": "95/95 PASS",
+        "build": "PASS",
+        "browser": "CON.pdf rejected before storage; report.pdf accepted"
+      },
+      "retainedFailures": [
+        "The first setup attempt timed out before a model was submitted because the private runner searched for the model id instead of the visible Luna label.",
+        "The first verifier test command ran from the project root without package.json; the corrected web-directory run passed 95/95."
+      ]
+    },
+    {
+      "caseId": "C03",
+      "sessionId": "ses_f46ddefe5ffeBP08ZhUG6vuuDj",
+      "outcome": "SATISFIED",
+      "functionalBehavior": "PASS",
+      "withinDispatchBudget": true,
+      "gatewayDispatches": 22,
+      "lunaDispatches": 21,
+      "titleDispatches": 1,
+      "sourceChangedByNativeOpenCode": false,
+      "independentEvidence": {
+        "tests": "95/95 PASS",
+        "build": "PASS",
+        "browser": "PDF canvas visible at 450x300; Chrome blocked-page text absent"
+      },
+      "retainedFailures": [
+        "The lifecycle stopped the space after native completion before the outer collector observed final status; native messages and independent behavior remained available after re-entry."
+      ]
+    },
+    {
+      "caseId": "C04",
+      "sessionId": "ses_f46d2f885ffeeH2ayQpwEg3rxo",
+      "outcome": "SATISFIED",
+      "functionalBehavior": "PASS",
+      "withinDispatchBudget": true,
+      "gatewayDispatches": 21,
+      "lunaDispatches": 20,
+      "titleDispatches": 1,
+      "sourceChangedByNativeOpenCode": false,
+      "independentEvidence": {
+        "tests": "95/95 PASS",
+        "build": "PASS",
+        "browser": "download suggested report.pdf; downloaded SHA-256 equaled uploaded SHA-256",
+        "contentSha256": "03bcc99d171b30fdcc82674551314f5e7629a44ee90f12e61d43c61852ec89ce"
+      },
+      "retainedFailures": [
+        "Two independent browser attempts saw ERR_CONNECTION_REFUSED after the lifecycle reclaimed the managed preview. Both failures were retained; after explicit lifecycle activity and controlled preview start, the same assertion passed."
+      ]
+    },
+    {
+      "caseId": "C05",
+      "sessionId": "ses_f46ccddeaffemDq6w21fEDljpp",
+      "outcome": "UNSATISFIED_OVER_BUDGET",
+      "functionalBehavior": "PASS",
+      "withinDispatchBudget": false,
+      "gatewayDispatches": 28,
+      "lunaDispatches": 27,
+      "titleDispatches": 1,
+      "sourceChangedByNativeOpenCode": false,
+      "independentEvidence": {
+        "tests": "95/95 PASS",
+        "build": "PASS",
+        "browser": "after upload, rename and reload, report.pdf remained and the PDF canvas rendered at 918x567"
+      },
+      "retainedFailures": [
+        "The 24-dispatch limit was crossed before cancellation completed; the session was aborted and no retry was made. Functional behavior passed independently, but the frozen cost requirement failed."
+      ]
+    }
+  ],
+  "comparisonToOriginalQwenR4": {
+    "C02": {
+      "qwen": "functional failure at 12 requests",
+      "luna": "pass at 15 dispatches"
+    },
+    "C03": {
+      "qwen": "31 requests, over budget",
+      "luna": "pass at 22 dispatches"
+    },
+    "C04": {
+      "qwen": "35 requests, over budget",
+      "luna": "pass at 21 dispatches"
+    },
+    "C05": {
+      "qwen": "31 requests, over budget",
+      "luna": "functional pass but over budget at 28 dispatches"
+    }
+  },
+  "conclusion": "The model hypothesis is supported for C02-C04: with the same r4 candidate and T0 input, Luna satisfied all three within the frozen budget where Qwen failed behavior or cost. C05 also passed behavior but still exceeded the cost limit. This exploratory model change does not isolate an r4 platform benefit and does not reverse the original NO_CHANGE_RECOMMENDED decision.",
+  "runtimeAfterEvaluation": {
+    "candidateStoppedGracefully": true,
+    "acceptedV2Restored": true,
+    "spaceState": "STOPPED",
+    "unresolvedModelDispatches": 0,
+    "productionChanged": false,
+    "retiredRemoteDeploymentTouched": false
+  },
+  "privateEvidenceRoot": "/home/vmware/Workspace/programs/WorkBench/acceptance/v3-engineering-private/",
+  "limitations": [
+    "The original frozen comparison used Qwen; changing the model makes these follow-up runs non-comparable as evidence of platform-only benefit.",
+    "C01 was not rerun with Luna in this user-requested slice.",
+    "Tokens and monetary cost were unavailable and are not estimated."
+  ]
+}
